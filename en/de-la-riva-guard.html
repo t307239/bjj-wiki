@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue/Purple</span>
   <h1>De La Riva Guard Explained: Dominate from Open Guard in BJJ</h1>
   <p>The De La Riva Guard is a highly effective open guard position in Brazilian Jiu-Jitsu, named after its inventor, Ricardo De La Riva. It involves using one leg to hook behind an opponent's leg, creating leverage and control for sweeps and submissions. This versatile guard provides excellent opportunities to off-balance and attack your opponent.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> De_La_Riva_Guard
+    De_La_Riva_Guard["De La Riva Guard"]:::currentNode
+    De_La_Riva_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    De_La_Riva_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    De_La_Riva_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    De_La_Riva_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    De_La_Riva_Guard -.-> Berimbolo["Berimbolo"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Establish Position:</strong> Start in open guard, placing one foot on your opponent's hip (opposite side of the leg you'll attack) to control distance.</div></div><div class="step"><div class="step-num">2</div><div><strong>DLR Hook:</strong> Thread your other leg around the outside of your opponent's thigh, hooking your instep behind their knee or calf.</div></div><div class="step"><div class="step-num">3</div><div><strong>Grip Control:</strong> Secure a strong grip on your opponent's ankle (same side as your DLR hook) and a sleeve grip on their opposite arm.</div></div><div class="step"><div class="step-num">4</div><div><strong>Create Angle & Off-Balance:</strong> Use your hip foot to push and your DLR hook to pull, creating an angle and disrupting their base.</div></div><div class="step"><div class="step-num">5</div><div><strong>Maintain Posture:</strong> Keep your core engaged and your head up, preventing your opponent from flattening you or disengaging.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

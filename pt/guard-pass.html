@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-branca">Branca/Azul/Roxa</span>
   <h1>Passagem de Guarda BJJ: Estratégias e Técnicas para Dominar o Oponente</h1>
   <p>A passagem de guarda é uma das habilidades mais cruciais no Jiu-Jitsu, permitindo que você transicione da guarda do seu oponente para uma posição de controle superior, como a montada ou as costas. Dominar essa técnica é fundamental para avançar no combate, neutralizar ataques e abrir caminho para finalizações.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Passing["Passing"]:::catNode
+    Passing --> Guard_Pass
+    Guard_Pass["Guard Pass"]:::currentNode
+    Guard_Pass -.-> Torreando_Pass["Torreando Pass"]:::relNode
+    Guard_Pass -.-> Knee_Slice_Pass["Knee Slice Pass"]:::relNode
+    Guard_Pass -.-> Leg_Drag_Pass["Leg Drag Pass"]:::relNode
+    Guard_Pass -.-> Headquarters_Pass["Headquarters Pass"]:::relNode
+    classDef currentNode fill:#8b5cf6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>Quebrar a Pegada e Postura: Comece quebrando quaisquer pegadas fortes do seu oponente e estabeleça uma postura sólida, com boa base e costas retas, para evitar raspagens e ataques.</div></div><div class="step"><div class="step-num">2</div><div>Dominar os Quadris: Utilize suas mãos e peso para controlar os quadris ou joelhos do seu oponente, impedindo que ele use as pernas para criar distância ou repor a guarda.</div></div><div class="step"><div class="step-num">3</div><div>Criar Ângulos e Pressão: Mova-se lateralmente, criando ângulos que dificultem a defesa do seu oponente e aplique pressão constante com seu corpo para esmagar a guarda dele.</div></div><div class="step"><div class="step-num">4</div><div>Deslocar as Pernas: Trabalhe para deslocar as pernas do seu oponente para um lado, usando seu peso e controle para abrir espaço e contornar a guarda.</div></div><div class="step"><div class="step-num">5</div><div>Transição para Posição de Controle: Uma vez que a guarda esteja quebrada, faça a transição rapidamente para uma posição de controle superior, como os 100 quilos, a montada ou as costas, sem dar tempo para o oponente repor a guarda.</div></div><div class="step"><div class="step-num">6</div><div>Estabilizar e Controlar: Estabilize a nova posição, garantindo que você tenha uma base sólida e controle sobre o oponente, pronto para ataques ou avanços.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

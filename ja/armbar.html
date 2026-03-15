@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-白帯">白帯</span>
   <h1>ブラジリアン柔術：アームバー（腕十字固め）の極め方と練習のコツ</h1>
   <p>アームバー、または腕十字固めは、ブラジリアン柔術において最も基本的かつ効果的な関節技の一つです。相手の腕を自分の腰と足で固定し、肘関節を過伸展させることで一本を狙います。この技は、ガードポジション、マウント、サイドコントロールなど、様々なポジションから仕掛けることが可能です。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Armbar
+    Armbar["Armbar"]:::currentNode
+    Armbar -.-> Kimura["Kimura"]:::relNode
+    Armbar -.-> Americana["Americana"]:::relNode
+    Armbar -.-> Omoplata["Omoplata"]:::relNode
+    Armbar -.-> Wrist_Lock["Wrist Lock"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>ステップ1：相手の腕を確保する</strong>：まず相手の腕をしっかりと掴み、自分の胸に引き寄せます。相手の頭部をコントロールすることも重要です。</div></div><div class="step"><div class="step-num">2</div><div><strong>ステップ2：軸足のセットアップ</strong>：掴んだ腕と同じ側の足を相手の脇の下に深く差し込み、相手の肩を固定します。これにより相手の体勢を崩し、エスケープを防ぎます。</div></div><div class="step"><div class="step-num">3</div><div><strong>ステップ3：もう一方の足を回し越える</strong>：もう一方の足を相手の頭越しに回し、相手の首筋に当てて、両足で相手の頭部と肩を挟み込みます。この時、膝を閉じ、足の裏を床につけて安定させます。</div></div><div class="step"><div class="step-num">4</div><div><strong>ステップ4：相手の腕を伸ばす</strong>：相手の腕を両手で持ち、親指が天井を向くように回転させます。自分の腰を相手の肘に向けて突き上げながら、腕を真っ直ぐに伸ばします。</div></div><div class="step"><div class="step-num">5</div><div><strong>ステップ5：極める</strong>：相手の肘が完全に伸びきり、痛みを感じたらタップを促します。無理な力を加えず、安全に注意しながら行いましょう。</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

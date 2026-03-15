@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>BJJアナコンダチョーク：首と腕を絡め取る強力な絞め技の習得</h1>
   <p>アナコンダチョークは、相手の首と腕を同時にロックし、血流を遮断する非常に効果的なブラジリアン柔術の絞め技です。まるでアナコンダが獲物を締め上げるかのように、強力なプレッシャーで相手をタップに追い込むことができます。特にタートルポジションやサイドコントロールからの移行で威力を発揮します。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Anaconda_Choke
+    Anaconda_Choke["Anaconda Choke"]:::currentNode
+    Anaconda_Choke -.-> Rear_Naked_Choke["Rear Naked Choke"]:::relNode
+    Anaconda_Choke -.-> Triangle_Choke["Triangle Choke"]:::relNode
+    Anaconda_Choke -.-> Guillotine_Choke["Guillotine Choke"]:::relNode
+    Anaconda_Choke -.-> Bow_and_Arrow_Choke["Bow and Arrow Choke"]:::relNode
+    Anaconda_Choke -.-> Ezekiel_Choke["Ezekiel Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>ステップ1：セットアップ - 相手の首の片側と腕を自分の腕で抱え込みます。自分の腕は相手の首を包み込み、もう一方の腕は相手の腕をロックします。</div></div><div class="step"><div class="step-num">2</div><div>ステップ2：グリップ - 抱え込んだ腕の手首を、もう一方の腕のバイセップス（力こぶ）に深く掴みます。このディープなグリップがチョークの基盤となります。</div></div><div class="step"><div class="step-num">3</div><div>ステップ3：ヘッドポジション - 自分の頭を相手の背中に密着させ、相手の首に圧力をかけます。この時、自分の肩が相手の頸動脈に当たるように調整します。</div></div><div class="step"><div class="step-num">4</div><div>ステップ4：ロール/トランジション - 相手を前方にロールするか、サイドコントロールに移行しながらチョークを締めます。この動きで相手の体勢を崩し、より深いチョークへと導きます。</div></div><div class="step"><div class="step-num">5</div><div>ステップ5：フィニッシュ - 自分の肘を締め、相手の首と腕を強く圧迫します。同時に、胴体を反らせるようにして、さらにプレッシャーを加えます。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White</span>
   <h1>The Americana Shoulder Lock: A Fundamental BJJ Submission</h1>
   <p>The Americana, also known as the figure-four armlock or ude-garami in Judo, is a foundational shoulder lock in Brazilian Jiu-Jitsu. It targets the opponent's shoulder joint, applying pressure by externally rotating and extending the arm, making it a highly effective submission from dominant top positions.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Americana
+    Americana["Americana"]:::currentNode
+    Americana -.-> Armbar["Armbar"]:::relNode
+    Americana -.-> Kimura["Kimura"]:::relNode
+    Americana -.-> Omoplata["Omoplata"]:::relNode
+    Americana -.-> Wrist_Lock["Wrist Lock"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Control the Wrist:</strong> From a top position like side control or mount, use your arm closest to the opponent's head to secure their wrist, pinning it to the mat near their head.</div></div><div class="step"><div class="step-num">2</div><div><strong>Establish the Figure-Four Grip:</strong> Use your other hand to reach over the opponent's tricep and grab your own wrist, forming a tight figure-four grip over their arm, ensuring their elbow is pinned to the mat.</div></div><div class="step"><div class="step-num">3</div><div><strong>Apply Hip Pressure:</strong> Drive your body weight through your hips into their chest, maintaining strong pressure to keep their elbow glued to the mat and prevent them from escaping.</div></div><div class="step"><div class="step-num">4</div><div><strong>Adjust the Angle:</strong> Slowly walk your upper body towards their head, pulling their trapped wrist towards their hips while keeping their elbow fixed in place on the mat.</div></div><div class="step"><div class="step-num">5</div><div><strong>Execute the Finish:</strong> With controlled tension, gently lift their elbow slightly off the mat while simultaneously pulling their wrist towards their waist, creating external rotation and hyperextension in the shoulder until they tap.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

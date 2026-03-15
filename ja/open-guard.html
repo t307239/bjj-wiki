@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>BJJオープンガード完全ガイド：相手を支配する戦略とテクニック</h1>
   <p>オープンガードは、ブラジリアン柔術において下からの攻防で非常に多用される、ダイナミックなポジションです。相手のパスを防ぎつつ、脚と腕を効果的に使い、スイープやサブミッションの機会を創出することが特徴です。柔軟な思考と身体の連携が求められる、奥深いガードテクニックと言えるでしょう。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Open_Guard
+    Open_Guard["Open Guard"]:::currentNode
+    Open_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    Open_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    Open_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Open_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    Open_Guard -.-> Berimbolo["Berimbolo"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>仰向けになり、相手が近づいてきたら両足を相手の腰や太ももに置き、適切な距離を保ちます。</div></div><div class="step"><div class="step-num">2</div><div>相手の袖や襟を掴み、コントロールを確立します。これにより、相手の姿勢を崩し、動きを制限することが可能になります。</div></div><div class="step"><div class="step-num">3</div><div>腰を左右に動かす（エビ）ことでアングルを作り、相手のバランスを崩します。これはスイープやサブミッションのセットアップに不可欠な動作です。</div></div><div class="step"><div class="step-num">4</div><div>足の裏や脛を使って相手の腕や首にプレッシャーをかけ、常に適切な距離とコントロールを維持します。</div></div><div class="step"><div class="step-num">5</div><div>常にスイープやサブミッションの脅威を与え、相手にプレッシャーをかけ続け、受動的にならないように意識します。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

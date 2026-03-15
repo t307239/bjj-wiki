@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-purple">Purple</span>
   <h1>Mastering the BJJ X-Guard: Your Complete Technique Guide</h1>
   <p>The X-Guard is a highly effective open guard in Brazilian Jiu-Jitsu, renowned for its ability to create immense leverage and off-balance against a standing or kneeling opponent. It's a fundamental position for executing powerful sweeps, back takes, and transitions to dominant control. Mastering the X-Guard will significantly elevate your offensive guard game.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> X_Guard
+    X_Guard["X Guard"]:::currentNode
+    X_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    X_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    X_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    X_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    X_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Entry:</strong> Establish an initial underhook and an outside leg hook (e.g., from deep half guard or a butterfly sweep attempt) to get underneath your opponent's base.</div></div><div class="step"><div class="step-num">2</div><div><strong>Leg Placement:</strong> Insert your far leg across your opponent's hips, placing your foot on their far hip bone, while your near leg hooks around their near thigh, creating the 'X' shape.</div></div><div class="step"><div class="step-num">3</div><div><strong>Hand Control:</strong> Secure a strong grip on your opponent's far ankle with your far hand and control their near leg or belt with your near hand to maintain connection and prevent posture.</div></div><div class="step"><div class="step-num">4</div><div><strong>Create Extension:</strong> Extend your legs, particularly the one on the hip, to lift and off-balance your opponent, forcing them to put weight on their hands or step back to regain balance.</div></div><div class="step"><div class="step-num">5</div><div><strong>Sweep Execution:</strong> As they react to the extension, use a technical stand-up motion, driving off your free foot and lifting with your X-Guard hooks to sweep them over your shoulder or to the side.</div></div><div class="step"><div class="step-num">6</div><div><strong>Follow-Up:</strong> Transition immediately to a dominant position like mount, knee-on-belly, or back control as soon as your opponent hits the mat, capitalizing on their disorientation.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

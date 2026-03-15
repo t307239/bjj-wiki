@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-purple">Purple</span>
   <h1>Worm Guard BJJ: O Guia Definitivo para Dominar Esta Guarda Inovadora</h1>
   <p>A Worm Guard é uma guarda avançada e altamente eficaz no Jiu-Jitsu Brasileiro, popularizada por Keenan Cornelius. Ela se caracteriza pelo uso da lapela do oponente para criar um controle assimétrico e poderoso, dificultando a passagem e abrindo oportunidades de raspagens e finalizações. Este guia detalhado irá te ensinar os fundamentos para aplicar e dominar a Worm Guard em seus treinos e competições.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Worm_Guard
+    Worm_Guard["Worm Guard"]:::currentNode
+    Worm_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    Worm_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    Worm_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    Worm_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Worm_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><p>1. <strong>Pegada Inicial na Lapela:</strong> Comece com uma pegada cruzada na lapela do seu oponente, preferencialmente do lado oposto ao que você está. 2. <strong>Passagem da Lapela:</strong> Passe a lapela por baixo da sua perna, que estará envolvendo a coxa ou joelho do oponente, e entregue-a à sua outra mão. 3. <strong>Estabelecendo o Gancho:</strong> Com a lapela firmemente controlada, use a perna que passou a lapela para criar um gancho profundo na coxa ou quadril do oponente, mantendo-o preso. 4. <strong>Controle e Tensão:</strong> Ajuste a tensão na lapela, puxando-a para baixo e para o lado, enquanto estende sua perna de gancho para desequilibrar o oponente. 5. <strong>Criação de Ângulo:</strong> Use sua perna livre (geralmente a de fora) e a tensão da lapela para girar seu corpo, criando um ângulo que impede a passagem e prepara a raspagem. 6. <strong>Execução da Raspagem/Ataque:</strong> A partir deste controle, execute raspagens como a raspagem de balão, raspagem de omoplata, ou transicione para finalizações.</p></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

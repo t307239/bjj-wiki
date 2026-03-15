@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-ブルー">ブルー/パープル</span>
   <h1>BJJワームガードの全て：相手を固める究極のラペルコントロール術</h1>
   <p>ワームガードは、相手の道着の襟を自分の脚の下を通して掴み、強力なラペルコントロールを確立するブラジリアン柔術のガードポジションです。このユニークなグリップは相手の動きを著しく制限し、予測不可能なスイープやサブミッションの機会を生み出します。相手のバランスを崩し、試合を支配するための非常に効果的なテクニックとして、多くのトップ選手に採用されています。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Worm_Guard
+    Worm_Guard["Worm Guard"]:::currentNode
+    Worm_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    Worm_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    Worm_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    Worm_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Worm_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>ラペルの引き出しと初期グリップ</strong>: 相手の片側の襟を深く引き出し、自分の脚の下（通常は膝裏や太ももの上）を通します。</div></div><div class="step"><div class="step-num">2</div><div><strong>ワームグリップの確立</strong>: 脚の下を通した襟の端を、反対側の手でしっかりと掴みます。この際、グリップはきつく、たるみがないようにします。</div></div><div class="step"><div class="step-num">3</div><div><strong>足のフックとコントロール</strong>: 襟を掴んだ側の足で、相手の腕や足の付け根などをフックし、相手のベースをさらに崩します。</div></div><div class="step"><div class="step-num">4</div><div><strong>プレッシャーと角度の調整</strong>: グリップと足のフックを使い、相手のバランスを崩すようにプレッシャーをかけ、スイープやサブミッションに有利な角度を作ります。</div></div><div class="step"><div class="step-num">5</div><div><strong>スイープまたはサブミッションへの移行</strong>: 相手の反応を見て、ワームスイープ、バックテイク、または腕十字やトライアングルチョークなどのサブミッションにスムーズに移行します。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

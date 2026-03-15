@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue belt">Blue Belt</span>
   <h1>Butterfly Guard Mastery: Sweeps, Submissions, and Control in Brazilian Jiu-Jitsu</h1>
   <p>The Butterfly Guard is a dynamic open guard in Brazilian Jiu-Jitsu, characterized by using your feet hooked inside your opponent's thighs. It's renowned for its sweeping potential, allowing you to unbalance and off-balance opponents from various positions. This guard emphasizes leverage and timing over brute strength, making it highly effective for all body types.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Butterfly_Guard
+    Butterfly_Guard["Butterfly Guard"]:::currentNode
+    Butterfly_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    Butterfly_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    Butterfly_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    Butterfly_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Butterfly_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Initial Setup:</strong> From a seated guard, establish strong grips (e.g., sleeve and collar, or two-on-one) and insert both feet inside your opponent's thighs, hooking their legs with your insteps. Maintain an upright posture with a strong back.</div></div><div class="step"><div class="step-num">2</div><div><strong>Creating Off-Balance:</strong> Use your grips to pull your opponent forward and down, disrupting their base. Simultaneously, arch your back slightly and engage your core, keeping your hooks active.</div></div><div class="step"><div class="step-num">3</div><div><strong>Lifting and Shifting:</strong> As your opponent resists or tries to post, use your hooks to lift their hips slightly while shifting your own hips to the side you intend to sweep. This creates a crucial fulcrum point.</div></div><div class="step"><div class="step-num">4</div><div><strong>Execution of Sweep:</strong> Drive off the mat with your free foot (if applicable) or use a powerful hip extension, combining it with a strong pull from your grips, to roll your opponent over your shoulder or to the side.</div></div><div class="step"><div class="step-num">5</div><div><strong>Follow-Up:</strong> Once your opponent is swept, immediately transition to a dominant position like mount or side control, maintaining control of their limbs to prevent recovery.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-青帯">青帯</span>
   <h1>ブラジリアン柔術 レッグドラッグパス：オープンガード攻略の鍵</h1>
   <p>レッグドラッグパスは、ブラジリアン柔術において最も効果的で直接的なガードパスの一つです。相手の足をコントロールし、その股関節にプレッシャーをかけることで、素早くサイドコントロールやマウントポジションへと移行することを目的とします。このテクニックは、相手の足の防御を無力化し、パスガードの成功率を飛躍的に高めます。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Passing["Passing"]:::catNode
+    Passing --> Leg_Drag_Pass
+    Leg_Drag_Pass["Leg Drag Pass"]:::currentNode
+    Leg_Drag_Pass -.-> Guard_Pass["Guard Pass"]:::relNode
+    Leg_Drag_Pass -.-> Torreando_Pass["Torreando Pass"]:::relNode
+    Leg_Drag_Pass -.-> Knee_Slice_Pass["Knee Slice Pass"]:::relNode
+    Leg_Drag_Pass -.-> Headquarters_Pass["Headquarters Pass"]:::relNode
+    classDef currentNode fill:#8b5cf6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>相手の足のコントロール</strong>: まず、相手がオープンガードで足を広げている状態から始めます。片方の手で相手の足首を掴み、もう一方の手で相手の膝の内側を掴みます。</div></div><div class="step"><div class="step-num">2</div><div><strong>足の引き寄せと股関節の方向転換</strong>: 相手の足首を自身の股関節に引き寄せると同時に、膝を掴んだ手で相手の膝を外側に押し、股関節を回転させます。</div></div><div class="step"><div class="step-num">3</div><div><strong>プレッシャーの適用</strong>: 相手の足を引き寄せた側の膝をマットに着け、自身の胸で相手の太ももに体重をかけ、股関節に強いプレッシャーを与えます。</div></div><div class="step"><div class="step-num">4</div><div><strong>頭の位置とベースの確保</strong>: 相手の顔が向いている方向とは反対側に頭を置き、自身のベースを広げて安定させます。相手の股関節が伸びきっていることを確認します。</div></div><div class="step"><div class="step-num">5</div><div><strong>サイドコントロールへの移行</strong>: 相手の足を引き寄せた手で相手の首元をコントロールし、もう一方の手で相手の腰を掴み、サイドコントロールのポジションへ移行します。</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

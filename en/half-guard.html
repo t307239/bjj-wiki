@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>Brazilian Jiu-Jitsu Half Guard: A Complete Technique Guide</h1>
   <p>Half Guard is a fundamental and highly versatile position in Brazilian Jiu-Jitsu where one of your opponent's legs is trapped between your two legs. It offers a powerful platform for sweeps, submissions, and transitions, allowing you to control your opponent while minimizing their attacking options. Mastering Half Guard is crucial for both offensive and defensive BJJ practitioners.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Half_Guard
+    Half_Guard["Half Guard"]:::currentNode
+    Half_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    Half_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    Half_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Half_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    Half_Guard -.-> Berimbolo["Berimbolo"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Step 1: Achieve the Position.</strong> From bottom, trap one of your opponent's legs between your two legs, typically with your outside leg hooking their thigh and your inside leg hooking their ankle or calf.</div></div><div class="step"><div class="step-num">2</div><div><strong>Step 2: Establish Underhook Control.</strong> Secure a strong underhook with your arm closest to your opponent's trapped leg, aiming to get your head tight to their chest.</div></div><div class="step"><div class="step-num">3</div><div><strong>Step 3: Gain Head and Arm Control.</strong> Use your free hand to control their far arm (cross-face or wrist control) or their head, preventing them from posturing up or applying pressure.</div></div><div class="step"><div class="step-num">4</div><div><strong>Step 4: Create Angles and Off-Balancing.</strong> Use your leg hooks and core strength to create angles, lift their trapped leg, and off-balance your opponent, setting up your offensive attacks.</div></div><div class="step"><div class="step-num">5</div><div><strong>Step 5: Execute a Sweep or Transition.</strong> Leverage the underhook and leg control to execute a basic sweep, such as a Kesa Gatame sweep, or transition to a more dominant position like side control.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

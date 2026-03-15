@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>Osoto Gari: The Fundamental Outer Reaping Throw in Brazilian Jiu-Jitsu</h1>
   <p>Osoto Gari, meaning 'major outer reap,' is a classic judo throw that has been seamlessly integrated into Brazilian Jiu-Jitsu for its effectiveness in taking opponents down. It's a powerful takedown that uses an opponent's momentum and balance against them, sweeping their leg out from under them while driving them backward. Mastering Osoto Gari provides a strong foundation for your stand-up game, allowing you to control the fight from the beginning.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Takedown["Takedown"]:::catNode
+    Takedown --> Osoto_Gari
+    Osoto_Gari["Osoto Gari"]:::currentNode
+    Osoto_Gari -.-> Double_Leg_Takedown["Double Leg Takedown"]:::relNode
+    Osoto_Gari -.-> Single_Leg_Takedown["Single Leg Takedown"]:::relNode
+    Osoto_Gari -.-> Ankle_Pick["Ankle Pick"]:::relNode
+    classDef currentNode fill:#ec4899,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Grip Establishment:</strong> Begin by establishing a strong grip, typically a lapel grip with one hand and a sleeve grip with the other, aiming to control your opponent's posture and upper body.</div></div><div class="step"><div class="step-num">2</div><div><strong>Off-Balancing:</strong> Take a step forward with your lead leg, placing it outside your opponent's lead leg, and pull them forward and to their side, breaking their balance towards their back heel.</div></div><div class="step"><div class="step-num">3</div><div><strong>Entering with the Reaping Leg:</strong> Drive your body forward, stepping your reaping leg (the same side as your lapel grip) deep between your opponent's legs, hooking your foot behind their far leg's Achilles tendon or calf.</div></div><div class="step"><div class="step-num">4</div><div><strong>The Reap and Drive:</strong> Simultaneously drive your chest into theirs, maintain your strong grips, and powerfully reap their leg upwards and outwards while continuing to drive them backward and down to the mat.</div></div><div class="step"><div class="step-num">5</div><div><strong>Follow Through:</strong> Maintain your grips and follow through with your body, ensuring you land in a dominant position, such as side control or knee-on-belly, after completing the throw.</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

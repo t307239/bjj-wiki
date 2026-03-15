@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>Mastering the BJJ Turtle Position: Your Ultimate Defensive & Recovery Guide</h1>
   <p>The Turtle Position in Brazilian Jiu-Jitsu is a crucial defensive posture adopted when an opponent has gained a dominant position, often on your back or side. It's not a submission, but a strategic temporary sanctuary designed to protect your neck and back, prevent further control, and set up your next escape or counter-attack.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Position["Position"]:::catNode
+    Position --> Turtle_Position
+    Turtle_Position["Turtle Position"]:::currentNode
+    Turtle_Position -.-> Mount["Mount"]:::relNode
+    Turtle_Position -.-> Back_Mount["Back Mount"]:::relNode
+    Turtle_Position -.-> Side_Control["Side Control"]:::relNode
+    Turtle_Position -.-> North_South["North-South"]:::relNode
+    Turtle_Position -.-> Knee_on_Belly["Knee on Belly"]:::relNode
+    classDef currentNode fill:#22c55e,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Tight Shell</strong>: Bring your knees close to your chest, tucking your chin to your chest, and rounding your back to create a tight, impenetrable shell.</div></div><div class="step"><div class="step-num">2</div><div><strong>Elbows In</strong>: Keep your elbows glued to your ribs, protecting your armpits and preventing your opponent from easily getting underhooks or controlling your arms.</div></div><div class="step"><div class="step-num">3</div><div><strong>Hand Placement</strong>: Place your hands flat on the mat in front of you or cup your own knees, ready to brace for pressure or initiate movement.</div></div><div class="step"><div class="step-num">4</div><div><strong>Head Position</strong>: Keep your head tucked down, looking towards your belt, protecting your neck from chokes and preventing your opponent from gaining head control.</div></div><div class="step"><div class="step-num">5</div><div><strong>Active Hips</strong>: Stay light on your knees and toes, ready to shift your weight, pivot your hips, and explode into an escape or stand-up.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

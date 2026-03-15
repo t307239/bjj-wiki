@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-purple">Purple/Brown/Black</span>
   <h1>Worm Guard BJJ: The Ultimate Guide to Lapel Control & Sweeps</h1>
   <p>The Worm Guard is a revolutionary lapel-based guard pioneered by BJJ phenom Keenan Cornelius, designed to create powerful off-balancing opportunities and back takes. It involves feeding your opponent's lapel under one of their legs and securing a grip, creating a dynamic control point to disrupt their base and initiate attacks. This advanced guard allows practitioners to dictate the pace and create unique angles for effective sweeps and submissions.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Worm_Guard
+    Worm_Guard["Worm Guard"]:::currentNode
+    Worm_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    Worm_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    Worm_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    Worm_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Worm_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Secure the Lapel Grip:</strong> From an open guard or seated position, obtain a deep grip on your opponent's far-side lapel with your top hand, ensuring a strong, secure hold.</div></div><div class="step"><div class="step-num">2</div><div><strong>Feed Under the Leg:</strong> With your other hand, grab the lapel from your first hand and feed it *under* your opponent's leg (usually the closest leg to you), passing it through to the other side.</div></div><div class="step"><div class="step-num">3</div><div><strong>Establish the Worm Grip:</strong> Secure a strong pistol grip on the fed lapel with your free hand, creating a tight connection between their lapel and their leg. This establishes the unique "worm" effect.</div></div><div class="step"><div class="step-num">4</div><div><strong>Create an Angle with Your Legs:</strong> With the lapel secured, use your free leg (the one not interacting with the lapel) to establish a shin-on-shin hook or a knee shield on your opponent's other leg, driving your knee outwards to create an angle.</div></div><div class="step"><div class="step-num">5</div><div><strong>Off-Balance and Attack:</strong> Maintain constant tension on the lapel grip and use your leg hooks to off-balance your opponent, creating opportunities to sweep, transition to the back, or set up leg attacks.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

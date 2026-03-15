@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>BJJ Headquarters Pass: A Comprehensive Guide to Dominating Open Guard</h1>
   <p>The Headquarters Pass is a fundamental and highly effective open guard pass in Brazilian Jiu-Jitsu, establishing a dominant posture that sets up numerous passing options. It involves controlling your opponent's hips and legs from a central, upright position, creating a strong platform to break down their guard and transition to side control. This technique is crucial for developing a versatile passing game against various open guard players.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Passing["Passing"]:::catNode
+    Passing --> Headquarters_Pass
+    Headquarters_Pass["Headquarters Pass"]:::currentNode
+    Headquarters_Pass -.-> Guard_Pass["Guard Pass"]:::relNode
+    Headquarters_Pass -.-> Torreando_Pass["Torreando Pass"]:::relNode
+    Headquarters_Pass -.-> Knee_Slice_Pass["Knee Slice Pass"]:::relNode
+    Headquarters_Pass -.-> Leg_Drag_Pass["Leg Drag Pass"]:::relNode
+    classDef currentNode fill:#8b5cf6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Establish Headquarters Position:</strong> Begin by standing with good posture, gripping both of your opponent's shins or pants. Place one knee on the mat between your opponent's legs, directly over their bottom leg, with your other leg bent and foot on the mat, creating a tripod base.</div></div><div class="step"><div class="step-num">2</div><div><strong>Isolate and Control:</strong> Use your knee on the mat to pin one of your opponent's legs, while your active leg's foot on the mat allows for mobility and pressure. Maintain strong grips on their pants or shins to prevent them from re-establishing hooks or creating distance.</div></div><div class="step"><div class="step-num">3</div><div><strong>Create an Angle and Pressure:</strong> Drive your weight forward, using your head and chest to apply pressure towards their hips, while simultaneously creating a slight angle to the side of the leg you intend to pass. This off-balances them and restricts their hip movement.</div></div><div class="step"><div class="step-num">4</div><div><strong>Clear the Leg:</strong> With strong pressure and an angle, begin to clear your opponent's free leg by either pushing it down and away with your hand or stepping over it with your active leg. The goal is to remove their ability to create frames or hooks with that leg.</div></div><div class="step"><div class="step-num">5</div><div><strong>Transition to Side Control:</strong> As the leg clears, quickly switch your grips if necessary and drive your knee through to achieve a dominant side control position. Ensure you maintain head and hip control throughout the transition to prevent them from recovering guard.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

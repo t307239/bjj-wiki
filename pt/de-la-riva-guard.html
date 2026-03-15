@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue/Purple</span>
   <h1>Guarda De La Riva no Jiu-Jitsu: Domine o Controle e as Raspagens</h1>
   <p>A Guarda De La Riva é uma das guardas mais eficazes e versáteis do jiu-jitsu moderno, popularizada pelo lendário Ricardo De La Riva. Ela permite ao atleta controlar o adversário a partir da posição de costas no chão, criando um leque vasto de raspagens e transições para finalizações. Seu objetivo principal é desequilibrar e impedir que o oponente estabeleça uma base sólida para a passagem de guarda.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> De_La_Riva_Guard
+    De_La_Riva_Guard["De La Riva Guard"]:::currentNode
+    De_La_Riva_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    De_La_Riva_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    De_La_Riva_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    De_La_Riva_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    De_La_Riva_Guard -.-> Berimbolo["Berimbolo"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Estabeleça a Posição Inicial</strong>: Deite-se de costas com os pés do adversário próximos. Selecione uma perna para o gancho De La Riva e posicione-se lateralmente.</div></div><div class="step"><div class="step-num">2</div><div><strong>Faça as Pegadas Cruciais</strong>: Com a mão do lado do gancho, segure a calça do adversário na altura da coxa. Com a outra mão, segure a manga oposta ou a gola.</div></div><div class="step"><div class="step-num">3</div><div><strong>Insira o Gancho De La Riva</strong>: Coloque sua perna por fora da coxa do adversário, envolvendo-a. Seu pé deve estar na virilha ou na parte interna da coxa, com os dedos ativos e o calcanhar apontando para fora.</div></div><div class="step"><div class="step-num">4</div><div><strong>Posicione a Perna de Controle</strong>: A outra perna deve ter o pé no bíceps oposto do adversário, ou na altura do joelho/quadril, para manter a distância e auxiliar no desequilíbrio.</div></div><div class="step"><div class="step-num">5</div><div><strong>Mantenha o Controle e o Desequilíbrio</strong>: Use suas pegadas e o gancho De La Riva para puxar e empurrar o oponente, mantendo-o desequilibrado e impedindo que ele se estabilize.</div></div><div class="step"><div class="step-num">6</div><div><strong>Prepare as Raspagens</strong>: A partir dessa base de controle, esteja pronto para executar raspagens como a 'sweep' ou a 'berimbolo', utilizando a movimentação do quadril e as pegadas.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

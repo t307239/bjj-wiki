@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-青帯 (blue)">青帯 (Blue)</span>
   <h1>BJJトライアングルチョーク：基本から応用まで徹底解説</h1>
   <p>トライアングルチョークは、ブラジリアン柔術において最も象徴的で効果的な絞め技の一つです。両足を使って相手の首と片腕を挟み込み、頚動脈を圧迫することでタップを引き出します。このテクニックは、相手の体勢をコントロールしながら、あらゆるポジションから仕掛けることが可能です。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Triangle_Choke
+    Triangle_Choke["Triangle Choke"]:::currentNode
+    Triangle_Choke -.-> Rear_Naked_Choke["Rear Naked Choke"]:::relNode
+    Triangle_Choke -.-> Guillotine_Choke["Guillotine Choke"]:::relNode
+    Triangle_Choke -.-> Bow_and_Arrow_Choke["Bow and Arrow Choke"]:::relNode
+    Triangle_Choke -.-> Ezekiel_Choke["Ezekiel Choke"]:::relNode
+    Triangle_Choke -.-> D_Arce_Choke["D'Arce Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>相手の片腕をコントロールし、その腕が自分の頭の外側に来るように位置を調整します。</div></div><div class="step"><div class="step-num">2</div><div>反対側の足を相手の首に深くかけ、自分の膝の裏が相手の首の後ろに密着するようにセットします。</div></div><div class="step"><div class="step-num">3</div><div>足をかけた側の腕を相手の頭越しに回し、自分の足首を掴むか、足首を相手の肩に強く押し当てます。</div></div><div class="step"><div class="step-num">4</div><div>もう片方の足を相手の肩に回し、自分の足首の上に乗せてロックし、完璧な三角形を形成します。</div></div><div class="step"><div class="step-num">5</div><div>ロックした足をしっかり締めながら、同時に相手の頭を下に引き寄せ、首と腕を深く挟み込みます。</div></div><div class="step"><div class="step-num">6</div><div>両足で内側に絞り込み、ヒップを上げて角度を調整することで、相手の頚動脈に最大のプレッシャーをかけます。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

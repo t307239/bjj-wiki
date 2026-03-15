@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-azul (mas fundamental para todos os níveis)">Azul (mas fundamental para todos os níveis)</span>
   <h1>Leg Drag Pass no BJJ: O Guia Definitivo para uma Passagem de Guarda Imbatível</h1>
   <p>O Leg Drag Pass é uma das passagens de guarda mais dinâmicas e eficazes no Jiu-Jitsu, conhecida por sua velocidade e capacidade de neutralizar a guarda do oponente. Esta técnica permite ao passador mover-se rapidamente para o controle lateral ou norte-sul, estabelecendo uma posição dominante.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Passing["Passing"]:::catNode
+    Passing --> Leg_Drag_Pass
+    Leg_Drag_Pass["Leg Drag Pass"]:::currentNode
+    Leg_Drag_Pass -.-> Guard_Pass["Guard Pass"]:::relNode
+    Leg_Drag_Pass -.-> Torreando_Pass["Torreando Pass"]:::relNode
+    Leg_Drag_Pass -.-> Knee_Slice_Pass["Knee Slice Pass"]:::relNode
+    Leg_Drag_Pass -.-> Headquarters_Pass["Headquarters Pass"]:::relNode
+    classDef currentNode fill:#8b5cf6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>1. Inicie com Pegadas Fortes:</strong> Conquiste pegadas dominantes, geralmente uma na calça na altura do joelho e outra no colarinho ou manga do lado oposto do corpo do adversário.</div></div><div class="step"><div class="step-num">2</div><div><strong>2. Quebre a Postura e Crie Espaço:</strong> Use suas pegadas para quebrar a postura do oponente e criar um pequeno espaço, permitindo a movimentação da perna dele.</div></div><div class="step"><div class="step-num">3</div><div><strong>3. Arraste a Perna (Leg Drag):</strong> Com a pegada na calça, puxe a perna do adversário para o lado oposto do seu corpo, simultaneamente avançando seu corpo e quadril.</div></div><div class="step"><div class="step-num">4</div><div><strong>4. Pinhe a Perna e Pressione:</strong> Ao arrastar, use seu quadril ou o peso do seu corpo para pinher a perna do oponente no chão, impedindo-o de repor a guarda.</div></div><div class="step"><div class="step-num">5</div><div><strong>5. Avance para o Controle Lateral:</strong> Continue a mover seu corpo para o lado da perna que foi arrastada, estabelecendo o controle lateral (side control) ou norte-sul.</div></div><div class="step"><div class="step-num">6</div><div><strong>6. Estabilize a Posição:</strong> Mantenha a pressão, ajuste sua base e prepare-se para atacar com finalizações ou transições.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

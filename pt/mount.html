@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-branca">Branca/Azul</span>
   <h1>Montada no Jiu-Jitsu: Domine a Posição Mais Poderosa do BJJ</h1>
   <p>A Montada é uma das posições mais dominantes e cobiçadas no Jiu-Jitsu brasileiro. É a posição onde você está sentado sobre o tronco do seu oponente, controlando-o com seu peso e quadris, enquanto ele está de costas no chão. Oferece excelentes oportunidades para ataques e finalizações, sendo um pilar fundamental para qualquer praticante de BJJ.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Position["Position"]:::catNode
+    Position --> Mount
+    Mount["Mount"]:::currentNode
+    Mount -.-> Back_Mount["Back Mount"]:::relNode
+    Mount -.-> Side_Control["Side Control"]:::relNode
+    Mount -.-> North_South["North-South"]:::relNode
+    Mount -.-> Knee_on_Belly["Knee on Belly"]:::relNode
+    Mount -.-> Turtle_Position["Turtle Position"]:::relNode
+    classDef currentNode fill:#22c55e,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Estabeleça a Transição</strong>: Partindo de uma posição lateral (como a Guarda Passada ou o Cem Quilos), use sua perna mais próxima da cabeça do oponente para deslizar sobre o corpo dele, mantendo seu peso distribuído.</div></div><div class="step"><div class="step-num">2</div><div><strong>Cruze para a Montada</strong>: Com a perna de dentro já sobre o corpo, traga a outra perna por cima do oponente, posicionando-se sentado sobre o abdômen ou peito dele. Mantenha os joelhos próximos ao tronco do adversário.</div></div><div class="step"><div class="step-num">3</div><div><strong>Firme sua Base</strong>: Encaixe os ganchos com os pés na parte interna das coxas do oponente (base de 'calcanhar no bumbum') ou estenda os pés para fora, apoiando o peito do pé no chão, para estabilizar a posição.</div></div><div class="step"><div class="step-num">4</div><div><strong>Distribua o Peso</strong>: Sinta-se pesado sobre o oponente, usando seus quadris para pressionar e dificultar a movimentação dele. Mantenha a cabeça alta e a postura ereta para evitar ser derrubado.</div></div><div class="step"><div class="step-num">5</div><div><strong>Controle os Braços</strong>: Use suas mãos e antebraços para controlar os braços do oponente, impedindo que ele crie espaço ou defenda ataques. Procure sempre mantê-lo achatado no chão.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-purple">Purple</span>
   <h1>The Berimbolo BJJ Technique: Unraveling the Dynamic Back Take from Guard</h1>
   <p>The Berimbolo is a highly dynamic and effective BJJ technique primarily used from the guard to take an opponent's back. It involves a precise sequence of inversions, leg entanglements, and grip manipulation, making it a staple for many modern Jiu-Jitsu practitioners. This technique excels at disrupting an opponent's base and creating opportunities for dominant rear-mount positions.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Berimbolo
+    Berimbolo["Berimbolo"]:::currentNode
+    Berimbolo -.-> Closed_Guard["Closed Guard"]:::relNode
+    Berimbolo -.-> Open_Guard["Open Guard"]:::relNode
+    Berimbolo -.-> Half_Guard["Half Guard"]:::relNode
+    Berimbolo -.-> Spider_Guard["Spider Guard"]:::relNode
+    Berimbolo -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Establish Grips:</strong> From a De La Riva or Reverse De La Riva guard, secure a strong grip on your opponent's pants cuff on the leg you're attacking and their collar or sleeve on the opposite side.</div></div><div class="step"><div class="step-num">2</div><div><strong>Invert Underneath:</strong> Use your leg hooks and grips to off-balance your opponent, then invert your body underneath them, rolling over your shoulder towards the leg you're attacking.</div></div><div class="step"><div class="step-num">3</div><div><strong>Entangle the Leg:</strong> As you invert, use your free leg (the one not hooked on their DLR/RDLR side) to hook behind their knee or thigh, creating a "crab ride" like entanglement with both of their legs.</div></div><div class="step"><div class="step-num">4</div><div><strong>Rotate and Elevate:</strong> Continue the rotation, using your grips and leg hooks to elevate their hips and spin your body around, forcing them to turn away from you.</div></div><div class="step"><div class="step-num">5</div><div><strong>Transition to Back:</strong> As they turn, release your pant grip and transition to a seatbelt grip, securing the rear-mount position and establishing your hooks.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>BJJ Knee on Belly: Dominant Control & Submission Setup</h1>
   <p>Knee on Belly is a fundamental and highly effective control position in Brazilian Jiu-Jitsu, allowing you to apply immense pressure on your opponent while maintaining superior balance. It's a powerful intermediate step from side control, primarily used to set up submissions, transitions, or simply wear down your opponent.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Position["Position"]:::catNode
+    Position --> Knee_On_Belly
+    Knee_On_Belly["Knee On Belly"]:::currentNode
+    Knee_On_Belly -.-> Mount["Mount"]:::relNode
+    Knee_On_Belly -.-> Back_Mount["Back Mount"]:::relNode
+    Knee_On_Belly -.-> Side_Control["Side Control"]:::relNode
+    Knee_On_Belly -.-> North_South["North-South"]:::relNode
+    Knee_On_Belly -.-> Turtle_Position["Turtle Position"]:::relNode
+    classDef currentNode fill:#22c55e,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>From side control, establish a strong cross-face and underhook, or chest-to-chest control, ensuring your opponent is flat on their back.</div></div><div class="step"><div class="step-num">2</div><div>Place the shin of one leg across your opponent's midsection, with your knee resting on their solar plexus or hip bone, applying direct pressure.</div></div><div class="step"><div class="step-num">3</div><div>Extend your free leg straight out to the side for balance, keeping your toes active on the mat and your hips low.</div></div><div class="step"><div class="step-num">4</div><div>Use your hands to maintain control: one hand can be on their far arm for an armbar setup, or you can grab a collar for a choke, while the other hand posts on the mat or controls their near arm.</div></div><div class="step"><div class="step-num">5</div><div>Keep your weight primarily on your shin and knee, maintaining a light posture on your feet to stay mobile and prevent sweeps.</div></div><div class="step"><div class="step-num">6</div><div>Be ready to transition to mount, back control, or various submissions as your opponent reacts to the pressure.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

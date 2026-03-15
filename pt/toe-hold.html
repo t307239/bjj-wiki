@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-purple">Purple/Brown/Black</span>
   <h1>Toe Hold no Jiu-Jitsu: Domine a Finalização de Perna Essencial</h1>
   <p>O Toe Hold é uma poderosa finalização de perna no Jiu-Jitsu, focada na articulação do tornozelo e joelho. É uma técnica eficaz que pode ser aplicada de diversas posições, sendo crucial entender sua mecânica para aplicá-la com segurança e eficiência. Esta chave de pé visa criar pressão rotacional, forçando o oponente a desistir.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Leg_Lock["Leg Lock"]:::catNode
+    Leg_Lock --> Toe_Hold
+    Toe_Hold["Toe Hold"]:::currentNode
+    Toe_Hold -.-> Heel_Hook["Heel Hook"]:::relNode
+    Toe_Hold -.-> Inside_Heel_Hook["Inside Heel Hook"]:::relNode
+    Toe_Hold -.-> Outside_Heel_Hook["Outside Heel Hook"]:::relNode
+    Toe_Hold -.-> Knee_Bar["Knee Bar"]:::relNode
+    Toe_Hold -.-> Calf_Slicer["Calf Slicer"]:::relNode
+    classDef currentNode fill:#f59e0b,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>1. Controle da Perna:</strong> Comece controlando e isolando a perna do seu oponente, geralmente com as duas mãos ou travando com suas próprias pernas.</div></div><div class="step"><div class="step-num">2</div><div><strong>2. Pegada na Ponta do Pé:</strong> Com uma das mãos, segure firmemente a ponta do pé do seu oponente, posicionando os dedos na parte superior do pé.</div></div><div class="step"><div class="step-num">3</div><div><strong>3. Pegada no Punho:</strong> Com a outra mão, segure o seu próprio punho ou a parte de cima da mão que está segurando a ponta do pé, criando uma pegada 'S' ou 'palma com palma'.</div></div><div class="step"><div class="step-num">4</div><div><strong>4. Posicionamento do Cotovelo:</strong> Mantenha o cotovelo da mão que está segurando o tornozelo ou o punho firmemente encaixado na região do calcanhar do oponente.</div></div><div class="step"><div class="step-num">5</div><div><strong>5. Rotação e Pressão:</strong> Gire o pé do oponente para fora (rotação externa) e simultaneamente empurre o calcanhar para longe de você, aplicando pressão na articulação.</div></div><div class="step"><div class="step-num">6</div><div><strong>6. Finalização:</strong> Continue a rotação e a pressão de forma gradual e controlada até que seu oponente bata ou sinta dor, sempre priorizando a segurança.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

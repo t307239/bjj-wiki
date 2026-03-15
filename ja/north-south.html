@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-ブルー">ブルー/パープル</span>
   <h1>柔術ノースサウス：完全ガイド – コントロールからフィニッシュまで</h1>
   <p>ノースサウスは、相手の頭と胴体を逆方向に向けた、強力なトップコントロールポジションです。このポジションは、相手をフラットにし、逃げ道を塞ぎ、様々なサブミッションや移行技への道を開くために非常に効果的です。柔術における重要な支配的ポジションの一つと言えるでしょう。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Position["Position"]:::catNode
+    Position --> North_South
+    North_South["North South"]:::currentNode
+    North_South -.-> Mount["Mount"]:::relNode
+    North_South -.-> Back_Mount["Back Mount"]:::relNode
+    North_South -.-> Side_Control["Side Control"]:::relNode
+    North_South -.-> Knee_on_Belly["Knee on Belly"]:::relNode
+    North_South -.-> Turtle_Position["Turtle Position"]:::relNode
+    classDef currentNode fill:#22c55e,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>ポジションの確立</strong>: サイドコントロールから、相手の頭を越えて移動し、自分の胸を相手の胸に密着させながら、自分の腰を相手の頭の反対側に向けます。</div></div><div class="step"><div class="step-num">2</div><div><strong>頭のコントロール</strong>: 相手の頭を自分の脇で挟み込み、肩で圧力をかけ、顎を胸に押し付けるようにします。これにより、相手の視界と動きを制限します。</div></div><div class="step"><div class="step-num">3</div><div><strong>腕のコントロール</strong>: 相手の腕を自分の腕でコントロールするか、または相手の肩関節をロックするように自分の腕を配置し、ブリッジやエスケープを防ぎます。</div></div><div class="step"><div class="step-num">4</div><div><strong>腰の重さ</strong>: 自分の体重を相手の胸と頭にかけ、特に腰を低く保ち、相手がひっくり返ったり、ブリッジしたりするのを困難にします。</div></div><div class="step"><div class="step-num">5</div><div><strong>ベースの維持</strong>: 足を広げ、つま先をマットにつけて強いベースを維持し、相手がどの方向に動いても対応できるように準備します。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-faixa azul">Faixa Azul</span>
   <h1>Flower Sweep BJJ: Domine a Raspagem da Guarda Fechada</h1>
   <p>O Flower Sweep, também conhecido como 'Raspagem da Flor', é uma técnica clássica e altamente eficaz do Jiu-Jitsu Brasileiro, executada a partir da guarda fechada. Seu objetivo é desequilibrar e raspar o oponente para a posição de montada ou lateral. É uma raspagem versátil que explora a postura alta e desequilibrada do adversário, sendo fundamental para o arsenal de qualquer praticante.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Sweep["Sweep"]:::catNode
+    Sweep --> Flower_Sweep
+    Flower_Sweep["Flower Sweep"]:::currentNode
+    Flower_Sweep -.-> Scissor_Sweep["Scissor Sweep"]:::relNode
+    Flower_Sweep -.-> Hip_Bump_Sweep["Hip Bump Sweep"]:::relNode
+    Flower_Sweep -.-> Pendulum_Sweep["Pendulum Sweep"]:::relNode
+    classDef currentNode fill:#06b6d4,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>1. <strong>Quebre a Postura e Controle o Braço:</strong> Partindo da guarda fechada, puxe o adversário para baixo, quebrando sua postura. Com uma das mãos, faça uma pegada firme na manga do braço oposto ao lado que você pretende raspar.</div></div><div class="step"><div class="step-num">2</div><div>2. <strong>Estabeleça o Controle do Punho e Pé no Quadril:</strong> Com a mão livre, segure o punho do braço que você já está controlando, travando-o no seu quadril. Ao mesmo tempo, coloque o pé do lado oposto ao braço controlado no quadril do adversário.</div></div><div class="step"><div class="step-num">3</div><div>3. <strong>Ganhe Ângulo e Levante o Quadril:</strong> Faça uma fuga de quadril (quadril para fora), criando um ângulo com seu corpo em relação ao adversário. Isso permitirá que você posicione a perna livre para o movimento de raspagem.</div></div><div class="step"><div class="step-num">4</div><div>4. <strong>Ataque a Perna e Raspe:</strong> Com a perna que não está no quadril, estique-a e balance-a em um movimento de arco para atacar a perna do adversário do lado que você está controlando o braço. Simultaneamente, puxe o braço controlado para baixo e para o lado, empurrando o quadril com o pé.</div></div><div class="step"><div class="step-num">5</div><div>5. <strong>Finalize na Montada:</strong> Ao raspar o oponente, mantenha as pegadas firmes e use o momento para subir e estabilizar na posição de montada. Ajuste sua base e postura para garantir a pontuação da raspagem.</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

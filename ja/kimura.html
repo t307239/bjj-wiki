@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-ホワイト">ホワイト/ブルー</span>
   <h1>BJJキムラロック完全攻略：ステップバイステップで学ぶ強力な肩関節技</h1>
   <p>キムラロックは、ブラジリアン柔術における最も効果的で広く使われている肩関節技の一つです。相手の肩関節を極めることでタップを引き出すことを目的とし、様々なポジションから仕掛けることが可能です。このテクニックを習得することで、あなたのグラップリングゲームは格段に向上するでしょう。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Kimura
+    Kimura["Kimura"]:::currentNode
+    Kimura -.-> Armbar["Armbar"]:::relNode
+    Kimura -.-> Americana["Americana"]:::relNode
+    Kimura -.-> Omoplata["Omoplata"]:::relNode
+    Kimura -.-> Wrist_Lock["Wrist Lock"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>相手の腕をコントロールする</strong>: 相手の片腕を自分の両腕でしっかりとキャッチし、手首をコントロールします。特に相手の手首を自分の手で掴むことが重要です。</div></div><div class="step"><div class="step-num">2</div><div><strong>キムラグリップを確立する</strong>: 相手の手首を掴んだ手で、自分の反対側の手で相手の肘の裏側（三頭筋あたり）を掴みます。これにより、強力な両手グリップ（キムラグリップ）を形成します。</div></div><div class="step"><div class="step-num">3</div><div><strong>相手の体を固定する</strong>: 相手の腕を自分の体から離れないように密着させ、相手の肩を固定します。特に、相手の肘が自分の脇の下に入るようにして、相手の体をコントロールします。</div></div><div class="step"><div class="step-num">4</div><div><strong>プレッシャーをかける</strong>: 相手の手首を固定したまま、肘を相手の頭の方向へ、手首を相手の背中方向へねじるようにゆっくりと圧力をかけます。この時、自分の体全体を使ってレバレッジを効かせます。</div></div><div class="step"><div class="step-num">5</div><div><strong>フィニッシュする</strong>: 相手の肩に痛みが生じ、タップするまで、慎重かつ確実にプレッシャーをかけ続けます。相手の肘を天井に向けて持ち上げ、同時に手首を背中に押し込む動きを意識します。</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

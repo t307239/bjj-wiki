@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-branca">Branca/Azul</span>
   <h1>Single Leg Takedown no BJJ: Guia Completo para a Queda de Uma Perna Perfeita</h1>
   <p>A queda de uma perna, conhecida como Single Leg Takedown, é uma das técnicas mais eficazes e fundamentais para derrubar seu oponente no Jiu-Jitsu. Essencial para transições do jogo em pé para o chão, ela permite controlar a distância e iniciar o combate de forma vantajosa. Dominar o Single Leg é crucial para qualquer praticante de BJJ que busca melhorar seu arsenal de quedas.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Takedown["Takedown"]:::catNode
+    Takedown --> Single_Leg_Takedown
+    Single_Leg_Takedown["Single Leg Takedown"]:::currentNode
+    Single_Leg_Takedown -.-> Double_Leg_Takedown["Double Leg Takedown"]:::relNode
+    Single_Leg_Takedown -.-> Osoto_Gari["Osoto Gari"]:::relNode
+    Single_Leg_Takedown -.-> Ankle_Pick["Ankle Pick"]:::relNode
+    classDef currentNode fill:#ec4899,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Preparação e Pegada</strong>: Inicie com uma postura atlética, com uma perna à frente. Use a mão do lado da perna que está atrás para pegar a gola do adversário e a outra mão para controlar o braço oposto, ou faça uma pegada cruzada na manga e gola.</div></div><div class="step"><div class="step-num">2</div><div><strong>Passo de Penetração</strong>: Dê um passo explosivo para a frente com a perna da frente, abaixando seu nível e visando o lado de fora da perna do seu adversário que está à frente, mantendo a cabeça alta e o olhar no ombro dele.</div></div><div class="step"><div class="step-num">3</div><div><strong>Segurança da Perna</strong>: Envolva a perna do seu oponente com o braço mais próximo, segurando a coxa com uma pegada firme (grip de palma com palma ou S-grip) na parte de trás do joelho. Sua cabeça deve estar colada na lateral do tronco do adversário, no lado de fora da perna que você está segurando.</div></div><div class="step"><div class="step-num">4</div><div><strong>Elevação e Condução</strong>: Mantendo a perna segura e sua cabeça pressionando o oponente, levante a perna dele do chão, usando a força das suas pernas e quadril para elevá-lo ligeiramente.</div></div><div class="step"><div class="step-num">5</div><div><strong>Finalização da Queda</strong>: Com a perna do adversário elevada, use seu ombro para empurrar o quadril dele para o lado oposto da perna que está no chão, ou pise por trás da perna de apoio dele enquanto o derruba com um movimento de "varrida" ou "rasteira", finalizando na posição de controle superior.</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

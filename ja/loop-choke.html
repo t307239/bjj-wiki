@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-青帯">青帯</span>
   <h1>BJJループチョーク：予測不能な絞め技をマスターする</h1>
   <p>ループチョークは、ブラジリアン柔術において非常に強力で、しばしば予期せぬ形で決まる絞め技です。相手の襟を使い、頭の周りにループを作ることで、首への圧力を発生させます。このテクニックは、相手が防御に集中していない隙を突きやすく、様々なポジションから仕掛けることができます。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Loop_Choke
+    Loop_Choke["Loop Choke"]:::currentNode
+    Loop_Choke -.-> Rear_Naked_Choke["Rear Naked Choke"]:::relNode
+    Loop_Choke -.-> Triangle_Choke["Triangle Choke"]:::relNode
+    Loop_Choke -.-> Guillotine_Choke["Guillotine Choke"]:::relNode
+    Loop_Choke -.-> Bow_and_Arrow_Choke["Bow and Arrow Choke"]:::relNode
+    Loop_Choke -.-> Ezekiel_Choke["Ezekiel Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>襟の確保:</strong> 相手の襟を、親指が内側になるように深く掴みます。この際、手首をしっかり固定し、手の甲が相手の首に触れるくらい深く握るのが理想です。</div></div><div class="step"><div class="step-num">2</div><div><strong>引き込み:</strong> 掴んだ襟を、自分の胸の方向に強く引きつけます。これにより、相手の姿勢を崩し、首の周りに隙間を作ります。</div></div><div class="step"><div class="step-num">3</div><div><strong>頭部の誘導:</strong> もう片方の手で相手の頭部をコントロールし、絞め手側の肩の方へ引き寄せます。相手の頭を自分の絞め手の腕と胴体の間に閉じ込めるようなイメージです。</div></div><div class="step"><div class="step-num">4</div><div><strong>絞めの形成:</strong> 絞め手側の手首を相手の首に沿わせ、もう片方の手で相手の頭部をさらに引き寄せながら、絞め手側の腕を相手の首の周りに「ループ」を作るように回します。</div></div><div class="step"><div class="step-num">5</div><div><strong>フィニッシュ:</strong> 絞め手側の肘を自分の胴体に引きつけながら、もう一方の手で相手の頭部を強く抑え込みます。同時に、掴んだ襟をさらに深く引き、圧力を最大化してタップを狙います。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-青帯">青帯</span>
   <h1>ブラジリアン柔術の手首固め：実践的な極め方と安全な練習ガイド</h1>
   <p>手首固めは、ブラジリアン柔術において非常に効果的でありながら、しばしば見過ごされがちな関節技の一つです。相手の不意を突くことができ、正確に決まれば最小限の力で大きなダメージを与えることが可能です。このガイドでは、手首固めの基本から応用までを詳しく解説します。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Wrist_Lock
+    Wrist_Lock["Wrist Lock"]:::currentNode
+    Wrist_Lock -.-> Armbar["Armbar"]:::relNode
+    Wrist_Lock -.-> Kimura["Kimura"]:::relNode
+    Wrist_Lock -.-> Americana["Americana"]:::relNode
+    Wrist_Lock -.-> Omoplata["Omoplata"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>相手の手首をコントロールする</strong>: まず、相手の手首を片手でしっかりと掴み、もう一方の手で相手の手のひらまたは指の付け根部分をコントロールします。</div></div><div class="step"><div class="step-num">2</div><div><strong>グリップの確立</strong>: 手首を掴んだ手で相手の小指側を、もう一方の手で親指側を包み込むようにグリップを確立します。これにより、相手の手首の動きを完全に封じます。</div></div><div class="step"><div class="step-num">3</div><div><strong>プレッシャーの方向</strong>: 相手の手の甲が前腕に近づくように、手首を外側（小指側）に捻りながら、親指側から手の甲に向かってプレッシャーをかけます。</div></div><div class="step"><div class="step-num">4</div><div><strong>ゆっくりと極める</strong>: 相手の腕を固定し、手首にゆっくりと慎重にプレッシャーを加えていきます。相手がタップするまで、決して急がず、徐々に力を強めてください。</div></div><div class="step"><div class="step-num">5</div><div><strong>体全体でサポート</strong>: 腕の力だけでなく、体全体を使って相手の腕を固定し、安定した体勢からプレッシャーをかけることで、より効果的に極めることができます。</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

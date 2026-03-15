@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-azul">Azul</span>
   <h1>Kimura BJJ: Domine a Poderosa Finalização de Ombro no Jiu-Jitsu</h1>
   <p>A Kimura é uma das finalizações de ombro mais eficazes e versáteis no Jiu-Jitsu, famosa por sua capacidade de controlar o adversário e forçar a desistência. Nomeada em homenagem ao lendário judoca Masahiko Kimura, que a utilizou para derrotar Hélio Gracie, esta técnica foca na rotação externa do ombro. Dominar a Kimura é essencial para qualquer praticante que busca um arsenal completo de ataques e posições de controle no tatame.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Kimura
+    Kimura["Kimura"]:::currentNode
+    Kimura -.-> Armbar["Armbar"]:::relNode
+    Kimura -.-> Americana["Americana"]:::relNode
+    Kimura -.-> Omoplata["Omoplata"]:::relNode
+    Kimura -.-> Wrist_Lock["Wrist Lock"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>1. Isole o Braço:</strong> De uma posição superior (ex: cem quilos ou meia guarda), use seu braço mais próximo da cabeça do adversário para controlar o pulso dele, mantendo-o estendido ou semi-estendido.</div></div><div class="step"><div class="step-num">2</div><div><strong>2. Garanta a Pegada:</strong> Com a mão que controla o pulso, gire o polegar do adversário para cima. Use sua outra mão para agarrar seu próprio punho, formando uma pegada de “Figura 4” ou “S-grip” sobre o braço isolado do oponente.</div></div><div class="step"><div class="step-num">3</div><div><strong>3. Controle e Postura:</strong> Mantenha seu corpo pesado sobre o adversário, controlando seu quadril e ombro para que ele não consiga girar ou escapar. Sua cabeça deve estar próxima ao ombro dele, e sua base firme.</div></div><div class="step"><div class="step-num">4</div><div><strong>4. Inicie a Rotação:</strong> Comece a levantar o cotovelo do adversário para longe do corpo dele, ao mesmo tempo em que gira o pulso na direção da cabeça do oponente. O objetivo é criar uma rotação externa no ombro.</div></div><div class="step"><div class="step-num">5</div><div><strong>5. Finalize com Pressão:</strong> Continue a levantar o cotovelo e girar o punho, aplicando uma pressão constante e crescente no ombro. A finalização ocorre quando o oponente sente a dor e bate, ou quando o ombro atinge seu limite de rotação.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

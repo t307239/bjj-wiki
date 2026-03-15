@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-brown">Brown/Black</span>
   <h1>Heel Hook no BJJ: O Guia Definitivo para Dominar a Finalização de Perna</h1>
   <p>O Heel Hook é uma das finalizações de perna mais eficazes e perigosas do Jiu-Jitsu brasileiro, visando a torção do joelho e tornozelo do oponente. Esta técnica aplica pressão rotacional no calcanhar, forçando o joelho a girar, o que pode causar danos severos se não for defendida rapidamente. É uma ferramenta poderosa que exige precisão e responsabilidade.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Leg_Lock["Leg Lock"]:::catNode
+    Leg_Lock --> Heel_Hook
+    Heel_Hook["Heel Hook"]:::currentNode
+    Heel_Hook -.-> Inside_Heel_Hook["Inside Heel Hook"]:::relNode
+    Heel_Hook -.-> Outside_Heel_Hook["Outside Heel Hook"]:::relNode
+    Heel_Hook -.-> Knee_Bar["Knee Bar"]:::relNode
+    Heel_Hook -.-> Toe_Hold["Toe Hold"]:::relNode
+    Heel_Hook -.-> Calf_Slicer["Calf Slicer"]:::relNode
+    classDef currentNode fill:#f59e0b,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Isolar a Perna:</strong> Comece isolando uma das pernas do oponente, geralmente a partir de posições como 50/50, Ashi Garami ou K-Guard, garantindo controle total.</div></div><div class="step"><div class="step-num">2</div><div><strong>Controlar o Pé:</strong> Passe o braço por baixo da perna isolada, segurando o calcanhar do oponente com uma mão e seu próprio punho com a outra (grip de 'S' ou palma com palma) para um controle firme.</div></div><div class="step"><div class="step-num">3</div><div><strong>Posicionar o Corpo:</strong> Mantenha a perna do oponente firmemente controlada entre suas axilas ou ombro, garantindo que o calcanhar esteja exposto e a ponta do pé aponte para longe de você.</div></div><div class="step"><div class="step-num">4</div><div><strong>Gerar Rotação:</strong> Com o controle do calcanhar e do joelho, comece a rotacionar seu corpo e o quadril do oponente, criando uma torção externa no joelho.</div></div><div class="step"><div class="step-num">5</div><div><strong>Aplicar a Pressão:</strong> Utilize a força do seu corpo e dos braços para girar o calcanhar do oponente para dentro, enquanto empurra a perna para fora, maximizando a pressão rotacional.</div></div><div class="step"><div class="step-num">6</div><div><strong>Finalizar:</strong> Continue aplicando a torção de forma controlada até o oponente bater ou o joelho ceder, sempre priorizando a segurança.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

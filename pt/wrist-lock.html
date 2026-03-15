@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-azul">Azul</span>
   <h1>Wrist Lock no Jiu-Jitsu: O Guia Completo para Dominar o Travamento de Punho</h1>
   <p>O wrist lock, ou travamento de punho, é uma finalização de articulação no Jiu-Jitsu que visa hiperextender ou hiperflexionar o punho do oponente, aplicando pressão nas pequenas articulações. Embora seja uma técnica poderosa e eficiente, requer precisão e controle para ser aplicada de forma segura e ética.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Wrist_Lock
+    Wrist_Lock["Wrist Lock"]:::currentNode
+    Wrist_Lock -.-> Armbar["Armbar"]:::relNode
+    Wrist_Lock -.-> Kimura["Kimura"]:::relNode
+    Wrist_Lock -.-> Americana["Americana"]:::relNode
+    Wrist_Lock -.-> Omoplata["Omoplata"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>1. <strong>Isole o Punho:</strong> Comece isolando o punho do seu oponente, geralmente com uma de suas mãos segurando a palma e a outra os dedos.</div></div><div class="step"><div class="step-num">2</div><div>2. <strong>Posicione as Mãos:</strong> Com uma mão, segure a palma do oponente, com os dedos envolvendo a base dos dedos dele. Sua outra mão deve segurar o topo da mão dele, próximo aos nós dos dedos.</div></div><div class="step"><div class="step-num">3</div><div>3. <strong>Alinhe o Braço:</strong> Certifique-se de que o braço do oponente esteja esticado e o punho alinhado, evitando que ele dobre o cotovelo para resistir.</div></div><div class="step"><div class="step-num">4</div><div>4. <strong>Aplique a Pressão:</strong> Comece a dobrar a mão do oponente para trás (hiperextensão) ou para frente (hiperflexão), aplicando pressão controlada diretamente na articulação do punho.</div></div><div class="step"><div class="step-num">5</div><div>5. <strong>Finalize com Controle:</strong> Aumente a pressão gradualmente até que seu oponente bata, sinalizando a desistência, sempre com atenção à segurança.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

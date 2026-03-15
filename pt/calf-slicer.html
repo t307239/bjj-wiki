@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-purple">Purple</span>
   <h1>Calf Slicer no Jiu-Jitsu: Domine a Finalização de Perna com Este Guia Completo</h1>
   <p>O Calf Slicer, ou 'fatiador de panturrilha', é uma poderosa finalização de perna no Jiu-Jitsu que aplica pressão intensa na panturrilha do oponente. É uma técnica de leg lock que, quando executada corretamente, pode forçar uma desistência rápida ou criar aberturas para outras finalizações. Este guia detalhado irá te ensinar os segredos para aplicar o Calf Slicer com eficiência e segurança.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Leg_Lock["Leg Lock"]:::catNode
+    Leg_Lock --> Calf_Slicer
+    Calf_Slicer["Calf Slicer"]:::currentNode
+    Calf_Slicer -.-> Heel_Hook["Heel Hook"]:::relNode
+    Calf_Slicer -.-> Inside_Heel_Hook["Inside Heel Hook"]:::relNode
+    Calf_Slicer -.-> Outside_Heel_Hook["Outside Heel Hook"]:::relNode
+    Calf_Slicer -.-> Knee_Bar["Knee Bar"]:::relNode
+    Calf_Slicer -.-> Toe_Hold["Toe Hold"]:::relNode
+    classDef currentNode fill:#f59e0b,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>1. <strong>Isolamento da Perna:</strong> Comece isolando uma das pernas do oponente, geralmente a partir de posições como guarda-aranha, X-guard ou 50/50, onde você tem controle sobre a perna dele.</div></div><div class="step"><div class="step-num">2</div><div>2. <strong>Posicionamento da Perna Atacante:</strong> Passe uma de suas pernas por trás da panturrilha do oponente, de modo que sua canela fique contra a panturrilha dele.</div></div><div class="step"><div class="step-num">3</div><div>3. <strong>Criação da Alavanca:</strong> Posicione o seu pé (da perna que está atrás da panturrilha) na dobra do joelho do oponente, criando um gancho ou alavanca.</div></div><div class="step"><div class="step-num">4</div><div>4. <strong>Agarre e Estabilização:</strong> Agarre sua própria canela com as duas mãos, ou agarre a gola/faixa do oponente para estabilizar e controlar a posição.</div></div><div class="step"><div class="step-num">5</div><div>5. <strong>Aplicação da Pressão:</strong> Empurre o seu quadril para a frente e estique o seu corpo, usando o seu pé como um ponto de alavanca para espremer a panturrilha do oponente contra a sua canela.</div></div><div class="step"><div class="step-num">6</div><div>6. <strong>Ajuste Final:</strong> Certifique-se de que o pé do oponente esteja livre para rodar e aliviar a pressão no joelho; a dor deve ser concentrada na panturrilha.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>The Loop Choke: A Sneaky Gi Choke for BJJ Practitioners</h1>
   <p>The Loop Choke is a highly effective and often underestimated gi choke in Brazilian Jiu-Jitsu, known for its deceptive setup and powerful finish. It leverages your opponent's posture and gi material to create a tight constriction around their neck, often catching them by surprise. This guide will break down the mechanics, setups, and common scenarios for executing this versatile submission.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Loop_Choke
+    Loop_Choke["Loop Choke"]:::currentNode
+    Loop_Choke -.-> Rear_Naked_Choke["Rear Naked Choke"]:::relNode
+    Loop_Choke -.-> Triangle_Choke["Triangle Choke"]:::relNode
+    Loop_Choke -.-> Guillotine_Choke["Guillotine Choke"]:::relNode
+    Loop_Choke -.-> Bow_and_Arrow_Choke["Bow and Arrow Choke"]:::relNode
+    Loop_Choke -.-> Ezekiel_Choke["Ezekiel Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>Establish a deep, four-finger grip on your opponent's gi lapel with one hand, threading it through their collar towards the back of their neck.</div></div><div class="step"><div class="step-num">2</div><div>Use your gripping hand to pull their head down towards their chest, breaking their posture and creating an opening for the choking arm.</div></div><div class="step"><div class="step-num">3</div><div>With your free hand, reach over their head and grab your own sleeve or the back of their gi, creating a 'loop' with your arm and their lapel.</div></div><div class="step"><div class="step-num">4</div><div>Drive your head down close to theirs, then pull your gripping hand towards your chest while simultaneously extending your 'looping' arm, squeezing the gi material tight around their neck.</div></div><div class="step"><div class="step-num">5</div><div>Continue to apply pressure by crunching your body and pulling your hands in opposing directions until your opponent taps.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

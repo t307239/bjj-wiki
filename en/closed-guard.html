@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>The Ultimate Guide to BJJ Closed Guard: Control & Attack</h1>
   <p>The Closed Guard is a foundational position in Brazilian Jiu-Jitsu, characterized by wrapping your legs around your opponent's torso and locking your ankles. It provides excellent control, limits your opponent's movement, and creates numerous opportunities for sweeps, submissions, and transitions, making it a cornerstone of any BJJ practitioner's game.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Closed_Guard
+    Closed_Guard["Closed Guard"]:::currentNode
+    Closed_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    Closed_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    Closed_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Closed_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    Closed_Guard -.-> Berimbolo["Berimbolo"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Establish Position</strong>: From your back, bring your knees to your chest and wrap your legs around your opponent's waist or lower back, pulling them close.</div></div><div class="step"><div class="step-num">2</div><div><strong>Lock the Guard</strong>: Cross your ankles firmly, ensuring your feet are locked behind your opponent's back, creating a strong, inescapable hold.</div></div><div class="step"><div class="step-num">3</div><div><strong>Break Posture</strong>: Use your legs and arms (grips on sleeves/collar) to pull your opponent forward, breaking their posture and bringing their head closer to your chest.</div></div><div class="step"><div class="step-num">4</div><div><strong>Secure Grips</strong>: Establish dominant grips, typically on the opponent's collar and sleeve, to maintain control and prevent them from posturing up or passing.</div></div><div class="step"><div class="step-num">5</div><div><strong>Control Hips</strong>: Actively use your hips (shrimp, bridge) to create angles, off-balance your opponent, and set up your attacks while keeping their hips pinned to the mat.</div></div><div class="step"><div class="step-num">6</div><div><strong>Maintain Pressure</strong>: Continuously apply pressure with your legs and core, making it difficult for your opponent to breathe, adjust, or initiate their own attacks.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

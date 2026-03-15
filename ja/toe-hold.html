@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-パープルベルト以上">パープルベルト以上</span>
   <h1>BJJトウホールド（つま先固め）の極意：効果的なセットアップからフィニッシュまで</h1>
   <p>トウホールドは、足首と足の関節をひねることで相手に強い痛みを与え、タップを引き出すブラジリアン柔術の強力な足関節技です。適切に実行された場合、非常に効果的であり、様々なポジションから仕掛けることができます。このガイドでは、トウホールドの基本的なセットアップからフィニッシュ、そして防御までを詳しく解説します。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Leg_Lock["Leg Lock"]:::catNode
+    Leg_Lock --> Toe_Hold
+    Toe_Hold["Toe Hold"]:::currentNode
+    Toe_Hold -.-> Heel_Hook["Heel Hook"]:::relNode
+    Toe_Hold -.-> Inside_Heel_Hook["Inside Heel Hook"]:::relNode
+    Toe_Hold -.-> Outside_Heel_Hook["Outside Heel Hook"]:::relNode
+    Toe_Hold -.-> Knee_Bar["Knee Bar"]:::relNode
+    Toe_Hold -.-> Calf_Slicer["Calf Slicer"]:::relNode
+    classDef currentNode fill:#f59e0b,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>相手の足首をコントロールし、片手で相手の足の甲を掴み、もう一方の手で相手のつま先全体を包み込むようにしっかりと掴みます。</div></div><div class="step"><div class="step-num">2</div><div>つま先を掴んだ手で相手の足を外側にひねるように力を加え、同時に足の甲を掴んだ手で相手の足首を固定し、抵抗を封じます。</div></div><div class="step"><div class="step-num">3</div><div>相手の足首が自分の脇の下にくるように引きつけ、自分の胸と相手の膝が向かい合うように位置を調整し、相手の足の自由を奪います。</div></div><div class="step"><div class="step-num">4</div><div>自分の肘を相手の足首に密着させ、相手の足全体を自分の体でロックするように固定し、相手が足を抜く隙を与えません。</div></div><div class="step"><div class="step-num">5</div><div>相手のつま先を掴んだ手で、相手の足首を自分の脇の下に押し付けながら、自分の体を相手の足首と反対方向にひねり、同時に相手の足の指先を頭の方向に持ち上げるように極めます。</div></div><div class="step"><div class="step-num">6</div><div>ゆっくりと、しかし着実にプレッシャーを加え、相手がタップするまで力をコントロールしながら極めていきます。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

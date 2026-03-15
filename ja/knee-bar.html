@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-ブルーベルトから推奨">ブルーベルトから推奨</span>
   <h1>BJJニーバー：安全かつ効果的なレッグロックの習得法</h1>
   <p>ニーバーは、相手の膝関節を過伸展させることで極める、ブラジリアン柔術における強力なレッグロックです。このテクニックは、相手の脚をコントロールし、膝を直線的に伸ばすことで機能します。適切に適用すれば非常に効果的ですが、安全に練習し、相手がタップするタイミングを理解することが不可欠です。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Leg_Lock["Leg Lock"]:::catNode
+    Leg_Lock --> Knee_Bar
+    Knee_Bar["Knee Bar"]:::currentNode
+    Knee_Bar -.-> Heel_Hook["Heel Hook"]:::relNode
+    Knee_Bar -.-> Inside_Heel_Hook["Inside Heel Hook"]:::relNode
+    Knee_Bar -.-> Outside_Heel_Hook["Outside Heel Hook"]:::relNode
+    Knee_Bar -.-> Toe_Hold["Toe Hold"]:::relNode
+    Knee_Bar -.-> Calf_Slicer["Calf Slicer"]:::relNode
+    classDef currentNode fill:#f59e0b,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>相手の脚の確保</strong>: 相手の脚を片方の腕で抱え込み、もう一方の腕で膝裏をコントロールし、相手の脚を自分の体幹に密着させます。</div></div><div class="step"><div class="step-num">2</div><div><strong>ヒップの固定</strong>: 自分の両脚で相手の腰や太ももを固定し、相手が体を回転させて逃げるのを防ぎます。通常、片方の脚は相手の腰をまたぎ、もう片方の脚は相手の太ももを挟む形になります。</div></div><div class="step"><div class="step-num">3</div><div><strong>膝関節の分離</strong>: 自分の両脚で相手の胴体をしっかりとホールドし、相手の膝関節を自分の体から引き離すようにして、膝を孤立させます。</div></div><div class="step"><div class="step-num">4</div><div><strong>足のコントロール</strong>: 相手のつま先を自分の脇の下に挟み込み、かかとを自分の腰骨にしっかりと固定します。これにより、相手の膝の向きとレバーを確保します。</div></div><div class="step"><div class="step-num">5</div><div><strong>フィニッシュ</strong>: 自分の腰をゆっくりと前方に突き上げ、同時に相手の脚を自分の胴体から引き離すように力を加えます。これにより、相手の膝関節が過伸展し、タップを促します。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

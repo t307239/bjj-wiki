@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>Ezekiel Choke BJJ: Domine a Finalização Mais Subestimada do Jiu-Jitsu</h1>
   <p>O Ezekiel Choke é uma técnica de estrangulamento clássica do Jiu-Jitsu, conhecida por sua eficácia e por utilizar o próprio quimono do adversário para aplicar pressão nas artérias carótidas. É uma finalização versátil que pode ser aplicada de diversas posições, pegando muitos oponentes de surpresa. Sua simplicidade e poder a tornam uma arma valiosa no arsenal de qualquer praticante.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Ezekiel_Choke
+    Ezekiel_Choke["Ezekiel Choke"]:::currentNode
+    Ezekiel_Choke -.-> Rear_Naked_Choke["Rear Naked Choke"]:::relNode
+    Ezekiel_Choke -.-> Triangle_Choke["Triangle Choke"]:::relNode
+    Ezekiel_Choke -.-> Guillotine_Choke["Guillotine Choke"]:::relNode
+    Ezekiel_Choke -.-> Bow_and_Arrow_Choke["Bow and Arrow Choke"]:::relNode
+    Ezekiel_Choke -.-> D_Arce_Choke["D'Arce Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Estabeleça a Montada Sólida</strong>: Comece na posição montada sobre seu oponente, mantendo um controle firme para evitar que ele escape ou se defenda facilmente.</div></div><div class="step"><div class="step-num">2</div><div><strong>Prepare a Mão de Base</strong>: Deslize uma das mãos (quatro dedos por dentro) por baixo da cabeça do oponente e para dentro da lapela do quimono dele, na altura do ombro oposto, criando uma pegada funda.</div></div><div class="step"><div class="step-num">3</div><div><strong>Posicione a Mão de Estrangulamento</strong>: Com a outra mão, forme um "punho de faca" (polegar para dentro) e deslize-o sob o pescoço do oponente, posicionando a parte óssea do pulso diretamente na garganta ou lateral do pescoço.</div></div><div class="step"><div class="step-num">4</div><div><strong>Feche o Estrangulamento</strong>: Traga o punho da mão de estrangulamento para encontrar a mão que está na lapela, geralmente pegando a manga do seu próprio braço ou a lapela oposta.</div></div><div class="step"><div class="step-num">5</div><div><strong>Aplique a Pressão</strong>: Com os cotovelos fechados e usando o peso do seu corpo, gire os punhos para dentro e empurre-os contra o pescoço do oponente, apertando a lapela e o punho até ele finalizar.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

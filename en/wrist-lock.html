@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue/Purple</span>
   <h1>The BJJ Wrist Lock: A Comprehensive Technique Guide</h1>
   <p>The wrist lock is a potent joint lock in Brazilian Jiu-Jitsu that targets the opponent's wrist joint, causing pain and forcing a tap. Often underestimated, it can be a highly effective submission when applied correctly and opportunistically from various positions. Mastering the wrist lock adds a powerful, often unexpected, weapon to your BJJ arsenal.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Wrist_Lock
+    Wrist_Lock["Wrist Lock"]:::currentNode
+    Wrist_Lock -.-> Armbar["Armbar"]:::relNode
+    Wrist_Lock -.-> Kimura["Kimura"]:::relNode
+    Wrist_Lock -.-> Americana["Americana"]:::relNode
+    Wrist_Lock -.-> Omoplata["Omoplata"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Isolate the Wrist:</strong> Begin by isolating your opponent's wrist, often by gripping their hand or sleeve. Ensure you have a strong, controlling grip that prevents them from easily pulling their hand away.</div></div><div class="step"><div class="step-num">2</div><div><strong>Control the Hand:</strong> With one hand, cup the back of their hand or fingers, ensuring their palm is facing you or slightly upwards. Your other hand should secure their wrist just above the hand.</div></div><div class="step"><div class="step-num">3</div><div><strong>Create Leverage:</strong> Position your thumbs on the back of their hand, near the knuckles, and your fingers wrapped around their palm. Your other hand provides stability and prevents their wrist from rotating.</div></div><div class="step"><div class="step-num">4</div><div><strong>Apply Pressure:</strong> Gently but firmly push their knuckles towards their forearm while simultaneously flexing their wrist downwards. The pressure should be directed to bend the wrist beyond its natural range of motion.</div></div><div class="step"><div class="step-num">5</div><div><strong>Maintain Control & Finish:</strong> Keep a tight grip and slowly increase the pressure until your opponent taps. Ensure your body position supports the leverage and prevents them from escaping.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

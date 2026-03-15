@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White</span>
   <h1>Mastering the BJJ Knee Slice Pass: Your Guide to Dominant Guard Passing</h1>
   <p>The Knee Slice Pass, often referred to as the Knee Cut Pass, is one of Brazilian Jiu-Jitsu's most fundamental and effective guard passing techniques. It's a high-percentage pass that allows you to slice through your opponent's guard and establish a dominant top position, often leading directly to side control or mount.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Passing["Passing"]:::catNode
+    Passing --> Knee_Slice_Pass
+    Knee_Slice_Pass["Knee Slice Pass"]:::currentNode
+    Knee_Slice_Pass -.-> Guard_Pass["Guard Pass"]:::relNode
+    Knee_Slice_Pass -.-> Torreando_Pass["Torreando Pass"]:::relNode
+    Knee_Slice_Pass -.-> Leg_Drag_Pass["Leg Drag Pass"]:::relNode
+    Knee_Slice_Pass -.-> Headquarters_Pass["Headquarters Pass"]:::relNode
+    classDef currentNode fill:#8b5cf6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Step 1: Establish Dominant Grips.</strong> Begin by securing strong grips, typically a cross-collar grip with one hand and a sleeve or pant grip with the other, to control your opponent's upper body and hips.</div></div><div class="step"><div class="step-num">2</div><div><strong>Step 2: Create Angle and Pressure.</strong> Drive your knee between your opponent's legs, aiming for their hip or thigh, while angling your body slightly to the side of the passing knee. Your other leg should be posted wide for base.</div></div><div class="step"><div class="step-num">3</div><div><strong>Step 3: Slice Through with Pressure.</strong> Maintain heavy head and shoulder pressure into your opponent's chest or stomach as you slice your knee through. Use your shin to pin their far thigh to the mat, preventing hip escapes.</div></div><div class="step"><div class="step-num">4</div><div><strong>Step 4: Clear the Leg and Transition.</strong> Once your knee has cleared their legs, quickly bring your trailing leg over to join your leading leg, effectively pinning their hips. Immediately establish a cross-face and an underhook.</div></div><div class="step"><div class="step-num">5</div><div><strong>Step 5: Consolidate Side Control.</strong> Secure your side control by maintaining strong pressure, flattening your opponent, and ensuring your hips are heavy to prevent them from recovering their guard or sweeping you.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

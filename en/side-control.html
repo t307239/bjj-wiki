@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>BJJ Side Control: Achieve Dominance and Set Up Submissions</h1>
   <p>Side control is one of the most fundamental and powerful top positions in Brazilian Jiu-Jitsu, allowing you to pin your opponent and limit their movement. From here, you can apply immense pressure, conserve your energy, and systematically work towards submissions or transitions to other dominant positions. Mastering side control is crucial for any BJJ practitioner looking to control the pace of a match.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Position["Position"]:::catNode
+    Position --> Side_Control
+    Side_Control["Side Control"]:::currentNode
+    Side_Control -.-> Mount["Mount"]:::relNode
+    Side_Control -.-> Back_Mount["Back Mount"]:::relNode
+    Side_Control -.-> North_South["North-South"]:::relNode
+    Side_Control -.-> Knee_on_Belly["Knee on Belly"]:::relNode
+    Side_Control -.-> Turtle_Position["Turtle Position"]:::relNode
+    classDef currentNode fill:#22c55e,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>Establish a strong base: Ensure your hips are low, chest heavy, and weight distributed over your opponent, maintaining a wide, stable stance.</div></div><div class="step"><div class="step-num">2</div><div>Secure the head and arm control: Use an underhook on the far arm and a cross-face grip over the head, or a deep grip on the opponent's far shoulder to limit their movement.</div></div><div class="step"><div class="step-num">3</div><div>Maintain tight pressure: Keep your chest glued to their chest, eliminating space and making it difficult for them to bridge or create frames.</div></div><div class="step"><div class="step-num">4</div><div>Control the hips: Use your legs or knees to block hip movement, preventing them from turning into you or escaping their hips.</div></div><div class="step"><div class="step-num">5</div><div>Eliminate space: Continuously adjust your position to remove any gaps your opponent might use to create frames or escape.</div></div><div class="step"><div class="step-num">6</div><div>Stay heavy and patient: Use your body weight to tire them out, waiting for openings to transition to mount, knee-on-belly, or attack with submissions.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

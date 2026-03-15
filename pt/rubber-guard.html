@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-roxa">Roxa</span>
   <h1>Guarda Borracha no BJJ: Domine a Técnica e Suas Finalizações Poderosas</h1>
   <p>A Guarda Borracha (Rubber Guard) é uma técnica avançada de guarda no Jiu-Jitsu Brasileiro, popularizada por Eddie Bravo, que visa controlar e quebrar a postura do oponente de forma agressiva. Ela permite múltiplos ataques e transições, mantendo o adversário preso e vulnerável para finalizações e raspagens.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Rubber_Guard
+    Rubber_Guard["Rubber Guard"]:::currentNode
+    Rubber_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    Rubber_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    Rubber_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    Rubber_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Rubber_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Estabeleça a Guarda Fechada:</strong> Comece com seu oponente dentro da sua guarda fechada, controlando a postura dele com pegadas nas mangas ou lapelas para iniciar a transição.</div></div><div class="step"><div class="step-num">2</div><div><strong>Eleve o Quadril e Trave a Perna:</strong> Eleve seu quadril e coloque uma de suas pernas sobre o ombro do oponente, travando-a com a mão correspondente (e.g., perna direita sobre ombro esquerdo, mão direita segura a canela).</div></div><div class="step"><div class="step-num">3</div><div><strong>Crie o "Mission Control":</strong> Com a mão livre (e.g., mão esquerda), alcance por cima da cabeça do oponente e segure o próprio tornozelo da perna que está sobre o ombro, criando um "triângulo" com a perna e o braço.</div></div><div class="step"><div class="step-num">4</div><div><strong>Quebre a Postura e Controle:</strong> Puxe o tornozelo em direção ao seu corpo e use sua perna para empurrar o ombro do oponente, quebrando sua postura e mantendo-o curvado e sem base.</div></div><div class="step"><div class="step-num">5</div><div><strong>Mantenha a Pressão:</strong> Use seus abdominais e a pressão da perna para manter o oponente sem espaço para respirar ou reagir, criando um ambiente propício para ataques e transições.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-ブルーベルト">ブルーベルト</span>
   <h1>【BJJテクニック】バックチョーク（リアネイキッドチョーク）の極め方とコツ</h1>
   <p>バックチョーク、別名リアネイキッドチョーク（RNC）は、ブラジリアン柔術において最も効果的で、頻繁にフィニッシュに繋がるチョークの一つです。相手の背後から頸動脈を締め上げ、失神させることを目的としたこのテクニックは、柔術のあらゆるレベルで非常に重要視されています。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Rear_Naked_Choke
+    Rear_Naked_Choke["Rear Naked Choke"]:::currentNode
+    Rear_Naked_Choke -.-> Triangle_Choke["Triangle Choke"]:::relNode
+    Rear_Naked_Choke -.-> Guillotine_Choke["Guillotine Choke"]:::relNode
+    Rear_Naked_Choke -.-> Bow_and_Arrow_Choke["Bow and Arrow Choke"]:::relNode
+    Rear_Naked_Choke -.-> Ezekiel_Choke["Ezekiel Choke"]:::relNode
+    Rear_Naked_Choke -.-> D_Arce_Choke["D'Arce Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>相手の背後からフックを入れ、シートベルトグリップでコントロールを確立します。片腕を相手の肩越しに回し、もう片方の腕を脇の下から通し、自分の手首を掴みます。</div></div><div class="step"><div class="step-num">2</div><div>チョークアームの親指を相手の首元に深く差し込み、手の甲が相手の首の後ろにくるようにします。</div></div><div class="step"><div class="step-num">3</div><div>もう一方の腕（サポートアーム）をチョークアームの上から回し、チョークアームの肘の内側を掴みます。</div></div><div class="step"><div class="step-num">4</div><div>頭を相手の頭の横に密着させ、相手の首にプレッシャーをかけながら、サポートアームでチョークアームを深く引き込みます。</div></div><div class="step"><div class="step-num">5</div><div>両肘を閉じ、胸を張りながら、自分の頭を相手の頭に押し付け、頸動脈を絞め上げます。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

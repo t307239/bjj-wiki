@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>BJJ ヒップバンプスイープ徹底解説：クローズドガードからの最強スイープ</h1>
   <p>ヒップバンプスイープは、ブラジリアン柔術においてクローズドガードから仕掛ける最も基本的かつ強力なスイープの一つです。相手が立ち上がろうとしたり、姿勢が高くなった隙を捉え、効果的に相手をひっくり返すことができます。このテクニックをマスターすることで、ガードからの攻撃の幅が大きく広がります。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Sweep["Sweep"]:::catNode
+    Sweep --> Hip_Bump_Sweep
+    Hip_Bump_Sweep["Hip Bump Sweep"]:::currentNode
+    Hip_Bump_Sweep -.-> Scissor_Sweep["Scissor Sweep"]:::relNode
+    Hip_Bump_Sweep -.-> Flower_Sweep["Flower Sweep"]:::relNode
+    Hip_Bump_Sweep -.-> Pendulum_Sweep["Pendulum Sweep"]:::relNode
+    classDef currentNode fill:#06b6d4,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>1. クローズドガードから相手の片方の袖と襟を深く掴み、相手の姿勢を崩します。スイープしたい方向の腕をコントロールし、反対側の襟を深く掴むことが重要です。</div></div><div class="step"><div class="step-num">2</div><div>2. 襟を掴んでいる側の手で相手の肘をコントロールしつつ、反対側の手でマットに手を付き、腰を浮かせながら横にエビで移動し、自分の膝をマットにつけます。</div></div><div class="step"><div class="step-num">3</div><div>3. マットに付いた手で体を支えながら、相手の脇の下に深く入り込み、体全体を使って相手を真上に持ち上げるように押し上げます。この時、相手の腕を自分の体でロックするようにします。</div></div><div class="step"><div class="step-num">4</div><div>4. 相手がバランスを崩し始めたら、マットに付いた手を素早く引き抜き、相手の反対側の肩を自分の胸で押さえつけながら、自分の腰で相手を真上に突き上げるようにスイープします。</div></div><div class="step"><div class="step-num">5</div><div>5. スイープ後、すぐに相手の上に乗っかり、サイドコントロールまたはマウントポジションを確立します。相手が起き上がろうとする前に、しっかりとコントロールを確保しましょう。</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

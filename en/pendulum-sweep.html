@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>Master the BJJ Pendulum Sweep: A Comprehensive Guide</h1>
   <p>The Pendulum Sweep is a foundational technique in Brazilian Jiu-Jitsu, primarily executed from the closed guard. It's a highly effective sweep that utilizes leverage and momentum to unbalance your opponent and reverse the position, ending up in a dominant top position. This classic sweep is essential for all BJJ practitioners to understand and master.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Sweep["Sweep"]:::catNode
+    Sweep --> Pendulum_Sweep
+    Pendulum_Sweep["Pendulum Sweep"]:::currentNode
+    Pendulum_Sweep -.-> Scissor_Sweep["Scissor Sweep"]:::relNode
+    Pendulum_Sweep -.-> Flower_Sweep["Flower Sweep"]:::relNode
+    Pendulum_Sweep -.-> Hip_Bump_Sweep["Hip Bump Sweep"]:::relNode
+    classDef currentNode fill:#06b6d4,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Establish Grips:</strong> From closed guard, secure a strong cross-collar grip with one hand and a sleeve grip on the same side arm with the other.</div></div><div class="step"><div class="step-num">2</div><div><strong>Break Posture & Hip Escape:</strong> Pull your opponent's posture down with the collar grip and execute a slight hip escape (shrimp) away from the sleeve grip side, opening your guard.</div></div><div class="step"><div class="step-num">3</div><div><strong>Leg Placement:</strong> Bring the leg on the sleeve grip side (the leg you hip escaped away from) over your opponent's bicep, planting your foot on the mat outside their shoulder.</div></div><div class="step"><div class="step-num">4</div><div><strong>Pendulum Leg Swing:</strong> Release your other leg from your opponent's hip and swing it forcefully across their body like a pendulum, driving your hips up and away.</div></div><div class="step"><div class="step-num">5</div><div><strong>Sweep and Mount:</strong> As you swing your leg and drive your hips, pull with your collar grip and push with your leg on the mat, sweeping your opponent over their shoulder. Follow through to a dominant mount or side control position.</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

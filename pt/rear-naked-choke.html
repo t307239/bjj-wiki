@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-faixa azul (blue belt)">Faixa Azul (Blue Belt)</span>
   <h1>Mata-Leão no Jiu-Jitsu: O Guia Definitivo para Dominar o Rear Naked Choke</h1>
   <p>O Mata-Leão, conhecido como Rear Naked Choke em inglês, é uma das finalizações mais clássicas e eficazes do Jiu-Jitsu, sendo um estrangulamento sanguíneo que visa interromper o fluxo sanguíneo para o cérebro. É uma técnica fundamental para qualquer praticante, desde iniciantes a faixas pretas, dada a sua alta taxa de sucesso quando aplicada corretamente.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Rear_Naked_Choke
+    Rear_Naked_Choke["Rear Naked Choke"]:::currentNode
+    Rear_Naked_Choke -.-> Triangle_Choke["Triangle Choke"]:::relNode
+    Rear_Naked_Choke -.-> Guillotine_Choke["Guillotine Choke"]:::relNode
+    Rear_Naked_Choke -.-> Bow_and_Arrow_Choke["Bow and Arrow Choke"]:::relNode
+    Rear_Naked_Choke -.-> Ezekiel_Choke["Ezekiel Choke"]:::relNode
+    Rear_Naked_Choke -.-> D_Arce_Choke["D'Arce Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Controle das Costas (Back Control):</strong> Primeiramente, estabeleça o controle das costas do seu oponente, preferencialmente com os ganchos (hooks) inseridos e o controle da gola (seatbelt grip) ou dos pulsos.</div></div><div class="step"><div class="step-num">2</div><div><strong>Posicionamento do Braço Estrangulador:</strong> Deslize o braço que está por cima do ombro do oponente por baixo do pescoço dele, posicionando a dobra do seu cotovelo na artéria carótida.</div></div><div class="step"><div class="step-num">3</div><div><strong>Agarre e Fechamento:</strong> Com a mão do braço estrangulador, agarre o seu próprio bíceps do braço oposto, que deve estar por cima do ombro do oponente, criando um "cinto de segurança" ao redor do pescoço.</div></div><div class="step"><div class="step-num">4</div><div><strong>Ajuste da Mão de Apoio:</strong> Posicione a mão do braço que está sobre o ombro do oponente na nuca dele, ou na sua própria cabeça, para fechar qualquer espaço e intensificar a pressão.</div></div><div class="step"><div class="step-num">5</div><div><strong>Finalização:</strong> Agora, pressione os cotovelos para dentro, como se quisesse encostá-los, e estenda as costas, usando o peso do seu corpo para apertar o estrangulamento até a finalização.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-白帯">白帯/青帯 (White/Blue)</span>
   <h1>BJJ シザースイープ完全解説：基本から実践までをマスター</h1>
   <p>シザースイープは、ブラジリアン柔術においてクローズドガードから仕掛ける基本的なスイープの一つです。相手のバランスを崩し、トップポジションを奪うための非常に効果的なテクニックであり、あらゆるレベルの柔術家にとって必須のスキルと言えます。このガイドでは、そのメカニズムと実践方法を詳細に解説します。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Sweep["Sweep"]:::catNode
+    Sweep --> Scissor_Sweep
+    Scissor_Sweep["Scissor Sweep"]:::currentNode
+    Scissor_Sweep -.-> Flower_Sweep["Flower Sweep"]:::relNode
+    Scissor_Sweep -.-> Hip_Bump_Sweep["Hip Bump Sweep"]:::relNode
+    Scissor_Sweep -.-> Pendulum_Sweep["Pendulum Sweep"]:::relNode
+    classDef currentNode fill:#06b6d4,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>まず、クローズドガードから相手の片側の襟と袖をしっかりと掴み、相手の姿勢を前方に崩す準備をします。</div></div><div class="step"><div class="step-num">2</div><div>次に、襟を掴んだ側の足の裏を相手の同側の腰に当て、プッシュする準備をします。</div></div><div class="step"><div class="step-num">3</div><div>反対側の足は、相手の膝裏に深く差し込み、スイープの軸となる「ハサミ（シザー）」の動きを作り出す位置にセットします。</div></div><div class="step"><div class="step-num">4</div><div>襟を引くと同時に袖を引きつけ、腰の足で相手をプッシュしながら、膝裏の足で横に払うようにシザー動作を行い、相手のバランスを崩します。</div></div><div class="step"><div class="step-num">5</div><div>相手が倒れたら、すぐにマウントやサイドコントロールなどのトップポジションへと移行し、コントロールを確立します。</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-パープルベルト以上 (安全な理解と適用が必須)">パープルベルト以上 (安全な理解と適用が必須)</span>
   <h1>ブラジリアン柔術：インサイドヒールフックの極意と安全な練習法</h1>
   <p>インサイドヒールフックは、ブラジリアン柔術における最も強力で危険なレッグロックの一つです。相手の膝関節と足首を同時に攻撃し、適切なコントロールとタイミングで行えば、非常に高い確率でタップを奪うことができます。このテクニックは、その破壊力ゆえに高度な理解と責任ある使用が求められます。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Leg_Lock["Leg Lock"]:::catNode
+    Leg_Lock --> Inside_Heel_Hook
+    Inside_Heel_Hook["Inside Heel Hook"]:::currentNode
+    Inside_Heel_Hook -.-> Heel_Hook["Heel Hook"]:::relNode
+    Inside_Heel_Hook -.-> Outside_Heel_Hook["Outside Heel Hook"]:::relNode
+    Inside_Heel_Hook -.-> Knee_Bar["Knee Bar"]:::relNode
+    Inside_Heel_Hook -.-> Toe_Hold["Toe Hold"]:::relNode
+    Inside_Heel_Hook -.-> Calf_Slicer["Calf Slicer"]:::relNode
+    classDef currentNode fill:#f59e0b,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>アキレス腱グリップの確立</strong>: 相手の片足を自分の股の間に抱え込み、自分の腕で相手のアキレス腱をしっかりとコントロールします。この際、親指を立てずに指全体で掴むのが基本です。</div></div><div class="step"><div class="step-num">2</div><div><strong>足の封じ込め（ヒールを隠す）</strong>: 相手の足首を自分の脇に挟み込み、相手の足の甲が自分の胸側に向くように、しっかりと固定します。これにより相手は足首を回転させて逃げることが難しくなります。</div></div><div class="step"><div class="step-num">3</div><div><strong>ヒールの露出とコントロール</strong>: 自分のもう一方の腕で、相手のヒール（かかと）を掴みます。この時、相手の足の甲を自分の胸に押し付け、かかとをしっかりと露出し、コントロールすることが重要です。</div></div><div class="step"><div class="step-num">4</div><div><strong>ヒップの密着と膝の固定</strong>: 自分のヒップを相手の膝にしっかりと密着させ、相手の膝が回転しないように固定します。これにより、回転の力が膝に集中しやすくなります。</div></div><div class="step"><div class="step-num">5</div><div><strong>回転による極め</strong>: 自分の体の軸を使い、相手の膝関節を固定したまま、足首を外側にひねり上げるように回転します。この動きは、腕力だけでなく、体全体を使って行うことが重要です。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

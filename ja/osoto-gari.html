@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-ホワイト">ホワイト/ブルー</span>
   <h1>ブラジリアン柔術で決める！大外刈り（Osoto Gari）徹底解説</h1>
   <p>大外刈り（Osoto Gari）は、柔道にルーツを持つ非常に効果的なテイクダウンテクニックで、ブラジリアン柔術の立ち技でも広く用いられます。相手を後ろに大きく崩し、刈り倒すことで安全にテイクダウンを奪い、グラウンドでの有利な展開へと繋げることができます。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Takedown["Takedown"]:::catNode
+    Takedown --> Osoto_Gari
+    Osoto_Gari["Osoto Gari"]:::currentNode
+    Osoto_Gari -.-> Double_Leg_Takedown["Double Leg Takedown"]:::relNode
+    Osoto_Gari -.-> Single_Leg_Takedown["Single Leg Takedown"]:::relNode
+    Osoto_Gari -.-> Ankle_Pick["Ankle Pick"]:::relNode
+    classDef currentNode fill:#ec4899,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>組み手と引き出し: 相手と組んだら、片手で襟、もう片方で袖をしっかりと掴みます。相手の重心を前方に引き出すように誘導し、バランスを崩させます。</div></div><div class="step"><div class="step-num">2</div><div>足の踏み込み: 組み手で相手を引き出しつつ、刈り足と逆側の足を相手の足の外側（真横か少し後ろ）に深く踏み込みます。この時、自分の体は相手に密着させ、重心を低く保ちます。</div></div><div class="step"><div class="step-num">3</div><div>刈り足の振り上げ: 踏み込んだ足に体重を乗せ、もう一方の足（刈り足）を大きく振り上げ、相手の外側の太ももから膝裏にかけてを力強く刈り上げます。</div></div><div class="step"><div class="step-num">4</div><div>上半身の連動: 刈り足と同時に、襟を引く手と袖を引く手を使い、相手の上半身を後ろ方向へ引き倒すように連動させます。自分の胸を相手の背中に押し付けるイメージで密着を保ちます。</div></div><div class="step"><div class="step-num">5</div><div>フィニッシュと着地: 相手が完全にバランスを失い倒れる瞬間に、自分も相手と一緒に倒れ込むようにして、サイドコントロールなどの有利なポジションを確保します。</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

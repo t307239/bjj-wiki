@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>Mastering the Kimura: A Comprehensive BJJ Shoulder Lock Guide</h1>
   <p>The Kimura is a highly effective and versatile shoulder lock submission in Brazilian Jiu-Jitsu, named after judoka Masahiko Kimura. It targets the shoulder joint, creating immense pressure through external rotation and abduction of the opponent's arm. This powerful technique can be applied from numerous positions, making it a staple in any grappler's arsenal.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Kimura
+    Kimura["Kimura"]:::currentNode
+    Kimura -.-> Armbar["Armbar"]:::relNode
+    Kimura -.-> Americana["Americana"]:::relNode
+    Kimura -.-> Omoplata["Omoplata"]:::relNode
+    Kimura -.-> Wrist_Lock["Wrist Lock"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>Isolate your opponent's arm and secure a strong wrist control with your outside hand, ensuring their thumb is pointing upwards or sideways.</div></div><div class="step"><div class="step-num">2</div><div>Reach over their isolated arm with your other hand and grab your own wrist, forming the classic 'Kimura grip' or 'figure-four' grip.</div></div><div class="step"><div class="step-num">3</div><div>Use your body and legs to break their posture and control their upper body, preventing them from turning away or defending effectively.</div></div><div class="step"><div class="step-num">4</div><div>Elevate their elbow towards their head while simultaneously pushing their wrist towards their hips, initiating external rotation of the shoulder joint.</div></div><div class="step"><div class="step-num">5</div><div>Continue to drive the elbow up and rotate the wrist until you feel the submission, ensuring you maintain tight control throughout the movement.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>The BJJ Armbar: Your Ultimate Guide to Locking Out the Arm in Brazilian Jiu-Jitsu</h1>
   <p>The armbar, or *Juji Gatame* in Japanese, is one of the most fundamental and effective joint locks in Brazilian Jiu-Jitsu. It targets the opponent's elbow joint, hyperextending it to secure a submission. Mastering this technique is crucial for BJJ practitioners of all levels, offering a versatile attack from numerous positions.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Armbar
+    Armbar["Armbar"]:::currentNode
+    Armbar -.-> Kimura["Kimura"]:::relNode
+    Armbar -.-> Americana["Americana"]:::relNode
+    Armbar -.-> Omoplata["Omoplata"]:::relNode
+    Armbar -.-> Wrist_Lock["Wrist Lock"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>1. <strong>Isolate the Arm:</strong> From closed guard, control one of your opponent's arms by gripping their wrist and tricep, ensuring their elbow is trapped against your hip.</div></div><div class="step"><div class="step-num">2</div><div>2. <strong>Create an Angle:</strong> Place one foot on your opponent's hip and pivot your body, swinging your other leg over their head to create a perpendicular angle.</div></div><div class="step"><div class="step-num">3</div><div>3. <strong>Secure the Opponent:</strong> Keep their arm tightly controlled between your thighs, with their thumb pointing upwards, while simultaneously posting your leg over their head to prevent them from posturing up.</div></div><div class="step"><div class="step-num">4</div><div>4. <strong>Break Posture and Extend:</strong> Fall back, keeping your hips tight against their shoulder and their arm straight. Squeeze your knees together and lift your hips towards the ceiling to hyperextend the elbow.</div></div><div class="step"><div class="step-num">5</div><div>5. <strong>Finish the Submission:</strong> Apply steady, controlled pressure until your opponent taps, ensuring you maintain control of their wrist throughout the entire movement.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

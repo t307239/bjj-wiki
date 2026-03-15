@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>Mastering the BJJ Toe Hold: A Comprehensive Leg Lock Submission Guide</h1>
   <p>The Toe Hold is a potent leg lock submission in Brazilian Jiu-Jitsu that targets the ankle and foot. It involves twisting the foot to put pressure on the ligaments and joints, creating a powerful and often quick tap. This technique is highly effective when executed correctly, making it a valuable addition to any grappler's arsenal.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Leg_Lock["Leg Lock"]:::catNode
+    Leg_Lock --> Toe_Hold
+    Toe_Hold["Toe Hold"]:::currentNode
+    Toe_Hold -.-> Heel_Hook["Heel Hook"]:::relNode
+    Toe_Hold -.-> Inside_Heel_Hook["Inside Heel Hook"]:::relNode
+    Toe_Hold -.-> Outside_Heel_Hook["Outside Heel Hook"]:::relNode
+    Toe_Hold -.-> Knee_Bar["Knee Bar"]:::relNode
+    Toe_Hold -.-> Calf_Slicer["Calf Slicer"]:::relNode
+    classDef currentNode fill:#f59e0b,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>Secure your opponent's leg, typically by controlling their knee with one arm and their foot with the other, ensuring their leg is isolated.</div></div><div class="step"><div class="step-num">2</div><div>Use your hand to grip the top of your opponent's foot, placing your palm over their toes and your fingers wrapped around the ball of their foot.</div></div><div class="step"><div class="step-num">3</div><div>Bring your other hand to meet the first, creating a deep 'C' shaped grip around the opponent's toes, with your knuckles pointing towards their shin.</div></div><div class="step"><div class="step-num">4</div><div>Pull their foot towards their buttock while simultaneously rotating their toes inward or outward, depending on the most effective angle.</div></div><div class="step"><div class="step-num">5</div><div>Arch your back and extend your hips, applying a twisting and hyperextension pressure to the ankle joint until your opponent taps.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

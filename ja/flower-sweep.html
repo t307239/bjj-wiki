@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-ホワイト">ホワイト/ブルー</span>
   <h1>【BJJテクニック】フラワー・スイープをマスターする：完全ガイド</h1>
   <p>フラワー・スイープは、ガードポジションから相手のバランスを崩し、トップポジションに移行するためのブラジリアン柔術の基本的なスイープテクニックです。特に相手が前傾姿勢になった際に効果的で、初心者から上級者まで幅広く使用されます。このテクニックを習得することで、試合やスパーリングでの攻防の選択肢を大きく広げることができます。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Sweep["Sweep"]:::catNode
+    Sweep --> Flower_Sweep
+    Flower_Sweep["Flower Sweep"]:::currentNode
+    Flower_Sweep -.-> Scissor_Sweep["Scissor Sweep"]:::relNode
+    Flower_Sweep -.-> Hip_Bump_Sweep["Hip Bump Sweep"]:::relNode
+    Flower_Sweep -.-> Pendulum_Sweep["Pendulum Sweep"]:::relNode
+    classDef currentNode fill:#06b6d4,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>準備（グリップと足の配置）：クローズドガードから、片手で相手の袖を掴み、もう一方の手で相手の襟を掴みます。スイープしたい側の足は相手の腰に置き、もう一方の足はクローズドガードを解除して床に置きます。</div></div><div class="step"><div class="step-num">2</div><div>引き込みとバランス崩し：襟と袖のグリップを使い、相手を自分の方に強く引き寄せ、前にバランスを崩させます。この時、腰に置いた足で相手の腰を押し込みます。</div></div><div class="step"><div class="step-num">3</div><div>スイープ方向への回転：相手のバランスが崩れたら、床に置いた足で強く床を蹴り、腰に置いた足で相手の腰を押し込みながら、スイープしたい方向へ体を回転させます。</div></div><div class="step"><div class="step-num">4</div><div>足の振り上げと押し出し：クローズドガードだったもう一方の足を大きく振り上げ、相手の腕の付け根（脇の下）あたりを押し上げながら、同時に腰に置いた足で相手を押し出します。</div></div><div class="step"><div class="step-num">5</div><div>トップポジションへの移行：相手が倒れたら、すぐにマウントポジションやサイドコントロールなどのトップポジションへと移行し、コントロールを確立します。</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

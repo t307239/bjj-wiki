@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-azul">Azul/Roxa</span>
   <h1>Montada nas Costas no BJJ: O Guia Definitivo para Dominar e Finalizar</h1>
   <p>A montada nas costas é uma das posições mais dominantes e cobiçadas no Jiu-Jitsu brasileiro, conhecida por oferecer o maior potencial de finalização. A partir daqui, você tem controle total sobre o adversário, com acesso privilegiado ao pescoço para estrangulamentos e braços para chaves. Dominar esta posição é crucial para qualquer praticante que busca eficiência e segurança no combate.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Position["Position"]:::catNode
+    Position --> Back_Mount
+    Back_Mount["Back Mount"]:::currentNode
+    Back_Mount -.-> Mount["Mount"]:::relNode
+    Back_Mount -.-> Side_Control["Side Control"]:::relNode
+    Back_Mount -.-> North_South["North-South"]:::relNode
+    Back_Mount -.-> Knee_on_Belly["Knee on Belly"]:::relNode
+    Back_Mount -.-> Turtle_Position["Turtle Position"]:::relNode
+    classDef currentNode fill:#22c55e,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>1. <strong>Ganhando as Costas:</strong> Transicione de outras posições, como a guarda ou a passagem de guarda, para se posicionar atrás do adversário, idealmente com um de seus ganchos já inserido.</div></div><div class="step"><div class="step-num">2</div><div>2. <strong>Inserindo os Ganchos (Hooks):</strong> Coloque ambos os pés na parte interna das coxas do seu oponente, com os calcanhares apontando para dentro, para controlar seus quadris e impedi-lo de girar.</div></div><div class="step"><div class="step-num">3</div><div>3. <strong>Estabelecendo o Controle Superior (Seatbelt Grip):</strong> Garanta o controle do tronco do adversário com um "seatbelt grip" (cinto de segurança): uma mão por baixo da axila e a outra por cima do ombro oposto, unindo as mãos para um controle firme.</div></div><div class="step"><div class="step-num">4</div><div>4. <strong>Cabeça no Ombro:</strong> Mantenha sua cabeça colada ao ombro do lado da mão que está por cima (a que passa por cima do ombro do oponente) para dificultar a fuga e manter a pressão.</div></div><div class="step"><div class="step-num">5</div><div>5. <strong>Manter a Pressão e Prevenir Escapes:</strong> Use seus ganchos e o controle do tronco para manter o adversário achatado e sem espaço para criar ângulos de fuga, ajustando constantemente sua base e peso.</div></div><div class="step"><div class="step-num">6</div><div>6. <strong>Procurar a Finalização:</strong> Com a posição estabilizada, comece a buscar oportunidades para estrangulamentos (ex: mata-leão) ou ataques aos braços, sempre mantendo o controle da posição.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

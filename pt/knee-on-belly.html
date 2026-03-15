@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-azul">Azul</span>
   <h1>Joelheira na Barriga no BJJ: Domine a Posição e Aumente Seu Controle</h1>
   <p>A joelheira na barriga, ou Knee on Belly, é uma das posições de controle mais eficazes e dolorosas no Jiu-Jitsu Brasileiro. Além de gerar pontos em competições, ela serve como uma plataforma excelente para transições e finalizações, desgastando e frustrando o oponente com sua pressão constante.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Position["Position"]:::catNode
+    Position --> Knee_On_Belly
+    Knee_On_Belly["Knee On Belly"]:::currentNode
+    Knee_On_Belly -.-> Mount["Mount"]:::relNode
+    Knee_On_Belly -.-> Back_Mount["Back Mount"]:::relNode
+    Knee_On_Belly -.-> Side_Control["Side Control"]:::relNode
+    Knee_On_Belly -.-> North_South["North-South"]:::relNode
+    Knee_On_Belly -.-> Turtle_Position["Turtle Position"]:::relNode
+    classDef currentNode fill:#22c55e,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>1. Partindo do Controle Lateral:</strong> Comece a posição a partir de um controle lateral sólido, garantindo que o oponente esteja estabilizado de costas para o chão.</div></div><div class="step"><div class="step-num">2</div><div><strong>2. Transição da Perna Dominante:</strong> Levante o joelho da perna que está mais próxima da cabeça do seu oponente e posicione-o firmemente sobre o esterno ou abdômen dele, mantendo o pé ativo no quadril oposto.</div></div><div class="step"><div class="step-num">3</div><div><strong>3. Perna de Apoio Estendida:</strong> Estenda a outra perna para o lado, mantendo o pé ativo no chão (como um 'gancho') para auxiliar no equilíbrio e na mobilidade. Não deixe o pé 'morto' no chão.</div></div><div class="step"><div class="step-num">4</div><div><strong>4. Distribuição de Peso e Mãos Ativas:</strong> Concentre a maior parte do seu peso sobre o joelho que está na barriga do oponente, mantendo os quadris baixos. Use suas mãos para controlar o colarinho e o braço distante do oponente, ou para estabilizar sua própria base.</div></div><div class="step"><div class="step-num">5</div><div><strong>5. Manutenção da Pressão e Postura:</strong> Mantenha uma postura ereta, com a cabeça sobre a linha do seu quadril, para evitar ser varrido. Ajuste seu peso e pressão constantemente para reagir aos movimentos do oponente.</div></div><div class="step"><div class="step-num">6</div><div><strong>6. Preparar Ataques:</strong> Use a pressão da joelheira para abrir espaços, controlando os braços do oponente para preparar finalizações como o estrangulamento cruzado, americana ou transições para a montada.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

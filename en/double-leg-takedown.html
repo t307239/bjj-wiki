@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>The Ultimate Guide to Executing the BJJ Double Leg Takedown</h1>
   <p>The Double Leg Takedown is a foundational wrestling technique universally applied in Brazilian Jiu-Jitsu for securing a dominant top position. It's a powerful and direct way to bring your opponent to the mat, often leading directly into advantageous control or submission opportunities. Mastering this takedown is crucial for anyone looking to improve their stand-up game in BJJ.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Takedown["Takedown"]:::catNode
+    Takedown --> Double_Leg_Takedown
+    Double_Leg_Takedown["Double Leg Takedown"]:::currentNode
+    Double_Leg_Takedown -.-> Single_Leg_Takedown["Single Leg Takedown"]:::relNode
+    Double_Leg_Takedown -.-> Osoto_Gari["Osoto Gari"]:::relNode
+    Double_Leg_Takedown -.-> Ankle_Pick["Ankle Pick"]:::relNode
+    classDef currentNode fill:#ec4899,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Stance and Setup:</strong> Start in an athletic stance, level change by dropping your hips, and use head movement or a fake shot to create an opening and get your opponent to react.</div></div><div class="step"><div class="step-num">2</div><div><strong>Penetration Step:</strong> Explode forward with a deep penetration step, aiming your lead knee between your opponent's legs while keeping your head up and chest out.</div></div><div class="step"><div class="step-num">3</div><div><strong>Secure the Legs:</strong> Drive your lead shoulder into your opponent's midsection, wrapping both arms around their legs, just above the knees, and clasping your hands tightly.</div></div><div class="step"><div class="step-num">4</div><div><strong>Drive and Finish:</strong> Maintain head position on the outside of their hip, drive through them with your legs, and pivot to one side to off-balance and take them down.</div></div><div class="step"><div class="step-num">5</div><div><strong>Follow Through:</strong> Continue driving and immediately transition to a dominant position like side control or mount, preventing them from scrambling or recovering guard.</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

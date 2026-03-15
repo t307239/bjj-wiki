@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>Mastering the BJJ Guillotine Choke: A Complete Guide</h1>
   <p>The Guillotine Choke is a fundamental and highly effective submission in Brazilian Jiu-Jitsu, particularly potent in no-gi grappling. It targets the carotid arteries by compressing the neck, often catching opponents as they shoot for takedowns or expose their head. Mastering this choke requires precise hand placement, body mechanics, and an understanding of its various setups.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Guillotine_Choke
+    Guillotine_Choke["Guillotine Choke"]:::currentNode
+    Guillotine_Choke -.-> Rear_Naked_Choke["Rear Naked Choke"]:::relNode
+    Guillotine_Choke -.-> Triangle_Choke["Triangle Choke"]:::relNode
+    Guillotine_Choke -.-> Bow_and_Arrow_Choke["Bow and Arrow Choke"]:::relNode
+    Guillotine_Choke -.-> Ezekiel_Choke["Ezekiel Choke"]:::relNode
+    Guillotine_Choke -.-> D_Arce_Choke["D'Arce Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Capture the Head and Arm</strong>: When your opponent shoots for a takedown or exposes their neck, quickly wrap your arm around their neck, ensuring your bicep is under their chin and your forearm is across their throat. Simultaneously, capture their arm on the same side as your choking arm, pinning it close to their body if possible.</div></div><div class="step"><div class="step-num">2</div><div><strong>Secure the Grip</strong>: Bring your free hand over your choking hand and secure a strong grip, typically palm-to-palm (gable grip) or an S-grip, ensuring your wrists are straight and your elbows are tucked in. Your goal is to create a tight, unyielding connection around their neck.</div></div><div class="step"><div class="step-num">3</div><div><strong>Establish Position and Control</strong>: Depending on the situation, either sprawl back to flatten your opponent, pull guard, or sit back into a strong guard position, maintaining tight head and arm control. Ensure your hips are close to your opponent's body to prevent them from posturing up.</div></div><div class="step"><div class="step-num">4</div><div><strong>Finish the Choke</strong>: Extend your hips forward while arching your back, simultaneously pulling your elbows towards your chest. This action cinches the choke, applying pressure to the carotid arteries and forcing the tap.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>BJJハーフガード：基本戦略と効果的なテクニック</h1>
   <p>ハーフガードは、相手の片足をロックしてコントロールする、ブラジリアン柔術において非常に強力で汎用性の高いガードポジションです。パスガードを防ぎ、スイープ、バックテイク、サブミッションへと繋がる多くの攻撃オプションを提供します。このガイドでは、ハーフガードの基本から応用までを詳しく解説します。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Half_Guard
+    Half_Guard["Half Guard"]:::currentNode
+    Half_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    Half_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    Half_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Half_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    Half_Guard -.-> Berimbolo["Berimbolo"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>相手の片足を両足でしっかりとロックし、密着して相手との間にスペースを作らせないようにします。</div></div><div class="step"><div class="step-num">2</div><div>外側の足で相手の腰または太ももにニーシールド（膝のフレーム）をセットし、相手との距離とプレッシャーをコントロールします。</div></div><div class="step"><div class="step-num">3</div><div>深くアンダーフックを取り、相手の肩甲骨の下に手を差し込み、相手の背中をコントロールする強力なグリップを確保します。</div></div><div class="step"><div class="step-num">4</div><div>頭を相手の胸または脇腹に密着させ、相手のクロスフェイスを防ぎ、常にプレッシャーをかけ続けます。</div></div><div class="step"><div class="step-num">5</div><div>背中を地面につけず、常にお尻をマットにつけた横向きの姿勢を保ち、エスケープや攻撃への準備を整えます。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

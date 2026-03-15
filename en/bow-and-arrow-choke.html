@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>The Ultimate Guide to Mastering the BJJ Bow and Arrow Choke</h1>
   <p>The Bow and Arrow Choke is a highly effective and visually striking submission in Brazilian Jiu-Jitsu, known for its powerful leverage and high finishing rate. Executed primarily from the back mount or turtle position, it utilizes a combination of gi grips and body mechanics to apply immense pressure to the opponent's carotid arteries.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Bow_And_Arrow_Choke
+    Bow_And_Arrow_Choke["Bow And Arrow Choke"]:::currentNode
+    Bow_And_Arrow_Choke -.-> Rear_Naked_Choke["Rear Naked Choke"]:::relNode
+    Bow_And_Arrow_Choke -.-> Triangle_Choke["Triangle Choke"]:::relNode
+    Bow_And_Arrow_Choke -.-> Guillotine_Choke["Guillotine Choke"]:::relNode
+    Bow_And_Arrow_Choke -.-> Ezekiel_Choke["Ezekiel Choke"]:::relNode
+    Bow_And_Arrow_Choke -.-> D_Arce_Choke["D'Arce Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>1. <strong>Initial Collar Grip:</strong> From back control, secure a deep cross-collar grip with your top hand on the opponent's lapel, ensuring your thumb is inside for maximum control.</div></div><div class="step"><div class="step-num">2</div><div>2. <strong>Pant Grip and Hip Escape:</strong> Use your bottom hand to grab the opponent's same-side pant leg (the leg opposite your collar grip), then perform a sharp hip escape to the side of your collar grip, creating a strong angle.</div></div><div class="step"><div class="step-num">3</div><div>3. <strong>Leg Over the Shoulder:</strong> Bring your outside leg (the one on the side of your collar grip) over the opponent's shoulder, planting your foot firmly on the mat near their head.</div></div><div class="step"><div class="step-num">4</div><div>4. <strong>Extend and Finish:</strong> Extend your body, pulling your collar grip hand back towards your chest while simultaneously pulling the pant leg grip away and driving your hips forward to stretch your opponent and apply the choke.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

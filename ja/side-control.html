@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-ホワイト">ホワイト/ブルー</span>
   <h1>ブラジリアン柔術：サイドコントロール完全攻略ガイド</h1>
   <p>サイドコントロールは、ブラジリアン柔術において非常に強力で基本的なグラウンドポジションです。相手の横に位置し、重さとコントロールを最大限に活用して相手をピンし、サブミッションや次の攻撃への足がかりを築きます。このポジションを習得することは、あらゆるレベルのBJJプラクティショナーにとって不可欠です。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Position["Position"]:::catNode
+    Position --> Side_Control
+    Side_Control["Side Control"]:::currentNode
+    Side_Control -.-> Mount["Mount"]:::relNode
+    Side_Control -.-> Back_Mount["Back Mount"]:::relNode
+    Side_Control -.-> North_South["North-South"]:::relNode
+    Side_Control -.-> Knee_on_Belly["Knee on Belly"]:::relNode
+    Side_Control -.-> Turtle_Position["Turtle Position"]:::relNode
+    classDef currentNode fill:#22c55e,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>相手をピンする: マウントポジションやガードパス後、相手の横に移動し、胸を相手の胸に密着させ、重さをかけます。</div></div><div class="step"><div class="step-num">2</div><div>アームラップとネックコントロール: 相手の首を抱える腕（ネックコントロール）と、相手の腕を抱える腕（アームラップ）で、相手の上半身を完全にコントロールします。</div></div><div class="step"><div class="step-num">3</div><div>ヒップの密着と膝の配置: 自分のヒップを相手の脇腹に密着させ、相手の腕をコントロールしている側の膝は相手のヒップに、もう一方の膝は相手の肩に近づけるように配置します。</div></div><div class="step"><div class="step-num">4</div><div>プレッシャーの維持: 胸、肩、ヒップを使って常に相手に重圧をかけ続け、相手が動こうとするのを妨げます。</div></div><div class="step"><div class="step-num">5</div><div>ベースの確立: 両足のつま先を立て、広いベースを保ち、重心を低くして、相手がブリッジやエスケープを試みても簡単に崩れないようにします。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

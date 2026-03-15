@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue/Purple</span>
   <h1>ブラジリアン柔術Xガード：スイープとサブミッションへの道</h1>
   <p>Xガードは、相手のバランスを崩し、強力なスイープやサブミッションへの移行を可能にするブラジリアン柔術のダイナミックなガードポジションです。片足に自分の両足を絡ませ、相手の重心をコントロールすることで、非常に高い攻撃力を発揮します。このガイドでは、Xガードのセットアップから主要な攻撃までを解説します。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> X_Guard
+    X_Guard["X Guard"]:::currentNode
+    X_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    X_Guard -.-> Open_Guard["Open Guard"]:::relNode
+    X_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    X_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    X_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>セットアップ</strong>: オープンガードやバタフライガードから、相手の片足の太ももを自分の腕で抱え込み、もう一方の腕で袖を掴みます。</div></div><div class="step"><div class="step-num">2</div><div><strong>足の配置</strong>: 抱え込んだ太もも側の足で相手の股間を蹴り、逆の足で相手の膝裏をフックします。同時に、自分の体を相手の股関節の下に潜り込ませます。</div></div><div class="step"><div class="step-num">3</div><div><strong>Xガードの形成</strong>: 膝裏をフックした足の甲を、抱え込んだ太もも側の足の脛に絡ませてX字を形成します。この時、相手の重心を自分の足でコントロールします。</div></div><div class="step"><div class="step-num">4</div><div><strong>バランスの崩し</strong>: 相手の袖を強く引きつけ、フックしている足で相手の膝を押し上げ、同時に股間を蹴る足で相手のバランスを前方に崩します。</div></div><div class="step"><div class="step-num">5</div><div><strong>スイープへの移行</strong>: 相手のバランスが崩れた瞬間に、自分の腰を回転させながら、相手の軸足を蹴り上げてスイープを完成させます。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

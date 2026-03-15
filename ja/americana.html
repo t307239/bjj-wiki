@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-白帯から黒帯まで">白帯から黒帯まで</span>
   <h1>ブラジリアン柔術：アメリカーナ（肩固め）テクニックガイド</h1>
   <p>アメリカーナは、柔術における基本的ながら非常に効果的な肩関節ロックです。相手の腕を固定し、肩関節に大きなプレッシャーをかけることでタップを奪います。主にマウントやサイドコントロールから仕掛けることができ、初心者から上級者まで幅広く使用されるテクニックです。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Americana
+    Americana["Americana"]:::currentNode
+    Americana -.-> Armbar["Armbar"]:::relNode
+    Americana -.-> Kimura["Kimura"]:::relNode
+    Americana -.-> Omoplata["Omoplata"]:::relNode
+    Americana -.-> Wrist_Lock["Wrist Lock"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>マウントポジションから、相手の片腕が手のひらを上にしてマットに平らになるようにコントロールします。</div></div><div class="step"><div class="step-num">2</div><div>片方の手で相手の手首を親指が内側になるようにしっかりと掴み、相手の腕が動かないように固定します。</div></div><div class="step"><div class="step-num">3</div><div>もう片方の手で相手の肘の裏側、上腕三頭筋あたりを掴み、自分の手首と相手の肘を連結させ、フィギュアフォーグリップを作ります。</div></div><div class="step"><div class="step-num">4</div><div>相手の肘をマットに固定したまま、手首を掴んだ手を相手の頭の方へゆっくりとスライドさせ、肩関節にプレッシャーをかけます。</div></div><div class="step"><div class="step-num">5</div><div>同時に、自分の肘をマットから少し浮かせ、相手の肩関節が内側に回転するようにレバレッジをかけます。</div></div><div class="step"><div class="step-num">6</div><div>ゆっくりと、しかし着実にプレッシャーをかけ続け、相手がタップするまで絞め上げます。</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

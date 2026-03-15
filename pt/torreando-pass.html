@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-branco">Branco</span>
   <h1>Domine a Passagem de Guarda Torreando no Jiu-Jitsu Brasileiro</h1>
   <p>A Passagem de Guarda Torreando é uma das técnicas mais dinâmicas e eficazes para transpor a guarda do seu oponente no Jiu-Jitsu Brasileiro. Caracterizada por um movimento lateral rápido e controle das pernas, ela permite que você circule a guarda e estabeleça uma posição dominante.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Passing["Passing"]:::catNode
+    Passing --> Torreando_Pass
+    Torreando_Pass["Torreando Pass"]:::currentNode
+    Torreando_Pass -.-> Guard_Pass["Guard Pass"]:::relNode
+    Torreando_Pass -.-> Knee_Slice_Pass["Knee Slice Pass"]:::relNode
+    Torreando_Pass -.-> Leg_Drag_Pass["Leg Drag Pass"]:::relNode
+    Torreando_Pass -.-> Headquarters_Pass["Headquarters Pass"]:::relNode
+    classDef currentNode fill:#8b5cf6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>1. <strong>Postura Inicial e Pegadas</strong>: Comece em pé, com uma boa postura e base, controlando as lapelas ou as calças do oponente para controlar a distância e as pernas.</div></div><div class="step"><div class="step-num">2</div><div>2. <strong>Controle e Desvio das Pernas</strong>: Com as pegadas firmes, empurre as pernas do seu oponente para um dos lados, criando um caminho livre para a sua passagem.</div></div><div class="step"><div class="step-num">3</div><div>3. <strong>Movimento Lateral Rápido</strong>: Dê um passo largo e rápido para o lado oposto ao das pernas desviadas, circulando a guarda do seu adversário.</div></div><div class="step"><div class="step-num">4</div><div>4. <strong>Avanço e Conexão</strong>: Avance rapidamente com seu corpo, conectando seu quadril ao do oponente e buscando a posição de controle lateral.</div></div><div class="step"><div class="step-num">5</div><div>5. <strong>Estabilização da Posição</strong>: Certifique-se de que sua cabeça está no lado correto, mantendo a pressão e os ganchos para estabilizar o controle lateral e evitar a recuperação da guarda.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

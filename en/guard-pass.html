@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White</span>
   <h1>The Ultimate Guide to BJJ Guard Passing: Break Any Guard</h1>
   <p>Guard passing is a fundamental skill in Brazilian Jiu-Jitsu, essential for advancing your position and ultimately submitting your opponent. It involves breaking your opponent's control from their guard and transitioning to a dominant top position like side control or mount. Mastering guard passes is crucial for controlling the pace of the fight and dictating where the match goes.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Passing["Passing"]:::catNode
+    Passing --> Guard_Pass
+    Guard_Pass["Guard Pass"]:::currentNode
+    Guard_Pass -.-> Torreando_Pass["Torreando Pass"]:::relNode
+    Guard_Pass -.-> Knee_Slice_Pass["Knee Slice Pass"]:::relNode
+    Guard_Pass -.-> Leg_Drag_Pass["Leg Drag Pass"]:::relNode
+    Guard_Pass -.-> Headquarters_Pass["Headquarters Pass"]:::relNode
+    classDef currentNode fill:#8b5cf6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Step 1: Establish Dominant Grips and Posture.</strong> Begin by breaking your opponent's primary grips and maintaining a strong, upright posture to prevent them from breaking your balance or setting up attacks.</div></div><div class="step"><div class="step-num">2</div><div><strong>Step 2: Create an Angle and Initiate Pressure.</strong> Step to one side, using your knee to slice through their legs or drive into their hip, creating an angle that compromises their guard structure.</div></div><div class="step"><div class="step-num">3</div><div><strong>Step 3: Drive Forward with Relentless Pressure.</strong> Use your weight and head position to drive forward, flattening your opponent's hips to the mat and making it difficult for them to re-guard.</div></div><div class="step"><div class="step-num">4</div><div><strong>Step 4: Clear the Legs and Secure the Hip.</strong> Pin their hip or thigh with your knee or arm, securing an underhook on the far side, and actively clear their bottom leg to remove their last point of control.</div></div><div class="step"><div class="step-num">5</div><div><strong>Step 5: Transition to a Dominant Position.</strong> Once the guard is broken, swiftly transition to side control, knee-on-belly, or mount, maintaining heavy pressure and establishing your new, superior position.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

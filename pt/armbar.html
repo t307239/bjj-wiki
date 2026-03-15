@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-branco">Branco</span>
   <h1>Armlock (Armbar) no Jiu-Jitsu: Domine a Finalização Clássica</h1>
   <p>O Armlock, também conhecido como Armbar, é uma das finalizações mais icônicas e eficazes do Jiu-Jitsu. Esta técnica de chave de braço visa hiperextender a articulação do cotovelo do oponente, forçando-o a desistir. Dominar o Armlock é fundamental para qualquer praticante, desde o iniciante ao mais avançado.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Armbar
+    Armbar["Armbar"]:::currentNode
+    Armbar -.-> Kimura["Kimura"]:::relNode
+    Armbar -.-> Americana["Americana"]:::relNode
+    Armbar -.-> Omoplata["Omoplata"]:::relNode
+    Armbar -.-> Wrist_Lock["Wrist Lock"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Isolamento e Controle</strong>: Comece isolando um dos braços do oponente, segurando-o firmemente pelo punho e pela gola ou tríceps para evitar que ele se defenda.</div></div><div class="step"><div class="step-num">2</div><div><strong>Transição e Ângulo</strong>: Posicione seu corpo de forma perpendicular ao tronco do oponente, passando uma de suas pernas sobre a cabeça dele e a outra sobre o abdômen, travando seu quadril.</div></div><div class="step"><div class="step-num">3</div><div><strong>Ajuste da Posição</strong>: Certifique-se de que o cotovelo do oponente esteja alinhado com o seu quadril e que o polegar dele esteja apontado para cima, garantindo a direção correta da pressão.</div></div><div class="step"><div class="step-num">4</div><div><strong>Controle das Pernas</strong>: Una seus joelhos e cruze seus calcanhares para travar o braço do oponente, impedindo que ele retire o braço ou gire.</div></div><div class="step"><div class="step-num">5</div><div><strong>Execução da Finalização</strong>: Com o braço bem esticado e o controle das pernas, empurre seu quadril para cima enquanto puxa o punho do oponente para baixo, aplicando pressão sobre o cotovelo até a finalização.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

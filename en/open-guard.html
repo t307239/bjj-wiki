@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>Mastering the Open Guard in Brazilian Jiu-Jitsu</h1>
   <p>The Open Guard is a fundamental and highly versatile guard position in Brazilian Jiu-Jitsu where you use your legs and hips to control distance and off-balance your opponent without relying on a closed triangle lock. It's a dynamic position that allows for a wide array of sweeps, submissions, and transitions, making it a cornerstone for any well-rounded BJJ practitioner.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Guard["Guard"]:::catNode
+    Guard --> Open_Guard
+    Open_Guard["Open Guard"]:::currentNode
+    Open_Guard -.-> Closed_Guard["Closed Guard"]:::relNode
+    Open_Guard -.-> Half_Guard["Half Guard"]:::relNode
+    Open_Guard -.-> Spider_Guard["Spider Guard"]:::relNode
+    Open_Guard -.-> De_La_Riva_Guard["De La Riva Guard"]:::relNode
+    Open_Guard -.-> Berimbolo["Berimbolo"]:::relNode
+    classDef currentNode fill:#3b82f6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>1. Establish Initial Position:</strong> From your back, elevate your hips and place your feet on your opponent's hips, biceps, or chest, ensuring your knees are bent and ready to push or pull.</div></div><div class="step"><div class="step-num">2</div><div><strong>2. Secure Dominant Grips:</strong> Immediately fight for grips on your opponent's sleeves, collars, or pant legs. Controlling their posture and limbs is crucial for setting up attacks.</div></div><div class="step"><div class="step-num">3</div><div><strong>3. Manage Distance with Your Legs:</strong> Use your feet to push and pull your opponent, maintaining an optimal distance that allows you to attack while preventing them from passing. Never let your feet go limp.</div></div><div class="step"><div class="step-num">4</div><div><strong>4. Utilize Hip Movement (Shrimping):</strong> Actively use hip escapes (shrimping) to create angles, move away from pressure, and generate power for sweeps and submissions.</div></div><div class="step"><div class="step-num">5</div><div><strong>5. Threaten and Transition:</strong> Continuously threaten with sweeps or submission attempts. This keeps your opponent defensive and opens up opportunities for follow-up attacks or transitions to other guards.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

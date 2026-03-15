@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-ホワイト">ホワイト/ブルー/パープル/ブラウン/ブラック (すべての帯レベルで必須の基本テクニックです。)</span>
   <h1>BJJニー・スライス・パス：ガードを突破する究極のテクニック</h1>
   <p>ニー・スライス・パスは、ブラジリアン柔術において最も基本的かつ強力なガードパスの一つです。相手のガードを効果的に突破し、サイドコントロールやマウントポジションへの移行を可能にするこのテクニックは、あらゆるレベルの柔術家にとって必須のスキルと言えるでしょう。この記事では、ニー・スライス・パスのメカニズムと、それをマスターするための詳細な手順を解説します。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Passing["Passing"]:::catNode
+    Passing --> Knee_Slice_Pass
+    Knee_Slice_Pass["Knee Slice Pass"]:::currentNode
+    Knee_Slice_Pass -.-> Guard_Pass["Guard Pass"]:::relNode
+    Knee_Slice_Pass -.-> Torreando_Pass["Torreando Pass"]:::relNode
+    Knee_Slice_Pass -.-> Leg_Drag_Pass["Leg Drag Pass"]:::relNode
+    Knee_Slice_Pass -.-> Headquarters_Pass["Headquarters Pass"]:::relNode
+    classDef currentNode fill:#8b5cf6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>ポジショニングとグリップ</strong>: 相手がオープンガードやハーフガードの状態で、まず片足のパンツの膝部分を掴み、もう片方の手で相手の襟または肩を掴みます。頭を相手の胸に近づけ、プレッシャーをかけます。</div></div><div class="step"><div class="step-num">2</div><div><strong>膝の侵入</strong>: 掴んだ膝側の足を相手の股の間にスライスするように深く差し込みます。この時、膝を相手の太ももと腹部の間に滑り込ませるイメージです。</div></div><div class="step"><div class="step-num">3</div><div><strong>プレッシャーと腰のコントロール</strong>: 膝を差し込んだら、頭と肩で相手の胸に強いプレッシャーをかけ続け、腰を相手の脚に密着させます。これにより、相手のヒップエスケープやフックを防ぎます。</div></div><div class="step"><div class="step-num">4</div><div><strong>脚の引き抜き</strong>: 相手の足が絡んでいる場合は、もう片方の手で相手の足首を掴み、自分の脚をゆっくりと引き抜きます。この際、常に前方向のプレッシャーを維持することが重要です。</div></div><div class="step"><div class="step-num">5</div><div><strong>フィニッシュ</strong>: 相手のガードを完全にパスしたら、すぐにサイドコントロールやマウントポジションへ移行し、安定したポジションを確立します。相手のフックや逆転の機会を与えないよう注意しましょう。</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

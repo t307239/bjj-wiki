@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue">Blue</span>
   <h1>The BJJ Torreando Pass: Your Guide to Dynamic Guard Passing</h1>
   <p>The Torreando Pass is a highly effective and dynamic guard pass in Brazilian Jiu-Jitsu, known for its speed and agility. It involves using leg controls and upper body movement to quickly circle around your opponent's guard, creating angles to secure a dominant side control or knee-on-belly position. This pass is a staple for many top competitors due to its versatility and ability to bypass various guard types.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Passing["Passing"]:::catNode
+    Passing --> Torreando_Pass
+    Torreando_Pass["Torreando Pass"]:::currentNode
+    Torreando_Pass -.-> Guard_Pass["Guard Pass"]:::relNode
+    Torreando_Pass -.-> Knee_Slice_Pass["Knee Slice Pass"]:::relNode
+    Torreando_Pass -.-> Leg_Drag_Pass["Leg Drag Pass"]:::relNode
+    Torreando_Pass -.-> Headquarters_Pass["Headquarters Pass"]:::relNode
+    classDef currentNode fill:#8b5cf6,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Step 1: Establish Grips & Posture.</strong> Begin by standing with good posture, securing strong grips on your opponent's pant knees or shins, keeping your elbows tight.</div></div><div class="step"><div class="step-num">2</div><div><strong>Step 2: Clear One Leg.</strong> Push one of your opponent's legs forcefully down and to the side with one hand, creating an opening. Simultaneously, take a large step to that same side.</div></div><div class="step"><div class="step-num">3</div><div><strong>Step 3: Circle & Drive.</strong> Immediately circle around the cleared leg, maintaining pressure and using your other hand to control the opponent's opposite leg or hip, preventing them from recovering guard.</div></div><div class="step"><div class="step-num">4</div><div><strong>Step 4: Head Position & Pressure.</strong> Keep your head low and close to your opponent's hip or chest as you move, driving your weight forward and into them to negate their ability to bridge or sweep.</div></div><div class="step"><div class="step-num">5</div><div><strong>Step 5: Secure Dominant Position.</strong> Once past the legs, promptly transition to a dominant top position such as side control or knee-on-belly, maintaining tight pressure and eliminating any space for re-guarding.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

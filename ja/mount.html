@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White</span>
   <h1>BJJマウントポジション：攻撃の要を極める完全ガイド</h1>
   <p>マウントポジションは、ブラジリアン柔術において最も優位なポジションの一つです。相手の胸の上に乗り、完全にコントロールすることで、強力な打撃や多彩なサブミッションへと繋げることができます。このポジションをマスターすることは、あなたの柔術ゲームを大きく向上させるでしょう。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Position["Position"]:::catNode
+    Position --> Mount
+    Mount["Mount"]:::currentNode
+    Mount -.-> Back_Mount["Back Mount"]:::relNode
+    Mount -.-> Side_Control["Side Control"]:::relNode
+    Mount -.-> North_South["North-South"]:::relNode
+    Mount -.-> Knee_on_Belly["Knee on Belly"]:::relNode
+    Mount -.-> Turtle_Position["Turtle Position"]:::relNode
+    classDef currentNode fill:#22c55e,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>ステップ1：膝を立てて移行の準備をする。サイドコントロールなどから相手の胴体をまたぐ準備を整え、両膝を相手の脇腹に置きます。</div></div><div class="step"><div class="step-num">2</div><div>ステップ2：片膝を相手の胴体をまたぐ。まず片方の膝を相手の腰を越えさせ、足を相手の太もも裏にフックするように置きます。</div></div><div class="step"><div class="step-num">3</div><div>ステップ3：もう片方の膝をまたぎ、マウントを確立する。もう片方の膝も同様に相手の腰をまたがせ、両足の甲を相手の太もも裏にフックしてベースを広げます。</div></div><div class="step"><div class="step-num">4</div><div>ステップ4：ベースと重心を安定させる。お尻を低く保ち、広いベースで相手の胸に体重をかけ、相手がブリッジしにくいように重心を分散させます。</div></div><div class="step"><div class="step-num">5</div><div>ステップ5：腕をコントロールし、プレッシャーをかける。相手の腕がブリッジの支点にならないよう、リストコントロールやカラーグリップで動きを制限し、常に胸と腹にプレッシャーをかけ続けます。</div></div><div class="step"><div class="step-num">6</div><div>ステップ6：サブミッションや攻撃へ移行する。相手の抵抗を見ながら、アームロック、チョーク、またはさらに有利なSマウントなどへと移行します。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

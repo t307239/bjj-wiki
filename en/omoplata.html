@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,23 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-blue belt">Blue Belt</span>
   <h1>Dominate the Mats: Your Complete Omoplata BJJ Technique Guide</h1>
   <p>The Omoplata is a powerful shoulder lock submission in Brazilian Jiu-Jitsu, primarily attacking the opponent's shoulder joint. It's unique in that it's often initiated from guard positions, utilizing leg dexterity to isolate and control an arm for the finish. Mastering the Omoplata adds a versatile and often surprising attack to your submission arsenal.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Joint_Lock["Joint Lock"]:::catNode
+    Joint_Lock --> Omoplata
+    Omoplata["Omoplata"]:::currentNode
+    Omoplata -.-> Armbar["Armbar"]:::relNode
+    Omoplata -.-> Kimura["Kimura"]:::relNode
+    Omoplata -.-> Americana["Americana"]:::relNode
+    Omoplata -.-> Wrist_Lock["Wrist Lock"]:::relNode
+    classDef currentNode fill:#f97316,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Isolate the Arm from Guard</strong>: From open guard or spider guard, secure one of your opponent's arms by controlling their sleeve and ideally their collar or posture.</div></div><div class="step"><div class="step-num">2</div><div><strong>Hip Escape and Thread Leg</strong>: Execute a strong hip escape (shrimp) away from the controlled arm, then thread your leg (on the same side as the controlled arm) over their shoulder and across their back.</div></div><div class="step"><div class="step-num">3</div><div><strong>Rotate and Pin Shoulder</strong>: Continue to rotate your body, bringing your other leg over their head, effectively trapping their arm between your legs and pinning their shoulder to the mat.</div></div><div class="step"><div class="step-num">4</div><div><strong>Control Posture and Hips</strong>: Maintain strong control of their posture, often by grabbing their far belt or pant leg, preventing them from sitting up or rolling out.</div></div><div class="step"><div class="step-num">5</div><div><strong>Achieve the Finish</strong>: Bridge your hips into their shoulder while extending your legs, creating torque on their shoulder joint until they tap.</div></div></div>
@@ -179,5 +204,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

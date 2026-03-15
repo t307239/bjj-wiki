@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-紫帯以上（特に茶帯、黒帯で深く研究される）">紫帯以上（特に茶帯、黒帯で深く研究される）</span>
   <h1>BJJヒールフック 完全攻略：安全な極め方と防御戦略</h1>
   <p>ヒールフックは、相手の膝関節にねじれの力を加えてダメージを与える、ブラジリアン柔術における強力なレッグロックです。高いフィニッシュ率を誇りますが、非常に危険な技でもあるため、適切な知識と安全な練習が不可欠です。この記事では、ヒールフックの基本的な極め方から防御までを解説します。</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Leg_Lock["Leg Lock"]:::catNode
+    Leg_Lock --> Heel_Hook
+    Heel_Hook["Heel Hook"]:::currentNode
+    Heel_Hook -.-> Inside_Heel_Hook["Inside Heel Hook"]:::relNode
+    Heel_Hook -.-> Outside_Heel_Hook["Outside Heel Hook"]:::relNode
+    Heel_Hook -.-> Knee_Bar["Knee Bar"]:::relNode
+    Heel_Hook -.-> Toe_Hold["Toe Hold"]:::relNode
+    Heel_Hook -.-> Calf_Slicer["Calf Slicer"]:::relNode
+    classDef currentNode fill:#f59e0b,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>足の確保</strong>: 相手の片足をオーバーフックし、自分の脇の下に相手の足首を深く抱え込みます。相手の足の甲が自分の胸に当たるようにします。</div></div><div class="step"><div class="step-num">2</div><div><strong>グリップの形成</strong>: 自分の手で相手の足の甲をしっかりと掴み、もう一方の手で自分の手首を掴み、S字グリップまたはパームトゥパームグリップを作ります。親指は相手の足の甲に置かず、人差し指から小指で包み込むようにします。</div></div><div class="step"><div class="step-num">3</div><div><strong>足のコントロール</strong>: 自分の足を使って相手の膝を固定し、特に相手が足を抜こうとする動きを封じます。自分の足で相手の股関節や膝裏をコントロールするのが効果的です。</div></div><div class="step"><div class="step-num">4</div><div><strong>腰の回転と捻り</strong>: 自分の体を相手の膝に対して直角に保ちながら、腰をゆっくりと回転させ、相手の踵を外側に捻じり上げます。この際、相手の膝が固定されていることを確認してください。</div></div><div class="step"><div class="step-num">5</div><div><strong>タップの意識</strong>: 極める際は、相手がタップするのを常に意識し、ゆっくりとプレッシャーをかけます。急激な動きは避け、相手の安全を最優先しましょう。</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — 無料BJJ技術百科事典</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

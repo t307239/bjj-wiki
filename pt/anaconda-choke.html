@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-azul">Azul</span>
   <h1>Anaconda Choke BJJ: Domine o Estrangulamento Mais Poderoso do Jiu-Jitsu</h1>
   <p>O Anaconda Choke é uma finalização devastadora no Jiu-Jitsu, conhecida por sua eficácia e capacidade de surpreender os oponentes. É um estrangulamento de pescoço frontal que utiliza a compressão do braço e do ombro para cortar o fluxo sanguíneo para o cérebro, forçando a desistência. Aprenda a executar essa técnica poderosa e adicione uma arma letal ao seu arsenal.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Choke["Choke"]:::catNode
+    Choke --> Anaconda_Choke
+    Anaconda_Choke["Anaconda Choke"]:::currentNode
+    Anaconda_Choke -.-> Rear_Naked_Choke["Rear Naked Choke"]:::relNode
+    Anaconda_Choke -.-> Triangle_Choke["Triangle Choke"]:::relNode
+    Anaconda_Choke -.-> Guillotine_Choke["Guillotine Choke"]:::relNode
+    Anaconda_Choke -.-> Bow_and_Arrow_Choke["Bow and Arrow Choke"]:::relNode
+    Anaconda_Choke -.-> Ezekiel_Choke["Ezekiel Choke"]:::relNode
+    classDef currentNode fill:#ef4444,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>1. Posição Inicial e Pegada:</strong> Comece na posição de esgrima (front headlock) ou ao lado do oponente. Seu braço esquerdo (se o oponente estiver à sua direita) deve passar por baixo do pescoço dele e sair pelo lado oposto.</div></div><div class="step"><div class="step-num">2</div><div><strong>2. Conectar as Mãos:</strong> Com a mão que saiu do outro lado do pescoço (esquerda), agarre o bíceps do seu outro braço (direito), que estará por baixo da axila do oponente. Sua mão direita deve segurar o próprio punho esquerdo, formando um "círculo" ao redor do pescoço e braço do oponente.</div></div><div class="step"><div class="step-num">3</div><div><strong>3. Transição para a Posição de Finalização:</strong> Role sobre o ombro do braço que está por baixo da axila (direito), girando o corpo para o lado oposto ao que você iniciou. Isso o levará para uma posição de controle lateral ou norte-sul, com o oponente de bruços.</div></div><div class="step"><div class="step-num">4</div><div><strong>4. Ajustar e Apertar:</strong> Uma vez na posição, ajuste a pegada, certificando-se de que o cotovelo do braço que está por baixo da axila esteja profundo. Puxe a cabeça do oponente para o seu peito e comprima, usando o tríceps e o ombro para aplicar pressão no pescoço.</div></div><div class="step"><div class="step-num">5</div><div><strong>5. Finalizar:</strong> Aperte a pegada e comprima o pescoço do oponente com força, usando a rotação do seu corpo e a pressão do seu peito. O objetivo é cortar o fluxo sanguíneo até a desistência.</div></div></div>
@@ -180,5 +206,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

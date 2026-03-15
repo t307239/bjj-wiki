@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-white">White/Blue</span>
   <h1>The BJJ Hip Bump Sweep: Your Essential Guide to Sweeping from Closed Guard</h1>
   <p>The Hip Bump Sweep is a fundamental and highly effective technique in Brazilian Jiu-Jitsu, primarily executed from the closed guard. It's a powerful way to unbalance and sweep an opponent who is posturing up, allowing you to transition directly into a dominant top position like mount. Mastering this sweep is crucial for all BJJ practitioners, providing a solid foundation for more advanced guard techniques.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Sweep["Sweep"]:::catNode
+    Sweep --> Hip_Bump_Sweep
+    Hip_Bump_Sweep["Hip Bump Sweep"]:::currentNode
+    Hip_Bump_Sweep -.-> Scissor_Sweep["Scissor Sweep"]:::relNode
+    Hip_Bump_Sweep -.-> Flower_Sweep["Flower Sweep"]:::relNode
+    Hip_Bump_Sweep -.-> Pendulum_Sweep["Pendulum Sweep"]:::relNode
+    classDef currentNode fill:#06b6d4,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Secure Your Grips:</strong> From closed guard, establish a strong grip on your opponent's sleeve with one hand (e.g., right hand on their left sleeve) and a collar grip with the other (left hand on their right collar).</div></div><div class="step"><div class="step-num">2</div><div><strong>Create the Angle:</strong> Break their posture by pulling them down with your grips, then elevate your hips and shift your body to the side of your collar grip, creating an angle to off-balance them.</div></div><div class="step"><div class="step-num">3</div><div><strong>Post and Bump:</strong> Release your sleeve grip and post that hand on the mat behind your opponent's shoulder, using it as a pivot point. Simultaneously, release your collar grip and drive your hips upwards and towards your opponent's armpit, performing the 'hip bump.'</div></div><div class="step"><div class="step-num">4</div><div><strong>Sweep and Follow Through:</strong> Continue driving your hips and body through, using your posted hand to help rotate and lift your opponent over. Maintain your closed guard leg on their hip or knee to prevent them from recovering.</div></div><div class="step"><div class="step-num">5</div><div><strong>Transition to Mount:</strong> As your opponent falls, remove your bottom leg, pivot around, and immediately transition into a dominant mount position, securing your base.</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>

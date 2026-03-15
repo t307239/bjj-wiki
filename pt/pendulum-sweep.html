@@ -123,6 +123,14 @@ h2::before{content:'';width:3px;height:14px;
 
 footer{padding:28px 0;border-top:1px solid var(--border);
   text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+  /* Mermaid diagram container */
+  .mermaid-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px;overflow-x:auto}
+  .mermaid-wrap h3{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .mermaid{max-width:100%}
+  .mermaid svg{max-width:100%;height:auto}
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <span class="belt belt-branco">Branco/Azul</span>
   <h1>Pendulum Sweep BJJ: Domine a Raspagem Pêndulo no Jiu-Jitsu</h1>
   <p>A Pendulum Sweep, ou Raspagem Pêndulo, é uma técnica fundamental do jiu-jitsu, ensinada desde os primeiros níveis. Ela utiliza o movimento de balanço das pernas e o controle da lapela para desequilibrar o oponente e inverter a posição. Essencial para quem busca eficiência a partir da guarda, esta raspagem permite transições rápidas e o ganho da posição superior.</p>
+
+  <div class="mermaid-wrap">
+    <h3>Technique Map</h3>
+    <div class="mermaid">
+graph LR
+    Sweep["Sweep"]:::catNode
+    Sweep --> Pendulum_Sweep
+    Pendulum_Sweep["Pendulum Sweep"]:::currentNode
+    Pendulum_Sweep -.-> Scissor_Sweep["Scissor Sweep"]:::relNode
+    Pendulum_Sweep -.-> Flower_Sweep["Flower Sweep"]:::relNode
+    Pendulum_Sweep -.-> Hip_Bump_Sweep["Hip Bump Sweep"]:::relNode
+    classDef currentNode fill:#06b6d4,stroke:#fff,color:#fff,font-weight:700
+    classDef relNode fill:#141926,stroke:#1f2840,color:#a78bfa
+    classDef catNode fill:#1f2840,stroke:#7c6af7,color:#7c6af7,font-style:italic
+    </div>
+  </div>
 
   <h2>Como Executar</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>1. Inicie da guarda fechada ou borboleta, fazendo pegada na lapela oposta com uma mão e na manga do mesmo lado com a outra.</div></div><div class="step"><div class="step-num">2</div><div>2. Abra a guarda e posicione um pé no quadril do oponente (lado da lapela controlada), enquanto a outra perna se estende lateralmente, pronta para o balanço.</div></div><div class="step"><div class="step-num">3</div><div>3. Use a perna esticada para um movimento de pêndulo, balançando-a com força para o lado oposto, enquanto puxa a lapela para baixo e para o lado.</div></div><div class="step"><div class="step-num">4</div><div>4. Simultaneamente, empurre o quadril do oponente com o pé no quadril e puxe a manga para fora, virando-o sobre o ombro e caindo por cima.</div></div><div class="step"><div class="step-num">5</div><div>5. Finalize a raspagem montando no oponente ou estabilizando na meia-guarda ou guarda lateral, mantendo o controle das pegadas.</div></div></div>
@@ -178,5 +202,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);
     <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
   </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',
+  themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
+    primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
+});</script>
 </body>
 </html>
