@@ -38,6 +38,9 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/generate_gear_reviews.py --limit 2
 
+      - name: Update sitemap lastmod
+        run: python scripts/patch_sitemap.py
+
       - name: Commit and push
         run: |
           git config user.name  "github-actions[bot]"

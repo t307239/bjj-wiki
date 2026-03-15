@@ -307,6 +307,115 @@ Return ONLY valid JSON with this exact structure (no markdown, no extra text):
   "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"]
 }}"""
 
+# ===== 難易度・選手・Yoga・ギア マッピング =====
+DIFFICULTY_MAP = {
+    "armbar":("blue","★★★☆☆","Intermediate"),"triangle-choke":("blue","★★★☆☆","Intermediate"),
+    "rear-naked-choke":("white","★★☆☆☆","Beginner"),"guillotine-choke":("blue","★★★☆☆","Intermediate"),
+    "kimura":("blue","★★★☆☆","Intermediate"),"americana":("white","★★☆☆☆","Beginner"),
+    "omoplata":("purple","★★★★☆","Advanced"),"heel-hook":("brown","★★★★★","Expert"),
+    "inside-heel-hook":("brown","★★★★★","Expert"),"outside-heel-hook":("brown","★★★★★","Expert"),
+    "berimbolo":("purple","★★★★☆","Advanced"),"rubber-guard":("purple","★★★★☆","Advanced"),
+    "closed-guard":("white","★☆☆☆☆","Beginner"),"half-guard":("white","★★☆☆☆","Beginner"),
+    "butterfly-guard":("blue","★★★☆☆","Intermediate"),"de-la-riva-guard":("blue","★★★☆☆","Intermediate"),
+    "x-guard":("purple","★★★★☆","Advanced"),"worm-guard":("purple","★★★★☆","Advanced"),
+    "50-50-guard":("blue","★★★☆☆","Intermediate"),"knee-bar":("purple","★★★★☆","Advanced"),
+    "toe-hold":("blue","★★★☆☆","Intermediate"),"ankle-lock":("blue","★★☆☆☆","Intermediate"),
+    "bow-and-arrow-choke":("blue","★★★☆☆","Intermediate"),"back-mount":("blue","★★★☆☆","Intermediate"),
+    "mount":("white","★★☆☆☆","Beginner"),"side-control":("white","★★☆☆☆","Beginner"),
+    "guard-pass":("blue","★★★☆☆","Intermediate"),"scissor-sweep":("white","★★☆☆☆","Beginner"),
+    "hip-bump-sweep":("white","★★☆☆☆","Beginner"),"shrimp-escape":("white","★☆☆☆☆","Beginner"),
+    "double-leg-takedown":("blue","★★★☆☆","Intermediate"),"single-leg-takedown":("white","★★☆☆☆","Beginner"),
+    "darce-choke":("blue","★★★☆☆","Intermediate"),"anaconda-choke":("blue","★★★☆☆","Intermediate"),
+    "arm-triangle-choke":("blue","★★★☆☆","Intermediate"),"north-south-choke":("purple","★★★★☆","Advanced"),
+    "baseball-choke":("blue","★★★☆☆","Intermediate"),"lasso-guard":("blue","★★★☆☆","Intermediate"),
+    "calf-slicer":("purple","★★★★☆","Advanced"),"wrist-lock":("blue","★★★☆☆","Intermediate"),
+    "torreando-pass":("blue","★★★☆☆","Intermediate"),"knee-slice-pass":("blue","★★★☆☆","Intermediate"),
+    "north-south":("white","★★☆☆☆","Beginner"),"knee-on-belly":("blue","★★★☆☆","Intermediate"),
+}
+BELT_BG = {"white":"#e2e2ee","blue":"#2563eb","purple":"#7c3aed","brown":"#92400e","black":"#111"}
+BELT_FG = {"white":"#111","blue":"#fff","purple":"#fff","brown":"#fff","black":"#fff"}
+
+ATHLETE_MAP = {
+    "armbar":[("john-danaher","John Danaher","🇺🇸"),("marcelo-garcia","Marcelo Garcia","🇧🇷"),("gordon-ryan","Gordon Ryan","🇺🇸")],
+    "triangle-choke":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("john-danaher","John Danaher","🇺🇸")],
+    "rear-naked-choke":[("gordon-ryan","Gordon Ryan","🇺🇸"),("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "guillotine-choke":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("john-danaher","John Danaher","🇺🇸")],
+    "kimura":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("john-danaher","John Danaher","🇺🇸")],
+    "heel-hook":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺"),("john-danaher","John Danaher","🇺🇸")],
+    "inside-heel-hook":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺")],
+    "outside-heel-hook":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺")],
+    "berimbolo":[("mikey-musumeci","Mikey Musumeci","🇺🇸"),("caio-terra","Caio Terra","🇧🇷")],
+    "closed-guard":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("bernardo-faria","Bernardo Faria","🇧🇷")],
+    "half-guard":[("bernardo-faria","Bernardo Faria","🇧🇷"),("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "butterfly-guard":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("john-danaher","John Danaher","🇺🇸")],
+    "omoplata":[("caio-terra","Caio Terra","🇧🇷"),("mikey-musumeci","Mikey Musumeci","🇺🇸")],
+    "rubber-guard":[("mikey-musumeci","Mikey Musumeci","🇺🇸")],
+    "bow-and-arrow-choke":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("andre-galvao","André Galvão","🇧🇷")],
+    "back-mount":[("gordon-ryan","Gordon Ryan","🇺🇸"),("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "x-guard":[("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "de-la-riva-guard":[("caio-terra","Caio Terra","🇧🇷"),("keenan-cornelius","Keenan Cornelius","🇺🇸")],
+    "worm-guard":[("keenan-cornelius","Keenan Cornelius","🇺🇸")],
+    "lasso-guard":[("keenan-cornelius","Keenan Cornelius","🇺🇸"),("caio-terra","Caio Terra","🇧🇷")],
+    "mount":[("andre-galvao","André Galvão","🇧🇷"),("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "side-control":[("gordon-ryan","Gordon Ryan","🇺🇸"),("xande-ribeiro","Xande Ribeiro","🇧🇷")],
+    "50-50-guard":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺")],
+    "knee-bar":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺")],
+    "double-leg-takedown":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("andre-galvao","André Galvão","🇧🇷")],
+    "arm-drag":[("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "anaconda-choke":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("craig-jones","Craig Jones","🇦🇺")],
+    "darce-choke":[("john-danaher","John Danaher","🇺🇸"),("gordon-ryan","Gordon Ryan","🇺🇸")],
+}
+
+YOGA_SLUG_MAP = {
+    "armbar":[("cow-face-pose","Cow Face Pose"),("eagle-pose","Eagle Pose"),("thread-the-needle","Thread the Needle")],
+    "triangle-choke":[("reclined-pigeon","Reclined Pigeon"),("fire-log-pose","Fire Log Pose")],
+    "kimura":[("cow-face-pose","Cow Face Pose"),("eagle-pose","Eagle Pose")],
+    "omoplata":[("thread-the-needle","Thread the Needle"),("cow-face-pose","Cow Face Pose")],
+    "heel-hook":[("happy-baby-pose","Happy Baby Pose"),("reclined-pigeon","Reclined Pigeon"),("lizard-pose","Lizard Pose")],
+    "inside-heel-hook":[("happy-baby-pose","Happy Baby Pose"),("reclined-pigeon","Reclined Pigeon")],
+    "outside-heel-hook":[("happy-baby-pose","Happy Baby Pose"),("pigeon-pose","Pigeon Pose")],
+    "knee-bar":[("low-lunge","Low Lunge"),("half-splits","Half Splits")],
+    "closed-guard":[("butterfly-pose","Butterfly Pose"),("happy-baby-pose","Happy Baby Pose")],
+    "half-guard":[("pigeon-pose","Pigeon Pose"),("low-lunge","Low Lunge")],
+    "butterfly-guard":[("butterfly-pose","Butterfly Pose"),("wide-legged-fold","Wide-Legged Fold")],
+    "berimbolo":[("revolved-chair-pose","Revolved Chair"),("twisted-lunge","Twisted Lunge")],
+    "rubber-guard":[("happy-baby-pose","Happy Baby Pose"),("lizard-pose","Lizard Pose")],
+    "de-la-riva-guard":[("pigeon-pose","Pigeon Pose"),("half-splits","Half Splits")],
+    "x-guard":[("wide-legged-fold","Wide-Legged Fold"),("lizard-pose","Lizard Pose")],
+    "50-50-guard":[("happy-baby-pose","Happy Baby Pose"),("reclined-pigeon","Reclined Pigeon")],
+    "guillotine-choke":[("cat-cow-pose","Cat-Cow Pose"),("childs-pose","Child's Pose")],
+    "rear-naked-choke":[("cat-cow-pose","Cat-Cow Pose"),("bridge-pose","Bridge Pose")],
+    "double-leg-takedown":[("warrior-i-pose","Warrior I"),("chair-pose","Chair Pose")],
+    "single-leg-takedown":[("warrior-i-pose","Warrior I"),("low-lunge","Low Lunge")],
+}
+YOGA_CAT_DEFAULTS = {
+    "Guard":[("pigeon-pose","Pigeon Pose"),("lizard-pose","Lizard Pose")],
+    "Joint Lock":[("cow-face-pose","Cow Face Pose"),("eagle-pose","Eagle Pose")],
+    "Leg Lock":[("happy-baby-pose","Happy Baby Pose"),("reclined-pigeon","Reclined Pigeon")],
+    "Choke":[("cat-cow-pose","Cat-Cow Pose"),("childs-pose","Child's Pose")],
+    "Sweep":[("warrior-ii-pose","Warrior II"),("low-lunge","Low Lunge")],
+    "Takedown":[("warrior-i-pose","Warrior I"),("chair-pose","Chair Pose")],
+    "Passing":[("low-lunge","Low Lunge"),("half-splits","Half Splits")],
+    "Position":[("bridge-pose","Bridge Pose"),("boat-pose","Boat Pose")],
+    "Escape":[("bridge-pose","Bridge Pose"),("thread-the-needle","Thread the Needle")],
+    "Transition":[("downward-dog","Downward Dog"),("plank-pose","Plank Pose")],
+    "Defense":[("childs-pose","Child's Pose"),("downward-dog","Downward Dog")],
+}
+
+GEAR_CAT_MAP = {
+    "Guard":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-rashguard","👕 Best Rashguard")],
+    "Joint Lock":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-mouthguard","🦷 Best Mouthguard")],
+    "Leg Lock":[("best-no-gi-shorts","🩳 Best No-Gi Shorts"),("best-bjj-knee-pads","🦵 Best Knee Pads")],
+    "Choke":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-belt","🎽 Best BJJ Belt")],
+    "Sweep":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-rashguard","👕 Best Rashguard")],
+    "Takedown":[("best-no-gi-shorts","🩳 Best No-Gi Shorts"),("best-bjj-rashguard","👕 Best Rashguard")],
+    "Passing":[("best-bjj-knee-pads","🦵 Best Knee Pads"),("best-bjj-rashguard","👕 Best Rashguard")],
+    "Position":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-mouthguard","🦷 Best Mouthguard")],
+    "Escape":[("best-bjj-rashguard","👕 Best Rashguard"),("best-bjj-knee-pads","🦵 Best Knee Pads")],
+    "Transition":[("best-bjj-rashguard","👕 Best Rashguard"),("best-bjj-gi-beginners","🥋 Best BJJ Gi")],
+    "Defense":[("best-bjj-mouthguard","🦷 Best Mouthguard"),("best-bjj-rashguard","👕 Best Rashguard")],
+}
+
 # ===== 記事JSONをHTMLに変換 =====
 def article_to_html(tech, lang_code, article, all_techniques):
     lang = LANGUAGES[lang_code]
@@ -336,6 +445,69 @@ def article_to_html(tech, lang_code, article, all_techniques):
     ])
 
     keywords_str = ", ".join(article.get("keywords", []))
+
+    # --- 難易度バー ---
+    diff = DIFFICULTY_MAP.get(tech["slug"], ("white","★★☆☆☆","Intermediate"))
+    diff_belt, diff_stars, diff_label_txt = diff
+    diff_bg  = BELT_BG.get(diff_belt, "#e2e2ee")
+    diff_fg  = BELT_FG.get(diff_belt, "#111")
+    difficulty_html = (
+        f'<div class="difficulty-bar">'
+        f'<span class="diff-belt" style="background:{diff_bg};color:{diff_fg}">{diff_belt.upper()}</span>'
+        f'<span class="diff-stars">{diff_stars}</span>'
+        f'<span class="diff-label">{diff_label_txt}</span>'
+        f'</div>'
+    )
+
+    # --- 選手セクション ---
+    athlete_label = {"en":"🏆 Elite Athletes Who Use This","ja":"🏆 この技を使うエリート選手","pt":"🏆 Atletas de Elite"}[lang_code]
+    athletes_list = ATHLETE_MAP.get(tech["slug"], [])
+    if athletes_list:
+        chips = "".join([
+            f'<a class="athlete-chip" href="../{lang_code}/athlete-{s}.html">'
+            f'<span style="font-size:1.2rem">{fl}</span>'
+            f'<span><strong style="display:block;font-size:.9rem">{nm}</strong></span></a>'
+            for s, nm, fl in athletes_list
+        ])
+        athletes_html = f'<div class="athletes-section"><h2>{athlete_label}</h2><div class="athlete-chips">{chips}</div></div>'
+    else:
+        athletes_html = ""
+
+    # --- Yoga クロスリンク ---
+    yoga_poses = YOGA_SLUG_MAP.get(tech["slug"], YOGA_CAT_DEFAULTS.get(tech["category"], []))[:3]
+    yoga_label  = {"en":"🧘 Yoga Poses to Improve This Technique","ja":"🧘 この技に効くヨガポーズ","pt":"🧘 Yoga para Esta Técnica"}[lang_code]
+    yoga_sub    = {"en":"These poses build the flexibility & mobility you need:","ja":"必要な柔軟性・可動域を高めます：","pt":"Melhore sua flexibilidade e mobilidade:"}[lang_code]
+    if yoga_poses:
+        yoga_chips = "".join([
+            f'<a class="yoga-chip" href="https://t307239.github.io/yoga-wiki/en/{sl}.html" target="_blank" rel="noopener">🧘 {nm}</a>'
+            for sl, nm in yoga_poses
+        ])
+        yoga_html = f'<div class="yoga-box"><h3>{yoga_label}</h3><p>{yoga_sub}</p><div class="yoga-chips">{yoga_chips}</div></div>'
+    else:
+        yoga_html = ""
+
+    # --- ギアボックス ---
+    gear_items  = GEAR_CAT_MAP.get(tech["category"], [])
+    gear_label  = {"en":"⚙️ Recommended Gear","ja":"⚙️ おすすめギア","pt":"⚙️ Equipamento Recomendado"}[lang_code]
+    if gear_items:
+        gear_links = "".join([
+            f'<a class="gear-link" href="../../gear/{sl}.html">{nm}</a>'
+            for sl, nm in gear_items
+        ])
+        gear_html = f'<div class="gear-box"><h3>{gear_label}</h3><div class="gear-links">{gear_links}</div></div>'
+    else:
+        gear_html = ""
+
+    # --- Beehiiv CTA ---
+    bee_title = {"en":"🐝 Get Weekly BJJ Tips","ja":"🐝 週1BJJテクニックをメールで","pt":"🐝 Dicas de BJJ Toda Semana"}[lang_code]
+    bee_desc  = {"en":"Join the BJJ Wiki newsletter — technique breakdowns, training tips & exclusive content. Free.","ja":"BJJ Wikiニュースレターに参加。技解説・練習のコツ・限定コンテンツを毎週お届け（無料）。","pt":"Junte-se à newsletter do BJJ Wiki — análises de técnicas, dicas de treino e conteúdo exclusivo. Grátis."}[lang_code]
+    bee_btn   = {"en":"Subscribe Free →","ja":"無料購読 →","pt":"Assinar Grátis →"}[lang_code]
+    beehiiv_html = (
+        f'<div class="beehiiv-wrap"><h3>{bee_title}</h3>'
+        f'<p>{bee_desc}</p>'
+        f'<a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">{bee_btn}</a>'
+        f'</div>'
+    )
 
     return f"""<!DOCTYPE html>
 <html lang="{lang_code}">
@@ -410,6 +582,31 @@ def article_to_html(tech, lang_code, article, all_techniques):
   .share-btn.reddit{{background:#ff4500;color:#fff}}
   .share-btn.copy{{background:#2d3748;color:#fff;cursor:pointer;border:none;font-family:inherit}}
   footer{{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:0.8rem}}
+  .difficulty-bar{{margin:12px 0 24px;padding:10px 16px;background:#0f1420;border:1px solid #1f2840;border-radius:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}}
+  .diff-belt{{display:inline-block;padding:3px 10px;border-radius:4px;font-size:0.75rem;font-weight:700;letter-spacing:.04em}}
+  .diff-stars{{color:#f59e0b;font-size:.95rem;letter-spacing:1px}}
+  .diff-label{{color:var(--muted);font-size:0.8rem}}
+  .athletes-section{{margin:28px 0}}
+  .athletes-section h2{{font-size:.9rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}}
+  .athlete-chips{{display:flex;flex-wrap:wrap;gap:10px}}
+  .athlete-chip{{display:flex;align-items:center;gap:10px;background:#141926;border:1px solid #1f2840;border-radius:12px;padding:12px 16px;text-decoration:none;color:#e8eaf6;transition:border-color .2s}}
+  .athlete-chip:hover{{border-color:#7c6af7;text-decoration:none}}
+  .yoga-box{{background:linear-gradient(135deg,#0a1a10,#0f1a0a);border:1px solid #22c55e;border-radius:12px;padding:20px;margin:24px 0}}
+  .yoga-box h3{{font-size:.85rem;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}}
+  .yoga-box p{{font-size:.85rem;color:#6b9e6b;margin-bottom:12px}}
+  .yoga-chips{{display:flex;flex-wrap:wrap;gap:8px}}
+  .yoga-chip{{display:inline-block;padding:6px 14px;background:#0d2010;border:1px solid #22c55e40;border-radius:20px;font-size:.82rem;color:#86efac;text-decoration:none;font-weight:600}}
+  .yoga-chip:hover{{background:#22c55e;color:#000;text-decoration:none}}
+  .gear-box{{background:#0f1420;border:1px solid #1f2840;border-radius:12px;padding:18px;margin:20px 0}}
+  .gear-box h3{{font-size:.82rem;font-weight:700;color:#6b7699;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}}
+  .gear-links{{display:flex;flex-wrap:wrap;gap:8px}}
+  .gear-link{{display:inline-block;padding:6px 14px;background:#141926;border:1px solid #1f2840;border-radius:20px;font-size:.82rem;color:#8899bb;text-decoration:none}}
+  .gear-link:hover{{border-color:#6b7699;color:#c0cce8;text-decoration:none}}
+  .beehiiv-wrap{{background:linear-gradient(135deg,#0d1225,#1a1040);border:1px solid #3b2d6e;border-radius:14px;padding:24px;margin:32px 0;text-align:center}}
+  .beehiiv-wrap h3{{font-size:1.05rem;font-weight:800;margin-bottom:10px}}
+  .beehiiv-wrap p{{color:var(--muted);font-size:0.88rem;line-height:1.6;margin-bottom:16px}}
+  .beehiiv-btn{{display:inline-block;background:linear-gradient(135deg,#6e40c9,#4f46e5);color:#fff;padding:12px 28px;border-radius:10px;font-weight:700;text-decoration:none;font-size:0.9rem}}
+  .beehiiv-btn:hover{{opacity:.9;text-decoration:none}}
 </style>
 <script type="application/ld+json">
 {{
@@ -467,6 +664,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
   <span class="badge">{tech['category']}</span><br>
   <span class="belt belt-{to_str(article.get('belt_level','white')).lower().split('/')[0].strip()}">{to_str(article.get('belt_level','All Levels'))}</span>
   <h1>{to_str(article.get('h1', tech['name']))}</h1>
+  {difficulty_html}
   <p>{to_str(article.get('intro', ''))}</p>
 
   <h2>{'How to Execute' if lang_code=='en' else 'やり方' if lang_code=='ja' else 'Como Executar'}</h2>
@@ -484,6 +682,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
   <h2>{'Counters & Defenses' if lang_code=='en' else 'カウンター・防御' if lang_code=='ja' else 'Defesas e Contra-ataques'}</h2>
   <div class="card"><p>{to_str(article.get('counters','')).replace(chr(10),'<br>')}</p></div>
 
+  {athletes_html}
+
   {'<!-- Pro Tip --><div class="pro-tip"><div class="pro-tip-label">💡 ' + ('PRO TIP' if lang_code=="en" else 'プロのコツ' if lang_code=="ja" else 'DICA DE PRO') + '</div><p>' + to_str(article.get("pro_tip","")).replace(chr(10),'<br>') + '</p></div>' if article.get('pro_tip') else ''}
 
   <!-- アフィリエイト -->
@@ -498,6 +698,9 @@ def article_to_html(tech, lang_code, article, all_techniques):
       </a>
     </div>
   </div>
+
+  {yoga_html}
+  {gear_html}
 
   <div class="faq">
     <div class="faq-q">Q: {article.get('faq_q1','')}</div>
@@ -514,6 +717,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
       {related_links}
     </div>
   </div>
+
+  {beehiiv_html}
 
   <!-- Share Bar -->
   <div class="share-bar">
