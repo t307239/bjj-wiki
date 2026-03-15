@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://t307239.github.io/bjj-wiki/sitemap.xml
