@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 AdSense自動挿入スクリプト
-使い方: python3 scripts/patch_adsense.py --pub-id ca-pub-XXXXXXXXXXXXXXXX
+使い方: python3 scripts/patch_adsense.py --pub-id ca-pub-3285779374433925
 
 AdSense取得手順:
   1. https://adsense.google.com にアクセス
