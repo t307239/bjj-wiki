@@ -81,6 +81,26 @@ footer a{color:var(--muted)}
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "BJJ Wiki",
+      "item": "https://t307239.github.io/bjj-wiki/ja/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "BJJテイクダウン完全ガイド（2026年）— スタンドゲーム必須技",
+      "item": "https://t307239.github.io/bjj-wiki/ja/bjj-takedowns-guide.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="container">
@@ -119,6 +139,21 @@ footer a{color:var(--muted)}
     🎬 DVDを見る (20% OFF: BJJWIKI)
   </a>
 </div>
+
+
+<!-- Floating Newsletter CTA -->
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+  <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button>
+  <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📬 週刊BJJニュースレター</div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">新技解説・コンペ情報を毎週お届け。無料。</p>
+  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
+     style="display:block;background:#2e7d32;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
+     onclick="gtag('event','float_cta_click',{lang:'ja'})">
+    無料購読する →
+  </a>
+</div>
+<style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
+<script>(function(){if(localStorage.getItem('cta_dismissed'))return;var shown=false;function show(){if(!shown){shown=true;document.getElementById('float-cta').style.display='block';}}setTimeout(show,30000);window.addEventListener('scroll',function(){var pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);if(pct>0.5)show();},{passive:true});})();</script>
 
 </body>
 </html>

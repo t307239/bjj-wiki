@@ -104,6 +104,60 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to 50/50 Guard",
+  "description": "Step-by-step guide to 50/50 Guard in Brazilian Jiu-Jitsu.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Learn the Position",
+      "text": "Understand the starting position and what condition triggers this technique."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Establish Grips",
+      "text": "Set the required grips or framing before initiating the technique."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Execute the Movement",
+      "text": "Apply the technique with proper body mechanics and timing."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Finish and Control",
+      "text": "Complete the technique — whether a submission, sweep, or position — and maintain control."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "BJJ Wiki",
+      "item": "https://t307239.github.io/bjj-wiki/en/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "50/50 Guard",
+      "item": "https://t307239.github.io/bjj-wiki/en/50-50-guard.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="container">
@@ -176,6 +230,41 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
     Subscribe Free
   </a>
 </div>
+
+
+<!-- Floating Newsletter CTA -->
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+  <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button>
+  <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📬 Weekly BJJ Tips</div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Technique breakdowns & competition insights. Free.</p>
+  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
+     style="display:block;background:#2e7d32;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
+     onclick="gtag('event','float_cta_click',{lang:'en'})">
+    Subscribe Free →
+  </a>
+</div>
+<style>
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+</style>
+<script>
+(function(){
+  if(localStorage.getItem('cta_dismissed')) return;
+  var shown = false;
+  function show(){
+    if(!shown){
+      shown=true;
+      document.getElementById('float-cta').style.display='block';
+    }
+  }
+  // Show after 30 seconds
+  setTimeout(show, 30000);
+  // Or when scrolled past 50% of page
+  window.addEventListener('scroll',function(){
+    var pct = window.scrollY/(document.body.scrollHeight-window.innerHeight);
+    if(pct>0.5) show();
+  },{passive:true});
+})();
+</script>
 
 </body>
 </html>

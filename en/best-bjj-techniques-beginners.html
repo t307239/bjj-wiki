@@ -63,6 +63,26 @@ footer a{color:var(--muted)}
     {"@type":"Question","name":"What is the best submission for a BJJ beginner?","acceptedAnswer":{"@type":"Answer","text":"The rear naked choke (RNC) and armbar are the best starting points. They are effective, relatively simple to set up, and reinforce good positional habits."}}]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "BJJ Wiki",
+      "item": "https://t307239.github.io/bjj-wiki/en/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Best BJJ Techniques for Beginners (2026) — Complete White Belt Guide",
+      "item": "https://t307239.github.io/bjj-wiki/en/best-bjj-techniques-beginners.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="container">
@@ -165,6 +185,41 @@ footer a{color:var(--muted)}
     🎬 Browse Instructionals (20% OFF: BJJWIKI)
   </a>
 </div>
+
+
+<!-- Floating Newsletter CTA -->
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+  <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button>
+  <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📬 Weekly BJJ Tips</div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Technique breakdowns & competition insights. Free.</p>
+  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
+     style="display:block;background:#2e7d32;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
+     onclick="gtag('event','float_cta_click',{lang:'en'})">
+    Subscribe Free →
+  </a>
+</div>
+<style>
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+</style>
+<script>
+(function(){
+  if(localStorage.getItem('cta_dismissed')) return;
+  var shown = false;
+  function show(){
+    if(!shown){
+      shown=true;
+      document.getElementById('float-cta').style.display='block';
+    }
+  }
+  // Show after 30 seconds
+  setTimeout(show, 30000);
+  // Or when scrolled past 50% of page
+  window.addEventListener('scroll',function(){
+    var pct = window.scrollY/(document.body.scrollHeight-window.innerHeight);
+    if(pct>0.5) show();
+  },{passive:true});
+})();
+</script>
 
 </body>
 </html>

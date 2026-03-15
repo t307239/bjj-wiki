@@ -42,6 +42,26 @@ footer a{color:var(--muted)}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"BJJ Competition Guide","description":"How to compete in BJJ tournaments. The best competition techniques, scoring rules, and strategies for IBJJF, ADCC, and local tournaments.","url":"https://t307239.github.io/bjj-wiki/en/bjj-competition-guide.html","datePublished":"2026-03-13T00:00:00+09:00","dateModified":"2026-03-16T00:00:00+09:00","publisher":{"@type":"Organization","name":"BJJ Wiki","url":"https://t307239.github.io/bjj-wiki/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does BJJ scoring work?","acceptedAnswer":{"@type":"Answer","text":"IBJJF awards: 2 pts for takedown/sweep/knee-on-belly, 3 pts for guard pass, 4 pts for mount/back mount. Advantages break ties. Submission wins immediately."}},{"@type":"Question","name":"What belt should I compete at?","acceptedAnswer":{"@type":"Answer","text":"You should compete at the belt you have been awarded. Sandbagging (competing below your level) is considered unethical in BJJ."}},{"@type":"Question","name":"How do I prepare for my first BJJ tournament?","acceptedAnswer":{"@type":"Answer","text":"Focus on 2-3 techniques you can execute under pressure. Drill takedowns, your strongest guard pass, and your best 1-2 submissions. Get good sleep and eat well the week before."}}]}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "BJJ Wiki",
+      "item": "https://t307239.github.io/bjj-wiki/en/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "BJJ Competition Guide (2026) — Techniques, Tactics & Ruleset",
+      "item": "https://t307239.github.io/bjj-wiki/en/bjj-competition-guide.html"
+    }
+  ]
+}
+</script>
 </head><body><div class="container">
 <header><a href="../../index.html" class="logo">BJJ<span>Wiki</span></a>
 <nav><a href="../../index.html">Home</a><a href="index.html">All Techniques</a><a href="skill-tree.html">🌳 Skill Tree</a></nav></header>
@@ -73,5 +93,40 @@ footer a{color:var(--muted)}
     🎬 Browse Instructionals (20% OFF: BJJWIKI)
   </a>
 </div>
+
+
+<!-- Floating Newsletter CTA -->
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+  <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button>
+  <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📬 Weekly BJJ Tips</div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Technique breakdowns & competition insights. Free.</p>
+  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
+     style="display:block;background:#2e7d32;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
+     onclick="gtag('event','float_cta_click',{lang:'en'})">
+    Subscribe Free →
+  </a>
+</div>
+<style>
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+</style>
+<script>
+(function(){
+  if(localStorage.getItem('cta_dismissed')) return;
+  var shown = false;
+  function show(){
+    if(!shown){
+      shown=true;
+      document.getElementById('float-cta').style.display='block';
+    }
+  }
+  // Show after 30 seconds
+  setTimeout(show, 30000);
+  // Or when scrolled past 50% of page
+  window.addEventListener('scroll',function(){
+    var pct = window.scrollY/(document.body.scrollHeight-window.innerHeight);
+    if(pct>0.5) show();
+  },{passive:true});
+})();
+</script>
 
 </body></html>
