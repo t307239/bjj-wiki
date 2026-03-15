@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BJJ Sparring Simulator – Make Decisions Like a Black Belt | BJJ Wiki</title>
+<meta name="description" content="Interactive BJJ sparring simulator. Choose your techniques in real match scenarios and see if you make the right call. Learn from every decision.">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/en/sparring-simulator.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/sparring-simulator.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/sparring-simulator.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/sparring-simulator.html">
+<link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/sparring-simulator.html">
+<link rel="alternate" type="application/rss+xml" title="BJJ Wiki RSS" href="../feed.xml">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7LM8L3TRZM');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BJJ Sparring Simulator",
+  "url": "https://t307239.github.io/bjj-wiki/en/sparring-simulator.html",
+  "description": "Interactive BJJ decision-making simulator for grapplers of all levels",
+  "applicationCategory": "SportsApplication",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "BJJ Wiki"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the BJJ Sparring Simulator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An interactive decision-making game where you face real BJJ match scenarios and choose techniques. Each choice has consequences — like a real sparring round."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the sparring simulator help me improve?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After each round you see which techniques led to success and get links to detailed guides. Great for visualizing flows before drilling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the BJJ Sparring Simulator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, completely free. No login required. Works on mobile and desktop."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --accent: #00d4ff;
+    --gold: #ffd700;
+    --green: #00c853;
+    --red: #ff4444;
+    --text: #e8eaf6;
+    --muted: #8892b0;
+    --border: #2a2d3e;
+    --white-belt: #f0f0f0;
+    --blue-belt: #1a6bcc;
+    --purple-belt: #7b2fbe;
+    --brown-belt: #8b4513;
+    --black-belt: #111;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  header {
+    background: linear-gradient(135deg, #0a0e1a 0%, #1a1d27 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo { font-size: 1.3rem; font-weight: 800; color: var(--accent); text-decoration: none; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 1rem; font-size: .85rem; }
+  nav a:hover { color: var(--accent); }
+
+  .hero {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    background: linear-gradient(180deg, #0a0e1a 0%, var(--bg) 100%);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), #7b5ea7);
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: .3rem .8rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--muted); margin-top: .75rem; font-size: 1rem; max-width: 520px; margin-inline: auto; }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    max-width: 480px;
+    margin: 1.5rem auto 0;
+  }
+  .stat { text-align: center; }
+  .stat-val { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+  .stat-lbl { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Main game area */
+  main { max-width: 700px; margin: 0 auto; padding: 2rem 1.25rem; }
+
+  /* Scenario card */
+  .scenario-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .scenario-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #7b5ea7);
+  }
+  .round-badge {
+    display: inline-block;
+    background: rgba(0,212,255,.12);
+    color: var(--accent);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: .25rem .75rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .situation-emoji { font-size: 3rem; display: block; margin-bottom: .75rem; }
+  .situation-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: .5rem;
+  }
+  .situation-detail {
+    font-size: .85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Options */
+  .options { display: flex; flex-direction: column; gap: .75rem; }
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--text);
+    font-size: .95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+    text-align: left;
+  }
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: rgba(0,212,255,.07);
+    transform: translateX(4px);
+  }
+  .option-btn .opt-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .option-btn .opt-label { flex: 1; }
+  .option-btn .opt-arrow { color: var(--accent); opacity: 0; transition: opacity .2s; }
+  .option-btn:hover .opt-arrow { opacity: 1; }
+
+  /* Result card */
+  .result-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    display: none;
+  }
+  .result-card.win { border-color: var(--green); }
+  .result-card.lose { border-color: var(--red); }
+  .result-card.draw { border-color: var(--gold); }
+  .result-emoji { font-size: 4rem; margin-bottom: 1rem; display: block; }
+  .result-title { font-size: 1.6rem; font-weight: 900; margin-bottom: .5rem; }
+  .result-card.win .result-title { color: var(--green); }
+  .result-card.lose .result-title { color: var(--red); }
+  .result-card.draw .result-title { color: var(--gold); }
+  .result-explanation { color: var(--muted); font-size: .9rem; line-height: 1.7; margin-bottom: 1.5rem; }
+
+  /* Technique link */
+  .tech-link-box {
+    background: rgba(0,212,255,.07);
+    border: 1px solid rgba(0,212,255,.2);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+  .tech-link-box h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: .4rem; }
+  .tech-link-box a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: 1rem;
+  }
+  .tech-link-box a:hover { color: var(--accent); }
+
+  .result-actions { display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; }
+  .btn-next {
+    background: linear-gradient(135deg, var(--accent), #0099cc);
+    color: #000;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: .75rem 1.5rem;
+    cursor: pointer;
+    font-size: .9rem;
+    transition: opacity .2s;
+  }
+  .btn-next:hover { opacity: .85; }
+  .btn-share {
+    background: rgba(255,255,255,.07);
+    color: var(--text);
+    font-weight: 600;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .75rem 1.5rem;
+    cursor: pointer;
+    font-size: .9rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color .2s;
+  }
+  .btn-share:hover { border-color: var(--accent); }
+  .btn-restart {
+    background: rgba(255,255,255,.04);
+    color: var(--muted);
+    font-weight: 600;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .75rem 1.5rem;
+    cursor: pointer;
+    font-size: .9rem;
+    transition: all .2s;
+  }
+  .btn-restart:hover { border-color: var(--red); color: var(--red); }
+
+  /* Progress bar */
+  .progress-wrap { margin-bottom: 1.5rem; }
+  .progress-label { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); margin-bottom: .4rem; }
+  .progress-bar { height: 4px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #7b5ea7); transition: width .4s; }
+
+  /* Final score */
+  .final-screen { display: none; text-align: center; padding: 2rem; }
+  .final-screen h2 { font-size: 2rem; font-weight: 900; margin-bottom: .5rem; }
+  .belt-earned {
+    display: inline-block;
+    padding: .4rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 320px;
+    margin: 1.5rem auto;
+  }
+  .score-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
+  .score-box .val { font-size: 2rem; font-weight: 800; }
+  .score-box .lbl { font-size: .7rem; color: var(--muted); text-transform: uppercase; }
+  .score-box.wins .val { color: var(--green); }
+  .score-box.losses .val { color: var(--red); }
+  .score-box.rounds .val { color: var(--accent); }
+
+  /* Aff box */
+  .aff-box {
+    background: rgba(255,215,0,.06);
+    border: 1px solid rgba(255,215,0,.2);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .2s;
+  }
+  .aff-box:hover { border-color: var(--gold); }
+  .aff-box .aff-icon { font-size: 2rem; flex-shrink: 0; }
+  .aff-box h4 { font-size: .85rem; font-weight: 700; margin-bottom: .2rem; }
+  .aff-box p { font-size: .75rem; color: var(--muted); line-height: 1.4; }
+  .aff-box .aff-cta { margin-left: auto; background: var(--gold); color: #000; font-weight: 700; font-size: .75rem; padding: .4rem .8rem; border-radius: 6px; flex-shrink: 0; }
+
+  /* FAQ */
+  .faq-section { margin-top: 3rem; }
+  .faq-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; }
+  details { background: var(--card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: .5rem; }
+  summary { padding: 1rem; cursor: pointer; font-weight: 600; font-size: .9rem; }
+  details p { padding: 0 1rem 1rem; color: var(--muted); font-size: .85rem; line-height: 1.6; }
+
+  footer { text-align: center; padding: 3rem 1.5rem; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--border); margin-top: 3rem; }
+  footer a { color: var(--muted); text-decoration: none; margin: 0 .5rem; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 480px) {
+    .result-actions { flex-direction: column; }
+    .result-actions > * { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">🥋 BJJ Wiki</a>
+  <nav>
+    <a href="index.html">Articles</a>
+    <a href="skill-tree.html">Skill Tree</a>
+    <a href="athletes.html">Athletes</a>
+    <a href="../gear/index.html">Gear</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-badge">🎮 Interactive</div>
+  <h1>BJJ <span>Sparring</span> Simulator</h1>
+  <p>Face real match scenarios and choose your technique. Every decision has consequences — just like the mat.</p>
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-val" id="total-rounds">0</div>
+      <div class="stat-lbl">Rounds</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val" id="total-wins">0</div>
+      <div class="stat-lbl">Wins</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val" id="win-rate">—</div>
+      <div class="stat-lbl">Win Rate</div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="progress-wrap" id="progress-wrap" style="display:none">
+    <div class="progress-label">
+      <span id="progress-label-text">Round 1 / 5</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+
+  <!-- Scenario -->
+  <div class="scenario-card" id="scenario-card">
+    <div class="round-badge" id="round-badge">Round 1</div>
+    <span class="situation-emoji" id="sit-emoji">🥋</span>
+    <div class="situation-text" id="sit-text">Loading…</div>
+    <div class="situation-detail" id="sit-detail"></div>
+    <div class="options" id="options"></div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-card" id="result-card">
+    <span class="result-emoji" id="res-emoji"></span>
+    <div class="result-title" id="res-title"></div>
+    <div class="result-explanation" id="res-explanation"></div>
+    <div class="tech-link-box" id="tech-link-box" style="display:none">
+      <h4>📖 Study this technique</h4>
+      <a id="tech-link" href="#" target="_blank">→ <span id="tech-name"></span></a>
+    </div>
+    <div class="result-actions">
+      <button class="btn-next" id="btn-next" onclick="nextRound()">Next Round →</button>
+      <a class="btn-share" id="btn-share" href="#" target="_blank">Share on X 𝕏</a>
+    </div>
+  </div>
+
+  <!-- Final screen -->
+  <div class="final-screen" id="final-screen">
+    <div style="font-size:4rem">🏆</div>
+    <h2>Training Session Complete!</h2>
+    <div class="belt-earned" id="belt-earned"></div>
+    <div class="score-grid">
+      <div class="score-box wins"><div class="val" id="final-wins">0</div><div class="lbl">Wins</div></div>
+      <div class="score-box losses"><div class="val" id="final-losses">0</div><div class="lbl">Losses</div></div>
+      <div class="score-box rounds"><div class="val" id="final-rounds">0</div><div class="lbl">Rounds</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;" id="final-message"></p>
+    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+      <button class="btn-next" onclick="restartGame()">🔄 Play Again</button>
+      <a class="btn-share" id="final-share" href="#" target="_blank">Share Result 𝕏</a>
+      <a class="btn-next" href="skill-tree.html" style="text-decoration:none;display:inline-block">🌳 Skill Tree</a>
+    </div>
+
+    <a href="https://bjjfanatics.com/?aff=bjjwiki" target="_blank" rel="noopener" class="aff-box" style="text-align:left">
+      <div class="aff-icon">📹</div>
+      <div>
+        <h4>Master the techniques you struggled with</h4>
+        <p>World-champion instructionals on BJJ Fanatics — 20% off with code BJJWIKI</p>
+      </div>
+      <div class="aff-cta">Shop →</div>
+    </a>
+  </div>
+
+  <div class="faq-section">
+    <h2>❓ FAQ</h2>
+    <details>
+      <summary>What is the BJJ Sparring Simulator?</summary>
+      <p>An interactive decision-making game where you face real BJJ match scenarios and choose techniques. Each choice has consequences — like a real sparring round.</p>
+    </details>
+    <details>
+      <summary>How does this help my BJJ?</summary>
+      <p>Visualization is a proven training method. By mentally rehearsing scenarios before drilling, you build faster pattern recognition. After each round you get links to detailed technique guides.</p>
+    </details>
+    <details>
+      <summary>Is it free?</summary>
+      <p>Yes, completely free. No login required. Works on mobile and desktop.</p>
+    </details>
+  </div>
+</main>
+
+<footer>
+  <p>
+    <a href="index.html">Home</a>
+    <a href="skill-tree.html">Skill Tree</a>
+    <a href="../ja/sparring-simulator.html">日本語</a>
+    <a href="../pt/sparring-simulator.html">Português</a>
+    <a href="../about.html">About</a>
+    <a href="../privacy.html">Privacy</a>
+  </p>
+  <p style="margin-top:.75rem">© 2025 BJJ Wiki — Free BJJ Education</p>
+</footer>
+
+<script>
+// ── Scenario data ──────────────────────────────────────────────
+const SCENARIOS = [
+  {
+    id: "closed_guard_attack",
+    emoji: "🛡️",
+    situation: "You're on your back in closed guard. Your opponent is posturing up, trying to pass.",
+    detail: "They've stacked their weight and broken your grip. Timer: 3 minutes left. Score: tied 0–0.",
+    options: [
+      {
+        icon: "🔺",
+        text: "Attack a triangle choke — your hips are high and their arm is out",
+        result: "win",
+        techSlug: "triangle-choke",
+        techName: "Triangle Choke",
+        explanation: "Perfect read! Their posture created the exact frame you needed. You shoot the triangle, finish with hip angle — tap at 90 seconds. Clean technique wins.",
+        emoji: "🎯"
+      },
+      {
+        icon: "🔄",
+        text: "Hip bump sweep — get to top position",
+        result: "win",
+        techSlug: "hip-bump-sweep",
+        techName: "Hip Bump Sweep",
+        explanation: "Smart move! As they leaned in to post, your hip bump caught them off-balance. 2-point sweep. Now you're in top position with mount.",
+        emoji: "🏆"
+      },
+      {
+        icon: "💪",
+        text: "Bench press their hips and break their posture",
+        result: "lose",
+        techSlug: "closed-guard",
+        techName: "Closed Guard Control",
+        explanation: "They anticipated the push, posted hard, and passed your guard. Lesson: bench press works better as a setup than a standalone move.",
+        emoji: "📚"
+      }
+    ]
+  },
+  {
+    id: "half_guard_bottom",
+    emoji: "⚔️",
+    situation: "You're trapped in bottom half guard. Opponent has crossface, you're getting flattened.",
+    detail: "They're working to pass to side control. You need to either recover guard or create a sweep. Score: you're down 2 points.",
+    options: [
+      {
+        icon: "🤸",
+        text: "Fight for the underhook — try the Old School sweep",
+        result: "win",
+        techSlug: "half-guard",
+        techName: "Half Guard Sweeps",
+        explanation: "Great instinct! You snuck the deep underhook, they posted wide — classic Old School sweep. 2-point sweep ties the match.",
+        emoji: "🔥"
+      },
+      {
+        icon: "🌀",
+        text: "Go to deep half guard and kimura-trap their far arm",
+        result: "win",
+        techSlug: "deep-half-guard",
+        techName: "Deep Half Guard",
+        explanation: "Excellent! The deep half transition caught them off guard. You got to back-take position — 4 points. Now you're winning.",
+        emoji: "⭐"
+      },
+      {
+        icon: "🦵",
+        text: "Force the Lockdown to stall and neutralize",
+        result: "draw",
+        techSlug: "half-guard",
+        techName: "Half Guard — Lockdown",
+        explanation: "The lockdown worked to prevent the pass, but time ran out before you could sweep. Decision: opponent wins on points. Stalling rarely wins matches.",
+        emoji: "⏱️"
+      }
+    ]
+  },
+  {
+    id: "back_control",
+    emoji: "🦈",
+    situation: "You have back control — both hooks in, seatbelt grip locked. 90 seconds left.",
+    detail: "This is the most dominant position in BJJ. The opponent is defending hard with a two-on-one grip on your choking arm.",
+    options: [
+      {
+        icon: "😴",
+        text: "Switch to the rear naked choke — break their grip with a figure-4",
+        result: "win",
+        techSlug: "rear-naked-choke",
+        techName: "Rear Naked Choke",
+        explanation: "Textbook! You used the figure-4 to break their grip, shim the blade of your arm under the chin — tap at 40 seconds. The most finished submission in BJJ.",
+        emoji: "✅"
+      },
+      {
+        icon: "🏹",
+        text: "Reach for the bow and arrow choke — more powerful leverage",
+        result: "win",
+        techSlug: "bow-and-arrow-choke",
+        techName: "Bow and Arrow Choke",
+        explanation: "Savage choice! You secured the collar, kicked the bottom leg out — absolutely no defense once it's set. Finish in 20 seconds.",
+        emoji: "🎯"
+      },
+      {
+        icon: "🤼",
+        text: "Try to roll them to turtle, switch to north-south",
+        result: "lose",
+        techSlug: "back-mount",
+        techName: "Back Control",
+        explanation: "Risky move — they escaped as you transitioned. You lost back control and ended in a scramble. Never abandon dominant position without a direct submission attempt.",
+        emoji: "⚠️"
+      }
+    ]
+  },
+  {
+    id: "mount_escape",
+    emoji: "😰",
+    situation: "Opponent has full mount on you. They're high-mount, controlling your arms. 2 minutes left.",
+    detail: "You're down 4 points. Escape mount for 2 points or get a submission to win.",
+    options: [
+      {
+        icon: "🌉",
+        text: "Bridge and roll — classic upa escape when they reach for your collar",
+        result: "win",
+        techSlug: "mount-escape",
+        techName: "Mount Escape — Upa",
+        explanation: "Perfect timing! They posted to grab your collar — you trapped the arm, bridged explosively and rolled. 2-point reversal now in guard. You escaped!",
+        emoji: "🎉"
+      },
+      {
+        icon: "🦵",
+        text: "Elbow-knee escape — shrimp out and recover guard",
+        result: "win",
+        techSlug: "mount-escape",
+        techName: "Mount Escape — Elbow-Knee",
+        explanation: "Patient and effective. Three shrimps to the side, elbow to knee, you captured half guard then recovered full guard. Solid defensive BJJ.",
+        emoji: "💪"
+      },
+      {
+        icon: "🦾",
+        text: "Reach up for their collar — try to armbar from bottom mount",
+        result: "lose",
+        techSlug: "armbar",
+        techName: "Armbar",
+        explanation: "Dangerous gamble! They posture-escaped the attempted armbar and now have higher mount with your arms exposed. Some situations call for escape first, attack second.",
+        emoji: "❌"
+      }
+    ]
+  },
+  {
+    id: "standing_takedown",
+    emoji: "🤼",
+    situation: "You're standing. Opponent has a collar-and-elbow grip. Competition starts in 3 seconds.",
+    detail: "First takedown scores 2 points and sets the tone. You need a reliable, low-risk shot.",
+    options: [
+      {
+        icon: "🏃",
+        text: "Level change — blast double leg takedown",
+        result: "win",
+        techSlug: "double-leg-takedown",
+        techName: "Double Leg Takedown",
+        explanation: "Explosive entry! You penetration stepped before they could sprawl — drove through for 2 points. Aggression and commitment paid off.",
+        emoji: "💥"
+      },
+      {
+        icon: "🦵",
+        text: "Ankle pick — hand fights, then snap and pick the ankle",
+        result: "win",
+        techSlug: "ankle-pick",
+        techName: "Ankle Pick",
+        explanation: "Crafty! You faked the collar tie, broke their posture forward and grabbed the ankle. Clean sweep takedown. High percentage and low risk — great choice.",
+        emoji: "🎭"
+      },
+      {
+        icon: "🤸",
+        text: "Pull guard immediately — let them come to you",
+        result: "draw",
+        techSlug: "closed-guard",
+        techName: "Guard Pulling",
+        explanation: "Tactical but passive. Guard pull gives your opponent 2 points. You'll have to sweep or submit to win. In competition, pulling guard without a plan often leads to a loss on points.",
+        emoji: "📊"
+      }
+    ]
+  }
+];
+
+// ── State ─────────────────────────────────────────────────────
+const TOTAL_ROUNDS = SCENARIOS.length;
+let state = { round: 0, wins: 0, losses: 0, draws: 0, history: [] };
+let allTimeStats = JSON.parse(localStorage.getItem('bjj_sim_stats') || '{"rounds":0,"wins":0}');
+
+function saveAllTime() {
+  localStorage.setItem('bjj_sim_stats', JSON.stringify(allTimeStats));
+}
+
+function updateHeader() {
+  const total = allTimeStats.rounds;
+  document.getElementById('total-rounds').textContent = total;
+  document.getElementById('total-wins').textContent = allTimeStats.wins;
+  document.getElementById('win-rate').textContent = total > 0
+    ? Math.round(allTimeStats.wins / total * 100) + '%'
+    : '—';
+}
+
+// ── Render scenario ───────────────────────────────────────────
+function renderScenario() {
+  const sc = SCENARIOS[state.round];
+  document.getElementById('round-badge').textContent = `Round ${state.round + 1} / ${TOTAL_ROUNDS}`;
+  document.getElementById('sit-emoji').textContent = sc.emoji;
+  document.getElementById('sit-text').textContent = sc.situation;
+  document.getElementById('sit-detail').textContent = sc.detail;
+
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  sc.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="opt-icon">${opt.icon}</span><span class="opt-label">${opt.text}</span><span class="opt-arrow">→</span>`;
+    btn.onclick = () => chooseOption(i);
+    opts.appendChild(btn);
+  });
+
+  // Progress
+  document.getElementById('progress-wrap').style.display = 'block';
+  document.getElementById('progress-label-text').textContent = `Round ${state.round + 1} / ${TOTAL_ROUNDS}`;
+  const pct = Math.round(state.round / TOTAL_ROUNDS * 100);
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  // Show scenario, hide result
+  document.getElementById('scenario-card').style.display = 'block';
+  document.getElementById('result-card').style.display = 'none';
+  document.getElementById('final-screen').style.display = 'none';
+
+  // GA4
+  gtag('event', 'sim_round_start', { round: state.round + 1, scenario: sc.id });
+}
+
+// ── Choose option ─────────────────────────────────────────────
+function chooseOption(idx) {
+  const sc = SCENARIOS[state.round];
+  const opt = sc.options[idx];
+  const result = opt.result; // 'win' | 'lose' | 'draw'
+
+  if (result === 'win') { state.wins++; allTimeStats.wins++; }
+  else if (result === 'lose') { state.losses++; }
+  else { state.draws++; }
+  state.history.push({ scenario: sc.id, choice: idx, result });
+  allTimeStats.rounds++;
+  saveAllTime();
+  updateHeader();
+
+  // GA4
+  gtag('event', 'sim_choice', {
+    scenario: sc.id,
+    choice: opt.techName,
+    result
+  });
+
+  // Render result
+  const card = document.getElementById('result-card');
+  card.className = 'result-card ' + result;
+  card.style.display = 'block';
+  document.getElementById('scenario-card').style.display = 'none';
+
+  document.getElementById('res-emoji').textContent = opt.emoji;
+  const titles = { win: '✅ Good Decision!', lose: '❌ Wrong Call — Learn From It', draw: '⏱️ Neutral — Could Be Better' };
+  document.getElementById('res-title').textContent = titles[result];
+  document.getElementById('res-explanation').textContent = opt.explanation;
+
+  // Technique link
+  const linkBox = document.getElementById('tech-link-box');
+  if (opt.techSlug) {
+    linkBox.style.display = 'block';
+    document.getElementById('tech-link').href = opt.techSlug + '.html';
+    document.getElementById('tech-name').textContent = opt.techName;
+  } else {
+    linkBox.style.display = 'none';
+  }
+
+  // Share
+  const shareMsg = encodeURIComponent(`I just ${result === 'win' ? 'nailed' : result === 'lose' ? 'failed' : 'survived'} the ${sc.situation.split('.')[0].toLowerCase()} scenario on BJJ Sparring Simulator! Test your grappling IQ → https://t307239.github.io/bjj-wiki/en/sparring-simulator.html #BJJ`);
+  document.getElementById('btn-share').href = `https://twitter.com/intent/tweet?text=${shareMsg}`;
+
+  // Update next button
+  const isLast = state.round + 1 >= TOTAL_ROUNDS;
+  const nextBtn = document.getElementById('btn-next');
+  nextBtn.textContent = isLast ? 'See Results 🏆' : 'Next Round →';
+}
+
+// ── Next round ────────────────────────────────────────────────
+function nextRound() {
+  state.round++;
+  if (state.round >= TOTAL_ROUNDS) {
+    showFinal();
+  } else {
+    renderScenario();
+  }
+}
+
+// ── Final screen ──────────────────────────────────────────────
+function showFinal() {
+  document.getElementById('result-card').style.display = 'none';
+  document.getElementById('scenario-card').style.display = 'none';
+  document.getElementById('progress-wrap').style.display = 'none';
+
+  const final = document.getElementById('final-screen');
+  final.style.display = 'block';
+
+  document.getElementById('final-wins').textContent = state.wins;
+  document.getElementById('final-losses').textContent = state.losses;
+  document.getElementById('final-rounds').textContent = TOTAL_ROUNDS;
+
+  const pct = state.wins / TOTAL_ROUNDS;
+  let belt, beltStyle, msg;
+  if (pct >= 0.9) {
+    belt = '🖤 Black Belt Performance'; beltStyle = 'background:#222;color:#fff;border:2px solid #ffd700;';
+    msg = 'Elite decision-making. Your BJJ IQ is tournament-level. Gordon Ryan would spar with you.';
+  } else if (pct >= 0.7) {
+    belt = '🤎 Brown Belt Performance'; beltStyle = 'background:#8b4513;color:#fff;';
+    msg = 'Solid fundamentals and good instincts. You have a complete game — a few gaps to tighten up.';
+  } else if (pct >= 0.5) {
+    belt = '💜 Purple Belt Performance'; beltStyle = 'background:#7b2fbe;color:#fff;';
+    msg = 'Above average. You know your techniques, but timing and setups need work.';
+  } else if (pct >= 0.3) {
+    belt = '💙 Blue Belt Performance'; beltStyle = 'background:#1a6bcc;color:#fff;';
+    msg = 'Getting there! You have the vocabulary, now drill the combos until they\'re automatic.';
+  } else {
+    belt = '🤍 White Belt Performance'; beltStyle = 'background:#ddd;color:#111;';
+    msg = 'Everyone starts here. Study the techniques below — come back tomorrow and crush it.';
+  }
+
+  const beltEl = document.getElementById('belt-earned');
+  beltEl.textContent = belt;
+  beltEl.style.cssText = beltStyle + 'padding:.4rem 1.2rem;border-radius:6px;font-weight:800;font-size:1rem;';
+  document.getElementById('final-message').textContent = msg;
+
+  const shareText = encodeURIComponent(`I scored ${state.wins}/${TOTAL_ROUNDS} on the BJJ Sparring Simulator and earned ${belt}! Can you beat me? → https://t307239.github.io/bjj-wiki/en/sparring-simulator.html #BJJ #Grappling`);
+  document.getElementById('final-share').href = `https://twitter.com/intent/tweet?text=${shareText}`;
+
+  // GA4
+  gtag('event', 'sim_complete', { wins: state.wins, losses: state.losses, draws: state.draws });
+}
+
+// ── Restart ───────────────────────────────────────────────────
+function restartGame() {
+  state = { round: 0, wins: 0, losses: 0, draws: 0, history: [] };
+  document.getElementById('final-screen').style.display = 'none';
+  renderScenario();
+  gtag('event', 'sim_restart');
+}
+
+// ── Init ──────────────────────────────────────────────────────
+updateHeader();
+renderScenario();
+</script>
+</body>
+</html>
