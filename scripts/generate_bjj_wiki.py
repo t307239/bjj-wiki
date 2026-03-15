@@ -362,6 +362,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <meta name="twitter:description" content="{article.get('meta_description', '')[:200]}">
 <meta name="twitter:image" content="{SITE_URL}/og-image.svg">
 <link rel="canonical" href="{SITE_URL}/{lang_code}/{tech['slug']}.html">
+<link rel="alternate" hreflang="x-default" href="{SITE_URL}/en/{tech['slug']}.html">
 <link rel="alternate" hreflang="en" href="{SITE_URL}/en/{tech['slug']}.html">
 <link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/{tech['slug']}.html">
 <link rel="alternate" hreflang="pt" href="{SITE_URL}/pt/{tech['slug']}.html">
@@ -418,6 +419,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
   "description": "{article.get('meta_description', '')}",
   "url": "{SITE_URL}/{lang_code}/{tech['slug']}.html",
   "inLanguage": "{lang_code}",
+  "datePublished": "2026-03-13T00:00:00+09:00",
+  "dateModified": "{datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S+09:00')}",
   "publisher": {{
     "@type": "Organization",
     "name": "BJJ Wiki",
