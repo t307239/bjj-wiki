@@ -1,56 +1,20 @@
 {
-  "rear-naked-choke": {
-    "id": "8MpFS5wvSAM",
-    "title": "Super useful REAR NAKED CHOKE detail 👊 #brazilianjiujitsu #bjj #jiujitsu"
-  },
-  "triangle-choke": {
-    "id": "20j7LcZ5xRY",
-    "title": "How to do the Triangle In Jiu Jitsu | Everything You Need to Know!"
-  },
-  "guillotine-choke": {
-    "id": "YWwRC0V6O9Y",
-    "title": "How to do the Guillotine in Jiu Jitsu | Everything You Need to Know!"
-  },
-  "armbar": {
-    "id": "iUap4TaYVQc",
-    "title": "How To Do the Armbar From Mount in Jiu Jitsu | Jiu Jitsu Tutorial"
-  },
-  "kimura": {
-    "id": "fqQ4mVxJaoE",
-    "title": "Kimura Tutorial"
-  },
-  "americana": {
-    "id": "6W9yVDLSZIk",
-    "title": "Americana Tutorial #mma #bjj #martialarts #foryou #jiujitsu  #jiujitsutechnique #brazilianjiujitsu"
-  },
-  "omoplata": {
-    "id": "dpuKJPsq84g",
-    "title": "What is an Omoplata? BJJ How-to Tutorial"
-  },
-  "heel-hook": {
-    "id": "Ahvt-763hwg",
-    "title": "How to finish a heel hook 👀 #bteamjiujitsu"
-  },
-  "inside-heel-hook": {
-    "id": "Twkyo0A09Q8",
-    "title": "How to Properly Finish an Inside Heel Hook by Dan Manasoui"
-  },
-  "outside-heel-hook": {
-    "id": "liNnk7X1Bj0",
-    "title": "Outside Heel Hook Kneebar by Craig Jones"
-  },
+  "rear-naked-choke": null,
+  "triangle-choke": null,
+  "guillotine-choke": null,
+  "armbar": null,
+  "kimura": null,
+  "americana": null,
+  "omoplata": null,
+  "heel-hook": null,
+  "inside-heel-hook": null,
+  "outside-heel-hook": null,
   "berimbolo": {
     "id": "PAf2iCezKzY",
     "title": "Step by Step Guide to Learn The Berimbolo"
   },
-  "closed-guard": {
-    "id": "Z_FBT8ZDSmo",
-    "title": "Easy to Use Entire Closed Guard System"
-  },
-  "open-guard": {
-    "id": "WWkrzXVQj4w",
-    "title": "The open guard instructional to watch once and remember forever"
-  },
+  "closed-guard": null,
+  "open-guard": null,
   "half-guard": {
     "id": "bEu5SP5Y3nM",
     "title": "29 Regular Half Guard Techniques In Less Than 12 Minutes (Part 1) by Jason Scully"
@@ -59,144 +23,48 @@
     "id": "4WqkHFi7ac0",
     "title": "Understanding De La Riva Guard"
   },
-  "spider-guard": {
-    "id": "zoabs7H2ZN8",
-    "title": "Spider Guard - Fundamental Sweeps"
-  },
+  "spider-guard": null,
   "butterfly-guard": {
     "id": "-wftJg6jm3E",
     "title": "Butterfly Guard Guide In Gi &amp; Nogi | BJJ Fundamentals"
   },
-  "x-guard": {
-    "id": "6GMAwcmWcpE",
-    "title": "The BEST Guard In BJJ... X Guard"
-  },
-  "rubber-guard": {
-    "id": "7ukIp8aQu4M",
-    "title": "Rubber Guard Fundamentals | Basics and Not-So Basics"
-  },
-  "worm-guard": {
-    "id": "wsqvp8j9H6c",
-    "title": "Basic WORM GUARD Entry and Sweeps"
-  },
-  "scissor-sweep": {
-    "id": "UBf7uF5x8GQ",
-    "title": "Scissor Sweep for BJJ White Belts (Try These Adjustments)"
-  },
-  "hip-bump-sweep": {
-    "id": "_A44vDVPVQk",
-    "title": "BJJ Beginners Tutorial - Hip Bump Sweep"
-  },
-  "flower-sweep": {
-    "id": "V0ngkF1lxOY",
-    "title": "How to do SNEAKY FLOWER SWEEP 🌹#bjj #jiujitsu #brazilianjiujitsu"
-  },
-  "pendulum-sweep": {
-    "id": "bCSY391GbtU",
-    "title": "Pendulum Sweep - Counter vs Leg Post"
-  },
-  "mount": {
-    "id": "Wy6Si0FuQaU",
-    "title": "Concepts for Maintaining Mount"
-  },
-  "back-mount": {
-    "id": "CvhI6U-IN_8",
-    "title": "The Best Way to Get Back Mount for White Belts (I still use at Black Belt)"
-  },
+  "x-guard": null,
+  "rubber-guard": null,
+  "worm-guard": null,
+  "scissor-sweep": null,
+  "hip-bump-sweep": null,
+  "flower-sweep": null,
+  "pendulum-sweep": null,
+  "mount": null,
+  "back-mount": null,
   "side-control": {
     "id": "nDbHQPBvQvQ",
     "title": "The Secret to a World Class Side Control"
   },
-  "north-south": {
-    "id": "AwwDXXWhtI0",
-    "title": "5 really easy submissions from north south! #jiujitsu"
-  },
+  "north-south": null,
   "knee-on-belly": {
     "id": "BHUYEm0ve9A",
     "title": "Knee on belly | MASTER the BJJ system"
   },
-  "turtle-position": {
-    "id": "_ZIC3w_Dg3Y",
-    "title": "The 2 Easiest Attacks Against the Turtle Position"
-  },
-  "guard-pass": {
-    "id": "bOJ2txGsZxQ",
-    "title": "Six guard passes from the open guard #jiujitsu"
-  },
-  "torreando-pass": {
-    "id": "QMaW6TVhh6I",
-    "title": "Toreando Pass Comprehensive Guide"
-  },
-  "knee-slice-pass": {
-    "id": "Hy0XYZMV0vo",
-    "title": "The EASIEST Knee Cut Combination"
-  },
-  "leg-drag-pass": {
-    "id": "NPM9xwEurts",
-    "title": "Basic leg drag pass"
-  },
-  "headquarters-pass": {
-    "id": "quM3u9Jxthg",
-    "title": "Headquarters Guard Passing Simplified | No Gi Jiu-Jitsu"
-  },
-  "bow-and-arrow-choke": {
-    "id": "FHcP1ZjT28w",
-    "title": "How to do a bow and arrow 🏹 choke step by step 🥋#bjj #jiujitsu #brazilianjiujitsu #blackbelt"
-  },
-  "darce-choke": {
-    "id": "xmX1Tjh3mjQ",
-    "title": "How To Do The Darce Choke In Jiu Jitsu!"
-  },
-  "anaconda-choke": {
-    "id": "Utw0NYDk0b0",
-    "title": "How To Perform The Anaconda Choke In Jiu Jitsu! 🥋"
-  },
-  "ezekiel-choke": {
-    "id": "nX2E3x9r0vg",
-    "title": "The no-gi EZEKIEL! 💥 #bjj #brazilianjiujitsu #jiujitsu"
-  },
-  "loop-choke": {
-    "id": "SNASDxyjcAA",
-    "title": "Loop Chokes Please! (Basics on How the BJJ Loop Choke Works)"
-  },
-  "knee-bar": {
-    "id": "3qUq8rKigDo",
-    "title": "Try this ROLLING KNEEBAR setup 🔥🥋 #bjj #brazilianjiujitsu #jiujitsu"
-  },
-  "toe-hold": {
-    "id": "pKcBnvYalXw",
-    "title": "Cross over Toe Hold 🤯 #bteamjiujitsu"
-  },
-  "calf-slicer": {
-    "id": "hR3vdlTvdQA",
-    "title": "Calf slicer from leg drag pass!"
-  },
-  "wrist-lock": {
-    "id": "ZsX2YFBjfA0",
-    "title": "Wrist lock PRESSURE POINT explained | MMA self defence Jiujitsu BJJ"
-  },
-  "double-leg-takedown": {
-    "id": "4DHzLvLd-0Y",
-    "title": "Basic Double Leg Takedown"
-  },
-  "single-leg-takedown": {
-    "id": "2u0ZKAbxp6w",
-    "title": "How To Do a Single Leg Takedown - Set Up, Entry, Finish - Wrestling for BJJ with Michael Trasso"
-  },
-  "osoto-gari": {
-    "id": "zVKhK2eupmI",
-    "title": "THIS Is A Realistic Osoto Gari! #judo"
-  },
-  "ankle-pick": {
-    "id": "hDuSjpsgtV8",
-    "title": "VERY SIMPLE - Ankle Pick Takedown 🤼‍♂️  #bjj #grappling #martialarts"
-  },
-  "sprawl": {
-    "id": "Zmealzdnit4",
-    "title": "How to do a BASIC Sprawl for BJJ or Wrestling!"
-  },
-  "backtake": {
-    "id": "CvhI6U-IN_8",
-    "title": "The Best Way to Get Back Mount for White Belts (I still use at Black Belt)"
-  }
+  "turtle-position": null,
+  "guard-pass": null,
+  "torreando-pass": null,
+  "knee-slice-pass": null,
+  "leg-drag-pass": null,
+  "headquarters-pass": null,
+  "bow-and-arrow-choke": null,
+  "darce-choke": null,
+  "anaconda-choke": null,
+  "ezekiel-choke": null,
+  "loop-choke": null,
+  "knee-bar": null,
+  "toe-hold": null,
+  "calf-slicer": null,
+  "wrist-lock": null,
+  "double-leg-takedown": null,
+  "single-leg-takedown": null,
+  "osoto-gari": null,
+  "ankle-pick": null,
+  "sprawl": null,
+  "backtake": null
 }
