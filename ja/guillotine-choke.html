@@ -9,115 +9,120 @@
 <meta property="og:title" content="BJJギロチンチョーク完全ガイド：効果的な極め方と防御テクニック">
 <meta property="og:description" content="ブラジリアン柔術の強力な絞め技、ギロチンチョークをマスターしましょう。基本ステップ、効果的なバリエーション、よくある間違い、そして防御法まで、詳細に解説する完全ガイドです。初心者から上級者まで必見。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://YOUR_USERNAME.github.io/bjj-wiki/ja/guillotine-choke.html">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/guillotine-choke.html">
-<link rel="alternate" hreflang="en" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/guillotine-choke.html">
-<link rel="alternate" hreflang="ja" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/guillotine-choke.html">
-<link rel="alternate" hreflang="pt" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/guillotine-choke.html">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/ja/guillotine-choke.html">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/ja/guillotine-choke.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/guillotine-choke.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/guillotine-choke.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/guillotine-choke.html">
 <style>
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.75;padding:0 16px}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;
-    --red:#ef4444;--yellow:#f59e0b;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.7;padding:0 16px}
-  a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
+/* Layout */
+.container{max-width:860px;margin:0 auto;padding-bottom:80px}
 
-  /* Nav */
-  nav{max-width:860px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:16px;font-size:0.85rem;color:var(--muted)}
-  .nav-links a{color:var(--muted)}
-  .nav-links a:hover{color:var(--text)}
+/* Header / Nav */
+header{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
+  margin-bottom:40px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:16px}
+header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
+  border-radius:6px;border:1px solid transparent}
+header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
+.lang-switcher{font-size:0.82rem;color:var(--muted)}
+.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
+  border:1px solid var(--border)}
+.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
 
-  /* Hero */
-  .hero{max-width:860px;margin:48px auto 0;padding:40px;
-    background:linear-gradient(135deg,#141926 0%,#1a1440 100%);
-    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;background:var(--accent);opacity:0.06;border-radius:50%}
-  .category-badge{display:inline-block;padding:4px 12px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid var(--border);margin-bottom:16px}
-  .hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;margin-bottom:12px}
-  .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-    border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);
-    background:var(--card)}
-  .badge.beginner{color:var(--green);border-color:#166534}
-  .badge.intermediate{color:var(--yellow);border-color:#78350f}
-  .badge.advanced{color:var(--red);border-color:#7f1d1d}
+/* Category & belt badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
+.belt{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  margin-left:6px;border:1px solid var(--border)}
+.belt-white{color:#e8eaf6;border-color:#3a3a4a;background:#1e1e2e}
+.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
+.belt-purple{color:#c084fc;border-color:#4c1d95;background:#1e0f38}
+.belt-brown{color:#d97706;border-color:#78350f;background:#241500}
+.belt-black{color:#9ca3af;border-color:#374151;background:#111827}
 
-  /* Content */
-  .content{max-width:860px;margin:32px auto 80px;
-    display:grid;grid-template-columns:1fr 280px;gap:24px}
-  @media(max-width:700px){.content{grid-template-columns:1fr}}
-  .main-col{}
-  .side-col{}
+/* H1 */
+h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
+  letter-spacing:-0.02em}
+@media(max-width:600px){h1{font-size:1.7rem}}
 
-  /* Sections */
-  .section{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px;margin-bottom:20px}
-  .section h2{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px}
-  .section h2::before{content:'';width:3px;height:16px;
-    background:var(--accent);border-radius:2px;display:block}
-  .section p{color:#c4c9e0;margin-bottom:12px;font-size:0.95rem}
-  .section p:last-child{margin-bottom:0}
-  .section ul,.section ol{padding-left:20px;color:#c4c9e0;font-size:0.95rem}
-  .section li{margin-bottom:6px}
+/* Lead paragraph */
+h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
 
-  /* Steps */
-  .steps{list-style:none;padding:0}
-  .steps li{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-  .step-num{min-width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.75rem;font-weight:700;color:white;flex-shrink:0}
+/* Section headings */
+h2{font-size:1rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;
+  margin:28px 0 12px}
+h2::before{content:'';width:3px;height:14px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;display:block;flex-shrink:0}
 
-  /* Sidebar cards */
-  .info-card{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:20px;margin-bottom:16px}
-  .info-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-  .info-row{display:flex;justify-content:space-between;align-items:center;
-    padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem}
-  .info-row:last-child{border-bottom:none}
-  .info-row .label{color:var(--muted)}
-  .info-row .value{font-weight:600}
+/* Content cards */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:8px}
+.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
+.card p + p{margin-top:12px}
+.card strong{color:var(--text)}
 
-  /* Tag list */
-  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .tag{padding:4px 10px;border-radius:6px;font-size:0.78rem;
-    background:#1f2840;color:var(--muted);border:1px solid var(--border)}
+/* Step items inside cards */
+.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.card .step:last-child{margin-bottom:0}
+.step-num{min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
 
-  /* Related */
-  .related-links{display:flex;flex-direction:column;gap:8px}
-  .related-link{padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-    background:var(--surface);font-size:0.88rem;color:var(--text);
-    transition:border-color .2s,background .2s}
-  .related-link:hover{border-color:var(--accent);background:#141926;text-decoration:none}
+/* Affiliate box */
+.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
+  border:1px solid #2d2060;border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
+.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.9rem;
+  transition:opacity .2s,transform .15s}
+.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
 
-  /* Lang switch */
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-top:8px}
+.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
+.faq p{color:#c4cce8;font-size:0.92rem}
 
-  footer{max-width:860px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
+/* Related links */
+.related-links{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.related-links a{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;color:var(--text);
+  transition:border-color .2s,background .2s}
+.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
+  transition:color .2s,transform .2s}
+.related-links a:hover{border-color:var(--accent);background:#1a1e30;
+  text-decoration:none}
+.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
 
+footer{padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
 </style>
 </head>
 <body>
@@ -137,19 +142,19 @@
   <p>ギロチンチョークは、ブラジリアン柔術において非常に強力で一般的な首絞め技です。相手の首を腕で挟み込み、頸動脈に圧力をかけることで血流を止め、タップを奪うことを目的とします。特に相手がタックルを仕掛けてきた際などに有効なカウンター技として知られています。</p>
 
   <h2>やり方</h2>
-  <div class="card"><p>ステップ1：相手がタックルを仕掛けてきた際などに、素早く片腕を相手の首の下に深く差し込み、喉仏を腕で押さえるようにセットします。<br>ステップ2：差し込んだ腕の手首を、もう一方の手でしっかりと掴み、ハイエルボー（肘を高く上げる）の形を作ります。肘は相手の肩に密着させましょう。<br>ステップ3：首に差し込んだ腕の肘を相手の肩に密着させ、相手の頭部を自分の胸に引きつけ、頭を自分の胸の横に固定します。<br>ステップ4：自分の体が相手の真上に来るように腰を切り、相手の頸動脈に最大の圧力がかかるように調整します。この際、自分の体重を相手に乗せる意識が重要です。<br>ステップ5：両腕を締め上げながら、自分の胸を相手の頭部に押し付け、同時に腰を反らすようにして、相手の首を絞め上げます。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>ステップ1：相手がタックルを仕掛けてきた際などに、素早く片腕を相手の首の下に深く差し込み、喉仏を腕で押さえるようにセットします。</div></div><div class="step"><div class="step-num">2</div><div>ステップ2：差し込んだ腕の手首を、もう一方の手でしっかりと掴み、ハイエルボー（肘を高く上げる）の形を作ります。肘は相手の肩に密着させましょう。</div></div><div class="step"><div class="step-num">3</div><div>ステップ3：首に差し込んだ腕の肘を相手の肩に密着させ、相手の頭部を自分の胸に引きつけ、頭を自分の胸の横に固定します。</div></div><div class="step"><div class="step-num">4</div><div>ステップ4：自分の体が相手の真上に来るように腰を切り、相手の頸動脈に最大の圧力がかかるように調整します。この際、自分の体重を相手に乗せる意識が重要です。</div></div><div class="step"><div class="step-num">5</div><div>ステップ5：両腕を締め上げながら、自分の胸を相手の頭部に押し付け、同時に腰を反らすようにして、相手の首を絞め上げます。</div></div></div>
 
   <h2>コツと注意点</h2>
-  <div class="card"><p>ハイエルボーの重要性：肘を高く上げ、相手の肩に密着させることで、より深く首を捉え、強力なプレッシャーを生み出します。<br>頭の位置：自分の頭を相手の頭の横に密着させ、相手が頭を抜こうとするのを防ぎ、逃げ道を塞ぐことが不可欠です。<br>腰の切り方：チョークを極める際には、腰を切り、相手の体の上に自分の体重を乗せることで、さらに強力な絞めになります。<br>よくある間違い：腕が浅い、肘が低い、相手の頭が自由に動く状態になっている、または自分の姿勢が悪いと、チョークは極まりません。常に密着とプレッシャーを意識しましょう。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>ハイエルボーの重要性：肘を高く上げ、相手の肩に密着させることで、より深く首を捉え、強力なプレッシャーを生み出します。</div></div><div class="step"><div class="step-num">2</div><div>頭の位置：自分の頭を相手の頭の横に密着させ、相手が頭を抜こうとするのを防ぎ、逃げ道を塞ぐことが不可欠です。</div></div><div class="step"><div class="step-num">3</div><div>腰の切り方：チョークを極める際には、腰を切り、相手の体の上に自分の体重を乗せることで、さらに強力な絞めになります。</div></div><div class="step"><div class="step-num">4</div><div>よくある間違い：腕が浅い、肘が低い、相手の頭が自由に動く状態になっている、または自分の姿勢が悪いと、チョークは極まりません。常に密着とプレッシャーを意識しましょう。</div></div></div>
 
   <h2>バリエーション</h2>
-  <div class="card"><p>アームインギロチン：相手の片腕を首と一緒に抱え込むことで、よりタイトで逃げにくいチョークをかけるバリエーションです。<br>ノーアームギロチン：ディープハーフガードやクローズドガードから、腕を使わずに首をロックし、足を使って絞める高度なバリエーションです。<br>フロントヘッドロックからの展開：ギロチンチョークは、フロントヘッドロックのポジションから様々なサブミッションやスイープに移行するための起点としても非常に重要です。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>アームインギロチン：相手の片腕を首と一緒に抱え込むことで、よりタイトで逃げにくいチョークをかけるバリエーションです。</div></div><div class="step"><div class="step-num">2</div><div>ノーアームギロチン：ディープハーフガードやクローズドガードから、腕を使わずに首をロックし、足を使って絞める高度なバリエーションです。</div></div><div class="step"><div class="step-num">3</div><div>フロントヘッドロックからの展開：ギロチンチョークは、フロントヘッドロックのポジションから様々なサブミッションやスイープに移行するための起点としても非常に重要です。</div></div></div>
 
   <h2>使うタイミング</h2>
-  <div class="card"><p>相手がシングルレッグやダブルレッグタックルを仕掛けてきた際のカウンターとして非常に有効です。<br>相手が亀の姿勢になっている際、またはバックを狙いに行ったが失敗した際にも、素早く首を捉えるチャンスがあります。<br>クローズドガードやハーフガードから、相手がパスガードを狙って頭を下げてきた時も、ギロチンチョークのチャンスが生まれます。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>相手がシングルレッグやダブルレッグタックルを仕掛けてきた際のカウンターとして非常に有効です。</div></div><div class="step"><div class="step-num">2</div><div>相手が亀の姿勢になっている際、またはバックを狙いに行ったが失敗した際にも、素早く首を捉えるチャンスがあります。</div></div><div class="step"><div class="step-num">3</div><div>クローズドガードやハーフガードから、相手がパスガードを狙って頭を下げてきた時も、ギロチンチョークのチャンスが生まれます。</div></div></div>
 
   <h2>カウンター・防御</h2>
-  <div class="card"><p>ポストアップ：チョークをかけられたらすぐに両手をマットにつき、腰を高く上げて相手の密着を剥がし、頭を抜く体勢を作ります。<br>頭を抜く：首を抱え込まれたら、素早く相手の腕の隙間から頭を抜き、サイドに逃げることでチョークを無効化します。<br>ロール：相手がギロチンを極めようと前に倒れてきた際、その勢いを利用して相手を巻き込み、スイープやポジションチェンジを狙うことができます。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>ポストアップ：チョークをかけられたらすぐに両手をマットにつき、腰を高く上げて相手の密着を剥がし、頭を抜く体勢を作ります。</div></div><div class="step"><div class="step-num">2</div><div>頭を抜く：首を抱え込まれたら、素早く相手の腕の隙間から頭を抜き、サイドに逃げることでチョークを無効化します。</div></div><div class="step"><div class="step-num">3</div><div>ロール：相手がギロチンを極めようと前に倒れてきた際、その勢いを利用して相手を巻き込み、スイープやポジションチェンジを狙うことができます。</div></div></div>
 
   <!-- BJJ Fanatics アフィリエイト -->
   <div class="aff-box">

@@ -9,115 +9,120 @@
 <meta property="og:title" content="BJJのテイクダウン：大外刈り（Osoto Gari）完全ガイド | 柔術テクニック">
 <meta property="og:description" content="ブラジリアン柔術における強力なテイクダウン「大外刈り（Osoto Gari）」の基本から応用までを解説。ステップバイステップの指導で、相手を効果的に倒す方法を学びましょう。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://YOUR_USERNAME.github.io/bjj-wiki/ja/osoto-gari.html">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/osoto-gari.html">
-<link rel="alternate" hreflang="en" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/osoto-gari.html">
-<link rel="alternate" hreflang="ja" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/osoto-gari.html">
-<link rel="alternate" hreflang="pt" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/osoto-gari.html">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/ja/osoto-gari.html">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/ja/osoto-gari.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/osoto-gari.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/osoto-gari.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/osoto-gari.html">
 <style>
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.75;padding:0 16px}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;
-    --red:#ef4444;--yellow:#f59e0b;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.7;padding:0 16px}
-  a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
+/* Layout */
+.container{max-width:860px;margin:0 auto;padding-bottom:80px}
 
-  /* Nav */
-  nav{max-width:860px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:16px;font-size:0.85rem;color:var(--muted)}
-  .nav-links a{color:var(--muted)}
-  .nav-links a:hover{color:var(--text)}
+/* Header / Nav */
+header{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
+  margin-bottom:40px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:16px}
+header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
+  border-radius:6px;border:1px solid transparent}
+header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
+.lang-switcher{font-size:0.82rem;color:var(--muted)}
+.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
+  border:1px solid var(--border)}
+.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
 
-  /* Hero */
-  .hero{max-width:860px;margin:48px auto 0;padding:40px;
-    background:linear-gradient(135deg,#141926 0%,#1a1440 100%);
-    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;background:var(--accent);opacity:0.06;border-radius:50%}
-  .category-badge{display:inline-block;padding:4px 12px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid var(--border);margin-bottom:16px}
-  .hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;margin-bottom:12px}
-  .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-    border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);
-    background:var(--card)}
-  .badge.beginner{color:var(--green);border-color:#166534}
-  .badge.intermediate{color:var(--yellow);border-color:#78350f}
-  .badge.advanced{color:var(--red);border-color:#7f1d1d}
+/* Category & belt badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
+.belt{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  margin-left:6px;border:1px solid var(--border)}
+.belt-white{color:#e8eaf6;border-color:#3a3a4a;background:#1e1e2e}
+.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
+.belt-purple{color:#c084fc;border-color:#4c1d95;background:#1e0f38}
+.belt-brown{color:#d97706;border-color:#78350f;background:#241500}
+.belt-black{color:#9ca3af;border-color:#374151;background:#111827}
 
-  /* Content */
-  .content{max-width:860px;margin:32px auto 80px;
-    display:grid;grid-template-columns:1fr 280px;gap:24px}
-  @media(max-width:700px){.content{grid-template-columns:1fr}}
-  .main-col{}
-  .side-col{}
+/* H1 */
+h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
+  letter-spacing:-0.02em}
+@media(max-width:600px){h1{font-size:1.7rem}}
 
-  /* Sections */
-  .section{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px;margin-bottom:20px}
-  .section h2{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px}
-  .section h2::before{content:'';width:3px;height:16px;
-    background:var(--accent);border-radius:2px;display:block}
-  .section p{color:#c4c9e0;margin-bottom:12px;font-size:0.95rem}
-  .section p:last-child{margin-bottom:0}
-  .section ul,.section ol{padding-left:20px;color:#c4c9e0;font-size:0.95rem}
-  .section li{margin-bottom:6px}
+/* Lead paragraph */
+h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
 
-  /* Steps */
-  .steps{list-style:none;padding:0}
-  .steps li{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-  .step-num{min-width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.75rem;font-weight:700;color:white;flex-shrink:0}
+/* Section headings */
+h2{font-size:1rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;
+  margin:28px 0 12px}
+h2::before{content:'';width:3px;height:14px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;display:block;flex-shrink:0}
 
-  /* Sidebar cards */
-  .info-card{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:20px;margin-bottom:16px}
-  .info-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-  .info-row{display:flex;justify-content:space-between;align-items:center;
-    padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem}
-  .info-row:last-child{border-bottom:none}
-  .info-row .label{color:var(--muted)}
-  .info-row .value{font-weight:600}
+/* Content cards */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:8px}
+.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
+.card p + p{margin-top:12px}
+.card strong{color:var(--text)}
 
-  /* Tag list */
-  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .tag{padding:4px 10px;border-radius:6px;font-size:0.78rem;
-    background:#1f2840;color:var(--muted);border:1px solid var(--border)}
+/* Step items inside cards */
+.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.card .step:last-child{margin-bottom:0}
+.step-num{min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
 
-  /* Related */
-  .related-links{display:flex;flex-direction:column;gap:8px}
-  .related-link{padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-    background:var(--surface);font-size:0.88rem;color:var(--text);
-    transition:border-color .2s,background .2s}
-  .related-link:hover{border-color:var(--accent);background:#141926;text-decoration:none}
+/* Affiliate box */
+.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
+  border:1px solid #2d2060;border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
+.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.9rem;
+  transition:opacity .2s,transform .15s}
+.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
 
-  /* Lang switch */
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-top:8px}
+.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
+.faq p{color:#c4cce8;font-size:0.92rem}
 
-  footer{max-width:860px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
+/* Related links */
+.related-links{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.related-links a{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;color:var(--text);
+  transition:border-color .2s,background .2s}
+.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
+  transition:color .2s,transform .2s}
+.related-links a:hover{border-color:var(--accent);background:#1a1e30;
+  text-decoration:none}
+.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
 
+footer{padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
 </style>
 </head>
 <body>
@@ -137,19 +142,19 @@
   <p>大外刈り（Osoto Gari）は、柔道にルーツを持つ非常に効果的なテイクダウンテクニックで、ブラジリアン柔術の立ち技でも広く用いられます。相手を後ろに大きく崩し、刈り倒すことで安全にテイクダウンを奪い、グラウンドでの有利な展開へと繋げることができます。</p>
 
   <h2>やり方</h2>
-  <div class="card"><p>組み手と引き出し: 相手と組んだら、片手で襟、もう片方で袖をしっかりと掴みます。相手の重心を前方に引き出すように誘導し、バランスを崩させます。<br>足の踏み込み: 組み手で相手を引き出しつつ、刈り足と逆側の足を相手の足の外側（真横か少し後ろ）に深く踏み込みます。この時、自分の体は相手に密着させ、重心を低く保ちます。<br>刈り足の振り上げ: 踏み込んだ足に体重を乗せ、もう一方の足（刈り足）を大きく振り上げ、相手の外側の太ももから膝裏にかけてを力強く刈り上げます。<br>上半身の連動: 刈り足と同時に、襟を引く手と袖を引く手を使い、相手の上半身を後ろ方向へ引き倒すように連動させます。自分の胸を相手の背中に押し付けるイメージで密着を保ちます。<br>フィニッシュと着地: 相手が完全にバランスを失い倒れる瞬間に、自分も相手と一緒に倒れ込むようにして、サイドコントロールなどの有利なポジションを確保します。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>組み手と引き出し: 相手と組んだら、片手で襟、もう片方で袖をしっかりと掴みます。相手の重心を前方に引き出すように誘導し、バランスを崩させます。</div></div><div class="step"><div class="step-num">2</div><div>足の踏み込み: 組み手で相手を引き出しつつ、刈り足と逆側の足を相手の足の外側（真横か少し後ろ）に深く踏み込みます。この時、自分の体は相手に密着させ、重心を低く保ちます。</div></div><div class="step"><div class="step-num">3</div><div>刈り足の振り上げ: 踏み込んだ足に体重を乗せ、もう一方の足（刈り足）を大きく振り上げ、相手の外側の太ももから膝裏にかけてを力強く刈り上げます。</div></div><div class="step"><div class="step-num">4</div><div>上半身の連動: 刈り足と同時に、襟を引く手と袖を引く手を使い、相手の上半身を後ろ方向へ引き倒すように連動させます。自分の胸を相手の背中に押し付けるイメージで密着を保ちます。</div></div><div class="step"><div class="step-num">5</div><div>フィニッシュと着地: 相手が完全にバランスを失い倒れる瞬間に、自分も相手と一緒に倒れ込むようにして、サイドコントロールなどの有利なポジションを確保します。</div></div></div>
 
   <h2>コツと注意点</h2>
-  <div class="card"><p>密着とバランス: 相手に密着し、自分の重心を低く保つことが重要です。隙間があると力が伝わりにくく、カウンターのリスクが高まります。<br>引き出しと刈り足のタイミング: 相手のバランスを「引き出す」動作と「刈り足」のタイミングが完璧に合致すると、少ない力で大きな効果を発揮します。<br>刈り足の軌道と力点: 刈り足はただ横に払うのではなく、相手の足を大きく「すくい上げる」ような軌道で、膝裏から太ももにかけてを狙うと効果的です。<br>頭と目線: 自分の頭を相手の頭の横に密着させ、目線は相手が倒れる方向へ向けることで、体の連動性を高めます。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>密着とバランス: 相手に密着し、自分の重心を低く保つことが重要です。隙間があると力が伝わりにくく、カウンターのリスクが高まります。</div></div><div class="step"><div class="step-num">2</div><div>引き出しと刈り足のタイミング: 相手のバランスを「引き出す」動作と「刈り足」のタイミングが完璧に合致すると、少ない力で大きな効果を発揮します。</div></div><div class="step"><div class="step-num">3</div><div>刈り足の軌道と力点: 刈り足はただ横に払うのではなく、相手の足を大きく「すくい上げる」ような軌道で、膝裏から太ももにかけてを狙うと効果的です。</div></div><div class="step"><div class="step-num">4</div><div>頭と目線: 自分の頭を相手の頭の横に密着させ、目線は相手が倒れる方向へ向けることで、体の連動性を高めます。</div></div></div>
 
   <h2>バリエーション</h2>
-  <div class="card"><p>フェイントからの大外刈り: 小外刈りや内股のフェイントを入れて相手の重心を誘導し、大外刈りに繋げます。<br>片襟片袖からの大外刈り: 柔術でよく使われる片襟片袖の組み手から、相手の重心をコントロールして仕掛けるバリエーションです。<br>引き込みへの移行: 大外刈りが決まらない場合、そのまま引き込みに移行し、下からの攻撃に繋げることも可能です。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>フェイントからの大外刈り: 小外刈りや内股のフェイントを入れて相手の重心を誘導し、大外刈りに繋げます。</div></div><div class="step"><div class="step-num">2</div><div>片襟片袖からの大外刈り: 柔術でよく使われる片襟片袖の組み手から、相手の重心をコントロールして仕掛けるバリエーションです。</div></div><div class="step"><div class="step-num">3</div><div>引き込みへの移行: 大外刈りが決まらない場合、そのまま引き込みに移行し、下からの攻撃に繋げることも可能です。</div></div></div>
 
   <h2>使うタイミング</h2>
   <div class="card"><p>相手が直立している時や、前に重心をかけている時に特に効果的です。組み手争いの最中、相手が少しでも後方に体重をかけた瞬間に仕掛けると成功しやすいです。距離が近く、密着しやすい状況で使うのが理想的です。</p></div>
 
   <h2>カウンター・防御</h2>
-  <div class="card"><p>刈り足を抜く/ステップバック: 相手が刈り足を仕掛けてきたら、素早くその足を抜くか、大きく後ろにステップして回避します。<br>重心を前に移す: 刈られた瞬間に重心を前方に移動させ、相手の刈りに抵抗し、逆に押し返します。<br>逆側への崩し: 相手が刈ってきた方向に体を預けず、逆に逆方向へ崩すことで、体勢を入れ替えてカウンターを狙います（例：大外返し）。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>刈り足を抜く/ステップバック: 相手が刈り足を仕掛けてきたら、素早くその足を抜くか、大きく後ろにステップして回避します。</div></div><div class="step"><div class="step-num">2</div><div>重心を前に移す: 刈られた瞬間に重心を前方に移動させ、相手の刈りに抵抗し、逆に押し返します。</div></div><div class="step"><div class="step-num">3</div><div>逆側への崩し: 相手が刈ってきた方向に体を預けず、逆に逆方向へ崩すことで、体勢を入れ替えてカウンターを狙います（例：大外返し）。</div></div></div>
 
   <!-- BJJ Fanatics アフィリエイト -->
   <div class="aff-box">

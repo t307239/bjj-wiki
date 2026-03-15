@@ -5,72 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All BJJ Techniques | BJJ Wiki</title>
 <style>
-
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.6;padding:0 16px}
-  a{color:inherit;text-decoration:none}
-  nav{max-width:960px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800}
-  .logo span{color:var(--accent)}
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
-  .container{max-width:960px;margin:0 auto;padding:40px 0 80px}
-  .page-header{margin-bottom:36px}
-  .page-header h1{font-size:2rem;font-weight:800;margin-bottom:8px}
-  .page-header p{color:var(--muted)}
-
-  /* Search */
-  .search-wrap{position:relative;margin-bottom:24px}
-  .search-wrap input{width:100%;padding:12px 16px 12px 44px;
-    background:var(--card);border:1px solid var(--border);border-radius:12px;
-    color:var(--text);font-size:0.95rem;outline:none;
-    transition:border-color .2s}
-  .search-wrap input:focus{border-color:var(--accent)}
-  .search-wrap input::placeholder{color:var(--muted)}
-  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);
-    color:var(--muted);pointer-events:none}
-
-  /* Filter pills */
-  .filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-  .filter-pill{padding:6px 16px;border-radius:20px;font-size:0.83rem;font-weight:600;
-    border:1px solid var(--border);color:var(--muted);cursor:pointer;
-    background:var(--card);transition:all .2s}
-  .filter-pill:hover,.filter-pill.active{
-    background:var(--accent);border-color:var(--accent);color:white}
-
-  /* Category grid */
-  .cat-section{margin-bottom:32px}
-  .cat-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-  .cat-header h2{font-size:1rem;font-weight:700;color:var(--accent2)}
-  .cat-count{font-size:0.75rem;color:var(--muted);
-    background:var(--card);border:1px solid var(--border);
-    padding:2px 8px;border-radius:10px}
-  .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
-  .tech-card{padding:14px 16px;background:var(--card);border:1px solid var(--border);
-    border-radius:12px;font-size:0.88rem;font-weight:500;
-    transition:border-color .2s,transform .15s,background .2s;
-    display:flex;align-items:center;justify-content:space-between}
-  .tech-card:hover{border-color:var(--accent);background:#1a1e30;
-    transform:translateY(-1px)}
-  .tech-card .arrow{color:var(--muted);font-size:0.75rem;transition:color .2s}
-  .tech-card:hover .arrow{color:var(--accent2)}
-
-  .no-results{text-align:center;padding:60px 0;color:var(--muted)}
-  footer{max-width:960px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
-
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.6;padding:0 16px}
+a{color:inherit;text-decoration:none}
+nav{max-width:960px;margin:0 auto;padding:20px 0;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border)}
+.logo{font-size:1.3rem;font-weight:800}
+.logo span{color:var(--accent)}
+.lang-switch{display:flex;gap:8px}
+.lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
+  border:1px solid var(--border);color:var(--muted)}
+.lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+.container{max-width:960px;margin:0 auto;padding:40px 0 80px}
+.page-header{margin-bottom:32px}
+.page-header h1{font-size:2rem;font-weight:800;margin-bottom:6px}
+.page-header p{color:var(--muted);font-size:0.95rem}
+.search-wrap{position:relative;margin-bottom:20px}
+.search-wrap input{width:100%;padding:12px 16px 12px 42px;
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  color:var(--text);font-size:0.95rem;outline:none;transition:border-color .2s}
+.search-wrap input:focus{border-color:var(--accent)}
+.search-wrap input::placeholder{color:var(--muted)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  color:var(--muted);font-size:1rem;pointer-events:none}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.filter-pill{padding:6px 16px;border-radius:20px;font-size:0.82rem;font-weight:600;
+  border:1px solid var(--border);color:var(--muted);cursor:pointer;
+  background:var(--card);transition:all .18s}
+.filter-pill:hover,.filter-pill.active{
+  background:var(--accent);border-color:var(--accent);color:#fff}
+.cat-section{margin-bottom:28px}
+.cat-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.cat-header h2{font-size:0.85rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em}
+.cat-count{font-size:0.72rem;color:var(--muted);
+  background:var(--card);border:1px solid var(--border);
+  padding:2px 8px;border-radius:10px}
+.tech-grid{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.tech-card{padding:12px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;font-weight:500;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:border-color .18s,transform .15s,background .18s}
+.tech-card:hover{border-color:var(--accent);background:#1a1e30;
+  transform:translateY(-1px)}
+.tech-card .arrow{color:var(--muted);font-size:0.8rem;transition:color .18s}
+.tech-card:hover .arrow{color:var(--accent2)}
+.no-results{text-align:center;padding:60px 0;color:var(--muted)}
+footer{max-width:960px;margin:0 auto;padding:24px 0;
+  border-top:1px solid var(--border);text-align:center;
+  color:var(--muted);font-size:0.8rem}
 </style>
 </head>
 <body>
@@ -100,185 +92,162 @@
 
   </div>
   
-  <div class="cat-section" data-cat="submission">
-    <div class="cat-header">
-      <h2>Choke</h2><span class="cat-count">8</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="rear-naked-choke.html"><span class="tech-name">Rear Naked Choke</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="triangle-choke.html"><span class="tech-name">Triangle Choke</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="guillotine-choke.html"><span class="tech-name">Guillotine Choke</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="bow-and-arrow-choke.html"><span class="tech-name">Bow and Arrow Choke</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="ezekiel-choke.html"><span class="tech-name">Ezekiel Choke</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="darce-choke.html"><span class="tech-name">D'Arce Choke</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="anaconda-choke.html"><span class="tech-name">Anaconda Choke</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="loop-choke.html"><span class="tech-name">Loop Choke</span><span class="arrow">→</span></a>
-    </div>
+<div class="cat-section" data-cat="submission">
+  <div class="cat-header">
+    <h2>Choke</h2><span class="cat-count">8</span>
   </div>
-
-  <div class="cat-section" data-cat="defense">
-    <div class="cat-header">
-      <h2>Defense</h2><span class="cat-count">1</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="sprawl.html"><span class="tech-name">Sprawl</span><span class="arrow">→</span></a>
-    </div>
+  <div class="tech-grid">
+<a class="tech-card" href="rear-naked-choke.html"><span class="tech-name">Rear Naked Choke</span><span class="arrow">→</span></a>
+<a class="tech-card" href="triangle-choke.html"><span class="tech-name">Triangle Choke</span><span class="arrow">→</span></a>
+<a class="tech-card" href="guillotine-choke.html"><span class="tech-name">Guillotine Choke</span><span class="arrow">→</span></a>
+<a class="tech-card" href="bow-and-arrow-choke.html"><span class="tech-name">Bow and Arrow Choke</span><span class="arrow">→</span></a>
+<a class="tech-card" href="ezekiel-choke.html"><span class="tech-name">Ezekiel Choke</span><span class="arrow">→</span></a>
+<a class="tech-card" href="darce-choke.html"><span class="tech-name">D'Arce Choke</span><span class="arrow">→</span></a>
+<a class="tech-card" href="anaconda-choke.html"><span class="tech-name">Anaconda Choke</span><span class="arrow">→</span></a>
+<a class="tech-card" href="loop-choke.html"><span class="tech-name">Loop Choke</span><span class="arrow">→</span></a>
   </div>
-
-  <div class="cat-section" data-cat="guard">
-    <div class="cat-header">
-      <h2>Guard</h2><span class="cat-count">10</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="closed-guard.html"><span class="tech-name">Closed Guard</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="open-guard.html"><span class="tech-name">Open Guard</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="half-guard.html"><span class="tech-name">Half Guard</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="spider-guard.html"><span class="tech-name">Spider Guard</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="de-la-riva-guard.html"><span class="tech-name">De La Riva Guard</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="berimbolo.html"><span class="tech-name">Berimbolo</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="butterfly-guard.html"><span class="tech-name">Butterfly Guard</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="rubber-guard.html"><span class="tech-name">Rubber Guard</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="x-guard.html"><span class="tech-name">X-Guard</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="worm-guard.html"><span class="tech-name">Worm Guard</span><span class="arrow">→</span></a>
-    </div>
+</div>
+<div class="cat-section" data-cat="defense">
+  <div class="cat-header">
+    <h2>Defense</h2><span class="cat-count">1</span>
   </div>
-
-  <div class="cat-section" data-cat="submission">
-    <div class="cat-header">
-      <h2>Joint Lock</h2><span class="cat-count">5</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="armbar.html"><span class="tech-name">Armbar</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="kimura.html"><span class="tech-name">Kimura</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="americana.html"><span class="tech-name">Americana</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="omoplata.html"><span class="tech-name">Omoplata</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="wrist-lock.html"><span class="tech-name">Wrist Lock</span><span class="arrow">→</span></a>
-    </div>
+  <div class="tech-grid">
+<a class="tech-card" href="sprawl.html"><span class="tech-name">Sprawl</span><span class="arrow">→</span></a>
   </div>
-
-  <div class="cat-section" data-cat="submission">
-    <div class="cat-header">
-      <h2>Leg Lock</h2><span class="cat-count">6</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="heel-hook.html"><span class="tech-name">Heel Hook</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="inside-heel-hook.html"><span class="tech-name">Inside Heel Hook</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="outside-heel-hook.html"><span class="tech-name">Outside Heel Hook</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="knee-bar.html"><span class="tech-name">Knee Bar</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="toe-hold.html"><span class="tech-name">Toe Hold</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="calf-slicer.html"><span class="tech-name">Calf Slicer</span><span class="arrow">→</span></a>
-    </div>
+</div>
+<div class="cat-section" data-cat="guard">
+  <div class="cat-header">
+    <h2>Guard</h2><span class="cat-count">10</span>
   </div>
-
-  <div class="cat-section" data-cat="passing">
-    <div class="cat-header">
-      <h2>Passing</h2><span class="cat-count">5</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="guard-pass.html"><span class="tech-name">Guard Pass</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="torreando-pass.html"><span class="tech-name">Torreando Pass</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="knee-slice-pass.html"><span class="tech-name">Knee Slice Pass</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="leg-drag-pass.html"><span class="tech-name">Leg Drag Pass</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="headquarters-pass.html"><span class="tech-name">Headquarters Pass</span><span class="arrow">→</span></a>
-    </div>
+  <div class="tech-grid">
+<a class="tech-card" href="closed-guard.html"><span class="tech-name">Closed Guard</span><span class="arrow">→</span></a>
+<a class="tech-card" href="open-guard.html"><span class="tech-name">Open Guard</span><span class="arrow">→</span></a>
+<a class="tech-card" href="half-guard.html"><span class="tech-name">Half Guard</span><span class="arrow">→</span></a>
+<a class="tech-card" href="spider-guard.html"><span class="tech-name">Spider Guard</span><span class="arrow">→</span></a>
+<a class="tech-card" href="de-la-riva-guard.html"><span class="tech-name">De La Riva Guard</span><span class="arrow">→</span></a>
+<a class="tech-card" href="berimbolo.html"><span class="tech-name">Berimbolo</span><span class="arrow">→</span></a>
+<a class="tech-card" href="butterfly-guard.html"><span class="tech-name">Butterfly Guard</span><span class="arrow">→</span></a>
+<a class="tech-card" href="rubber-guard.html"><span class="tech-name">Rubber Guard</span><span class="arrow">→</span></a>
+<a class="tech-card" href="x-guard.html"><span class="tech-name">X-Guard</span><span class="arrow">→</span></a>
+<a class="tech-card" href="worm-guard.html"><span class="tech-name">Worm Guard</span><span class="arrow">→</span></a>
   </div>
-
-  <div class="cat-section" data-cat="position">
-    <div class="cat-header">
-      <h2>Position</h2><span class="cat-count">6</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="mount.html"><span class="tech-name">Mount</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="back-mount.html"><span class="tech-name">Back Mount</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="side-control.html"><span class="tech-name">Side Control</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="north-south.html"><span class="tech-name">North-South</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="knee-on-belly.html"><span class="tech-name">Knee on Belly</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="turtle-position.html"><span class="tech-name">Turtle Position</span><span class="arrow">→</span></a>
-    </div>
+</div>
+<div class="cat-section" data-cat="submission">
+  <div class="cat-header">
+    <h2>Joint Lock</h2><span class="cat-count">5</span>
   </div>
-
-  <div class="cat-section" data-cat="sweep">
-    <div class="cat-header">
-      <h2>Sweep</h2><span class="cat-count">4</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="scissor-sweep.html"><span class="tech-name">Scissor Sweep</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="flower-sweep.html"><span class="tech-name">Flower Sweep</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="hip-bump-sweep.html"><span class="tech-name">Hip Bump Sweep</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="pendulum-sweep.html"><span class="tech-name">Pendulum Sweep</span><span class="arrow">→</span></a>
-    </div>
+  <div class="tech-grid">
+<a class="tech-card" href="armbar.html"><span class="tech-name">Armbar</span><span class="arrow">→</span></a>
+<a class="tech-card" href="kimura.html"><span class="tech-name">Kimura</span><span class="arrow">→</span></a>
+<a class="tech-card" href="americana.html"><span class="tech-name">Americana</span><span class="arrow">→</span></a>
+<a class="tech-card" href="omoplata.html"><span class="tech-name">Omoplata</span><span class="arrow">→</span></a>
+<a class="tech-card" href="wrist-lock.html"><span class="tech-name">Wrist Lock</span><span class="arrow">→</span></a>
   </div>
-
-  <div class="cat-section" data-cat="takedown">
-    <div class="cat-header">
-      <h2>Takedown</h2><span class="cat-count">4</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="double-leg-takedown.html"><span class="tech-name">Double Leg Takedown</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="single-leg-takedown.html"><span class="tech-name">Single Leg Takedown</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="osoto-gari.html"><span class="tech-name">Osoto Gari</span><span class="arrow">→</span></a>
-      <a class="tech-card" href="ankle-pick.html"><span class="tech-name">Ankle Pick</span><span class="arrow">→</span></a>
-    </div>
+</div>
+<div class="cat-section" data-cat="submission">
+  <div class="cat-header">
+    <h2>Leg Lock</h2><span class="cat-count">6</span>
   </div>
-
-  <div class="cat-section" data-cat="transition">
-    <div class="cat-header">
-      <h2>Transition</h2><span class="cat-count">1</span>
-    </div>
-    <div class="tech-grid">
-      <a class="tech-card" href="backtake.html"><span class="tech-name">Back Take</span><span class="arrow">→</span></a>
-    </div>
+  <div class="tech-grid">
+<a class="tech-card" href="heel-hook.html"><span class="tech-name">Heel Hook</span><span class="arrow">→</span></a>
+<a class="tech-card" href="inside-heel-hook.html"><span class="tech-name">Inside Heel Hook</span><span class="arrow">→</span></a>
+<a class="tech-card" href="outside-heel-hook.html"><span class="tech-name">Outside Heel Hook</span><span class="arrow">→</span></a>
+<a class="tech-card" href="knee-bar.html"><span class="tech-name">Knee Bar</span><span class="arrow">→</span></a>
+<a class="tech-card" href="toe-hold.html"><span class="tech-name">Toe Hold</span><span class="arrow">→</span></a>
+<a class="tech-card" href="calf-slicer.html"><span class="tech-name">Calf Slicer</span><span class="arrow">→</span></a>
   </div>
-
+</div>
+<div class="cat-section" data-cat="passing">
+  <div class="cat-header">
+    <h2>Passing</h2><span class="cat-count">5</span>
+  </div>
+  <div class="tech-grid">
+<a class="tech-card" href="guard-pass.html"><span class="tech-name">Guard Pass</span><span class="arrow">→</span></a>
+<a class="tech-card" href="torreando-pass.html"><span class="tech-name">Torreando Pass</span><span class="arrow">→</span></a>
+<a class="tech-card" href="knee-slice-pass.html"><span class="tech-name">Knee Slice Pass</span><span class="arrow">→</span></a>
+<a class="tech-card" href="leg-drag-pass.html"><span class="tech-name">Leg Drag Pass</span><span class="arrow">→</span></a>
+<a class="tech-card" href="headquarters-pass.html"><span class="tech-name">Headquarters Pass</span><span class="arrow">→</span></a>
+  </div>
+</div>
+<div class="cat-section" data-cat="position">
+  <div class="cat-header">
+    <h2>Position</h2><span class="cat-count">6</span>
+  </div>
+  <div class="tech-grid">
+<a class="tech-card" href="mount.html"><span class="tech-name">Mount</span><span class="arrow">→</span></a>
+<a class="tech-card" href="back-mount.html"><span class="tech-name">Back Mount</span><span class="arrow">→</span></a>
+<a class="tech-card" href="side-control.html"><span class="tech-name">Side Control</span><span class="arrow">→</span></a>
+<a class="tech-card" href="north-south.html"><span class="tech-name">North-South</span><span class="arrow">→</span></a>
+<a class="tech-card" href="knee-on-belly.html"><span class="tech-name">Knee on Belly</span><span class="arrow">→</span></a>
+<a class="tech-card" href="turtle-position.html"><span class="tech-name">Turtle Position</span><span class="arrow">→</span></a>
+  </div>
+</div>
+<div class="cat-section" data-cat="sweep">
+  <div class="cat-header">
+    <h2>Sweep</h2><span class="cat-count">4</span>
+  </div>
+  <div class="tech-grid">
+<a class="tech-card" href="scissor-sweep.html"><span class="tech-name">Scissor Sweep</span><span class="arrow">→</span></a>
+<a class="tech-card" href="flower-sweep.html"><span class="tech-name">Flower Sweep</span><span class="arrow">→</span></a>
+<a class="tech-card" href="hip-bump-sweep.html"><span class="tech-name">Hip Bump Sweep</span><span class="arrow">→</span></a>
+<a class="tech-card" href="pendulum-sweep.html"><span class="tech-name">Pendulum Sweep</span><span class="arrow">→</span></a>
+  </div>
+</div>
+<div class="cat-section" data-cat="takedown">
+  <div class="cat-header">
+    <h2>Takedown</h2><span class="cat-count">4</span>
+  </div>
+  <div class="tech-grid">
+<a class="tech-card" href="double-leg-takedown.html"><span class="tech-name">Double Leg Takedown</span><span class="arrow">→</span></a>
+<a class="tech-card" href="single-leg-takedown.html"><span class="tech-name">Single Leg Takedown</span><span class="arrow">→</span></a>
+<a class="tech-card" href="osoto-gari.html"><span class="tech-name">Osoto Gari</span><span class="arrow">→</span></a>
+<a class="tech-card" href="ankle-pick.html"><span class="tech-name">Ankle Pick</span><span class="arrow">→</span></a>
+  </div>
+</div>
+<div class="cat-section" data-cat="transition">
+  <div class="cat-header">
+    <h2>Transition</h2><span class="cat-count">1</span>
+  </div>
+  <div class="tech-grid">
+<a class="tech-card" href="backtake.html"><span class="tech-name">Back Take</span><span class="arrow">→</span></a>
+  </div>
+</div>
 </div>
 <footer><p>BJJ Wiki — Free & Open Knowledge</p></footer>
 <script>
-
-  const pills = document.querySelectorAll('.filter-pill');
-  const searchInput = document.querySelector('#tech-search');
-  const catSections = document.querySelectorAll('.cat-section');
-  let activeFilter = 'all';
-
-  function applyFilter() {
-    const q = searchInput ? searchInput.value.toLowerCase() : '';
-    let anyVisible = false;
-    catSections.forEach(sec => {
-      const cat = sec.dataset.cat;
-      const cards = sec.querySelectorAll('.tech-card');
-      let secVisible = false;
-      cards.forEach(card => {
-        const name = card.querySelector('.tech-name').textContent.toLowerCase();
-        const matchFilter = activeFilter === 'all' || cat === activeFilter;
-        const matchSearch = name.includes(q);
-        const show = matchFilter && matchSearch;
-        card.style.display = show ? '' : 'none';
-        if (show) secVisible = true;
-      });
-      sec.style.display = secVisible ? '' : 'none';
-      if (secVisible) anyVisible = true;
+const pills = document.querySelectorAll('.filter-pill');
+const searchInput = document.getElementById('tech-search');
+const catSections = document.querySelectorAll('.cat-section');
+let activeFilter = 'all';
+function applyFilter(){
+  const q = searchInput ? searchInput.value.toLowerCase() : '';
+  let any = false;
+  catSections.forEach(sec=>{
+    const cat = sec.dataset.cat;
+    const cards = sec.querySelectorAll('.tech-card');
+    let vis = false;
+    cards.forEach(card=>{
+      const name = card.querySelector('.tech-name').textContent.toLowerCase();
+      const show = (activeFilter==='all'||cat===activeFilter) && name.includes(q);
+      card.style.display = show ? '' : 'none';
+      if(show) vis = true;
     });
-    let noRes = document.querySelector('.no-results');
-    if (!noRes) {
-      noRes = document.createElement('p');
-      noRes.className = 'no-results';
-      noRes.textContent = 'No techniques found.';
-      document.querySelector('.container').appendChild(noRes);
-    }
-    noRes.style.display = anyVisible ? 'none' : '';
-  }
-
-  pills.forEach(p => {
-    p.addEventListener('click', () => {
-      pills.forEach(x => x.classList.remove('active'));
-      p.classList.add('active');
-      activeFilter = p.dataset.filter;
-      applyFilter();
-    });
+    sec.style.display = vis ? '' : 'none';
+    if(vis) any = true;
   });
-
-  if (searchInput) searchInput.addEventListener('input', applyFilter);
+  let nr = document.querySelector('.no-results');
+  if(!nr){nr=document.createElement('p');nr.className='no-results';
+    nr.textContent='No techniques found.';
+    document.querySelector('.container').appendChild(nr);}
+  nr.style.display = any ? 'none' : '';
+}
+pills.forEach(p=>{p.addEventListener('click',()=>{
+  pills.forEach(x=>x.classList.remove('active'));
+  p.classList.add('active');
+  activeFilter=p.dataset.filter;
   applyFilter();
-
-</script>
+})});
+if(searchInput) searchInput.addEventListener('input',applyFilter);
+applyFilter();</script>
 </body>
 </html>

@@ -9,115 +9,120 @@
 <meta property="og:title" content="Sprawl BJJ: Guia Completo da Técnica Essencial de Defesa no Jiu-Jitsu">
 <meta property="og:description" content="Aprenda o sprawl no BJJ: defesa crucial contra quedas e quedas. Domine a técnica passo a passo, evite erros comuns e melhore sua defesa no Jiu-Jitsu com este guia completo.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://YOUR_USERNAME.github.io/bjj-wiki/pt/sprawl.html">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/sprawl.html">
-<link rel="alternate" hreflang="en" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/sprawl.html">
-<link rel="alternate" hreflang="ja" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/sprawl.html">
-<link rel="alternate" hreflang="pt" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/sprawl.html">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/pt/sprawl.html">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/pt/sprawl.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/sprawl.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/sprawl.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/sprawl.html">
 <style>
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.75;padding:0 16px}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;
-    --red:#ef4444;--yellow:#f59e0b;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.7;padding:0 16px}
-  a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
+/* Layout */
+.container{max-width:860px;margin:0 auto;padding-bottom:80px}
 
-  /* Nav */
-  nav{max-width:860px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:16px;font-size:0.85rem;color:var(--muted)}
-  .nav-links a{color:var(--muted)}
-  .nav-links a:hover{color:var(--text)}
+/* Header / Nav */
+header{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
+  margin-bottom:40px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:16px}
+header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
+  border-radius:6px;border:1px solid transparent}
+header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
+.lang-switcher{font-size:0.82rem;color:var(--muted)}
+.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
+  border:1px solid var(--border)}
+.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
 
-  /* Hero */
-  .hero{max-width:860px;margin:48px auto 0;padding:40px;
-    background:linear-gradient(135deg,#141926 0%,#1a1440 100%);
-    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;background:var(--accent);opacity:0.06;border-radius:50%}
-  .category-badge{display:inline-block;padding:4px 12px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid var(--border);margin-bottom:16px}
-  .hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;margin-bottom:12px}
-  .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-    border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);
-    background:var(--card)}
-  .badge.beginner{color:var(--green);border-color:#166534}
-  .badge.intermediate{color:var(--yellow);border-color:#78350f}
-  .badge.advanced{color:var(--red);border-color:#7f1d1d}
+/* Category & belt badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
+.belt{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  margin-left:6px;border:1px solid var(--border)}
+.belt-white{color:#e8eaf6;border-color:#3a3a4a;background:#1e1e2e}
+.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
+.belt-purple{color:#c084fc;border-color:#4c1d95;background:#1e0f38}
+.belt-brown{color:#d97706;border-color:#78350f;background:#241500}
+.belt-black{color:#9ca3af;border-color:#374151;background:#111827}
 
-  /* Content */
-  .content{max-width:860px;margin:32px auto 80px;
-    display:grid;grid-template-columns:1fr 280px;gap:24px}
-  @media(max-width:700px){.content{grid-template-columns:1fr}}
-  .main-col{}
-  .side-col{}
+/* H1 */
+h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
+  letter-spacing:-0.02em}
+@media(max-width:600px){h1{font-size:1.7rem}}
 
-  /* Sections */
-  .section{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px;margin-bottom:20px}
-  .section h2{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px}
-  .section h2::before{content:'';width:3px;height:16px;
-    background:var(--accent);border-radius:2px;display:block}
-  .section p{color:#c4c9e0;margin-bottom:12px;font-size:0.95rem}
-  .section p:last-child{margin-bottom:0}
-  .section ul,.section ol{padding-left:20px;color:#c4c9e0;font-size:0.95rem}
-  .section li{margin-bottom:6px}
+/* Lead paragraph */
+h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
 
-  /* Steps */
-  .steps{list-style:none;padding:0}
-  .steps li{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-  .step-num{min-width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.75rem;font-weight:700;color:white;flex-shrink:0}
+/* Section headings */
+h2{font-size:1rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;
+  margin:28px 0 12px}
+h2::before{content:'';width:3px;height:14px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;display:block;flex-shrink:0}
 
-  /* Sidebar cards */
-  .info-card{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:20px;margin-bottom:16px}
-  .info-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-  .info-row{display:flex;justify-content:space-between;align-items:center;
-    padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem}
-  .info-row:last-child{border-bottom:none}
-  .info-row .label{color:var(--muted)}
-  .info-row .value{font-weight:600}
+/* Content cards */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:8px}
+.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
+.card p + p{margin-top:12px}
+.card strong{color:var(--text)}
 
-  /* Tag list */
-  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .tag{padding:4px 10px;border-radius:6px;font-size:0.78rem;
-    background:#1f2840;color:var(--muted);border:1px solid var(--border)}
+/* Step items inside cards */
+.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.card .step:last-child{margin-bottom:0}
+.step-num{min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
 
-  /* Related */
-  .related-links{display:flex;flex-direction:column;gap:8px}
-  .related-link{padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-    background:var(--surface);font-size:0.88rem;color:var(--text);
-    transition:border-color .2s,background .2s}
-  .related-link:hover{border-color:var(--accent);background:#141926;text-decoration:none}
+/* Affiliate box */
+.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
+  border:1px solid #2d2060;border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
+.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.9rem;
+  transition:opacity .2s,transform .15s}
+.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
 
-  /* Lang switch */
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-top:8px}
+.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
+.faq p{color:#c4cce8;font-size:0.92rem}
 
-  footer{max-width:860px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
+/* Related links */
+.related-links{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.related-links a{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;color:var(--text);
+  transition:border-color .2s,background .2s}
+.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
+  transition:color .2s,transform .2s}
+.related-links a:hover{border-color:var(--accent);background:#1a1e30;
+  text-decoration:none}
+.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
 
+footer{padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
 </style>
 </head>
 <body>
@@ -137,19 +142,19 @@
   <p>O sprawl é uma das defesas mais fundamentais e eficazes no Brazilian Jiu-Jitsu, essencial para qualquer praticante. Consiste em uma explosão de quadril para trás, criando distância e peso sobre o oponente que tenta uma queda, anulando seu ataque. Dominar o sprawl é crucial para manter a luta em pé e evitar ser levado ao chão contra sua vontade.</p>
 
   <h2>Como Executar</h2>
-  <div class="card"><p>**1. Posição Inicial e Percepção:** Comece em uma base atlética, com os joelhos levemente flexionados e o peso distribuído. Ao perceber a tentativa de queda do oponente (single leg, double leg), reaja instantaneamente.<br>**2. Explosão de Quadril:** Com um movimento explosivo, jogue o quadril para trás e para baixo, como se quisesse tocar o chão com a virilha, esticando as pernas rapidamente.<br>**3. Pernas Esticadas e Pés para Trás:** Estenda as pernas para trás, com os pés apontando para longe do oponente, garantindo que suas pernas fiquem fora do alcance dele e que seu peso corporal recaia sobre ele.<br>**4. Peito e Braços Ativos:** Mantenha o peito baixo, aplicando pressão sobre as costas do oponente. Use os braços para bloquear a cabeça ou ombros dele, impedindo que ele se levante ou mude o ângulo.<br>**5. Controle e Transição:** Mantenha a pressão com o quadril e o peito, controlando a cabeça e os braços do oponente. A partir daqui, você pode fazer a transição para posições de controle como a guarda lateral ou as costas.<br>**6. Mantenha a Postura:** Evite curvar as costas; mantenha a coluna reta e a cabeça erguida para não expor seu pescoço a estrangulamentos ou ser pego de costas.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>1. Posição Inicial e Percepção:</strong> Comece em uma base atlética, com os joelhos levemente flexionados e o peso distribuído. Ao perceber a tentativa de queda do oponente (single leg, double leg), reaja instantaneamente.</div></div><div class="step"><div class="step-num">2</div><div><strong>2. Explosão de Quadril:</strong> Com um movimento explosivo, jogue o quadril para trás e para baixo, como se quisesse tocar o chão com a virilha, esticando as pernas rapidamente.</div></div><div class="step"><div class="step-num">3</div><div><strong>3. Pernas Esticadas e Pés para Trás:</strong> Estenda as pernas para trás, com os pés apontando para longe do oponente, garantindo que suas pernas fiquem fora do alcance dele e que seu peso corporal recaia sobre ele.</div></div><div class="step"><div class="step-num">4</div><div><strong>4. Peito e Braços Ativos:</strong> Mantenha o peito baixo, aplicando pressão sobre as costas do oponente. Use os braços para bloquear a cabeça ou ombros dele, impedindo que ele se levante ou mude o ângulo.</div></div><div class="step"><div class="step-num">5</div><div><strong>5. Controle e Transição:</strong> Mantenha a pressão com o quadril e o peito, controlando a cabeça e os braços do oponente. A partir daqui, você pode fazer a transição para posições de controle como a guarda lateral ou as costas.</div></div><div class="step"><div class="step-num">6</div><div><strong>6. Mantenha a Postura:</strong> Evite curvar as costas; mantenha a coluna reta e a cabeça erguida para não expor seu pescoço a estrangulamentos ou ser pego de costas.</div></div></div>
 
   <h2>Detalhes e Dicas</h2>
-  <div class="card"><p>**Explosão é Prioridade:** A velocidade e a explosão no movimento do quadril são mais importantes do que apenas a força bruta para anular a tentativa de queda.<br>**Peso no Oponente:** O objetivo é transferir todo o seu peso para as costas do oponente, esmagando-o contra o chão e dificultando que ele mantenha a pegada ou se levante.<br>**Pernas para Trás:** Certifique-se de que suas pernas estejam bem esticadas e para trás, fora do alcance das mãos do oponente, para que ele não consiga reagarrá-las.<br>**Postura da Cabeça e Costas:** Mantenha a cabeça erguida e as costas retas para evitar ser pego em guilhotinas ou expor as costas ao adversário.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Explosão é Prioridade:</strong> A velocidade e a explosão no movimento do quadril são mais importantes do que apenas a força bruta para anular a tentativa de queda.</div></div><div class="step"><div class="step-num">2</div><div><strong>Peso no Oponente:</strong> O objetivo é transferir todo o seu peso para as costas do oponente, esmagando-o contra o chão e dificultando que ele mantenha a pegada ou se levante.</div></div><div class="step"><div class="step-num">3</div><div><strong>Pernas para Trás:</strong> Certifique-se de que suas pernas estejam bem esticadas e para trás, fora do alcance das mãos do oponente, para que ele não consiga reagarrá-las.</div></div><div class="step"><div class="step-num">4</div><div><strong>Postura da Cabeça e Costas:</strong> Mantenha a cabeça erguida e as costas retas para evitar ser pego em guilhotinas ou expor as costas ao adversário.</div></div></div>
 
   <h2>Variações</h2>
-  <div class="card"><p>**Sprawl com Transição para Controle:** Após o sprawl, em vez de apenas soltar, use a pressão para girar para a guarda lateral, norte-sul ou até mesmo para as costas do oponente.<br>**Sprawl Defensivo para Double Leg:** A técnica é a mesma, mas a ênfase é em jogar os dois quadris para trás simultaneamente, esmagando o oponente que tenta pegar as duas pernas.<br>**Sprawl e Recuperação da Guarda:** Se o oponente conseguir pegar a perna, mas você ainda conseguir jogar o quadril para trás, o sprawl pode ajudar a criar espaço para você puxar as pernas de volta e recuperar a guarda.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Sprawl com Transição para Controle:</strong> Após o sprawl, em vez de apenas soltar, use a pressão para girar para a guarda lateral, norte-sul ou até mesmo para as costas do oponente.</div></div><div class="step"><div class="step-num">2</div><div><strong>Sprawl Defensivo para Double Leg:</strong> A técnica é a mesma, mas a ênfase é em jogar os dois quadris para trás simultaneamente, esmagando o oponente que tenta pegar as duas pernas.</div></div><div class="step"><div class="step-num">3</div><div><strong>Sprawl e Recuperação da Guarda:</strong> Se o oponente conseguir pegar a perna, mas você ainda conseguir jogar o quadril para trás, o sprawl pode ajudar a criar espaço para você puxar as pernas de volta e recuperar a guarda.</div></div></div>
 
   <h2>Quando Usar</h2>
   <div class="card"><p>O sprawl é utilizado principalmente em situações de luta em pé, para defender-se de tentativas de quedas como o single leg (pegada em uma perna) e o double leg (pegada nas duas pernas). É a primeira linha de defesa quando o oponente tenta diminuir a distância e te levar ao chão.</p></div>
 
   <h2>Defesas e Contra-ataques</h2>
-  <div class="card"><p>**Mudar o Nível e Re-atacar:** Se o oponente sprawl, o atacante pode mudar o nível e tentar uma nova queda ou puxar o oponente para a guarda.<br>**Transição para Ataque de Costas:** Se o sprawl for muito agressivo e o oponente esticar-se demais, o atacante pode girar e buscar as costas, aproveitando a exposição.<br>**Front Headlock/Guilhotina:** Ao sentir o peso do sprawl, o atacante pode tentar pegar a cabeça e um braço do oponente (front headlock) e, a partir daí, buscar uma guilhotina ou anaconda.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Mudar o Nível e Re-atacar:</strong> Se o oponente sprawl, o atacante pode mudar o nível e tentar uma nova queda ou puxar o oponente para a guarda.</div></div><div class="step"><div class="step-num">2</div><div><strong>Transição para Ataque de Costas:</strong> Se o sprawl for muito agressivo e o oponente esticar-se demais, o atacante pode girar e buscar as costas, aproveitando a exposição.</div></div><div class="step"><div class="step-num">3</div><div><strong>Front Headlock/Guilhotina:</strong> Ao sentir o peso do sprawl, o atacante pode tentar pegar a cabeça e um braço do oponente (front headlock) e, a partir daí, buscar uma guilhotina ou anaconda.</div></div></div>
 
   <!-- BJJ Fanatics アフィリエイト -->
   <div class="aff-box">

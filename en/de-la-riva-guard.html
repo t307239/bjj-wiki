@@ -9,115 +9,120 @@
 <meta property="og:title" content="Mastering the De La Riva Guard: A Comprehensive BJJ Technique Guide">
 <meta property="og:description" content="Unlock the secrets of the De La Riva Guard in BJJ. Learn step-by-step techniques, essential details, and common attacks from this powerful open guard position.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://YOUR_USERNAME.github.io/bjj-wiki/en/de-la-riva-guard.html">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/de-la-riva-guard.html">
-<link rel="alternate" hreflang="en" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/de-la-riva-guard.html">
-<link rel="alternate" hreflang="ja" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/de-la-riva-guard.html">
-<link rel="alternate" hreflang="pt" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/de-la-riva-guard.html">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/en/de-la-riva-guard.html">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/en/de-la-riva-guard.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/de-la-riva-guard.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/de-la-riva-guard.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/de-la-riva-guard.html">
 <style>
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.75;padding:0 16px}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;
-    --red:#ef4444;--yellow:#f59e0b;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.7;padding:0 16px}
-  a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
+/* Layout */
+.container{max-width:860px;margin:0 auto;padding-bottom:80px}
 
-  /* Nav */
-  nav{max-width:860px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:16px;font-size:0.85rem;color:var(--muted)}
-  .nav-links a{color:var(--muted)}
-  .nav-links a:hover{color:var(--text)}
+/* Header / Nav */
+header{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
+  margin-bottom:40px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:16px}
+header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
+  border-radius:6px;border:1px solid transparent}
+header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
+.lang-switcher{font-size:0.82rem;color:var(--muted)}
+.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
+  border:1px solid var(--border)}
+.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
 
-  /* Hero */
-  .hero{max-width:860px;margin:48px auto 0;padding:40px;
-    background:linear-gradient(135deg,#141926 0%,#1a1440 100%);
-    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;background:var(--accent);opacity:0.06;border-radius:50%}
-  .category-badge{display:inline-block;padding:4px 12px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid var(--border);margin-bottom:16px}
-  .hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;margin-bottom:12px}
-  .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-    border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);
-    background:var(--card)}
-  .badge.beginner{color:var(--green);border-color:#166534}
-  .badge.intermediate{color:var(--yellow);border-color:#78350f}
-  .badge.advanced{color:var(--red);border-color:#7f1d1d}
+/* Category & belt badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
+.belt{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  margin-left:6px;border:1px solid var(--border)}
+.belt-white{color:#e8eaf6;border-color:#3a3a4a;background:#1e1e2e}
+.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
+.belt-purple{color:#c084fc;border-color:#4c1d95;background:#1e0f38}
+.belt-brown{color:#d97706;border-color:#78350f;background:#241500}
+.belt-black{color:#9ca3af;border-color:#374151;background:#111827}
 
-  /* Content */
-  .content{max-width:860px;margin:32px auto 80px;
-    display:grid;grid-template-columns:1fr 280px;gap:24px}
-  @media(max-width:700px){.content{grid-template-columns:1fr}}
-  .main-col{}
-  .side-col{}
+/* H1 */
+h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
+  letter-spacing:-0.02em}
+@media(max-width:600px){h1{font-size:1.7rem}}
 
-  /* Sections */
-  .section{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px;margin-bottom:20px}
-  .section h2{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px}
-  .section h2::before{content:'';width:3px;height:16px;
-    background:var(--accent);border-radius:2px;display:block}
-  .section p{color:#c4c9e0;margin-bottom:12px;font-size:0.95rem}
-  .section p:last-child{margin-bottom:0}
-  .section ul,.section ol{padding-left:20px;color:#c4c9e0;font-size:0.95rem}
-  .section li{margin-bottom:6px}
+/* Lead paragraph */
+h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
 
-  /* Steps */
-  .steps{list-style:none;padding:0}
-  .steps li{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-  .step-num{min-width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.75rem;font-weight:700;color:white;flex-shrink:0}
+/* Section headings */
+h2{font-size:1rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;
+  margin:28px 0 12px}
+h2::before{content:'';width:3px;height:14px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;display:block;flex-shrink:0}
 
-  /* Sidebar cards */
-  .info-card{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:20px;margin-bottom:16px}
-  .info-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-  .info-row{display:flex;justify-content:space-between;align-items:center;
-    padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem}
-  .info-row:last-child{border-bottom:none}
-  .info-row .label{color:var(--muted)}
-  .info-row .value{font-weight:600}
+/* Content cards */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:8px}
+.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
+.card p + p{margin-top:12px}
+.card strong{color:var(--text)}
 
-  /* Tag list */
-  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .tag{padding:4px 10px;border-radius:6px;font-size:0.78rem;
-    background:#1f2840;color:var(--muted);border:1px solid var(--border)}
+/* Step items inside cards */
+.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.card .step:last-child{margin-bottom:0}
+.step-num{min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
 
-  /* Related */
-  .related-links{display:flex;flex-direction:column;gap:8px}
-  .related-link{padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-    background:var(--surface);font-size:0.88rem;color:var(--text);
-    transition:border-color .2s,background .2s}
-  .related-link:hover{border-color:var(--accent);background:#141926;text-decoration:none}
+/* Affiliate box */
+.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
+  border:1px solid #2d2060;border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
+.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.9rem;
+  transition:opacity .2s,transform .15s}
+.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
 
-  /* Lang switch */
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-top:8px}
+.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
+.faq p{color:#c4cce8;font-size:0.92rem}
 
-  footer{max-width:860px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
+/* Related links */
+.related-links{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.related-links a{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;color:var(--text);
+  transition:border-color .2s,background .2s}
+.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
+  transition:color .2s,transform .2s}
+.related-links a:hover{border-color:var(--accent);background:#1a1e30;
+  text-decoration:none}
+.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
 
+footer{padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
 </style>
 </head>
 <body>
@@ -137,19 +142,19 @@
   <p>The De La Riva Guard is a highly effective open guard position in Brazilian Jiu-Jitsu, named after its inventor, Ricardo De La Riva. It involves using one leg to hook behind an opponent's leg, creating leverage and control for sweeps and submissions. This versatile guard provides excellent opportunities to off-balance and attack your opponent.</p>
 
   <h2>How to Execute</h2>
-  <div class="card"><p>**Establish Position:** Start in open guard, placing one foot on your opponent's hip (opposite side of the leg you'll attack) to control distance.<br>**DLR Hook:** Thread your other leg around the outside of your opponent's thigh, hooking your instep behind their knee or calf.<br>**Grip Control:** Secure a strong grip on your opponent's ankle (same side as your DLR hook) and a sleeve grip on their opposite arm.<br>**Create Angle & Off-Balance:** Use your hip foot to push and your DLR hook to pull, creating an angle and disrupting their base.<br>**Maintain Posture:** Keep your core engaged and your head up, preventing your opponent from flattening you or disengaging.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Establish Position:</strong> Start in open guard, placing one foot on your opponent's hip (opposite side of the leg you'll attack) to control distance.</div></div><div class="step"><div class="step-num">2</div><div><strong>DLR Hook:</strong> Thread your other leg around the outside of your opponent's thigh, hooking your instep behind their knee or calf.</div></div><div class="step"><div class="step-num">3</div><div><strong>Grip Control:</strong> Secure a strong grip on your opponent's ankle (same side as your DLR hook) and a sleeve grip on their opposite arm.</div></div><div class="step"><div class="step-num">4</div><div><strong>Create Angle & Off-Balance:</strong> Use your hip foot to push and your DLR hook to pull, creating an angle and disrupting their base.</div></div><div class="step"><div class="step-num">5</div><div><strong>Maintain Posture:</strong> Keep your core engaged and your head up, preventing your opponent from flattening you or disengaging.</div></div></div>
 
   <h2>Key Details & Tips</h2>
-  <div class="card"><p>**Hip Connection:** Maintain constant pressure with your foot on the hip to control distance and create angles for attacks.<br>**Shin-to-Shin:** Ensure your DLR hook's shin is tight against their thigh, preventing them from easily stepping out or stripping your leg.<br>**Grip Synergy:** Your ankle and sleeve grips must work together with your hooks to break posture and off-balance, setting up sweeps and submissions.<br>**Mobility:** Don't be static; constantly adjust your hips and angle to keep your opponent reacting and prevent them from settling into a pass.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Hip Connection:</strong> Maintain constant pressure with your foot on the hip to control distance and create angles for attacks.</div></div><div class="step"><div class="step-num">2</div><div><strong>Shin-to-Shin:</strong> Ensure your DLR hook's shin is tight against their thigh, preventing them from easily stepping out or stripping your leg.</div></div><div class="step"><div class="step-num">3</div><div><strong>Grip Synergy:</strong> Your ankle and sleeve grips must work together with your hooks to break posture and off-balance, setting up sweeps and submissions.</div></div><div class="step"><div class="step-num">4</div><div><strong>Mobility:</strong> Don't be static; constantly adjust your hips and angle to keep your opponent reacting and prevent them from settling into a pass.</div></div></div>
 
   <h2>Variations</h2>
-  <div class="card"><p>**Reverse De La Riva Guard:** Involves hooking the opponent's leg from the inside, often used for different sweep entries and back takes.<br>**Spider-De La Riva Hybrid:** Combines the DLR hook with a spider guard foot on the bicep for enhanced control and submission threats.<br>**Berimbolo Entry:** The De La Riva Guard is a fundamental entry point for the modern Berimbolo sweep, allowing you to invert and take the back.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Reverse De La Riva Guard:</strong> Involves hooking the opponent's leg from the inside, often used for different sweep entries and back takes.</div></div><div class="step"><div class="step-num">2</div><div><strong>Spider-De La Riva Hybrid:</strong> Combines the DLR hook with a spider guard foot on the bicep for enhanced control and submission threats.</div></div><div class="step"><div class="step-num">3</div><div><strong>Berimbolo Entry:</strong> The De La Riva Guard is a fundamental entry point for the modern Berimbolo sweep, allowing you to invert and take the back.</div></div></div>
 
   <h2>When to Use</h2>
   <div class="card"><p>The De La Riva Guard works best when your opponent stands up in your open guard, especially if they try to pass by stepping forward. It's ideal for creating angles and distance to prevent strong pressure passing, and for setting up various sweeps like the tripod sweep, ankle pick, or omoplata.</p></div>
 
   <h2>Counters & Defenses</h2>
-  <div class="card"><p>**Leg Weave Pass:** Opponent steps over your DLR hook leg, weaves their arm through to control your leg, and flattens you for the pass.<br>**Knee Slice Pass:** Opponent pushes your hip foot away, brings their knee through the middle, and drives forward to pass your guard.<br>**Stripping Grips:** Opponent focuses on breaking your ankle and sleeve grips to neutralize your primary control points and disengage.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Leg Weave Pass:</strong> Opponent steps over your DLR hook leg, weaves their arm through to control your leg, and flattens you for the pass.</div></div><div class="step"><div class="step-num">2</div><div><strong>Knee Slice Pass:</strong> Opponent pushes your hip foot away, brings their knee through the middle, and drives forward to pass your guard.</div></div><div class="step"><div class="step-num">3</div><div><strong>Stripping Grips:</strong> Opponent focuses on breaking your ankle and sleeve grips to neutralize your primary control points and disengage.</div></div></div>
 
   <!-- BJJ Fanatics アフィリエイト -->
   <div class="aff-box">

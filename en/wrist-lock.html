@@ -9,115 +9,120 @@
 <meta property="og:title" content="BJJ Wrist Lock Technique Guide: Master the Art of Joint Manipulation">
 <meta property="og:description" content="Learn to apply effective BJJ wrist locks from various positions. This comprehensive guide covers step-by-step technique, common variations, and crucial details for success in Brazilian Jiu-Jitsu.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://YOUR_USERNAME.github.io/bjj-wiki/en/wrist-lock.html">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/wrist-lock.html">
-<link rel="alternate" hreflang="en" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/wrist-lock.html">
-<link rel="alternate" hreflang="ja" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/wrist-lock.html">
-<link rel="alternate" hreflang="pt" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/wrist-lock.html">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/en/wrist-lock.html">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/en/wrist-lock.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/wrist-lock.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/wrist-lock.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/wrist-lock.html">
 <style>
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.75;padding:0 16px}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;
-    --red:#ef4444;--yellow:#f59e0b;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.7;padding:0 16px}
-  a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
+/* Layout */
+.container{max-width:860px;margin:0 auto;padding-bottom:80px}
 
-  /* Nav */
-  nav{max-width:860px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:16px;font-size:0.85rem;color:var(--muted)}
-  .nav-links a{color:var(--muted)}
-  .nav-links a:hover{color:var(--text)}
+/* Header / Nav */
+header{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
+  margin-bottom:40px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:16px}
+header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
+  border-radius:6px;border:1px solid transparent}
+header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
+.lang-switcher{font-size:0.82rem;color:var(--muted)}
+.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
+  border:1px solid var(--border)}
+.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
 
-  /* Hero */
-  .hero{max-width:860px;margin:48px auto 0;padding:40px;
-    background:linear-gradient(135deg,#141926 0%,#1a1440 100%);
-    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;background:var(--accent);opacity:0.06;border-radius:50%}
-  .category-badge{display:inline-block;padding:4px 12px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid var(--border);margin-bottom:16px}
-  .hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;margin-bottom:12px}
-  .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-    border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);
-    background:var(--card)}
-  .badge.beginner{color:var(--green);border-color:#166534}
-  .badge.intermediate{color:var(--yellow);border-color:#78350f}
-  .badge.advanced{color:var(--red);border-color:#7f1d1d}
+/* Category & belt badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
+.belt{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  margin-left:6px;border:1px solid var(--border)}
+.belt-white{color:#e8eaf6;border-color:#3a3a4a;background:#1e1e2e}
+.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
+.belt-purple{color:#c084fc;border-color:#4c1d95;background:#1e0f38}
+.belt-brown{color:#d97706;border-color:#78350f;background:#241500}
+.belt-black{color:#9ca3af;border-color:#374151;background:#111827}
 
-  /* Content */
-  .content{max-width:860px;margin:32px auto 80px;
-    display:grid;grid-template-columns:1fr 280px;gap:24px}
-  @media(max-width:700px){.content{grid-template-columns:1fr}}
-  .main-col{}
-  .side-col{}
+/* H1 */
+h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
+  letter-spacing:-0.02em}
+@media(max-width:600px){h1{font-size:1.7rem}}
 
-  /* Sections */
-  .section{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px;margin-bottom:20px}
-  .section h2{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px}
-  .section h2::before{content:'';width:3px;height:16px;
-    background:var(--accent);border-radius:2px;display:block}
-  .section p{color:#c4c9e0;margin-bottom:12px;font-size:0.95rem}
-  .section p:last-child{margin-bottom:0}
-  .section ul,.section ol{padding-left:20px;color:#c4c9e0;font-size:0.95rem}
-  .section li{margin-bottom:6px}
+/* Lead paragraph */
+h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
 
-  /* Steps */
-  .steps{list-style:none;padding:0}
-  .steps li{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-  .step-num{min-width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.75rem;font-weight:700;color:white;flex-shrink:0}
+/* Section headings */
+h2{font-size:1rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;
+  margin:28px 0 12px}
+h2::before{content:'';width:3px;height:14px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;display:block;flex-shrink:0}
 
-  /* Sidebar cards */
-  .info-card{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:20px;margin-bottom:16px}
-  .info-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-  .info-row{display:flex;justify-content:space-between;align-items:center;
-    padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem}
-  .info-row:last-child{border-bottom:none}
-  .info-row .label{color:var(--muted)}
-  .info-row .value{font-weight:600}
+/* Content cards */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:8px}
+.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
+.card p + p{margin-top:12px}
+.card strong{color:var(--text)}
 
-  /* Tag list */
-  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .tag{padding:4px 10px;border-radius:6px;font-size:0.78rem;
-    background:#1f2840;color:var(--muted);border:1px solid var(--border)}
+/* Step items inside cards */
+.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.card .step:last-child{margin-bottom:0}
+.step-num{min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
 
-  /* Related */
-  .related-links{display:flex;flex-direction:column;gap:8px}
-  .related-link{padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-    background:var(--surface);font-size:0.88rem;color:var(--text);
-    transition:border-color .2s,background .2s}
-  .related-link:hover{border-color:var(--accent);background:#141926;text-decoration:none}
+/* Affiliate box */
+.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
+  border:1px solid #2d2060;border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
+.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.9rem;
+  transition:opacity .2s,transform .15s}
+.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
 
-  /* Lang switch */
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-top:8px}
+.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
+.faq p{color:#c4cce8;font-size:0.92rem}
 
-  footer{max-width:860px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
+/* Related links */
+.related-links{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.related-links a{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;color:var(--text);
+  transition:border-color .2s,background .2s}
+.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
+  transition:color .2s,transform .2s}
+.related-links a:hover{border-color:var(--accent);background:#1a1e30;
+  text-decoration:none}
+.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
 
+footer{padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
 </style>
 </head>
 <body>
@@ -137,19 +142,19 @@
   <p>The wrist lock is a potent joint lock in Brazilian Jiu-Jitsu that targets the opponent's wrist joint, causing pain and forcing a tap. Often underestimated, it can be a highly effective submission when applied correctly and opportunistically from various positions. Mastering the wrist lock adds a powerful, often unexpected, weapon to your BJJ arsenal.</p>
 
   <h2>How to Execute</h2>
-  <div class="card"><p>**Isolate the Wrist:** Begin by isolating your opponent's wrist, often by gripping their hand or sleeve. Ensure you have a strong, controlling grip that prevents them from easily pulling their hand away.<br>**Control the Hand:** With one hand, cup the back of their hand or fingers, ensuring their palm is facing you or slightly upwards. Your other hand should secure their wrist just above the hand.<br>**Create Leverage:** Position your thumbs on the back of their hand, near the knuckles, and your fingers wrapped around their palm. Your other hand provides stability and prevents their wrist from rotating.<br>**Apply Pressure:** Gently but firmly push their knuckles towards their forearm while simultaneously flexing their wrist downwards. The pressure should be directed to bend the wrist beyond its natural range of motion.<br>**Maintain Control & Finish:** Keep a tight grip and slowly increase the pressure until your opponent taps. Ensure your body position supports the leverage and prevents them from escaping.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Isolate the Wrist:</strong> Begin by isolating your opponent's wrist, often by gripping their hand or sleeve. Ensure you have a strong, controlling grip that prevents them from easily pulling their hand away.</div></div><div class="step"><div class="step-num">2</div><div><strong>Control the Hand:</strong> With one hand, cup the back of their hand or fingers, ensuring their palm is facing you or slightly upwards. Your other hand should secure their wrist just above the hand.</div></div><div class="step"><div class="step-num">3</div><div><strong>Create Leverage:</strong> Position your thumbs on the back of their hand, near the knuckles, and your fingers wrapped around their palm. Your other hand provides stability and prevents their wrist from rotating.</div></div><div class="step"><div class="step-num">4</div><div><strong>Apply Pressure:</strong> Gently but firmly push their knuckles towards their forearm while simultaneously flexing their wrist downwards. The pressure should be directed to bend the wrist beyond its natural range of motion.</div></div><div class="step"><div class="step-num">5</div><div><strong>Maintain Control & Finish:</strong> Keep a tight grip and slowly increase the pressure until your opponent taps. Ensure your body position supports the leverage and prevents them from escaping.</div></div></div>
 
   <h2>Key Details & Tips</h2>
-  <div class="card"><p>**Subtle Application:** Wrist locks are often 'sneaky' and require precise timing and control rather than brute force. Focus on angles and leverage.<br>**Opponent Reaction:** Many opponents will instinctively pull away or try to flatten their hand, which can sometimes make the lock easier to apply if you maintain control and follow their movement.<br>**Safety First:** Apply pressure slowly and allow your partner ample time to tap. Wrist locks can cause injury if applied too quickly or with excessive force, so always prioritize safety.<br>**Body Mechanics:** Use your whole body, not just your arms, to create leverage and maintain control, making the submission more powerful and less fatiguing for you.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Subtle Application:</strong> Wrist locks are often 'sneaky' and require precise timing and control rather than brute force. Focus on angles and leverage.</div></div><div class="step"><div class="step-num">2</div><div><strong>Opponent Reaction:</strong> Many opponents will instinctively pull away or try to flatten their hand, which can sometimes make the lock easier to apply if you maintain control and follow their movement.</div></div><div class="step"><div class="step-num">3</div><div><strong>Safety First:</strong> Apply pressure slowly and allow your partner ample time to tap. Wrist locks can cause injury if applied too quickly or with excessive force, so always prioritize safety.</div></div><div class="step"><div class="step-num">4</div><div><strong>Body Mechanics:</strong> Use your whole body, not just your arms, to create leverage and maintain control, making the submission more powerful and less fatiguing for you.</div></div></div>
 
   <h2>Variations</h2>
-  <div class="card"><p>**Sleeve Grip Wrist Lock:** Often applied from guard or mount, using a sleeve grip to control the hand and applying pressure with the other hand to bend the wrist.<br>**Straight Jacket Wrist Lock:** From side control or mount, using your arm to pin their wrist to the mat and applying pressure with your body weight and hand.<br>**Figure-Four Wrist Lock:** Securing the opponent's wrist with one hand and then using your other hand to grab your own wrist, creating a figure-four grip for maximum leverage and control.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Sleeve Grip Wrist Lock:</strong> Often applied from guard or mount, using a sleeve grip to control the hand and applying pressure with the other hand to bend the wrist.</div></div><div class="step"><div class="step-num">2</div><div><strong>Straight Jacket Wrist Lock:</strong> From side control or mount, using your arm to pin their wrist to the mat and applying pressure with your body weight and hand.</div></div><div class="step"><div class="step-num">3</div><div><strong>Figure-Four Wrist Lock:</strong> Securing the opponent's wrist with one hand and then using your other hand to grab your own wrist, creating a figure-four grip for maximum leverage and control.</div></div></div>
 
   <h2>When to Use</h2>
   <div class="card"><p>Wrist locks are highly versatile and can be applied from various positions. They are particularly effective from the guard (especially closed or spider guard) when your opponent posts their hand, from side control or mount when they defend by posting, or standing in the clinch when an opponent grips your gi or body. Opportunistic wrist locks can also be caught during scrambles or transitions when an opponent is trying to regain posture or balance.</p></div>
 
   <h2>Counters & Defenses</h2>
-  <div class="card"><p>**Pull Hand Back & Curl:** Immediately pull your hand away and out of the grip, curling your fingers into a tight fist to reduce the surface area and strength of your wrist.<br>**Rotate Wrist:** Rotate your wrist to relieve the pressure and break the angle of the lock, making it harder for the opponent to apply the necessary bend.<br>**Straighten Arm:** Fully extend your arm and straighten your wrist to remove the bend, eliminating the leverage point for the wrist lock.<br>**Attack the Grip:** Directly attack the opponent's grip on your hand or wrist, peeling away their fingers or breaking their hold.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Pull Hand Back & Curl:</strong> Immediately pull your hand away and out of the grip, curling your fingers into a tight fist to reduce the surface area and strength of your wrist.</div></div><div class="step"><div class="step-num">2</div><div><strong>Rotate Wrist:</strong> Rotate your wrist to relieve the pressure and break the angle of the lock, making it harder for the opponent to apply the necessary bend.</div></div><div class="step"><div class="step-num">3</div><div><strong>Straighten Arm:</strong> Fully extend your arm and straighten your wrist to remove the bend, eliminating the leverage point for the wrist lock.</div></div><div class="step"><div class="step-num">4</div><div><strong>Attack the Grip:</strong> Directly attack the opponent's grip on your hand or wrist, peeling away their fingers or breaking their hold.</div></div></div>
 
   <!-- BJJ Fanatics アフィリエイト -->
   <div class="aff-box">

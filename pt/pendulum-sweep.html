@@ -9,115 +9,120 @@
 <meta property="og:title" content="Pendulum Sweep BJJ: Guia Completo da Raspagem Pêndulo no Jiu-Jitsu">
 <meta property="og:description" content="Domine a Pendulum Sweep no BJJ com nosso guia detalhado. Aprenda passo a passo a raspagem pêndulo, suas variações e dicas para aplicar com sucesso no tatame.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://YOUR_USERNAME.github.io/bjj-wiki/pt/pendulum-sweep.html">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/pendulum-sweep.html">
-<link rel="alternate" hreflang="en" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/pendulum-sweep.html">
-<link rel="alternate" hreflang="ja" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/pendulum-sweep.html">
-<link rel="alternate" hreflang="pt" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/pendulum-sweep.html">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/pt/pendulum-sweep.html">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/pt/pendulum-sweep.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/pendulum-sweep.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/pendulum-sweep.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/pendulum-sweep.html">
 <style>
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.75;padding:0 16px}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;
-    --red:#ef4444;--yellow:#f59e0b;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.7;padding:0 16px}
-  a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
+/* Layout */
+.container{max-width:860px;margin:0 auto;padding-bottom:80px}
 
-  /* Nav */
-  nav{max-width:860px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:16px;font-size:0.85rem;color:var(--muted)}
-  .nav-links a{color:var(--muted)}
-  .nav-links a:hover{color:var(--text)}
+/* Header / Nav */
+header{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
+  margin-bottom:40px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:16px}
+header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
+  border-radius:6px;border:1px solid transparent}
+header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
+.lang-switcher{font-size:0.82rem;color:var(--muted)}
+.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
+  border:1px solid var(--border)}
+.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
 
-  /* Hero */
-  .hero{max-width:860px;margin:48px auto 0;padding:40px;
-    background:linear-gradient(135deg,#141926 0%,#1a1440 100%);
-    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;background:var(--accent);opacity:0.06;border-radius:50%}
-  .category-badge{display:inline-block;padding:4px 12px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid var(--border);margin-bottom:16px}
-  .hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;margin-bottom:12px}
-  .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-    border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);
-    background:var(--card)}
-  .badge.beginner{color:var(--green);border-color:#166534}
-  .badge.intermediate{color:var(--yellow);border-color:#78350f}
-  .badge.advanced{color:var(--red);border-color:#7f1d1d}
+/* Category & belt badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
+.belt{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  margin-left:6px;border:1px solid var(--border)}
+.belt-white{color:#e8eaf6;border-color:#3a3a4a;background:#1e1e2e}
+.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
+.belt-purple{color:#c084fc;border-color:#4c1d95;background:#1e0f38}
+.belt-brown{color:#d97706;border-color:#78350f;background:#241500}
+.belt-black{color:#9ca3af;border-color:#374151;background:#111827}
 
-  /* Content */
-  .content{max-width:860px;margin:32px auto 80px;
-    display:grid;grid-template-columns:1fr 280px;gap:24px}
-  @media(max-width:700px){.content{grid-template-columns:1fr}}
-  .main-col{}
-  .side-col{}
+/* H1 */
+h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
+  letter-spacing:-0.02em}
+@media(max-width:600px){h1{font-size:1.7rem}}
 
-  /* Sections */
-  .section{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px;margin-bottom:20px}
-  .section h2{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px}
-  .section h2::before{content:'';width:3px;height:16px;
-    background:var(--accent);border-radius:2px;display:block}
-  .section p{color:#c4c9e0;margin-bottom:12px;font-size:0.95rem}
-  .section p:last-child{margin-bottom:0}
-  .section ul,.section ol{padding-left:20px;color:#c4c9e0;font-size:0.95rem}
-  .section li{margin-bottom:6px}
+/* Lead paragraph */
+h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
 
-  /* Steps */
-  .steps{list-style:none;padding:0}
-  .steps li{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-  .step-num{min-width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.75rem;font-weight:700;color:white;flex-shrink:0}
+/* Section headings */
+h2{font-size:1rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;
+  margin:28px 0 12px}
+h2::before{content:'';width:3px;height:14px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;display:block;flex-shrink:0}
 
-  /* Sidebar cards */
-  .info-card{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:20px;margin-bottom:16px}
-  .info-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-  .info-row{display:flex;justify-content:space-between;align-items:center;
-    padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem}
-  .info-row:last-child{border-bottom:none}
-  .info-row .label{color:var(--muted)}
-  .info-row .value{font-weight:600}
+/* Content cards */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:8px}
+.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
+.card p + p{margin-top:12px}
+.card strong{color:var(--text)}
 
-  /* Tag list */
-  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .tag{padding:4px 10px;border-radius:6px;font-size:0.78rem;
-    background:#1f2840;color:var(--muted);border:1px solid var(--border)}
+/* Step items inside cards */
+.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.card .step:last-child{margin-bottom:0}
+.step-num{min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
 
-  /* Related */
-  .related-links{display:flex;flex-direction:column;gap:8px}
-  .related-link{padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-    background:var(--surface);font-size:0.88rem;color:var(--text);
-    transition:border-color .2s,background .2s}
-  .related-link:hover{border-color:var(--accent);background:#141926;text-decoration:none}
+/* Affiliate box */
+.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
+  border:1px solid #2d2060;border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
+.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.9rem;
+  transition:opacity .2s,transform .15s}
+.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
 
-  /* Lang switch */
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-top:8px}
+.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
+.faq p{color:#c4cce8;font-size:0.92rem}
 
-  footer{max-width:860px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
+/* Related links */
+.related-links{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.related-links a{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;color:var(--text);
+  transition:border-color .2s,background .2s}
+.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
+  transition:color .2s,transform .2s}
+.related-links a:hover{border-color:var(--accent);background:#1a1e30;
+  text-decoration:none}
+.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
 
+footer{padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
 </style>
 </head>
 <body>
@@ -137,19 +142,19 @@
   <p>A Pendulum Sweep, ou Raspagem Pêndulo, é uma técnica fundamental do jiu-jitsu, ensinada desde os primeiros níveis. Ela utiliza o movimento de balanço das pernas e o controle da lapela para desequilibrar o oponente e inverter a posição. Essencial para quem busca eficiência a partir da guarda, esta raspagem permite transições rápidas e o ganho da posição superior.</p>
 
   <h2>Como Executar</h2>
-  <div class="card"><p>1. Inicie da guarda fechada ou borboleta, fazendo pegada na lapela oposta com uma mão e na manga do mesmo lado com a outra.<br>2. Abra a guarda e posicione um pé no quadril do oponente (lado da lapela controlada), enquanto a outra perna se estende lateralmente, pronta para o balanço.<br>3. Use a perna esticada para um movimento de pêndulo, balançando-a com força para o lado oposto, enquanto puxa a lapela para baixo e para o lado.<br>4. Simultaneamente, empurre o quadril do oponente com o pé no quadril e puxe a manga para fora, virando-o sobre o ombro e caindo por cima.<br>5. Finalize a raspagem montando no oponente ou estabilizando na meia-guarda ou guarda lateral, mantendo o controle das pegadas.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>1. Inicie da guarda fechada ou borboleta, fazendo pegada na lapela oposta com uma mão e na manga do mesmo lado com a outra.</div></div><div class="step"><div class="step-num">2</div><div>2. Abra a guarda e posicione um pé no quadril do oponente (lado da lapela controlada), enquanto a outra perna se estende lateralmente, pronta para o balanço.</div></div><div class="step"><div class="step-num">3</div><div>3. Use a perna esticada para um movimento de pêndulo, balançando-a com força para o lado oposto, enquanto puxa a lapela para baixo e para o lado.</div></div><div class="step"><div class="step-num">4</div><div>4. Simultaneamente, empurre o quadril do oponente com o pé no quadril e puxe a manga para fora, virando-o sobre o ombro e caindo por cima.</div></div><div class="step"><div class="step-num">5</div><div>5. Finalize a raspagem montando no oponente ou estabilizando na meia-guarda ou guarda lateral, mantendo o controle das pegadas.</div></div></div>
 
   <h2>Detalhes e Dicas</h2>
-  <div class="card"><p>A força da Pendulum Sweep está no timing e na coordenação das pegadas com o movimento das pernas.<br>Um erro comum é não esticar a perna de pêndulo completamente ou não balançá-la com força suficiente para gerar o desequilíbrio.<br>Mantenha a pegada na lapela firme durante toda a execução para controlar a postura do oponente e direcionar a queda.<br>Certifique-se de que seu calcanhar está no chão quando a perna de pêndulo completa o movimento para criar alavanca máxima.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>A força da Pendulum Sweep está no timing e na coordenação das pegadas com o movimento das pernas.</div></div><div class="step"><div class="step-num">2</div><div>Um erro comum é não esticar a perna de pêndulo completamente ou não balançá-la com força suficiente para gerar o desequilíbrio.</div></div><div class="step"><div class="step-num">3</div><div>Mantenha a pegada na lapela firme durante toda a execução para controlar a postura do oponente e direcionar a queda.</div></div><div class="step"><div class="step-num">4</div><div>Certifique-se de que seu calcanhar está no chão quando a perna de pêndulo completa o movimento para criar alavanca máxima.</div></div></div>
 
   <h2>Variações</h2>
-  <div class="card"><p>Pendulum Sweep da Guarda Borboleta (Butterfly Sweep adaptada).<br>Pendulum Sweep com Transição para Armlock (após a raspagem, finalizar o braço do oponente).<br>Flower Sweep (raspagem flor), que compartilha o princípio de balanço, mas com detalhes de execução distintos.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>Pendulum Sweep da Guarda Borboleta (Butterfly Sweep adaptada).</div></div><div class="step"><div class="step-num">2</div><div>Pendulum Sweep com Transição para Armlock (após a raspagem, finalizar o braço do oponente).</div></div><div class="step"><div class="step-num">3</div><div>Flower Sweep (raspagem flor), que compartilha o princípio de balanço, mas com detalhes de execução distintos.</div></div></div>
 
   <h2>Quando Usar</h2>
   <div class="card"><p>Esta técnica funciona melhor quando o oponente está com a postura mais alta na guarda fechada, ou quando ele tenta se levantar ou posturar de forma instável. É eficaz a partir da guarda fechada, guarda borboleta e pode ser adaptada para a guarda aranha.</p></div>
 
   <h2>Defesas e Contra-ataques</h2>
-  <div class="card"><p>Manter uma postura forte e uma base ampla, dificultando o desequilíbrio e a alavanca da raspagem.<br>Puxar a perna que faz o pêndulo para baixo ou para o lado, quebrando o momentum e a força do balanço.<br>Colocar a mão no chão do lado da raspagem ou girar o corpo na direção da queda para evitar ser virado completamente.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div>Manter uma postura forte e uma base ampla, dificultando o desequilíbrio e a alavanca da raspagem.</div></div><div class="step"><div class="step-num">2</div><div>Puxar a perna que faz o pêndulo para baixo ou para o lado, quebrando o momentum e a força do balanço.</div></div><div class="step"><div class="step-num">3</div><div>Colocar a mão no chão do lado da raspagem ou girar o corpo na direção da queda para evitar ser virado completamente.</div></div></div>
 
   <!-- BJJ Fanatics アフィリエイト -->
   <div class="aff-box">

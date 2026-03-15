@@ -9,115 +9,120 @@
 <meta property="og:title" content="Triângulo BJJ: Guia Completo do Estrangulamento Mais Eficaz no Jiu-Jitsu">
 <meta property="og:description" content="Aprenda o estrangulamento Triângulo no BJJ com este guia detalhado. Domine a técnica, variações e defesas para aplicar e evitar um dos chokes mais poderosos do Jiu-Jitsu.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://YOUR_USERNAME.github.io/bjj-wiki/pt/triangle-choke.html">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/triangle-choke.html">
-<link rel="alternate" hreflang="en" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/triangle-choke.html">
-<link rel="alternate" hreflang="ja" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/triangle-choke.html">
-<link rel="alternate" hreflang="pt" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/triangle-choke.html">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/pt/triangle-choke.html">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/pt/triangle-choke.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/triangle-choke.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/triangle-choke.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/triangle-choke.html">
 <style>
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.75;padding:0 16px}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;
-    --red:#ef4444;--yellow:#f59e0b;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.7;padding:0 16px}
-  a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
+/* Layout */
+.container{max-width:860px;margin:0 auto;padding-bottom:80px}
 
-  /* Nav */
-  nav{max-width:860px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:16px;font-size:0.85rem;color:var(--muted)}
-  .nav-links a{color:var(--muted)}
-  .nav-links a:hover{color:var(--text)}
+/* Header / Nav */
+header{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
+  margin-bottom:40px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:16px}
+header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
+  border-radius:6px;border:1px solid transparent}
+header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
+.lang-switcher{font-size:0.82rem;color:var(--muted)}
+.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
+  border:1px solid var(--border)}
+.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
 
-  /* Hero */
-  .hero{max-width:860px;margin:48px auto 0;padding:40px;
-    background:linear-gradient(135deg,#141926 0%,#1a1440 100%);
-    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;background:var(--accent);opacity:0.06;border-radius:50%}
-  .category-badge{display:inline-block;padding:4px 12px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid var(--border);margin-bottom:16px}
-  .hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;margin-bottom:12px}
-  .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-    border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);
-    background:var(--card)}
-  .badge.beginner{color:var(--green);border-color:#166534}
-  .badge.intermediate{color:var(--yellow);border-color:#78350f}
-  .badge.advanced{color:var(--red);border-color:#7f1d1d}
+/* Category & belt badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
+.belt{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  margin-left:6px;border:1px solid var(--border)}
+.belt-white{color:#e8eaf6;border-color:#3a3a4a;background:#1e1e2e}
+.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
+.belt-purple{color:#c084fc;border-color:#4c1d95;background:#1e0f38}
+.belt-brown{color:#d97706;border-color:#78350f;background:#241500}
+.belt-black{color:#9ca3af;border-color:#374151;background:#111827}
 
-  /* Content */
-  .content{max-width:860px;margin:32px auto 80px;
-    display:grid;grid-template-columns:1fr 280px;gap:24px}
-  @media(max-width:700px){.content{grid-template-columns:1fr}}
-  .main-col{}
-  .side-col{}
+/* H1 */
+h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
+  letter-spacing:-0.02em}
+@media(max-width:600px){h1{font-size:1.7rem}}
 
-  /* Sections */
-  .section{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px;margin-bottom:20px}
-  .section h2{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px}
-  .section h2::before{content:'';width:3px;height:16px;
-    background:var(--accent);border-radius:2px;display:block}
-  .section p{color:#c4c9e0;margin-bottom:12px;font-size:0.95rem}
-  .section p:last-child{margin-bottom:0}
-  .section ul,.section ol{padding-left:20px;color:#c4c9e0;font-size:0.95rem}
-  .section li{margin-bottom:6px}
+/* Lead paragraph */
+h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
 
-  /* Steps */
-  .steps{list-style:none;padding:0}
-  .steps li{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-  .step-num{min-width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.75rem;font-weight:700;color:white;flex-shrink:0}
+/* Section headings */
+h2{font-size:1rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;
+  margin:28px 0 12px}
+h2::before{content:'';width:3px;height:14px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;display:block;flex-shrink:0}
 
-  /* Sidebar cards */
-  .info-card{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:20px;margin-bottom:16px}
-  .info-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-  .info-row{display:flex;justify-content:space-between;align-items:center;
-    padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem}
-  .info-row:last-child{border-bottom:none}
-  .info-row .label{color:var(--muted)}
-  .info-row .value{font-weight:600}
+/* Content cards */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:8px}
+.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
+.card p + p{margin-top:12px}
+.card strong{color:var(--text)}
 
-  /* Tag list */
-  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .tag{padding:4px 10px;border-radius:6px;font-size:0.78rem;
-    background:#1f2840;color:var(--muted);border:1px solid var(--border)}
+/* Step items inside cards */
+.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.card .step:last-child{margin-bottom:0}
+.step-num{min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
 
-  /* Related */
-  .related-links{display:flex;flex-direction:column;gap:8px}
-  .related-link{padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-    background:var(--surface);font-size:0.88rem;color:var(--text);
-    transition:border-color .2s,background .2s}
-  .related-link:hover{border-color:var(--accent);background:#141926;text-decoration:none}
+/* Affiliate box */
+.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
+  border:1px solid #2d2060;border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
+.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.9rem;
+  transition:opacity .2s,transform .15s}
+.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
 
-  /* Lang switch */
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-top:8px}
+.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
+.faq p{color:#c4cce8;font-size:0.92rem}
 
-  footer{max-width:860px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
+/* Related links */
+.related-links{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.related-links a{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;color:var(--text);
+  transition:border-color .2s,background .2s}
+.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
+  transition:color .2s,transform .2s}
+.related-links a:hover{border-color:var(--accent);background:#1a1e30;
+  text-decoration:none}
+.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
 
+footer{padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
 </style>
 </head>
 <body>
@@ -137,19 +142,19 @@
   <p>O Triângulo é um dos estrangulamentos mais icônicos e eficazes do Jiu-Jitsu brasileiro, conhecido por sua versatilidade e potência. Ele envolve o uso das pernas para criar uma restrição vascular no pescoço do adversário, cortando o fluxo sanguíneo para o cérebro. Uma técnica fundamental que todo praticante de BJJ deve conhecer e dominar.</p>
 
   <h2>Como Executar</h2>
-  <div class="card"><p>**1. Preparação e Controle:** De uma guarda (fechada, aranha, etc.), controle um braço do adversário e a gola ou cabeça oposta, criando um ângulo para sua saída de quadril.<br>**2. Saída de Quadril e Posicionamento da Perna:** Faça uma forte saída de quadril para o lado do braço que você está controlando, elevando a perna oposta e passando-a por cima do ombro do adversário, travando-a no pescoço.<br>**3. Fechamento do Triângulo:** Passe a outra perna por cima da primeira, travando a canela da perna oposta com a parte de trás do seu joelho, fechando o triângulo e apertando o pescoço do oponente.<br>**4. Ajuste e Finalização:** Puxe a cabeça do adversário para baixo, garantindo que o braço dele esteja do lado correto (cruzado), e estenda o quadril para cima enquanto aperta as pernas para finalizar o estrangulamento.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>1. Preparação e Controle:</strong> De uma guarda (fechada, aranha, etc.), controle um braço do adversário e a gola ou cabeça oposta, criando um ângulo para sua saída de quadril.</div></div><div class="step"><div class="step-num">2</div><div><strong>2. Saída de Quadril e Posicionamento da Perna:</strong> Faça uma forte saída de quadril para o lado do braço que você está controlando, elevando a perna oposta e passando-a por cima do ombro do adversário, travando-a no pescoço.</div></div><div class="step"><div class="step-num">3</div><div><strong>3. Fechamento do Triângulo:</strong> Passe a outra perna por cima da primeira, travando a canela da perna oposta com a parte de trás do seu joelho, fechando o triângulo e apertando o pescoço do oponente.</div></div><div class="step"><div class="step-num">4</div><div><strong>4. Ajuste e Finalização:</strong> Puxe a cabeça do adversário para baixo, garantindo que o braço dele esteja do lado correto (cruzado), e estenda o quadril para cima enquanto aperta as pernas para finalizar o estrangulamento.</div></div></div>
 
   <h2>Detalhes e Dicas</h2>
-  <div class="card"><p>**Posição do Braço:** O braço do adversário que está dentro do triângulo deve estar cruzado, do lado oposto ao que suas pernas formam o triângulo, para maximizar a pressão e impedir a postura.<br>**Ângulo de Quadril:** Um bom ângulo de quadril é crucial para fechar o triângulo com força e evitar que o oponente se posture. Nunca tente fechar o triângulo de costas retas.<br>**Ajuste das Pernas:** Puxe o calcanhar da perna de cima para o seu glúteo e use a virilha da perna de baixo para 'empurrar' o ombro do adversário, criando uma alavanca eficaz e um aperto potente.<br>**Controle da Cabeça:** Puxar a cabeça do adversário para baixo com as mãos, juntamente com o controle do braço, impede a postura e aumenta significativamente a pressão do choke.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Posição do Braço:</strong> O braço do adversário que está dentro do triângulo deve estar cruzado, do lado oposto ao que suas pernas formam o triângulo, para maximizar a pressão e impedir a postura.</div></div><div class="step"><div class="step-num">2</div><div><strong>Ângulo de Quadril:</strong> Um bom ângulo de quadril é crucial para fechar o triângulo com força e evitar que o oponente se posture. Nunca tente fechar o triângulo de costas retas.</div></div><div class="step"><div class="step-num">3</div><div><strong>Ajuste das Pernas:</strong> Puxe o calcanhar da perna de cima para o seu glúteo e use a virilha da perna de baixo para 'empurrar' o ombro do adversário, criando uma alavanca eficaz e um aperto potente.</div></div><div class="step"><div class="step-num">4</div><div><strong>Controle da Cabeça:</strong> Puxar a cabeça do adversário para baixo com as mãos, juntamente com o controle do braço, impede a postura e aumenta significativamente a pressão do choke.</div></div></div>
 
   <h2>Variações</h2>
-  <div class="card"><p>**Triângulo da Guarda Fechada:** A forma mais clássica, onde a técnica é iniciada com o oponente dentro da sua guarda fechada.<br>**Triângulo Montado:** Aplicado quando se está na posição de montada, geralmente com transição para as costas ou para a guarda.<br>**Triângulo Invertido:** Uma variação mais avançada onde o praticante se posiciona de forma invertida para finalizar o choke.<br>**Armlock do Triângulo:** Um ataque comum que surge quando o adversário tenta defender o triângulo, expondo o braço para uma chave de cotovelo.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Triângulo da Guarda Fechada:</strong> A forma mais clássica, onde a técnica é iniciada com o oponente dentro da sua guarda fechada.</div></div><div class="step"><div class="step-num">2</div><div><strong>Triângulo Montado:</strong> Aplicado quando se está na posição de montada, geralmente com transição para as costas ou para a guarda.</div></div><div class="step"><div class="step-num">3</div><div><strong>Triângulo Invertido:</strong> Uma variação mais avançada onde o praticante se posiciona de forma invertida para finalizar o choke.</div></div><div class="step"><div class="step-num">4</div><div><strong>Armlock do Triângulo:</strong> Um ataque comum que surge quando o adversário tenta defender o triângulo, expondo o braço para uma chave de cotovelo.</div></div></div>
 
   <h2>Quando Usar</h2>
   <div class="card"><p>O Triângulo é mais eficaz quando o adversário tenta posturar ou empurra com os braços, oferecendo espaço para a entrada das pernas. É amplamente utilizado a partir de diversas guardas (fechada, aranha, borboleta, dela riva), mas também pode ser aplicado da montada, das costas e em transições de posições em pé.</p></div>
 
   <h2>Defesas e Contra-ataques</h2>
-  <div class="card"><p>**Postura Rápida:** O principal contra-ataque é posturar-se imediatamente ao sentir a entrada, elevando o quadril e a cabeça para impedir o fechamento do triângulo e a angulação.<br>**Empurrar e Passar:** Empurrar o adversário para trás e para cima (stack pass), aplicando pressão na coluna para tentar passar a guarda ou forçar a desistência do choke.<br>**Remoção do Braço:** Tentar puxar o braço que está sendo travado para fora do triângulo antes que ele seja completamente fechado, ou usar o braço livre para agarrar a gola ou a perna do atacante para criar espaço e aliviar a pressão.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Postura Rápida:</strong> O principal contra-ataque é posturar-se imediatamente ao sentir a entrada, elevando o quadril e a cabeça para impedir o fechamento do triângulo e a angulação.</div></div><div class="step"><div class="step-num">2</div><div><strong>Empurrar e Passar:</strong> Empurrar o adversário para trás e para cima (stack pass), aplicando pressão na coluna para tentar passar a guarda ou forçar a desistência do choke.</div></div><div class="step"><div class="step-num">3</div><div><strong>Remoção do Braço:</strong> Tentar puxar o braço que está sendo travado para fora do triângulo antes que ele seja completamente fechado, ou usar o braço livre para agarrar a gola ou a perna do atacante para criar espaço e aliviar a pressão.</div></div></div>
 
   <!-- BJJ Fanatics アフィリエイト -->
   <div class="aff-box">

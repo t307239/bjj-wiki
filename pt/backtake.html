@@ -9,115 +9,120 @@
 <meta property="og:title" content="Pegada de Costas no BJJ: Guia Completo para Dominar a Transição Essencial">
 <meta property="og:description" content="Aprenda a pegada de costas no BJJ com este guia detalhado. Domine a transição mais poderosa do jiu-jitsu, controle seu oponente e finalize com confiança. Técnicas essenciais para todos os níveis.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://YOUR_USERNAME.github.io/bjj-wiki/pt/backtake.html">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/backtake.html">
-<link rel="alternate" hreflang="en" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/backtake.html">
-<link rel="alternate" hreflang="ja" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/backtake.html">
-<link rel="alternate" hreflang="pt" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/backtake.html">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/pt/backtake.html">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/pt/backtake.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/backtake.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/backtake.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/backtake.html">
 <style>
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.75;padding:0 16px}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;
-    --red:#ef4444;--yellow:#f59e0b;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.7;padding:0 16px}
-  a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
+/* Layout */
+.container{max-width:860px;margin:0 auto;padding-bottom:80px}
 
-  /* Nav */
-  nav{max-width:860px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:16px;font-size:0.85rem;color:var(--muted)}
-  .nav-links a{color:var(--muted)}
-  .nav-links a:hover{color:var(--text)}
+/* Header / Nav */
+header{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
+  margin-bottom:40px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:16px}
+header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
+  border-radius:6px;border:1px solid transparent}
+header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
+.lang-switcher{font-size:0.82rem;color:var(--muted)}
+.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
+  border:1px solid var(--border)}
+.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
 
-  /* Hero */
-  .hero{max-width:860px;margin:48px auto 0;padding:40px;
-    background:linear-gradient(135deg,#141926 0%,#1a1440 100%);
-    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;background:var(--accent);opacity:0.06;border-radius:50%}
-  .category-badge{display:inline-block;padding:4px 12px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid var(--border);margin-bottom:16px}
-  .hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;margin-bottom:12px}
-  .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-    border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);
-    background:var(--card)}
-  .badge.beginner{color:var(--green);border-color:#166534}
-  .badge.intermediate{color:var(--yellow);border-color:#78350f}
-  .badge.advanced{color:var(--red);border-color:#7f1d1d}
+/* Category & belt badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
+.belt{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  margin-left:6px;border:1px solid var(--border)}
+.belt-white{color:#e8eaf6;border-color:#3a3a4a;background:#1e1e2e}
+.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
+.belt-purple{color:#c084fc;border-color:#4c1d95;background:#1e0f38}
+.belt-brown{color:#d97706;border-color:#78350f;background:#241500}
+.belt-black{color:#9ca3af;border-color:#374151;background:#111827}
 
-  /* Content */
-  .content{max-width:860px;margin:32px auto 80px;
-    display:grid;grid-template-columns:1fr 280px;gap:24px}
-  @media(max-width:700px){.content{grid-template-columns:1fr}}
-  .main-col{}
-  .side-col{}
+/* H1 */
+h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
+  letter-spacing:-0.02em}
+@media(max-width:600px){h1{font-size:1.7rem}}
 
-  /* Sections */
-  .section{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px;margin-bottom:20px}
-  .section h2{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px}
-  .section h2::before{content:'';width:3px;height:16px;
-    background:var(--accent);border-radius:2px;display:block}
-  .section p{color:#c4c9e0;margin-bottom:12px;font-size:0.95rem}
-  .section p:last-child{margin-bottom:0}
-  .section ul,.section ol{padding-left:20px;color:#c4c9e0;font-size:0.95rem}
-  .section li{margin-bottom:6px}
+/* Lead paragraph */
+h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
 
-  /* Steps */
-  .steps{list-style:none;padding:0}
-  .steps li{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-  .step-num{min-width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.75rem;font-weight:700;color:white;flex-shrink:0}
+/* Section headings */
+h2{font-size:1rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;
+  margin:28px 0 12px}
+h2::before{content:'';width:3px;height:14px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;display:block;flex-shrink:0}
 
-  /* Sidebar cards */
-  .info-card{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:20px;margin-bottom:16px}
-  .info-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-  .info-row{display:flex;justify-content:space-between;align-items:center;
-    padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem}
-  .info-row:last-child{border-bottom:none}
-  .info-row .label{color:var(--muted)}
-  .info-row .value{font-weight:600}
+/* Content cards */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:8px}
+.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
+.card p + p{margin-top:12px}
+.card strong{color:var(--text)}
 
-  /* Tag list */
-  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .tag{padding:4px 10px;border-radius:6px;font-size:0.78rem;
-    background:#1f2840;color:var(--muted);border:1px solid var(--border)}
+/* Step items inside cards */
+.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.card .step:last-child{margin-bottom:0}
+.step-num{min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
 
-  /* Related */
-  .related-links{display:flex;flex-direction:column;gap:8px}
-  .related-link{padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-    background:var(--surface);font-size:0.88rem;color:var(--text);
-    transition:border-color .2s,background .2s}
-  .related-link:hover{border-color:var(--accent);background:#141926;text-decoration:none}
+/* Affiliate box */
+.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
+  border:1px solid #2d2060;border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
+.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.9rem;
+  transition:opacity .2s,transform .15s}
+.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
 
-  /* Lang switch */
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-top:8px}
+.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
+.faq p{color:#c4cce8;font-size:0.92rem}
 
-  footer{max-width:860px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
+/* Related links */
+.related-links{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.related-links a{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;color:var(--text);
+  transition:border-color .2s,background .2s}
+.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
+  transition:color .2s,transform .2s}
+.related-links a:hover{border-color:var(--accent);background:#1a1e30;
+  text-decoration:none}
+.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
 
+footer{padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
 </style>
 </head>
 <body>
@@ -137,19 +142,19 @@
   <p>A pegada de costas é uma das posições mais dominantes e cobiçadas no Jiu-Jitsu Brasileiro, oferecendo controle superior e as maiores chances de finalização. Dominar esta transição é fundamental para qualquer praticante que busca efetividade e progressão no esporte. Este guia detalhado irá desmistificar a técnica, desde os fundamentos até as aplicações avançadas.</p>
 
   <h2>Como Executar</h2>
-  <div class="card"><p>**Crie Desequilíbrio e Ganhe Ângulo:** Utilize puxadas, empurrões ou ganchos com as pernas para desequilibrar o oponente, forçando-o a expor as costas ou virar em uma posição de tartaruga.<br>**Insira os Ganchos (Hooks):** Uma vez com acesso às costas, insira rapidamente os dois ganchos internos nas coxas do oponente, mantendo-o preso e impedindo que ele escape ou gire para frente.<br>**Estabeleça o Controle dos Braços (Seatbelt Grip):** Passe um braço por cima do ombro do oponente e o outro por baixo da axila, unindo as mãos em um "seatbelt grip" (ou "mata-leão sem pegada") para controlar a parte superior do corpo.<br>**Mantenha a Conexão e o Peso:** Cole seu corpo ao do oponente, usando seu peso para esmagá-lo. Mantenha a cabeça próxima à dele no lado do braço que está por cima do ombro, impedindo que ele olhe para você.<br>**Ajuste a Posição e Prepare a Finalização:** Refine a posição dos ganchos e do controle dos braços, ajustando o ângulo para criar a plataforma perfeita para atacar com estrangulamentos como o mata-leão ou outras finalizações.<br>**Controle o Movimento:** Siga o oponente para onde ele for, mantendo os ganchos e o "seatbelt grip" firmes, sem dar espaço para ele escapar ou reverter a posição.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Crie Desequilíbrio e Ganhe Ângulo:</strong> Utilize puxadas, empurrões ou ganchos com as pernas para desequilibrar o oponente, forçando-o a expor as costas ou virar em uma posição de tartaruga.</div></div><div class="step"><div class="step-num">2</div><div><strong>Insira os Ganchos (Hooks):</strong> Uma vez com acesso às costas, insira rapidamente os dois ganchos internos nas coxas do oponente, mantendo-o preso e impedindo que ele escape ou gire para frente.</div></div><div class="step"><div class="step-num">3</div><div><strong>Estabeleça o Controle dos Braços (Seatbelt Grip):</strong> Passe um braço por cima do ombro do oponente e o outro por baixo da axila, unindo as mãos em um "seatbelt grip" (ou "mata-leão sem pegada") para controlar a parte superior do corpo.</div></div><div class="step"><div class="step-num">4</div><div><strong>Mantenha a Conexão e o Peso:</strong> Cole seu corpo ao do oponente, usando seu peso para esmagá-lo. Mantenha a cabeça próxima à dele no lado do braço que está por cima do ombro, impedindo que ele olhe para você.</div></div><div class="step"><div class="step-num">5</div><div><strong>Ajuste a Posição e Prepare a Finalização:</strong> Refine a posição dos ganchos e do controle dos braços, ajustando o ângulo para criar a plataforma perfeita para atacar com estrangulamentos como o mata-leão ou outras finalizações.</div></div><div class="step"><div class="step-num">6</div><div><strong>Controle o Movimento:</strong> Siga o oponente para onde ele for, mantendo os ganchos e o "seatbelt grip" firmes, sem dar espaço para ele escapar ou reverter a posição.</div></div></div>
 
   <h2>Detalhes e Dicas</h2>
-  <div class="card"><p>**Prioridade aos Ganchos:** A principal regra é nunca perder os dois ganchos. Eles são a base do seu controle e impedem que o oponente gire.<br>**Controle da Cabeça/Ombro:** O braço que passa por cima do ombro do oponente é crucial para controlar a cabeça dele e impedir que ele se vire para enfrentá-lo.<br>**Peso e Conexão Constante:** Mantenha seu corpo colado ao do oponente, usando seu peso para dominá-lo e sentir qualquer tentativa de fuga. Evite dar espaço.<br>**Ajuste Contínuo:** A pegada de costas é uma posição dinâmica. Esteja sempre pronto para ajustar seus ganchos, o "seatbelt grip" e seu posicionamento conforme o oponente tenta escapar.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Prioridade aos Ganchos:</strong> A principal regra é nunca perder os dois ganchos. Eles são a base do seu controle e impedem que o oponente gire.</div></div><div class="step"><div class="step-num">2</div><div><strong>Controle da Cabeça/Ombro:</strong> O braço que passa por cima do ombro do oponente é crucial para controlar a cabeça dele e impedir que ele se vire para enfrentá-lo.</div></div><div class="step"><div class="step-num">3</div><div><strong>Peso e Conexão Constante:</strong> Mantenha seu corpo colado ao do oponente, usando seu peso para dominá-lo e sentir qualquer tentativa de fuga. Evite dar espaço.</div></div><div class="step"><div class="step-num">4</div><div><strong>Ajuste Contínuo:</strong> A pegada de costas é uma posição dinâmica. Esteja sempre pronto para ajustar seus ganchos, o "seatbelt grip" e seu posicionamento conforme o oponente tenta escapar.</div></div></div>
 
   <h2>Variações</h2>
-  <div class="card"><p>**Pegada de Costas da Tartaruga:** A abordagem mais comum, onde se transiciona para as costas quando o oponente está na posição de tartaruga, utilizando ganchos e o "seatbelt grip".<br>**Pegada de Costas da Guarda Aberta/Fechada:** Transições para as costas a partir da guarda (ex: da guarda-aranha, utilizando a lapela, ou de uma raspagem da guarda fechada que o oponente defende virando de costas).<br>**Pegada de Costas do Side Control (Kraken/Pummel):** Uma transição mais avançada onde se sai do controle lateral para as costas, muitas vezes usando um pummeling de pernas e braços para criar o ângulo.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Pegada de Costas da Tartaruga:</strong> A abordagem mais comum, onde se transiciona para as costas quando o oponente está na posição de tartaruga, utilizando ganchos e o "seatbelt grip".</div></div><div class="step"><div class="step-num">2</div><div><strong>Pegada de Costas da Guarda Aberta/Fechada:</strong> Transições para as costas a partir da guarda (ex: da guarda-aranha, utilizando a lapela, ou de uma raspagem da guarda fechada que o oponente defende virando de costas).</div></div><div class="step"><div class="step-num">3</div><div><strong>Pegada de Costas do Side Control (Kraken/Pummel):</strong> Uma transição mais avançada onde se sai do controle lateral para as costas, muitas vezes usando um pummeling de pernas e braços para criar o ângulo.</div></div></div>
 
   <h2>Quando Usar</h2>
   <div class="card"><p>A pegada de costas é ideal para ser usada em diversas situações: quando o oponente vira de costas para você (posição de tartaruga), após uma raspagem onde ele defende virando de quatro apoios, ao criar uma abertura na guarda do oponente, ou quando ele tenta fugir de uma posição inferior (como montada ou 100kg), expondo as costas na transição.</p></div>
 
   <h2>Defesas e Contra-ataques</h2>
-  <div class="card"><p>**Defender os Ganchos:** O principal é não permitir que o oponente insira os ganchos internos, usando as mãos ou as pernas para bloqueá-los ou criando um "quadril morto" para dificultar a inserção.<br>**Girada para Frente (Roll Forward):** Assim que sentir que o adversário está tentando a pegada de costas, girar rapidamente para frente (para a guarda ou montada invertida) antes que ele estabeleça o controle.<br>**Defender o "Seatbelt Grip":** Bloquear o braço que tenta passar por cima do ombro, criando espaço e virando o quadril para enfrentar o oponente, tentando reverter a posição ou retornar à guarda.</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Defender os Ganchos:</strong> O principal é não permitir que o oponente insira os ganchos internos, usando as mãos ou as pernas para bloqueá-los ou criando um "quadril morto" para dificultar a inserção.</div></div><div class="step"><div class="step-num">2</div><div><strong>Girada para Frente (Roll Forward):</strong> Assim que sentir que o adversário está tentando a pegada de costas, girar rapidamente para frente (para a guarda ou montada invertida) antes que ele estabeleça o controle.</div></div><div class="step"><div class="step-num">3</div><div><strong>Defender o "Seatbelt Grip":</strong> Bloquear o braço que tenta passar por cima do ombro, criando espaço e virando o quadril para enfrentar o oponente, tentando reverter a posição ou retornar à guarda.</div></div></div>
 
   <!-- BJJ Fanatics アフィリエイト -->
   <div class="aff-box">

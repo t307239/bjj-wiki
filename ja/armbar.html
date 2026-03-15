@@ -9,115 +9,120 @@
 <meta property="og:title" content="BJJアームバー完全ガイド：柔術の基本関節技をマスターしよう">
 <meta property="og:description" content="ブラジリアン柔術の基本関節技「アームバー（腕十字固め）」を徹底解説。この完全ガイドでは、基本手順、極めるコツ、応用、よくある間違い、防御法まで網羅。初心者から上級者まで役立つ情報で、BJJアームバーをマスターし、安全に一本を奪う方法を学びましょう。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://YOUR_USERNAME.github.io/bjj-wiki/ja/armbar.html">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/armbar.html">
-<link rel="alternate" hreflang="en" href="https://YOUR_USERNAME.github.io/bjj-wiki/en/armbar.html">
-<link rel="alternate" hreflang="ja" href="https://YOUR_USERNAME.github.io/bjj-wiki/ja/armbar.html">
-<link rel="alternate" hreflang="pt" href="https://YOUR_USERNAME.github.io/bjj-wiki/pt/armbar.html">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/ja/armbar.html">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/ja/armbar.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/armbar.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/armbar.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/armbar.html">
 <style>
+:root{
+  --bg:#080b12;--surface:#0f1420;--card:#141926;
+  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
+  --accent:#7c6af7;--accent2:#a78bfa;
+  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.75;padding:0 16px}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;
-    --red:#ef4444;--yellow:#f59e0b;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    line-height:1.7;padding:0 16px}
-  a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
+/* Layout */
+.container{max-width:860px;margin:0 auto;padding-bottom:80px}
 
-  /* Nav */
-  nav{max-width:860px;margin:0 auto;padding:20px 0;
-    display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid var(--border)}
-  .logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:16px;font-size:0.85rem;color:var(--muted)}
-  .nav-links a{color:var(--muted)}
-  .nav-links a:hover{color:var(--text)}
+/* Header / Nav */
+header{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
+  margin-bottom:40px}
+.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
+.logo span{color:var(--accent)}
+header nav{display:flex;gap:16px}
+header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
+  border-radius:6px;border:1px solid transparent}
+header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
+.lang-switcher{font-size:0.82rem;color:var(--muted)}
+.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
+  border:1px solid var(--border)}
+.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
 
-  /* Hero */
-  .hero{max-width:860px;margin:48px auto 0;padding:40px;
-    background:linear-gradient(135deg,#141926 0%,#1a1440 100%);
-    border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;background:var(--accent);opacity:0.06;border-radius:50%}
-  .category-badge{display:inline-block;padding:4px 12px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid var(--border);margin-bottom:16px}
-  .hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;margin-bottom:12px}
-  .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
-    border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid var(--border);
-    background:var(--card)}
-  .badge.beginner{color:var(--green);border-color:#166534}
-  .badge.intermediate{color:var(--yellow);border-color:#78350f}
-  .badge.advanced{color:var(--red);border-color:#7f1d1d}
+/* Category & belt badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
+.belt{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  margin-left:6px;border:1px solid var(--border)}
+.belt-white{color:#e8eaf6;border-color:#3a3a4a;background:#1e1e2e}
+.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
+.belt-purple{color:#c084fc;border-color:#4c1d95;background:#1e0f38}
+.belt-brown{color:#d97706;border-color:#78350f;background:#241500}
+.belt-black{color:#9ca3af;border-color:#374151;background:#111827}
 
-  /* Content */
-  .content{max-width:860px;margin:32px auto 80px;
-    display:grid;grid-template-columns:1fr 280px;gap:24px}
-  @media(max-width:700px){.content{grid-template-columns:1fr}}
-  .main-col{}
-  .side-col{}
+/* H1 */
+h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
+  letter-spacing:-0.02em}
+@media(max-width:600px){h1{font-size:1.7rem}}
 
-  /* Sections */
-  .section{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px;margin-bottom:20px}
-  .section h2{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px}
-  .section h2::before{content:'';width:3px;height:16px;
-    background:var(--accent);border-radius:2px;display:block}
-  .section p{color:#c4c9e0;margin-bottom:12px;font-size:0.95rem}
-  .section p:last-child{margin-bottom:0}
-  .section ul,.section ol{padding-left:20px;color:#c4c9e0;font-size:0.95rem}
-  .section li{margin-bottom:6px}
+/* Lead paragraph */
+h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
 
-  /* Steps */
-  .steps{list-style:none;padding:0}
-  .steps li{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-  .step-num{min-width:28px;height:28px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.75rem;font-weight:700;color:white;flex-shrink:0}
+/* Section headings */
+h2{font-size:1rem;font-weight:700;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;
+  margin:28px 0 12px}
+h2::before{content:'';width:3px;height:14px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;display:block;flex-shrink:0}
 
-  /* Sidebar cards */
-  .info-card{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:20px;margin-bottom:16px}
-  .info-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-  .info-row{display:flex;justify-content:space-between;align-items:center;
-    padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem}
-  .info-row:last-child{border-bottom:none}
-  .info-row .label{color:var(--muted)}
-  .info-row .value{font-weight:600}
+/* Content cards */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-bottom:8px}
+.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
+.card p + p{margin-top:12px}
+.card strong{color:var(--text)}
 
-  /* Tag list */
-  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .tag{padding:4px 10px;border-radius:6px;font-size:0.78rem;
-    background:#1f2840;color:var(--muted);border:1px solid var(--border)}
+/* Step items inside cards */
+.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.card .step:last-child{margin-bottom:0}
+.step-num{min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
 
-  /* Related */
-  .related-links{display:flex;flex-direction:column;gap:8px}
-  .related-link{padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-    background:var(--surface);font-size:0.88rem;color:var(--text);
-    transition:border-color .2s,background .2s}
-  .related-link:hover{border-color:var(--accent);background:#141926;text-decoration:none}
+/* Affiliate box */
+.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
+  border:1px solid #2d2060;border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
+.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.9rem;
+  transition:opacity .2s,transform .15s}
+.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
 
-  /* Lang switch */
-  .lang-switch{display:flex;gap:8px}
-  .lang-switch a{padding:4px 10px;border-radius:6px;font-size:0.8rem;
-    border:1px solid var(--border);color:var(--muted)}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:24px;margin-top:8px}
+.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
+.faq p{color:#c4cce8;font-size:0.92rem}
 
-  footer{max-width:860px;margin:0 auto;padding:24px 0;
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:0.8rem}
+/* Related links */
+.related-links{display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.related-links a{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;font-size:0.88rem;color:var(--text);
+  transition:border-color .2s,background .2s}
+.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
+  transition:color .2s,transform .2s}
+.related-links a:hover{border-color:var(--accent);background:#1a1e30;
+  text-decoration:none}
+.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
 
+footer{padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
 </style>
 </head>
 <body>
@@ -137,19 +142,19 @@
   <p>アームバー、または腕十字固めは、ブラジリアン柔術において最も基本的かつ効果的な関節技の一つです。相手の腕を自分の腰と足で固定し、肘関節を過伸展させることで一本を狙います。この技は、ガードポジション、マウント、サイドコントロールなど、様々なポジションから仕掛けることが可能です。</p>
 
   <h2>やり方</h2>
-  <div class="card"><p>**ステップ1：相手の腕を確保する**：まず相手の腕をしっかりと掴み、自分の胸に引き寄せます。相手の頭部をコントロールすることも重要です。<br>**ステップ2：軸足のセットアップ**：掴んだ腕と同じ側の足を相手の脇の下に深く差し込み、相手の肩を固定します。これにより相手の体勢を崩し、エスケープを防ぎます。<br>**ステップ3：もう一方の足を回し越える**：もう一方の足を相手の頭越しに回し、相手の首筋に当てて、両足で相手の頭部と肩を挟み込みます。この時、膝を閉じ、足の裏を床につけて安定させます。<br>**ステップ4：相手の腕を伸ばす**：相手の腕を両手で持ち、親指が天井を向くように回転させます。自分の腰を相手の肘に向けて突き上げながら、腕を真っ直ぐに伸ばします。<br>**ステップ5：極める**：相手の肘が完全に伸びきり、痛みを感じたらタップを促します。無理な力を加えず、安全に注意しながら行いましょう。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>ステップ1：相手の腕を確保する</strong>：まず相手の腕をしっかりと掴み、自分の胸に引き寄せます。相手の頭部をコントロールすることも重要です。</div></div><div class="step"><div class="step-num">2</div><div><strong>ステップ2：軸足のセットアップ</strong>：掴んだ腕と同じ側の足を相手の脇の下に深く差し込み、相手の肩を固定します。これにより相手の体勢を崩し、エスケープを防ぎます。</div></div><div class="step"><div class="step-num">3</div><div><strong>ステップ3：もう一方の足を回し越える</strong>：もう一方の足を相手の頭越しに回し、相手の首筋に当てて、両足で相手の頭部と肩を挟み込みます。この時、膝を閉じ、足の裏を床につけて安定させます。</div></div><div class="step"><div class="step-num">4</div><div><strong>ステップ4：相手の腕を伸ばす</strong>：相手の腕を両手で持ち、親指が天井を向くように回転させます。自分の腰を相手の肘に向けて突き上げながら、腕を真っ直ぐに伸ばします。</div></div><div class="step"><div class="step-num">5</div><div><strong>ステップ5：極める</strong>：相手の肘が完全に伸びきり、痛みを感じたらタップを促します。無理な力を加えず、安全に注意しながら行いましょう。</div></div></div>
 
   <h2>コツと注意点</h2>
-  <div class="card"><p>**手の握り方**：相手の腕を極める際、親指が上を向くように手首をコントロールすることが重要です。これにより、相手は腕を回転させてエスケープしにくくなります。<br>**腰の突き上げ**：ただ腕を引っ張るだけでなく、自分の腰を相手の肘に向かって突き上げることで、より少ない力で強力なプレッシャーをかけることができます。<br>**足の締め付け**：両足で相手の頭部と肩をしっかりと締め付け、相手が体を起こしたり、腕を引き抜いたりするのを防ぎます。膝を閉じ、足首をクロスしないように注意しましょう。<br>**エスケープへの注意**：相手が腕を抜こうとしたり、体を回転させようとしたりする動きを常に警戒し、素早く対応できるよう準備しておきましょう。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>手の握り方</strong>：相手の腕を極める際、親指が上を向くように手首をコントロールすることが重要です。これにより、相手は腕を回転させてエスケープしにくくなります。</div></div><div class="step"><div class="step-num">2</div><div><strong>腰の突き上げ</strong>：ただ腕を引っ張るだけでなく、自分の腰を相手の肘に向かって突き上げることで、より少ない力で強力なプレッシャーをかけることができます。</div></div><div class="step"><div class="step-num">3</div><div><strong>足の締め付け</strong>：両足で相手の頭部と肩をしっかりと締め付け、相手が体を起こしたり、腕を引き抜いたりするのを防ぎます。膝を閉じ、足首をクロスしないように注意しましょう。</div></div><div class="step"><div class="step-num">4</div><div><strong>エスケープへの注意</strong>：相手が腕を抜こうとしたり、体を回転させようとしたりする動きを常に警戒し、素早く対応できるよう準備しておきましょう。</div></div></div>
 
   <h2>バリエーション</h2>
-  <div class="card"><p>**フライングアームバー**：立ち技から飛びついて仕掛けるアームバー。高度なタイミングとアクロバティックな動きが必要です。<br>**Sマウントからのアームバー**：マウントポジションからS字に足を組み、相手の頭部を固定して仕掛けるアームバー。高いコントロール力を発揮します。<br>**三角絞めからの連携**：三角絞めを狙いながら、相手が腕を抜こうとした瞬間にアームバーに移行する。柔術の代表的なコンビネーションです。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>フライングアームバー</strong>：立ち技から飛びついて仕掛けるアームバー。高度なタイミングとアクロバティックな動きが必要です。</div></div><div class="step"><div class="step-num">2</div><div><strong>Sマウントからのアームバー</strong>：マウントポジションからS字に足を組み、相手の頭部を固定して仕掛けるアームバー。高いコントロール力を発揮します。</div></div><div class="step"><div class="step-num">3</div><div><strong>三角絞めからの連携</strong>：三角絞めを狙いながら、相手が腕を抜こうとした瞬間にアームバーに移行する。柔術の代表的なコンビネーションです。</div></div></div>
 
   <h2>使うタイミング</h2>
   <div class="card"><p>ガードポジション（特にクローズドガードやスパイダーガード）から、相手が腕を伸ばしてディフェンスしようとした時に効果的です。また、マウントポジションやサイドコントロールから、相手が腕でプッシュしてきた際もチャンスが生まれます。相手が亀になった際、バックを狙うフリをして腕を狙うのも有効です。</p></div>
 
   <h2>カウンター・防御</h2>
-  <div class="card"><p>**腕を引く・肘を体に引きつける**：極められる前に素早く腕を体に引きつけ、肘を曲げて防御することで、関節の過伸展を防ぎます。<br>**親指を回す**：相手が腕を伸ばす前に、親指を自分の体側に向かって回し、肘が逆方向に曲がるのを防ぎます。<br>**スタックパスでプレッシャーをかける**：ガードからのアームバーの場合、相手をスタックしてプレッシャーをかけ、極める体勢を崩させ、スイープやパスガードのチャンスを狙います。<br>**体を回転させて脱出**：相手の足を乗り越えて、体を回転させながら腕を引き抜くことで、ポジションを反転させるか、エスケープを図ります。</p></div>
+  <div class="card"><div class="step"><div class="step-num">1</div><div><strong>腕を引く・肘を体に引きつける</strong>：極められる前に素早く腕を体に引きつけ、肘を曲げて防御することで、関節の過伸展を防ぎます。</div></div><div class="step"><div class="step-num">2</div><div><strong>親指を回す</strong>：相手が腕を伸ばす前に、親指を自分の体側に向かって回し、肘が逆方向に曲がるのを防ぎます。</div></div><div class="step"><div class="step-num">3</div><div><strong>スタックパスでプレッシャーをかける</strong>：ガードからのアームバーの場合、相手をスタックしてプレッシャーをかけ、極める体勢を崩させ、スイープやパスガードのチャンスを狙います。</div></div><div class="step"><div class="step-num">4</div><div><strong>体を回転させて脱出</strong>：相手の足を乗り越えて、体を回転させながら腕を引き抜くことで、ポジションを反転させるか、エスケープを図ります。</div></div></div>
 
   <!-- BJJ Fanatics アフィリエイト -->
   <div class="aff-box">
