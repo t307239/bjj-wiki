@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<title>BJJ スキルツリー — 白帯から黒帯まで進捗管理 | BJJ Wiki</title>
+<meta name="description" content="BJJ技術の習得進捗をベルト別に管理。白帯の基本技から黒帯の上級テクニックまで、チェックしながら学習できる無料スキルツリー。">
+<meta property="og:title" content="BJJ スキルツリー — Track Your Belt Progression">
+<meta property="og:description" content="Interactive BJJ technique tracker. Check off skills as you learn them, from white belt to black belt.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://t307239.github.io/bjj-wiki/ja/skill-tree.html">
+<meta property="og:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/ja/skill-tree.html">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3285779374433925" crossorigin="anonymous"></script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
+<style>
+:root{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9;--green:#22c55e;--yellow:#f59e0b;--blue:#2563eb;--purple:#7c3aed;--brown:#92400e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;padding:0 16px}
+.container{max-width:900px;margin:0 auto;padding:24px 0 80px}
+header{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.logo{font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none}.logo span{color:var(--accent)}
+nav{font-size:0.85rem}nav a{color:var(--muted);text-decoration:none;margin-right:12px}nav a:hover{color:var(--text)}
+
+/* Hero */
+.hero{text-align:center;padding:32px 0 24px}
+.hero h1{font-size:2rem;font-weight:800;margin-bottom:12px;line-height:1.2}
+.hero p{color:var(--muted);font-size:1rem;max-width:600px;margin:0 auto 20px}
+
+/* Overall progress */
+.overall-progress{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:36px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.overall-label{font-size:0.85rem;color:var(--muted);white-space:nowrap}
+.overall-bar-wrap{flex:1;min-width:200px;background:#1e1e2e;border-radius:20px;height:12px;overflow:hidden}
+.overall-bar{height:100%;background:linear-gradient(90deg,#22c55e,#6e40c9);border-radius:20px;transition:width .5s ease}
+.overall-count{font-size:1.1rem;font-weight:800;white-space:nowrap}
+
+/* Belt sections */
+.belt-section{margin-bottom:40px}
+.belt-header{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.belt-badge{display:inline-block;padding:5px 16px;border-radius:6px;font-size:0.8rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.badge-white{background:#e2e2ee;color:#111}
+.badge-blue{background:#2563eb;color:#fff}
+.badge-purple{background:#7c3aed;color:#fff}
+.badge-brown{background:#92400e;color:#fff}
+.badge-black{background:#111;color:#fff;border:1px solid #444}
+.belt-title{font-size:1.1rem;font-weight:700}
+.belt-progress-wrap{flex:1;min-width:140px;background:#1e1e2e;border-radius:20px;height:8px;overflow:hidden}
+.belt-progress-bar{height:100%;border-radius:20px;transition:width .4s ease}
+.bp-white{background:#e2e2ee}.bp-blue{background:#2563eb}.bp-purple{background:#7c3aed}.bp-brown{background:#92400e}.bp-black{background:#444}
+.belt-count{font-size:0.85rem;color:var(--muted);white-space:nowrap}
+
+/* Tech grid */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.tech-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;transition:border-color .2s,background .2s;display:flex;align-items:center;gap:12px;text-decoration:none;position:relative}
+.tech-card:hover{border-color:var(--accent);background:#13131f}
+.tech-card.learned{border-color:var(--green);background:#0a1a0e}
+.tech-card.locked{cursor:default;opacity:.6;pointer-events:none}
+.check-circle{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.tech-card.learned .check-circle{background:var(--green);border-color:var(--green)}
+.check-icon{color:#fff;font-size:14px;opacity:0;transition:opacity .2s}
+.tech-card.learned .check-icon{opacity:1}
+.tech-info{flex:1;min-width:0}
+.tech-name{font-size:0.9rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tech-cat{font-size:0.75rem;color:var(--muted)}
+.tech-link{font-size:0.72rem;color:var(--accent);text-decoration:none;display:block;margin-top:2px}
+.tech-link:hover{text-decoration:underline}
+.lock-icon{position:absolute;top:10px;right:10px;font-size:1rem;color:var(--muted)}
+
+/* Gate banner */
+.gate-banner{background:linear-gradient(135deg,#1a0a30,#0d0820);border:2px solid var(--purple);border-radius:16px;padding:28px;text-align:center;margin-bottom:20px}
+.gate-banner h3{font-size:1.2rem;font-weight:800;margin-bottom:8px}
+.gate-banner p{color:var(--muted);font-size:0.9rem;margin-bottom:20px;max-width:480px;margin-left:auto;margin-right:auto}
+.gate-btn{display:inline-block;background:linear-gradient(135deg,#6e40c9,#4f46e5);color:#fff;padding:12px 32px;border-radius:10px;font-weight:700;font-size:0.95rem;cursor:pointer;border:none;text-decoration:none;transition:opacity .2s}
+.gate-btn:hover{opacity:.9}
+.gate-already{font-size:0.8rem;color:var(--muted);margin-top:12px;cursor:pointer;text-decoration:underline}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1000;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.active{display:flex}
+.modal{background:#12121e;border:1px solid #3b2d6e;border-radius:18px;padding:32px;max-width:420px;width:100%;text-align:center;position:relative}
+.modal-close{position:absolute;top:14px;right:18px;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1}
+.modal h2{font-size:1.3rem;font-weight:800;margin-bottom:8px}
+.modal p{color:var(--muted);font-size:0.9rem;margin-bottom:20px;line-height:1.5}
+.modal-input{width:100%;padding:12px 16px;background:#1e1e2e;border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:0.95rem;margin-bottom:12px;outline:none}
+.modal-input:focus{border-color:var(--accent)}
+.modal-submit{width:100%;padding:12px;background:linear-gradient(135deg,#6e40c9,#4f46e5);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:0.95rem;cursor:pointer;transition:opacity .2s}
+.modal-submit:hover{opacity:.9}
+.modal-skip{font-size:0.8rem;color:var(--muted);margin-top:12px;cursor:pointer;text-decoration:underline;display:block}
+.modal-success{display:none}
+.modal-success h2{color:var(--green)}
+
+/* Reset button */
+.reset-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;font-size:0.8rem;cursor:pointer;transition:border-color .2s}
+.reset-btn:hover{border-color:var(--accent);color:var(--text)}
+
+/* JSON-LD */
+footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+footer a{color:var(--muted)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a BJJ skill tree?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A BJJ skill tree is a visual map of Brazilian Jiu-Jitsu techniques organized by belt level, helping practitioners track which techniques they have learned and identify what to study next."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to get a blue belt in BJJ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most practitioners earn their blue belt after 1-3 years of consistent training. The blue belt represents a solid foundation of guard, passing, and basic submissions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What techniques should a BJJ white belt learn first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "White belts should focus on closed guard, mount, side control, rear naked choke, armbar, and basic escapes like the shrimp/hip escape. These form the foundation of all future learning."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../../index.html" class="logo">BJJ<span>Wiki</span></a>
+    <nav>
+      <a href="../../index.html">ホーム</a>
+      <a href="../index.html">全技一覧</a>
+      <a href="skill-tree.html" style="color:var(--accent)">スキルツリー</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div style="font-size:2.5rem;margin-bottom:8px">🥋</div>
+    <h1>BJJ スキルツリー</h1>
+    <p>Check off techniques as you learn them. Track your progress from white belt fundamentals to black belt mastery.</p>
+    <button class="reset-btn" onclick="resetProgress()">↺ リセット</button>
+  </div>
+
+  <!-- Overall progress bar -->
+  <div class="overall-progress">
+    <span class="overall-label">総合進捗</span>
+    <div class="overall-bar-wrap"><div class="overall-bar" id="overall-bar" style="width:0%"></div></div>
+    <span class="overall-count" id="overall-count">0 / 0</span>
+  </div>
+
+  <!-- ===== WHITE BELT ===== -->
+  <div class="belt-section" id="section-white">
+    <div class="belt-header">
+      <span class="belt-badge badge-white">⬜ White Belt</span>
+      <span class="belt-title">基礎</span>
+      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-white" id="bar-white" style="width:0%"></div></div>
+      <span class="belt-count" id="count-white">0 / 15</span>
+    </div>
+    <div class="tech-grid" id="grid-white"></div>
+  </div>
+
+  <!-- ===== BLUE BELT ===== -->
+  <div class="belt-section" id="section-blue">
+    <div class="belt-header">
+      <span class="belt-badge badge-blue">🔵 Blue Belt</span>
+      <span class="belt-title">中級</span>
+      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-blue" id="bar-blue" style="width:0%"></div></div>
+      <span class="belt-count" id="count-blue">0 / 20</span>
+    </div>
+    <div class="tech-grid" id="grid-blue"></div>
+  </div>
+
+  <!-- ===== PURPLE BELT (GATED) ===== -->
+  <div class="belt-section" id="section-purple">
+    <div class="belt-header">
+      <span class="belt-badge badge-purple">🟣 Purple Belt</span>
+      <span class="belt-title">上級テクニック</span>
+      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-purple" id="bar-purple" style="width:0%"></div></div>
+      <span class="belt-count" id="count-purple">🔒 ロック中</span>
+    </div>
+    <div id="purple-gate">
+      <div class="gate-banner">
+        <div style="font-size:2rem;margin-bottom:8px">🔐</div>
+        <h3>紫帯以上を解放する</h3>
+        <p>ヒールフック・ベリンボロ・ラバーガードなど25技以上。メールアドレスだけで無料解放。</p>
+        <button class="gate-btn" onclick="openModal()">🔓 Unlock 上級テクニック</button>
+        <div class="gate-already" onclick="unlockAdvanced('skip')">購読済みの方はこちら →</div>
+      </div>
+    </div>
+    <div class="tech-grid" id="grid-purple" style="display:none"></div>
+  </div>
+
+  <!-- ===== BROWN BELT (GATED) ===== -->
+  <div class="belt-section" id="section-brown" style="display:none">
+    <div class="belt-header">
+      <span class="belt-badge badge-brown">🟤 Brown Belt</span>
+      <span class="belt-title">エキスパート</span>
+      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-brown" id="bar-brown" style="width:0%"></div></div>
+      <span class="belt-count" id="count-brown">0 / 10</span>
+    </div>
+    <div class="tech-grid" id="grid-brown"></div>
+  </div>
+
+  <!-- ===== BLACK BELT (GATED) ===== -->
+  <div class="belt-section" id="section-black" style="display:none">
+    <div class="belt-header">
+      <span class="belt-badge badge-black">⬛ Black Belt</span>
+      <span class="belt-title">習熟</span>
+      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-black" id="bar-black" style="width:0%"></div></div>
+      <span class="belt-count" id="count-black">0 / 10</span>
+    </div>
+    <div class="tech-grid" id="grid-black"></div>
+  </div>
+
+  <!-- Beehiiv CTA footer -->
+  <div style="background:linear-gradient(135deg,#0d1225,#1a1040);border:1px solid #3b2d6e;border-radius:14px;padding:24px;margin-top:40px;text-align:center">
+    <h3 style="font-size:1rem;font-weight:800;margin-bottom:8px">🐝 Get Weekly BJJ Tips</h3>
+    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px">Join the newsletter — technique breakdowns, training tips & exclusive content. Free.</p>
+    <a href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(135deg,#6e40c9,#4f46e5);color:#fff;padding:10px 28px;border-radius:8px;font-weight:700;text-decoration:none">Subscribe Free →</a>
+  </div>
+
+  <footer>
+    <p>BJJ Wiki — 無料BJJ技術百科事典</p>
+    <p style="margin-top:8px"><a href="../../privacy.html">プライバシーポリシー</a></p>
+  </footer>
+</div>
+
+<!-- Email Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-form">
+      <div style="font-size:2rem;margin-bottom:12px">🥋</div>
+      <h2>紫帯以上を解放</h2>
+      <p>ヒールフック・ベリンボロ等の上級技を解放。BJJ Wikiニュースレターで毎週テクニック解説をお届け。</p>
+      <input class="modal-input" type="email" id="modal-email" placeholder="your@email.com" autocomplete="email">
+      <button class="modal-submit" onclick="handleSubscribe()">🔓 解放して購読する</button>
+      <span class="modal-skip" onclick="unlockAdvanced('skip')">スキップして解放のみ →</span>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div style="font-size:2.5rem;margin-bottom:12px">✅</div>
+      <h2>登録完了！</h2>
+      <p style="color:var(--muted)">上級テクニックが解放されました。確認メールをチェックしてください。</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const WIKI = "https://t307239.github.io/bjj-wiki/en/"; // ja links to en for technique pages
+
+const BELTS = {
+  white: {
+    label: "White Belt", total: 15,
+    techs: [
+      {slug:"rear-naked-choke",   name:"Rear Naked Choke",   cat:"Choke"},
+      {slug:"armbar",             name:"Armbar",             cat:"Joint Lock"},
+      {slug:"americana",          name:"Americana",          cat:"Joint Lock"},
+      {slug:"triangle-choke",     name:"Triangle Choke",     cat:"Choke"},
+      {slug:"guillotine-choke",   name:"Guillotine Choke",   cat:"Choke"},
+      {slug:"closed-guard",       name:"Closed Guard",       cat:"Guard"},
+      {slug:"mount",              name:"Mount",              cat:"Position"},
+      {slug:"side-control",       name:"Side Control",       cat:"Position"},
+      {slug:"shrimp-escape",      name:"Shrimp Escape",      cat:"Escape"},
+      {slug:"hip-escape",         name:"Hip Escape",         cat:"Defense"},
+      {slug:"guard-pass",         name:"Guard Pass",         cat:"Passing"},
+      {slug:"scissor-sweep",      name:"Scissor Sweep",      cat:"Sweep"},
+      {slug:"hip-bump-sweep",     name:"Hip Bump Sweep",     cat:"Sweep"},
+      {slug:"double-leg-takedown",name:"Double Leg Takedown",cat:"Takedown"},
+      {slug:"sprawl",             name:"Sprawl",             cat:"Defense"},
+    ]
+  },
+  blue: {
+    label: "Blue Belt", total: 20,
+    techs: [
+      {slug:"kimura",             name:"Kimura",             cat:"Joint Lock"},
+      {slug:"omoplata",           name:"Omoplata",           cat:"Joint Lock"},
+      {slug:"half-guard",         name:"Half Guard",         cat:"Guard"},
+      {slug:"butterfly-guard",    name:"Butterfly Guard",    cat:"Guard"},
+      {slug:"back-mount",         name:"Back Mount",         cat:"Position"},
+      {slug:"bow-and-arrow-choke",name:"Bow & Arrow Choke",  cat:"Choke"},
+      {slug:"darce-choke",        name:"D'Arce Choke",       cat:"Choke"},
+      {slug:"anaconda-choke",     name:"Anaconda Choke",     cat:"Choke"},
+      {slug:"arm-triangle-choke", name:"Arm Triangle",       cat:"Choke"},
+      {slug:"arm-drag",           name:"Arm Drag",           cat:"Transition"},
+      {slug:"backtake",           name:"Back Take",          cat:"Transition"},
+      {slug:"torreando-pass",     name:"Torreando Pass",     cat:"Passing"},
+      {slug:"knee-slice-pass",    name:"Knee Slice Pass",    cat:"Passing"},
+      {slug:"tripod-sweep",       name:"Tripod Sweep",       cat:"Sweep"},
+      {slug:"elevator-sweep",     name:"Elevator Sweep",     cat:"Sweep"},
+      {slug:"single-leg-takedown",name:"Single Leg Takedown",cat:"Takedown"},
+      {slug:"ankle-lock",         name:"Ankle Lock",         cat:"Leg Lock"},
+      {slug:"toe-hold",           name:"Toe Hold",           cat:"Leg Lock"},
+      {slug:"ezekiel-choke",      name:"Ezekiel Choke",      cat:"Choke"},
+      {slug:"knee-on-belly",      name:"Knee on Belly",      cat:"Position"},
+    ]
+  },
+  purple: {
+    label: "Purple Belt", total: 15,
+    techs: [
+      {slug:"heel-hook",          name:"Heel Hook",          cat:"Leg Lock"},
+      {slug:"inside-heel-hook",   name:"Inside Heel Hook",   cat:"Leg Lock"},
+      {slug:"outside-heel-hook",  name:"Outside Heel Hook",  cat:"Leg Lock"},
+      {slug:"berimbolo",          name:"Berimbolo",          cat:"Guard"},
+      {slug:"rubber-guard",       name:"Rubber Guard",       cat:"Guard"},
+      {slug:"x-guard",            name:"X-Guard",            cat:"Guard"},
+      {slug:"worm-guard",         name:"Worm Guard",         cat:"Guard"},
+      {slug:"de-la-riva-guard",   name:"De La Riva Guard",   cat:"Guard"},
+      {slug:"50-50-guard",        name:"50/50 Guard",        cat:"Guard"},
+      {slug:"lasso-guard",        name:"Lasso Guard",        cat:"Guard"},
+      {slug:"north-south-choke",  name:"North-South Choke",  cat:"Choke"},
+      {slug:"knee-bar",           name:"Knee Bar",           cat:"Leg Lock"},
+      {slug:"calf-slicer",        name:"Calf Slicer",        cat:"Leg Lock"},
+      {slug:"deep-half-guard",    name:"Deep Half Guard",    cat:"Guard"},
+      {slug:"leg-drag-pass",      name:"Leg Drag Pass",      cat:"Passing"},
+    ]
+  },
+  brown: {
+    label: "Brown Belt", total: 10,
+    techs: [
+      {slug:"reverse-de-la-riva", name:"Reverse De La Riva", cat:"Guard"},
+      {slug:"granby-roll",        name:"Granby Roll",        cat:"Transition"},
+      {slug:"baseball-choke",     name:"Baseball Choke",     cat:"Choke"},
+      {slug:"body-triangle",      name:"Body Triangle",      cat:"Position"},
+      {slug:"loop-choke",         name:"Loop Choke",         cat:"Choke"},
+      {slug:"z-guard",            name:"Z-Guard",            cat:"Guard"},
+      {slug:"double-under-pass",  name:"Double Under Pass",  cat:"Passing"},
+      {slug:"overhead-sweep",     name:"Overhead Sweep",     cat:"Sweep"},
+      {slug:"wrist-lock",         name:"Wrist Lock",         cat:"Joint Lock"},
+      {slug:"seat-belt-control",  name:"Seat Belt Control",  cat:"Position"},
+    ]
+  },
+  black: {
+    label: "Black Belt", total: 10,
+    techs: [
+      {slug:"estima-lock",        name:"Estima Lock",        cat:"Leg Lock"},
+      {slug:"monoplata",          name:"Monoplata",          cat:"Joint Lock"},
+      {slug:"straight-armbar",    name:"Straight Armbar",    cat:"Joint Lock"},
+      {slug:"clock-choke",        name:"Clock Choke",        cat:"Choke"},
+      {slug:"lapel-choke",        name:"Lapel Choke",        cat:"Choke"},
+      {slug:"x-guard-sweep",      name:"X-Guard Sweep",      cat:"Sweep"},
+      {slug:"pendulum-sweep",     name:"Pendulum Sweep",     cat:"Sweep"},
+      {slug:"balloon-sweep",      name:"Balloon Sweep",      cat:"Sweep"},
+      {slug:"sickle-sweep",       name:"Sickle Sweep",       cat:"Sweep"},
+      {slug:"flower-sweep",       name:"Flower Sweep",       cat:"Sweep"},
+    ]
+  }
+};
+
+const STORAGE_KEY = "bjj_skill_tree_v2";
+const UNLOCK_KEY  = "bjj_skill_tree_unlocked";
+
+// ===== STATE =====
+function getProgress() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+function saveProgress(p) { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
+function isUnlocked() { return localStorage.getItem(UNLOCK_KEY) === "1"; }
+function setUnlocked() { localStorage.setItem(UNLOCK_KEY, "1"); }
+
+// ===== RENDER =====
+function renderBelt(belt) {
+  const data  = BELTS[belt];
+  const prog  = getProgress();
+  const grid  = document.getElementById("grid-" + belt);
+  const bar   = document.getElementById("bar-" + belt);
+  const count = document.getElementById("count-" + belt);
+  if (!grid) return;
+
+  const locked = (belt === "purple" || belt === "brown" || belt === "black") && !isUnlocked();
+
+  grid.innerHTML = data.techs.map(t => {
+    const done = !!prog[t.slug];
+    const lockedClass = locked ? " locked" : "";
+    const learnedClass = done && !locked ? " learned" : "";
+    return `
+      <div class="tech-card${learnedClass}${lockedClass}" id="card-${t.slug}"
+           onclick="${locked ? '' : `toggleTech('${t.slug}')`}">
+        <div class="check-circle"><span class="check-icon">✓</span></div>
+        <div class="tech-info">
+          <div class="tech-name">${t.name}</div>
+          <div class="tech-cat">${t.cat}</div>
+          ${locked ? '' : `<a class="tech-link" href="${WIKI}${t.slug}.html" target="_blank" rel="noopener" onclick="event.stopPropagation()">技を見る →</a>`}
+        </div>
+        ${locked ? '<span class="lock-icon">🔒</span>' : ''}
+      </div>`;
+  }).join("");
+
+  if (locked) {
+    if (count) count.textContent = "🔒 ロック中";
+    if (bar) bar.style.width = "0%";
+    return;
+  }
+
+  const learned = data.techs.filter(t => prog[t.slug]).length;
+  const pct = Math.round(learned / data.techs.length * 100);
+  if (bar) bar.style.width = pct + "%";
+  if (count) count.textContent = `${learned} / ${data.techs.length}`;
+}
+
+function renderAll() {
+  Object.keys(BELTS).forEach(renderBelt);
+  updateOverall();
+
+  // Show/hide gated sections
+  const unlocked = isUnlocked();
+  ["brown","black"].forEach(b => {
+    const sec = document.getElementById("section-" + b);
+    if (sec) sec.style.display = unlocked ? "" : "none";
+  });
+  if (unlocked) {
+    const gate = document.getElementById("purple-gate");
+    const gridPurple = document.getElementById("grid-purple");
+    const countPurple = document.getElementById("count-purple");
+    if (gate) gate.style.display = "none";
+    if (gridPurple) gridPurple.style.display = "";
+    // Re-render count
+    const prog = getProgress();
+    const purpleLearned = BELTS.purple.techs.filter(t => prog[t.slug]).length;
+    const pct = Math.round(purpleLearned / BELTS.purple.techs.length * 100);
+    const bar = document.getElementById("bar-purple");
+    if (bar) bar.style.width = pct + "%";
+    if (countPurple) countPurple.textContent = `${purpleLearned} / ${BELTS.purple.techs.length}`;
+  }
+}
+
+function updateOverall() {
+  const prog = getProgress();
+  const allTechs = Object.values(BELTS).flatMap(b => b.techs);
+  const learned = allTechs.filter(t => prog[t.slug]).length;
+  const total = allTechs.length;
+  const bar = document.getElementById("overall-bar");
+  const countEl = document.getElementById("overall-count");
+  if (bar) bar.style.width = Math.round(learned/total*100) + "%";
+  if (countEl) countEl.textContent = `${learned} / ${total}`;
+}
+
+// ===== TOGGLE =====
+function toggleTech(slug) {
+  const prog = getProgress();
+  prog[slug] = !prog[slug];
+  if (!prog[slug]) delete prog[slug];
+  saveProgress(prog);
+
+  // Find which belt
+  for (const belt of Object.keys(BELTS)) {
+    if (BELTS[belt].techs.find(t => t.slug === slug)) {
+      renderBelt(belt);
+      break;
+    }
+  }
+  updateOverall();
+
+  // Analytics
+  if (window.gtag) gtag('event', prog[slug] === undefined ? 'technique_unchecked' : 'technique_checked', {technique: slug});
+}
+
+function resetProgress() {
+  if (!confirm("進捗をリセットしますか？")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  renderAll();
+}
+
+// ===== MODAL =====
+function openModal() {
+  document.getElementById("modal").classList.add("active");
+  document.getElementById("modal-email").focus();
+}
+function closeModal() {
+  document.getElementById("modal").classList.remove("active");
+}
+document.getElementById("modal").addEventListener("click", function(e) {
+  if (e.target === this) closeModal();
+});
+
+function handleSubscribe() {
+  const email = document.getElementById("modal-email").value.trim();
+  if (!email || !email.includes("@")) {
+    document.getElementById("modal-email").style.borderColor = "#ef4444";
+    return;
+  }
+  // Open Beehiiv in new tab with email pre-filled (best effort)
+  const beehiivUrl = `https://bjj-wiki.beehiiv.com/subscribe?email=${encodeURIComponent(email)}`;
+  window.open(beehiivUrl, "_blank");
+
+  // Show success & unlock
+  document.getElementById("modal-form").style.display = "none";
+  document.getElementById("modal-success").style.display = "block";
+
+  // Analytics
+  if (window.gtag) gtag('event', 'skill_tree_subscribe', {email_domain: email.split('@')[1]});
+
+  setTimeout(() => {
+    unlockAdvanced("subscribed");
+    closeModal();
+  }, 2000);
+}
+
+function unlockAdvanced(method) {
+  setUnlocked();
+  closeModal();
+  renderAll();
+  if (window.gtag) gtag('event', 'skill_tree_unlock', {method: method});
+  // Smooth scroll to purple section
+  setTimeout(() => {
+    const sec = document.getElementById("section-purple");
+    if (sec) sec.scrollIntoView({behavior:"smooth", block:"start"});
+  }, 300);
+}
+
+// Enter key on modal
+document.getElementById("modal-email").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") handleSubscribe();
+});
+
+// ===== INIT =====
+renderAll();
+</script>
+</body>
+</html>
