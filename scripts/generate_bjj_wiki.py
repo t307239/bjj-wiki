@@ -258,6 +258,11 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <meta property="og:image" content="{SITE_URL}/og-image.svg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bjj_wiki">
+<meta name="twitter:title" content="{article.get('title', tech['name'])}">
+<meta name="twitter:description" content="{article.get('meta_description', '')[:200]}">
+<meta name="twitter:image" content="{SITE_URL}/og-image.svg">
 <link rel="canonical" href="{SITE_URL}/{lang_code}/{tech['slug']}.html">
 <link rel="alternate" hreflang="en" href="{SITE_URL}/en/{tech['slug']}.html">
 <link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/{tech['slug']}.html">
