@@ -23,6 +23,11 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/generate_bjj_wiki.py --limit 5
 
+      - name: Generate BJJ News page
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate_bjj_news.py
+
       - name: Commit and push
         run: |
           git config user.name  "github-actions[bot]"
