@@ -383,8 +383,17 @@ def article_to_html(tech, lang_code, article, all_techniques):
   {'<h2>Related Techniques</h2>' if lang_code=='en' else '<h2>関連技</h2>' if lang_code=='ja' else '<h2>Técnicas Relacionadas</h2>'}
   <div class="related-links">{related_links}</div>
 
+  <!-- Related Techniques Card Grid -->
+  <div style="background:#0f1420;border:1px solid #1f2840;border-radius:12px;padding:24px;margin:32px 0">
+    <h3 style="font-size:1rem;font-weight:700;color:#7c6af7;margin-bottom:16px">🥋 {'Related Techniques' if lang_code=='en' else '関連技' if lang_code=='ja' else 'Técnicas Relacionadas'}</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      {related_links}
+    </div>
+  </div>
+
   <footer>
     <p>BJJ Wiki — {'The free BJJ technique encyclopedia' if lang_code=='en' else '無料BJJ技術百科事典' if lang_code=='ja' else 'A enciclopédia gratuita de técnicas de BJJ'}</p>
+    <p style="margin-top:8px"><a href="../../privacy.html" style="color:var(--muted)">Privacy Policy</a></p>
   </footer>
 </div>
 </body>
