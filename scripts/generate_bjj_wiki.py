@@ -300,6 +300,7 @@ Return ONLY valid JSON with this exact structure (no markdown, no extra text):
   "when_to_use": "Situations and positions where this technique works best",
   "counters": "2-3 main defenses or counters against this technique",
   "belt_level": "Recommended belt level (White/Blue/Purple/Brown/Black)",
+  "pro_tip": "One expert pro tip that most beginners miss (1-2 sentences)",
   "faq_q1": "Frequently asked question about this technique",
   "faq_a1": "Answer to the FAQ",
   "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"]
@@ -396,6 +397,16 @@ def article_to_html(tech, lang_code, article, all_techniques):
   .aff-box{{background:linear-gradient(135deg,#1a0a2e,#0d0d1a);border:1px solid var(--accent);border-radius:12px;padding:20px;margin:32px 0;text-align:center}}
   .aff-box p{{color:var(--muted);font-size:0.9rem;margin-bottom:12px}}
   .aff-btn{{display:inline-block;background:var(--accent);color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem}}
+  .pro-tip{{background:linear-gradient(135deg,#0a1a0a,#0f1f0f);border:1px solid #22c55e;border-radius:12px;padding:20px;margin:24px 0}}
+  .pro-tip-label{{color:#22c55e;font-size:0.8rem;font-weight:700;letter-spacing:0.05em;margin-bottom:8px}}
+  .share-bar{{margin:32px 0;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;text-align:center}}
+  .share-bar p{{color:var(--muted);font-size:0.85rem;margin-bottom:12px}}
+  .share-btns{{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}}
+  .share-btn{{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none;transition:opacity .2s}}
+  .share-btn:hover{{opacity:.8;text-decoration:none}}
+  .share-btn.x{{background:#000;color:#fff}}
+  .share-btn.reddit{{background:#ff4500;color:#fff}}
+  .share-btn.copy{{background:#2d3748;color:#fff;cursor:pointer;border:none;font-family:inherit}}
   footer{{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:0.8rem}}
 </style>
 <script type="application/ld+json">
@@ -469,6 +480,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
   <h2>{'Counters & Defenses' if lang_code=='en' else 'カウンター・防御' if lang_code=='ja' else 'Defesas e Contra-ataques'}</h2>
   <div class="card"><p>{to_str(article.get('counters','')).replace(chr(10),'<br>')}</p></div>
 
+  {'<!-- Pro Tip --><div class="pro-tip"><div class="pro-tip-label">💡 ' + ('PRO TIP' if lang_code=="en" else 'プロのコツ' if lang_code=="ja" else 'DICA DE PRO') + '</div><p>' + to_str(article.get("pro_tip","")).replace(chr(10),'<br>') + '</p></div>' if article.get('pro_tip') else ''}
+
   <!-- アフィリエイト -->
   <div class="aff-box" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
     <p style="flex:1;min-width:200px">{'Master this technique with world-class instruction' if lang_code=='en' else 'この技を世界レベルの指導で習得しよう' if lang_code=='ja' else 'Domine esta técnica com instrução de classe mundial'}</p>
@@ -495,6 +508,16 @@ def article_to_html(tech, lang_code, article, all_techniques):
     <h3 style="font-size:1rem;font-weight:700;color:#7c6af7;margin-bottom:16px">🥋 {'Related Techniques' if lang_code=='en' else '関連技' if lang_code=='ja' else 'Técnicas Relacionadas'}</h3>
     <div style="display:flex;flex-wrap:wrap;gap:8px">
       {related_links}
+    </div>
+  </div>
+
+  <!-- Share Bar -->
+  <div class="share-bar">
+    <p>{'Share this technique' if lang_code=='en' else 'この技をシェア' if lang_code=='ja' else 'Compartilhar esta técnica'}</p>
+    <div class="share-btns">
+      <a class="share-btn x" href="https://twitter.com/intent/tweet?url={SITE_URL}/{lang_code}/{tech['slug']}.html&text={tech['name'].replace(' ','+')}+%23BJJ+%23bjjwiki" target="_blank" rel="noopener noreferrer">𝕏 {'Post on X' if lang_code=='en' else 'Xに投稿' if lang_code=='ja' else 'Postar no X'}</a>
+      <a class="share-btn reddit" href="https://www.reddit.com/submit?url={SITE_URL}/{lang_code}/{tech['slug']}.html&title={tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer">⬆ Reddit</a>
+      <button class="share-btn copy" onclick="navigator.clipboard.writeText('{SITE_URL}/{lang_code}/{tech['slug']}.html').then(()=>{{this.textContent='✓ {'Copied!' if lang_code=='en' else 'コピー済！' if lang_code=='ja' else 'Copiado!'}';setTimeout(()=>this.textContent='📋 {'Copy Link' if lang_code=='en' else 'リンクコピー' if lang_code=='ja' else 'Copiar'}',2000)}})">📋 {'Copy Link' if lang_code=='en' else 'リンクコピー' if lang_code=='ja' else 'Copiar'}</button>
     </div>
   </div>
 
