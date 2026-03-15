@@ -383,7 +383,27 @@ footer{max-width:960px;margin:0 auto;padding:24px 0;
     <h1>Todas as Técnicas de BJJ</h1>
     <p>Explore guardas, finalizações, posições e mais.</p>
   </div>
-  <div class="search-wrap">
+  <div id="tech-of-day" style="background:linear-gradient(135deg,#0d1225,#1a1040);border:1px solid #2d2060;border-radius:14px;padding:20px 24px;margin:0 0 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+  <span style="font-size:2rem">🥋</span>
+  <div style="flex:1;min-width:180px">
+    <div style="font-size:0.75rem;color:#7c6af7;font-weight:700;letter-spacing:.08em;margin-bottom:4px">TÉCNICA DO DIA</div>
+    <div id="tot-name" style="font-size:1.1rem;font-weight:800;margin-bottom:4px"></div>
+    <div style="font-size:0.82rem;color:#6b7699">Estude esta técnica hoje</div>
+  </div>
+  <a id="tot-link" href="#" style="background:#7c6af7;color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;font-size:0.9rem;white-space:nowrap;text-decoration:none">Ver artigo →</a>
+</div>
+<script>
+(function(){
+  var slugs=["closed-guard", "open-guard", "half-guard", "spider-guard", "de-la-riva-guard", "berimbolo", "butterfly-guard", "rubber-guard", "x-guard", "worm-guard", "reverse-de-la-riva", "50-50-guard", "lasso-guard", "deep-half-guard", "z-guard", "guard-pass", "torreando-pass", "knee-slice-pass", "leg-drag-pass", "headquarters-pass", "stack-pass", "double-under-pass", "pressure-pass", "smash-pass", "x-pass", "double-leg-takedown", "single-leg-takedown", "osoto-gari", "ankle-pick", "harai-goshi", "ippon-seoi-nage", "morote-seoi-nage", "snap-down", "rear-naked-choke", "triangle-choke", "guillotine-choke", "bow-and-arrow-choke", "ezekiel-choke", "darce-choke", "anaconda-choke", "loop-choke", "arm-triangle-choke", "north-south-choke", "baseball-choke", "cross-collar-choke", "clock-choke", "lapel-choke", "armbar", "kimura", "americana", "omoplata", "wrist-lock", "straight-armbar", "monoplata", "heel-hook", "inside-heel-hook", "outside-heel-hook", "knee-bar", "toe-hold", "calf-slicer", "ankle-lock", "estima-lock", "mount", "back-mount", "side-control", "north-south", "knee-on-belly", "s-mount", "modified-mount", "body-triangle", "scissor-sweep", "flower-sweep", "hip-bump-sweep", "pendulum-sweep", "tripod-sweep", "elevator-sweep", "sickle-sweep", "overhead-sweep", "balloon-sweep", "x-guard-sweep", "arm-drag", "granby-roll", "shrimp-escape", "bridge-and-roll", "elbow-knee-escape", "guard-retention", "hip-escape", "frame", "sprawl", "back-defense", "backtake", "turtle-position", "technical-standup", "stand-in-base", "sitting-guard", "seat-belt-control", "front-headlock", "russian-tie", "underhook", "overhook"];
+  var d=new Date(),seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+  var idx=seed%slugs.length;
+  var slug=slugs[idx];
+  var name=slug.replace(/-/g,' ').replace(/\w/g,function(c){return c.toUpperCase();});
+  document.getElementById('tot-name').textContent=name;
+  document.getElementById('tot-link').href='../pt/'+slug+'.html';
+})();
+</script>
+<div class="search-wrap">
     <span class="search-icon">🔍</span>
     <input type="text" id="tech-search" placeholder="Buscar técnicas...">
   </div>
