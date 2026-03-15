@@ -1,8 +1,8 @@
 {
   "rear-naked-choke": {
-    "video_id": "KW2RvtWgBxU",
-    "title": "How to do the Rear Naked Choke in Jiu Jitsu | Jiu Jitsu Tutorial | BJJ Lessons",
-    "channel": "Matt Arroyo Jiu Jitsu ",
+    "video_id": "l8-JI7NND3E",
+    "title": "How To Perform The Perfect Rear Naked Choke by John Danaher",
+    "channel": "Bernardo Faria BJJ Fanatics",
     "timestamps": []
   },
   "triangle-choke": {
@@ -12,16 +12,172 @@
     "timestamps": []
   },
   "guillotine-choke": {
-    "video_id": "YWwRC0V6O9Y",
-    "title": "How to do the Guillotine in Jiu Jitsu | Everything You Need to Know!",
-    "channel": "Matt Arroyo Jiu Jitsu ",
+    "video_id": "_IK51iClbGE",
+    "title": "The Guillotine Choke: A Complete Masterclass",
+    "channel": "Brandon Mccaghren",
     "timestamps": []
   },
   "armbar": {
-    "video_id": "iUap4TaYVQc",
-    "title": "How To Do the Armbar From Mount in Jiu Jitsu | Jiu Jitsu Tutorial",
-    "channel": "Matt Arroyo Jiu Jitsu ",
-    "timestamps": []
+    "video_id": "2rMG3v7PtkA",
+    "title": "Learn the Secrets of a Tight Armlock | Full Seminar",
+    "channel": "ROYDEAN",
+    "timestamps": [
+      {
+        "time": "00:00",
+        "label": "RoyDean Presents",
+        "seconds": 0
+      },
+      {
+        "time": "00:17",
+        "label": "Welcome",
+        "seconds": 17
+      },
+      {
+        "time": "1:02",
+        "label": "Cross Body Armlock from Mount",
+        "seconds": 62
+      },
+      {
+        "time": "3:47",
+        "label": "Principle: Pinning And Moving",
+        "seconds": 227
+      },
+      {
+        "time": "7:28",
+        "label": "Tap Early, Tap Often",
+        "seconds": 448
+      },
+      {
+        "time": "7:55",
+        "label": "Topside Armlock Variations",
+        "seconds": 475
+      },
+      {
+        "time": "8:30",
+        "label": "More Efficient Vs Less Efficient",
+        "seconds": 510
+      },
+      {
+        "time": "9:01",
+        "label": "The Mechanics Of An Armlock",
+        "seconds": 541
+      },
+      {
+        "time": "11:34",
+        "label": "Follow Up Attacks To The Slipped Armlock",
+        "seconds": 694
+      },
+      {
+        "time": "15:54",
+        "label": "Proper Framing From Bottom",
+        "seconds": 954
+      },
+      {
+        "time": "16:35",
+        "label": "Spinning Armlock Details",
+        "seconds": 995
+      },
+      {
+        "time": "17:37",
+        "label": "Finishing Position Advantages",
+        "seconds": 1057
+      },
+      {
+        "time": "19:55",
+        "label": "Using The Elbow To Pin And Restrain",
+        "seconds": 1195
+      },
+      {
+        "time": "22:09",
+        "label": "The Flat Entry: Wedging The Knee Up",
+        "seconds": 1329
+      },
+      {
+        "time": "24:04",
+        "label": "Preventing The Hand Clasp Defense",
+        "seconds": 1444
+      },
+      {
+        "time": "24:56",
+        "label": "Detail: Hold Your Thigh",
+        "seconds": 1496
+      },
+      {
+        "time": "26:39",
+        "label": "Working With What You Have",
+        "seconds": 1599
+      },
+      {
+        "time": "27:39",
+        "label": "Basics: Armbar From The Guard",
+        "seconds": 1659
+      },
+      {
+        "time": "30:42",
+        "label": "Turning The Proper Direction",
+        "seconds": 1842
+      },
+      {
+        "time": "31:37",
+        "label": "Armlock To Sweep",
+        "seconds": 1897
+      },
+      {
+        "time": "32:36",
+        "label": "Detail: Pull Sideways",
+        "seconds": 1956
+      },
+      {
+        "time": "33:49",
+        "label": "Triangulation For The Sweep",
+        "seconds": 2029
+      },
+      {
+        "time": "34:21",
+        "label": "Reasons For Sweeping From The Armlock",
+        "seconds": 2061
+      },
+      {
+        "time": "37:04",
+        "label": "Lateral Pull Into The Sweep",
+        "seconds": 2224
+      },
+      {
+        "time": "38:13",
+        "label": "Detail: Push In And Then Pull To Off Balance",
+        "seconds": 2293
+      },
+      {
+        "time": "38:44",
+        "label": "Spinning Out From The Stack",
+        "seconds": 2324
+      },
+      {
+        "time": "42:25",
+        "label": "Arm Triangle To Thigh Sweep",
+        "seconds": 2545
+      },
+      {
+        "time": "47:51",
+        "label": "Armlock Defense Counters",
+        "seconds": 2871
+      },
+      {
+        "time": "48:52",
+        "label": "Swim Up To The Wrist",
+        "seconds": 2932
+      },
+      {
+        "time": "50:41",
+        "label": "Triangle Position From Armlock Defense",
+        "seconds": 3041
+      },
+      {
+        "time": "52:57",
+        "label": "Final Thoughts",
+        "seconds": 3177
+      }
+    ]
   },
   "kimura": {
     "video_id": "FWVeQnJ7RF4",
@@ -182,9 +338,9 @@
     ]
   },
   "closed-guard": {
-    "video_id": "Z_FBT8ZDSmo",
-    "title": "Easy to Use Entire Closed Guard System",
-    "channel": "JonThomasBJJ",
+    "video_id": "otskR_OjuBU",
+    "title": "How To Build The Perfect BJJ Closed Guard Game by John Danaher",
+    "channel": "Bernardo Faria BJJ Fanatics",
     "timestamps": []
   },
   "open-guard": {
@@ -288,9 +444,9 @@
     ]
   },
   "spider-guard": {
-    "video_id": "j35oc5eDX_c",
-    "title": "How To TAP EVERYONE With These 5 Spider Guard ATTACKS | All YOU NEED |",
-    "channel": "BIG OSS Jiu-Jitsu Channel",
+    "video_id": "n-4mG7IL64Q",
+    "title": "Spider Guard System - Fundamentals collection",
+    "channel": "BJJ House Okinawa",
     "timestamps": []
   },
   "butterfly-guard": {
