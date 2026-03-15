@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BJJ Wiki — Brazilian Jiu-Jitsu Technique Encyclopedia</title>
+    <link>https://t307239.github.io/bjj-wiki/en/index.html</link>
+    <description>Free BJJ technique guides, tutorials, and training tips. New content added daily.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 Mar 2026 02:36:31 +0900</lastBuildDate>
+    <atom:link href="https://t307239.github.io/bjj-wiki/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://t307239.github.io/bjj-wiki/og-image.svg</url>
+      <title>BJJ Wiki</title>
+      <link>https://t307239.github.io/bjj-wiki/en/index.html</link>
+    </image>
+  <item>
+    <title>Armbar — Complete BJJ Guide</title>
+    <link>https://t307239.github.io/bjj-wiki/en/armbar.html</link>
+    <description>Master the armbar from mount and guard.</description>
+    <pubDate>Fri, 13 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/armbar.html</guid>
+  </item>
+  <item>
+    <title>Heel Hook — The Most Dangerous Leg Lock</title>
+    <link>https://t307239.github.io/bjj-wiki/en/heel-hook.html</link>
+    <description>Complete guide to heel hooks in no-gi BJJ.</description>
+    <pubDate>Sat, 14 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/heel-hook.html</guid>
+  </item>
+  <item>
+    <title>Berimbolo — Advanced BJJ Inversion</title>
+    <link>https://t307239.github.io/bjj-wiki/en/berimbolo.html</link>
+    <description>How to berimbolo from De La Riva guard.</description>
+    <pubDate>Sun, 15 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/berimbolo.html</guid>
+  </item>
+  <item>
+    <title>Triangle Choke — Step by Step Guide</title>
+    <link>https://t307239.github.io/bjj-wiki/en/triangle-choke.html</link>
+    <description>Complete triangle choke tutorial for all belts.</description>
+    <pubDate>Mon, 16 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/triangle-choke.html</guid>
+  </item>
+  <item>
+    <title>Kimura — The Classic Shoulder Lock</title>
+    <link>https://t307239.github.io/bjj-wiki/en/kimura.html</link>
+    <description>Kimura from guard, top, and back.</description>
+    <pubDate>Tue, 17 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/kimura.html</guid>
+  </item>
+  <item>
+    <title>Bow &amp; Arrow Choke</title>
+    <link>https://t307239.github.io/bjj-wiki/en/bow-and-arrow-choke.html</link>
+    <description>Most powerful gi choke from the back.</description>
+    <pubDate>Wed, 18 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/bow-and-arrow-choke.html</guid>
+  </item>
+  <item>
+    <title>De La Riva Guard — Complete System</title>
+    <link>https://t307239.github.io/bjj-wiki/en/de-la-riva-guard.html</link>
+    <description>How to play, sweep, and submit from DLR.</description>
+    <pubDate>Thu, 19 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/de-la-riva-guard.html</guid>
+  </item>
+  <item>
+    <title>Best BJJ Techniques for Beginners</title>
+    <link>https://t307239.github.io/bjj-wiki/en/best-bjj-techniques-beginners.html</link>
+    <description>15 essential techniques every white belt must learn.</description>
+    <pubDate>Fri, 20 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/best-bjj-techniques-beginners.html</guid>
+  </item>
+  <item>
+    <title>BJJ Skill Tree — Track Your Progress</title>
+    <link>https://t307239.github.io/bjj-wiki/en/skill-tree.html</link>
+    <description>Interactive tool to track your BJJ technique progress.</description>
+    <pubDate>Sat, 21 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/skill-tree.html</guid>
+  </item>
+  <item>
+    <title>Best BJJ Leg Locks</title>
+    <link>https://t307239.github.io/bjj-wiki/en/best-bjj-leg-locks.html</link>
+    <description>Complete leg attack system guide.</description>
+    <pubDate>Sun, 22 Mar 2026 00:00:00 +0900</pubDate>
+    <guid isPermaLink="true">https://t307239.github.io/bjj-wiki/en/best-bjj-leg-locks.html</guid>
+  </item>
+  </channel>
+</rss>
