@@ -119,6 +119,7 @@ IS_CI          = os.environ.get("GITHUB_ACTIONS") == "true"
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 SITE_DIR       = os.path.abspath(os.path.join(os.path.dirname(__file__), "..")) if IS_CI else os.path.expanduser("~/Claude/bjj-wiki")
 SITE_URL       = "https://t307239.github.io/bjj-wiki"
+AMAZON_TAG     = "bjj06-22"
 
 LANGUAGES = {
     "en": {"name": "English",    "dir": "en"},
@@ -468,12 +469,17 @@ def article_to_html(tech, lang_code, article, all_techniques):
   <h2>{'Counters & Defenses' if lang_code=='en' else 'カウンター・防御' if lang_code=='ja' else 'Defesas e Contra-ataques'}</h2>
   <div class="card"><p>{to_str(article.get('counters','')).replace(chr(10),'<br>')}</p></div>
 
-  <!-- BJJ Fanatics アフィリエイト -->
-  <div class="aff-box">
-    <p>{'Master this technique with world-class instruction' if lang_code=='en' else 'この技を世界レベルの指導で習得しよう' if lang_code=='ja' else 'Domine esta técnica com instrução de classe mundial'}</p>
-    <a class="aff-btn" href="https://bjjfanatics.com/search?q={urllib.parse.quote(tech['name']) if False else tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer nofollow">
-      {'Browse Instructionals →' if lang_code=='en' else '教則動画を見る →' if lang_code=='ja' else 'Ver Instrucionais →'}
-    </a>
+  <!-- アフィリエイト -->
+  <div class="aff-box" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+    <p style="flex:1;min-width:200px">{'Master this technique with world-class instruction' if lang_code=='en' else 'この技を世界レベルの指導で習得しよう' if lang_code=='ja' else 'Domine esta técnica com instrução de classe mundial'}</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="aff-btn" href="https://bjjfanatics.com/search?q={tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer nofollow">
+        {'🎬 Instructionals' if lang_code=='en' else '🎬 教則動画' if lang_code=='ja' else '🎬 Instrucionais'}
+      </a>
+      <a class="aff-btn" href="{'https://www.amazon.co.jp/s?k=BJJ+' if lang_code=='ja' else 'https://www.amazon.com/s?k=BJJ+'}{tech['name'].replace(' ','+')}&tag={AMAZON_TAG}" target="_blank" rel="noopener noreferrer nofollow" style="background:#ff9900;color:#111">
+        {'📚 Books on Amazon' if lang_code=='en' else '📚 Amazonで本を探す' if lang_code=='ja' else '📚 Livros na Amazon'}
+      </a>
+    </div>
   </div>
 
   <div class="faq">
