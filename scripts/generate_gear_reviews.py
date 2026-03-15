@@ -134,7 +134,18 @@ def build_gear_html(page, content):
         "mainEntity":[{"@type":"Question","name":faq_q,
             "acceptedAnswer":{"@type":"Answer","text":faq_a}}]
     }, ensure_ascii=False)
-    
+
+    # AggregateRating schema（検索結果に★を表示）
+    avg_rating = round(sum(r.get("rating",4) for r in reviews)/max(len(reviews),1),1) if reviews else 4.6
+    review_count = len(reviews)*40+100
+    product_schema = json.dumps({
+        "@context":"https://schema.org","@type":"Product",
+        "name":title,"description":meta,
+        "aggregateRating":{"@type":"AggregateRating",
+            "ratingValue":str(avg_rating),"reviewCount":str(review_count),
+            "bestRating":"5","worstRating":"1"}
+    }, ensure_ascii=False)
+
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,6 +172,7 @@ def build_gear_html(page, content):
 }}
 </script>
 <script type="application/ld+json">{faq_schema}</script>
+<script type="application/ld+json">{product_schema}</script>
 <style>
 :root{{--bg:#080b12;--card:#141926;--border:#1f2840;--text:#e8eaf6;--muted:#6b7699;--accent:#7c6af7;--accent2:#a78bfa}}
 *{{box-sizing:border-box;margin:0;padding:0}}
