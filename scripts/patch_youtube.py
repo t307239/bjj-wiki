@@ -184,7 +184,7 @@ def main():
     # まずenで全技のYouTube IDを取得（言語共通）
     print("[INFO] YouTube動画IDを検索中...")
     for slug, query in SEARCH_QUERIES.items():
-        if slug not in cache:
+        if slug not in cache or cache[slug] is None:
             print(f"  検索: {query}")
             vid_id, title = search_youtube(query, api_key)
             if vid_id:
