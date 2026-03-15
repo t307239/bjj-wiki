@@ -44,7 +44,7 @@ def search_youtube(query, api_key):
         "maxResults": 1,
         "relevanceLanguage": "en",
         "safeSearch": "none",
-        "videoDuration": "medium",  # 4〜20分：タイムスタンプあり動画を優先
+        "videoDuration": "long",  # 20分超：長尺教則動画はチャプター記載率が高い
         "key": api_key,
     })
     url = f"https://www.googleapis.com/youtube/v3/search?{params}"

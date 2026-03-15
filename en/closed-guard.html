@@ -140,6 +140,13 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   .yt-frame-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
     border-radius:10px}
   .yt-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+
+  /* Beehiiv newsletter */
+  .beehiiv-wrap{background:linear-gradient(135deg,#0d1225,#1a1040);
+    border:1px solid #2d2060;border-radius:14px;padding:28px;
+    margin:32px 0 8px;text-align:center}
+  .beehiiv-title{font-size:1.05rem;font-weight:800;margin-bottom:10px}
+  .beehiiv-desc{color:var(--muted);font-size:0.88rem;line-height:1.6}
 </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
@@ -232,7 +239,20 @@ graph LR
 <a href="de-la-riva-guard.html">De La Riva Guard</a>
 </div>
 
-  <footer>
+  
+  <div class="beehiiv-wrap">
+    <div class="beehiiv-inner">
+      <h3 class="beehiiv-title">🐝 Get Weekly BJJ Tips</h3>
+      <p class="beehiiv-desc">Join the BJJ Wiki newsletter. Technique breakdowns, training tips, and exclusive content — free.</p>
+      <iframe src="https://embeds.beehiiv.com/embed/9b4d1898-9b9a-4b7a-8103-3949ff453430"
+        data-test-id="beehiiv-embed"
+        width="100%" height="52"
+        frameborder="0" scrolling="no"
+        style="border-radius:8px;margin-top:14px;border:0;background:transparent">
+      </iframe>
+    </div>
+  </div>
+<footer>
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
   </footer>
 </div>

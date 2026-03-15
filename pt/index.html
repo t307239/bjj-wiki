@@ -63,6 +63,13 @@ nav{max-width:960px;margin:0 auto;padding:20px 0;
 footer{max-width:960px;margin:0 auto;padding:24px 0;
   border-top:1px solid var(--border);text-align:center;
   color:var(--muted);font-size:0.8rem}
+
+  /* Beehiiv newsletter */
+  .beehiiv-wrap{background:linear-gradient(135deg,#0d1225,#1a1040);
+    border:1px solid #2d2060;border-radius:14px;padding:28px;
+    margin:32px 0 8px;text-align:center}
+  .beehiiv-title{font-size:1.05rem;font-weight:800;margin-bottom:10px}
+  .beehiiv-desc{color:var(--muted);font-size:0.88rem;line-height:1.6}
 </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
@@ -221,41 +228,99 @@ footer{max-width:960px;margin:0 auto;padding:24px 0;
   </div>
 </div>
 </div>
+
+  <div class="beehiiv-wrap">
+    <div class="beehiiv-inner">
+      <h3 class="beehiiv-title">🐝 Receba Dicas Semanais de BJJ</h3>
+      <p class="beehiiv-desc">Junte-se ao newsletter do BJJ Wiki. Análises de técnicas, dicas de treino e conteúdo exclusivo — grátis.</p>
+      <iframe src="https://embeds.beehiiv.com/embed/9b4d1898-9b9a-4b7a-8103-3949ff453430"
+        data-test-id="beehiiv-embed"
+        width="100%" height="52"
+        frameborder="0" scrolling="no"
+        style="border-radius:8px;margin-top:14px;border:0;background:transparent">
+      </iframe>
+    </div>
+  </div>
 <footer><p>BJJ Wiki — Free & Open Knowledge</p></footer>
+
+<!-- Fuse.js fuzzy search -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js"></script>
 <script>
-const pills = document.querySelectorAll('.filter-pill');
-const searchInput = document.getElementById('tech-search');
-const catSections = document.querySelectorAll('.cat-section');
-let activeFilter = 'all';
-function applyFilter(){
-  const q = searchInput ? searchInput.value.toLowerCase() : '';
-  let any = false;
-  catSections.forEach(sec=>{
-    const cat = sec.dataset.cat;
-    const cards = sec.querySelectorAll('.tech-card');
-    let vis = false;
-    cards.forEach(card=>{
-      const name = card.querySelector('.tech-name').textContent.toLowerCase();
-      const show = (activeFilter==='all'||cat===activeFilter) && name.includes(q);
-      card.style.display = show ? '' : 'none';
-      if(show) vis = true;
+(function(){
+  const searchInput = document.getElementById('tech-search');
+  const catSections = document.querySelectorAll('.cat-section');
+  const pills = document.querySelectorAll('.filter-pill');
+  let activeFilter = 'all';
+
+  // 全カードのデータを収集
+  const allCards = [];
+  catSections.forEach(sec => {
+    const cat = sec.dataset.cat || 'all';
+    sec.querySelectorAll('.tech-card').forEach(card => {
+      const nameEl = card.querySelector('.tech-name');
+      if (nameEl) allCards.push({ name: nameEl.textContent, cat, el: card, sec });
     });
-    sec.style.display = vis ? '' : 'none';
-    if(vis) any = true;
   });
-  let nr = document.querySelector('.no-results');
-  if(!nr){nr=document.createElement('p');nr.className='no-results';
-    nr.textContent='No techniques found.';
-    document.querySelector('.container').appendChild(nr);}
-  nr.style.display = any ? 'none' : '';
-}
-pills.forEach(p=>{p.addEventListener('click',()=>{
-  pills.forEach(x=>x.classList.remove('active'));
-  p.classList.add('active');
-  activeFilter=p.dataset.filter;
+
+  // Fuse.jsインスタンス（ファジー検索）
+  const fuse = new Fuse(allCards, {
+    keys: ['name'],
+    threshold: 0.4,  // 0=完全一致, 1=なんでもマッチ
+    minMatchCharLength: 2,
+  });
+
+  function applyFilter() {
+    const q = searchInput ? searchInput.value.trim() : '';
+    let matched = new Set();
+
+    if (q.length >= 2) {
+      const results = fuse.search(q);
+      results.forEach(r => matched.add(r.item.el));
+    }
+
+    let anyVisible = false;
+    catSections.forEach(sec => {
+      const cat = sec.dataset.cat || 'all';
+      const cards = sec.querySelectorAll('.tech-card');
+      let secVisible = false;
+      cards.forEach(card => {
+        const nameEl = card.querySelector('.tech-name');
+        const name = nameEl ? nameEl.textContent.toLowerCase() : '';
+        const filterOk = activeFilter === 'all' || cat === activeFilter;
+        const searchOk = q.length < 2
+          ? true
+          : (matched.has(card) || name.includes(q.toLowerCase()));
+        const show = filterOk && searchOk;
+        card.style.display = show ? '' : 'none';
+        if (show) secVisible = true;
+      });
+      sec.style.display = secVisible ? '' : 'none';
+      if (secVisible) anyVisible = true;
+    });
+
+    let nr = document.querySelector('.no-results');
+    if (!nr) {
+      nr = document.createElement('p');
+      nr.className = 'no-results';
+      nr.textContent = 'No techniques found.';
+      document.querySelector('.container').appendChild(nr);
+    }
+    nr.style.display = anyVisible ? 'none' : '';
+  }
+
+  pills.forEach(p => {
+    p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      activeFilter = p.dataset.filter;
+      applyFilter();
+    });
+  });
+
+  if (searchInput) searchInput.addEventListener('input', applyFilter);
   applyFilter();
-})});
-if(searchInput) searchInput.addEventListener('input',applyFilter);
-applyFilter();</script>
+})();
+</script>
+
 </body>
 </html>
