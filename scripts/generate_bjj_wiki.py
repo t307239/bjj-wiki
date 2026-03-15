@@ -20,6 +20,26 @@ INTERNAL_LINK_MAP = {
         "Side Control": "side-control", "Mount": "mount",
         "Guard Pass": "guard-pass", "Heel Hook": "heel-hook",
         "Bow and Arrow Choke": "bow-and-arrow-choke",
+        "Inside Heel Hook": "inside-heel-hook", "Outside Heel Hook": "outside-heel-hook",
+        "Knee Bar": "knee-bar", "Toe Hold": "toe-hold", "Ankle Lock": "ankle-lock",
+        "D'Arce Choke": "darce-choke", "Anaconda Choke": "anaconda-choke",
+        "Ezekiel Choke": "ezekiel-choke", "Arm Triangle": "arm-triangle-choke",
+        "North-South Choke": "north-south-choke", "Baseball Choke": "baseball-choke",
+        "Wrist Lock": "wrist-lock", "Calf Slicer": "calf-slicer",
+        "Torreando Pass": "torreando-pass", "Knee Slice": "knee-slice-pass",
+        "Leg Drag": "leg-drag-pass", "Double Under Pass": "double-under-pass",
+        "Deep Half Guard": "deep-half-guard", "50/50": "50-50-guard",
+        "Lasso Guard": "lasso-guard", "Reverse De La Riva": "reverse-de-la-riva",
+        "Rubber Guard": "rubber-guard", "Z-Guard": "z-guard",
+        "Scissor Sweep": "scissor-sweep", "Hip Bump Sweep": "hip-bump-sweep",
+        "Tripod Sweep": "tripod-sweep", "Elevator Sweep": "elevator-sweep",
+        "Back Take": "backtake", "Shrimp Escape": "shrimp-escape",
+        "Hip Escape": "hip-escape", "Arm Drag": "arm-drag",
+        "Body Triangle": "body-triangle", "Seat Belt": "seat-belt-control",
+        "Front Headlock": "front-headlock", "Underhook": "underhook",
+        "Double Leg Takedown": "double-leg-takedown", "Single Leg": "single-leg-takedown",
+        "Sprawl": "sprawl", "Knee on Belly": "knee-on-belly",
+        "North-South": "north-south", "Turtle": "turtle-position",
     },
     "ja": {
         "アームバー": "armbar", "三角絞め": "triangle-choke",
@@ -29,13 +49,30 @@ INTERNAL_LINK_MAP = {
         "バタフライガード": "butterfly-guard", "デラヒーバガード": "de-la-riva-guard",
         "バックマウント": "back-mount", "サイドコントロール": "side-control",
         "マウント": "mount", "ヒールフック": "heel-hook",
+        "インサイドヒールフック": "inside-heel-hook", "アウトサイドヒールフック": "outside-heel-hook",
+        "ニーバー": "knee-bar", "トーホールド": "toe-hold", "アンクルロック": "ankle-lock",
+        "ダーシーチョーク": "darce-choke", "アナコンダチョーク": "anaconda-choke",
+        "エゼキエルチョーク": "ezekiel-choke", "カーフスライサー": "calf-slicer",
+        "スパイダーガード": "spider-guard", "ラバーガード": "rubber-guard",
+        "ラッソーガード": "lasso-guard", "ディープハーフガード": "deep-half-guard",
+        "トレアンドパス": "torreando-pass", "ニースライスパス": "knee-slice-pass",
+        "シザースイープ": "scissor-sweep", "ヒップバンプスイープ": "hip-bump-sweep",
+        "バックテイク": "backtake", "シュリンプエスケープ": "shrimp-escape",
+        "アームドラッグ": "arm-drag", "ダブルレッグ": "double-leg-takedown",
+        "スプロール": "sprawl", "ノースサウス": "north-south",
     },
     "pt": {
         "Armbar": "armbar", "Triangle Choke": "triangle-choke",
         "Rear Naked Choke": "rear-naked-choke", "Guillotine": "guillotine-choke",
         "Kimura": "kimura", "Americana": "americana", "Omoplata": "omoplata",
         "Guarda Fechada": "closed-guard", "Meia Guarda": "half-guard",
-        "Berimbolo": "berimbolo",
+        "Berimbolo": "berimbolo", "Heel Hook": "heel-hook",
+        "Knee Bar": "knee-bar", "Rasteira": "ankle-pick",
+        "Passagem de Guarda": "guard-pass", "Guarda Aranha": "spider-guard",
+        "Guarda Borboleta": "butterfly-guard", "De La Riva": "de-la-riva-guard",
+        "Choke Arco e Flecha": "bow-and-arrow-choke", "Montada": "mount",
+        "Controle das Costas": "back-mount", "Raspagem Tesoura": "scissor-sweep",
+        "Braçadeira": "arm-triangle-choke", "Chave de Pé": "ankle-lock",
     },
 }
 
@@ -89,7 +126,7 @@ LANGUAGES = {
     "pt": {"name": "Português",  "dir": "pt"},
 }
 
-# ===== 技リスト（初期50技）=====
+# ===== 技リスト（100技）=====
 TECHNIQUES = [
     # ガード系
     {"slug": "closed-guard",        "name": "Closed Guard",        "category": "Guard"},
@@ -102,17 +139,31 @@ TECHNIQUES = [
     {"slug": "rubber-guard",        "name": "Rubber Guard",        "category": "Guard"},
     {"slug": "x-guard",             "name": "X-Guard",             "category": "Guard"},
     {"slug": "worm-guard",          "name": "Worm Guard",          "category": "Guard"},
+    {"slug": "reverse-de-la-riva",  "name": "Reverse De La Riva",  "category": "Guard"},
+    {"slug": "50-50-guard",         "name": "50/50 Guard",         "category": "Guard"},
+    {"slug": "lasso-guard",         "name": "Lasso Guard",         "category": "Guard"},
+    {"slug": "deep-half-guard",     "name": "Deep Half Guard",     "category": "Guard"},
+    {"slug": "z-guard",             "name": "Z-Guard",             "category": "Guard"},
     # パス系
     {"slug": "guard-pass",          "name": "Guard Pass",          "category": "Passing"},
     {"slug": "torreando-pass",      "name": "Torreando Pass",      "category": "Passing"},
     {"slug": "knee-slice-pass",     "name": "Knee Slice Pass",     "category": "Passing"},
     {"slug": "leg-drag-pass",       "name": "Leg Drag Pass",       "category": "Passing"},
     {"slug": "headquarters-pass",   "name": "Headquarters Pass",   "category": "Passing"},
+    {"slug": "stack-pass",          "name": "Stack Pass",          "category": "Passing"},
+    {"slug": "double-under-pass",   "name": "Double Under Pass",   "category": "Passing"},
+    {"slug": "pressure-pass",       "name": "Pressure Pass",       "category": "Passing"},
+    {"slug": "smash-pass",          "name": "Smash Pass",          "category": "Passing"},
+    {"slug": "x-pass",              "name": "X-Pass",              "category": "Passing"},
     # テイクダウン
     {"slug": "double-leg-takedown", "name": "Double Leg Takedown", "category": "Takedown"},
     {"slug": "single-leg-takedown", "name": "Single Leg Takedown", "category": "Takedown"},
     {"slug": "osoto-gari",          "name": "Osoto Gari",          "category": "Takedown"},
     {"slug": "ankle-pick",          "name": "Ankle Pick",          "category": "Takedown"},
+    {"slug": "harai-goshi",         "name": "Harai Goshi",         "category": "Takedown"},
+    {"slug": "ippon-seoi-nage",     "name": "Ippon Seoi Nage",     "category": "Takedown"},
+    {"slug": "morote-seoi-nage",    "name": "Morote Seoi Nage",    "category": "Takedown"},
+    {"slug": "snap-down",           "name": "Snap Down",           "category": "Takedown"},
     # 絞め技
     {"slug": "rear-naked-choke",    "name": "Rear Naked Choke",    "category": "Choke"},
     {"slug": "triangle-choke",      "name": "Triangle Choke",      "category": "Choke"},
@@ -122,33 +173,73 @@ TECHNIQUES = [
     {"slug": "darce-choke",         "name": "D'Arce Choke",        "category": "Choke"},
     {"slug": "anaconda-choke",      "name": "Anaconda Choke",      "category": "Choke"},
     {"slug": "loop-choke",          "name": "Loop Choke",          "category": "Choke"},
+    {"slug": "arm-triangle-choke",  "name": "Arm Triangle Choke",  "category": "Choke"},
+    {"slug": "north-south-choke",   "name": "North-South Choke",   "category": "Choke"},
+    {"slug": "baseball-choke",      "name": "Baseball Choke",      "category": "Choke"},
+    {"slug": "cross-collar-choke",  "name": "Cross Collar Choke",  "category": "Choke"},
+    {"slug": "clock-choke",         "name": "Clock Choke",         "category": "Choke"},
+    {"slug": "lapel-choke",         "name": "Lapel Choke",         "category": "Choke"},
     # 関節技
     {"slug": "armbar",              "name": "Armbar",              "category": "Joint Lock"},
     {"slug": "kimura",              "name": "Kimura",              "category": "Joint Lock"},
     {"slug": "americana",           "name": "Americana",           "category": "Joint Lock"},
     {"slug": "omoplata",            "name": "Omoplata",            "category": "Joint Lock"},
     {"slug": "wrist-lock",          "name": "Wrist Lock",          "category": "Joint Lock"},
+    {"slug": "straight-armbar",     "name": "Straight Armbar",     "category": "Joint Lock"},
+    {"slug": "monoplata",           "name": "Monoplata",           "category": "Joint Lock"},
+    # レッグロック
     {"slug": "heel-hook",           "name": "Heel Hook",           "category": "Leg Lock"},
     {"slug": "inside-heel-hook",    "name": "Inside Heel Hook",    "category": "Leg Lock"},
     {"slug": "outside-heel-hook",   "name": "Outside Heel Hook",   "category": "Leg Lock"},
     {"slug": "knee-bar",            "name": "Knee Bar",            "category": "Leg Lock"},
     {"slug": "toe-hold",            "name": "Toe Hold",            "category": "Leg Lock"},
     {"slug": "calf-slicer",         "name": "Calf Slicer",         "category": "Leg Lock"},
+    {"slug": "ankle-lock",          "name": "Ankle Lock",          "category": "Leg Lock"},
+    {"slug": "estima-lock",         "name": "Estima Lock",         "category": "Leg Lock"},
     # ポジション
     {"slug": "mount",               "name": "Mount",               "category": "Position"},
     {"slug": "back-mount",          "name": "Back Mount",          "category": "Position"},
     {"slug": "side-control",        "name": "Side Control",        "category": "Position"},
     {"slug": "north-south",         "name": "North-South",         "category": "Position"},
     {"slug": "knee-on-belly",       "name": "Knee on Belly",       "category": "Position"},
+    {"slug": "s-mount",             "name": "S-Mount",             "category": "Position"},
+    {"slug": "modified-mount",      "name": "Modified Mount",      "category": "Position"},
+    {"slug": "body-triangle",       "name": "Body Triangle",       "category": "Position"},
     # スイープ
     {"slug": "scissor-sweep",       "name": "Scissor Sweep",       "category": "Sweep"},
     {"slug": "flower-sweep",        "name": "Flower Sweep",        "category": "Sweep"},
     {"slug": "hip-bump-sweep",      "name": "Hip Bump Sweep",      "category": "Sweep"},
     {"slug": "pendulum-sweep",      "name": "Pendulum Sweep",      "category": "Sweep"},
-    # その他
+    {"slug": "tripod-sweep",        "name": "Tripod Sweep",        "category": "Sweep"},
+    {"slug": "elevator-sweep",      "name": "Elevator Sweep",      "category": "Sweep"},
+    {"slug": "sickle-sweep",        "name": "Sickle Sweep",        "category": "Sweep"},
+    {"slug": "overhead-sweep",      "name": "Overhead Sweep",      "category": "Sweep"},
+    {"slug": "balloon-sweep",       "name": "Balloon Sweep",       "category": "Sweep"},
+    {"slug": "x-guard-sweep",       "name": "X-Guard Sweep",       "category": "Sweep"},
+    # サブミッション連携
+    {"slug": "arm-drag",            "name": "Arm Drag",            "category": "Transition"},
+    {"slug": "granby-roll",         "name": "Granby Roll",         "category": "Transition"},
+    {"slug": "shrimp-escape",       "name": "Shrimp Escape",       "category": "Escape"},
+    {"slug": "bridge-and-roll",     "name": "Bridge and Roll",     "category": "Escape"},
+    {"slug": "elbow-knee-escape",   "name": "Elbow-Knee Escape",   "category": "Escape"},
+    # ディフェンス・エスケープ
+    {"slug": "guard-retention",     "name": "Guard Retention",     "category": "Defense"},
+    {"slug": "hip-escape",          "name": "Hip Escape",          "category": "Defense"},
+    {"slug": "frame",               "name": "Frame",               "category": "Defense"},
+    {"slug": "sprawl",              "name": "Sprawl",              "category": "Defense"},
+    {"slug": "back-defense",        "name": "Back Defense",        "category": "Defense"},
+    # トランジション
     {"slug": "backtake",            "name": "Back Take",           "category": "Transition"},
     {"slug": "turtle-position",     "name": "Turtle Position",     "category": "Position"},
-    {"slug": "sprawl",              "name": "Sprawl",              "category": "Defense"},
+    {"slug": "technical-standup",   "name": "Technical Stand-Up",  "category": "Transition"},
+    {"slug": "stand-in-base",       "name": "Stand In Base",       "category": "Transition"},
+    {"slug": "sitting-guard",       "name": "Sitting Guard",       "category": "Guard"},
+    # ノーギ特化
+    {"slug": "seat-belt-control",   "name": "Seat Belt Control",   "category": "Position"},
+    {"slug": "front-headlock",      "name": "Front Headlock",      "category": "Position"},
+    {"slug": "russian-tie",         "name": "Russian Tie",         "category": "Takedown"},
+    {"slug": "underhook",           "name": "Underhook",           "category": "Position"},
+    {"slug": "overhook",            "name": "Overhook",            "category": "Position"},
 ]
 
 # ===== Gemini API（複数モデルフォールバック）=====
@@ -248,6 +339,10 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
 <title>{article.get('title', tech['name'])} | BJJ Wiki</title>
 <meta name="description" content="{article.get('meta_description', '')}">
 <meta name="keywords" content="{keywords_str}">
