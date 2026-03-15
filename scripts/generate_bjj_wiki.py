@@ -245,12 +245,13 @@ TECHNIQUES = [
 
 # ===== Gemini API（複数モデルフォールバック）=====
 def call_gemini(prompt):
+    # 無料tierを先頭→有料(2.5系)は最終フォールバックのみ
     models = [
-        ("gemini-2.5-flash",        "v1beta"),
-        ("gemini-2.0-flash",        "v1beta"),
-        ("gemini-2.0-flash",        "v1"),
-        ("gemini-2.0-flash-lite-001","v1beta"),
-        ("gemini-1.5-flash-latest", "v1beta"),
+        ("gemini-2.0-flash",         "v1beta"),   # 無料tier
+        ("gemini-2.0-flash",         "v1"),        # 無料tier
+        ("gemini-2.0-flash-lite-001","v1beta"),    # 無料tier
+        ("gemini-1.5-flash-latest",  "v1beta"),    # 無料tier
+        ("gemini-2.5-flash",         "v1beta"),    # 有料(最終手段)
     ]
     data = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
