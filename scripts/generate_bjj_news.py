@@ -90,17 +90,53 @@ Items:
             continue
     return []
 
+# ニュース本文に技名が含まれていたらWikiリンクに変換（ファネル強化）
+TECHNIQUE_MAP = {
+    "armbar":"en/armbar.html","triangle choke":"en/triangle-choke.html",
+    "rear naked choke":"en/rear-naked-choke.html","guillotine":"en/guillotine-choke.html",
+    "kimura":"en/kimura.html","heel hook":"en/heel-hook.html",
+    "inside heel hook":"en/inside-heel-hook.html","outside heel hook":"en/outside-heel-hook.html",
+    "leg lock":"en/heel-hook.html","leg locks":"en/heel-hook.html",
+    "berimbolo":"en/berimbolo.html","back take":"en/backtake.html",
+    "omoplata":"en/omoplata.html","darce":"en/darce-choke.html",
+    "anaconda":"en/anaconda-choke.html","half guard":"en/half-guard.html",
+    "closed guard":"en/closed-guard.html","butterfly guard":"en/butterfly-guard.html",
+    "de la riva":"en/de-la-riva-guard.html","x guard":"en/x-guard.html",
+    "double leg":"en/double-leg-takedown.html","single leg":"en/single-leg-takedown.html",
+    "knee bar":"en/knee-bar.html","toe hold":"en/toe-hold.html",
+}
+
+def find_technique_links(text):
+    found = []
+    seen = set()
+    for tech_name, tech_path in TECHNIQUE_MAP.items():
+        if tech_name in seen: continue
+        if re.search(re.escape(tech_name), text, re.IGNORECASE):
+            found.append((tech_name, tech_path))
+            seen.add(tech_name)
+            if len(found) >= 2: break
+    return found
+
 def build_html(news_en, news_ja, date_str):
     def card(item, lang):
         url = item.get("url","#")
         title = item.get("title","")
         summary = item.get("summary","")
-        return f'''<a class="news-card" href="{url}" target="_blank" rel="noopener noreferrer">
+        techs = find_technique_links(title + " " + summary)
+        tech_html = ""
+        if techs:
+            links = " · ".join(
+                f'<a href="{t[1]}" style="color:var(--accent2,#a78bfa);font-size:0.78rem;font-weight:600">🥋 {t[0].title()} →</a>'
+                for t in techs
+            )
+            tech_html = f'<div style="margin-top:8px;padding-top:8px;border-top:1px solid #1f2840">{links}</div>'
+        return f'''<div class="news-card">
+<a href="{url}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">
   <div class="news-title">{title}</div>
   <div class="news-summary">{summary}</div>
   <span class="news-src">↗ Full article</span>
-</a>'''
-    
+</a>{tech_html}</div>'''
+
     en_cards = "\n".join(card(i,"en") for i in news_en[:10])
     ja_cards = "\n".join(card(i,"ja") for i in news_ja[:10])
     

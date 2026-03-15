@@ -28,6 +28,16 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/generate_bjj_news.py
 
+      - name: Generate athlete profiles
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate_bjj_athletes.py --limit 2
+
+      - name: Generate gear review pages
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate_gear_reviews.py --limit 2
+
       - name: Commit and push
         run: |
           git config user.name  "github-actions[bot]"
