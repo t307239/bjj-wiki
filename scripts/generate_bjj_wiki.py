@@ -199,6 +199,9 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <meta property="og:description" content="{article.get('meta_description', '')}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{SITE_URL}/{lang_code}/{tech['slug']}.html">
+<meta property="og:image" content="{SITE_URL}/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="canonical" href="{SITE_URL}/{lang_code}/{tech['slug']}.html">
 <link rel="alternate" hreflang="en" href="{SITE_URL}/en/{tech['slug']}.html">
 <link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/{tech['slug']}.html">
@@ -237,6 +240,45 @@ def article_to_html(tech, lang_code, article, all_techniques):
   .aff-btn{{display:inline-block;background:var(--accent);color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem}}
   footer{{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:0.8rem}}
 </style>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{article.get('title', tech['name'])}",
+  "description": "{article.get('meta_description', '')}",
+  "url": "{SITE_URL}/{lang_code}/{tech['slug']}.html",
+  "inLanguage": "{lang_code}",
+  "publisher": {{
+    "@type": "Organization",
+    "name": "BJJ Wiki",
+    "url": "{SITE_URL}/"
+  }},
+  "mainEntityOfPage": {{
+    "@type": "WebPage",
+    "@id": "{SITE_URL}/{lang_code}/{tech['slug']}.html"
+  }}
+}}
+</script>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "BJJ Wiki",
+      "item": "{SITE_URL}/{lang_code}/index.html"
+    }},
+    {{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{article.get('title', tech['name'])}",
+      "item": "{SITE_URL}/{lang_code}/{tech['slug']}.html"
+    }}
+  ]
+}}
+</script>
 </head>
 <body>
 <div class="container">
