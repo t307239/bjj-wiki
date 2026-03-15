@@ -81,7 +81,7 @@ _load_secrets()
 IS_CI          = os.environ.get("GITHUB_ACTIONS") == "true"
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 SITE_DIR       = os.path.abspath(os.path.join(os.path.dirname(__file__), "..")) if IS_CI else os.path.expanduser("~/Claude/bjj-wiki")
-SITE_URL       = "https://YOUR_USERNAME.github.io/bjj-wiki"  # ← GitHub Pages URL に変更
+SITE_URL       = "https://t307239.github.io/bjj-wiki"
 
 LANGUAGES = {
     "en": {"name": "English",    "dir": "en"},
@@ -267,6 +267,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <link rel="alternate" hreflang="en" href="{SITE_URL}/en/{tech['slug']}.html">
 <link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/{tech['slug']}.html">
 <link rel="alternate" hreflang="pt" href="{SITE_URL}/pt/{tech['slug']}.html">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3285779374433925" crossorigin="anonymous"></script>
 <style>
   :root {{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9;--green:#22c55e}}
   *{{box-sizing:border-box;margin:0;padding:0}}
