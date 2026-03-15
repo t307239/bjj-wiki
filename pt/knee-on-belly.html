@@ -140,6 +140,24 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   .yt-frame-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
     border-radius:10px}
   .yt-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+
+  /* Timestamps */
+  .ts-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px}
+  .ts-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .ts-icon{font-size:1.2rem}
+  .ts-title{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em}
+  .ts-video-title{font-size:0.9rem;color:var(--text);font-weight:600;margin-bottom:4px}
+  .ts-channel{font-size:0.78rem;color:var(--muted);margin-bottom:14px}
+  .ts-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+  .ts-item{display:flex;align-items:center;gap:10px}
+  .ts-time{display:inline-block;min-width:46px;padding:2px 8px;
+    background:var(--accent);color:#fff;border-radius:6px;
+    font-size:0.78rem;font-weight:700;font-family:monospace;
+    text-decoration:none;transition:opacity .2s}
+  .ts-time:hover{opacity:.8;text-decoration:none}
+  .ts-label{font-size:0.85rem;color:var(--text)}
 </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
@@ -201,6 +219,21 @@ graph LR
 
   <!-- BJJ Fanatics アフィリエイト -->
   
+  
+  <div class="ts-wrap">
+    <div class="ts-header">
+      <span class="ts-icon">📺</span>
+      <span class="ts-title">Video Timestamps</span>
+    </div>
+    <div class="ts-video-title">Knee on belly | MASTER the BJJ system</div>
+    <div class="ts-channel">Energia Martial Arts</div>
+    <ul class="ts-list">
+      <li class="ts-item"><a class="ts-time" href="https://www.youtube.com/watch?v=BHUYEm0ve9A&t=0s" target="_blank" rel="noopener">0:00</a><span class="ts-label">Start</span></li>
+      <li class="ts-item"><a class="ts-time" href="https://www.youtube.com/watch?v=BHUYEm0ve9A&t=14s" target="_blank" rel="noopener">0:14</a><span class="ts-label">Set up and grips</span></li>
+      <li class="ts-item"><a class="ts-time" href="https://www.youtube.com/watch?v=BHUYEm0ve9A&t=205s" target="_blank" rel="noopener">3:25</a><span class="ts-label">A to B positioning</span></li>
+      <li class="ts-item"><a class="ts-time" href="https://www.youtube.com/watch?v=BHUYEm0ve9A&t=295s" target="_blank" rel="noopener">4:55</a><span class="ts-label">B to C positioning</span></li>
+    </ul>
+  </div>
   <div class="yt-wrap">
     <h3 class="yt-label">関連動画 / Related Video</h3>
     <div class="yt-frame-wrap">
