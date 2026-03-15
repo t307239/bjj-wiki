@@ -7,6 +7,62 @@ BJJ Wiki - 多言語柔術技辞典 自動生成スクリプト
 
 import os, json, time, datetime, urllib.request, urllib.error, re
 
+# ===== 内部リンク辞書（技名→スラッグ）=====
+INTERNAL_LINK_MAP = {
+    "en": {
+        "Armbar": "armbar", "Triangle Choke": "triangle-choke",
+        "Rear Naked Choke": "rear-naked-choke", "Guillotine Choke": "guillotine-choke",
+        "Kimura": "kimura", "Americana": "americana", "Omoplata": "omoplata",
+        "Closed Guard": "closed-guard", "Half Guard": "half-guard",
+        "Butterfly Guard": "butterfly-guard", "De La Riva Guard": "de-la-riva-guard",
+        "Spider Guard": "spider-guard", "X-Guard": "x-guard",
+        "Berimbolo": "berimbolo", "Back Mount": "back-mount",
+        "Side Control": "side-control", "Mount": "mount",
+        "Guard Pass": "guard-pass", "Heel Hook": "heel-hook",
+        "Bow and Arrow Choke": "bow-and-arrow-choke",
+    },
+    "ja": {
+        "アームバー": "armbar", "三角絞め": "triangle-choke",
+        "裸絞め": "rear-naked-choke", "ギロチンチョーク": "guillotine-choke",
+        "木村ロック": "kimura", "アメリカーナ": "americana", "オモプラータ": "omoplata",
+        "クローズドガード": "closed-guard", "ハーフガード": "half-guard",
+        "バタフライガード": "butterfly-guard", "デラヒーバガード": "de-la-riva-guard",
+        "バックマウント": "back-mount", "サイドコントロール": "side-control",
+        "マウント": "mount", "ヒールフック": "heel-hook",
+    },
+    "pt": {
+        "Armbar": "armbar", "Triangle Choke": "triangle-choke",
+        "Rear Naked Choke": "rear-naked-choke", "Guillotine": "guillotine-choke",
+        "Kimura": "kimura", "Americana": "americana", "Omoplata": "omoplata",
+        "Guarda Fechada": "closed-guard", "Meia Guarda": "half-guard",
+        "Berimbolo": "berimbolo",
+    },
+}
+
+def add_internal_links(html: str, current_slug: str, lang: str) -> str:
+    """<p>タグ内の技名を内部リンクに変換（各技1回のみ）"""
+    link_map = INTERNAL_LINK_MAP.get(lang, INTERNAL_LINK_MAP["en"])
+    linked = set()
+
+    def replace_in_p(m):
+        p = m.group(0)
+        if '<a ' in p:
+            return p
+        for name, slug in link_map.items():
+            if slug == current_slug or slug in linked:
+                continue
+            pat = re.compile(re.escape(name), re.IGNORECASE)
+            if pat.search(p):
+                url = f"../{lang}/{slug}.html"
+                p = pat.sub(
+                    f'<a href="{url}" style="color:var(--accent,#7c6af7);text-decoration:underline">{name}</a>',
+                    p, count=1)
+                linked.add(slug)
+                break
+        return p
+
+    return re.sub(r'<p[^>]*>.*?</p>', replace_in_p, html, flags=re.DOTALL)
+
 # ===== ~/.secrets からAPIキーを補完 =====
 def _load_secrets():
     path = os.path.expanduser("~/.secrets")
@@ -503,8 +559,9 @@ def main():
                 print(f"[WARNING] JSONパース失敗: {e}")
                 continue
 
-            # HTML生成・保存
+            # HTML生成・保存（内部リンク付与）
             html = article_to_html(tech, lang_code, article, TECHNIQUES)
+            html = add_internal_links(html, tech["slug"], lang_code)
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(html)
 
