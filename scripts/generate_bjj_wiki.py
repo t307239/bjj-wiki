@@ -440,7 +440,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
     # 言語切替リンク
     lang_switcher = " | ".join([
-        f'<a href="../../{lc}/{tech["slug"]}.html">{LANGUAGES[lc]["name"]}</a>'
+        f'<a href="../{lc}/{tech["slug"]}.html">{LANGUAGES[lc]["name"]}</a>'
         for lc in LANGUAGES if lc != lang_code
     ])
 
@@ -458,6 +458,27 @@ def article_to_html(tech, lang_code, article, all_techniques):
         f'<span class="diff-label">{diff_label_txt}</span>'
         f'</div>'
     )
+
+    # --- ベルトガイドクロスリンク ---
+    _belt_guide_map = {
+        "white": {"en": ("white-belt-bjj-guide.html","White Belt Guide"), "ja": ("white-belt-bjj-guide.html","白帯ガイド"), "pt": ("white-belt-bjj-guide.html","Guia Faixa Branca")},
+        "blue":  {"en": ("blue-belt-bjj-guide.html","Blue Belt Guide"),  "ja": ("blue-belt-bjj-guide.html","青帯ガイド"),  "pt": ("blue-belt-bjj-guide.html","Guia Faixa Azul")},
+        "purple":{"en": ("bjj-purple-belt-requirements.html","Purple Belt Requirements"),"ja": ("bjj-purple-belt-requirements.html","紫帯昇格要件"),"pt": ("bjj-purple-belt-requirements.html","Requisitos Faixa Roxa")},
+        "brown": {"en": ("bjj-brown-belt-requirements.html","Brown Belt Requirements"),"ja": ("bjj-brown-belt-requirements.html","茶帯昇格要件"),"pt": ("bjj-brown-belt-requirements.html","Requisitos Faixa Marrom")},
+        "black": {"en": ("bjj-black-belt-requirements.html","Black Belt Requirements"),"ja": ("bjj-black-belt-requirements.html","黒帯昇格要件"),"pt": ("bjj-black-belt-requirements.html","Requisitos Faixa Preta")},
+    }
+    _cta_see_guide = {"en":"📖 See Full Guide →","ja":"📖 完全ガイドを見る →","pt":"📖 Ver Guia Completo →"}
+    _belt_level_label = {"en":f"{diff_belt.title()} Belt Technique","ja":f"{diff_belt.title()}帯テクニック","pt":f"Técnica Faixa {diff_belt.title()}"}
+    if diff_belt in _belt_guide_map and lang_code in _belt_guide_map[diff_belt]:
+        _guide_href, _guide_label = _belt_guide_map[diff_belt][lang_code]
+        belt_guide_html = (
+            f'<div class="belt-guide-box" style="border:2px solid {diff_bg};border-radius:10px;padding:16px;margin:24px 0;background:#0f1420">'
+            f'<span style="background:{diff_bg};color:{diff_fg};padding:4px 12px;border-radius:20px;font-size:.85em;font-weight:700">{_belt_level_label[lang_code]}</span>'
+            f'<br><a href="../{lang_code}/{_guide_href}" style="color:#e2b714;font-weight:600;text-decoration:none;margin-top:8px;display:inline-block">{_cta_see_guide[lang_code]} {_guide_label}</a>'
+            f'</div>'
+        )
+    else:
+        belt_guide_html = ""
 
     # --- 選手セクション ---
     athlete_label = {"en":"🏆 Elite Athletes Who Use This","ja":"🏆 この技を使うエリート選手","pt":"🏆 Atletas de Elite"}[lang_code]
@@ -485,6 +506,33 @@ def article_to_html(tech, lang_code, article, all_techniques):
         yoga_html = f'<div class="yoga-box"><h3>{yoga_label}</h3><p>{yoga_sub}</p><div class="yoga-chips">{yoga_chips}</div></div>'
     else:
         yoga_html = ""
+
+    # --- コンディショニングボックス ---
+    _strength_slugs = {"double-leg-takedown","single-leg-takedown","hip-throw","o-soto-gari",
+                       "harai-goshi","ippon-seoi-nage","snap-down","torreando-pass",
+                       "knee-slice-pass","leg-drag-pass","x-pass","heel-hook","kimura",
+                       "americana","rear-naked-choke","hip-escape","bridge-and-roll",
+                       "guard-retention","back-take","deep-half-guard","wrestling"}
+    _nutrition_slugs = {"bjj-training-tips","bjj-competition-guide","bjj-belt-system",
+                        "white-belt-bjj-guide","blue-belt-bjj-guide","bjj-strength-training",
+                        "double-leg-takedown","single-leg-takedown","wrestling",
+                        "bjj-competition-calendar-2026"}
+    _str_lbl = {"en":("⚡ Strength & Conditioning","Build explosive power for this technique:","bjj-strength-training.html","💪 Strength Training Guide →"),
+                "ja":("⚡ 筋トレ・コンディショニング","この技の爆発力を高めるトレーニング:","bjj-strength-training.html","💪 筋トレガイドを見る →"),
+                "pt":("⚡ Força & Condicionamento","Desenvolva potência explosiva para esta técnica:","bjj-strength-training.html","💪 Guia de Musculação →")}
+    _nut_lbl = {"en":("🥗 BJJ Nutrition","Fuel your training with the right diet:","bjj-diet-nutrition.html","🥗 Nutrition Guide →"),
+                "ja":("🥗 BJJ栄養学","正しい食事で練習パフォーマンスを最大化:","bjj-diet-nutrition.html","🥗 栄養ガイドを見る →"),
+                "pt":("🥗 Nutrição para BJJ","Alimente seu treino com a dieta certa:","bjj-diet-nutrition.html","🥗 Guia de Nutrição →")}
+    def _cond_box(lbl, sub, pg, cta):
+        return (f'<div class="conditioning-box" style="background:#1a2a1a;border-left:4px solid #4ade80;border-radius:8px;padding:14px 18px;margin:20px 0;">'
+                f'<p style="margin:0 0 6px;font-weight:700;color:#4ade80;">{lbl}</p>'
+                f'<p style="margin:0 0 10px;font-size:13px;color:#ccc;">{sub}</p>'
+                f'<a href="{pg}" style="display:inline-block;background:#4ade80;color:#0a0a1a;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:700;font-size:13px;">{cta}</a></div>')
+    conditioning_html = ""
+    if tech["slug"] in _strength_slugs:
+        conditioning_html += _cond_box(*_str_lbl[lang_code])
+    if tech["slug"] in _nutrition_slugs:
+        conditioning_html += _cond_box(*_nut_lbl[lang_code])
 
     # --- ギアボックス ---
     gear_items  = GEAR_CAT_MAP.get(tech["category"], [])
@@ -704,9 +752,9 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <body>
 <div class="container">
   <header>
-    <a href="../../index.html" class="logo">BJJ<span>Wiki</span></a>
+    <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
     <nav>
-      <a href="../../index.html">{labels['home']}</a>
+      <a href="../index.html">{labels['home']}</a>
       <a href="../index.html">{labels['all']}</a>
     </nav>
     <div class="lang-switcher">{lang_switcher}</div>
@@ -716,6 +764,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
   <span class="belt belt-{to_str(article.get('belt_level','white')).lower().split('/')[0].strip()}">{to_str(article.get('belt_level','All Levels'))}</span>
   <h1>{to_str(article.get('h1', tech['name']))}</h1>
   {difficulty_html}
+  {belt_guide_html}
   <p>{to_str(article.get('intro', ''))}</p>
 
   <h2>{'How to Execute' if lang_code=='en' else 'やり方' if lang_code=='ja' else 'Como Executar'}</h2>
@@ -737,14 +786,35 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
   {'<!-- Pro Tip --><div class="pro-tip"><div class="pro-tip-label">💡 ' + ('PRO TIP' if lang_code=="en" else 'プロのコツ' if lang_code=="ja" else 'DICA DE PRO') + '</div><p>' + to_str(article.get("pro_tip","")).replace(chr(10),'<br>') + '</p></div>' if article.get('pro_tip') else ''}
 
+  {conditioning_html}
+  <!-- ルールセットクロスリンク -->
+  <div style="background:#0d1a2e;border-left:4px solid #3a86ff;border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0">
+    <p style="font-size:.9rem;font-weight:700;color:#93c5fd;margin-bottom:.6rem">{"📋 Competition Rules" if lang_code=="en" else "📋 試合ルール" if lang_code=="ja" else "📋 Regras de Competição"}</p>
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+      <a href="ibjjf-rules.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">{"IBJJF Rules →" if lang_code=="en" else "IBJJFルール →" if lang_code=="ja" else "Regras IBJJF →"}</a>
+      <a href="adcc-rules.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">{"ADCC Rules →" if lang_code=="en" else "ADCCルール →" if lang_code=="ja" else "Regras ADCC →"}</a>
+      <a href="bjj-competition-guide.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">{"Competition Guide →" if lang_code=="en" else "競技ガイド →" if lang_code=="ja" else "Guia de Competição →"}</a>
+    </div>
+  </div>
+  <!-- 試合準備クロスリンク -->
+  <div style="background:#1a0d2e;border-left:4px solid #ff6b6b;border-radius:8px;padding:14px 18px;margin:20px 0">
+    <strong style="color:#ff6b6b;font-size:.9rem">{"⚕️ Training Safety & Performance" if lang_code=="en" else "⚕️ トレーニングの安全とパフォーマンス" if lang_code=="ja" else "⚕️ Segurança e Performance no Treino"}</strong>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px">
+      <a href="bjj-injury-prevention.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"🛡️ Injury Prevention" if lang_code=="en" else "🛡️ 怪我予防" if lang_code=="ja" else "🛡️ Prevenção de Lesões"}</a>
+      <a href="bjj-warm-up-routine.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"🔥 Warm-Up" if lang_code=="en" else "🔥 ウォームアップ" if lang_code=="ja" else "🔥 Aquecimento"}</a>
+      <a href="bjj-weight-cutting.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"⚖️ Weight Cutting" if lang_code=="en" else "⚖️ 減量" if lang_code=="ja" else "⚖️ Corte de Peso"}</a>
+      <a href="bjj-mental-game.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"🧠 Mental Game" if lang_code=="en" else "🧠 メンタル強化" if lang_code=="ja" else "🧠 Jogo Mental"}</a>
+      <a href="bjj-competition-prep-checklist.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"📋 Comp Prep" if lang_code=="en" else "📋 試合前チェック" if lang_code=="ja" else "📋 Prep Competição"}</a>
+    </div>
+  </div>
   <!-- アフィリエイト -->
   <div class="aff-box" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
     <p style="flex:1;min-width:200px">{'Master this technique with world-class instruction' if lang_code=='en' else 'この技を世界レベルの指導で習得しよう' if lang_code=='ja' else 'Domine esta técnica com instrução de classe mundial'}</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <a class="aff-btn" href="https://bjjfanatics.com/search?q={tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer nofollow">
+      <a class="aff-btn" href="https://bjjfanatics.com/search?q={tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer nofollow" onclick="gtag&&gtag('event','fanatics_click',{{technique:'{tech['slug']}',lang:'{lang_code}'}})">
         {'🎬 Instructionals' if lang_code=='en' else '🎬 教則動画' if lang_code=='ja' else '🎬 Instrucionais'}
       </a>
-      <a class="aff-btn" href="{'https://www.amazon.co.jp/s?k=BJJ+' if lang_code=='ja' else 'https://www.amazon.com/s?k=BJJ+'}{tech['name'].replace(' ','+')}&tag={AMAZON_TAG}" target="_blank" rel="noopener noreferrer nofollow" style="background:#ff9900;color:#111">
+      <a class="aff-btn" href="{'https://www.amazon.co.jp/s?k=BJJ+' if lang_code=='ja' else 'https://www.amazon.com/s?k=BJJ+'}{tech['name'].replace(' ','+')}&tag={AMAZON_TAG}" target="_blank" rel="noopener noreferrer nofollow" style="background:#ff9900;color:#111" onclick="gtag&&gtag('event','amazon_click',{{technique:'{tech['slug']}',lang:'{lang_code}'}})">
         {'📚 Books on Amazon' if lang_code=='en' else '📚 Amazonで本を探す' if lang_code=='ja' else '📚 Livros na Amazon'}
       </a>
     </div>
@@ -783,7 +853,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
   <footer>
     <p>BJJ Wiki — {'The free BJJ technique encyclopedia' if lang_code=='en' else '無料BJJ技術百科事典' if lang_code=='ja' else 'A enciclopédia gratuita de técnicas de BJJ'}</p>
-    <p style="margin-top:8px"><a href="../../privacy.html" style="color:var(--muted)">Privacy Policy</a></p>
+    <p style="margin-top:8px"><a href="../privacy.html" style="color:var(--muted)">Privacy Policy</a></p>
   </footer>
 </div>
   <div id="float-cta" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:none;max-width:280px">

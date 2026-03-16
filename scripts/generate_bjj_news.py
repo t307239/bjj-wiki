@@ -104,6 +104,20 @@ TECHNIQUE_MAP = {
     "de la riva":"en/de-la-riva-guard.html","x guard":"en/x-guard.html",
     "double leg":"en/double-leg-takedown.html","single leg":"en/single-leg-takedown.html",
     "knee bar":"en/knee-bar.html","toe hold":"en/toe-hold.html",
+    "americana":"en/americana.html","bow and arrow":"en/bow-and-arrow-choke.html",
+    "baseball choke":"en/baseball-choke.html","north south":"en/north-south-choke.html",
+    "calf slicer":"en/calf-slicer.html","ankle lock":"en/ankle-lock.html",
+    "wrist lock":"en/wrist-lock.html","ezekiel":"en/ezekiel-choke.html",
+    "torreando":"en/torreando-pass.html","knee slice":"en/knee-slice-pass.html",
+    "leg drag":"en/leg-drag-pass.html","spider guard":"en/spider-guard.html",
+    "lasso guard":"en/lasso-guard.html","worm guard":"en/worm-guard.html",
+    "50/50":"en/50-50-guard.html","50-50":"en/50-50-guard.html",
+    "deep half":"en/deep-half-guard.html","rubber guard":"en/rubber-guard.html",
+    "body triangle":"en/body-triangle.html","seat belt":"en/seat-belt-control.html",
+    "clock choke":"en/clock-choke.html","loop choke":"en/loop-choke.html",
+    "scissor sweep":"en/scissor-sweep.html","tripod sweep":"en/tripod-sweep.html",
+    "hip bump":"en/hip-bump-sweep.html","back control":"en/back-mount.html",
+    "mount":"en/mount.html","side control":"en/side-control.html",
 }
 
 def find_technique_links(text):
