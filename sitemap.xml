@@ -8,6 +8,12 @@
   <url><loc>https://t307239.github.io/bjj-wiki/en/index.html</loc><lastmod>2026-03-16</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/index.html</loc><lastmod>2026-03-16</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/index.html</loc><lastmod>2026-03-16</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/news.html</loc><lastmod>2026-03-16</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/news.html</loc><lastmod>2026-03-16</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/news.html</loc><lastmod>2026-03-16</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/athletes.html</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/athletes.html</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/athletes.html</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/best-bjj-guards.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/best-bjj-guards.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/best-bjj-guards.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
@@ -18,10 +24,13 @@
   <url><loc>https://t307239.github.io/bjj-wiki/en/ankle-pick.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/arm-drag.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/arm-triangle-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/arm-triangle.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/armbar-vs-kimura.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/armbar.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/back-control.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/back-defense.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/back-mount.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/back-take.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/backtake.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/balloon-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/baseball-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -68,8 +77,10 @@
   <url><loc>https://t307239.github.io/bjj-wiki/en/gi-vs-nogi-bjj.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/granby-roll.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/guard-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/guard-recovery.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/guard-retention.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/guillotine-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/guillotine.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/half-guard.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/harai-goshi.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/headquarters-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -77,15 +88,18 @@
   <url><loc>https://t307239.github.io/bjj-wiki/en/heel-hook.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/hip-bump-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/hip-escape.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/hip-throw.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/inside-heel-hook.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/ippon-seoi-nage.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/kimura.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/knee-bar.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/knee-on-belly.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/knee-slice-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/knee-slice.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/lapel-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/lasso-guard.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/leg-drag-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/leg-drag.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/loop-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/modified-mount.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/monoplata.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -102,6 +116,7 @@
   <url><loc>https://t307239.github.io/bjj-wiki/en/overhead-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/overhook.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/pendulum-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/posture.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/pressure-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/rear-naked-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/reverse-de-la-riva.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -128,6 +143,7 @@
   <url><loc>https://t307239.github.io/bjj-wiki/en/techniques-az.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/toe-hold.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/top-bjj-submissions.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/toreando-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/torreando-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/triangle-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/en/triangle-vs-guillotine.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -148,10 +164,13 @@
   <url><loc>https://t307239.github.io/bjj-wiki/ja/ankle-pick.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/arm-drag.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/arm-triangle-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/arm-triangle.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/armbar-vs-kimura.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/armbar.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/back-control.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/back-defense.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/back-mount.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/back-take.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/backtake.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/balloon-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/baseball-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -198,8 +217,10 @@
   <url><loc>https://t307239.github.io/bjj-wiki/ja/gi-vs-nogi-bjj.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/granby-roll.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/guard-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/guard-recovery.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/guard-retention.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/guillotine-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/guillotine.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/half-guard.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/harai-goshi.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/headquarters-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -207,15 +228,18 @@
   <url><loc>https://t307239.github.io/bjj-wiki/ja/heel-hook.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/hip-bump-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/hip-escape.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/hip-throw.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/inside-heel-hook.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/ippon-seoi-nage.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/kimura.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/knee-bar.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/knee-on-belly.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/knee-slice-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/knee-slice.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/lapel-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/lasso-guard.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/leg-drag-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/leg-drag.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/loop-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/modified-mount.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/monoplata.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -232,6 +256,7 @@
   <url><loc>https://t307239.github.io/bjj-wiki/ja/overhead-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/overhook.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/pendulum-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/posture.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/pressure-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/rear-naked-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/reverse-de-la-riva.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -258,6 +283,7 @@
   <url><loc>https://t307239.github.io/bjj-wiki/ja/techniques-az.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/toe-hold.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/top-bjj-submissions.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/toreando-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/torreando-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/triangle-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/ja/triangle-vs-guillotine.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -278,10 +304,13 @@
   <url><loc>https://t307239.github.io/bjj-wiki/pt/ankle-pick.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/arm-drag.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/arm-triangle-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/arm-triangle.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/armbar-vs-kimura.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/armbar.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/back-control.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/back-defense.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/back-mount.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/back-take.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/backtake.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/balloon-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/baseball-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -328,8 +357,10 @@
   <url><loc>https://t307239.github.io/bjj-wiki/pt/gi-vs-nogi-bjj.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/granby-roll.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/guard-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/guard-recovery.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/guard-retention.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/guillotine-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/guillotine.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/half-guard.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/harai-goshi.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/headquarters-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -337,15 +368,18 @@
   <url><loc>https://t307239.github.io/bjj-wiki/pt/heel-hook.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/hip-bump-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/hip-escape.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/hip-throw.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/inside-heel-hook.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/ippon-seoi-nage.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/kimura.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/knee-bar.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/knee-on-belly.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/knee-slice-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/knee-slice.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/lapel-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/lasso-guard.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/leg-drag-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/leg-drag.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/loop-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/modified-mount.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/monoplata.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -362,6 +396,7 @@
   <url><loc>https://t307239.github.io/bjj-wiki/pt/overhead-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/overhook.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/pendulum-sweep.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/posture.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/pressure-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/rear-naked-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/reverse-de-la-riva.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -388,6 +423,7 @@
   <url><loc>https://t307239.github.io/bjj-wiki/pt/techniques-az.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/toe-hold.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/top-bjj-submissions.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/toreando-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/torreando-pass.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/triangle-choke.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://t307239.github.io/bjj-wiki/pt/triangle-vs-guillotine.html</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
