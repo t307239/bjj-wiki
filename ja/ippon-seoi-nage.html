@@ -71,6 +71,33 @@ h2::before{content:'';width:3px;height:14px;background:linear-gradient(180deg,va
 .skill-cta{background:linear-gradient(135deg,#1a0a2e,#0d0820);border:1px solid var(--accent);border-radius:12px;padding:16px 20px;margin:24px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .skill-cta a{background:var(--accent);color:#fff;padding:8px 20px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none}
 footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
+
+<style>
+.difficulty-bar{display:flex;align-items:center;gap:10px;margin:8px 0 20px;flex-wrap:wrap}
+.belt-tag{padding:4px 12px;border-radius:20px;font-size:.78rem;font-weight:700;border:1px solid rgba(255,255,255,.15)}
+.stars{font-size:1rem;letter-spacing:2px}
+.diff-label{font-size:.8rem;color:#90a4ae;font-weight:600}
+.athletes-section{margin:28px 0}
+.athletes-section h2{font-size:.9rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.athlete-chips{display:flex;flex-wrap:wrap;gap:10px}
+.athlete-chip{display:flex;align-items:center;gap:10px;background:#141926;border:1px solid #1f2840;border-radius:12px;padding:12px 16px;text-decoration:none;color:#e8e8ff;min-width:180px;transition:border-color .2s}
+.athlete-chip:hover{border-color:#7c6af7}
+.ac-name{font-weight:700;font-size:.9rem}
+.ac-dvd{font-size:.78rem;color:#6b7aa8;margin-top:2px}
+.ac-fanatics{display:inline-block;margin-top:6px;font-size:.75rem;color:#7c6af7;text-decoration:none;font-weight:600}
+.yoga-box{background:linear-gradient(135deg,#0a1a10,#0f1a0a);border:1px solid #22c55e;border-radius:12px;padding:20px;margin:24px 0}
+.yoga-box h3{font-size:.85rem;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.yoga-box p{font-size:.85rem;color:#6b9e6b;margin-bottom:12px}
+.yoga-chips{display:flex;flex-wrap:wrap;gap:8px}
+.yoga-chip{background:#0d2010;border:1px solid #16a34a;border-radius:20px;padding:5px 12px;font-size:.8rem;color:#86efac;text-decoration:none}
+.gear-box{background:linear-gradient(135deg,#1a0a0a,#1a0f0a);border:1px solid #dc2626;border-radius:12px;padding:20px;margin:24px 0}
+.gear-box h3{font-size:.85rem;font-weight:700;color:#f87171;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.gear-links{display:flex;flex-wrap:wrap;gap:8px}
+.gear-link{background:#1a0d0d;border:1px solid #7f1d1d;border-radius:20px;padding:5px 12px;font-size:.8rem;color:#fca5a5;text-decoration:none}
+.pro-tip{background:linear-gradient(135deg,#0a1a0a,#0f200a);border:1px solid #16a34a;border-radius:12px;padding:16px 20px;margin:24px 0;position:relative}
+.pro-tip::before{content:"💡 Pro Tip";font-size:.75rem;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px}
+.pro-tip p{margin:0;font-size:.9rem;color:#a7c9a7}
+</style>
 </style>
 <script type="application/ld+json">
 {
@@ -173,6 +200,12 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
 <span class="badge">テイクダウン</span>
 <span class="belt belt-blue">Blue Belt</span>
 <h1>一本背負投（イッポンセオイナゲ）</h1>
+<div class="difficulty-bar">
+  <span class="belt-tag" style="background:#0f1e38;color:#8b5cf6;border-color:#8b5cf640">🟣 Purple Belt</span>
+  <span class="stars" style="color:#f59e0b">★★★★☆</span>
+  <span class="diff-label">Advanced</span>
+</div>
+
 <p>一本背負投は柔道で最も華やかな投げ技の一つであり、BJJ競技においても強力な得点技です。相手の腕をトラップして背中に担ぐことで、純粋な力ではなくレバレッジと腰の回転で体格差のある相手を投げることができます。</p>
 <h2>実行</h2>
 <div class="card">
@@ -217,7 +250,37 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
 <a href="closed-guard.html">Closed Guard</a>
 </div>
 <footer>
-  <p>🥋 BJJ Wiki &nbsp;·&nbsp; <a href="../privacy.html" style="color:inherit">プライバシーポリシー</a> &nbsp;·&nbsp; <a href="../about.html" style="color:inherit">About</a> &nbsp;·&nbsp; <a href="skill-tree.html" style="color:var(--accent2)">スキルツリー</a></p>
+  <div style="max-width:900px;margin:0 auto;padding:30px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
+    <div>
+      <div style="font-size:.75rem;font-weight:700;color:#546e7a;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px">ガイド</div>
+      <div style="display:flex;flex-direction:column;gap:6px"><a href="bjj-belt-system.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">🥋 帯制度</a>
+<a href="bjj-terminology.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">📖 用語集</a>
+<a href="bjj-rules-for-beginners.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">📋 競技ルール</a>
+<a href="bjj-training-tips.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">⚡ トレーニングのコツ</a>
+<a href="bjj-training-schedule.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">📅 練習スケジュール</a>
+<a href="best-bjj-gi-guide.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">👘 道衣ガイド</a></div>
+    </div>
+    <div>
+      <div style="font-size:.75rem;font-weight:700;color:#546e7a;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px">比較</div>
+      <div style="display:flex;flex-direction:column;gap:6px"><a href="armbar-vs-kimura.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">アームバー vs キムラ</a>
+<a href="triangle-vs-guillotine.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">トライアングル vs ギロチン</a>
+<a href="gi-vs-nogi-bjj.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">Gi vs No-Gi</a>
+<a href="bjj-vs-wrestling.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">BJJ vs レスリング</a>
+<a href="bjj-vs-judo.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">BJJ vs 柔道</a></div>
+    </div>
+    <div>
+      <div style="font-size:.75rem;font-weight:700;color:#546e7a;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px">ツール</div>
+      <div style="display:flex;flex-direction:column;gap:6px"><a href="techniques-az.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">📚 A-Z索引</a>
+<a href="skill-tree.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">🌳 スキルツリー</a>
+<a href="sparring-simulator.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">🎮 シミュレーター</a>
+<a href="news.html" style="color:#64b5f6;text-decoration:none;font-size:.85rem">📰 ニュース</a></div>
+    </div>
+  </div>
+  <div style="text-align:center;padding:0 20px 20px;border-top:1px solid #1a2a3a;padding-top:16px">
+    <a href="privacy.html" style="color:#546e7a;text-decoration:none;font-size:.8rem;margin:0 8px">Privacy Policy</a>
+    <a href="about.html" style="color:#546e7a;text-decoration:none;font-size:.8rem;margin:0 8px">About</a>
+    <p style="margin-top:10px;font-size:.75rem;color:#37474f">© 2026 BJJ Wiki. All rights reserved.</p>
+  </div>
 </footer>
 </div>
 
@@ -245,6 +308,13 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
 </div>
 <style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
 <script>(function(){if(localStorage.getItem('cta_dismissed'))return;var shown=false;function show(){if(!shown){shown=true;document.getElementById('float-cta').style.display='block';}}setTimeout(show,30000);window.addEventListener('scroll',function(){var pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);if(pct>0.5)show();},{passive:true});})();</script>
+
+
+<nav style="display:flex;gap:10px;align-items:stretch;margin:32px 0" aria-label="Technique navigation">
+  <a href="inside-heel-hook.html" style="flex:1;text-align:left;padding:12px 16px;background:#0d1520;border:1px solid #1a2a3a;border-radius:10px;text-decoration:none;color:#64b5f6;font-size:.85rem;min-width:0"><div style="color:#546e7a;font-size:.75rem;margin-bottom:4px">← 前の技</div><div style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">ブラジリアン柔術：インサイドヒールフックの極意と安全な練習法</div></a>
+  <a href="techniques-az.html" style="padding:12px 16px;background:#0d1520;border:1px solid #1a2a3a;border-radius:10px;text-decoration:none;color:#90a4ae;font-size:.8rem;white-space:nowrap;display:flex;align-items:center">📚 全技術一覧</a>
+  <a href="kimura.html" style="flex:1;text-align:right;padding:12px 16px;background:#0d1520;border:1px solid #1a2a3a;border-radius:10px;text-decoration:none;color:#64b5f6;font-size:.85rem;min-width:0"><div style="color:#546e7a;font-size:.75rem;margin-bottom:4px">次の技 →</div><div style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">BJJキムラロック完全攻略：ステップバイステップで学ぶ強力な</div></a>
+</nav>
 
 </body>
 </html>
