@@ -10,7 +10,7 @@ import os, json, time, datetime, urllib.request, urllib.error, re, argparse
 BASE     = os.path.dirname(__file__) + "/.."
 SITE_URL = "https://t307239.github.io/bjj-wiki"
 GA4_ID   = "G-7LM8L3TRZM"
-ADSENSE  = "ca-pub-3285779374433925"
+ADSENSE  = "ca-pub-5529701443220352"
 AMAZON_TAG = "bjj06-22"
 
 # 選手マスターデータ（手動メンテ + 自動生成の組み合わせ）

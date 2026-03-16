@@ -10,7 +10,7 @@ from xml.etree import ElementTree as ET
 SITE_URL  = "https://t307239.github.io/bjj-wiki"
 OUT_DIR   = os.path.join(os.path.dirname(__file__), "..")
 GA4_ID    = "G-7LM8L3TRZM"
-ADSENSE   = "ca-pub-3285779374433925"
+ADSENSE   = "ca-pub-5529701443220352"
 
 RSS_SOURCES = [
     ("Reddit r/bjj",    "https://www.reddit.com/r/bjj/.rss?limit=15"),

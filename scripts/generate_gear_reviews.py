@@ -10,7 +10,7 @@ BASE     = os.path.dirname(__file__) + "/.."
 SITE_URL = "https://t307239.github.io/bjj-wiki"
 AMAZON_TAG = "bjj06-22"
 GA4_ID   = "G-7LM8L3TRZM"
-ADSENSE  = "ca-pub-3285779374433925"
+ADSENSE  = "ca-pub-5529701443220352"
 
 GEAR_PAGES = [
     {"slug":"best-bjj-gi-beginners","query":"best BJJ gi for beginners","category":"gi",

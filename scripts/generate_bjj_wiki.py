@@ -538,7 +538,9 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <link rel="alternate" hreflang="en" href="{SITE_URL}/en/{tech['slug']}.html">
 <link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/{tech['slug']}.html">
 <link rel="alternate" hreflang="pt" href="{SITE_URL}/pt/{tech['slug']}.html">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3285779374433925" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
   :root {{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9;--green:#22c55e}}
   *{{box-sizing:border-box;margin:0;padding:0}}
@@ -649,6 +651,55 @@ def article_to_html(tech, lang_code, article, all_techniques):
   ]
 }}
 </script>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{
+      "@type": "Question",
+      "name": "What is {tech['name']} in BJJ?",
+      "acceptedAnswer": {{
+        "@type": "Answer",
+        "text": "{'It is a fundamental BJJ technique in the ' + tech.get('category','grappling') + ' category. See the full breakdown above.' if lang_code=='en' else '{tech["name"]}はBJJの技です。詳細は上記を参照。' if lang_code=='ja' else '{tech["name"]} é uma técnica de BJJ. Veja o detalhamento completo acima.'}"
+      }}
+    }},
+    {{
+      "@type": "Question",
+      "name": "{'How do I learn ' + tech['name'] + '?' if lang_code=='en' else tech['name'] + 'の習得方法は？' if lang_code=='ja' else 'Como aprender ' + tech['name'] + '?'}",
+      "acceptedAnswer": {{
+        "@type": "Answer",
+        "text": "{'Follow the step-by-step guide above, drill with a partner, and watch competition footage. BJJ Fanatics instructionals also cover this technique in depth.' if lang_code=='en' else '上記のステップバイステップガイドに従い、パートナーとドリルし、試合映像を見てください。' if lang_code=='ja' else 'Siga o guia passo a passo acima, treine com um parceiro e assista a filmagens de competição.'}"
+      }}
+    }}
+  ]
+}}
+</script>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to do {tech['name']} in BJJ",
+  "description": "Step-by-step guide to executing {tech['name']} in Brazilian Jiu-Jitsu",
+  "step": [
+    {{
+      "@type": "HowToStep",
+      "name": "{'Set up the position' if lang_code=='en' else 'ポジションのセットアップ' if lang_code=='ja' else 'Configurar a posição'}",
+      "text": "{'Position yourself correctly relative to your opponent before attempting the technique.' if lang_code=='en' else '技を試みる前に相手に対して正しいポジションを取る。' if lang_code=='ja' else 'Posicione-se corretamente em relação ao seu oponente antes de tentar a técnica.'}"
+    }},
+    {{
+      "@type": "HowToStep",
+      "name": "{'Execute the technique' if lang_code=='en' else '技の実行' if lang_code=='ja' else 'Executar a técnica'}",
+      "text": "{'Apply the technique with proper mechanics as described in the guide above.' if lang_code=='en' else '上記ガイドの正しいメカニクスで技を実行する。' if lang_code=='ja' else 'Aplique a técnica com a mecânica adequada conforme descrito no guia acima.'}"
+    }},
+    {{
+      "@type": "HowToStep",
+      "name": "{'Finish or transition' if lang_code=='en' else 'フィニッシュまたはトランジション' if lang_code=='ja' else 'Finalizar ou fazer transição'}",
+      "text": "{'Finish the submission or transition to a dominant position. Drill until the movement is automatic.' if lang_code=='en' else 'サブミッションで仕留めるか、支配的なポジションにトランジション。動きが自動になるまでドリル。' if lang_code=='ja' else 'Finalize a submissão ou faça transição para uma posição dominante. Treine até o movimento ser automático.'}"
+    }}
+  ]
+}}
+</script>
 </head>
 <body>
 <div class="container">
@@ -735,6 +786,24 @@ def article_to_html(tech, lang_code, article, all_techniques):
     <p style="margin-top:8px"><a href="../../privacy.html" style="color:var(--muted)">Privacy Policy</a></p>
   </footer>
 </div>
+  <div id="float-cta" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:none;max-width:280px">
+    <div style="background:#1a1a2e;border:1px solid #6e40c9;border-radius:12px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.5);position:relative">
+      <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:10px;background:none;border:none;color:#7a7a9a;font-size:18px;cursor:pointer">×</button>
+      <p style="margin:0 0 8px;font-size:.85rem;font-weight:700;color:#e2e2ee">📩 Free BJJ Newsletter</p>
+      <p style="margin:0 0 12px;font-size:.78rem;color:#7a7a9a">Weekly tips, techniques & drills</p>
+      <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener" onclick="gtag&&gtag('event','float_cta_click',{{page:location.pathname}})" style="display:block;text-align:center;background:#6e40c9;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700">Subscribe Free →</a>
+    </div>
+  </div>
+  <script>
+  (function(){{
+    if(localStorage.getItem('cta_dismissed')) return;
+    var el=document.getElementById('float-cta');
+    var shown=false;
+    function show(){{if(!shown){{shown=true;el.style.display='block';}}}}
+    setTimeout(show,30000);
+    window.addEventListener('scroll',function(){{if((window.scrollY/(document.body.scrollHeight-window.innerHeight))>.5)show();}},{{passive:true}});
+  }})();
+  </script>
 </body>
 </html>"""
 
