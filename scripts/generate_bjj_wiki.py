@@ -7,6 +7,25 @@ BJJ Wiki - 多言語柔術技辞典 自動生成スクリプト
 
 import os, json, time, datetime, urllib.request, urllib.error, re
 
+# ===== Telegram通知 =====
+def send_telegram(msg: str) -> None:
+    """GitHub Actions の TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID を使って通知"""
+    token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+    if not token or not chat_id:
+        return
+    try:
+        payload = json.dumps({"chat_id": chat_id, "text": msg}).encode()
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        urllib.request.urlopen(req, timeout=10)
+    except Exception:
+        pass  # 通知失敗は無視してビルドを継続
+
 # ===== 内部リンク辞書（技名→スラッグ）=====
 INTERNAL_LINK_MAP = {
     "en": {
@@ -841,6 +860,15 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
   {beehiiv_html}
 
+  <!-- BJJ App CTA Banner -->
+  <div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid #e94560/30;border-color:rgba(233,69,96,0.3);border-radius:12px;padding:20px 24px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div>
+      <p style="margin:0 0 4px;font-size:.95rem;font-weight:700;color:#e2e2ee">🥋 {'Track Your BJJ Progress' if lang_code=='en' else '柔術の練習を記録しよう' if lang_code=='ja' else 'Registre seu Progresso no BJJ'}</p>
+      <p style="margin:0;font-size:.82rem;color:#7a7a9a">{'Log sessions, track techniques & streaks — free forever.' if lang_code=='en' else '練習回数・テクニック・連続記録を一元管理。ずっと無料。' if lang_code=='ja' else 'Registre treinos, técnicas e sequências — sempre gratuito.'}</p>
+    </div>
+    <a href="https://bjj-app-one.vercel.app" target="_blank" rel="noopener" onclick="gtag&&gtag('event','app_cta_click',{{page:location.pathname,lang:'{lang_code}'}})" style="flex-shrink:0;background:#e94560;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700;white-space:nowrap">{'Try Free →' if lang_code=='en' else '無料で試す →' if lang_code=='ja' else 'Experimente Grátis →'}</a>
+  </div>
+
   <!-- Share Bar -->
   <div class="share-bar">
     <p>{'Share this technique' if lang_code=='en' else 'この技をシェア' if lang_code=='ja' else 'Compartilhar esta técnica'}</p>
@@ -1055,6 +1083,9 @@ def main():
             cache[cache_key] = datetime.datetime.now().isoformat()
             count += 1
             print(f"[OK] {cache_key} → {out_path}")
+            # 10件ごとにTelegram進捗通知
+            if count % 10 == 0:
+                send_telegram(f"📖 BJJ Wiki 生成中: {count}件完了")
             time.sleep(1)  # API負荷軽減
 
         # カテゴリインデックス生成
@@ -1071,6 +1102,8 @@ def main():
         if f"{lc}/{tech['slug']}" not in cache
     )
     print(f"[残り] あと{remaining}件未生成")
+    if count > 0:
+        send_telegram(f"✅ BJJ Wiki 生成完了: {count}件追加 / 残り{remaining}件")
 
 if __name__ == "__main__":
     main()
