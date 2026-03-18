@@ -2,8 +2,10 @@ name: Auto Post to X (Twitter)
 
 on:
   schedule:
-    # 毎日 22:00 JST (13:00 UTC) — BJJ コミュニティのアクティブ時間帯
-    - cron: '0 13 * * *'
+    # 朝: 14:00 UTC = 10:00 AM EST / 7:00 AM PST — US朝の高トラフィック時間帯
+    - cron: '0 14 * * *'
+    # 夕: 23:00 UTC = 7:00 PM EST / 4:00 PM PST — US夕方の高トラフィック時間帯
+    - cron: '0 23 * * *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -11,9 +13,9 @@ on:
         type: boolean
         default: false
       limit:
-        description: 'Max tweets to post (default: 3)'
+        description: 'Max tweets to post (default: 2)'
         type: number
-        default: 3
+        default: 2
 
 jobs:
   post:

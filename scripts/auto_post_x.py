@@ -42,7 +42,7 @@ from datetime import datetime, timezone
 SITE_BASE_URL = "https://t307239.github.io/bjj-wiki"
 POSTED_LOG    = os.path.join(os.path.dirname(os.path.dirname(__file__)), "already_posted_x.txt")
 MAX_TWEET_LEN = 280
-DEFAULT_LIMIT = 3  # 1回の実行で最大投稿数
+DEFAULT_LIMIT = 2  # 1回の実行で最大投稿数（1日2回実行 × 2件 = 4件/日、月120件で余裕あり）
 
 # ハッシュタグ（スペースを考慮してコンパクトに）
 HASHTAGS = "#BJJ #BrazilianJiuJitsu #柔術"
