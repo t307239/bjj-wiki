@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BJJ Position Map — Interactive Technique Tree | BJJ Wiki</title>
+<meta name="description" content="Interactive BJJ position map showing all grappling positions, transitions, and submissions. Click any position to explore available techniques.">
+<meta property="og:title" content="BJJ Position Map — Interactive Technique Tree">
+<meta property="og:description" content="Explore all BJJ positions, submissions, and transitions in one interactive visual map.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/en/bjj-position-map.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/bjj-position-map.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/bjj-position-map.html">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --accent: #e94560;
+  --accent2: #0f3460;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --guard-color: #1565c0;
+  --top-color: #1b5e20;
+  --sub-color: #b71c1c;
+  --trans-color: #4a148c;
+  --standing-color: #e65100;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+/* ─── NAV ─── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav a { color: var(--muted); text-decoration: none; font-size: 0.85rem; }
+nav a:hover { color: var(--text); }
+nav .brand { color: var(--accent); font-weight: 700; font-size: 1rem; }
+.lang-links { margin-left: auto; display: flex; gap: 10px; }
+.lang-links a { font-size: 0.8rem; padding: 3px 8px; border: 1px solid var(--border); border-radius: 4px; }
+.lang-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ─── HEADER ─── */
+header {
+  text-align: center;
+  padding: 32px 20px 16px;
+  background: linear-gradient(180deg, #16213e 0%, var(--bg) 100%);
+}
+header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+header h1 span { color: var(--accent); }
+header p { color: var(--muted); font-size: 0.95rem; max-width: 600px; margin: 0 auto 20px; }
+
+/* ─── LEGEND ─── */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* ─── MAP CONTAINER ─── */
+.map-wrap {
+  padding: 20px;
+  overflow-x: auto;
+}
+.map-canvas {
+  position: relative;
+  min-width: 1000px;
+  min-height: 700px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* SVG arrows */
+.arrows-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ─── NODES ─── */
+.node {
+  position: absolute;
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+  min-width: 110px;
+  text-align: center;
+  user-select: none;
+}
+.node:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+.node.active {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.2);
+}
+.node-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+.node-sub {
+  font-size: 0.65rem;
+  opacity: 0.75;
+  margin-top: 2px;
+}
+.node-icon { font-size: 1.2rem; display: block; margin-bottom: 3px; }
+
+/* Position type colours */
+.node-standing { background: rgba(230,81,0,0.85); border-color: rgba(230,81,0,0.4); }
+.node-guard    { background: rgba(21,101,192,0.85); border-color: rgba(21,101,192,0.4); }
+.node-top      { background: rgba(27,94,32,0.85); border-color: rgba(27,94,32,0.4); }
+.node-back     { background: rgba(74,20,140,0.85); border-color: rgba(74,20,140,0.4); }
+.node-sub      { background: rgba(183,28,28,0.85); border-color: rgba(183,28,28,0.4); }
+
+/* ─── DETAIL PANEL ─── */
+.detail-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 340px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.detail-panel.open { transform: translateX(0); }
+.panel-header {
+  padding: 20px;
+  background: var(--accent2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.panel-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.panel-close:hover { color: var(--text); }
+.panel-title { font-size: 1.1rem; font-weight: 700; }
+.panel-type {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+.panel-body { padding: 20px; flex: 1; }
+.panel-section { margin-bottom: 20px; }
+.panel-section h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.panel-desc { font-size: 0.88rem; color: #adb5bd; line-height: 1.6; }
+
+.tech-list { list-style: none; }
+.tech-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tech-list li:last-child { border-bottom: none; }
+.tech-list a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.82rem;
+  margin-left: auto;
+}
+.tech-list a:hover { text-decoration: underline; }
+
+.trans-list { list-style: none; }
+.trans-list li {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.trans-list li:last-child { border-bottom: none; }
+
+.panel-link-btn {
+  display: block;
+  text-align: center;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  transition: opacity 0.2s;
+}
+.panel-link-btn:hover { opacity: 0.85; }
+
+/* ─── MOBILE PANEL TOGGLE ─── */
+.panel-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 190;
+}
+.panel-backdrop.visible { display: block; }
+
+/* ─── FOOTER ─── */
+.site-footer {
+  margin-top: 40px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 30px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.site-footer a { color: var(--accent); text-decoration: none; }
+
+/* ─── INSTRUCTIONS ─── */
+.instructions {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  padding: 8px;
+  animation: pulse-fade 2s ease-in-out infinite;
+}
+@keyframes pulse-fade {
+  0%,100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ─── MOBILE ─── */
+@media (max-width: 768px) {
+  header h1 { font-size: 1.4rem; }
+  .detail-panel { width: 100%; }
+  .node { min-width: 85px; padding: 7px 8px; }
+  .node-label { font-size: 0.68rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">🥋 BJJ Wiki</a>
+  <a href="bjj-position-map.html">Position Map</a>
+  <a href="bjj-techniques-guide.html">Techniques</a>
+  <div class="lang-links">
+    <a href="../ja/bjj-position-map.html">🇯🇵 JA</a>
+    <a href="../pt/bjj-position-map.html">🇧🇷 PT</a>
+  </div>
+</nav>
+
+<header>
+  <h1>BJJ <span>Position Map</span></h1>
+  <p>Interactive technique tree — click any position to explore submissions, escapes, and transitions.</p>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#e65100"></div> Standing / Takedown</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1565c0"></div> Guard (Bottom)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1b5e20"></div> Top Position</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#4a148c"></div> Back Control</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#b71c1c"></div> Submission</div>
+</div>
+
+<div class="instructions">👆 Click any node to see available techniques</div>
+
+<div class="map-wrap">
+<div class="map-canvas" id="mapCanvas">
+
+<!-- SVG layer for arrows -->
+<svg class="arrows-svg" id="arrowsSvg">
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="rgba(100,149,237,0.6)"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="rgba(76,175,80,0.6)"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="rgba(156,39,176,0.6)"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,152,0,0.6)"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="rgba(244,67,54,0.5)"/>
+    </marker>
+  </defs>
+  <!-- Arrows drawn by JS -->
+</svg>
+
+<!-- ════ STANDING ════ -->
+<div class="node node-standing" id="n-standing" style="left:440px;top:20px;" onclick="openPanel('standing')">
+  <span class="node-icon">🤼</span>
+  <div class="node-label">Standing</div>
+  <div class="node-sub">Takedowns / Throws</div>
+</div>
+
+<!-- ════ GUARD POSITIONS ════ -->
+<div class="node node-guard" id="n-closed-guard" style="left:180px;top:200px;" onclick="openPanel('closed-guard')">
+  <span class="node-icon">🛡️</span>
+  <div class="node-label">Closed Guard</div>
+  <div class="node-sub">Bottom</div>
+</div>
+
+<div class="node node-guard" id="n-half-guard" style="left:380px;top:280px;" onclick="openPanel('half-guard')">
+  <span class="node-icon">🌓</span>
+  <div class="node-label">Half Guard</div>
+  <div class="node-sub">Bottom</div>
+</div>
+
+<div class="node node-guard" id="n-open-guard" style="left:30px;top:340px;" onclick="openPanel('open-guard')">
+  <span class="node-icon">🌀</span>
+  <div class="node-label">Open Guard</div>
+  <div class="node-sub">DLR / Spider / X</div>
+</div>
+
+<div class="node node-guard" id="n-butterfly" style="left:210px;top:380px;" onclick="openPanel('butterfly')">
+  <span class="node-icon">🦋</span>
+  <div class="node-label">Butterfly Guard</div>
+  <div class="node-sub">Bottom</div>
+</div>
+
+<div class="node node-guard" id="n-rubber-guard" style="left:30px;top:480px;" onclick="openPanel('rubber-guard')">
+  <span class="node-icon">🕸️</span>
+  <div class="node-label">Rubber Guard</div>
+  <div class="node-sub">Bottom (No-Gi)</div>
+</div>
+
+<!-- ════ TOP POSITIONS ════ -->
+<div class="node node-top" id="n-mount" style="left:640px;top:200px;" onclick="openPanel('mount')">
+  <span class="node-icon">🏔️</span>
+  <div class="node-label">Mount</div>
+  <div class="node-sub">Top</div>
+</div>
+
+<div class="node node-top" id="n-side-control" style="left:590px;top:310px;" onclick="openPanel('side-control')">
+  <span class="node-icon">⬛</span>
+  <div class="node-label">Side Control</div>
+  <div class="node-sub">Top</div>
+</div>
+
+<div class="node node-top" id="n-knee-belly" style="left:760px;top:330px;" onclick="openPanel('knee-belly')">
+  <span class="node-icon">🦵</span>
+  <div class="node-label">Knee on Belly</div>
+  <div class="node-sub">Top</div>
+</div>
+
+<div class="node node-top" id="n-north-south" style="left:700px;top:460px;" onclick="openPanel('north-south')">
+  <span class="node-icon">🧭</span>
+  <div class="node-label">North-South</div>
+  <div class="node-sub">Top</div>
+</div>
+
+<div class="node node-top" id="n-turtle-top" style="left:870px;top:240px;" onclick="openPanel('turtle-top')">
+  <span class="node-icon">🐢</span>
+  <div class="node-label">Turtle (Top)</div>
+  <div class="node-sub">Top</div>
+</div>
+
+<!-- ════ BACK CONTROL ════ -->
+<div class="node node-back" id="n-back-control" style="left:870px;top:380px;" onclick="openPanel('back-control')">
+  <span class="node-icon">🎯</span>
+  <div class="node-label">Back Control</div>
+  <div class="node-sub">Hooks / Seatbelt</div>
+</div>
+
+<!-- ════ LEG LOCK POSITION ════ -->
+<div class="node node-sub" id="n-leg-entangle" style="left:400px;top:490px;" onclick="openPanel('leg-entangle')">
+  <span class="node-icon">🔗</span>
+  <div class="node-label">Leg Entanglement</div>
+  <div class="node-sub">Ashi / Saddle / 50/50</div>
+</div>
+
+<!-- ════ TURTLE BOTTOM ════ -->
+<div class="node node-guard" id="n-turtle-bot" style="left:600px;top:490px;" onclick="openPanel('turtle-bot')">
+  <span class="node-icon">🐢</span>
+  <div class="node-label">Turtle (Bottom)</div>
+  <div class="node-sub">Defensive</div>
+</div>
+
+</div><!-- /map-canvas -->
+</div><!-- /map-wrap -->
+
+<!-- ─── DETAIL PANEL ─── -->
+<div class="panel-backdrop" id="backdrop" onclick="closePanel()"></div>
+<div class="detail-panel" id="detailPanel">
+  <div class="panel-header">
+    <div>
+      <div class="panel-title" id="panelTitle">—</div>
+      <div class="panel-type" id="panelType">—</div>
+    </div>
+    <button class="panel-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <p>🥋 <a href="index.html">BJJ Wiki</a> — Learn Brazilian Jiu-Jitsu techniques, positions, and concepts</p>
+  <p style="margin-top:8px">
+    <a href="../ja/bjj-position-map.html">🇯🇵 日本語版</a> &nbsp;·&nbsp;
+    <a href="../pt/bjj-position-map.html">🇧🇷 Português</a> &nbsp;·&nbsp;
+    <a href="bjj-techniques-guide.html">All Techniques →</a>
+  </p>
+</footer>
+
+<script>
+// ═══════════════════════════════
+// Position data
+// ═══════════════════════════════
+const POSITIONS = {
+  'standing': {
+    title: 'Standing / Takedowns',
+    type: 'Takedown Phase',
+    emoji: '🤼',
+    desc: 'All BJJ matches begin standing. The goal is to take the opponent to the ground and achieve a dominant position. Takedown skill is often underrated in BJJ.',
+    techniques: [
+      { name: 'Double Leg Takedown', link: 'bjj-double-leg-takedown.html' },
+      { name: 'Single Leg Takedown', link: 'bjj-single-leg-takedown.html' },
+      { name: 'Osoto Gari (Hip Throw)', link: 'bjj-takedown-entry-systems.html' },
+      { name: 'Snap Down', link: 'bjj-takedown-entry-systems.html' },
+      { name: 'Guard Pull Strategy', link: 'bjj-guard-pull-strategy.html' },
+      { name: 'Body Lock Takedown', link: 'bjj-takedown-entry-systems.html' },
+    ],
+    transitions: [
+      '→ Closed Guard (guard pull)',
+      '→ Half Guard (failed takedown)',
+      '→ Side Control (successful takedown)',
+      '→ Mount (high-level finish)',
+    ],
+    wikiLink: 'bjj-takedown-entry-systems.html',
+  },
+  'closed-guard': {
+    title: 'Closed Guard',
+    type: 'Bottom / Guard',
+    emoji: '🛡️',
+    desc: 'The closed guard is the foundational guard position. Your legs are locked around the opponent\'s waist. Rich in sweeps, submissions, and back-take opportunities.',
+    techniques: [
+      { name: 'Triangle Choke', link: 'bjj-triangle-choke-guide.html' },
+      { name: 'Armbar from Guard', link: 'bjj-armbar-guide.html' },
+      { name: 'Omoplata', link: 'bjj-omoplata-guide.html' },
+      { name: 'Hip Bump Sweep', link: 'bjj-hip-bump-sweep-guide.html' },
+      { name: 'Scissor Sweep', link: 'bjj-scissor-sweep-guide.html' },
+      { name: 'Kimura from Guard', link: 'bjj-kimura-from-guard.html' },
+      { name: 'Flower Sweep', link: 'bjj-flower-sweep-guide.html' },
+      { name: 'Back Take from Guard', link: 'bjj-back-take-from-guard-system.html' },
+    ],
+    transitions: [
+      '→ Half Guard (guard broken)',
+      '→ Butterfly Guard (open guard)',
+      '→ Back Control (sweep + back take)',
+      '→ Mount (successful sweep)',
+    ],
+    wikiLink: 'bjj-closed-guard-systems.html',
+  },
+  'half-guard': {
+    title: 'Half Guard',
+    type: 'Bottom / Guard',
+    emoji: '🌓',
+    desc: 'Half guard is one of the most versatile positions in BJJ, playable both offensively and defensively. Control one leg and fight for the underhook.',
+    techniques: [
+      { name: 'Half Guard Sweep System', link: 'bjj-half-guard-guide.html' },
+      { name: 'Old School Sweep', link: 'bjj-half-guard-guide.html' },
+      { name: 'Dogfight Position', link: 'bjj-half-guard-guide.html' },
+      { name: 'Deep Half Guard', link: 'bjj-deep-half-guard-mastery.html' },
+      { name: 'Half Guard Back Take', link: 'bjj-half-guard-guide.html' },
+      { name: 'Waiter Sweep', link: 'bjj-half-guard-advanced.html' },
+    ],
+    transitions: [
+      '→ Full Guard (full guard recovery)',
+      '→ Mount (top flattened out)',
+      '→ Back Control (underhook sweep)',
+      '→ Deep Half Guard',
+    ],
+    wikiLink: 'bjj-half-guard-guide.html',
+  },
+  'open-guard': {
+    title: 'Open Guard',
+    type: 'Bottom / Guard',
+    emoji: '🌀',
+    desc: 'Open guard is a family of guard positions including De La Riva, Spider Guard, X-Guard, and more. Emphasises breaking posture, creating angles, and leg entanglements.',
+    techniques: [
+      { name: 'De La Riva Guard', link: 'bjj-de-la-riva-guard.html' },
+      { name: 'Spider Guard System', link: 'bjj-spider-guard-system.html' },
+      { name: 'X-Guard Sweeps', link: 'bjj-x-guard-position-guide.html' },
+      { name: 'Berimbolo', link: 'bjj-de-la-riva-guard.html' },
+      { name: 'Guard Retention', link: 'bjj-guard-retention-system.html' },
+      { name: 'Lasso Guard', link: 'bjj-spider-guard-system.html' },
+    ],
+    transitions: [
+      '→ Leg Entanglement (heel hook entries)',
+      '→ Back Control (berimbolo)',
+      '→ Mount (sweep to top)',
+      '→ Butterfly Guard',
+    ],
+    wikiLink: 'bjj-guard-passing-concepts.html',
+  },
+  'butterfly': {
+    title: 'Butterfly Guard',
+    type: 'Bottom / Guard',
+    emoji: '🦋',
+    desc: 'Butterfly guard uses hooks under the opponent\'s thighs to elevate and sweep. Excellent in both gi and no-gi. Foundation of the Marcelo Garcia system.',
+    techniques: [
+      { name: 'Butterfly Sweep', link: 'bjj-butterfly-guard.html' },
+      { name: 'Butterfly Back Take', link: 'bjj-butterfly-guard.html' },
+      { name: 'Arm Drag to Back', link: 'bjj-butterfly-guard.html' },
+      { name: 'Hook Sweep', link: 'bjj-butterfly-guard.html' },
+      { name: 'Guillotine from Butterfly', link: 'bjj-butterfly-guard.html' },
+    ],
+    transitions: [
+      '→ Back Control (arm drag)',
+      '→ Mount (sweep)',
+      '→ Half Guard (partial)',
+      '→ Leg Entanglement (single-leg X)',
+    ],
+    wikiLink: 'bjj-butterfly-guard.html',
+  },
+  'rubber-guard': {
+    title: 'Rubber Guard',
+    type: 'Bottom / Guard (No-Gi)',
+    emoji: '🕸️',
+    desc: 'The rubber guard, developed by Eddie Bravo, uses extreme hip flexibility to control the opponent\'s posture using one leg. Leads to the gogoplata and other unique submissions.',
+    techniques: [
+      { name: 'Gogoplata', link: 'bjj-rubber-guard-advanced.html' },
+      { name: 'Mission Control', link: 'bjj-rubber-guard-advanced.html' },
+      { name: 'New York Position', link: 'bjj-rubber-guard-advanced.html' },
+      { name: 'Omoplata from Rubber', link: 'bjj-rubber-guard-advanced.html' },
+    ],
+    transitions: [
+      '→ Back Control',
+      '→ Leg Entanglement',
+      '→ Open Guard (flexibility needed)',
+    ],
+    wikiLink: 'bjj-rubber-guard-advanced.html',
+  },
+  'mount': {
+    title: 'Mount',
+    type: 'Top Position',
+    emoji: '🏔️',
+    desc: 'The mount is one of the highest-scoring positions in BJJ (4 pts). Sitting on the opponent\'s chest with your hips high creates crushing pressure and submission threats.',
+    techniques: [
+      { name: 'Rear Naked Choke setup', link: 'bjj-mount-system.html' },
+      { name: 'Armbar from Mount', link: 'bjj-armbar-guide.html' },
+      { name: 'Triangle from Mount', link: 'bjj-mount-system.html' },
+      { name: 'Gift Wrap', link: 'bjj-mount-system.html' },
+      { name: 'S-Mount Transition', link: 'bjj-mount-system.html' },
+      { name: 'Ezekiel Choke', link: 'bjj-mount-system.html' },
+    ],
+    transitions: [
+      '→ Back Control (back take)',
+      '→ Side Control (opponent bucks)',
+      '→ North-South (step over)',
+      '→ Half Guard (opponent escapes)',
+    ],
+    wikiLink: 'bjj-mount-system.html',
+  },
+  'side-control': {
+    title: 'Side Control',
+    type: 'Top Position',
+    emoji: '⬛',
+    desc: 'Side control (also called cross-body) is the most common top position. Control is achieved through chest-to-chest pressure, hip placement, and underhook/crossface mechanics.',
+    techniques: [
+      { name: 'Kimura from Side', link: 'bjj-side-control-escape-guide.html' },
+      { name: 'Americana (Ude Garami)', link: 'bjj-side-control-escape-guide.html' },
+      { name: 'Darce Choke', link: 'bjj-side-control-escape-guide.html' },
+      { name: 'Paper Cutter Choke', link: 'bjj-collar-choke-system.html' },
+      { name: 'North-South Choke', link: 'bjj-north-south-position-attacks.html' },
+    ],
+    transitions: [
+      '→ Mount (slide to mount)',
+      '→ Back Control (spin to back)',
+      '→ Knee on Belly',
+      '→ North-South',
+    ],
+    wikiLink: 'bjj-side-control-escape-guide.html',
+  },
+  'knee-belly': {
+    title: 'Knee on Belly',
+    type: 'Top Position',
+    emoji: '🦵',
+    desc: 'Knee on belly scores 2 pts and creates immediate discomfort. It is a transitional position used to set up submissions and move to mount or back control.',
+    techniques: [
+      { name: 'Armbar from KOB', link: 'bjj-knee-on-belly-advanced.html' },
+      { name: 'Bow and Arrow (Gi)', link: 'bjj-back-control-system.html' },
+      { name: 'Baseball Bat Choke', link: 'bjj-baseball-bat-choke-guide.html' },
+      { name: 'Collar Choke', link: 'bjj-collar-choke-system.html' },
+    ],
+    transitions: [
+      '→ Mount',
+      '→ Side Control',
+      '→ Back Control',
+    ],
+    wikiLink: 'bjj-knee-on-belly-advanced.html',
+  },
+  'north-south': {
+    title: 'North-South',
+    type: 'Top Position',
+    emoji: '🧭',
+    desc: 'North-south (kami shiho) faces away from the opponent\'s head with chest-to-face pressure. Creates the north-south choke and kimura from top.',
+    techniques: [
+      { name: 'North-South Choke', link: 'bjj-north-south-position-attacks.html' },
+      { name: 'Kimura from North-South', link: 'bjj-north-south-position-attacks.html' },
+      { name: 'Armbar from N-S', link: 'bjj-north-south-position-attacks.html' },
+    ],
+    transitions: [
+      '→ Side Control',
+      '→ Mount (step over)',
+      '→ Back Control',
+    ],
+    wikiLink: 'bjj-north-south-position-attacks.html',
+  },
+  'turtle-top': {
+    title: 'Turtle Position (Top)',
+    type: 'Top Position',
+    emoji: '🐢',
+    desc: 'When the bottom player turtles up (on hands and knees), the top player can attack with chokes, leg locks, and back takes. High percentage position for back control.',
+    techniques: [
+      { name: 'Clock Choke', link: 'bjj-turtle-top-attacks.html' },
+      { name: 'Bow and Arrow Choke', link: 'bjj-turtle-top-attacks.html' },
+      { name: 'Anaconda Choke', link: 'bjj-turtle-top-attacks.html' },
+      { name: 'Seat Belt Back Take', link: 'bjj-back-control-system.html' },
+      { name: 'Crucifix Position', link: 'bjj-crucifix-position-system.html' },
+    ],
+    transitions: [
+      '→ Back Control (seatbelt)',
+      '→ Crucifix Position',
+      '→ Side Control',
+    ],
+    wikiLink: 'bjj-turtle-top-attacks.html',
+  },
+  'back-control': {
+    title: 'Back Control',
+    type: 'Back Mount',
+    emoji: '🎯',
+    desc: 'Back control (4 pts) is the highest-valued position in BJJ. The seatbelt grip and hooks provide control, leading directly to the rear naked choke and other finishes.',
+    techniques: [
+      { name: 'Rear Naked Choke (RNC)', link: 'bjj-back-control-system.html' },
+      { name: 'Bow and Arrow Choke', link: 'bjj-back-control-system.html' },
+      { name: 'Armbar from Back', link: 'bjj-back-system-advanced.html' },
+      { name: 'Triangle from Back', link: 'bjj-back-system-advanced.html' },
+      { name: 'Body Triangle Control', link: 'bjj-back-control-system.html' },
+    ],
+    transitions: [
+      '→ Mount (opponent rolls)',
+      '→ Side Control (hooks lost)',
+      '→ Turtle Top (partial back)',
+    ],
+    wikiLink: 'bjj-back-control-system.html',
+  },
+  'leg-entangle': {
+    title: 'Leg Entanglement',
+    type: 'Leg Lock System',
+    emoji: '🔗',
+    desc: 'Leg entanglements — including ashi garami, inside/outside heel hooks, and the saddle position — form a complete offensive system that bypasses the upper body entirely.',
+    techniques: [
+      { name: 'Inside Heel Hook', link: 'bjj-leg-lock-system.html' },
+      { name: 'Outside Heel Hook', link: 'bjj-heel-hook-guide.html' },
+      { name: 'Straight Ankle Lock', link: 'bjj-leg-lock-system.html' },
+      { name: 'Kneebar', link: 'bjj-kneebar-guide.html' },
+      { name: 'Calf Slicer', link: 'bjj-calf-slicer-guide.html' },
+      { name: 'Ashi Garami (Single Leg X)', link: 'bjj-ashi-garami-guide.html' },
+      { name: '50/50 Guard', link: 'bjj-leg-entanglement-entries.html' },
+    ],
+    transitions: [
+      '→ Back Control (heel hook + roll)',
+      '→ Top Position (finish or escape)',
+      '→ Open Guard (failed entry)',
+    ],
+    wikiLink: 'bjj-leg-entanglement-entries.html',
+  },
+  'turtle-bot': {
+    title: 'Turtle Position (Bottom)',
+    type: 'Bottom / Defensive',
+    emoji: '🐢',
+    desc: 'The turtle is a common defensive position after a failed guard pass or takedown. The goal from turtle is to recover guard, roll for a reversal, or avoid being choked.',
+    techniques: [
+      { name: 'Granby Roll (Guard Recovery)', link: 'bjj-guard-retention-system.html' },
+      { name: 'Single Leg Stand-Up', link: 'bjj-guard-retention-system.html' },
+      { name: 'Sit-Out to Guard', link: 'bjj-guard-retention-system.html' },
+    ],
+    transitions: [
+      '→ Closed Guard (roll under)',
+      '→ Half Guard (scramble)',
+      '→ Back Control (conceded)',
+    ],
+    wikiLink: 'bjj-guard-retention-system.html',
+  },
+};
+
+// ═══════════════════════════════
+// Arrows (from-node → to-node)
+// ═══════════════════════════════
+const ARROWS = [
+  ['n-standing',    'n-closed-guard', 'blue',   'guard pull'],
+  ['n-standing',    'n-side-control', 'green',  'takedown'],
+  ['n-standing',    'n-mount',        'green',  'throw finish'],
+  ['n-closed-guard','n-mount',        'green',  'sweep'],
+  ['n-closed-guard','n-back-control', 'purple', 'back take'],
+  ['n-closed-guard','n-half-guard',   'blue',   'guard open'],
+  ['n-closed-guard','n-open-guard',   'blue',   'open guard'],
+  ['n-half-guard',  'n-mount',        'green',  'sweep'],
+  ['n-half-guard',  'n-back-control', 'purple', 'underhook'],
+  ['n-half-guard',  'n-butterfly',    'blue',   'adjust'],
+  ['n-open-guard',  'n-back-control', 'purple', 'berimbolo'],
+  ['n-open-guard',  'n-leg-entangle', 'red',    'leg entry'],
+  ['n-butterfly',   'n-back-control', 'purple', 'arm drag'],
+  ['n-butterfly',   'n-mount',        'green',  'sweep'],
+  ['n-butterfly',   'n-leg-entangle', 'red',    'single-leg X'],
+  ['n-mount',       'n-back-control', 'purple', 'back take'],
+  ['n-mount',       'n-side-control', 'green',  'transition'],
+  ['n-side-control','n-mount',        'green',  'slide'],
+  ['n-side-control','n-back-control', 'purple', 'spin'],
+  ['n-side-control','n-knee-belly',   'green',  'knee slide'],
+  ['n-side-control','n-north-south',  'green',  'spin'],
+  ['n-knee-belly',  'n-mount',        'green',  'step over'],
+  ['n-knee-belly',  'n-back-control', 'purple', 'spin'],
+  ['n-back-control','n-mount',        'green',  'roll'],
+  ['n-turtle-top',  'n-back-control', 'purple', 'seatbelt'],
+  ['n-turtle-bot',  'n-closed-guard', 'blue',   'roll under'],
+  ['n-leg-entangle','n-back-control', 'purple', 'heel hook roll'],
+];
+
+// ═══════════════════════════════
+// Draw arrows
+// ═══════════════════════════════
+function getNodeCenter(id) {
+  const el = document.getElementById(id);
+  if (!el) return null;
+  const r = el.getBoundingClientRect();
+  const canvasR = document.getElementById('mapCanvas').getBoundingClientRect();
+  return {
+    x: r.left - canvasR.left + r.width / 2,
+    y: r.top  - canvasR.top  + r.height / 2,
+  };
+}
+
+function drawArrows() {
+  const svg = document.getElementById('arrowsSvg');
+  // Clear old lines
+  svg.querySelectorAll('.arrow-line, .arrow-label').forEach(e => e.remove());
+
+  const colorMap = {
+    blue:   { stroke: 'rgba(100,149,237,0.5)', marker: 'arrowBlue' },
+    green:  { stroke: 'rgba(76,175,80,0.5)',   marker: 'arrowGreen' },
+    purple: { stroke: 'rgba(156,39,176,0.5)',  marker: 'arrowPurple' },
+    orange: { stroke: 'rgba(255,152,0,0.5)',   marker: 'arrowOrange' },
+    red:    { stroke: 'rgba(244,67,54,0.4)',   marker: 'arrowRed' },
+  };
+
+  ARROWS.forEach(([fromId, toId, color, label]) => {
+    const from = getNodeCenter(fromId);
+    const to   = getNodeCenter(toId);
+    if (!from || !to) return;
+
+    const { stroke, marker } = colorMap[color] || colorMap.blue;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', from.x);
+    line.setAttribute('y1', from.y);
+    line.setAttribute('x2', to.x);
+    line.setAttribute('y2', to.y);
+    line.setAttribute('stroke', stroke);
+    line.setAttribute('stroke-width', '1.5');
+    line.setAttribute('marker-end', `url(#${marker})`);
+    line.setAttribute('stroke-dasharray', '4 3');
+    line.classList.add('arrow-line');
+    svg.appendChild(line);
+  });
+}
+
+// ═══════════════════════════════
+// Panel logic
+// ═══════════════════════════════
+function openPanel(key) {
+  const data = POSITIONS[key];
+  if (!data) return;
+
+  // Highlight active node
+  document.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  document.getElementById('panelTitle').textContent = data.emoji + ' ' + data.title;
+  document.getElementById('panelType').textContent  = data.type;
+
+  const techItems = data.techniques.map(t =>
+    `<li>🔹 ${t.name} <a href="${t.link}" target="_blank">→ Learn</a></li>`
+  ).join('');
+
+  const transItems = data.transitions.map(t =>
+    `<li>${t}</li>`
+  ).join('');
+
+  document.getElementById('panelBody').innerHTML = `
+    <div class="panel-section">
+      <h3>About this position</h3>
+      <p class="panel-desc">${data.desc}</p>
+    </div>
+    <div class="panel-section">
+      <h3>Techniques from here</h3>
+      <ul class="tech-list">${techItems}</ul>
+    </div>
+    <div class="panel-section">
+      <h3>Common transitions</h3>
+      <ul class="trans-list">${transItems}</ul>
+    </div>
+    <a href="${data.wikiLink}" class="panel-link-btn" target="_blank">📖 Full Guide →</a>
+  `;
+
+  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('backdrop').classList.add('visible');
+}
+
+function closePanel() {
+  document.getElementById('detailPanel').classList.remove('open');
+  document.getElementById('backdrop').classList.remove('visible');
+  document.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
+}
+
+// Draw on load + resize
+window.addEventListener('load', () => { setTimeout(drawArrows, 100); });
+window.addEventListener('resize', drawArrows);
+</script>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "BJJ Position Map — Interactive Technique Tree",
+  "description": "Interactive BJJ position map showing all grappling positions, transitions, and submissions.",
+  "url": "https://t307239.github.io/bjj-wiki/en/bjj-position-map.html",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "BJJ Wiki",
+    "url": "https://t307239.github.io/bjj-wiki/"
+  }
+}
+</script>
+</body>
+</html>

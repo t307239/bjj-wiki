@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BJJポジションマップ — インタラクティブ技術ツリー | BJJ Wiki</title>
+<meta name="description" content="BJJの全ポジション、移行、サブミッションをわかりやすくまとめたインタラクティブマップ。各ポジションをクリックして利用可能な技術を確認しましょう。">
+<meta property="og:title" content="BJJポジションマップ — インタラクティブ技術ツリー">
+<meta property="og:description" content="BJJの全ポジション、サブミッション、移行をひとつのビジュアルマップで探索しよう。">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://t307239.github.io/bjj-wiki/ja/bjj-position-map.html">
+<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/bjj-position-map.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/bjj-position-map.html">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --accent: #e94560;
+  --accent2: #0f3460;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --guard-color: #1565c0;
+  --top-color: #1b5e20;
+  --sub-color: #b71c1c;
+  --trans-color: #4a148c;
+  --standing-color: #e65100;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Hiragino Sans', 'Noto Sans JP', -apple-system, sans-serif;
+  min-height: 100vh;
+}
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav a { color: var(--muted); text-decoration: none; font-size: 0.85rem; }
+nav a:hover { color: var(--text); }
+nav .brand { color: var(--accent); font-weight: 700; font-size: 1rem; }
+.lang-links { margin-left: auto; display: flex; gap: 10px; }
+.lang-links a { font-size: 0.8rem; padding: 3px 8px; border: 1px solid var(--border); border-radius: 4px; }
+.lang-links a:hover { border-color: var(--accent); color: var(--accent); }
+header {
+  text-align: center;
+  padding: 32px 20px 16px;
+  background: linear-gradient(180deg, #16213e 0%, var(--bg) 100%);
+}
+header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+header h1 span { color: var(--accent); }
+header p { color: var(--muted); font-size: 0.95rem; max-width: 600px; margin: 0 auto 20px; }
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--muted); }
+.legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+.map-wrap { padding: 20px; overflow-x: auto; }
+.map-canvas {
+  position: relative;
+  min-width: 1000px;
+  min-height: 700px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.arrows-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.node {
+  position: absolute;
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+  min-width: 110px;
+  text-align: center;
+  user-select: none;
+}
+.node:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+.node.active { border-color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.2); }
+.node-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; line-height: 1.3; }
+.node-sub { font-size: 0.65rem; opacity: 0.75; margin-top: 2px; }
+.node-icon { font-size: 1.2rem; display: block; margin-bottom: 3px; }
+.node-standing { background: rgba(230,81,0,0.85); border-color: rgba(230,81,0,0.4); }
+.node-guard    { background: rgba(21,101,192,0.85); border-color: rgba(21,101,192,0.4); }
+.node-top      { background: rgba(27,94,32,0.85); border-color: rgba(27,94,32,0.4); }
+.node-back     { background: rgba(74,20,140,0.85); border-color: rgba(74,20,140,0.4); }
+.node-sub      { background: rgba(183,28,28,0.85); border-color: rgba(183,28,28,0.4); }
+.detail-panel {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: 340px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.detail-panel.open { transform: translateX(0); }
+.panel-header {
+  padding: 20px;
+  background: var(--accent2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.panel-close { background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; padding: 0; line-height: 1; }
+.panel-close:hover { color: var(--text); }
+.panel-title { font-size: 1.1rem; font-weight: 700; }
+.panel-type { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+.panel-body { padding: 20px; flex: 1; }
+.panel-section { margin-bottom: 20px; }
+.panel-section h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.panel-desc { font-size: 0.88rem; color: #adb5bd; line-height: 1.8; }
+.tech-list { list-style: none; }
+.tech-list li { padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; display: flex; align-items: center; gap: 8px; }
+.tech-list li:last-child { border-bottom: none; }
+.tech-list a { color: var(--accent); text-decoration: none; font-size: 0.82rem; margin-left: auto; }
+.tech-list a:hover { text-decoration: underline; }
+.trans-list { list-style: none; }
+.trans-list li { padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; color: var(--muted); }
+.trans-list li:last-child { border-bottom: none; }
+.panel-link-btn {
+  display: block; text-align: center; background: var(--accent); color: #fff;
+  text-decoration: none; padding: 12px; border-radius: 8px; font-weight: 700;
+  font-size: 0.9rem; margin-top: 8px; transition: opacity 0.2s;
+}
+.panel-link-btn:hover { opacity: 0.85; }
+.panel-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 190; }
+.panel-backdrop.visible { display: block; }
+.site-footer { margin-top: 40px; background: var(--surface); border-top: 1px solid var(--border); padding: 30px 20px; text-align: center; color: var(--muted); font-size: 0.82rem; }
+.site-footer a { color: var(--accent); text-decoration: none; }
+.instructions { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 8px; animation: pulse-fade 2s ease-in-out infinite; }
+@keyframes pulse-fade { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+@media (max-width: 768px) { header h1 { font-size: 1.4rem; } .detail-panel { width: 100%; } .node { min-width: 85px; padding: 7px 8px; } .node-label { font-size: 0.68rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">🥋 BJJ Wiki</a>
+  <a href="bjj-position-map.html">ポジションマップ</a>
+  <div class="lang-links">
+    <a href="../en/bjj-position-map.html">🇺🇸 EN</a>
+    <a href="../pt/bjj-position-map.html">🇧🇷 PT</a>
+  </div>
+</nav>
+
+<header>
+  <h1>BJJ <span>ポジションマップ</span></h1>
+  <p>インタラクティブな技術ツリー — 各ポジションをクリックして、サブミッション・エスケープ・移行を確認しよう。</p>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#e65100"></div> スタンディング / テイクダウン</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1565c0"></div> ガード（下のポジション）</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1b5e20"></div> トップポジション</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#4a148c"></div> バックコントロール</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#b71c1c"></div> サブミッション系</div>
+</div>
+
+<div class="instructions">👆 各ノードをクリックして技術を確認</div>
+
+<div class="map-wrap">
+<div class="map-canvas" id="mapCanvas">
+
+<svg class="arrows-svg" id="arrowsSvg">
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(100,149,237,0.6)"/></marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(76,175,80,0.6)"/></marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(156,39,176,0.6)"/></marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(244,67,54,0.5)"/></marker>
+  </defs>
+</svg>
+
+<!-- ════ スタンディング ════ -->
+<div class="node node-standing" id="n-standing" style="left:440px;top:20px;" onclick="openPanel('standing')">
+  <span class="node-icon">🤼</span>
+  <div class="node-label">スタンディング</div>
+  <div class="node-sub">テイクダウン / 投げ</div>
+</div>
+
+<!-- ════ ガードポジション ════ -->
+<div class="node node-guard" id="n-closed-guard" style="left:180px;top:200px;" onclick="openPanel('closed-guard')">
+  <span class="node-icon">🛡️</span>
+  <div class="node-label">クローズドガード</div>
+  <div class="node-sub">下のポジション</div>
+</div>
+
+<div class="node node-guard" id="n-half-guard" style="left:380px;top:280px;" onclick="openPanel('half-guard')">
+  <span class="node-icon">🌓</span>
+  <div class="node-label">ハーフガード</div>
+  <div class="node-sub">下のポジション</div>
+</div>
+
+<div class="node node-guard" id="n-open-guard" style="left:30px;top:340px;" onclick="openPanel('open-guard')">
+  <span class="node-icon">🌀</span>
+  <div class="node-label">オープンガード</div>
+  <div class="node-sub">DLR / スパイダー / X</div>
+</div>
+
+<div class="node node-guard" id="n-butterfly" style="left:210px;top:380px;" onclick="openPanel('butterfly')">
+  <span class="node-icon">🦋</span>
+  <div class="node-label">バタフライガード</div>
+  <div class="node-sub">下のポジション</div>
+</div>
+
+<div class="node node-guard" id="n-rubber-guard" style="left:30px;top:480px;" onclick="openPanel('rubber-guard')">
+  <span class="node-icon">🕸️</span>
+  <div class="node-label">ラバーガード</div>
+  <div class="node-sub">下（ノーギ）</div>
+</div>
+
+<!-- ════ トップポジション ════ -->
+<div class="node node-top" id="n-mount" style="left:640px;top:200px;" onclick="openPanel('mount')">
+  <span class="node-icon">🏔️</span>
+  <div class="node-label">マウント</div>
+  <div class="node-sub">トップ</div>
+</div>
+
+<div class="node node-top" id="n-side-control" style="left:590px;top:310px;" onclick="openPanel('side-control')">
+  <span class="node-icon">⬛</span>
+  <div class="node-label">サイドコントロール</div>
+  <div class="node-sub">トップ</div>
+</div>
+
+<div class="node node-top" id="n-knee-belly" style="left:760px;top:330px;" onclick="openPanel('knee-belly')">
+  <span class="node-icon">🦵</span>
+  <div class="node-label">ニーオンベリー</div>
+  <div class="node-sub">トップ</div>
+</div>
+
+<div class="node node-top" id="n-north-south" style="left:700px;top:460px;" onclick="openPanel('north-south')">
+  <span class="node-icon">🧭</span>
+  <div class="node-label">ノースサウス</div>
+  <div class="node-sub">トップ</div>
+</div>
+
+<div class="node node-top" id="n-turtle-top" style="left:870px;top:240px;" onclick="openPanel('turtle-top')">
+  <span class="node-icon">🐢</span>
+  <div class="node-label">タートル（上）</div>
+  <div class="node-sub">トップ</div>
+</div>
+
+<!-- ════ バックコントロール ════ -->
+<div class="node node-back" id="n-back-control" style="left:870px;top:380px;" onclick="openPanel('back-control')">
+  <span class="node-icon">🎯</span>
+  <div class="node-label">バックコントロール</div>
+  <div class="node-sub">フック / シートベルト</div>
+</div>
+
+<!-- ════ レッグロック ════ -->
+<div class="node node-sub" id="n-leg-entangle" style="left:400px;top:490px;" onclick="openPanel('leg-entangle')">
+  <span class="node-icon">🔗</span>
+  <div class="node-label">レッグエンタングル</div>
+  <div class="node-sub">アシガラミ / サドル / 50/50</div>
+</div>
+
+<!-- ════ タートル（下）════ -->
+<div class="node node-guard" id="n-turtle-bot" style="left:600px;top:490px;" onclick="openPanel('turtle-bot')">
+  <span class="node-icon">🐢</span>
+  <div class="node-label">タートル（下）</div>
+  <div class="node-sub">防御的姿勢</div>
+</div>
+
+</div>
+</div>
+
+<div class="panel-backdrop" id="backdrop" onclick="closePanel()"></div>
+<div class="detail-panel" id="detailPanel">
+  <div class="panel-header">
+    <div>
+      <div class="panel-title" id="panelTitle">—</div>
+      <div class="panel-type" id="panelType">—</div>
+    </div>
+    <button class="panel-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+</div>
+
+<footer class="site-footer">
+  <p>🥋 <a href="index.html">BJJ Wiki</a> — ブラジリアン柔術の技術・ポジション・コンセプトを学ぼう</p>
+  <p style="margin-top:8px">
+    <a href="../en/bjj-position-map.html">🇺🇸 English</a> &nbsp;·&nbsp;
+    <a href="../pt/bjj-position-map.html">🇧🇷 Português</a>
+  </p>
+</footer>
+
+<script>
+const POSITIONS = {
+  'standing': {
+    title: 'スタンディング / テイクダウン',
+    type: 'テイクダウンフェーズ',
+    emoji: '🤼',
+    desc: 'BJJの試合はすべてスタンディングから始まります。相手を地面に倒してドミナントポジションを取ることが目標です。テイクダウンスキルはBJJで過小評価されがちです。',
+    techniques: [
+      { name: 'ダブルレッグテイクダウン', link: 'bjj-double-leg-takedown.html' },
+      { name: 'シングルレッグテイクダウン', link: 'bjj-single-leg-takedown.html' },
+      { name: '大外刈 / 腰技', link: 'bjj-takedown-entry-systems.html' },
+      { name: 'スナップダウン', link: 'bjj-takedown-entry-systems.html' },
+      { name: 'ガードプル戦略', link: 'bjj-guard-pull-strategy.html' },
+      { name: 'ボディロックテイクダウン', link: 'bjj-takedown-entry-systems.html' },
+    ],
+    transitions: [
+      '→ クローズドガード（ガードプル）',
+      '→ ハーフガード（テイクダウン失敗）',
+      '→ サイドコントロール（テイクダウン成功）',
+      '→ マウント（上級フィニッシュ）',
+    ],
+    wikiLink: 'bjj-takedown-entry-systems.html',
+  },
+  'closed-guard': {
+    title: 'クローズドガード',
+    type: '下のポジション / ガード',
+    emoji: '🛡️',
+    desc: 'クローズドガードはBJJの基本ガードポジションです。両脚を相手の腰に巻きつけ、スウィープ・サブミッション・バックテイクのチャンスを狙います。',
+    techniques: [
+      { name: 'トライアングルチョーク', link: 'bjj-triangle-choke-guide.html' },
+      { name: 'アームバー（ガードから）', link: 'bjj-armbar-guide.html' },
+      { name: 'オモプラータ', link: 'bjj-omoplata-guide.html' },
+      { name: 'ヒップバンプスウィープ', link: 'bjj-hip-bump-sweep-guide.html' },
+      { name: 'シザースウィープ', link: 'bjj-scissor-sweep-guide.html' },
+      { name: 'キムラ（ガードから）', link: 'bjj-kimura-from-guard.html' },
+      { name: 'フラワースウィープ', link: 'bjj-flower-sweep-guide.html' },
+      { name: 'バックテイク（ガードから）', link: 'bjj-back-take-from-guard-system.html' },
+    ],
+    transitions: [
+      '→ ハーフガード（ガードを割られた）',
+      '→ バタフライガード（オープンへ）',
+      '→ バックコントロール（スウィープ + バックテイク）',
+      '→ マウント（スウィープ成功）',
+    ],
+    wikiLink: 'bjj-closed-guard-systems.html',
+  },
+  'half-guard': {
+    title: 'ハーフガード',
+    type: '下のポジション / ガード',
+    emoji: '🌓',
+    desc: 'ハーフガードはBJJで最も汎用性の高いポジションの一つ。攻守両面でプレーできます。相手の片脚をコントロールし、アンダーフックを争うことが鍵です。',
+    techniques: [
+      { name: 'ハーフガードスウィープシステム', link: 'bjj-half-guard-guide.html' },
+      { name: 'オールドスクールスウィープ', link: 'bjj-half-guard-guide.html' },
+      { name: 'ドッグファイトポジション', link: 'bjj-half-guard-guide.html' },
+      { name: 'ディープハーフガード', link: 'bjj-deep-half-guard-mastery.html' },
+      { name: 'ハーフガードバックテイク', link: 'bjj-half-guard-guide.html' },
+      { name: 'ウェイタースウィープ', link: 'bjj-half-guard-advanced.html' },
+    ],
+    transitions: [
+      '→ フルガード（ガードリカバリー）',
+      '→ マウント（フラットにされた）',
+      '→ バックコントロール（アンダーフック→スウィープ）',
+      '→ ディープハーフガード',
+    ],
+    wikiLink: 'bjj-half-guard-guide.html',
+  },
+  'open-guard': {
+    title: 'オープンガード',
+    type: '下のポジション / ガード',
+    emoji: '🌀',
+    desc: 'オープンガードはデラヒーバ・スパイダーガード・Xガードなどを含むガードポジションの総称。ポスチャーの崩し、アングル作り、レッグエンタングルが特徴です。',
+    techniques: [
+      { name: 'デラヒーバガード', link: 'bjj-de-la-riva-guard.html' },
+      { name: 'スパイダーガードシステム', link: 'bjj-spider-guard-system.html' },
+      { name: 'Xガードスウィープ', link: 'bjj-x-guard-position-guide.html' },
+      { name: 'ベリンボロ', link: 'bjj-de-la-riva-guard.html' },
+      { name: 'ガードリテンション', link: 'bjj-guard-retention-system.html' },
+      { name: 'ラッソガード', link: 'bjj-spider-guard-system.html' },
+    ],
+    transitions: [
+      '→ レッグエンタングル（ヒールフックエントリー）',
+      '→ バックコントロール（ベリンボロ）',
+      '→ マウント（スウィープ後トップへ）',
+      '→ バタフライガード',
+    ],
+    wikiLink: 'bjj-guard-passing-concepts.html',
+  },
+  'butterfly': {
+    title: 'バタフライガード',
+    type: '下のポジション / ガード',
+    emoji: '🦋',
+    desc: 'バタフライガードは相手の太ももの下にフックを入れてリフト&スウィープを狙うガード。ギ・ノーギ両対応。マルセロ・ガルシアシステムの基盤です。',
+    techniques: [
+      { name: 'バタフライスウィープ', link: 'bjj-butterfly-guard.html' },
+      { name: 'バタフライバックテイク', link: 'bjj-butterfly-guard.html' },
+      { name: 'アームドラッグ→バックテイク', link: 'bjj-butterfly-guard.html' },
+      { name: 'フックスウィープ', link: 'bjj-butterfly-guard.html' },
+      { name: 'ギロチン（バタフライから）', link: 'bjj-butterfly-guard.html' },
+    ],
+    transitions: [
+      '→ バックコントロール（アームドラッグ）',
+      '→ マウント（スウィープ）',
+      '→ ハーフガード（部分的）',
+      '→ レッグエンタングル（シングルレッグX）',
+    ],
+    wikiLink: 'bjj-butterfly-guard.html',
+  },
+  'rubber-guard': {
+    title: 'ラバーガード',
+    type: '下のポジション / ガード（ノーギ）',
+    emoji: '🕸️',
+    desc: 'エディ・ブラボーが開発したラバーガード。脚を高い位置でロックして相手のポスチャーを崩し、ゴゴプラータなど独自のサブミッションに繋げます。',
+    techniques: [
+      { name: 'ゴゴプラータ', link: 'bjj-rubber-guard-advanced.html' },
+      { name: 'ミッションコントロール', link: 'bjj-rubber-guard-advanced.html' },
+      { name: 'ニューヨークポジション', link: 'bjj-rubber-guard-advanced.html' },
+      { name: 'オモプラータ（ラバーから）', link: 'bjj-rubber-guard-advanced.html' },
+    ],
+    transitions: [
+      '→ バックコントロール',
+      '→ レッグエンタングル',
+      '→ オープンガード（柔軟性が必要）',
+    ],
+    wikiLink: 'bjj-rubber-guard-advanced.html',
+  },
+  'mount': {
+    title: 'マウント',
+    type: 'トップポジション',
+    emoji: '🏔️',
+    desc: 'マウントはBJJで最高得点（4pt）のポジションの一つ。相手の胸に跨り、強烈なプレッシャーとサブミッションの脅威を与えます。',
+    techniques: [
+      { name: 'RNC（裸絞め）セットアップ', link: 'bjj-mount-system.html' },
+      { name: 'アームバー（マウントから）', link: 'bjj-armbar-guide.html' },
+      { name: 'トライアングル（マウントから）', link: 'bjj-mount-system.html' },
+      { name: 'ギフトラップ', link: 'bjj-mount-system.html' },
+      { name: 'Sマウント移行', link: 'bjj-mount-system.html' },
+      { name: 'エゼキエルチョーク', link: 'bjj-mount-system.html' },
+    ],
+    transitions: [
+      '→ バックコントロール（バックテイク）',
+      '→ サイドコントロール（相手がバックを向く）',
+      '→ ノースサウス（ステップオーバー）',
+      '→ ハーフガード（相手がエスケープ）',
+    ],
+    wikiLink: 'bjj-mount-system.html',
+  },
+  'side-control': {
+    title: 'サイドコントロール',
+    type: 'トップポジション',
+    emoji: '⬛',
+    desc: 'サイドコントロール（横四方固め）は最もよく使われるトップポジション。胸対胸のプレッシャー、腰の位置、アンダーフック/クロスフェイスでコントロールします。',
+    techniques: [
+      { name: 'キムラ（サイドから）', link: 'bjj-side-control-escape-guide.html' },
+      { name: 'アメリカーナ（腕緘）', link: 'bjj-side-control-escape-guide.html' },
+      { name: 'ダーセチョーク', link: 'bjj-side-control-escape-guide.html' },
+      { name: 'ペーパーカッターチョーク', link: 'bjj-collar-choke-system.html' },
+      { name: 'ノースサウスチョーク', link: 'bjj-north-south-position-attacks.html' },
+    ],
+    transitions: [
+      '→ マウント（スライド移行）',
+      '→ バックコントロール（バック廻り）',
+      '→ ニーオンベリー',
+      '→ ノースサウス',
+    ],
+    wikiLink: 'bjj-side-control-escape-guide.html',
+  },
+  'knee-belly': {
+    title: 'ニーオンベリー',
+    type: 'トップポジション',
+    emoji: '🦵',
+    desc: 'ニーオンベリー（膝腹）は2pt獲得できる移行ポジション。相手に即座の不快感を与え、サブミッション・マウント・バックコントロールへの足掛かりになります。',
+    techniques: [
+      { name: 'アームバー（KOBから）', link: 'bjj-knee-on-belly-advanced.html' },
+      { name: 'ボウアンドアロー（ギ）', link: 'bjj-back-control-system.html' },
+      { name: '野球バットチョーク', link: 'bjj-baseball-bat-choke-guide.html' },
+      { name: 'カラーチョーク', link: 'bjj-collar-choke-system.html' },
+    ],
+    transitions: [
+      '→ マウント',
+      '→ サイドコントロール',
+      '→ バックコントロール',
+    ],
+    wikiLink: 'bjj-knee-on-belly-advanced.html',
+  },
+  'north-south': {
+    title: 'ノースサウス',
+    type: 'トップポジション',
+    emoji: '🧭',
+    desc: 'ノースサウス（上四方固め）は相手の頭側を向いて胸対顔でプレッシャーをかけるポジション。ノースサウスチョークとキムラが主要な攻撃手段です。',
+    techniques: [
+      { name: 'ノースサウスチョーク', link: 'bjj-north-south-position-attacks.html' },
+      { name: 'キムラ（N-Sから）', link: 'bjj-north-south-position-attacks.html' },
+      { name: 'アームバー（N-Sから）', link: 'bjj-north-south-position-attacks.html' },
+    ],
+    transitions: [
+      '→ サイドコントロール',
+      '→ マウント（ステップオーバー）',
+      '→ バックコントロール',
+    ],
+    wikiLink: 'bjj-north-south-position-attacks.html',
+  },
+  'turtle-top': {
+    title: 'タートルポジション（上）',
+    type: 'トップポジション',
+    emoji: '🐢',
+    desc: '相手がタートル（四つん這い）になったとき、上の選手はチョーク・レッグロック・バックテイクで攻められます。バックコントロール移行の高確率なポジションです。',
+    techniques: [
+      { name: 'クロックチョーク', link: 'bjj-turtle-top-attacks.html' },
+      { name: 'ボウアンドアローチョーク', link: 'bjj-turtle-top-attacks.html' },
+      { name: 'アナコンダチョーク', link: 'bjj-turtle-top-attacks.html' },
+      { name: 'シートベルトバックテイク', link: 'bjj-back-control-system.html' },
+      { name: 'クルシフィックスポジション', link: 'bjj-crucifix-position-system.html' },
+    ],
+    transitions: [
+      '→ バックコントロール（シートベルト）',
+      '→ クルシフィックス',
+      '→ サイドコントロール',
+    ],
+    wikiLink: 'bjj-turtle-top-attacks.html',
+  },
+  'back-control': {
+    title: 'バックコントロール',
+    type: 'バックマウント',
+    emoji: '🎯',
+    desc: 'バックコントロール（4pt）はBJJで最高評価のポジション。シートベルトグリップとフックでコントロールし、裸絞め（RNC）などで直接フィニッシュを狙えます。',
+    techniques: [
+      { name: '裸絞め（RNC）', link: 'bjj-back-control-system.html' },
+      { name: 'ボウアンドアローチョーク', link: 'bjj-back-control-system.html' },
+      { name: 'アームバー（バックから）', link: 'bjj-back-system-advanced.html' },
+      { name: 'トライアングル（バックから）', link: 'bjj-back-system-advanced.html' },
+      { name: 'ボディトライアングルコントロール', link: 'bjj-back-control-system.html' },
+    ],
+    transitions: [
+      '→ マウント（相手がロール）',
+      '→ サイドコントロール（フックが外れた）',
+      '→ タートルトップ（一部バック）',
+    ],
+    wikiLink: 'bjj-back-control-system.html',
+  },
+  'leg-entangle': {
+    title: 'レッグエンタングルメント',
+    type: 'レッグロックシステム',
+    emoji: '🔗',
+    desc: 'アシガラミ・インサイド/アウトサイドヒールフック・サドルポジションなどのレッグエンタングルメントは、上半身を迂回して直接フィニッシュを狙う完結したシステムです。',
+    techniques: [
+      { name: 'インサイドヒールフック', link: 'bjj-leg-lock-system.html' },
+      { name: 'アウトサイドヒールフック', link: 'bjj-heel-hook-guide.html' },
+      { name: 'ストレートアンクルロック', link: 'bjj-leg-lock-system.html' },
+      { name: 'ニーバー', link: 'bjj-kneebar-guide.html' },
+      { name: 'カーフスライサー', link: 'bjj-calf-slicer-guide.html' },
+      { name: 'アシガラミ（シングルレッグX）', link: 'bjj-ashi-garami-guide.html' },
+      { name: '50/50ガード', link: 'bjj-leg-entanglement-entries.html' },
+    ],
+    transitions: [
+      '→ バックコントロール（ヒールフック + ロール）',
+      '→ トップポジション（フィニッシュ or エスケープ）',
+      '→ オープンガード（エントリー失敗）',
+    ],
+    wikiLink: 'bjj-leg-entanglement-entries.html',
+  },
+  'turtle-bot': {
+    title: 'タートルポジション（下）',
+    type: '下のポジション / 防御',
+    emoji: '🐢',
+    desc: 'タートルはガードパスやテイクダウン後によく取られる防御ポジションです。目標はガードを回復するか、リバーサルを狙うか、チョークを避けることです。',
+    techniques: [
+      { name: 'グランビーロール（ガードリカバリー）', link: 'bjj-guard-retention-system.html' },
+      { name: 'シングルレッグ立ち上がり', link: 'bjj-guard-retention-system.html' },
+      { name: 'シットアウト→ガード', link: 'bjj-guard-retention-system.html' },
+    ],
+    transitions: [
+      '→ クローズドガード（潜り込む）',
+      '→ ハーフガード（スクランブル）',
+      '→ バックコントロール（捕まった）',
+    ],
+    wikiLink: 'bjj-guard-retention-system.html',
+  },
+};
+
+const ARROWS = [
+  ['n-standing','n-closed-guard','blue','ガードプル'],
+  ['n-standing','n-side-control','green','テイクダウン'],
+  ['n-standing','n-mount','green','投げフィニッシュ'],
+  ['n-closed-guard','n-mount','green','スウィープ'],
+  ['n-closed-guard','n-back-control','purple','バックテイク'],
+  ['n-closed-guard','n-half-guard','blue','ガード開く'],
+  ['n-closed-guard','n-open-guard','blue','オープンガード'],
+  ['n-half-guard','n-mount','green','スウィープ'],
+  ['n-half-guard','n-back-control','purple','アンダーフック'],
+  ['n-half-guard','n-butterfly','blue','調整'],
+  ['n-open-guard','n-back-control','purple','ベリンボロ'],
+  ['n-open-guard','n-leg-entangle','red','レッグエントリー'],
+  ['n-butterfly','n-back-control','purple','アームドラッグ'],
+  ['n-butterfly','n-mount','green','スウィープ'],
+  ['n-butterfly','n-leg-entangle','red','シングルレッグX'],
+  ['n-mount','n-back-control','purple','バックテイク'],
+  ['n-mount','n-side-control','green','移行'],
+  ['n-side-control','n-mount','green','スライド'],
+  ['n-side-control','n-back-control','purple','スピン'],
+  ['n-side-control','n-knee-belly','green','ニースライド'],
+  ['n-side-control','n-north-south','green','スピン'],
+  ['n-knee-belly','n-mount','green','ステップオーバー'],
+  ['n-knee-belly','n-back-control','purple','スピン'],
+  ['n-back-control','n-mount','green','ロール'],
+  ['n-turtle-top','n-back-control','purple','シートベルト'],
+  ['n-turtle-bot','n-closed-guard','blue','潜り込む'],
+  ['n-leg-entangle','n-back-control','purple','ヒールフック + ロール'],
+];
+
+function getNodeCenter(id) {
+  const el = document.getElementById(id);
+  if (!el) return null;
+  const r = el.getBoundingClientRect();
+  const canvasR = document.getElementById('mapCanvas').getBoundingClientRect();
+  return { x: r.left - canvasR.left + r.width/2, y: r.top - canvasR.top + r.height/2 };
+}
+function drawArrows() {
+  const svg = document.getElementById('arrowsSvg');
+  svg.querySelectorAll('.arrow-line').forEach(e => e.remove());
+  const colorMap = { blue: {stroke:'rgba(100,149,237,0.5)',marker:'arrowBlue'}, green: {stroke:'rgba(76,175,80,0.5)',marker:'arrowGreen'}, purple: {stroke:'rgba(156,39,176,0.5)',marker:'arrowPurple'}, red: {stroke:'rgba(244,67,54,0.4)',marker:'arrowRed'} };
+  ARROWS.forEach(([fromId, toId, color]) => {
+    const from = getNodeCenter(fromId), to = getNodeCenter(toId);
+    if (!from || !to) return;
+    const {stroke, marker} = colorMap[color] || colorMap.blue;
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',from.x); line.setAttribute('y1',from.y);
+    line.setAttribute('x2',to.x);   line.setAttribute('y2',to.y);
+    line.setAttribute('stroke',stroke); line.setAttribute('stroke-width','1.5');
+    line.setAttribute('marker-end',`url(#${marker})`);
+    line.setAttribute('stroke-dasharray','4 3');
+    line.classList.add('arrow-line');
+    svg.appendChild(line);
+  });
+}
+function openPanel(key) {
+  const data = POSITIONS[key]; if (!data) return;
+  document.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('panelTitle').textContent = data.emoji + ' ' + data.title;
+  document.getElementById('panelType').textContent  = data.type;
+  const techItems = data.techniques.map(t => `<li>🔹 ${t.name} <a href="${t.link}" target="_blank">→ 詳細</a></li>`).join('');
+  const transItems = data.transitions.map(t => `<li>${t}</li>`).join('');
+  document.getElementById('panelBody').innerHTML = `
+    <div class="panel-section"><h3>このポジションについて</h3><p class="panel-desc">${data.desc}</p></div>
+    <div class="panel-section"><h3>利用できる技術</h3><ul class="tech-list">${techItems}</ul></div>
+    <div class="panel-section"><h3>よくある移行先</h3><ul class="trans-list">${transItems}</ul></div>
+    <a href="${data.wikiLink}" class="panel-link-btn" target="_blank">📖 完全ガイドを見る →</a>`;
+  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('backdrop').classList.add('visible');
+}
+function closePanel() {
+  document.getElementById('detailPanel').classList.remove('open');
+  document.getElementById('backdrop').classList.remove('visible');
+  document.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
+}
+window.addEventListener('load', () => { setTimeout(drawArrows, 100); });
+window.addEventListener('resize', drawArrows);
+</script>
+</body>
+</html>
