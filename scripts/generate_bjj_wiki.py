@@ -140,6 +140,33 @@ SITE_DIR       = os.path.abspath(os.path.join(os.path.dirname(__file__), "..")) 
 SITE_URL       = "https://t307239.github.io/bjj-wiki"
 AMAZON_TAG     = "bjj06-22"
 
+# Amazon カテゴリ別 ASIN 直リンクマッピング
+# slug にキーが含まれる場合、該当 ASIN の直リンクを使用（検索URLより CVR 高）
+# US: Jiu-Jitsu University (0981504434), Leg Locks (1933901144)
+# JP: QRコードでよくわかるBJJ (4583117485)
+AMAZON_ASIN_MAP = {
+    "leg-lock":   {"us": "1933901144", "jp": "4583117485"},
+    "heel-hook":  {"us": "1933901144", "jp": "4583117485"},
+    "ankle-lock": {"us": "1933901144", "jp": "4583117485"},
+    "kneebar":    {"us": "1933901144", "jp": "4583117485"},
+    "toe-hold":   {"us": "1933901144", "jp": "4583117485"},
+    # デフォルト: Jiu-Jitsu University (全ポジション網羅)
+    "default":    {"us": "0981504434", "jp": "4583117485"},
+}
+
+def get_amazon_url(slug: str, lang_code: str) -> str:
+    """スラッグとAmazon ASINマップから直リンクURLを生成。マップ外はstripbooks検索にフォールバック。"""
+    for keyword, asins in AMAZON_ASIN_MAP.items():
+        if keyword != "default" and keyword in slug:
+            asin = asins["jp"] if lang_code == "ja" else asins["us"]
+            domain = "amazon.co.jp" if lang_code == "ja" else "amazon.com"
+            return f"https://www.{domain}/dp/{asin}?tag={AMAZON_TAG}"
+    # デフォルトASIN（Jiu-Jitsu University）
+    default_asins = AMAZON_ASIN_MAP["default"]
+    asin = default_asins["jp"] if lang_code == "ja" else default_asins["us"]
+    domain = "amazon.co.jp" if lang_code == "ja" else "amazon.com"
+    return f"https://www.{domain}/dp/{asin}?tag={AMAZON_TAG}"
+
 LANGUAGES = {
     "en": {"name": "English",    "dir": "en"},
     "ja": {"name": "æ¥æ¬èª",      "dir": "ja"},
@@ -833,7 +860,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
       <a class="aff-btn" href="https://bjjfanatics.com/search?q={tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer nofollow" onclick="gtag&&gtag('event','fanatics_click',{{technique:'{tech['slug']}',lang:'{lang_code}'}})">
         {'ð¬ Instructionals' if lang_code=='en' else 'ð¬ æååç»' if lang_code=='ja' else 'ð¬ Instrucionais'}
       </a>
-      <a class="aff-btn" href="{'https://www.amazon.co.jp/s?k=BJJ+' if lang_code=='ja' else 'https://www.amazon.com/s?k=BJJ+'}{tech['name'].replace(' ','+')}&tag={AMAZON_TAG}" target="_blank" rel="noopener noreferrer nofollow" style="background:#ff9900;color:#111" onclick="gtag&&gtag('event','amazon_click',{{technique:'{tech['slug']}',lang:'{lang_code}'}})">
+      <a class="aff-btn" href="{get_amazon_url(tech['slug'], lang_code)}" target="_blank" rel="noopener noreferrer nofollow" style="background:#ff9900;color:#111" onclick="gtag&&gtag('event','amazon_click',{{technique:'{tech['slug']}',lang:'{lang_code}'}})">
         {'ð Books on Amazon' if lang_code=='en' else 'ð Amazonã§æ¬ãæ¢ã' if lang_code=='ja' else 'ð Livros na Amazon'}
       </a>
     </div>
