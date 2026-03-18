@@ -21,6 +21,36 @@
   .tech-links a{background:#1e1e2e;color:var(--muted);text-decoration:none;padding:4px 12px;border-radius:6px;font-size:0.85rem;border:1px solid var(--border)}
   .tech-links a:hover{color:var(--text);border-color:var(--accent)}
   footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:0.8rem}
+
+  .search-wrap{position:relative;margin-bottom:16px}
+  .search-wrap .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none}
+  #tech-search{width:100%;padding:10px 12px 10px 38px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:0.9rem;outline:none}
+  #tech-search:focus{border-color:var(--accent)}
+  .filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .filter-pill{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:20px;font-size:0.82rem;cursor:pointer;transition:all .15s}
+  .filter-pill:hover{border-color:var(--accent);color:var(--text)}
+  .filter-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .cat-section{margin-bottom:28px}
+  .cat-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+  .cat-header h2{font-size:0.95rem;font-weight:700;color:var(--accent)}
+  .cat-count{background:var(--border);color:var(--muted);font-size:0.75rem;padding:2px 8px;border-radius:12px}
+  .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+  .tech-card{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;text-decoration:none;color:var(--text);font-size:0.85rem;transition:border-color .15s}
+  .tech-card:hover{border-color:var(--accent);color:var(--text)}
+  .tech-name{font-weight:500}
+  .arrow{color:var(--muted);font-size:0.8rem}
+  .no-results{color:var(--muted);text-align:center;padding:32px 0}
+  .beehiiv-wrap{background:linear-gradient(135deg,#1a0a2e,#0d0820);border:1px solid var(--accent);border-radius:12px;padding:20px 24px;margin:32px 0;text-align:center}
+  .beehiiv-title{font-size:1rem;font-weight:700;margin-bottom:6px}
+  .beehiiv-desc{color:var(--muted);font-size:0.85rem}
+  .feat-card{display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--text);transition:border-color .2s}
+  .feat-card:hover{border-color:var(--accent)}
+  .feat-card span{font-weight:700;font-size:0.95rem}
+  .feat-card small{color:var(--muted);font-size:0.8rem}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:8px}
+  .card h3{font-size:0.9rem;font-weight:600}
+  .card h3 a{color:var(--text);text-decoration:none}
+  .card h3 a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -28,20 +58,8 @@
   <header><a href="../index.html" class="logo">BJJ<span>Wiki</span></a></header>
   <h1>Todas as Técnicas de BJJ</h1>
   <p class="subtitle">Enciclopédia completa de técnicas de Jiu-Jitsu Brasileiro. Aprenda guardas, passagens, finalizações e muito mais.</p>
-  <div class="cat-card"><h2>Guard</h2><div class="tech-links"><a href="closed-guard.html">Closed Guard</a><a href="open-guard.html">Open Guard</a><a href="half-guard.html">Half Guard</a><a href="spider-guard.html">Spider Guard</a><a href="de-la-riva-guard.html">De La Riva Guard</a><a href="berimbolo.html">Berimbolo</a><a href="butterfly-guard.html">Butterfly Guard</a><a href="rubber-guard.html">Rubber Guard</a><a href="x-guard.html">X-Guard</a><a href="worm-guard.html">Worm Guard</a><a href="reverse-de-la-riva.html">Reverse De La Riva</a></div></div>
-  <footer><p>BJJ Wiki</p></footer>
-</div>
-<script>
-(function(){
-  var slugs=["closed-guard", "open-guard", "half-guard", "spider-guard", "de-la-riva-guard", "berimbolo", "butterfly-guard", "rubber-guard", "x-guard", "worm-guard", "reverse-de-la-riva", "50-50-guard", "lasso-guard", "deep-half-guard", "z-guard", "guard-pass", "torreando-pass", "knee-slice-pass", "leg-drag-pass", "headquarters-pass", "stack-pass", "double-under-pass", "pressure-pass", "smash-pass", "x-pass", "double-leg-takedown", "single-leg-takedown", "osoto-gari", "ankle-pick", "harai-goshi", "ippon-seoi-nage", "morote-seoi-nage", "snap-down", "rear-naked-choke", "triangle-choke", "guillotine-choke", "bow-and-arrow-choke", "ezekiel-choke", "darce-choke", "anaconda-choke", "loop-choke", "arm-triangle-choke", "north-south-choke", "baseball-choke", "cross-collar-choke", "clock-choke", "lapel-choke", "armbar", "kimura", "americana", "omoplata", "wrist-lock", "straight-armbar", "monoplata", "heel-hook", "inside-heel-hook", "outside-heel-hook", "knee-bar", "toe-hold", "calf-slicer", "ankle-lock", "estima-lock", "mount", "back-mount", "side-control", "north-south", "knee-on-belly", "s-mount", "modified-mount", "body-triangle", "scissor-sweep", "flower-sweep", "hip-bump-sweep", "pendulum-sweep", "tripod-sweep", "elevator-sweep", "sickle-sweep", "overhead-sweep", "balloon-sweep", "x-guard-sweep", "arm-drag", "granby-roll", "shrimp-escape", "bridge-and-roll", "elbow-knee-escape", "guard-retention", "hip-escape", "frame", "sprawl", "back-defense", "backtake", "turtle-position", "technical-standup", "stand-in-base", "sitting-guard", "seat-belt-control", "front-headlock", "russian-tie", "underhook", "overhook"];
-  var d=new Date(),seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
-  var idx=seed%slugs.length;
-  var slug=slugs[idx];
-  var name=slug.replace(/-/g,' ').replace(/\w/g,function(c){return c.toUpperCase();});
-  document.getElementById('tot-name').textContent=name;
-  document.getElementById('tot-link').href='../pt/'+slug+'.html';
-})();
-</script>
+
+
 
 <div style="background:linear-gradient(135deg,#1a0a2e,#0d0820);border:1px solid var(--accent,#6e40c9);border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
   <div>
@@ -249,7 +267,7 @@
   </form>
 </section>
 <!-- /Formspree -->
-<a href="skill-tree.html" style="color:var(--accent,#6e40c9)">🌳 Árvore</a> · <section style="margin:32px 0">
+<section style="margin:32px 0">
 <h2 style="color:#e2b714;margin-bottom:16px">🏋️ Guias de Treino e Condicionamento</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px">
 <a href="bjj-strength-training.html" style="display:block;background:#111827;border:1px solid #1e2a3a;border-radius:10px;padding:16px;text-decoration:none;transition:border-color .2s" onmouseover="this.style.borderColor='#e2b714'" onmouseout="this.style.borderColor='#1e2a3a'"><strong style="color:#e2b714">💪 Treinamento de Força</strong><p style="color:#aaa;font-size:.85rem;margin-top:4px">Construa força para BJJ com programas baseados em ciência</p></a>
