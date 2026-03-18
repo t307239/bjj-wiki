@@ -236,14 +236,23 @@ def main():
     en_dir      = os.path.join(base, "en")
     html_files  = sorted(glob.glob(os.path.join(en_dir, "*.html")), key=os.path.getmtime, reverse=True)
     posted      = load_posted_log()
+    total_pages = len(html_files)
+    remaining   = total_pages - len(posted)
 
     mode = "DRY RUN" if dry_run else "実行"
     print(f"=== BJJ Wiki X(Twitter)自動投稿 ({mode}) ===")
-    print(f"投稿済み: {len(posted)}件 / 最大投稿: {limit}件")
+    print(f"総ページ数: {total_pages}件")
+    print(f"投稿済み:   {len(posted)}件 ({len(posted)*100//max(total_pages,1)}%)")
+    print(f"未投稿:     {remaining}件")
+    print(f"今回投稿上限: {limit}件")
+    if remaining > 0:
+        days_to_complete = (remaining + limit * 2 - 1) // (limit * 2)  # 2回/日想定
+        print(f"完了まで約: {days_to_complete}日（1日{limit*2}件ペース）")
     print()
 
     count = 0
     newly_posted = []
+    skipped_no_meta = 0
 
     for filepath in html_files:
         if count >= limit:
@@ -255,6 +264,7 @@ def main():
 
         meta = extract_page_meta(filepath)
         if not meta:
+            skipped_no_meta += 1
             continue
 
         page_url = f"{SITE_BASE_URL}/en/{slug}.html"
@@ -267,7 +277,7 @@ def main():
             count += 1
             newly_posted.append(slug)
             posted.add(slug)
-            print(f"  ✅ posted: {tweet[:80]}...")
+            print(f"  ✅ posted ({count}/{limit}): {tweet[:70]}...")
             if not dry_run:
                 time.sleep(2)  # Rate limit対策
         else:
@@ -278,9 +288,18 @@ def main():
 
     print()
     print(f"=== 完了: {count}件投稿 ===")
+    if skipped_no_meta > 0:
+        print(f"  (メタ情報なし {skipped_no_meta}件スキップ)")
+    new_remaining = total_pages - len(posted)
+    print(f"  残り未投稿: {new_remaining}件 / 全{total_pages}件")
 
     if count > 0 and not dry_run:
-        send_telegram(f"🐦 BJJ Wiki → X に{count}件投稿:\n" + "\n".join(f"  • {s}" for s in newly_posted))
+        progress_pct = len(posted) * 100 // max(total_pages, 1)
+        send_telegram(
+            f"🐦 BJJ Wiki → X に{count}件投稿\n"
+            f"進捗: {len(posted)}/{total_pages}件 ({progress_pct}%)\n"
+            + "\n".join(f"  • {s}" for s in newly_posted)
+        )
 
 
 if __name__ == "__main__":
