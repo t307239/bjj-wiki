@@ -16,7 +16,7 @@
   <style>
     :root{--bg:#0a0f1e;--card:#111827;--accent:#e2b714;--text:#e5e7eb;--muted:#9ca3af}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;line-height:1.7}
+    body{background:var(--bg);color:var(--text);font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0f1a2e,#1a1040);padding:20px;text-align:center;border-bottom:2px solid var(--accent)}
     header h1{color:var(--accent);font-size:1.8rem;margin-bottom:6px}
     header p{color:var(--muted);font-size:.95rem}
@@ -50,7 +50,19 @@
     .float-cta p{font-size:.82rem;margin-bottom:8px;color:#e0d9ff}
     .float-cta a{display:block;background:#fff;color:#7c3aed;text-align:center;padding:8px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none}
     .float-close{position:absolute;top:8px;right:10px;cursor:pointer;color:#aaa;font-size:.8rem}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -65,6 +77,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header><h1>🦴 Guia do Kneebar</h1><p>Mecânica do kneebar, setups de diferentes posições e regras de legalidade em competição.</p></header>
 <nav>
   <a href="../pt/index.html">🏠 Home</a>
@@ -74,6 +87,10 @@
   <a href="../pt/bjj-competition-guide.html">🏆 Competition</a>
 </nav>
 <div class="container">
+  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>Fundamentos do Kneebar</h2><p>O kneebar é um leg lock poderoso que hiperestende a articulação do joelho. Embora restrito em competições de faixas inferiores, é totalmente legal para faixas marrom e preta e é uma arma devastadora em no-gi e submission-only.</p><h2>Mecânica do Kneebar</h2><ol><li>Controle a perna — segure-a firmemente contra o corpo</li><li>Coloque o antebraço atrás do joelho como fulcro</li><li>Apoie a canela/tornozelo com ambas as mãos</li><li>Empurre os quadris para frente (contra a parte de trás do joelho)</li><li>Empurre o tornozelo para cima enquanto o quadril avança</li></ol><h2>Entradas do Kneebar</h2><table><tr><th>Entrada</th><th>Posição</th><th>Setup</th></tr><tr><td>Da Passagem de Guarda</td><td>Posição superior</td><td>Quando estendem uma perna para empurrá-lo</td></tr><tr><td>Do Entrelaçamento de Pernas</td><td>Single leg X (ashi garami)</td><td>Transição da entrada de heel hook quando o joelho está exposto</td></tr><tr><td>Da Tartaruga</td><td>Posição lateral</td><td>Quando estão na tartaruga, enganche a perna distante</td></tr></table><div class="warn-box"><strong>⚠️ Nota de Competição:</strong> Kneebars não são legais para faixas branca, azul ou roxa em competições IBJJF gi ou no-gi. Verifique sua divisão específica antes da competição.</div><div class="tip-box"><strong>💡 Dica Pro:</strong> O kneebar requer pressão do quadril, não força dos braços. Se estiver apenas apertando com os braços, perdeu a vantagem mecânica. Empurre os quadris através do joelho para máxima alavancagem.</div>
 <div class="aff-box">
   <p>Acelere seu BJJ com instrução de classe mundial</p>

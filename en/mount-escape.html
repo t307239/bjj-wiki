@@ -34,7 +34,7 @@
 <style>
 :root{--bg:#080b12;--surface:#0f1420;--card:#141926;--border:#1f2840;--text:#e8eaf6;--muted:#6b7699;--accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;line-height:1.75;padding:0 16px}
+body{background:var(--bg);color:var(--text);font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;line-height:1.85;padding:0 16px}
 a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:860px;margin:0 auto;padding-bottom:80px}
 header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:40px}
@@ -106,6 +106,18 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
 .pro-tip{background:linear-gradient(135deg,#0a1a0a,#0f200a);border:1px solid #16a34a;border-radius:12px;padding:16px 20px;margin:24px 0;position:relative}
 .pro-tip::before{content:"💡 Pro Tip";font-size:.75rem;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px}
 .pro-tip p{margin:0;font-size:.9rem;color:#a7c9a7}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </style>
 <script type="application/ld+json">
@@ -176,6 +188,7 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
 <header>
   <div class="logo">🥋 <span>BJJ</span> Wiki</div>
@@ -198,6 +211,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
 
 <p>Being mounted is one of the worst positions in BJJ — you are giving up 4 points and are vulnerable to every submission in the book. But with correct technique, mount is escapable even against much larger opponents. There are two primary escapes every grappler must own: the Upa (bridge and roll) and the Elbow-Knee (shrimp) escape.</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>Why Mount Is Dangerous</h2><div class="card"><div class="step"><div class="step-num">1</div><div><strong>Score</strong> — In competition, full mount scores 4 points — the highest of any positional score.</div></div><div class="step"><div class="step-num">2</div><div><strong>Submission threat</strong> — From mount, the opponent can attack armbar, americana, kimura, rear naked choke (after back take), ezekiel choke, and collar chokes.</div></div><div class="step"><div class="step-num">3</div><div><strong>Priority</strong> — Escaping mount is a higher priority than hunting submissions from mount. Survive first, score second.</div></div></div>
 <h2>Escape 1: Upa (Bridge and Roll)</h2><div class="card"><div class="step"><div class="step-num">1</div><div><strong>Setup</strong> — Wait for your opponent to reach for a submission or post their hands. Trap one of their arms against your body with both hands.</div></div><div class="step"><div class="step-num">2</div><div><strong>Bridge</strong> — Plant both feet close to your body. Simultaneously bridge your hips hard and turn — the torque lifts them off.</div></div><div class="step"><div class="step-num">3</div><div><strong>Roll to guard</strong> — Use the momentum to roll them over and land in their guard. From here you can work guard passes.</div></div><div class="step"><div class="step-num">4</div><div><strong>Best against</strong> — High mount (they are sitting up). Works well when they reach for collar grips.</div></div></div>
 <h2>Escape 2: Elbow-Knee (Shrimp)</h2><div class="card"><div class="step"><div class="step-num">1</div><div><strong>Frame first</strong> — Create a frame — forearm on their hip/chest, other hand blocking their collar grip. Never cross your arms.</div></div><div class="step"><div class="step-num">2</div><div><strong>Shrimp out</strong> — Drive one elbow and the same-side knee together while shrimping your hips away from them. Repeat 2-3 times.</div></div><div class="step"><div class="step-num">3</div><div><strong>Recover half guard</strong> — Get your shin in across their hips to capture half guard. From half guard, work your guard recovery.</div></div><div class="step"><div class="step-num">4</div><div><strong>Best against</strong> — Low mount (they sit low on your hips). Also effective against high-level opponents who resist the upa.</div></div></div>

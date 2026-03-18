@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">⏰ Clock Choke Guide</h1>
     <p style="color:#9ca3af;margin-bottom:24px">The clock choke is a powerful collar choke applied against the turtle position — a high-percentage gi attack that also has no-gi variations using arm pressure.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">What Is the Clock Choke?</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">What Is the Clock Choke?</h2>
 <p style="color:#d1d5db;line-height:1.8">The clock choke (tokei-jime in Japanese) is a collar choke applied from the top turtle position. You grip the opponent's near collar deep, walk in a clockwise or counter-clockwise direction around their head (like a clock hand), and drive your forearm across the neck, forcing them to submit from the collar and forearm pressure.</p>
 <h2 style="color:#e2b714;margin-top:32px">Entry from Top Turtle</h2>
 <p style="color:#d1d5db;line-height:1.8">Standard entry: from top turtle, establish a knee-on-back or knee-on-ribs position, reach under their neck and grip the far collar deep with your first hand, post your other hand on the mat or grip the gi, then walk around toward their head in a circular motion while driving your body weight down.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

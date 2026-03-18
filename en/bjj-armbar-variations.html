@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">💪 Armbar Variations Guide</h1>
     <p style="color:#9ca3af;margin-bottom:24px">The armbar is BJJ's most versatile submission — available from virtually every position. This guide covers all major armbar variations and their specific entries.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Standard Guard Armbar</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Standard Guard Armbar</h2>
 <p style="color:#d1d5db;line-height:1.8">The guard armbar is the foundation: break posture, create a sharp angle (hip escape to 45°), throw your leg over the neck, lock the arm to your chest with both hands, and bridge your hips upward. Key: perpendicular angle to the arm. The hitchhiker escape is prevented by squeezing knees together and using a cross grip (palm down).</p>
 <h2 style="color:#e2b714;margin-top:32px">Mounted Armbar</h2>
 <p style="color:#d1d5db;line-height:1.8">From mount: slide your knee toward their head (technical mount), raise your other knee over the far shoulder, sit back as you collect the arm, and finish. Counter to defense: if they clasp hands, use both hands to break the grip (strip one finger at a time or use the "Americana to armbar" switch).</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

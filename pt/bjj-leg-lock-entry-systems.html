@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -47,7 +48,11 @@
     <h1>Sistemas de Entrada para Leg Locks no BJJ — Guia Completo de Ashi Garami, Saddle e Outside Heel</h1>
     <p class="intro">Leg locks revolucionaram o grappling moderno. O sucesso no jogo de leg locks começa antes da finalização — começa com o domínio dos sistemas de entrada que fornecem posições confiáveis e seguras para atacar.</p>
     
-    <h2>Os Três Pilares das Entradas de Leg Lock</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Os Três Pilares das Entradas de Leg Lock</h2>
     <p>A maioria dos ataques de leg lock flui de três famílias posicionais: ashi garami (single leg X, ashi padrão), o saddle (posição de inside heel hook) e outside ashi (posição de outside heel hook). Cada um tem caminhos de entrada distintos e controles posicionais.</p>
     <h2>Entrada pela Guarda</h2>
     <p>Os caminhos de entrada mais comuns vêm da guarda aberta — particularmente DLR, single leg X e guarda sentada. Aprender a transicionar dessas posições de guarda para leg entanglements requer movimento de quadril, controle de grips e compreensão da linha do joelho.</p>
@@ -78,5 +83,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

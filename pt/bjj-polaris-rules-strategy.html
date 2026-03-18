@@ -1,1 +1,32 @@
-<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>[PT] Polaris Rules Strategy | BJJ Wiki</title><meta name="description" content="Polaris Rules Strategy BJJ technique guide"><link rel="canonical" href="https://t307239.github.io/bjj-wiki/pt/bjj-polaris-rules-strategy.html"></head><body style="background:#0a0a0f;color:#e2e2ee;font-family:system-ui;padding:20px;max-width:800px;margin:0 auto"><h1>Polaris Rules Strategy</h1><p>Learn about Polaris Rules Strategy in Brazilian Jiu-Jitsu.</p><footer style="margin-top:40px;padding-top:20px;border-top:1px solid #1e1e2e;text-align:center;color:#999">&copy; 2026 BJJ Wiki</footer></body></html>
+<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>[PT] Polaris Rules Strategy | BJJ Wiki</title><meta name="description" content="Polaris Rules Strategy BJJ technique guide"><link rel="canonical" href="https://t307239.github.io/bjj-wiki/pt/bjj-polaris-rules-strategy.html"></head><body style="background:#0a0a0f;color:#e2e2ee;font-family:system-ui;padding:20px;max-width:800px;margin:0 auto"><h1>Polaris Rules Strategy</h1><p>Learn about Polaris Rules Strategy in Brazilian Jiu-Jitsu.</p><footer style="margin-top:40px;padding-top:20px;border-top:1px solid #1e1e2e;text-align:center;color:#999">&copy; 2026 BJJ Wiki</footer>  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
+</body></html>

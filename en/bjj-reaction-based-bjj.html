@@ -26,7 +26,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d1117;color:#e2e8f0;font-family:'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0d1117;color:#e2e8f0;font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
 nav{background:#111827;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 nav a{color:#e2b714;text-decoration:none;font-weight:700;font-size:.95rem}
 nav .nav-links a{margin-left:16px;color:#9ca3af;font-size:.85rem}
@@ -70,6 +70,18 @@ footer a{color:#9ca3af;text-decoration:none;display:block;margin-bottom:6px;font
 footer a:hover{color:#e2b714}
 footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:.8rem}
 @media(max-width:600px){h1{font-size:1.5rem}}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">
 {
@@ -87,6 +99,7 @@ footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🥋 BJJ Wiki</a>
   <div class="nav-links">
@@ -102,7 +115,11 @@ footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:
   </div>
 </nav>
 <div class="container">
-<h1>Reaction-Based BJJ Game</h1><p class="meta">Published Mar 16, 2026 • Intermediate-Advanced</p><div class="difficulty-bar"><div class="belt-badge belt-blue">Blue</div><div class="belt-badge belt-purple">Purple</div><div class="belt-badge belt-brown">Brown</div></div><h2>Reaction-Based vs. Plan-Based</h2><p>Many grapplers try to execute a specific plan regardless of what their opponent is doing. Reaction-based BJJ means you respond to what they're doing in real-time, always moving toward the best available opportunity.</p><h2>Core Principles</h2><ul><li><strong>Watch for patterns:</strong> Identify how they defend and escape</li><li><strong>Immediate response:</strong> When they move, you counter-move</li><li><strong>Opportunistic thinking:</strong> Take the best option available now</li><li><strong>Constant adaptation:</strong> Never marry one technique</li></ul><h2>Reading Escapes</h2><div class="step-card"><div class="step-number">1</div><h3>Observe Their Default Escape</h3><p>Notice which direction they prefer escaping toward.</p></div><div class="step-card"><div class="step-number">2</div><h3>Set a Trap</strong></h3><p>Cut off that escape route with your positioning.</p></div><div class="step-card"><div class="step-number">3</div><h3>Force Reaction</h3><p>Push pressure to force them into a less preferred escape.</p></div><div class="step-card"><div class="step-number">4</div><h3>Capitalize Immediately</h3><p>You already know where they're going—attack that line.</p></div><h2>The Reactive Mindset</h2><p>Stop thinking about "my technique chain." Instead, think "what is my opponent doing right now, and what's the best response?" This mindset develops high-level BJJ faster than memorizing techniques.</p><div class="tip-box"><strong>Pro Tip:</strong> Film yourself rolling and watch how often you're responding vs. executing a pre-planned sequence. High-level grapplers spend 80% of their time reacting and adapting.</div><h2>Training for Reactivity</h2><ul><li>Roll at higher intensities (70%+) to force quick reactions</li><li>Practice against different body types and styles</li><li>Learn many techniques so you have options to react with</li><li>Meditate or practice mindfulness to improve present-moment awareness</li></ul><p>Reaction-based BJJ is the path to true technical mastery. Make it your focus and watch your game elevate dramatically.</p>
+<h1>Reaction-Based BJJ Game</h1><p class="meta">Published Mar 16, 2026 • Intermediate-Advanced</p><div class="difficulty-bar"><div class="belt-badge belt-blue">Blue</div><div class="belt-badge belt-purple">Purple</div><div class="belt-badge belt-brown">Brown</div></div>  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Reaction-Based vs. Plan-Based</h2><p>Many grapplers try to execute a specific plan regardless of what their opponent is doing. Reaction-based BJJ means you respond to what they're doing in real-time, always moving toward the best available opportunity.</p><h2>Core Principles</h2><ul><li><strong>Watch for patterns:</strong> Identify how they defend and escape</li><li><strong>Immediate response:</strong> When they move, you counter-move</li><li><strong>Opportunistic thinking:</strong> Take the best option available now</li><li><strong>Constant adaptation:</strong> Never marry one technique</li></ul><h2>Reading Escapes</h2><div class="step-card"><div class="step-number">1</div><h3>Observe Their Default Escape</h3><p>Notice which direction they prefer escaping toward.</p></div><div class="step-card"><div class="step-number">2</div><h3>Set a Trap</strong></h3><p>Cut off that escape route with your positioning.</p></div><div class="step-card"><div class="step-number">3</div><h3>Force Reaction</h3><p>Push pressure to force them into a less preferred escape.</p></div><div class="step-card"><div class="step-number">4</div><h3>Capitalize Immediately</h3><p>You already know where they're going—attack that line.</p></div><h2>The Reactive Mindset</h2><p>Stop thinking about "my technique chain." Instead, think "what is my opponent doing right now, and what's the best response?" This mindset develops high-level BJJ faster than memorizing techniques.</p><div class="tip-box"><strong>Pro Tip:</strong> Film yourself rolling and watch how often you're responding vs. executing a pre-planned sequence. High-level grapplers spend 80% of their time reacting and adapting.</div><h2>Training for Reactivity</h2><ul><li>Roll at higher intensities (70%+) to force quick reactions</li><li>Practice against different body types and styles</li><li>Learn many techniques so you have options to react with</li><li>Meditate or practice mindfulness to improve present-moment awareness</li></ul><p>Reaction-based BJJ is the path to true technical mastery. Make it your focus and watch your game elevate dramatically.</p>
 <div class="beehiiv-box">
   <p>📧 Get weekly BJJ tips in your inbox</p>
   <form action="https://bjjwiki.beehiiv.com/subscribe" method="POST" target="_blank">

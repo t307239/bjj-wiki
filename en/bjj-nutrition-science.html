@@ -24,9 +24,22 @@
   .cta h3 { color: #e94560; margin-bottom: 0.5rem; }
   .cta a { display: inline-block; margin-top: 1rem; background: #e94560; color: #fff; padding: 0.6rem 1.5rem; border-radius: 999px; text-decoration: none; font-weight: bold; }
   footer { text-align: center; padding: 2rem; color: #555; font-size: 0.85rem; border-top: 1px solid #333; margin-top: 3rem; }
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="header">
   <a href="https://t307239.github.io/bjj-wiki/">🥋 BJJ Wiki</a>
   <a href="https://bjj-app-one.vercel.app" target="_blank">練習記録アプリ</a>
@@ -35,7 +48,11 @@
   <div class="lang-switch">🌐 <a href="/ja/bjj-nutrition-science.html" style="color:#e94560">日本語</a> | <a href="/pt/bjj-nutrition-science.html" style="color:#e94560">Português</a></div>
   <h1>Nutrition Science for BJJ Athletes: Evidence-Based Fueling</h1>
   <p style="color:#888; font-size:0.9rem; margin-bottom:1.5rem">Science-backed nutrition strategies for BJJ practitioners: protein timing, carbohydrate periodization, weight management, and competition-day fueling.</p>
-  <h2>Nutrition as a Performance Variable</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Nutrition as a Performance Variable</h2>
 <p>Nutrition is one of the most controllable performance variables for BJJ athletes, yet it's frequently neglected or approached with misinformation. The evidence base for sports nutrition has grown substantially—here's what actually works for grapplers who need strength, endurance, and quick recovery.</p>
 <h2>Protein: The Non-Negotiable</h2>
 <p>BJJ is physically demanding and causes significant muscle damage requiring repair. Current evidence supports <strong>1.6-2.2g of protein per kilogram of bodyweight daily</strong> for athletes engaged in regular intense training. Distribution matters as much as total: aim for 4-5 protein-containing meals/snacks, each with 25-40g protein, to maximize muscle protein synthesis throughout the day. Leucine-rich sources (chicken, fish, eggs, dairy) stimulate synthesis most effectively.</p>

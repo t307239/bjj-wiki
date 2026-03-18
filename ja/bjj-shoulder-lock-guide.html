@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🦾 ショルダーロックガイド（キムラ・アメリカーナ・オモプラタ）</h1>
     <p style="color:#9ca3af;margin-bottom:24px">3つのショルダーロックは異なる角度から肩関節を標的にする完全な攻撃システムを形成します。3つすべてとその繋がりをマスターすることで、あらゆるポジションからのオプションが得られます。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">キムラ（ダブルリストロック）</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">キムラ（ダブルリストロック）</h2>
 <p style="color:#d1d5db;line-height:1.8">キムラは肩を内旋方向に攻撃します。エントリー：手首を一方の手でグリップし、もう一方の腕でフィギュアフォー、手を背中に向けて押すことでてこを作ります。使用可能な場所：ガードボトム（角度のためのヒップエスケープ）・サイドコントロール（頭を越えてステップ）・ノーススース・ハーフガード。</p>
 <h2 style="color:#e2b714;margin-top:32px">アメリカーナ（キーロック）</h2>
 <p style="color:#d1d5db;line-height:1.8">アメリカーナはキムラの反対の外旋方向に肩を攻撃します。マウントまたはサイドコントロールからのエントリー：腕をL字形（耳の横に手）に押し込み、手首と肘をフィギュアフォー、肘をマットに押し下げます。鍵：肘をマットにピン留めし、腕の力ではなく体重を使ってフィニッシュします。</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

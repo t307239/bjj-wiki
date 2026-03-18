@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🌀 Twister Submission Guide</h1>
     <p style="color:#9ca3af;margin-bottom:24px">The twister is one of the rarest and most spectacular submissions in BJJ — a spinal lock that targets the neck and spine simultaneously, popularized by Eddie Bravo.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">What Is the Twister?</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">What Is the Twister?</h2>
 <p style="color:#d1d5db;line-height:1.8">The twister is a submission hold that applies rotational torsion to the spine. It is performed from the truck position (a leg entanglement behind the opponent) and involves hooking the neck while rotating the body in opposite directions to create a spinal twist.</p>
 <h2 style="color:#e2b714;margin-top:32px">The Truck Position Setup</h2>
 <p style="color:#d1d5db;line-height:1.8">To enter the twister, you first need the truck position: from a crab ride or turtle attack, insert one leg between your opponent's legs (hook the near leg), lock a tight body triangle or hook with your legs, and control their hips. The truck gives you positional control before going for the submission.</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

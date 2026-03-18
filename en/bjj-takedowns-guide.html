@@ -17,7 +17,7 @@
 <style>
 :root{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;padding:0 16px}
+body{background:var(--bg);color:var(--text);font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;padding:0 16px}
 .container{max-width:800px;margin:0 auto;padding:24px 0 64px}
 header{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .logo{font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none}.logo span{color:var(--accent)}
@@ -39,6 +39,18 @@ p{color:#c2c2d9;margin-bottom:14px;font-size:.97rem}
 .beehiiv-box{background:linear-gradient(135deg,#0d1225,#1a1040);border:1px solid #3b2d6e;border-radius:14px;padding:24px;margin:32px 0;text-align:center}
 footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:.8rem;margin-top:40px}
 footer a{color:var(--muted)}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Best BJJ Takedowns & Throws","description":"The most effective takedowns for BJJ competition and street self-defense. Combines wrestling, judo, and BJJ-specific entries.","url":"https://t307239.github.io/bjj-wiki/en/bjj-takedowns-guide.html","datePublished":"2026-03-13T00:00:00+09:00","dateModified":"2026-03-16T00:00:00+09:00","publisher":{"@type":"Organization","name":"BJJ Wiki","url":"https://t307239.github.io/bjj-wiki/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need to learn takedowns for BJJ?","acceptedAnswer":{"@type":"Answer","text":"Yes, especially if you compete. Many matches are decided by takedown points or by controlling where the fight goes. At minimum, learn double leg, single leg, and ankle pick."}},{"@type":"Question","name":"What is the easiest BJJ takedown to learn?","acceptedAnswer":{"@type":"Answer","text":"The ankle pick and arm drag are the most beginner-friendly takedowns because they require less athleticism and work well against stiff, forward-pressuring opponents."}},{"@type":"Question","name":"Is judo or wrestling better for BJJ?","acceptedAnswer":{"@type":"Answer","text":"Both are valuable. Wrestling gives you better control in top position and scrambles. Judo gives you powerful throws that score in gi BJJ and dramatic finishes. Most elite BJJ competitors train both."}}]}</script>
@@ -67,6 +79,10 @@ footer a{color:var(--muted)}
 <nav><a href="../index.html">Home</a><a href="index.html">All Techniques</a><a href="skill-tree.html">🌳 Skill Tree</a></nav></header>
 <h1>Best BJJ Takedowns & Throws</h1>
 <div class="intro">Most BJJ practitioners are strong on the ground but weak from standing. Mastering even 2-3 takedowns gives you a massive competitive advantage. Here are the best takedowns for BJJ.</div>
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>🥋 Essential Techniques</h2>
 <div class="tech-list"><a href="double-leg-takedown.html" class="tech-pill"><div class="pill-name">Double Leg Takedown</div><div class="pill-desc">The most universal wrestling takedown. Low risk, high reward. Entry point for most ground sequences.</div><span class="pill-arrow">→</span></a><a href="single-leg-takedown.html" class="tech-pill"><div class="pill-name">Single Leg Takedown</div><div class="pill-desc">Easier to set up than double leg. Can convert to trips and dumps.</div><span class="pill-arrow">→</span></a><a href="ankle-pick.html" class="tech-pill"><div class="pill-name">Ankle Pick</div><div class="pill-desc">Low-risk takedown when your opponent pushes forward. Perfect counter.</div><span class="pill-arrow">→</span></a><a href="osoto-gari.html" class="tech-pill"><div class="pill-name">Osoto Gari</div><div class="pill-desc">Judo leg reap. Devastating when opponent's weight is on their back leg.</div><span class="pill-arrow">→</span></a><a href="harai-goshi.html" class="tech-pill"><div class="pill-name">Harai Goshi</div><div class="pill-desc">Hip throw. Requires timing but very powerful when landed.</div><span class="pill-arrow">→</span></a><a href="ippon-seoi-nage.html" class="tech-pill"><div class="pill-name">Ippon Seoi Nage</div><div class="pill-desc">One-arm shoulder throw. Very common in gi BJJ from sleeve grip.</div><span class="pill-arrow">→</span></a><a href="snap-down.html" class="tech-pill"><div class="pill-name">Snap Down</div><div class="pill-desc">Wrestling control. Snap down to front headlock → darce or anaconda.</div><span class="pill-arrow">→</span></a><a href="arm-drag.html" class="tech-pill"><div class="pill-name">Arm Drag</div><div class="pill-desc">Universal upper body control that leads to double legs, back takes, or trips.</div><span class="pill-arrow">→</span></a></div>
 <div class="skill-cta">

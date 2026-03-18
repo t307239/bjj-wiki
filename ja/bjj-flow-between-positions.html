@@ -26,7 +26,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d1117;color:#e2e8f0;font-family:'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0d1117;color:#e2e8f0;font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
 nav{background:#111827;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 nav a{color:#e2b714;text-decoration:none;font-weight:700;font-size:.95rem}
 nav .nav-links a{margin-left:16px;color:#9ca3af;font-size:.85rem}
@@ -70,6 +70,18 @@ footer a{color:#9ca3af;text-decoration:none;display:block;margin-bottom:6px;font
 footer a:hover{color:#e2b714}
 footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:.8rem}
 @media(max-width:600px){h1{font-size:1.5rem}}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">
 {
@@ -87,6 +99,7 @@ footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🥋 BJJ Wiki</a>
   <div class="nav-links">
@@ -102,7 +115,11 @@ footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:
   </div>
 </nav>
 <div class="container">
-<h1>【BJJ】ポジション間フロー</h1><p class="meta">公開日 2026年3月16日 • 中級</p><div class="difficulty-bar"><div class="belt-badge belt-blue">青帯</div><div class="belt-badge belt-purple">紫帯</div></div><h2>BJJにおけるフローとは</h2><p>フローは、モーメンタムを失わずにポジション間の継続的な動きと接続です。1つのポジションのために戦う代わりに、複数のポジションを通過し、防御に適応します。</p><h2>フローの哲学</h2><ul><li><strong>圧力を維持：</strong>常に接触とコントロール</li><li><strong>防御を読む：</strong>抵抗から離れてフロー</li><li><strong>機会を作成：</strong>各ポジションが新しい攻撃を開く</li><li><strong>創造的であり続ける：</strong>あなたの体に次の動きを見つけさせる</li></ul><h2>マウントからサイドコントロールへのフロー</h2><div class="step-card"><div class="step-number">1</div><h3>エスケープの試みを認識</h3><p>相手がブリッジし、一方の側に回転します。</p></div><div class="step-card"><div class="step-number">2</div><h3>彼らの動きに従う</h3><p>戦う代わりに相手と一緒に移動します。</p></div><div class="step-card"><div class="step-number">3</div><h3>サイドコントロールを確立</h3><p>支配的なサイドコントロールポジションに着地します。</p></div><div class="step-card"><div class="step-number">4</div><h3>新しい攻撃を追求</h3><p>新しいポジションからのサブミッションを探します。</p></div><h2>バックコントロールからマウントへのフロー</h2><p>バックコントロールから、相手が強くブリッジする場合は、コントロールを維持しながらヒップを前に移動してマウントに遷移します。</p><div class="tip-box"><strong>プロのコツ：</strong>フロー改善の最速の方法は制御ローリングを通じてです。位置を強制しないでください。相手の反応から自然に発展させます。</div><h2>訓練方法論</h2><p>50%強度でフローローリングを練習します。力ではなくスムーズな動きに焦点を当てます。相手が動くと、あなたは動きます。</p><p>フローはBJJの最高の表現です。マスターして、ポジションに決してハマることはありません。</p>
+<h1>【BJJ】ポジション間フロー</h1><p class="meta">公開日 2026年3月16日 • 中級</p><div class="difficulty-bar"><div class="belt-badge belt-blue">青帯</div><div class="belt-badge belt-purple">紫帯</div></div>  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>BJJにおけるフローとは</h2><p>フローは、モーメンタムを失わずにポジション間の継続的な動きと接続です。1つのポジションのために戦う代わりに、複数のポジションを通過し、防御に適応します。</p><h2>フローの哲学</h2><ul><li><strong>圧力を維持：</strong>常に接触とコントロール</li><li><strong>防御を読む：</strong>抵抗から離れてフロー</li><li><strong>機会を作成：</strong>各ポジションが新しい攻撃を開く</li><li><strong>創造的であり続ける：</strong>あなたの体に次の動きを見つけさせる</li></ul><h2>マウントからサイドコントロールへのフロー</h2><div class="step-card"><div class="step-number">1</div><h3>エスケープの試みを認識</h3><p>相手がブリッジし、一方の側に回転します。</p></div><div class="step-card"><div class="step-number">2</div><h3>彼らの動きに従う</h3><p>戦う代わりに相手と一緒に移動します。</p></div><div class="step-card"><div class="step-number">3</div><h3>サイドコントロールを確立</h3><p>支配的なサイドコントロールポジションに着地します。</p></div><div class="step-card"><div class="step-number">4</div><h3>新しい攻撃を追求</h3><p>新しいポジションからのサブミッションを探します。</p></div><h2>バックコントロールからマウントへのフロー</h2><p>バックコントロールから、相手が強くブリッジする場合は、コントロールを維持しながらヒップを前に移動してマウントに遷移します。</p><div class="tip-box"><strong>プロのコツ：</strong>フロー改善の最速の方法は制御ローリングを通じてです。位置を強制しないでください。相手の反応から自然に発展させます。</div><h2>訓練方法論</h2><p>50%強度でフローローリングを練習します。力ではなくスムーズな動きに焦点を当てます。相手が動くと、あなたは動きます。</p><p>フローはBJJの最高の表現です。マスターして、ポジションに決してハマることはありません。</p>
 <div class="beehiiv-box">
   <p>📧 Get weekly BJJ tips in your inbox</p>
   <form action="https://bjjwiki.beehiiv.com/subscribe" method="POST" target="_blank">

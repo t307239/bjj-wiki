@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔺 Triangle Choke Variations</h1>
     <p style="color:#9ca3af;margin-bottom:24px">The triangle family of chokes is one of the largest in BJJ — available from almost any position when you can create a three-point lock with your legs or arms around the neck.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Standard Guard Triangle</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Standard Guard Triangle</h2>
 <p style="color:#d1d5db;line-height:1.8">The classic triangle from closed guard: push one arm across, throw your leg over the shoulder, lock the leg behind the knee (locking the choke), angle to cut the carotid, and pull the head down. The adjustment key: squeeze your knees toward each other and angle your body 30-45 degrees to the opposite side of the trapped arm.</p>
 <h2 style="color:#e2b714;margin-top:32px">Mounted Triangle</h2>
 <p style="color:#d1d5db;line-height:1.8">From technical mount: slide the leg over the neck and lock it behind your knee (high mount triangle entry), angle your body, and finish. Alternatively from S-mount: when they reach up, throw your leg over the arm and neck, roll back, and lock. Mounted triangles are extremely tight because gravity assists the squeeze.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🍽️ Guia do Waiter Sweep</h1>
     <p style="color:#9ca3af;margin-bottom:24px">O waiter sweep é um poderoso sweep baseado em pernas da posição inferior que converte emaranhamento defensivo de pernas em uma transição explosiva para posição de cima.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">O que é o Waiter Sweep?</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">O que é o Waiter Sweep?</h2>
 <p style="color:#d1d5db;line-height:1.8">O waiter sweep é executado de um emaranhamento interno de pernas (ashi garami ou single-leg X) onde você apoia a perna livre atrás e usa a extensão do quadril para varrer o oponente para o lado. O nome vem do movimento de levantar o oponente "como um garçom carregando uma bandeja."</p>
 <h2 style="color:#e2b714;margin-top:32px">Setup do Single-Leg X</h2>
 <p style="color:#d1d5db;line-height:1.8">Da guarda single-leg X: estenda a perna inferior (o gancho X) para desequilibrar o oponente, apoie a perna livre atrás no tatame para base, segure o tornozelo distante com ambas as mãos, e estenda explosivamente os quadris enquanto puxa o tornozelo — varrendo-os para o lado enquanto sobe.</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

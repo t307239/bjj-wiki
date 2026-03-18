@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔙 バックエスケープガイド</h1>
     <p style="color:#9ca3af;margin-bottom:24px">バックコントロールはBJJで最も高いポイントを与えるポジションであり、サブミッションに対して最も危険です。これらのエスケープによって体系的な生存と回復のアプローチを習得できます。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">バックコントロール生存の優先事項</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">バックコントロール生存の優先事項</h2>
 <p style="color:#d1d5db;line-height:1.8">バックを取られたとき：すぐに首を守り（顎を胸に、手を首元に）、腰を攻撃者の腰より低く保ち、横向きを維持（仰向けにならない）、そして体系的に動きます。パニックは首を差し出す結果になります。焦らずに動きましょう。</p>
 <h2 style="color:#e2b714;margin-top:32px">シートベルトエスケープ（ガードへのロール）</h2>
 <p style="color:#d1d5db;line-height:1.8">最も信頼性の高いエスケープ：両手でグリップし、トップアームの肘を腰に引き下げ、スペースを作り、顎をタックし、ロール中にフックを押し外しながら攻撃側にロールします。これにより相手のガードまたはニュートラルポジションに入ります。重要：シートベルトでない側にロールするとチョークに直面します。</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

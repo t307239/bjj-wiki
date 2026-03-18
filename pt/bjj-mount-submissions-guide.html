@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🏔️ Guia de Finalizações do Monte</h1>
     <p style="color:#9ca3af;margin-bottom:24px">O monte é a posição de maior pontuação regular no BJJ e fornece acesso a uma ampla variedade de finalizações — conhecer todas as opções torna você imprevisível e extremamente perigoso.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Monte Alto vs. Monte Baixo</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Monte Alto vs. Monte Baixo</h2>
 <p style="color:#d1d5db;line-height:1.8">As posições do monte afetam quais finalizações estão disponíveis. Monte baixo (quadris nos quadris): americana, kimura e estrangulamento ezequiel são primários. Monte alto (quadris perto dos ombros, monte técnico): armbar, estrangulamento de gola cruzada e triângulo cabeça-braço são primários.</p>
 <h2 style="color:#e2b714;margin-top:32px">Armbar do Monte</h2>
 <p style="color:#d1d5db;line-height:1.8">Passe para o monte técnico (um joelho desliza para a cabeça, outro permanece ao lado do quadril), levante o joelho distante sobre o braço e ombro, sente-se para coletar o braço e finalize. O principal desafio de entrada é que os oponentes não darão um braço reto — ataque quando empurram você ou tentam fazer frame.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

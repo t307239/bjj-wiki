@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -47,7 +48,11 @@
     <h1>Guia de Dieta para Competições de BJJ — Estratégia Nutricional no Dia do Torneio</h1>
     <p class="intro">O que você come antes, durante e depois de um torneio pode afetar dramaticamente seu desempenho. A nutrição para competições de BJJ requer equilibrar gerenciamento de peso, disponibilidade de energia e foco mental através de múltiplas lutas.</p>
     
-    <h2>Gerenciamento de Peso Pré-Torneio</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Gerenciamento de Peso Pré-Torneio</h2>
     <p>Corte de peso moderado e gradual é muito mais seguro e preserva melhor o desempenho do que cortes extremos de água. Tente ficar dentro de 2-3% do seu peso de competição usando ajustes alimentares em vez de restrição severa ou desidratação.</p>
     <h2>Alimentação no Dia do Torneio</h2>
     <p>No dia da competição, coma alimentos familiares e de fácil digestão 2-3 horas antes da sua primeira luta. Evite gorduras pesadas e fibra excessiva que podem causar desconforto gastrointestinal. Entre lutas, prefira pequenos lanches ricos em carboidratos e hidratação consistente.</p>
@@ -78,5 +83,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

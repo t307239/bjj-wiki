@@ -27,6 +27,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -37,7 +38,11 @@
 <article>
   <h1>BJJ Longevity Guide</h1>
   <p class="intro">How to keep training BJJ as you age: injury prevention, reduced volume, technique over strength, and masters division tips.</p>
-  <h2>Introduction</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Introduction</h2>
   <p>This guide provides a comprehensive breakdown of bjj longevity guide with practical drills, conceptual frameworks, and training protocols suitable for all experience levels from white belt through black belt.</p>
   <h2>Key Techniques</h2>
   <p>The technical foundations of bjj longevity guide require consistent drilling and mat time. Break each element into isolated components, drilling each movement pattern until it becomes instinctive before combining into full sequences.</p>
@@ -62,5 +67,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://t307239.github.io/bjj-wiki">Home</a> | <a href="https://bjj-app-one.vercel.app">BJJ App</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

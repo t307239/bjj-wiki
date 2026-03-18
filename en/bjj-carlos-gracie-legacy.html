@@ -33,7 +33,7 @@
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0a0f1a;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0a0f1a;color:#e2e8f0;font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8}
 .nav{background:#0d1b2a;border-bottom:1px solid #1e2a3a;padding:16px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 .nav a{color:#9ca3af;text-decoration:none;font-size:.9rem;transition:color .2s}
 .nav a:hover{color:#e2b714}
@@ -51,9 +51,22 @@ li{margin-bottom:6px}
 footer{background:#0d1b2a;border-top:1px solid #1e2a3a;padding:32px 24px;margin-top:64px;text-align:center;color:#4b5563;font-size:.85rem}
 footer a{color:#6b7280;text-decoration:none;margin:0 8px}
 footer a:hover{color:#e2b714}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav class="nav">
   <span class="logo">🥋 BJJ Wiki</span>
   <a href="index.html">Home</a>
@@ -66,7 +79,11 @@ footer a:hover{color:#e2b714}
   <a href="../pt/bjj-carlos-gracie-legacy.html">🇧🇷 PT</a>
 </nav>
 <div class="container">
-<h1>Carlos Gracie Legacy</h1><p>Carlos Gracie established the systematic teaching methodology that transformed BJJ from family art to global sport. His competition strategy, student development systems, and documentational approach created the foundation for modern BJJ education and competition structure.</p><h2>Systematic Teaching Innovation</h2><p>Carlos developed the belt progression system that remains core to modern BJJ. His systematic approach to technique sequencing, difficulty progression, and skill verification established the framework all modern BJJ gyms follow. This systematization made BJJ accessible to broader populations beyond family circles.</p><h3>Belt Progression Theory</h3><p>Carlos created the belt ranking system emphasizing progressive skill acquisition. White to black belt progression follows principles he established—foundational techniques first, advanced concepts progressively introduced. This systematic progression made BJJ teachable and measurable.</p><h3>Curriculum Development</h3><p>Carlos pioneered the concept of BJJ curriculum where specific techniques are taught at specific belt levels. This innovation transformed BJJ from intuitive art to structured educational system. Modern curriculums worldwide follow his foundational framework.</p><h2>Competition Strategy</h2><p>Carlos revolutionized BJJ competition through tactical innovation. His strategy of superior footwork, positioning discipline, and submission timing dominated early competition. His competitors adapted strategies that modern athletes still employ—position before submission, control before attack.</p><h3>Point Strategy</h3><p>Carlos emphasized point-scoring positions over spectacular submissions. This pragmatic approach to competition scoring influenced modern rule development and tactical competition strategy that persists today.</p><h2>Family Expansion</h2><p>Carlos established the Gracie family dominance in BJJ competition and teaching. His student network expanded BJJ beyond family circles, creating the professional BJJ infrastructure that exists today. His legacy includes establishing BJJ as viable profession rather than family tradition.</p><h3>Professional Development</h3><p>Carlos created the framework for professional BJJ instruction, allowing practitioners to earn sustainable livelihoods teaching jiu-jitsu. This professionalization transformed BJJ into accessible sport rather than exclusive family art.</p><h2>Modern Relevance</h2><p>Carlos's systematic approach remains foundational to modern BJJ. Every belt progression system, every curriculum, every structured approach to BJJ education traces directly to innovations Carlos established decades ago.</p>
+<h1>Carlos Gracie Legacy</h1><p>Carlos Gracie established the systematic teaching methodology that transformed BJJ from family art to global sport. His competition strategy, student development systems, and documentational approach created the foundation for modern BJJ education and competition structure.</p>  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Systematic Teaching Innovation</h2><p>Carlos developed the belt progression system that remains core to modern BJJ. His systematic approach to technique sequencing, difficulty progression, and skill verification established the framework all modern BJJ gyms follow. This systematization made BJJ accessible to broader populations beyond family circles.</p><h3>Belt Progression Theory</h3><p>Carlos created the belt ranking system emphasizing progressive skill acquisition. White to black belt progression follows principles he established—foundational techniques first, advanced concepts progressively introduced. This systematic progression made BJJ teachable and measurable.</p><h3>Curriculum Development</h3><p>Carlos pioneered the concept of BJJ curriculum where specific techniques are taught at specific belt levels. This innovation transformed BJJ from intuitive art to structured educational system. Modern curriculums worldwide follow his foundational framework.</p><h2>Competition Strategy</h2><p>Carlos revolutionized BJJ competition through tactical innovation. His strategy of superior footwork, positioning discipline, and submission timing dominated early competition. His competitors adapted strategies that modern athletes still employ—position before submission, control before attack.</p><h3>Point Strategy</h3><p>Carlos emphasized point-scoring positions over spectacular submissions. This pragmatic approach to competition scoring influenced modern rule development and tactical competition strategy that persists today.</p><h2>Family Expansion</h2><p>Carlos established the Gracie family dominance in BJJ competition and teaching. His student network expanded BJJ beyond family circles, creating the professional BJJ infrastructure that exists today. His legacy includes establishing BJJ as viable profession rather than family tradition.</p><h3>Professional Development</h3><p>Carlos created the framework for professional BJJ instruction, allowing practitioners to earn sustainable livelihoods teaching jiu-jitsu. This professionalization transformed BJJ into accessible sport rather than exclusive family art.</p><h2>Modern Relevance</h2><p>Carlos's systematic approach remains foundational to modern BJJ. Every belt progression system, every curriculum, every structured approach to BJJ education traces directly to innovations Carlos established decades ago.</p>
 <div style="margin:32px 0;padding:24px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:12px;text-align:center">
   <div style="color:#e2b714;font-weight:700;font-size:1.1rem;margin-bottom:8px">📧 BJJ Weekly Digest</div>
   <div style="color:#9ca3af;font-size:.9rem;margin-bottom:16px">Get the latest techniques & competition news</div>

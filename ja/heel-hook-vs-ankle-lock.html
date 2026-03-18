@@ -17,7 +17,7 @@
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are heel hooks dangerous for training?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — heel hooks have caused serious knee injuries at all levels. Always apply slowly, use a training partner who will tap early, and never apply explosively. Many gyms restrict heel hooks to advanced practitioners."}}, {"@type": "Question", "name": "Which leg lock should a beginner learn first?", "acceptedAnswer": {"@type": "Answer", "text": "Start with the straight ankle lock — it provides a foundation for leg lock mechanics with much lower injury risk. Add heel hooks only after developing mat experience and training with experienced partners."}}]}</script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:#0a0a0a;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+    body{background:#0a0a0a;color:#e0e0e0;font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0d1f3c,#0a0a0a);padding:16px 20px;border-bottom:1px solid #1a2a3a}
     nav a{color:#64b5f6;text-decoration:none;margin-right:16px;font-size:.9rem}
     main{max-width:900px;margin:0 auto;padding:24px 20px 80px}
@@ -27,7 +27,19 @@
     details summary{list-style:none;cursor:pointer}
     footer{background:#0d1f3c;padding:20px;text-align:center;font-size:.8rem;color:#546e7a;margin-top:40px}
     footer a{color:#64b5f6;text-decoration:none;margin:0 8px}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -89,6 +101,7 @@
   <meta property="twitter:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
 </head>
 <body>
+<div id="read-progress"></div>
 <header><nav>
   <a href="index.html">🥋 BJJ Wiki</a>
   <a href="techniques-az.html">📚 A-Z Index</a>
@@ -102,7 +115,11 @@
     <div style="text-align:center;font-size:1.5rem;font-weight:900;color:#a78bfa">VS</div>
     <a href="ankle-lock.html" style="text-align:center;padding:16px;background:#0a1a0a;border:1px solid #14532d;border-radius:10px;text-decoration:none;color:#e0e0e0"><div style="font-size:2rem">🦶</div><div style="font-weight:700;color:#a5d6a7;margin-top:8px">Ankle Lock</div></a>
   </div>
-  <h2>📊 比較</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>📊 比較</h2>
   <table style="width:100%;border-collapse:collapse;margin:16px 0;overflow-x:auto;display:block"><thead><tr><th style="padding:10px;background:#0d1f3c;text-align:left;color:#90caf9;font-size:.85rem;border-bottom:2px solid #1a2a3a">Aspect</th><th style="padding:10px;background:#0d1f3c;text-align:left;color:#ef9a9a;font-size:.85rem;border-bottom:2px solid #1a2a3a">🦵 Heel Hook</th><th style="padding:10px;background:#0d1f3c;text-align:left;color:#a5d6a7;font-size:.85rem;border-bottom:2px solid #1a2a3a">🦶 Ankle Lock</th></tr></thead><tbody><tr style="background:#0a1428"><td style="padding:10px;color:#78909c;font-size:.85rem;font-weight:600;border-bottom:1px solid #1a2a3a">Danger Level</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">⚠️ Very high — can cause ACL/MCL tears</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">✅ Lower — mainly tests Achilles tendon</td></tr><tr style="background:#0d1520"><td style="padding:10px;color:#78909c;font-size:.85rem;font-weight:600;border-bottom:1px solid #1a2a3a">Legal at 白帯</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">No (IBJJF)</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">Yes — straight ankle lock allowed</td></tr><tr style="background:#0a1428"><td style="padding:10px;color:#78909c;font-size:.85rem;font-weight:600;border-bottom:1px solid #1a2a3a">Legal at 青帯</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">No (IBJJF)</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">Yes</td></tr><tr style="background:#0d1520"><td style="padding:10px;color:#78909c;font-size:.85rem;font-weight:600;border-bottom:1px solid #1a2a3a">Legal at Purple+</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">Outside heel hook: No / Inside: rules vary</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">Yes</td></tr><tr style="background:#0a1428"><td style="padding:10px;color:#78909c;font-size:.85rem;font-weight:600;border-bottom:1px solid #1a2a3a">Target Joint</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">Knee (rotational)</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">Ankle (compression)</td></tr><tr style="background:#0d1520"><td style="padding:10px;color:#78909c;font-size:.85rem;font-weight:600;border-bottom:1px solid #1a2a3a">Tap Speed Required</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">Immediate — damage comes suddenly</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">More warning before injury</td></tr><tr style="background:#0a1428"><td style="padding:10px;color:#78909c;font-size:.85rem;font-weight:600;border-bottom:1px solid #1a2a3a">No-Gi Relevance</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">Very high — elite competition standard</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">High — widely used</td></tr><tr style="background:#0d1520"><td style="padding:10px;color:#78909c;font-size:.85rem;font-weight:600;border-bottom:1px solid #1a2a3a">Best Entry</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">50/50, outside sankaku, reap</td><td style="padding:10px;color:#cfd8dc;font-size:.85rem;border-bottom:1px solid #1a2a3a">Single leg X, outside heel hook defense</td></tr></tbody></table>
   <div style="background:linear-gradient(135deg,#1a0a2e,#0d0a1a);border:2px solid #7c3aed;border-radius:14px;padding:20px 24px;margin:32px 0">
     <div style="font-size:.8rem;font-weight:700;color:#a78bfa;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">⚖️ Verdict</div>

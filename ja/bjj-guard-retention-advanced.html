@@ -24,9 +24,22 @@
   .cta h3 { color: #e94560; margin-bottom: 0.5rem; }
   .cta a { display: inline-block; margin-top: 1rem; background: #e94560; color: #fff; padding: 0.6rem 1.5rem; border-radius: 999px; text-decoration: none; font-weight: bold; }
   footer { text-align: center; padding: 2rem; color: #555; font-size: 0.85rem; border-top: 1px solid #333; margin-top: 3rem; }
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="header">
   <a href="https://t307239.github.io/bjj-wiki/">🥋 BJJ Wiki</a>
   <a href="https://bjj-app-one.vercel.app" target="_blank">練習記録アプリ</a>
@@ -35,7 +48,11 @@
   <div class="lang-switch">🌐 <a href="/en/bjj-guard-retention-advanced.html" style="color:#e94560">English</a> | <a href="/pt/bjj-guard-retention-advanced.html" style="color:#e94560">Português</a></div>
   <h1>BJJの高度なガード維持</h1>
   <p style="color:#888; font-size:0.9rem; margin-bottom:1.5rem">フレーム・ヒップエスケープ・リガードシークエンスを含む高度なガード維持テクニックをマスターしましょう。</p>
-  <h2>ガード維持の基礎</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>ガード維持の基礎</h2>
 <p>ガード維持はブラジリアン柔術で最も重要でありながら、過小評価されているスキルの一つです。ガード攻撃が注目を集めますが、ガードを維持する能力がそれらの攻撃を可能にするかどうかを決定します。高度なガード維持は単純なヒップムーブメントをはるかに超えており、フレーム・反応・先読みの洗練されたシステムです。</p>
 <h2>フレームベースの防御</h2>
 <p>上級者はフレームを反応的にではなく戦略的に使用します。重要なのは<strong>フレームジオメトリー</strong>を理解すること：力を体から逃がす骨格構造を作ることです。前腕から腰へのフレームは、骨の配列を使用するため、手から肩へのプッシュよりも強力です。相手がパスに移行した後ではなく、前にフレームを確立することを学びましょう。</p>

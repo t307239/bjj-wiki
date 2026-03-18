@@ -25,7 +25,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long does it take to get a purple belt in BJJ?","acceptedAnswer":{"@type":"Answer","text":"Most practitioners earn their purple belt after 4-6 years of consistent training (3-5 sessions per week). The timeline varies significantly by individual talent, training frequency, and instructor standards."}},{"@type":"Question","name":"Do I need to compete to get my BJJ purple belt?","acceptedAnswer":{"@type":"Answer","text":"Competition is not required at most academies for purple belt promotion. However, competing is strongly recommended as it tests your game against unknown opponents and accelerates development."}},{"@type":"Question","name":"What makes a good BJJ purple belt?","acceptedAnswer":{"@type":"Answer","text":"A good purple belt has reliable A-game techniques that work against resistance, can flow through positions intuitively, understands BJJ theory, and actively helps develop lower belts."}}]}</script>
 <style>
 *{box-sizing:border-box;}
-body{background:#0a0a1a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;margin:0;padding:0;}
+body{background:#0a0a1a;color:#e0e0e0;font-size:16px;font-family:'Segoe UI',sans-serif;margin:0;line-height:1.8;padding:0;}
 nav{background:#16213e;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;}
 nav a{color:#e94560;text-decoration:none;font-size:14px;font-weight:700;}
 .container{max-width:860px;margin:0 auto;padding:20px;}
@@ -42,9 +42,22 @@ h2{color:#4ade80;margin-top:28px;}
 .next-belt{background:#16213e;border:2px solid #9b59b6;border-radius:10px;padding:16px;text-align:center;margin:20px 0;}
 footer{background:#16213e;padding:20px;text-align:center;color:#888;font-size:12px;margin-top:40px;}
 footer a{color:#e94560;text-decoration:none;}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🏠 Home</a>
   <a href="bjj-belt-system.html">🎗️ Belt System</a>
@@ -62,6 +75,10 @@ footer a{color:#e94560;text-decoration:none;}
 
 <p>The purple belt is the intermediate milestone in Brazilian Jiu-Jitsu. By this point, you've survived the white and blue belt gauntlet — now you're expected to have a functional game with real strengths. Purple belts are expected to understand positions deeply, have signature techniques, and begin developing their own style.</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>What Purple Belt Means</h2>
 <p>At purple belt, you are no longer a beginner. You understand BJJ concepts deeply enough to teach them. You have developed signature techniques that work reliably against resistance, and you can flow between positions with minimal thought. You are expected to be a reliable training partner and mentor for lower belts.</p>
 

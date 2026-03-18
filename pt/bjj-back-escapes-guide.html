@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔙 Guia de Escapadas do Controle de Costas</h1>
     <p style="color:#9ca3af;margin-bottom:24px">O controle de costas é a posição de maior pontuação no BJJ e a mais perigosa para finalizações. Estas escapadas fornecem uma abordagem sistemática para sobreviver e se recuperar.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Prioridades de Sobrevivência no Controle de Costas</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Prioridades de Sobrevivência no Controle de Costas</h2>
 <p style="color:#d1d5db;line-height:1.8">Quando as costas são tomadas: proteja imediatamente o pescoço (queixo no peito, mãos no colarinho), mantenha os quadris abaixo dos quadris do atacante, fique de lado (não plano nas costas), e trabalhe metodicamente. O pânico leva a entregar o pescoço.</p>
 <h2 style="color:#e2b714;margin-top:32px">Escapada do Seat Belt (Rolar para a Guarda)</h2>
 <p style="color:#d1d5db;line-height:1.8">A escapada mais confiável: agarre ambas as mãos, puxe o cotovelo do braço superior em direção ao quadril, crie espaço, encaixe o queixo, e role para o lado do ataque — empurrando os ganchos ao rolar. Isso coloca você na guarda do adversário ou em posição neutra. Chave: NÃO role para o lado contrário ao seat belt ou enfrentará o estrangulamento.</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

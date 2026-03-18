@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🪒 Guillotine Choke System</h1>
     <p style="color:#9ca3af;margin-bottom:24px">The guillotine is a complete attack system with multiple variations, each targeting different choke mechanisms — mastering the full system makes you dangerous from standing, guard, and scrambles.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">High-Arm Guillotine</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">High-Arm Guillotine</h2>
 <p style="color:#d1d5db;line-height:1.8">The most reliable guillotine: arm under the chin (blade of the wrist against the throat), squeeze and pull upward while arching back. Finish: palm-to-palm grip or the marcelo-lock. Key: the arm must be under the chin, not around the neck. Used from sprawl position, standing, or closed guard.</p>
 <h2 style="color:#e2b714;margin-top:32px">Arm-In Guillotine</h2>
 <p style="color:#d1d5db;line-height:1.8">The arm-in variation traps one arm inside the choke, creating a tighter lock but slower choke. Grip: overhook their arm, wrap around the neck, and apply pressure with your forearm into the carotid. Best finished from closed guard by pulling the head to your chest and crossing your feet low.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

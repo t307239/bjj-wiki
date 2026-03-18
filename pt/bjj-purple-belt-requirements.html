@@ -25,7 +25,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quanto tempo leva para conseguir a faixa roxa no BJJ?","acceptedAnswer":{"@type":"Answer","text":"A maioria dos praticantes consegue a faixa roxa após 4-6 anos de treino consistente (3-5 vezes por semana). O tempo varia muito por talento individual e padrões do professor."}},{"@type":"Question","name":"Preciso competir para conseguir a faixa roxa?","acceptedAnswer":{"@type":"Answer","text":"A competição não é obrigatória na maioria das academias para a faixa roxa. No entanto, é fortemente recomendada pois testa seu jogo contra oponentes desconhecidos."}},{"@type":"Question","name":"O que define uma boa faixa roxa?","acceptedAnswer":{"@type":"Answer","text":"Uma boa faixa roxa tem técnicas de A-game confiáveis, flui entre posições intuitivamente, entende a teoria do BJJ e ajuda ativamente a desenvolver as faixas inferiores."}}]}</script>
 <style>
 *{box-sizing:border-box;}
-body{background:#0a0a1a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;margin:0;padding:0;}
+body{background:#0a0a1a;color:#e0e0e0;font-size:16px;font-family:'Segoe UI',sans-serif;margin:0;line-height:1.8;padding:0;}
 nav{background:#16213e;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;}
 nav a{color:#e94560;text-decoration:none;font-size:14px;font-weight:700;}
 .container{max-width:860px;margin:0 auto;padding:20px;}
@@ -42,9 +42,22 @@ h2{color:#4ade80;margin-top:28px;}
 .next-belt{background:#16213e;border:2px solid #9b59b6;border-radius:10px;padding:16px;text-align:center;margin:20px 0;}
 footer{background:#16213e;padding:20px;text-align:center;color:#888;font-size:12px;margin-top:40px;}
 footer a{color:#e94560;text-decoration:none;}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🏠 Home</a>
   <a href="bjj-belt-system.html">🎗️ Belt System</a>
@@ -62,6 +75,10 @@ footer a{color:#e94560;text-decoration:none;}
 
 <p>A faixa roxa é o marco intermediário no Brazilian Jiu-Jitsu. Neste ponto, você já sobreviveu à fase da faixa branca e azul — agora é esperado que você tenha um jogo funcional com pontos fortes reais.</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>O que significa a Faixa Roxa</h2>
 <p>Na faixa roxa, você não é mais um iniciante. Você entende os conceitos do BJJ profundamente o suficiente para ensiná-los. Desenvolveu técnicas marcantes que funcionam contra resistência e pode fluir entre posições com pouco esforço consciente.</p>
 

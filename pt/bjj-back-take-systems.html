@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -47,7 +48,11 @@
     <h1>Sistemas de Back Take no BJJ — Guia Completo para Pegar as Costas de Qualquer Posição</h1>
     <p class="intro">Pegar as costas é a posição de maior valor no BJJ, oferecendo o caminho mais claro para finalização enquanto minimiza a capacidade de contra-ataque do adversário. Back taking sistemático significa ter caminhos de entrada confiáveis de toda posição comum.</p>
     
-    <h2>Back Takes da Guarda</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Back Takes da Guarda</h2>
     <p>A guarda fechada oferece back takes via technical standup e transições de hip bump sweep. Da guarda aberta, back takes surgem de tentativas de raspadinha falhas, entradas DLR e rolando por baixo de adversários que passam. Treinar essas transições requer drilling posicional ao vivo.</p>
     <h2>Back Takes de Posições de Cima</h2>
     <p>Do controle lateral, o gift wrap e arm trap são entradas clássicas de costas. Da montada, a transição de technical mount para as costas aplica pressão constante que força reações defensivas criando exposição das costas. Da tartaruga, a ameaça de clock choke abre back takes naturalmente.</p>
@@ -78,5 +83,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

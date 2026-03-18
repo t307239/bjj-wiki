@@ -26,7 +26,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0d1117;color:#e6edf3;font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8}
 nav{background:#161b22;border-bottom:1px solid #21262d;padding:12px 20px;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
 nav a{color:#58a6ff;text-decoration:none;font-size:.9rem}
 .lang-switch{margin-left:auto;display:flex;gap:8px}
@@ -54,12 +54,25 @@ li{margin-bottom:6px}
 .float-cta a{background:#e2b714;color:#0d1117;font-weight:700;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(226,183,20,.4);font-size:.9rem}
 footer{background:#161b22;border-top:1px solid #21262d;padding:32px 20px;margin-top:60px;text-align:center}
 footer a{color:#8b949e;text-decoration:none;margin:0 12px;font-size:.85rem}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"Longevity Bjj Guide","description":"Master longevity bjj for BJJ training and competition.","url":"https://t307239.github.io/bjj-wiki/pt/bjj-longevity-bjj.html","datePublished":"2025-01-01","dateModified":"2026-03-16","publisher":{"@type":"Organization","name":"BJJ Wiki"}}
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🥋 BJJ Wiki</a>
   <a href="techniques-az.html">A-Z</a>
@@ -73,7 +86,11 @@ footer a{color:#8b949e;text-decoration:none;margin:0 12px;font-size:.85rem}
   </div>
 </nav>
 <div class="container">
-<h1>Longevity Bjj Guide</h1><p class="meta">📚 Guide | ⏱️ 8 min de leitura</p><h2>Visão Geral</h2><p>Comprehensive guide to longevity bjj.</p><h3>Key Principles</h3><ul><li>Learn fundamentals</li><li>Practice consistently</li><li>Track progress</li></ul>
+<h1>Longevity Bjj Guide</h1><p class="meta">📚 Guide | ⏱️ 8 min de leitura</p>  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Visão Geral</h2><p>Comprehensive guide to longevity bjj.</p><h3>Key Principles</h3><ul><li>Learn fundamentals</li><li>Practice consistently</li><li>Track progress</li></ul>
 <div class="aff-box">
   <p>🥋 Ready to level up? Check out BJJ Fanatics for instructionals</p>
   <a class="btn" href="https://bjjfanatics.com/?ref=BJJWIKI" target="_blank" rel="noopener">Shop Instructionals →</a>

@@ -32,8 +32,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-  line-height:1.75;padding:0 16px}
+  font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.85;padding:0 16px}
 a{color:var(--accent2);text-decoration:none}
 a:hover{text-decoration:underline}
 
@@ -184,6 +184,18 @@ footer{padding:28px 0;border-top:1px solid var(--border);
 .share-btn.x{background:#000;color:#fff}
 .share-btn.reddit{background:#ff4500;color:#fff}
 .share-btn.copy{background:#2d3748;color:#fff;cursor:pointer;border:none;font-family:inherit}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
@@ -310,6 +322,7 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
   <header>
     <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -348,7 +361,11 @@ graph LR
     </div>
   </div>
 
-  <h2>やり方</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>ステップ1：セットアップ - 相手の首の片側と腕を自分の腕で抱え込みます。自分の腕は相手の首を包み込み、もう一方の腕は相手の腕をロックします。</div></div><div class="step"><div class="step-num">2</div><div>ステップ2：グリップ - 抱え込んだ腕の手首を、もう一方の腕のバイセップス（力こぶ）に深く掴みます。このディープなグリップがチョークの基盤となります。</div></div><div class="step"><div class="step-num">3</div><div>ステップ3：ヘッドポジション - 自分の頭を相手の背中に密着させ、相手の首に圧力をかけます。この時、自分の肩が相手の頸動脈に当たるように調整します。</div></div><div class="step"><div class="step-num">4</div><div>ステップ4：ロール/トランジション - 相手を前方にロールするか、サイドコントロールに移行しながらチョークを締めます。この動きで相手の体勢を崩し、より深いチョークへと導きます。</div></div><div class="step"><div class="step-num">5</div><div>ステップ5：フィニッシュ - 自分の肘を締め、相手の首と腕を強く圧迫します。同時に、胴体を反らせるようにして、さらにプレッシャーを加えます。</div></div></div>
 
   <h2>コツと注意点</h2>

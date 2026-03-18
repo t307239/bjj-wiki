@@ -38,6 +38,7 @@
 }</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header>
   <nav class="site-nav">
     <a href="../index.html" class="nav-logo">🥋 BJJ Wiki</a>
@@ -65,6 +66,10 @@
     
 <p>Entradas avançadas em leg locks requerem compreensão de controle posicional, alinhamento de quadril e as vantagens mecânicas específicas que cada ponto de entrada oferece.</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>O Sistema de Entrada Ashi Garami</h2>
 <p>Ashi garami (emaranhamento de pernas) é a posição de controle fundamental para ataques nas pernas. Entrar requer quebrar a base do adversário e estabelecer controle interno do quadril.</p>
 <h3>Pontos de Entrada Principais</h3>
@@ -157,5 +162,36 @@
     © 2024 BJJ Wiki — <a href="../index.html" style="color:#e94560;">Home</a>
   </p>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

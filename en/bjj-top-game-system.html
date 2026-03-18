@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔝 Complete BJJ Top Game System</h1>
     <p style="color:#9ca3af;margin-bottom:24px">A complete top game system connects guard passing, positional control, submission hunting, and back takes into a seamless flow that prevents the opponent from ever recovering.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Top Game Positional Hierarchy</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Top Game Positional Hierarchy</h2>
 <p style="color:#d1d5db;line-height:1.8">The top game hierarchy (from most dominant to least): back control (4 pts) → mount (4 pts) → knee-on-belly (2 pts) → side control (3 pts) → half guard top (no pts). Moving up the hierarchy is the goal of your top game. Every escape attempt by the opponent is an opportunity to advance.</p>
 <h2 style="color:#e2b714;margin-top:32px">Pressure Principles</h2>
 <p style="color:#d1d5db;line-height:1.8">Fundamental pressure principles: (1) Stay connected — never give space without purpose, (2) Drive into them — use your bodyweight, not muscular strength, (3) Be patient — submission opportunities appear when they must move to escape, (4) Crossface and hip control are the two pillars of top pressure.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔝 Sistema Completo de Jogo por Cima no BJJ</h1>
     <p style="color:#9ca3af;margin-bottom:24px">Um sistema completo de jogo por cima conecta passagem de guarda, controle posicional, caça de finalizações e tomadas de costas em um fluxo perfeito que impede o oponente de se recuperar.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Hierarquia Posicional do Jogo por Cima</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Hierarquia Posicional do Jogo por Cima</h2>
 <p style="color:#d1d5db;line-height:1.8">Hierarquia do jogo por cima (do mais dominante ao menos): controle de costas (4 pts) → monte (4 pts) → joelho na barriga (2 pts) → controle lateral (3 pts) → meia guarda por cima (sem pts). Subir na hierarquia é o objetivo do jogo por cima.</p>
 <h2 style="color:#e2b714;margin-top:32px">Princípios de Pressão</h2>
 <p style="color:#d1d5db;line-height:1.8">Princípios fundamentais de pressão: (1) Fique conectado — nunca dê espaço sem propósito, (2) Empurre em direção a eles — use o peso corporal, não força muscular, (3) Seja paciente — oportunidades de finalização aparecem quando precisam se mover para escapar, (4) Cross-face e controle do quadril são os dois pilares da pressão por cima.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

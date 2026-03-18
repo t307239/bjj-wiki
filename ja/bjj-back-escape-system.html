@@ -24,9 +24,22 @@
   .cta h3 { color: #e94560; margin-bottom: 0.5rem; }
   .cta a { display: inline-block; margin-top: 1rem; background: #e94560; color: #fff; padding: 0.6rem 1.5rem; border-radius: 999px; text-decoration: none; font-weight: bold; }
   footer { text-align: center; padding: 2rem; color: #555; font-size: 0.85rem; border-top: 1px solid #333; margin-top: 3rem; }
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="header">
   <a href="https://t307239.github.io/bjj-wiki/">🥋 BJJ Wiki</a>
   <a href="https://bjj-app-one.vercel.app" target="_blank">練習記録アプリ</a>
@@ -35,7 +48,11 @@
   <div class="lang-switch">🌐 <a href="/en/bjj-back-escape-system.html" style="color:#e94560">English</a> | <a href="/pt/bjj-back-escape-system.html" style="color:#e94560">Português</a></div>
   <h1>BJJバックエスケープシステム：バックコントロールからの脱出</h1>
   <p style="color:#888; font-size:0.9rem; margin-bottom:1.5rem">BJJのバックコントロールから体系的に脱出する方法—ロールオーバー・ヒップダウン・チョーク防御などを学びましょう。</p>
-  <h2>バックコントロールの理解</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>バックコントロールの理解</h2>
 <p>バックコントロールはブラジリアン柔術で最も優勢なポジションと広く見なされています。相手はフックを入れ、シートベルトグリップを持ち、複数の角度から首を攻撃できます。脱出にはバックコントロールが危険な理由を理解し、その脅威を体系的に解除することが必要です。</p>
 <h2>優先順位フレームワーク</h2>
 <p>脱出を試みる前に優先順位を確立します：<strong>1. 首を守る</strong>、2. フックを外す、3. 横になる。首を適切に守る前に脱出しようとするため、ほとんどの人がバックエスケープで失敗します。</p>

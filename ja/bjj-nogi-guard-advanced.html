@@ -18,9 +18,22 @@
   .belt-blue {background:#2563eb;color:#fff}
   .belt-purple {background:#7c3aed;color:#fff}
   footer {text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid var(--border);color:#999;font-size:0.8rem}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
 <header style="margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)">
   <a href="../ja/index.html" style="font-size:1.1rem;font-weight:800;text-decoration:none;color:var(--text)">BJJ Wiki</a>
@@ -30,6 +43,10 @@
 
 <span class="belt belt-blue">BLUE ★★★★☆</span>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>概要</h2>
 <p>ノーギガードは異なるテクニカルアプローチが必要。クリンチベースエントリーとレッグロック体系をマスター。</p>
 

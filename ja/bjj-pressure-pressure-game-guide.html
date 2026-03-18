@@ -23,6 +23,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -35,7 +36,11 @@
   <article>
     <h1>BJJ Pressure Game Complete Guide</h1>
     <p class="intro">プレッシャーゲームはBJJにおける最も基本的で効果的なアプローチの一つです。体重配分とコネクションの物理学を理解することで、crushing topプレッシャーが可能になります。</p>
-    <h2>BJJプレッシャーの物理学</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>BJJプレッシャーの物理学</h2>
 <p>See the comprehensive guide at <a href='https://bjj-wiki.com/ja/bjj-pressure-pressure-game-guide.html'>BJJ Wiki</a> for full details on BJJプレッシャーの物理学.</p>
 <h2>サイドコントロールプレッシャーテクニック</h2>
 <p>See the comprehensive guide at <a href='https://bjj-wiki.com/ja/bjj-pressure-pressure-game-guide.html'>BJJ Wiki</a> for full details on サイドコントロールプレッシャーテクニック.</p>
@@ -59,5 +64,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

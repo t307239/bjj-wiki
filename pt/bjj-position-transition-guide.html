@@ -26,7 +26,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d1117;color:#e2e8f0;font-family:'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0d1117;color:#e2e8f0;font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
 nav{background:#111827;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 nav a{color:#e2b714;text-decoration:none;font-weight:700;font-size:.95rem}
 nav .nav-links a{margin-left:16px;color:#9ca3af;font-size:.85rem}
@@ -70,6 +70,18 @@ footer a{color:#9ca3af;text-decoration:none;display:block;margin-bottom:6px;font
 footer a:hover{color:#e2b714}
 footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:.8rem}
 @media(max-width:600px){h1{font-size:1.5rem}}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">
 {
@@ -87,6 +99,7 @@ footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🥋 BJJ Wiki</a>
   <div class="nav-links">
@@ -102,7 +115,11 @@ footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:
   </div>
 </nav>
 <div class="container">
-<h1>Transições de Posição no BJJ</h1><p class="meta">Publicado em 16 de Março de 2026 • Guia Iniciante-Intermediário</p><div class="difficulty-bar"><div class="belt-badge belt-white">Faixa Branca</div><div class="belt-badge belt-blue">Faixa Azul</div></div><h2>Entendendo Transições Posicionais</h2><p>A capacidade de se mover suavemente entre posições é uma das habilidades mais importantes no BJJ. Em vez de terminar de uma posição, grapples de elite fluem entre posições, criando múltiplas oportunidades de submissão.</p><h2>Os Princípios de Transição</h2><div class="step-card"><div class="step-number">1</div><h3>Controle Base</h3><p>Antes de se mover, estabeleça um ponto de controle sólido com mãos ou quadril.</p></div><div class="step-card"><div class="step-number">2</div><h3>Crie Ângulo</h3><p>Mude seu peso para criar espaço para a transição.</p></div><div class="step-card"><div class="step-number">3</div><h3>Mova Fluidamente</h3><p>Transite suavemente sem perder controle do oponente.</p></div><div class="step-card"><div class="step-number">4</div><h3>Estabeleça Nova Posição</h3><p>Trave na nova posição antes de buscar submissão.</p></div><h2>Transição de Guarda para Montagem</h2><p>Quando eles colocam a mão na guarda, use o espaço para estabelecer joelho na barriga, depois transite para montagem. Este fluxo evita que eles escapem enquanto você estabelece domínio.</p><div class="tip-box"><strong>Dica de Profissional:</strong> As melhores transições acontecem quando seu oponente está defendendo uma submissão. Use esse momento para mudar de posição antes que eles resetem.</div><h2>Transições de Controle Lateral para North-South</h2><p>Do controle lateral, solte sua cabeça para criar pressão norte-sul. Esta transição abre múltiplas opções de enforcamento enquanto mantém pressão superior.</p><p>Domine transições posicionais e você dominará trocas de grappling em todos os níveis.</p>
+<h1>Transições de Posição no BJJ</h1><p class="meta">Publicado em 16 de Março de 2026 • Guia Iniciante-Intermediário</p><div class="difficulty-bar"><div class="belt-badge belt-white">Faixa Branca</div><div class="belt-badge belt-blue">Faixa Azul</div></div>  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Entendendo Transições Posicionais</h2><p>A capacidade de se mover suavemente entre posições é uma das habilidades mais importantes no BJJ. Em vez de terminar de uma posição, grapples de elite fluem entre posições, criando múltiplas oportunidades de submissão.</p><h2>Os Princípios de Transição</h2><div class="step-card"><div class="step-number">1</div><h3>Controle Base</h3><p>Antes de se mover, estabeleça um ponto de controle sólido com mãos ou quadril.</p></div><div class="step-card"><div class="step-number">2</div><h3>Crie Ângulo</h3><p>Mude seu peso para criar espaço para a transição.</p></div><div class="step-card"><div class="step-number">3</div><h3>Mova Fluidamente</h3><p>Transite suavemente sem perder controle do oponente.</p></div><div class="step-card"><div class="step-number">4</div><h3>Estabeleça Nova Posição</h3><p>Trave na nova posição antes de buscar submissão.</p></div><h2>Transição de Guarda para Montagem</h2><p>Quando eles colocam a mão na guarda, use o espaço para estabelecer joelho na barriga, depois transite para montagem. Este fluxo evita que eles escapem enquanto você estabelece domínio.</p><div class="tip-box"><strong>Dica de Profissional:</strong> As melhores transições acontecem quando seu oponente está defendendo uma submissão. Use esse momento para mudar de posição antes que eles resetem.</div><h2>Transições de Controle Lateral para North-South</h2><p>Do controle lateral, solte sua cabeça para criar pressão norte-sul. Esta transição abre múltiplas opções de enforcamento enquanto mantém pressão superior.</p><p>Domine transições posicionais e você dominará trocas de grappling em todos os níveis.</p>
 <div class="beehiiv-box">
   <p>📧 Get weekly BJJ tips in your inbox</p>
   <form action="https://bjjwiki.beehiiv.com/subscribe" method="POST" target="_blank">

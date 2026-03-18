@@ -16,7 +16,7 @@
   <style>
     :root{--bg:#0a0f1e;--card:#111827;--accent:#e2b714;--text:#e5e7eb;--muted:#9ca3af}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;line-height:1.7}
+    body{background:var(--bg);color:var(--text);font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0f1a2e,#1a1040);padding:20px;text-align:center;border-bottom:2px solid var(--accent)}
     header h1{color:var(--accent);font-size:1.8rem;margin-bottom:6px}
     header p{color:var(--muted);font-size:.95rem}
@@ -50,7 +50,19 @@
     .float-cta p{font-size:.82rem;margin-bottom:8px;color:#e0d9ff}
     .float-cta a{display:block;background:#fff;color:#7c3aed;text-align:center;padding:8px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none}
     .float-close{position:absolute;top:8px;right:10px;cursor:pointer;color:#aaa;font-size:.8rem}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -65,6 +77,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header><h1>🏋️ BJJ Double Leg Takedown Guide</h1><p>Shot mechanics, timing, entries and finishing variations for the double leg.</p></header>
 <nav>
   <a href="../en/index.html">🏠 Home</a>
@@ -74,6 +87,10 @@
   <a href="../en/bjj-competition-guide.html">🏆 Competition</a>
 </nav>
 <div class="container">
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>Double Leg Fundamentals</h2><p>The double leg is the foundational wrestling takedown that translates directly to BJJ. Mastering it gives you the ability to take the fight to the ground on your terms, choosing your entry into guard or side control.</p><h2>Double Leg Shot Mechanics</h2><ol><li>Establish a tie-up (collar-and-elbow or underhook)</li><li>Create level change by dropping the level with bent knees</li><li>Penetrate with the lead foot between their feet</li><li>Drive head to the outside of their hip</li><li>Lock both arms around their thighs</li><li>Drive hips through, lift and dump</li></ol><div class="warn-box"><strong>⚠️ Guillotine Risk:</strong> Driving with your head inside (between their chest and arm) creates a guillotine opportunity. Always shoot to the outside.</div><h2>Double Leg Setups</h2><ul><li><strong>Head fake:</strong> Feint a level change high, shoot when they respond</li><li><strong>Snap down:</strong> Pull their head down, they posture up, you shoot</li><li><strong>Underhook:</strong> Win underhook, get the angle, shoot from that side</li><li><strong>Collar tie:</strong> Pull their head down and to the side, then shoot to the exposed leg</li></ul><div class="tip-box"><strong>💡 Pro Tip:</strong> The best time to shoot is when your opponent is moving into you or reacting to your feint. Never shoot from a static position against a trained opponent.</div>
 <div class="aff-box">
   <p>Accelerate your BJJ with world-class instruction</p>

@@ -25,7 +25,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quanto tempo leva para conseguir a faixa marrom no BJJ?","acceptedAnswer":{"@type":"Answer","text":"A maioria dos praticantes consegue a faixa marrom após 7-10 anos. É a faixa mais rara abaixo da preta, e alguns praticantes pulam ela por decisão do professor."}},{"@type":"Question","name":"A faixa marrom é obrigatória antes da preta?","acceptedAnswer":{"@type":"Answer","text":"Tecnicamente, os professores podem promover direto para a faixa preta sem passar pela marrom, embora seja raro. A maioria das academias segue a progressão padrão."}},{"@type":"Question","name":"O que se espera de uma faixa marrom?","acceptedAnswer":{"@type":"Answer","text":"Jogo avançado e completo, dar aulas com confiança, resultados em competição e mentoria ativa das faixas inferiores. Muitas faixas marrons são instrutores em exercício."}}]}</script>
 <style>
 *{box-sizing:border-box;}
-body{background:#0a0a1a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;margin:0;padding:0;}
+body{background:#0a0a1a;color:#e0e0e0;font-size:16px;font-family:'Segoe UI',sans-serif;margin:0;line-height:1.8;padding:0;}
 nav{background:#16213e;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;}
 nav a{color:#e94560;text-decoration:none;font-size:14px;font-weight:700;}
 .container{max-width:860px;margin:0 auto;padding:20px;}
@@ -42,9 +42,22 @@ h2{color:#4ade80;margin-top:28px;}
 .next-belt{background:#16213e;border:2px solid #8B4513;border-radius:10px;padding:16px;text-align:center;margin:20px 0;}
 footer{background:#16213e;padding:20px;text-align:center;color:#888;font-size:12px;margin-top:40px;}
 footer a{color:#e94560;text-decoration:none;}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🏠 Home</a>
   <a href="bjj-belt-system.html">🎗️ Belt System</a>
@@ -62,6 +75,10 @@ footer a{color:#e94560;text-decoration:none;}
 
 <p>A faixa marrom é a penúltima faixa antes da preta — o estágio final de polimento. Faixas marrons devem ter um jogo avançado e completo, com múltiplas ameaças de todas as posições.</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>O que significa a Faixa Marrom</h2>
 <p>Uma faixa marrom é um grappler quase completo. Você tem um jogo perigoso e multidimensional que funciona contra faixas pretas de alto nível. Entende nuances posicionais sutis, adapta em tempo real e desenvolveu inovações pessoais no BJJ. O ensino é esperado neste nível.</p>
 

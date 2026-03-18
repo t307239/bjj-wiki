@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">⏰ クロックチョークガイド</h1>
     <p style="color:#9ca3af;margin-bottom:24px">クロックチョークはタートルポジションに対して適用される強力なカラーチョークです。高確率のギ攻撃で、腕の圧力を使ったノーギバリエーションも存在します。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">クロックチョークとは？</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">クロックチョークとは？</h2>
 <p style="color:#d1d5db;line-height:1.8">クロックチョーク（時計締めまたは時計絞り）はトップタートルポジションから適用されるカラーチョークです。相手のニアカラーを深くグリップし、頭の周りを時計回りまたは反時計回りに歩き（時計の針のように）、前腕を首に押し付けて、カラーと前腕の圧力でタップを強制します。</p>
 <h2 style="color:#e2b714;margin-top:32px">トップタートルからのエントリー</h2>
 <p style="color:#d1d5db;line-height:1.8">スタンダードエントリー：トップタートルから、ニーオンバックまたはニーオンリブのポジションを確立し、首の下に手を伸ばしてファーカラーを最初の手でグリップ、もう一方の手をマットにポストまたは道着をグリップし、体重を下に駆動しながら頭に向かって円形に歩きます。</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

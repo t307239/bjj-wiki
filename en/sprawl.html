@@ -32,8 +32,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-  line-height:1.75;padding:0 16px}
+  font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.85;padding:0 16px}
 a{color:var(--accent2);text-decoration:none}
 a:hover{text-decoration:underline}
 
@@ -158,6 +158,18 @@ footer{padding:28px 0;border-top:1px solid var(--border);
 .share-btn.x{background:#000;color:#fff}
 .share-btn.reddit{background:#ff4500;color:#fff}
 .share-btn.copy{background:#2d3748;color:#fff;cursor:pointer;border:none;font-family:inherit}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
@@ -284,6 +296,7 @@ footer{padding:28px 0;border-top:1px solid var(--border);
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
   <header>
     <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -306,7 +319,11 @@ footer{padding:28px 0;border-top:1px solid var(--border);
 
   <p>The sprawl is a foundational defensive technique in Brazilian Jiu-Jitsu, primarily used to shut down takedown attempts like single legs and double legs. It involves quickly extending your legs back and driving your hips down to create heavy pressure on your opponent's head and shoulders, breaking their posture and preventing them from completing their shot. Mastering the sprawl is crucial for maintaining a dominant standing position and initiating your own offense.</p>
 
-  <h2>How to Execute</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>React and Drop</strong>: As your opponent shoots in for a takedown, immediately drop your hips and extend both legs straight back, similar to a burpee motion.</div></div><div class="step"><div class="step-num">2</div><div><strong>Hip Pressure</strong>: Drive your hips down heavily onto your opponent's back, ribs, or legs, creating immense pressure to flatten them out.</div></div><div class="step"><div class="step-num">3</div><div><strong>Chest Up, Head Up</strong>: Keep your chest up and head looking forward or slightly up to maintain good posture and avoid being rolled or driven forward.</div></div><div class="step"><div class="step-num">4</div><div><strong>Wide Base</strong>: Maintain a wide base with your feet spread apart, toes dug into the mat, ready to move or shift your weight.</div></div><div class="step"><div class="step-num">5</div><div><strong>Crossface/Underhook</strong>: Immediately establish a crossface or an underhook to control your opponent's head and upper body, preventing them from re-shooting or escaping.</div></div><div class="step"><div class="step-num">6</div><div><strong>Transition to Control</strong>: From the sprawl position, look to transition to dominant control positions like front headlock, side control, or even back control.</div></div></div>
 
   <h2>Key Details & Tips</h2>

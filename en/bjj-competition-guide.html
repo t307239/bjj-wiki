@@ -17,7 +17,7 @@
 <style>
 :root{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;padding:0 16px}
+body{background:var(--bg);color:var(--text);font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;padding:0 16px}
 .container{max-width:800px;margin:0 auto;padding:24px 0 64px}
 header{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .logo{font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none}.logo span{color:var(--accent)}
@@ -39,6 +39,18 @@ p{color:#c2c2d9;margin-bottom:14px;font-size:.97rem}
 .beehiiv-box{background:linear-gradient(135deg,#0d1225,#1a1040);border:1px solid #3b2d6e;border-radius:14px;padding:24px;margin:32px 0;text-align:center}
 footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:.8rem;margin-top:40px}
 footer a{color:var(--muted)}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"BJJ Competition Guide","description":"How to compete in BJJ tournaments. The best competition techniques, scoring rules, and strategies for IBJJF, ADCC, and local tournaments.","url":"https://t307239.github.io/bjj-wiki/en/bjj-competition-guide.html","datePublished":"2026-03-13T00:00:00+09:00","dateModified":"2026-03-16T00:00:00+09:00","publisher":{"@type":"Organization","name":"BJJ Wiki","url":"https://t307239.github.io/bjj-wiki/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does BJJ scoring work?","acceptedAnswer":{"@type":"Answer","text":"IBJJF awards: 2 pts for takedown/sweep/knee-on-belly, 3 pts for guard pass, 4 pts for mount/back mount. Advantages break ties. Submission wins immediately."}},{"@type":"Question","name":"What belt should I compete at?","acceptedAnswer":{"@type":"Answer","text":"You should compete at the belt you have been awarded. Sandbagging (competing below your level) is considered unethical in BJJ."}},{"@type":"Question","name":"How do I prepare for my first BJJ tournament?","acceptedAnswer":{"@type":"Answer","text":"Focus on 2-3 techniques you can execute under pressure. Drill takedowns, your strongest guard pass, and your best 1-2 submissions. Get good sleep and eat well the week before."}}]}</script>
@@ -80,6 +92,10 @@ footer a{color:var(--muted)}
     </a>
   </div>
 </div>
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>🥋 Essential Techniques</h2>
 <div class="tech-list"><a href="guard-pass.html" class="tech-pill"><div class="pill-name">Guard Pass</div><div class="pill-desc">Worth 3 points in IBJJF. The most reliable path to dominant position.</div><span class="pill-arrow">→</span></a><a href="back-mount.html" class="tech-pill"><div class="pill-name">Back Mount</div><div class="pill-desc">4 points in IBJJF. The highest-value position besides submission.</div><span class="pill-arrow">→</span></a><a href="mount.html" class="tech-pill"><div class="pill-name">Mount</div><div class="pill-desc">4 points in IBJJF. Hardest to score against a resisting opponent, but highest value.</div><span class="pill-arrow">→</span></a><a href="knee-on-belly.html" class="tech-pill"><div class="pill-name">Knee on Belly</div><div class="pill-desc">2 points in IBJJF. Easy to score and hard to escape. Sets up attacks.</div><span class="pill-arrow">→</span></a><a href="scissor-sweep.html" class="tech-pill"><div class="pill-name">Scissor Sweep</div><div class="pill-desc">2 points per sweep in IBJJF. Reliable sweep from closed guard.</div><span class="pill-arrow">→</span></a><a href="hip-bump-sweep.html" class="tech-pill"><div class="pill-name">Hip Bump Sweep</div><div class="pill-desc">2 points. Pairs perfectly with kimura from closed guard.</div><span class="pill-arrow">→</span></a><a href="bow-and-arrow-choke.html" class="tech-pill"><div class="pill-name">Bow & Arrow Choke</div><div class="pill-desc">High-percentage finish from back mount. Common in gi competition.</div><span class="pill-arrow">→</span></a><a href="rear-naked-choke.html" class="tech-pill"><div class="pill-name">Rear Naked Choke</div><div class="pill-desc">The fastest finish from the back in no-gi. Drill constantly.</div><span class="pill-arrow">→</span></a><a href="armbar.html" class="tech-pill"><div class="pill-name">Armbar</div><div class="pill-desc">Most common submission in competition. Works at every level.</div><span class="pill-arrow">→</span></a><a href="triangle-choke.html" class="tech-pill"><div class="pill-name">Triangle Choke</div><div class="pill-desc">Second most common competition submission. Works against bigger opponents.</div><span class="pill-arrow">→</span></a></div>
 <div class="skill-cta">

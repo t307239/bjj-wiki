@@ -31,7 +31,7 @@
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0a0f1a;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0a0f1a;color:#e2e8f0;font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8}
 .nav{background:#0d1b2a;border-bottom:1px solid #1e2a3a;padding:16px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 .nav a{color:#9ca3af;text-decoration:none;font-size:.9rem;transition:color .2s}
 .nav a:hover{color:#e2b714}
@@ -48,9 +48,22 @@ li{margin-bottom:6px}
 footer{background:#0d1b2a;border-top:1px solid #1e2a3a;padding:32px 24px;margin-top:64px;text-align:center;color:#4b5563;font-size:.85rem}
 footer a{color:#6b7280;text-decoration:none;margin:0 8px}
 footer a:hover{color:#e2b714}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav class="nav">
   <span class="logo">🥋 BJJ Wiki</span>
   <a href="index.html">Home</a>
@@ -63,7 +76,11 @@ footer a:hover{color:#e2b714}
   <a href="../pt/bjj-defensive-bjj-guide.html">🇧🇷 PT</a>
 </nav>
 <div class="container">
-<h1>Defensive BJJ Guide</h1><p>Defensive excellence enables you to survive aggressive opponents and create escape opportunities. A strong defense includes preventing position loss, maintaining composure under pressure, and executing reliable escapes.</p><h2>Defensive Fundamentals</h2><ul><li><strong>Frame Control</strong>: Use hands and arms to create distance. A strong frame prevents sweeps and submissions.</li><li><strong>Hip Escaping</strong>: Movement away from dominant positions. Essential for guard retention and mount escape.</li><li><strong>Grip Fighting</strong>: Control opponent's grips before they establish position. Prevents arm locks and chokes.</li><li><strong>Posture Defense</strong>: Maintain good posture to prevent neck attacks. Avoid hunched shoulders.</li></ul><h2>Guard Survival</h2><p>When your guard is under attack, focus on preventing pass. Use frames, control opponent's hips, maintain closed guard when possible. Know when to transition to half-guard.</p><h2>Escaping Bad Positions</h2><p>Every bad position has escape routes. Mount = bridge and roll. Side control = underhook and hip escape. Back control = buck and roll or sit-up escape. Practice all escapes repeatedly until they're automatic.</p><h2>Defensive Mindset</h2><p>Defense isn't passive. Active defense means constantly adjusting, fighting for better position, and looking for counter-attacks. Never accept a position without fighting.</p>
+<h1>Defensive BJJ Guide</h1><p>Defensive excellence enables you to survive aggressive opponents and create escape opportunities. A strong defense includes preventing position loss, maintaining composure under pressure, and executing reliable escapes.</p>  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Defensive Fundamentals</h2><ul><li><strong>Frame Control</strong>: Use hands and arms to create distance. A strong frame prevents sweeps and submissions.</li><li><strong>Hip Escaping</strong>: Movement away from dominant positions. Essential for guard retention and mount escape.</li><li><strong>Grip Fighting</strong>: Control opponent's grips before they establish position. Prevents arm locks and chokes.</li><li><strong>Posture Defense</strong>: Maintain good posture to prevent neck attacks. Avoid hunched shoulders.</li></ul><h2>Guard Survival</h2><p>When your guard is under attack, focus on preventing pass. Use frames, control opponent's hips, maintain closed guard when possible. Know when to transition to half-guard.</p><h2>Escaping Bad Positions</h2><p>Every bad position has escape routes. Mount = bridge and roll. Side control = underhook and hip escape. Back control = buck and roll or sit-up escape. Practice all escapes repeatedly until they're automatic.</p><h2>Defensive Mindset</h2><p>Defense isn't passive. Active defense means constantly adjusting, fighting for better position, and looking for counter-attacks. Never accept a position without fighting.</p>
 <div style="margin:32px 0;padding:24px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:12px;text-align:center">
   <div style="color:#e2b714;font-weight:700;font-size:1.1rem;margin-bottom:8px">📧 BJJ Weekly Digest</div>
   <div style="color:#9ca3af;font-size:.9rem;margin-bottom:16px">Get the latest techniques & competition news</div>

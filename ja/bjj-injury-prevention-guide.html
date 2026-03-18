@@ -24,9 +24,22 @@
   .cta h3 { color: #e94560; margin-bottom: 0.5rem; }
   .cta a { display: inline-block; margin-top: 1rem; background: #e94560; color: #fff; padding: 0.6rem 1.5rem; border-radius: 999px; text-decoration: none; font-weight: bold; }
   footer { text-align: center; padding: 2rem; color: #555; font-size: 0.85rem; border-top: 1px solid #333; margin-top: 3rem; }
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="header">
   <a href="https://t307239.github.io/bjj-wiki/">🥋 BJJ Wiki</a>
   <a href="https://bjj-app-one.vercel.app" target="_blank">練習記録アプリ</a>
@@ -35,7 +48,11 @@
   <div class="lang-switch">🌐 <a href="/en/bjj-injury-prevention-guide.html" style="color:#e94560">English</a> | <a href="/pt/bjj-injury-prevention-guide.html" style="color:#e94560">Português</a></div>
   <h1>BJJの怪我予防：長く練習するためのスマートなトレーニング</h1>
   <p style="color:#888; font-size:0.9rem; margin-bottom:1.5rem">適切なウォームアップ・早めのタップ・トレーニング戦略・怪我を意識したテクニックを通じてBJJの一般的な怪我を予防する包括的ガイド。</p>
-  <h2>BJJにおける怪我の現実</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>BJJにおける怪我の現実</h2>
 <p>ブラジリアン柔術の怪我率は、多くのコンタクトスポーツより一般的に低いですが、それでも重要です。研究によると、指・肩・膝・首が最も脆弱で、年間40〜60%の実践者が怪我を経験します。良いニュース：ほとんどのBJJの怪我はスマートなトレーニング方法で予防できます。</p>
 <h2>早めにタップ、頻繁にタップ</h2>
 <p>BJJで最も重要な怪我予防の行動は、痛みが耐えられなくなったときではなく、<strong>痛みを感じる前に</strong>タップすることです。自尊心は長寿命の敵です。</p>

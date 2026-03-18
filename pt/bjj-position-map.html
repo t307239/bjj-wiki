@@ -25,7 +25,7 @@
   --text:#e6edf3;--muted:#8b949e;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;}
+body{background:var(--bg);color:var(--text);font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;}
 nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;}
 nav a{color:var(--muted);text-decoration:none;font-size:.85rem;}nav a:hover{color:var(--text);}
 nav .brand{color:var(--accent);font-weight:700;font-size:1rem;}
@@ -59,7 +59,7 @@ header p{color:var(--muted);font-size:.95rem;max-width:600px;margin:0 auto 20px;
 .panel-close:hover{color:var(--text);}
 .panel-title{font-size:1.1rem;font-weight:700;}
 .panel-type{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px;}
-.panel-body{padding:20px;flex:1;}
+.panel-body{line-height:1.8;padding:20px;flex:1;}
 .panel-section{margin-bottom:20px;}
 .panel-section h3{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);}
 .panel-desc{font-size:.88rem;color:#adb5bd;line-height:1.7;}
@@ -80,9 +80,22 @@ header p{color:var(--muted);font-size:.95rem;max-width:600px;margin:0 auto 20px;
 .instructions{text-align:center;color:var(--muted);font-size:.82rem;padding:8px;animation:pulse-fade 2s ease-in-out infinite;}
 @keyframes pulse-fade{0%,100%{opacity:.5;}50%{opacity:1;}}
 @media(max-width:768px){header h1{font-size:1.4rem;}.detail-panel{width:100%;}.node{min-width:85px;padding:7px 8px;}.node-label{font-size:.68rem;}}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 
 <nav>
   <a href="index.html" class="brand">🥋 BJJ Wiki</a>

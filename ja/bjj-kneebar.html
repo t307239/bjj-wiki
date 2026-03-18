@@ -16,7 +16,7 @@
   <style>
     :root{--bg:#0a0f1e;--card:#111827;--accent:#e2b714;--text:#e5e7eb;--muted:#9ca3af}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;line-height:1.7}
+    body{background:var(--bg);color:var(--text);font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0f1a2e,#1a1040);padding:20px;text-align:center;border-bottom:2px solid var(--accent)}
     header h1{color:var(--accent);font-size:1.8rem;margin-bottom:6px}
     header p{color:var(--muted);font-size:.95rem}
@@ -50,7 +50,19 @@
     .float-cta p{font-size:.82rem;margin-bottom:8px;color:#e0d9ff}
     .float-cta a{display:block;background:#fff;color:#7c3aed;text-align:center;padding:8px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none}
     .float-close{position:absolute;top:8px;right:10px;cursor:pointer;color:#aaa;font-size:.8rem}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -65,6 +77,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header><h1>🦴 ニーバーガイド</h1><p>ニーバーメカニクス・各ポジションからのセットアップ・競技合法性ルール。</p></header>
 <nav>
   <a href="../ja/index.html">🏠 Home</a>
@@ -74,6 +87,10 @@
   <a href="../ja/bjj-competition-guide.html">🏆 Competition</a>
 </nav>
 <div class="container">
+  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>ニーバーの基礎</h2><p>ニーバーは膝関節を過伸展する強力なレッグロックです。下位帯の競技では制限されていますが、茶帯と黒帯には完全に合法で、ノーギとサブミッションオンリー形式では壊滅的な武器です。</p><h2>ニーバーのメカニクス</h2><ol><li>脚をコントロール—体にしっかりと密着させる</li><li>前腕を支点として膝の後ろに置く</li><li>両手でスネ・アンクルをカップ</li><li>腰を前方に（膝の後ろに向けて）押し込む</li><li>腰が前進しながらアンクルを上方に押す</li></ol><h2>ニーバーのエントリー</h2><table><tr><th>エントリー</th><th>ポジション</th><th>セットアップ</th></tr><tr><td>ガードパスから</td><td>トップポジション</td><td>相手が脚を伸ばして押し返そうとするとき</td></tr><tr><td>レッグエンタングルメントから</td><td>シングルレッグX（アシガラミ）</td><td>膝が露出したときのヒールフックエントリーからの移行</td></tr><tr><td>タートルから</td><td>サイドポジション</td><td>相手がタートルしているとき遠い脚をフック</td></tr></table><div class="warn-box"><strong>⚠️ 競技注意：</strong>ニーバーはIBJJFのギとノーギ競技で白帯・青帯・紫帯には合法ではありません。競技前に自分のディビジョンを必ず確認してください。</div><div class="tip-box"><strong>💡 Proのヒント：</strong>ニーバーは腕の力ではなく腰のプレッシャーが必要です。腕だけで締めているなら機械的なアドバンテージを失っています。最大のレバレッジのために腰を膝に通します。</div>
 <div class="aff-box">
   <p>世界クラスの指導でBJJを加速させよう</p>

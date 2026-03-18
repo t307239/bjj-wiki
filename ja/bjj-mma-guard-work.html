@@ -15,7 +15,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-PLACEHOLDER');</script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0f1e;color:#e2e8f0;line-height:1.7;font-size:16px}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0f1e;color:#e2e8f0;line-height:1.8;font-size:16px}
     .header{background:linear-gradient(135deg,#1a1f35 0%,#0d1526 100%);border-bottom:1px solid #1e293b;padding:16px 20px}
     .header a{color:#e94560;text-decoration:none;font-weight:600}
     .breadcrumb{font-size:0.8rem;color:#64748b;margin-bottom:6px}
@@ -40,9 +40,22 @@
     .share-bar a{font-size:0.8rem;color:#64748b;text-decoration:none;display:flex;align-items:center;gap:4px}
     .share-bar a:hover{color:#e2e8f0}
     footer{text-align:center;padding:24px;font-size:0.75rem;color:#475569;border-top:1px solid #1e293b;margin-top:40px}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="header">
   <div class="breadcrumb">
     <a href="../index.html">ホーム</a> &rsaquo; テクニック &rsaquo; MMAのためのBJJガードワーク
@@ -64,7 +77,11 @@
   </a>
 
     <section>
-      <h2>概要</h2>
+        <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>概要</h2>
       <p>MMAのガードワークはスポーツBJJとは重要な点で異なります：両ポジションから打撃を管理する必要があり、ケージが第三次元を作り、打撃の中でもサブミッションを決める必要があります。</p>
     </section>
     <section>

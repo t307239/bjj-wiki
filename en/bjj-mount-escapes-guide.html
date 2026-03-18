@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔄 Mount Escapes Guide</h1>
     <p style="color:#9ca3af;margin-bottom:24px">Escaping mount is one of the most critical survival skills in BJJ. Master these techniques to avoid being submitted from the most dominant position.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Why Mount Is Dangerous</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Why Mount Is Dangerous</h2>
 <p style="color:#d1d5db;line-height:1.8">Mount gives your opponent maximum weight distribution, arm reach to your neck, and access to strikes in MMA. In sport BJJ, mount scores 4 points and enables armbar, triangle, ezekiel choke, and collar chokes. Defending early before they establish depth is the priority.</p>
 <h2 style="color:#e2b714;margin-top:32px">Upa (Bridge and Roll) Escape</h2>
 <p style="color:#d1d5db;line-height:1.8">The upa is the most fundamental mount escape: trap one arm and the same-side foot, bridge explosively (drive your hips upward), then roll to the trapped side. Critical: trap both the arm AND foot simultaneously before bridging, or the escape fails. Follow with guard retention.</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

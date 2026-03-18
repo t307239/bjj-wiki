@@ -23,6 +23,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -35,7 +36,11 @@
   <article>
     <h1>BJJ Academy Startup Guide</h1>
     <p class="intro">Abrir uma academia de BJJ é um sonho para muitos praticantes. Este guia cobre os aspectos práticos e de negócios para tornar esse sonho realidade.</p>
-    <h2>Requisitos de Local e Instalações</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Requisitos de Local e Instalações</h2>
 <p>See the comprehensive guide at <a href='https://bjj-wiki.com/pt/bjj-academy-startup-guide.html'>BJJ Wiki</a> for full details on Requisitos de Local e Instalações.</p>
 <h2>Estrutura Legal e Seguros</h2>
 <p>See the comprehensive guide at <a href='https://bjj-wiki.com/pt/bjj-academy-startup-guide.html'>BJJ Wiki</a> for full details on Estrutura Legal e Seguros.</p>
@@ -59,5 +64,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

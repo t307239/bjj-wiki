@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🦀 Crab Ride Guide</h1>
     <p style="color:#9ca3af;margin-bottom:24px">The crab ride is a powerful back-body control position that serves as a gateway to back takes, leg locks, and twister entries.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">What Is the Crab Ride?</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">What Is the Crab Ride?</h2>
 <p style="color:#d1d5db;line-height:1.8">The crab ride (also called the body lock or hook position) is a wrestling/BJJ hybrid position where you control your opponent's body from behind with a seatbelt or body lock while threatening multiple attacks. It is used extensively in no-gi and MMA.</p>
 <h2 style="color:#e2b714;margin-top:32px">How to Enter the Crab Ride</h2>
 <p style="color:#d1d5db;line-height:1.8">Common entries include: from a scramble when opponent attempts to stand, from turtle position by inserting inside hooks, or after a failed takedown by your opponent. Secure a body lock, insert inside knee hooks, and maintain head position to the side.</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

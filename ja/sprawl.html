@@ -32,8 +32,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-  line-height:1.75;padding:0 16px}
+  font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.85;padding:0 16px}
 a{color:var(--accent2);text-decoration:none}
 a:hover{text-decoration:underline}
 
@@ -158,6 +158,18 @@ footer{padding:28px 0;border-top:1px solid var(--border);
 .share-btn.x{background:#000;color:#fff}
 .share-btn.reddit{background:#ff4500;color:#fff}
 .share-btn.copy{background:#2d3748;color:#fff;cursor:pointer;border:none;font-family:inherit}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
@@ -284,6 +296,7 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
   <header>
     <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -304,7 +317,11 @@ footer{padding:28px 0;border-top:1px solid var(--border);
 </div>
   <p>スプロールは、ブラジリアン柔術やレスリングにおいて、相手のテイクダウン試みを防御するための不可欠な基本テクニックです。相手がタックルや両足タックルを仕掛けてきた際に、重心を低くし、腰を引いて相手の勢いを殺すことで、テイクダウンを未然に防ぎます。この防御技術は、グラウンドでの攻防に移行する前に、試合の流れを有利に進める上で非常に重要となります。</p>
 
-  <h2>やり方</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>相手のタックルを察知する:</strong> 相手が膝を曲げ、重心を下げてタックルに入ろうとする瞬間を素早く察知します。</div></div><div class="step"><div class="step-num">2</div><div><strong>素早く腰を引く:</strong> 相手が足に触れる前に、瞬時に両足を後方へ大きく引き、腰を低く落とします。</div></div><div class="step"><div class="step-num">3</div><div><strong>体重をかける:</strong> 相手の背中や肩に自分の体重を乗せるように、胸とお腹を地面と平行に保ちます。この時、頭は上げて前方を向き、顎は引いてください。</div></div><div class="step"><div class="step-num">4</div><div><strong>足を広げる（スタンスを保つ）:</strong> 足は肩幅よりやや広めに開き、つま先で地面を捉えて安定したベースを確保します。膝は地面につけず、常に活動的な状態を保ちます。</div></div><div class="step"><div class="step-num">5</div><div><strong>相手の頭をコントロールする:</strong> 相手の頭を片手で抑え、顔をマットに押し付けるようにして、体勢を立て直させないようにします。</div></div><div class="step"><div class="step-num">6</div><div><strong>体勢を整える:</strong> 相手が崩れたら、すぐにパスガードやバックテイクなどの次の攻撃に移行できる体勢を整えます。</div></div></div>
 
   <h2>コツと注意点</h2>

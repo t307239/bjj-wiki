@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🍽️ ウェイタースイープガイド</h1>
     <p style="color:#9ca3af;margin-bottom:24px">ウェイタースイープはボトムポジションからの強力なレッグベーススイープで、防御的なレッグエンタングルメントを爆発的なトップポジション遷移に変換します。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">ウェイタースイープとは？</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">ウェイタースイープとは？</h2>
 <p style="color:#d1d5db;line-height:1.8">ウェイタースイープはインサイドレッグエンタングルメント（アシガラミまたはシングルレッグX）から実行され、フリーレッグを後ろに置いて腰の伸展を使って相手を横にスイープします。名前は「ウェイターがトレイを運ぶように」相手を持ち上げる動きから来ています。</p>
 <h2 style="color:#e2b714;margin-top:32px">シングルレッグXからのセットアップ</h2>
 <p style="color:#d1d5db;line-height:1.8">シングルレッグXガードから：ボトムレッグ（Xフック）を伸ばして相手のバランスを崩し、後ろにフリーレッグをポストしてベースを作り、両手でファーアンクルを掴み、アンクルを引き込みながら爆発的に腰を伸ばして相手を横にスイープします。</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

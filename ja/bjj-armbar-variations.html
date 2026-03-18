@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">💪 アームバーバリエーションガイド</h1>
     <p style="color:#9ca3af;margin-bottom:24px">アームバーはBJJで最も汎用性の高いサブミッションで、ほぼあらゆるポジションから使用可能です。このガイドでは主要なアームバーバリエーションとその特定のエントリーを解説します。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">スタンダードガードアームバー</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">スタンダードガードアームバー</h2>
 <p style="color:#d1d5db;line-height:1.8">ガードアームバーは基盤です：ポスチャーを壊し、鋭い角度を作り（45°にヒップエスケープ）、首越しに脚を投げ、両手で腕を胸にロックし、腰を上方にブリッジします。重要：腕に対して垂直な角度。ヒッチハイカーエスケープは膝を絞り合わせてクロスグリップを使うことで防ぎます。</p>
 <h2 style="color:#e2b714;margin-top:32px">マウンテッドアームバー</h2>
 <p style="color:#d1d5db;line-height:1.8">マウントから：テクニカルマウントのために膝を頭方向にスライドし、もう一方の膝をファーショルダーを越えて上げ、腕を集めながら座り込み、フィニッシュします。カウンター：手を組んだ場合、両手でグリップを破ります。</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>
