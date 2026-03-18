@@ -25386,7 +25386,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://bjj-wiki.com/en/bjj-biomechanics-guide.html</loc>
     <changefreq>monthly</changefreq>
@@ -25702,7 +25701,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://bjj-wiki.com/en/bjj-ibjjf-rules-complete-guide.html</loc>
     <changefreq>monthly</changefreq>
@@ -25928,7 +25926,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://bjj-wiki.com/en/bjj-guard-pull-strategy-advanced.html</loc>
     <changefreq>monthly</changefreq>
@@ -26055,4 +26052,25 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url><loc>https://t307239.github.io/bjj-wiki/privacy.html</loc><lastmod>2026-03-18</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/about.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/404.html</loc><lastmod>2026-03-18</lastmod><changefreq>yearly</changefreq><priority>0.1</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/index.html</loc><lastmod>2026-03-18</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/index.html</loc><lastmod>2026-03-18</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/index.html</loc><lastmod>2026-03-18</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/athlete-bia-mesquita.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/athlete-claudio-calasans.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/athlete-nicky-ryan.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/athlete-romulo-barral.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/athlete-xande-ribeiro-2.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/athlete-bia-mesquita.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/athlete-claudio-calasans.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/athlete-nicky-ryan.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/athlete-romulo-barral.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/athlete-xande-ribeiro-2.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/athlete-bia-mesquita.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/athlete-claudio-calasans.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/athlete-nicky-ryan.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/athlete-romulo-barral.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/athlete-xande-ribeiro-2.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
 </urlset>

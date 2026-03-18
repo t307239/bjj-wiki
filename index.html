@@ -1,135 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="preconnect" href="https://pagead2.googlesyndication.com">
-<link rel="preconnect" href="https://www.googletagmanager.com">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="dns-prefetch" href="https://www.google-analytics.com">
-<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BJJ Wiki — Brazilian Jiu-Jitsu Technique Encyclopedia</title>
+<title>BJJ Wiki â Brazilian Jiu-Jitsu Technique Encyclopedia</title>
 <meta name="description" content="Free multilingual encyclopedia of Brazilian Jiu-Jitsu techniques. Available in English, Japanese and Portuguese.">
 <style>
-  :root{
-    --bg:#080b12;--surface:#0f1420;--card:#141926;
-    --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-    --accent:#7c6af7;--accent2:#a78bfa;
-  }
+  :root{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-    min-height:100vh;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;padding:24px}
-
-  /* Noise texture overlay */
-  body::before{content:'';position:fixed;inset:0;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events:none;z-index:0}
-
-  .wrap{max-width:560px;width:100%;text-align:center;position:relative;z-index:1}
-
-  /* Glow orbs */
-  .orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
-  .orb1{width:400px;height:400px;background:#7c6af720;top:-100px;right:-100px}
-  .orb2{width:300px;height:300px;background:#a78bfa15;bottom:-80px;left:-80px}
-
-  .badge{display:inline-block;padding:5px 14px;border-radius:20px;
-    font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-    background:#1f2840;color:var(--accent2);border:1px solid #2a2060;
-    margin-bottom:24px}
-
-  .logo{font-size:3.5rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:12px;
-    line-height:1}
-  .logo .bjj{color:var(--text)}
-  .logo .wiki{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent}
-
-  .subtitle{color:var(--muted);font-size:1rem;margin-bottom:48px;line-height:1.6}
-
-  /* Stat bar */
-  .stats{display:flex;justify-content:center;gap:32px;margin-bottom:48px;
-    padding:20px;background:var(--card);border:1px solid var(--border);
-    border-radius:16px}
-  .stat{}
-  .stat-num{font-size:1.6rem;font-weight:800;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent}
-  .stat-label{font-size:0.75rem;color:var(--muted);margin-top:2px}
-
-  /* Language cards */
-  .lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px}
-  .lang-btn{background:var(--card);border:1px solid var(--border);
-    border-radius:16px;padding:28px 16px;color:var(--text);
-    transition:border-color .2s,transform .15s,background .2s;
-    display:flex;flex-direction:column;align-items:center;gap:8px}
-  .lang-btn:hover{border-color:var(--accent);transform:translateY(-3px);
-    background:#1a1e30;text-decoration:none}
-  .lang-flag{font-size:2.2rem}
-  .lang-name{font-size:1rem;font-weight:700}
-  .lang-sub{font-size:0.75rem;color:var(--muted)}
-
-  footer{color:var(--muted);font-size:0.8rem;margin-top:8px}
-  footer a{color:var(--muted)}
-  footer a:hover{color:var(--text)}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0 16px;min-height:100vh;display:flex;align-items:center;justify-content:center}
+  .container{max-width:640px;width:100%;text-align:center;padding:48px 0}
+  .logo{font-size:3rem;font-weight:900;margin-bottom:16px}
+  .logo span{color:var(--accent)}
+  .subtitle{color:var(--muted);margin-bottom:48px;font-size:1.1rem}
+  .lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+  .lang-btn{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px 16px;text-decoration:none;color:var(--text);transition:border-color 0.2s}
+  .lang-btn:hover{border-color:var(--accent)}
+  .lang-flag{font-size:2.5rem;margin-bottom:8px}
+  .lang-name{font-size:1.1rem;font-weight:700}
+  .lang-sub{font-size:0.8rem;color:var(--muted);margin-top:4px}
+  footer{color:var(--muted);font-size:0.8rem}
 </style>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-7LM8L3TRZM');
-  </script>
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@bjj_wiki">
-<meta name="twitter:title" content="BJJ Wiki">
-<meta name="twitter:description" content="Brazilian Jiu-Jitsu technique guide">
-<meta name="twitter:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
 </head>
 <body>
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="wrap">
-  <div class="badge">Free & Open Knowledge</div>
-  <div class="logo">
-    <span class="bjj">BJJ</span><span class="wiki">Wiki</span>
-  </div>
-  <p class="subtitle">The complete Brazilian Jiu-Jitsu technique encyclopedia.<br>Guards, submissions, passes, sweeps — all in one place.</p>
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">150+</div>
-      <div class="stat-label">Techniques</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Languages</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">10</div>
-      <div class="stat-label">Categories</div>
-    </div>
-  </div>
+<div class="container">
+  <div class="logo">BJJ<span>Wiki</span></div>
+  <p class="subtitle">The free Brazilian Jiu-Jitsu technique encyclopedia</p>
   <div class="lang-grid">
     <a class="lang-btn" href="en/index.html">
-      <div class="lang-flag">🇺🇸</div>
+      <div class="lang-flag">ðºð¸</div>
       <div class="lang-name">English</div>
       <div class="lang-sub">Browse in English</div>
     </a>
     <a class="lang-btn" href="ja/index.html">
-      <div class="lang-flag">🇯🇵</div>
-      <div class="lang-name">日本語</div>
-      <div class="lang-sub">日本語で読む</div>
+      <div class="lang-flag">ð¯ðµ</div>
+      <div class="lang-name">æ¥æ¬èª</div>
+      <div class="lang-sub">æ¥æ¬èªã§èª­ã</div>
     </a>
     <a class="lang-btn" href="pt/index.html">
-      <div class="lang-flag">🇧🇷</div>
-      <div class="lang-name">Português</div>
-      <div class="lang-sub">Ler em Português</div>
+      <div class="lang-flag">ð§ð·</div>
+      <div class="lang-name">PortuguÃªs</div>
+      <div class="lang-sub">Ler em PortuguÃªs</div>
     </a>
   </div>
-  <footer><p>BJJ Wiki — <a href="https://github.com/t307239/bjj-wiki">GitHub</a></p> · <a href="../privacy.html" style="color:inherit">Privacy Policy</a> · <a href="news.html" style="color:var(--accent2,#a78bfa)">📰 News</a>
-    <a href="about.html" style="color:inherit">About</a></footer>
+  <footer><p>BJJ Wiki â Free & Open Knowledge</p></footer>
 </div>
 <div class="card"><h3><a href="en/bjj-leg-entanglement-fundamentals.html">Leg Entanglement Fundamentals</a></h3></div>
 <div class="card"><h3><a href="en/bjj-inside-heel-hook-system.html">Inside Heel Hook System</a></h3></div>
