@@ -240,7 +240,7 @@ footer .footer-bottom{{text-align:center;margin-top:32px;color:#4b5563;font-size
 <nav>
   <a href="index.html">🥋 BJJ Wiki</a>
   <div class="nav-links"><a href="index.html">Home</a><a href="techniques-az.html">A-Z</a><a href="bjj-beginners-guide.html">Beginner Guide</a><a href="news.html">News</a></div>
-  <div class="lang-switch"><a href="../en/{slug}">EN</a><a href="../ja/{slug}">JA</a><a href="../pt/{slug}">PT</a></div>
+  <div class="lang-switch"><a href="../en/{slug}.html">EN</a><a href="../ja/{slug}.html">JA</a><a href="../pt/{slug}.html">PT</a></div>
 </nav>
 <div class="container">
 {content_html}

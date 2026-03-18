@@ -141,10 +141,10 @@ def build_html(lang, slug, title_en, desc_en, keywords, content_html):
     lang_attr = {"en": "en", "ja": "ja", "pt": "pt"}[lang]
     canonical = f"https://t307239.github.io/bjj-wiki/{lang}/{slug}"
 
-    hreflang_links = f'''<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/{slug}">
-<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/{slug}">
-<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/{slug}">
-<link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/{slug}">'''
+    hreflang_links = f'''<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/{slug}.html">
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/{slug}.html">
+<link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">'''
 
     json_ld = json.dumps({
         "@context": "https://schema.org",
@@ -240,9 +240,9 @@ footer .footer-bottom{{text-align:center;margin-top:32px;color:#4b5563;font-size
     <a href="news.html">News</a>
   </div>
   <div class="lang-switch">
-    <a href="../en/{slug}">EN</a>
-    <a href="../ja/{slug}">JA</a>
-    <a href="../pt/{slug}">PT</a>
+    <a href="../en/{slug}.html">EN</a>
+    <a href="../ja/{slug}.html">JA</a>
+    <a href="../pt/{slug}.html">PT</a>
   </div>
 </nav>
 <div class="container">
