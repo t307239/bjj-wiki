@@ -25989,4 +25989,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/bjj-guard-retention-advanced.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/bjj-guard-retention-advanced.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/bjj-guard-retention-advanced.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/en/bjj-nutrition-science.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/ja/bjj-nutrition-science.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://t307239.github.io/bjj-wiki/pt/bjj-nutrition-science.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
