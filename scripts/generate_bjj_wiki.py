@@ -566,9 +566,9 @@ def article_to_html(tech, lang_code, article, all_techniques):
         gear_html = ""
 
     # --- Beehiiv CTA ---
-    bee_title = {"en":"ð Get Weekly BJJ Tips","ja":"ð é±1BJJãã¯ããã¯ãã¡ã¼ã«ã§","pt":"ð Dicas de BJJ Toda Semana"}[lang_code]
-    bee_desc  = {"en":"Join the BJJ Wiki newsletter â technique breakdowns, training tips & exclusive content. Free.","ja":"BJJ Wikiãã¥ã¼ã¹ã¬ã¿ã¼ã«åå ãæè§£èª¬ã»ç·´ç¿ã®ã³ãã»éå®ã³ã³ãã³ããæ¯é±ãå±ãï¼ç¡æï¼ã","pt":"Junte-se Ã  newsletter do BJJ Wiki â anÃ¡lises de tÃ©cnicas, dicas de treino e conteÃºdo exclusivo. GrÃ¡tis."}[lang_code]
-    bee_btn   = {"en":"Subscribe Free â","ja":"ç¡æè³¼èª­ â","pt":"Assinar GrÃ¡tis â"}[lang_code]
+    bee_title = {"en":"📬 Join 2,000+ BJJ Practitioners","ja":"📬 2,000人以上の柔術家に参加","pt":"📬 Junte-se a 2,000+ Praticantes de BJJ"}[lang_code]
+    bee_desc  = {"en":"Get the free BJJ White Belt Guide plus technique breakdowns, training tips & exclusive content every week. No spam. Unsubscribe anytime.","ja":"無料BJJ白帯ガイド＋毎週の技術解説・練習のコツ・独占コンテンツ。スパムなし。いつでも配信停止可能。","pt":"Receba o Guia Gratuito do Brás Branco + análises de técnicas semanais, dicas de treino e conteúdo exclusivo. Sem spam. Desinscrever a qualquer momento."}[lang_code]
+    bee_btn   = {"en":"Get Free Access →","ja":"無料アクセスを取得 →","pt":"Obter Acesso Gratuito →"}[lang_code]
     beehiiv_html = (
         f'<div class="beehiiv-wrap"><h3>{bee_title}</h3>'
         f'<p>{bee_desc}</p>'

@@ -1,263 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="preconnect" href="https://pagead2.googlesyndication.com">
-<link rel="preconnect" href="https://www.googletagmanager.com">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="dns-prefetch" href="https://www.google-analytics.com">
-<link rel="dns-prefetch" href="https://fonts.googleapis.com">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sweeps to Submissions - Chaining Sweeps into Immediate Submission Attacks | BJJ Wiki</title>
-<meta name="description" content="Master sweep-to-submission chains. Learn how to transition seamlessly from successful sweeps into immediate chokes, armbars, and leg locks for unstoppable attacks.">
-<meta property="og:title" content="Sweeps to Submissions - Chaining Sweeps into Immediate Submission Attacks">
-<meta property="og:description" content="Master sweep-to-submission chains. Learn how to transition seamlessly from successful sweeps into immediate chokes, armbars, and leg locks for unstoppable attacks.">
-<meta property="og:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html">
-<link rel="canonical" href="https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html">
-<link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html">
-<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html">
-<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/bjj-sweeps-to-submissions.html">
-<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/bjj-sweeps-to-submissions.html">
-
-<style>
-:root{
-  --bg:#080b12;--surface:#0f1420;--card:#141926;
-  --border:#1f2840;--text:#e8eaf6;--muted:#6b7699;
-  --accent:#7c6af7;--accent2:#a78bfa;
-  --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-  line-height:1.75;padding:0 16px}
-a{color:var(--accent2);text-decoration:none}
-a:hover{text-decoration:underline}
-
-.container{max-width:860px;margin:0 auto;padding-bottom:80px}
-header{display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);
-  margin-bottom:40px}
-.logo{font-size:1.3rem;font-weight:800;color:var(--text)}
-.logo span{color:var(--accent)}
-header nav{display:flex;gap:16px}
-header nav a{font-size:0.85rem;color:var(--muted);padding:4px 10px;
-  border-radius:6px;border:1px solid transparent}
-header nav a:hover{color:var(--text);border-color:var(--border);text-decoration:none}
-.lang-switcher{font-size:0.82rem;color:var(--muted)}
-.lang-switcher a{color:var(--muted);padding:3px 8px;border-radius:5px;
-  border:1px solid var(--border)}
-.lang-switcher a:hover{color:var(--text);border-color:var(--accent);text-decoration:none}
-
-.badge{display:inline-block;padding:4px 12px;border-radius:20px;
-  font-size:0.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
-  background:#1f2840;color:var(--accent2);border:1px solid #2d2060}
-.belt{display:inline-block;padding:3px 10px;border-radius:20px;
-  font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  margin-left:6px;border:1px solid var(--border)}
-.belt-blue{color:var(--blue);border-color:#1e3a6e;background:#0f1e38}
-
-h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin:12px 0 16px;
-  letter-spacing:-0.02em}
-@media(max-width:600px){h1{font-size:1.7rem}}
-
-h1 + p{font-size:1.05rem;color:#b0b8d4;margin-bottom:32px;line-height:1.8}
-
-h2{font-size:1rem;font-weight:700;color:var(--accent2);
-  text-transform:uppercase;letter-spacing:.08em;
-  display:flex;align-items:center;gap:8px;
-  margin:28px 0 12px}
-h2::before{content:'';width:3px;height:14px;
-  background:linear-gradient(180deg,var(--accent),var(--accent2));
-  border-radius:2px;display:block;flex-shrink:0}
-
-.card{background:var(--card);border:1px solid var(--border);
-  border-radius:14px;padding:24px;margin-bottom:8px}
-.card p{color:#c4cce8;font-size:0.95rem;margin-bottom:0}
-.card p + p{margin-top:12px}
-.card strong{color:var(--text)}
-
-.card .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
-.card .step:last-child{margin-bottom:0}
-.step-num{min-width:26px;height:26px;border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.72rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
-
-.aff-box{background:linear-gradient(135deg,#141926,#1a1040);
-  border:1px solid #2d2060;border-radius:14px;
-  padding:24px;margin:32px 0;text-align:center}
-.aff-box p{color:var(--muted);font-size:0.9rem;margin-bottom:14px}
-.aff-btn{display:inline-block;padding:10px 24px;border-radius:10px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:#fff;font-weight:700;font-size:0.9rem;
-  transition:opacity .2s,transform .15s}
-.aff-btn:hover{opacity:.88;transform:translateY(-1px);text-decoration:none}
-
-.faq{background:var(--card);border:1px solid var(--border);
-  border-radius:14px;padding:24px;margin-top:8px}
-.faq-q{font-weight:700;color:var(--accent2);margin-bottom:10px;font-size:0.95rem}
-.faq p{color:#c4cce8;font-size:0.92rem}
-
-.related-links{display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
-.related-links a{display:flex;align-items:center;justify-content:space-between;
-  padding:11px 16px;background:var(--card);border:1px solid var(--border);
-  border-radius:10px;font-size:0.88rem;color:var(--text);
-  transition:border-color .2s,background .2s}
-.related-links a::after{content:'→';color:var(--muted);font-size:0.8rem;
-  transition:color .2s,transform .2s}
-.related-links a:hover{border-color:var(--accent);background:#1a1e30;
-  text-decoration:none}
-.related-links a:hover::after{color:var(--accent2);transform:translateX(3px)}
-
-footer{padding:28px 0;border-top:1px solid var(--border);
-  text-align:center;color:var(--muted);font-size:0.8rem;margin-top:48px}
-
-.difficulty-bar{display:flex;align-items:center;gap:12px;margin:12px 0 28px;flex-wrap:wrap}
-.belt-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;font-size:0.78rem;font-weight:700;letter-spacing:.05em}
-.stars{font-size:1.1rem;letter-spacing:2px}
-.diff-label{font-size:0.8rem;color:#6b7699}
-
-.share-bar{margin:32px 0;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;text-align:center}
-.share-bar p{color:var(--muted);font-size:0.85rem;margin-bottom:12px}
-.share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.share-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none;transition:opacity .2s}
-.share-btn:hover{opacity:.8;text-decoration:none}
-.share-btn.x{background:#000;color:#fff}
-.share-btn.reddit{background:#ff4500;color:#fff}
-
-.cta-banner{background:linear-gradient(135deg,#1e3a8a,#0f172a);
-  border:1px solid #1e40af;border-radius:14px;padding:24px;
-  margin:32px 0;text-align:center}
-.cta-banner p{color:var(--muted);font-size:0.9rem;margin-bottom:16px}
-.cta-btn{display:inline-block;padding:12px 28px;border-radius:10px;
-  background:linear-gradient(135deg,#3b82f6,#60a5fa);
-  color:#fff;font-weight:700;font-size:0.9rem;text-decoration:none;
-  transition:opacity .2s,transform .15s}
-.cta-btn:hover{opacity:.9;transform:translateY(-2px);text-decoration:none}
-</style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-7LM8L3TRZM');
-  </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Sweeps to Submissions - Chaining Sweeps into Immediate Submission Attacks",
-  "description": "Master sweep-to-submission chains. Learn how to transition seamlessly from successful sweeps into immediate chokes, armbars, and leg locks for unstoppable attacks.",
-  "url": "https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html",
-  "inLanguage": "en",
-  "publisher": {
-    "@type": "Organization",
-    "name": "BJJ Wiki",
-    "url": "https://t307239.github.io/bjj-wiki/"
-  },
-  "datePublished": "2026-03-18T21:33:02.612330",
-  "dateModified": "2026-03-18T21:33:02.612345",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "BJJ Wiki",
-      "item": "https://t307239.github.io/bjj-wiki/en/index.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Sweeps to Submissions - Chaining Sweeps into Immediate Submission Attacks",
-      "item": "https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html"
-    }
-  ]
-}
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweeps to Submissions - Transition Chains</title>
+    <meta name="description" content="Master the art of chaining sweeps directly into submissions for seamless offensive sequences.">
+    <meta property="og:title" content="Sweeps to Submissions - Transition Chains">
+    <meta property="og:description" content="Master the art of chaining sweeps directly into submissions for seamless offensive sequences.">
+    <meta property="og:url" content="https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html">
+    <meta property="og:type" content="article">
+    <link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html" />
+<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/bjj-sweeps-to-submissions.html" />
+<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/bjj-sweeps-to-submissions.html" />
+    <link rel="canonical" href="https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html">
+    <link rel="icon" type="image/png" href="../../favicon.ico">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        h2 { color: #2c5282; margin-top: 30px; }
+        h3 { color: #2d3748; margin-top: 20px; }
+        p { margin: 10px 0; }
+        a { color: #2d3748; text-decoration: underline; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .meta { color: #666; font-size: 14px; margin-bottom: 20px; }
+    </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="index.html">Techniques</a>
-    </nav>
-  </header>
+    <div class="container">
+        <div class="meta">English | bjj-sweeps-to-submissions</div>
+        <h1>Sweeps to Submissions - Transition Chains</h1>
+        <p><em>Master the art of chaining sweeps directly into submissions for seamless offensive sequences.</em></p>
+        
+<h2>Sweeps to Submissions</h2>
+<p>The highest percentage attacks chain sweeps directly into submissions. This system covers transitioning from sweep momentum into controlling submissions.</p>
 
-  <div class="difficulty-bar">
-    <span class="badge">Techniques</span>
-    <span class="belt belt-blue">Intermediate</span>
-    <span class="stars">★★★★★</span>
-  </div>
+<h3>Hip Bump Sweep to Triangle</h3>
+<p>Execute hip bump sweep and immediately transition upper body into triangle choke position. Momentum from sweep provides entry angle for triangle. Guard their cross arm to prevent escape.</p>
 
-  <h1>Sweeps to Submissions: Seamless Chain Attacks</h1>
-  <p>The best sweeps create immediate submission opportunities. This guide teaches how to chain successful sweeps into devastating submission attacks before opponent can reset. Develop unstoppable momentum flow.</p>
+<h3>Scissor Sweep to Armbar</h3>
+<p>After scissor sweep topples opponent, secure armbar immediately. Use the same leg positioning for armbar that created the sweep. Smooth transition prevents them from establishing side control.</p>
 
-  <h2>How To</h2>
-  <div class="card">
-    <div class="step">
-      <div class="step-num">1</div>
-      <p><strong>Setup & Positioning:</strong> 1</p>
+<h3>Flower Sweep to Submissions</h3>
+<p>Flower sweep creates angles for immediate submission attempts. Chain into triangle, armbar, or back take depending on their arm position. Master all three finishing options.</p>
+
+<h3>De La Riva Sweep Finishes</h3>
+<p>De La Riva sweep places opponent in vulnerable position. Immediately secure back control or transition to leg lock position. Timing is crucial - catch them before they recover base.</p>
+
+<h3>Lasso Guard Sweep Combinations</h3>
+<p>Lasso position allows multiple sweep angles. After sweep, transition into mounted position or back control. Practice smooth foot transitions maintaining control pressure.</p>
+
+<h3>Collar Drag to Back Control</h3>
+<p>Collar drag sweep naturally transitions to back control position. Maintain connection with lapel to prevent frame. Practice getting back hooks immediately after sweep.</p>
+
+        <hr style="margin-top: 30px; margin-bottom: 20px;">
+        <p style="font-size: 12px; color: #999;">
+            <a href="../index.html">← Back to BJJ Wiki</a>
+        </p>
     </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <p><strong>Control:</strong> Execute sweep with proper timing and hip rotation</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <p><strong>Technique Execution:</strong> 2</p>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <p><strong>Pressure Application:</strong> Before opponent fully stabilizes, assess position (now top player)</p>
-    </div>
-    <div class="step">
-      <div class="step-num">5</div>
-      <p><strong>Finish:</strong> 3</p>
-    </div>
-  </div>
-
-  <h2>Key Details</h2>
-  <div class="card">
-    <p>Sweep momentum creates openings: hip bump sweep into armbar from guard, scissor sweep into collar drag into back take, flower sweep into mount armbars. Key: recognize submission opportunity the instant sweep connects.</p>
-  </div>
-
-  <h2>Variations</h2>
-  <div class="card">
-    <p>Sweep-to-triangle, sweep-to-armbar, sweep-to-back-take, sweep-to-leg-lock, sweep-to-choke chains</p>
-  </div>
-
-  <div class="cta-banner">
-    <p>🥋 <strong>Learn more techniques and progress your BJJ game</strong></p>
-    <a href="https://bjj-app-one.vercel.app" class="cta-btn" target="_blank" rel="noopener">Open BJJ App</a>
-  </div>
-
-  <div class="share-bar">
-    <p>Share this technique:</p>
-    <div class="share-btns">
-      <a href="https://twitter.com/intent/tweet?text=Sweeps to Submissions - Chaining Sweeps into Immediate Submission Attacks&url=https://t307239.github.io/bjj-wiki/en/bjj-sweeps-to-submissions.html" class="share-btn x" target="_blank" rel="noopener">X</a>
-      <a href="https://reddit.com/r/bjj" class="share-btn reddit" target="_blank" rel="noopener">Reddit</a>
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2026 BJJ Wiki. All rights reserved.</p>
-  </footer>
-</div>
 </body>
 </html>
