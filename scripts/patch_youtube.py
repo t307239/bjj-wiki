@@ -32,7 +32,7 @@ def load_cache():
         return {}
 
 def save_cache(cache):
-    with open(CACHE, "w") as f:
+    with open(CACHE, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
 def search_youtube(query, api_key):

@@ -537,7 +537,7 @@ for tech in TECHNIQUES:
     for lang in ["en","ja","pt"]:
         html = make_page(tech, lang)
         path = f"{lang}/{tech['slug']}.html"
-        with open(path, "w") as f:
+        with open(path, "w", encoding="utf-8") as f:
             f.write(html)
         count += 1
 

@@ -1016,7 +1016,7 @@ def load_cache():
 
 def save_cache(cache):
     path = os.path.join(SITE_DIR, "generated.json")
-    with open(path, "w") as f: json.dump(cache, f, ensure_ascii=False, indent=2)
+    with open(path, "w", encoding="utf-8") as f: json.dump(cache, f, ensure_ascii=False, indent=2)
 
 # ===== ã¡ã¤ã³ =====
 def main():

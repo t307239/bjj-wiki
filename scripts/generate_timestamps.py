@@ -40,7 +40,7 @@ def load_timestamps():
         return {}
 
 def save_timestamps(data):
-    with open(OUT, "w") as f:
+    with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def fetch_video_info(video_id, api_key):
@@ -141,7 +141,7 @@ def main():
         if removed:
             print(f"\n[警告] {len(removed)}件の動画が削除されています: {removed}")
             print("youtube_cache.json を更新しました。patch_youtube.py を再実行してください。")
-            with open(CACHE, "w") as f:
+            with open(CACHE, "w", encoding="utf-8") as f:
                 json.dump(cache, f, ensure_ascii=False, indent=2)
         else:
             print(f"\n[完了] 全{len(slugs)}件の動画が有効です")

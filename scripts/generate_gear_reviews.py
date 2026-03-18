@@ -299,7 +299,7 @@ def main():
                 new_entries.append(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>")
         if new_entries:
             sm = sm.replace("</urlset>", "\n".join(new_entries)+"\n</urlset>")
-            with open(sitemap_path,"w") as f: f.write(sm)
+            with open(sitemap_path,"w",encoding="utf-8") as f: f.write(sm)
             print(f"✅ sitemap +{len(new_entries)} gear pages")
 
 if __name__ == "__main__":

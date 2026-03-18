@@ -668,7 +668,7 @@ def main():
                     new_entries.append(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>")
         if new_entries:
             sitemap = sitemap.replace("</urlset>", "\n".join(new_entries)+"\n</urlset>")
-            with open(sitemap_path,"w") as f:
+            with open(sitemap_path,"w",encoding="utf-8") as f:
                 f.write(sitemap)
             print(f"✅ sitemap updated (+{len(new_entries)} URLs)")
     
