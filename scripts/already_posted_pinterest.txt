@@ -1,0 +1,15 @@
+# Pinterest投稿済みページリスト
+# auto_post_pinterest.py で自動更新
+# 形式: 1行1ページ（ファイル名のスラッグ）
+
+# 初期記事（存在する場合は下記を有効化）
+# armbar
+# triangle-choke
+# rear-naked-choke
+# guard-passing-fundamentals
+# mount-system
+bjj-side-control-escape-drills
+bjj-side-control-escape-far-side
+bjj-side-control-escape-turtle
+bjj-side-control-escape-guard
+bjj-side-control-escape-frame
