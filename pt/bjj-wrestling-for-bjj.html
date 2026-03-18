@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -47,7 +48,11 @@
     <h1>Luta Livre para BJJ — Como Integrar Quedas ao Seu Jogo de Jiu-Jitsu</h1>
     <p class="intro">A luta livre é a base de quedas mais prática para praticantes de BJJ. Uma base sólida de luta livre permite controlar onde a luta acontece — em pé ou no chão — e adiciona credibilidade ao seu jogo de grappling.</p>
     
-    <h2>Técnicas Centrais de Luta Livre para BJJ</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Técnicas Centrais de Luta Livre para BJJ</h2>
     <p>O double leg, single leg e high crotch são a espinha dorsal da luta livre para BJJ. Cada um requer penetration steps, mudanças de nível e mecânicas de finalização que podem ser trabalhadas separadamente e combinadas em sistemas.</p>
     <h2>Trabalho de Clinch e Controles do Corpo Superior</h2>
     <p>O collar tie, underhook e two-on-one russo fornecem pontos de entrada para ataques de luta livre. Desenvolver posições de clinch confortáveis e dominantes permite controlar a distância e configurar seus ataques preferidos.</p>
@@ -78,5 +83,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

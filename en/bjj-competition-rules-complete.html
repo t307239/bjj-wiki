@@ -18,7 +18,7 @@
   <style>
     :root{--bg:#0a0f1e;--card:#111827;--accent:#e2b714;--text:#e5e7eb;--muted:#9ca3af}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;line-height:1.7}
+    body{background:var(--bg);color:var(--text);font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0f1a2e,#1a1040);padding:20px;text-align:center;border-bottom:2px solid var(--accent)}
     header h1{color:var(--accent);font-size:1.8rem;margin-bottom:6px}
     header p{color:var(--muted);font-size:.95rem}
@@ -49,9 +49,22 @@
     .app-cta a{display:inline-block;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;padding:10px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem}
     footer{background:#060d1a;text-align:center;padding:28px;color:var(--muted);font-size:.8rem;margin-top:40px}
     footer a{color:var(--muted);text-decoration:none}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
 </head>
 <body>
+<div id="read-progress"></div>
 <header>
   <h1>BJJ Competition Rules: Complete Guide</h1>
   <p>
@@ -67,6 +80,10 @@
 
 <p>Understanding BJJ competition rules is essential for anyone who trains with competition in mind. Different organizations use vastly different rulesets, and misunderstanding the rules can cost you matches that you should have won.</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>IBJJF Rules Overview</h2>
 <p>The International Brazilian Jiu-Jitsu Federation (IBJJF) uses the most widely-recognized ruleset in gi BJJ competition.</p>
 <h3>Point System</h3>

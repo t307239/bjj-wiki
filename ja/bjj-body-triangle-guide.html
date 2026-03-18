@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔺 ボディトライアングルガイド</h1>
     <p style="color:#9ca3af;margin-bottom:24px">ボディトライアングルはバックコントロールでの胴体への圧迫力を加える、フックの代替となるレッグコンフィギュレーションです。バックコントロールからのエスケープを著しく困難にします。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">ボディトライアングルとは？</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">ボディトライアングルとは？</h2>
 <p style="color:#d1d5db;line-height:1.8">ボディトライアングルはバックコントロールで使用するレッグコンフィギュレーションで、一方の脚を曲げてもう一方の脚を足首に交差させます（胴体の周りの三角締めのように）。標準的なバックフックと違い、胴体を収縮させて呼吸を制限し、重大な絞り圧力を加えます。</p>
 <h2 style="color:#e2b714;margin-top:32px">ボディトライアングル vs 標準フック</h2>
 <p style="color:#d1d5db;line-height:1.8">標準フック（太ももの内側に足）はより動的なバックアタックを可能にしますが、相手が足を外す場合があります。ボディトライアングルは取り除きにくく、一定の圧力を加えます。トレードオフ：ポジショナルフレキシビリティが低下。</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

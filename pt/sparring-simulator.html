@@ -18,7 +18,7 @@
 <style>
   :root{--bg:#0f1117;--card:#1a1d27;--accent:#00d4ff;--gold:#ffd700;--green:#00c853;--red:#ff4444;--text:#e8eaf6;--muted:#8892b0;--border:#2a2d3e;}
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+  body{font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
   header{background:linear-gradient(135deg,#0a0e1a 0%,#1a1d27 100%);border-bottom:1px solid var(--border);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
   .logo{font-size:1.3rem;font-weight:800;color:var(--accent);text-decoration:none;}
   nav a{color:var(--muted);text-decoration:none;margin-left:1rem;font-size:.85rem;}
@@ -85,6 +85,18 @@
   footer a{color:var(--muted);text-decoration:none;margin:0 .5rem;}
   footer a:hover{color:var(--accent);}
   @media(max-width:480px){.result-actions{flex-direction:column;}.result-actions>*{width:100%;text-align:center;}}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">
 {
@@ -114,6 +126,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é Sparring Simulator no BJJ?","acceptedAnswer":{"@type":"Answer","text":"Sparring Simulator é uma técnica de Brazilian Jiu-Jitsu. Veja o guia detalhado acima para instruções passo a passo."}},{"@type":"Question","name":"Qual a dificuldade de aprender Sparring Simulator?","acceptedAnswer":{"@type":"Answer","text":"Sparring Simulator requer treino com parceiro para desenvolver a mecânica adequada."}}]}</script>
 </head>
 <body>
+<div id="read-progress"></div>
 
 <header>
   <a href="index.html" class="logo">🥋 BJJ Wiki</a>
@@ -170,7 +183,11 @@
 
   <div class="final-screen" id="final-screen">
     <div style="font-size:4rem">🏆</div>
-    <h2>Treino Concluído!</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Treino Concluído!</h2>
     <div class="belt-earned" id="belt-earned"></div>
     <div class="score-grid">
       <div class="score-box wins"><div class="val" id="final-wins">0</div><div class="lbl">Vitórias</div></div>

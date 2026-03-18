@@ -34,7 +34,7 @@
 <style>
 :root{--bg:#080b12;--surface:#0f1420;--card:#141926;--border:#1f2840;--text:#e8eaf6;--muted:#6b7699;--accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;line-height:1.75;padding:0 16px}
+body{background:var(--bg);color:var(--text);font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;line-height:1.85;padding:0 16px}
 a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:860px;margin:0 auto;padding-bottom:80px}
 header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:40px}
@@ -106,6 +106,18 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
 .pro-tip{background:linear-gradient(135deg,#0a1a0a,#0f200a);border:1px solid #16a34a;border-radius:12px;padding:16px 20px;margin:24px 0;position:relative}
 .pro-tip::before{content:"💡 Pro Tip";font-size:.75rem;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px}
 .pro-tip p{margin:0;font-size:.9rem;color:#a7c9a7}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </style>
 <script type="application/ld+json">
@@ -176,6 +188,7 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
 <header>
   <div class="logo">🥋 <span>BJJ</span> Wiki</div>
@@ -198,6 +211,10 @@ footer{padding:28px 0;border-top:1px solid var(--border);text-align:center;color
 
 <p>A montada é uma das piores posições no BJJ — você está cedendo 4 pontos e vulnerável a todas as finalizações do livro. Mas com técnica correta, a montada é escapável mesmo contra oponentes maiores. Há dois escapes primários que todo grappler deve dominar: o Upa (ponte e rolamento) e o Cotovelo-Joelho (camarão).</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>Por Que a Montada é Perigosa</h2><div class="card"><div class="step"><div class="step-num">1</div><div><strong>Pontuação</strong> — Em competição, a montada pontua 4 pontos — a maior pontuação posicional.</div></div><div class="step"><div class="step-num">2</div><div><strong>Ameaça de finalização</strong> — Da montada, o adversário pode atacar arm bar, americana, kimura, rear naked choke, ezekiel e estrangulamentos de gola.</div></div><div class="step"><div class="step-num">3</div><div><strong>Prioridade</strong> — Escapar da montada é prioridade maior do que caçar finalizações. Sobreviva primeiro, pontue depois.</div></div></div>
 <h2>Escape 1: Upa (Ponte e Rolamento)</h2><div class="card"><div class="step"><div class="step-num">1</div><div><strong>Setup</strong> — Espere o adversário alcançar uma finalização ou postar as mãos. Prenda um dos braços dele contra seu corpo com ambas as mãos.</div></div><div class="step"><div class="step-num">2</div><div><strong>Ponte</strong> — Plante os pés próximos ao corpo. Simultaneamente faça a ponte com os quadris e gire — o torque os levanta.</div></div><div class="step"><div class="step-num">3</div><div><strong>Rolar para guarda</strong> — Use o momentum para rolá-los e aterrissar em sua guarda. Daqui trabalhe as passagens.</div></div><div class="step"><div class="step-num">4</div><div><strong>Melhor contra</strong> — Montada alta (quando estão sentados eretos). Funciona bem quando alcançam os grips de gola.</div></div></div>
 <h2>Escape 2: Cotovelo-Joelho (Camarão)</h2><div class="card"><div class="step"><div class="step-num">1</div><div><strong>Frame primeiro</strong> — Crie um frame — antebraço no quadril/peito deles, outra mão bloqueando o grip de gola. Nunca cruze os braços.</div></div><div class="step"><div class="step-num">2</div><div><strong>Faça camarão</strong> — Conduza um cotovelo e o joelho do mesmo lado enquanto faz camarão para longe deles. Repita 2-3 vezes.</div></div><div class="step"><div class="step-num">3</div><div><strong>Recuperar half guard</strong> — Coloque sua canela através dos quadris para capturar o half guard. Daqui trabalhe a recuperação de guarda.</div></div><div class="step"><div class="step-num">4</div><div><strong>Melhor contra</strong> — Montada baixa. Também eficaz contra oponentes de alto nível que resistem ao upa.</div></div></div>

@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -47,7 +48,11 @@
     <h1>BJJバックテイクシステム — あらゆるポジションからバックを取る完全ガイド</h1>
     <p class="intro">バックを取ることはBJJで最も価値の高いポジションであり、相手のカウンター能力を最小限にしながらサブミッションへの最も明確なパスを提供します。体系的なバックテイクとは、あらゆる一般的なポジションから信頼できるエントリーパスを持つことを意味します。</p>
     
-    <h2>ガードからのバックテイク</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>ガードからのバックテイク</h2>
     <p>クローズドガードはテクニカルスタンドアップとヒップバンプスウィープトランジションを介したバックテイクを提供します。オープンガードからは、失敗したスウィープの試み、DLRエントリー、パッシング相手の下へのローリングからバックテイクが生じます。これらのトランジションのトレーニングにはライブポジショナルドリリングが必要です。</p>
     <h2>トップポジションからのバックテイク</h2>
     <p>サイドコントロールからは、ギフトラップとアームトラップがクラシックなバックエントリーです。マウントからは、テクニカルマウントからバックへのトランジションが防御反応を強制しバック露出を生み出す継続的プレッシャーをかけます。タートルからは、クロックチョークの脅威が自然にバックテイクを開きます。</p>
@@ -78,5 +83,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

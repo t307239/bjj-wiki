@@ -32,8 +32,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-  line-height:1.75;padding:0 16px}
+  font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.85;padding:0 16px}
 a{color:var(--accent2);text-decoration:none}
 a:hover{text-decoration:underline}
 
@@ -166,6 +166,18 @@ footer{padding:28px 0;border-top:1px solid var(--border);
 .share-btn.x{background:#000;color:#fff}
 .share-btn.reddit{background:#ff4500;color:#fff}
 .share-btn.copy{background:#2d3748;color:#fff;cursor:pointer;border:none;font-family:inherit}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
@@ -292,6 +304,7 @@ footer{padding:28px 0;border-top:1px solid var(--border);
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
   <header>
     <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -331,7 +344,11 @@ graph LR
     </div>
   </div>
 
-  <h2>How to Execute</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>How to Execute</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div><strong>Control the Wrist:</strong> From a top position like side control or mount, use your arm closest to the opponent's head to secure their wrist, pinning it to the mat near their head.</div></div><div class="step"><div class="step-num">2</div><div><strong>Establish the Figure-Four Grip:</strong> Use your other hand to reach over the opponent's tricep and grab your own wrist, forming a tight figure-four grip over their arm, ensuring their elbow is pinned to the mat.</div></div><div class="step"><div class="step-num">3</div><div><strong>Apply Hip Pressure:</strong> Drive your body weight through your hips into their chest, maintaining strong pressure to keep their elbow glued to the mat and prevent them from escaping.</div></div><div class="step"><div class="step-num">4</div><div><strong>Adjust the Angle:</strong> Slowly walk your upper body towards their head, pulling their trapped wrist towards their hips while keeping their elbow fixed in place on the mat.</div></div><div class="step"><div class="step-num">5</div><div><strong>Execute the Finish:</strong> With controlled tension, gently lift their elbow slightly off the mat while simultaneously pulling their wrist towards their waist, creating external rotation and hyperextension in the shoulder until they tap.</div></div></div>
 
   <h2>Key Details & Tips</h2>

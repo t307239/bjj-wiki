@@ -34,9 +34,22 @@
     .share-bar { margin: 2rem 0; padding-top: 1rem; border-top: 1px solid #21262d; }
     ul { padding-left: 1.5rem; }
     li { margin-bottom: 0.4rem; }
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
 </head>
 <body>
+<div id="read-progress"></div>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -47,6 +60,10 @@
 <h1>BJJ Pressure Top Game</h1>
 <p>The pressure top game in BJJ focuses on using body weight, alignment, and strategic positioning to control opponents and force mistakes. Mastery of pressure creates opportunities for submissions.</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>Principles of Pressure</h2>
 <p>Effective pressure comes from proper weight distribution, not just pushing down. Align your hips over the opponent's hips, keep a low base, and use gravity as your ally.</p>
 

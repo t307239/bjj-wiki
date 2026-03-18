@@ -16,7 +16,7 @@
   <style>
     :root{--bg:#0a0f1e;--card:#111827;--accent:#e2b714;--text:#e5e7eb;--muted:#9ca3af}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;line-height:1.7}
+    body{background:var(--bg);color:var(--text);font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0f1a2e,#1a1040);padding:20px;text-align:center;border-bottom:2px solid var(--accent)}
     header h1{color:var(--accent);font-size:1.8rem;margin-bottom:6px}
     header p{color:var(--muted);font-size:.95rem}
@@ -50,7 +50,19 @@
     .float-cta p{font-size:.82rem;margin-bottom:8px;color:#e0d9ff}
     .float-cta a{display:block;background:#fff;color:#7c3aed;text-align:center;padding:8px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none}
     .float-close{position:absolute;top:8px;right:10px;cursor:pointer;color:#aaa;font-size:.8rem}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -65,6 +77,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header><h1>✖️ Xガードガイド</h1><p>エントリー・シングルレッグX・スイープ・エレベーションメカニクス解説。</p></header>
 <nav>
   <a href="../ja/index.html">🏠 Home</a>
@@ -74,6 +87,10 @@
   <a href="../ja/bjj-competition-guide.html">🏆 Competition</a>
 </nav>
 <div class="container">
+  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>Xガードの基礎</h2><p>Xガードは下のポジションから大きなレバレッジを与えてくれます。主にマルセロ・ガルシアが開発したXガードは、立っている相手をコントロールして複数の方向にスイープすることができます。</p><h2>Xガードへのエントリー</h2><ol><li>バタフライガードから相手が立ったとき、その下に潜る</li><li>近い膝の後ろと近い腰の後ろに一つずつフックをかける</li><li>上方向のエレベーションプレッシャーで相手の体幹を崩す</li><li>相手の反応に基づいてスイープ方向を選択する</li></ol><h2>Xガードのスイープ</h2><table><tr><th>スイープ</th><th>実行方法</th><th>効果的な状況</th></tr><tr><td>バックスイープ（ダンプ）</td><td>両脚を後ろ上方に押す</td><td>相手が前傾したとき</td></tr><tr><td>フロントスイープ</td><td>脚を頭の上方前方に押す</td><td>相手が後退したとき</td></tr><tr><td>スタンドアップ</td><td>フックを外してシングルレッグへ</td><td>相手が姿勢を立てたとき</td></tr></table><div class="tip-box"><strong>💡 Proのヒント：</strong>Xガードのカギはエレベーションです。まず相手の体重を自分の上に乗せてから、スイープ方向を選びます。エレベーションなしのスイープはバランスの良い相手には失敗します。</div>
 <div class="aff-box">
   <p>世界クラスの指導でBJJを加速させよう</p>

@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🦵 Knee-on-Belly System Guide</h1>
     <p style="color:#9ca3af;margin-bottom:24px">Knee-on-belly is a 2-point scoring position in IBJJF that also generates significant submission opportunities — a powerful intermediate station in your top game.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Knee-on-Belly Mechanics</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Knee-on-Belly Mechanics</h2>
 <p style="color:#d1d5db;line-height:1.8">Proper knee-on-belly: place your knee across their stomach (driving toward the far hip), point your toes toward their head or feet depending on the attack, post your far leg on the mat for base, and use your knee to generate downward pressure. The far hand controls the collar or wrist; the near hand posts for balance.</p>
 <h2 style="color:#e2b714;margin-top:32px">Scoring with Knee-on-Belly</h2>
 <p style="color:#d1d5db;line-height:1.8">Knee-on-belly scores 2 points in IBJJF when your knee is on the opponent's stomach and you are in control. The scoring requires: (1) knee clearly on the stomach, (2) opponent is on their back, (3) you are controlling them. Transition to multiple knee-on-belly positions to score multiple times.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -47,7 +48,11 @@
     <h1>Advanced Guard Pull Strategy in BJJ — Timing, Setups & Counter-Attacks</h1>
     <p class="intro">Guard pulling is both a tactical entry and a strategic statement in BJJ. At the advanced level, it becomes a finely tuned tool involving grip fighting, timing, and the ability to counter those who try to stop you.</p>
     
-    <h2>Why Advanced Guard Pulling Matters</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Why Advanced Guard Pulling Matters</h2>
     <p>Most practitioners learn a basic pull to closed guard and stop there. Advanced guard pulling means selecting the right guard for each situation, executing grips before your opponent can react, and having a plan B when the pull is stuffed.</p>
     <h2>Timing and Commitment</h2>
     <p>The moment you decide to pull is critical. Hesitation gives your opponent time to establish grips, jump over, or score a takedown. Train explosive guard pulls that take you directly into your offensive guard — not just to a sitting position.</p>
@@ -78,5 +83,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

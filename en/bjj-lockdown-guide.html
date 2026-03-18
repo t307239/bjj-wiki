@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔒 Lockdown Half Guard Guide</h1>
     <p style="color:#9ca3af;margin-bottom:24px">The lockdown is a half guard position that immobilizes the opponent's lower leg, creating a powerful base for sweeps and leg attacks in the 10th Planet system.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">What Is the Lockdown?</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">What Is the Lockdown?</h2>
 <p style="color:#d1d5db;line-height:1.8">The lockdown is a half guard variation popularized by Eddie Bravo where your bottom leg wraps around the opponent's trapped leg in a figure-four configuration. By extending your legs, you stretch the opponent's base, prevent them from posting, and set up sweeps.</p>
 <h2 style="color:#e2b714;margin-top:32px">How to Lock the Lockdown</h2>
 <p style="color:#d1d5db;line-height:1.8">From half guard bottom: as you have the opponent's right leg trapped, reach your top (left) leg under their calf and wrap it over your bottom (right) ankle in a figure-four. Squeeze your knees together and extend your hips to stretch their leg and disrupt their base.</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

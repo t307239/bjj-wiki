@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔺 Variações do Triângulo no BJJ</h1>
     <p style="color:#9ca3af;margin-bottom:24px">A família de triângulos é uma das maiores no BJJ — disponível de quase qualquer posição quando você pode criar um bloqueio de três pontos com pernas ou braços ao redor do pescoço.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Triângulo Padrão da Guarda</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Triângulo Padrão da Guarda</h2>
 <p style="color:#d1d5db;line-height:1.8">O triângulo clássico da guarda fechada: empurre um braço para o lado, jogue a perna sobre o ombro, trave a perna atrás do joelho, angule para cortar a carótida, e puxe a cabeça para baixo. A chave do ajuste: aperte os joelhos e angule o corpo 30-45 graus para o lado oposto do braço preso.</p>
 <h2 style="color:#e2b714;margin-top:32px">Triângulo do Monte</h2>
 <p style="color:#d1d5db;line-height:1.8">Do monte técnico: deslize a perna sobre o pescoço e trave atrás do joelho (entrada do triângulo de monte alto), angule o corpo e finalize. Do S-mount: quando esticam o braço, jogue a perna sobre o braço e pescoço, role para trás e trave.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

@@ -25,7 +25,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"BJJ茶帯になるのに何年かかる？","acceptedAnswer":{"@type":"Answer","text":"多くの練習者は週3〜5回の継続練習で7〜10年後に茶帯を取得します。茶帯は黒帯以下の帯の中で最も希少で、インストラクターの裁量で飛ばされることもあります。"}},{"@type":"Question","name":"黒帯前に茶帯は必要？","acceptedAnswer":{"@type":"Answer","text":"技術的にはインストラクターは茶帯なしで黒帯に昇格させることも可能ですが稀です。多くの伝統的な道場は標準的な昇格過程に従います。"}},{"@type":"Question","name":"BJJ茶帯に期待されることは？","acceptedAnswer":{"@type":"Answer","text":"高度な完成したゲーム、自信を持ったクラス指導、競技結果、後輩の積極的な指導が期待されます。多くの茶帯は実際に指導を行っています。"}}]}</script>
 <style>
 *{box-sizing:border-box;}
-body{background:#0a0a1a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;margin:0;padding:0;}
+body{background:#0a0a1a;color:#e0e0e0;font-size:16px;font-family:'Segoe UI',sans-serif;margin:0;line-height:1.8;padding:0;}
 nav{background:#16213e;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;}
 nav a{color:#e94560;text-decoration:none;font-size:14px;font-weight:700;}
 .container{max-width:860px;margin:0 auto;padding:20px;}
@@ -42,9 +42,22 @@ h2{color:#4ade80;margin-top:28px;}
 .next-belt{background:#16213e;border:2px solid #8B4513;border-radius:10px;padding:16px;text-align:center;margin:20px 0;}
 footer{background:#16213e;padding:20px;text-align:center;color:#888;font-size:12px;margin-top:40px;}
 footer a{color:#e94560;text-decoration:none;}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🏠 Home</a>
   <a href="bjj-belt-system.html">🎗️ Belt System</a>
@@ -62,6 +75,10 @@ footer a{color:#e94560;text-decoration:none;}
 
 <p>茶帯は黒帯直前の最終磨き段階。茶帯にはすべてのポジションから多角的な脅威を持つ高度なゲームが求められます。多くのインストラクターは茶帯を「あとは時間と洗練だけ」の完成間近なグラップラーと見なします。</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>茶帯の意味</h2>
 <p>茶帯は完成間近のグラップラー。高レベルの黒帯に対して機能する危険な多次元ゲームを持っています。微妙なポジショナルニュアンスを理解し、リアルタイムで適応し、BJJ内で個人的な革新を生み出しています。このレベルでは指導が期待されます。</p>
 

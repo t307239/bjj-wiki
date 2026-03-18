@@ -33,7 +33,7 @@
   </script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:#0a0a0a;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+    body{background:#0a0a0a;color:#e0e0e0;font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0d1f3c,#0a0a0a);padding:16px 20px;border-bottom:1px solid #1a2a3a}
     nav a{color:#64b5f6;text-decoration:none;margin-right:16px;font-size:.9rem}
     main{max-width:860px;margin:0 auto;padding:24px 20px 80px}
@@ -50,9 +50,22 @@
     .belt-tag{padding:4px 12px;border-radius:20px;font-size:.78rem;font-weight:700;border:1px solid rgba(255,255,255,.15)}
     .stars{font-size:1rem;letter-spacing:2px}
     .diff-label{font-size:.8rem;color:#90a4ae;font-weight:600}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
 </head>
 <body>
+<div id="read-progress"></div>
 <header>
   <nav>
     <a href="index.html">🥋 BJJ Wiki</a>
@@ -73,7 +86,11 @@
   <p style="color:#b0bec5;font-size:1rem;margin-bottom:20px">O Joelho Escudo (Knee Shield) é uma variação fundamental da meia-guarda onde o joelho interno é posicionado diagonalmente pelo torso do oponente — criando espaço, impedindo pressão e abrindo ataques como raspagens e tomada de costas.</p>
 
   <article>
-    <h2>⚙️ Passo a Passo</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>⚙️ Passo a Passo</h2>
     <div style="background:#0d1520;border:1px solid #1a3a5c;border-radius:10px;padding:14px 18px;margin:8px 0">
       <div style="display:flex;align-items:center;gap:10px">
         <span style="background:#1565c0;color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0">1</span>

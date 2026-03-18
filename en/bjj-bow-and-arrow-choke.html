@@ -16,7 +16,7 @@
   <style>
     :root{--bg:#0a0f1e;--card:#111827;--accent:#e2b714;--text:#e5e7eb;--muted:#9ca3af}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;line-height:1.7}
+    body{background:var(--bg);color:var(--text);font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0f1a2e,#1a1040);padding:20px;text-align:center;border-bottom:2px solid var(--accent)}
     header h1{color:var(--accent);font-size:1.8rem;margin-bottom:6px}
     header p{color:var(--muted);font-size:.95rem}
@@ -48,7 +48,19 @@
     .float-cta p{font-size:.82rem;margin-bottom:8px;color:#e0d9ff}
     .float-cta a{display:block;background:#fff;color:#7c3aed;text-align:center;padding:8px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none}
     .float-close{position:absolute;top:8px;right:10px;cursor:pointer;color:#aaa;font-size:.8rem}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -63,6 +75,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header><h1>🎯 BJJ Bow and Arrow Choke Guide</h1><p>Collar grip, leg control, stretch mechanics and finishing details of the bow and arrow choke.</p></header>
 <nav>
   <a href="../en/index.html">🏠 Home</a>
@@ -72,6 +85,10 @@
   <a href="../en/bjj-competition-guide.html">🏆 Competition</a>
 </nav>
 <div class="container">
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>The Most Powerful Gi Choke</h2><p>The bow and arrow choke is widely considered the highest-percentage gi submission in BJJ. When properly secured, it is extremely difficult to escape and provides tremendous mechanical advantage through the stretching motion.</p><h2>Bow and Arrow Setup</h2><ol><li>Establish back control with seatbelt</li><li>Reach over the far shoulder and grip the deep collar</li><li>Move your body to the collar-grip side</li><li>Release the bottom hook</li><li>With your free hand, reach back and grab their near leg/pants</li><li>Stretch your body out like a bow pulling an arrow</li></ol><h2>Why It Works</h2><p>The bow and arrow applies simultaneous choke pressure (collar grip) and stretch pressure (leg grip), making it impossible to relieve one pressure without increasing the other. The mechanical advantage is immense — even with perfect defense, the body's structure cannot withstand the stretch.</p><div class="tip-box"><strong>💡 Pro Tip:</strong> Secure the collar grip BEFORE moving to the side. If you move to the side before the collar, they can turn into you. Collar first, then reposition your body.</div><div class="warn-box"><strong>⚠️ Note:</strong> The bow and arrow is gi-specific. In no-gi, use the rear naked choke or other back attacks as the primary finishing position.</div>
 <div class="aff-box">
   <p>Accelerate your BJJ with world-class instruction</p>

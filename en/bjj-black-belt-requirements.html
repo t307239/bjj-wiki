@@ -25,7 +25,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long does it take to get a BJJ black belt?","acceptedAnswer":{"@type":"Answer","text":"The average BJJ black belt takes 10-15 years of consistent training. Some exceptional athletes achieve it in 7-8 years, but 10+ years is the norm. BJJ black belts are among the rarest ranks in any martial art."}},{"@type":"Question","name":"Who can promote to BJJ black belt?","acceptedAnswer":{"@type":"Answer","text":"Only a BJJ black belt (3rd degree or higher at most academies) can promote someone to black belt. The promotion must be made by the student's direct instructor or a senior black belt with authority over that lineage."}},{"@type":"Question","name":"What happens after BJJ black belt?","acceptedAnswer":{"@type":"Answer","text":"Black belts continue training, teaching, and developing. After 3 years at black belt, they become eligible for their 1st degree. Degrees continue every 3 years up to 6th degree (red/black belt), then every 7 years up to 10th degree (red belt — the highest)."}}]}</script>
 <style>
 *{box-sizing:border-box;}
-body{background:#0a0a1a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;margin:0;padding:0;}
+body{background:#0a0a1a;color:#e0e0e0;font-size:16px;font-family:'Segoe UI',sans-serif;margin:0;line-height:1.8;padding:0;}
 nav{background:#16213e;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;}
 nav a{color:#e94560;text-decoration:none;font-size:14px;font-weight:700;}
 .container{max-width:860px;margin:0 auto;padding:20px;}
@@ -42,9 +42,22 @@ h2{color:#4ade80;margin-top:28px;}
 .next-belt{background:#16213e;border:2px solid #1a1a1a;border-radius:10px;padding:16px;text-align:center;margin:20px 0;}
 footer{background:#16213e;padding:20px;text-align:center;color:#888;font-size:12px;margin-top:40px;}
 footer a{color:#e94560;text-decoration:none;}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🏠 Home</a>
   <a href="bjj-belt-system.html">🎗️ Belt System</a>
@@ -62,6 +75,10 @@ footer a{color:#e94560;text-decoration:none;}
 
 <p>The BJJ black belt is one of the most coveted and respected ranks in all of martial arts. Unlike other disciplines where black belts can be earned in 3–5 years, a BJJ black belt typically requires a decade or more of consistent, dedicated training. It represents not just technical mastery, but a complete transformation of self.</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>What the Black Belt Truly Means</h2>
 <p>A BJJ black belt is a professor. You have not only mastered the physical art but have deeply understood its philosophy. You can control any opponent from any position, have a complete system of attacks and defenses, and can create new techniques and concepts. Most importantly — a black belt is judged by what they produce. Your students' success is your success.</p>
 

@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -47,7 +48,11 @@
     <h1>BJJレッグロックエントリーシステム完全ガイド — アシガラミ・サドル・アウトサイドヒール</h1>
     <p class="intro">レッグロックは現代グラップリングに革命をもたらしました。レッグロックゲームでの成功はサブミッションより前、つまり攻撃できる信頼性の高い安全なポジションを得るエントリーシステムのマスターから始まります。</p>
     
-    <h2>レッグロックエントリーの三本柱</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>レッグロックエントリーの三本柱</h2>
     <p>ほとんどのレッグロック攻撃は三つのポジション群から流れます：アシガラミ（シングルレッグX、スタンダードアシ）、サドル（インサイドヒールフックポジション）、アウトサイドアシ（アウトサイドヒールフックポジション）。それぞれ独自のエントリーパスとポジショナルコントロールがあります。</p>
     <h2>ガードからのエントリー</h2>
     <p>最も一般的なエントリーパスはオープンガードから——特にDLR、シングルレッグX、シーテッドガード。これらのガードポジションからレッグエンタングルメントへの移行には、ヒップムーブメント、グリップコントロール、ニーラインの理解が必要です。</p>
@@ -78,5 +83,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

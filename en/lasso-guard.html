@@ -33,7 +33,7 @@
 <style>
   :root {--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9;--green:#22c55e}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;padding:0 16px}
+  body{background:var(--bg);color:var(--text);font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;padding:0 16px}
   .container{max-width:800px;margin:0 auto;padding:24px 0 64px}
   header{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
   .logo{font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none}
@@ -98,6 +98,18 @@
   .beehiiv-wrap p{color:var(--muted);font-size:0.88rem;line-height:1.6;margin-bottom:16px}
   .beehiiv-btn{display:inline-block;background:linear-gradient(135deg,#6e40c9,#4f46e5);color:#fff;padding:12px 28px;border-radius:10px;font-weight:700;text-decoration:none;font-size:0.9rem}
   .beehiiv-btn:hover{opacity:.9;text-decoration:none}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">
 {
@@ -191,6 +203,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
   <header>
     <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -208,7 +221,11 @@
   <div class="belt-guide-box" style="border:2px solid #2563eb;border-radius:10px;padding:16px;margin:24px 0;background:#0f1420"><span style="background:#2563eb;color:#fff;padding:4px 12px;border-radius:20px;font-size:.85em;font-weight:700">Blue Belt Technique</span><br><a href="../en/blue-belt-bjj-guide.html" style="color:#e2b714;font-weight:600;text-decoration:none;margin-top:8px;display:inline-block">ð See Full Guide â Blue Belt Guide</a></div>
   <p>The Lasso Guard is a fundamental open guard technique in Brazilian Jiu-Jitsu that utilizes a deep sleeve grip and a leg threaded through the opponent's armpit, wrapping around their back. This creates immense leverage and control, allowing practitioners to disrupt posture, sweep, and set up submissions from a distance. It's a highly versatile guard for both Gi and No-Gi (with modifications).</p>
 
-  <h2>How to Execute</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>How to Execute</h2>
   <div class="card"><p>**Establish Primary Grips:** Begin by securing a strong cross-collar grip with one hand and a sleeve grip with the opposite hand on your opponent.<br>**Thread the Lasso:** With the sleeve grip hand, push your opponent's arm deeply into their bicep, then thread your leg (on the same side as the sleeve grip) through their armpit and wrap your foot around their back, engaging your instep on their shoulder or lat.<br>**Create Tension:** Extend your lasso leg to create outward tension, pulling your opponent's arm away from their body while maintaining your sleeve grip.<br>**Control Posture:** Use your collar grip to pull your opponent forward and break their posture, making them light and off-balance.<br>**Adjust and Connect:** Keep your hips mobile and connected to your opponent, constantly adjusting your angle and the depth of your lasso to maintain control and prevent them from escaping.</p></div>
 
   <h2>Key Details & Tips</h2>

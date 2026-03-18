@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔄 マウントエスケープガイド</h1>
     <p style="color:#9ca3af;margin-bottom:24px">マウントからのエスケープはBJJで最も重要なサバイバルスキルの1つです。最も支配的なポジションからサブミットされないためのこれらの技術をマスターしましょう。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">マウントが危険な理由</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">マウントが危険な理由</h2>
 <p style="color:#d1d5db;line-height:1.8">マウントは相手に最大限の体重配分・首へのリーチ・MMAでの打撃へのアクセスを与えます。スポートBJJでは4ポイントを獲得し、アームバー・トライアングル・エゼキエルチョーク・カラーチョークが可能になります。深さが増す前に早めに防御することが優先事項です。</p>
 <h2 style="color:#e2b714;margin-top:32px">ウパ（ブリッジアンドロール）エスケープ</h2>
 <p style="color:#d1d5db;line-height:1.8">ウパは最も基本的なマウントエスケープです：片腕と同サイドの足をトラップし、爆発的にブリッジ（腰を上に持ち上げ）、トラップした側にロールします。重要：ブリッジ前に腕と足の両方を同時にトラップしてください。そうしないとエスケープは失敗します。ガードリテンションでフォローしてください。</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

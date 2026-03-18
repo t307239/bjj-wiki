@@ -28,7 +28,7 @@
 {"@type":"Question","name":'1つのクラスでとても異なるレベルの生徒にどう対処するか？',"acceptedAnswer":{"@type":"Answer","text":'「ハンディキャップ」ルールのポジショナルスパーリングを使う — 上級者はより悪いポジションから開始する。調整されたレジスタンスレベルを持つ1つのカリキュラムがほとんどの状況で機能する。'}},
 {"@type":"Question","name":'BJJコーチングで最大の間違いは何か？',"acceptedAnswer":{"@type":"Answer","text":'あまりにも多くの詳細を教えること。初心者は最大1〜2つの物理的キューが必要。上級者は3〜4つを吸収できる。多すぎる詳細は運動学習を妨げる認知過負荷を引き起こす。'}}]}</script>
   <style>
-    body{margin:0;background:#0a0e1a;color:#e2e8f0;font-family:system-ui,sans-serif;line-height:1.7}
+    body{margin:0;background:#0a0e1a;color:#e2e8f0;font-size:16px;font-family:system-ui,sans-serif;line-height:1.8}
     main{max-width:860px;margin:0 auto;padding:32px 20px}
     h1{color:#e2b714;font-size:2rem;margin-bottom:8px}
     h2{color:#e2b714;font-size:1.3rem;margin-top:2rem}
@@ -38,9 +38,22 @@
     td{padding:10px;border-bottom:1px solid #1e2a3a;color:#cbd5e1}
     .tip-box{background:#0d2137;border-left:4px solid #e2b714;padding:16px;border-radius:6px;margin:24px 0}
     .info-box{background:#0d1a0d;border-left:4px solid #22c55e;padding:16px;border-radius:6px;margin:24px 0}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav style="background:#0d1117;padding:12px 20px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
   <a href="../index.html" style="color:#e2b714;font-weight:700;text-decoration:none">BJJ Wiki</a>
   <a href="techniques-az.html" style="color:#9ca3af;text-decoration:none">技一覧</a>
@@ -51,7 +64,11 @@
 <main>
   <h1>📚 BJJコーチングのヒント</h1>
   <p>優れたBJJコーチングはテクニックを知ることを超えています — 人々がどう学ぶか、情報をどう構造化するか、生徒が一貫して進歩する環境をどう作るかを理解する必要があります。</p>
-  <h2>クラス構造テンプレート</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>クラス構造テンプレート</h2>
   <table>
     <tr><th>フェーズ</th><th>時間</th><th>内容</th></tr>
     <tr><td>ウォームアップ</td><td>10分</td><td>ムーブメントプレップ + トピック特異的ドリル</td></tr>

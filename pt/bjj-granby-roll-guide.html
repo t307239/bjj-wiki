@@ -26,7 +26,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d1117;color:#e2e8f0;font-family:'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0d1117;color:#e2e8f0;font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
 nav{background:#111827;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 nav a{color:#e2b714;text-decoration:none;font-weight:700;font-size:.95rem}
 nav .nav-links a{margin-left:16px;color:#9ca3af;font-size:.85rem}
@@ -67,6 +67,18 @@ footer a{color:#9ca3af;text-decoration:none;display:block;margin-bottom:6px;font
 footer a:hover{color:#e2b714}
 footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:.8rem}
 @media(max-width:600px){h1{font-size:1.5rem}}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">
 {
@@ -84,6 +96,7 @@ footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🥋 BJJ Wiki</a>
   <div class="nav-links">
@@ -106,6 +119,10 @@ footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:
   <span style="color:#9ca3af;font-size:.9rem">Dificuldade: ★★★☆☆ — Intermediário</span>
 </div>
 <p>O granby roll é uma técnica de rolamento defensivo usada principalmente para escapar da posição turtle e recuperar a guarda. Nomeado após a Granby School of Wrestling, é igualmente valioso no gi e no-gi.</p>
+  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>Mecânica Básica do Granby Roll</h2>
 <div class="step-card"><div class="step-number">1</div><h3>Colocação das Mãos</h3><p>Apoie a mão no chão na direção que está rolando. Mantenha o braço levemente dobrado. Esta mão guia a direção do rolamento.</p></div>
 <div class="step-card"><div class="step-number">2</div><h3>Tucada do Queixo</h3><p>Tuce o queixo ao peito antes de iniciar o rolamento. Isso protege o pescoço e garante que role sobre o ombro, não a cabeça ou pescoço.</p></div>

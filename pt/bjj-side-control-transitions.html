@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">↔️ Guia de Transições do Controle Lateral</h1>
     <p style="color:#9ca3af;margin-bottom:24px">O controle lateral é uma plataforma de lançamento, não um destino. A capacidade de fluir entre controle lateral, monte, costas, joelho na barriga e north-south é o que separa praticantes avançados de iniciantes.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Controle Lateral para o Monte</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Controle Lateral para o Monte</h2>
 <p style="color:#d1d5db;line-height:1.8">A transição mais comum: caminhe os joelhos em direção ao quadril (monte step-over), use cross-face para manter a cabeça fixada, apoie no lado distante e deslize o joelho pelo estômago. Alternativa: do scarf hold, dirija o peso para as pernas deles.</p>
 <h2 style="color:#e2b714;margin-top:32px">Controle Lateral para Joelho na Barriga</h2>
 <p style="color:#d1d5db;line-height:1.8">Do controle lateral: quando tentam criar espaço ou girar em sua direção, apoie o joelho próximo no estômago, apoie o pé distante no tatame para base, e use a pressão do joelho para controlar a postura e preparar ataques. O joelho na barriga marca 2 pontos no IBJJF.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

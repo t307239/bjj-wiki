@@ -36,7 +36,7 @@
 <style>
 :root{--bg:#080b12;--surface:#0f1420;--card:#141926;--border:#1f2840;--text:#e8eaf6;--muted:#6b7699;--accent:#7c6af7;--accent2:#a78bfa;--gold:#f59e0b}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;line-height:1.75;padding:0 16px}
+body{background:var(--bg);color:var(--text);font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;line-height:1.85;padding:0 16px}
 a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:860px;margin:0 auto;padding-bottom:80px}
 header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
@@ -64,9 +64,22 @@ h2{font-size:0.9rem;font-weight:700;color:var(--accent2);text-transform:uppercas
 .btn-amazon:hover{opacity:.9;text-decoration:none}
 .back-link{display:inline-block;margin-bottom:20px;color:var(--muted);font-size:0.88rem}
 footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:0.85rem}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
 <header>
   <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -93,6 +106,10 @@ footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);text-
 <li>IBJJF No-Gi World Champion</li></ul>
 </div>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>戦闘スタイル</h2>
 <div class="card"><p></p><p style="margin-top:12px;color:var(--muted)"></p></div>
 

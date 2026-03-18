@@ -33,7 +33,7 @@
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0a0f1a;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0a0f1a;color:#e2e8f0;font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8}
 .nav{background:#0d1b2a;border-bottom:1px solid #1e2a3a;padding:16px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 .nav a{color:#9ca3af;text-decoration:none;font-size:.9rem;transition:color .2s}
 .nav a:hover{color:#e2b714}
@@ -51,9 +51,22 @@ li{margin-bottom:6px}
 footer{background:#0d1b2a;border-top:1px solid #1e2a3a;padding:32px 24px;margin-top:64px;text-align:center;color:#4b5563;font-size:.85rem}
 footer a{color:#6b7280;text-decoration:none;margin:0 8px}
 footer a:hover{color:#e2b714}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav class="nav">
   <span class="logo">🥋 BJJ Wiki</span>
   <a href="index.html">Home</a>
@@ -66,7 +79,11 @@ footer a:hover{color:#e2b714}
   <a href="../pt/bjj-gordon-ryan-system-guide.html">🇧🇷 PT</a>
 </nav>
 <div class="container">
-<h1>Gordon Ryan System Guide</h1><p>Gordon Ryan revolutionized leg lock submissions in modern BJJ through systematic positioning and chain attacks. His system emphasizes footlock positioning, leg entanglement flows, and predictable submission sequences that work at all levels.</p><h2>Core Principles of the Ryan System</h2><ul><li><strong>Footlock Position Priority</strong>: Establish 50-50 or saddle position first, control legs before attacking.</li><li><strong>Chain Attacking</strong>: Heel hooks lead to knee reaps, which lead to straight footlocks. Never finish in one position; always have backup options.</li><li><strong>Pressure Integration</strong>: Combine leg lock attacks with upper body pressure to prevent escapes.</li><li><strong>Positioning Over Strength</strong>: Technical superiority matters more than brute force.</li></ul><h2>50-50 Guard Mastery</h2><p>The 50-50 position is foundational. Both grapplers control one leg each. Ryan emphasizes maintaining this position, preventing guard passes, and executing knee reaps and heel hooks from here. Practice transitioning between 50-50 and outside heel hook position smoothly.</p><h2>Saddle Position Dominance</h2><p>The saddle (reverse 50-50) is Ryan's signature position. Achieve by passing the leg over your opponent's back, controlling both legs and the back. From saddle, execute knee reaps and slow heel hooks. The position is extremely difficult to escape and provides multiple finish options.</p><h2>Heel Hook to Straight Footlock Chain</h2><p>When an opponent defends a heel hook, immediately transition to straight footlock (ankle lock). This chain creates a dilemma: defend the heel hook OR the ankle lock, but not both.</p><h2>Competition Applications</h2><p>The Ryan system dominates submission-only events where leg lock submissions are unlimited. Even in IBJJF rule sets, leg lock proficiency adds serious weapons. Combine this system with back take dominance for complete control.</p>
+<h1>Gordon Ryan System Guide</h1><p>Gordon Ryan revolutionized leg lock submissions in modern BJJ through systematic positioning and chain attacks. His system emphasizes footlock positioning, leg entanglement flows, and predictable submission sequences that work at all levels.</p>  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Core Principles of the Ryan System</h2><ul><li><strong>Footlock Position Priority</strong>: Establish 50-50 or saddle position first, control legs before attacking.</li><li><strong>Chain Attacking</strong>: Heel hooks lead to knee reaps, which lead to straight footlocks. Never finish in one position; always have backup options.</li><li><strong>Pressure Integration</strong>: Combine leg lock attacks with upper body pressure to prevent escapes.</li><li><strong>Positioning Over Strength</strong>: Technical superiority matters more than brute force.</li></ul><h2>50-50 Guard Mastery</h2><p>The 50-50 position is foundational. Both grapplers control one leg each. Ryan emphasizes maintaining this position, preventing guard passes, and executing knee reaps and heel hooks from here. Practice transitioning between 50-50 and outside heel hook position smoothly.</p><h2>Saddle Position Dominance</h2><p>The saddle (reverse 50-50) is Ryan's signature position. Achieve by passing the leg over your opponent's back, controlling both legs and the back. From saddle, execute knee reaps and slow heel hooks. The position is extremely difficult to escape and provides multiple finish options.</p><h2>Heel Hook to Straight Footlock Chain</h2><p>When an opponent defends a heel hook, immediately transition to straight footlock (ankle lock). This chain creates a dilemma: defend the heel hook OR the ankle lock, but not both.</p><h2>Competition Applications</h2><p>The Ryan system dominates submission-only events where leg lock submissions are unlimited. Even in IBJJF rule sets, leg lock proficiency adds serious weapons. Combine this system with back take dominance for complete control.</p>
 <div style="margin:32px 0;padding:24px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:12px;text-align:center">
   <div style="color:#e2b714;font-weight:700;font-size:1.1rem;margin-bottom:8px">📧 BJJ Weekly Digest</div>
   <div style="color:#9ca3af;font-size:.9rem;margin-bottom:16px">Get the latest techniques & competition news</div>

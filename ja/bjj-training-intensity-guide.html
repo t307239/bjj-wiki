@@ -38,6 +38,7 @@
 }</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header>
   <nav class="site-nav">
     <a href="../index.html" class="nav-logo">🥋 BJJ Wiki</a>
@@ -65,6 +66,10 @@
     
 <p>トレーニング強度はBJJ上達において最も誤解されている側面の一つです。多くの初心者は常に全力で行きすぎます；経験豊富な実践者は最大の長期的利益のために強度を調整することを学びます。</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>強度スペクトル</h2>
 <p>BJJトレーニングは純粋なフローから最大競技努力までのスペクトルに存在します：</p>
 <ol>
@@ -152,5 +157,36 @@
     © 2024 BJJ Wiki — <a href="../index.html" style="color:#e94560;">Home</a>
   </p>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

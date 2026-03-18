@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🪒 Sistema de Guilhotina no BJJ</h1>
     <p style="color:#9ca3af;margin-bottom:24px">A guilhotina é um sistema de ataque completo com múltiplas variações, cada uma visando diferentes mecanismos de estrangulamento — dominar o sistema completo torna você perigoso em pé, da guarda e em disputas.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Guilhotina High-Arm</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Guilhotina High-Arm</h2>
 <p style="color:#d1d5db;line-height:1.8">A guilhotina mais confiável: braço sob o queixo (lâmina do pulso contra a garganta), aperte e puxe para cima enquanto arqueia para trás. Finalização: pegada palm-to-palm ou o marcelo-lock. Chave: o braço deve ficar sob o queixo, não ao redor do pescoço.</p>
 <h2 style="color:#e2b714;margin-top:32px">Guilhotina Arm-In</h2>
 <p style="color:#d1d5db;line-height:1.8">A variação arm-in prende um braço dentro do estrangulamento, criando um bloqueio mais firme mas estrangulamento mais lento. Pegada: overhook o braço, envolva o pescoço e aplique pressão com o antebraço na carótida. Melhor finalizada da guarda fechada puxando a cabeça para o peito.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

@@ -20,7 +20,7 @@
 </script>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0f;color:#e2e2ee;line-height:1.7;font-size:16px;padding:0 16px}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0f;color:#e2e2ee;line-height:1.8;font-size:16px;padding:0 16px}
   .container{max-width:800px;margin:0 auto;padding:24px 0 64px}
   header{padding:16px 0;border-bottom:1px solid #1e1e2e;margin-bottom:32px;display:flex;justify-content:space-between;align-items:center}
   .logo{font-size:1.2rem;font-weight:800;color:#e2e2ee;text-decoration:none}
@@ -37,9 +37,22 @@
   .cta p{color:#9090b0;font-size:0.85rem;margin-bottom:14px}
   .cta a{background:#6e40c9;color:#fff;padding:10px 24px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-block}
   footer{border-top:1px solid #1e1e2e;padding:24px 0;text-align:center;color:#555;font-size:0.8rem;margin-top:48px}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
   <header>
     <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -49,7 +62,11 @@
   <p class="intro">The twister system, popularized by Eddie Bravo and 10th Planet Jiu-Jitsu, is a collection of interconnected positions and submissions centered around controlling the opponent's spine and hips. From the truck position to the electric chair and the signature twister submission, this system offers unique attacks that most opponents have never encountered, making them particularly effective.</p>
   
   <section>
-    <h2>The Truck Position</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>The Truck Position</h2>
     <p>The truck is the hub of the twister system — achieved when you hook one of the opponent's legs between your legs while controlling their near arm or hip. From the truck, you can attack the electric chair (a painful hip/groin stretch), the calf slicer, the twister side control, and ultimately spin to the twister itself.</p>
   </section>
 

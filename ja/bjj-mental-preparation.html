@@ -54,7 +54,7 @@
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0d1117;color:#e6edf3;font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8}
 nav{background:#161b22;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;border-bottom:1px solid #30363d}
 nav a{color:#58a6ff;text-decoration:none;font-size:.9rem}
 nav a:hover{color:#e2b714}
@@ -90,9 +90,22 @@ li{margin-bottom:6px}
 .share-copy{background:#30363d;color:#e6edf3}
 footer{background:#161b22;border-top:1px solid #30363d;padding:28px 20px;margin-top:48px;text-align:center;color:#8b949e;font-size:.85rem}
 footer a{color:#58a6ff;text-decoration:none;margin:0 8px}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="../index.html">🏠 Home</a>
   <a href="../techniques-az.html">📖 A-Z</a>
@@ -104,6 +117,10 @@ footer a{color:#58a6ff;text-decoration:none;margin:0 8px}
   <h1>BJJメンタル準備</h1>
   <div class="meta">BJJ Wiki · Updated 2026-03-16</div>
   <p>BJJの最高レベルでは、競技者間の身体的な差は最小限です。マージンはしばしばメンタルです：誰が神経をコントロールし、ゲームプランを実行し、プレッシャー下で冷静でいられるか。メンタル準備は訓練可能なスキルであり、生来の特性ではありません。</p>
+  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>ビジュアライゼーション：メンタルマット</h2>
 <p>ビジュアライゼーションとは、BJJゲームを鮮明な詳細で精神的にリハーサルすることを意味します。効果的なビジュアライゼーション：自信を持ってマットに入る自分を見る・特定の技の実行（グリップ・体重移動・フィニッシングメカニクスを感じる）・パニックなしに逆境に対応・勝利。競技前の週に毎日10〜15分の構造化されたビジュアライゼーションで、プレッシャー下での自信ある実行をサポートする神経経路を構築します。</p>
 <h2>競技前不安の管理</h2>

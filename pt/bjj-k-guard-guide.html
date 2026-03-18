@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔑 Guia do Sistema K-Guard</h1>
     <p style="color:#9ca3af;margin-bottom:24px">O K-guard é uma poderosa posição de emaranhamento externo de pernas que serve de trampolim para heel hooks externos e tomadas de costas — pedra angular dos sistemas modernos de leg lock no-gi.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">O que é o K-Guard?</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">O que é o K-Guard?</h2>
 <p style="color:#d1d5db;line-height:1.8">O K-guard (também chamado ashi garami externo ou sankaku externo) é um emaranhamento de pernas onde você controla a perna de fora do oponente: seu joelho interno aponta para cima, sua perna externa engata atrás do quadril próximo dele, e você controla o tornozelo da perna distante. A forma de "K" vem da configuração das pernas.</p>
 <h2 style="color:#e2b714;margin-top:32px">K-Guard vs. Ashi Garami</h2>
 <p style="color:#d1d5db;line-height:1.8">O ashi garami padrão controla a perna interna com a perna entre as pernas do oponente. O K-guard controla a perna externa, ameaçando o outside heel hook — uma das finalizações mais poderosas e difíceis de defender no grappling. O K-guard é preferido quando a posição interna está bloqueada.</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

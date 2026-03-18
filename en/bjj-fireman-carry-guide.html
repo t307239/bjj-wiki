@@ -26,7 +26,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7}
+body{background:#0d1117;color:#e6edf3;font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8}
 nav{background:#161b22;border-bottom:1px solid #21262d;padding:12px 20px;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
 nav a{color:#58a6ff;text-decoration:none;font-size:.9rem}
 nav a:hover{text-decoration:underline}
@@ -58,12 +58,25 @@ li{margin-bottom:6px}
 footer{background:#161b22;border-top:1px solid #21262d;padding:32px 20px;margin-top:60px;text-align:center}
 footer a{color:#8b949e;text-decoration:none;margin:0 12px;font-size:.85rem}
 footer a:hover{color:#e6edf3}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"Fireman Carry Guide: Shoulder Control Takedowns","description":"Master the fireman carry takedown in BJJ and wrestling. Learn setup, proper positioning, and explosive finishing mechanics.","url":"https://t307239.github.io/bjj-wiki/en/bjj-fireman-carry-guide.html","datePublished":"2025-01-01","dateModified":"2026-03-16","publisher":{"@type":"Organization","name":"BJJ Wiki"}}
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🥋 BJJ Wiki</a>
   <a href="techniques-az.html">A-Z</a>
@@ -79,6 +92,10 @@ footer a:hover{color:#e6edf3}
 <div class="container">
 <h1>Fireman Carry Guide: Shoulder Control Takedowns</h1>
 <p class="meta">Updated March 2025 • 6 min read</p>
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>The Fireman Carry Takedown</h2>
 <p>The fireman carry is a shoulder control takedown that uses your shoulder to elevate and dump your opponent. This technique is powerful, technical, and creates excellent offensive opportunities after you land it.</p>
 <h2>Setting Up the Fireman Carry</h2>

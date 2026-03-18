@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -47,7 +48,11 @@
     <h1>BJJ Competition Diet Guide — Nutrition Strategy for Tournament Day</h1>
     <p class="intro">What you eat before, during, and after a tournament can dramatically affect your performance. BJJ competition nutrition requires balancing weight management, energy availability, and mental focus across multiple matches.</p>
     
-    <h2>Pre-Tournament Weight Management</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>Pre-Tournament Weight Management</h2>
     <p>Moderate, gradual weight cutting is far safer and more performance-preserving than extreme water cuts. Aim to walk around within 2-3% of your competition weight, using dietary adjustments rather than severe restriction or dehydration.</p>
     <h2>Tournament Day Eating</h2>
     <p>On competition day, eat familiar, easily digestible foods 2-3 hours before your first match. Avoid heavy fats and excessive fiber that can cause GI distress. Between matches, opt for small carbohydrate-rich snacks and consistent hydration.</p>
@@ -78,5 +83,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

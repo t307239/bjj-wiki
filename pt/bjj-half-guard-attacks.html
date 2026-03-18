@@ -16,7 +16,7 @@
   <style>
     :root{--bg:#0a0f1e;--card:#111827;--accent:#e2b714;--text:#e5e7eb;--muted:#9ca3af}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;line-height:1.7}
+    body{background:var(--bg);color:var(--text);font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0f1a2e,#1a1040);padding:20px;text-align:center;border-bottom:2px solid var(--accent)}
     header h1{color:var(--accent);font-size:1.8rem;margin-bottom:6px}
     header p{color:var(--muted);font-size:.95rem}
@@ -48,7 +48,19 @@
     .float-cta p{font-size:.82rem;margin-bottom:8px;color:#e0d9ff}
     .float-cta a{display:block;background:#fff;color:#7c3aed;text-align:center;padding:8px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none}
     .float-close{position:absolute;top:8px;right:10px;cursor:pointer;color:#aaa;font-size:.8rem}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -63,6 +75,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header><h1>⚡ Guia de Ataques da Meia-Guarda</h1><p>Sistema de underhook, varridas, opções de back take e setups de submissão da meia-guarda.</p></header>
 <nav>
   <a href="../pt/index.html">🏠 Home</a>
@@ -72,6 +85,10 @@
   <a href="../pt/bjj-competition-guide.html">🏆 Competition</a>
 </nav>
 <div class="container">
+  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>Meia-Guarda: Ofensiva de uma Posição Defensiva</h2><p>A meia-guarda geralmente é entrada como posição defensiva, mas contém um sistema completo de varridas, back takes e submissões. O underhook é a linha divisória entre ofensiva e defensiva na meia-guarda.</p><h2>O Sistema de Underhook</h2><ul><li><strong>Ganhar o underhook:</strong> Hip escape para criar espaço, depois disputar o braço por baixo</li><li><strong>Enquadrar o ombro:</strong> Manter o peso deles longe com o underhook</li><li><strong>Princípio face-down:</strong> Com o underhook, girar para ficar de bruços — esta é a posição "dog fight"</li></ul><h2>Varridas da Meia-Guarda</h2><table><tr><th>Varrida</th><th>Posição</th><th>Detalhe Chave</th></tr><tr><td>Varrida Dog Fight</td><td>Dog fight (underhook)</td><td>Avançar com o ombro, chutar a perna traseira</td></tr><tr><td>Varrida Old School</td><td>Underhook, costas no tatame</td><td>Alcançar tornozelo distante, hip escape, avançar</td></tr><tr><td>Homer Simpson</td><td>Underhook, de bruços</td><td>Chutar a perna, enganchar o joelho, elevar</td></tr></table><div class="tip-box"><strong>💡 Dica Pro:</strong> Se não conseguir o underhook, não tente atacar. Sobreviva e recupere a guarda. Meia-guarda sem underhook é uma posição perdedora — foque na batalha de underhook primeiro.</div>
 <div class="aff-box">
   <p>Acelere seu BJJ com instrução de classe mundial</p>

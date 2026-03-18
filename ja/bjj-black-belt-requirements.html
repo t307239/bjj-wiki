@@ -25,7 +25,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"BJJ黒帯になるのに何年かかる？","acceptedAnswer":{"@type":"Answer","text":"平均的なBJJ黒帯には継続的な練習で10〜15年かかります。例外的なアスリートは7〜8年で取得しますが、10年以上が標準です。BJJ黒帯はあらゆる武道の中で最も希少なランクの一つです。"}},{"@type":"Question","name":"BJJ黒帯に昇格できるのは誰か？","acceptedAnswer":{"@type":"Answer","text":"BJJ黒帯（ほとんどの道場では3段以上）だけが黒帯に昇格させることができます。昇格は生徒の直接のインストラクター、またはその道統に権限を持つシニア黒帯によって行われなければなりません。"}},{"@type":"Question","name":"BJJ黒帯の後は？","acceptedAnswer":{"@type":"Answer","text":"黒帯は練習・指導・発展を続けます。黒帯取得後3年で1段の資格が得られます。段位は3年ごとに6段（赤黒帯）まで、その後7年ごとに10段（赤帯 — 最高位）まで続きます。"}}]}</script>
 <style>
 *{box-sizing:border-box;}
-body{background:#0a0a1a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;margin:0;padding:0;}
+body{background:#0a0a1a;color:#e0e0e0;font-size:16px;font-family:'Segoe UI',sans-serif;margin:0;line-height:1.8;padding:0;}
 nav{background:#16213e;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;}
 nav a{color:#e94560;text-decoration:none;font-size:14px;font-weight:700;}
 .container{max-width:860px;margin:0 auto;padding:20px;}
@@ -42,9 +42,22 @@ h2{color:#4ade80;margin-top:28px;}
 .next-belt{background:#16213e;border:2px solid #1a1a1a;border-radius:10px;padding:16px;text-align:center;margin:20px 0;}
 footer{background:#16213e;padding:20px;text-align:center;color:#888;font-size:12px;margin-top:40px;}
 footer a{color:#e94560;text-decoration:none;}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🏠 Home</a>
   <a href="bjj-belt-system.html">🎗️ Belt System</a>
@@ -62,6 +75,10 @@ footer a{color:#e94560;text-decoration:none;}
 
 <p>BJJ黒帯はすべての武道の中で最も価値があり、最も尊重されるランクの一つです。他の武道が3〜5年で黒帯を取得できるのに対し、BJJ黒帯は通常10年以上の継続的な献身的な練習を必要とします。技術的な習熟だけでなく、自己の完全な変革を表します。</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>黒帯が本当に意味するもの</h2>
 <p>BJJ黒帯は教授です。身体的な技術を習得しただけでなく、その哲学を深く理解しています。あらゆるポジションからあらゆる相手をコントロールでき、攻撃と防御の完全なシステムを持ち、新しい技術とコンセプトを生み出せます。最も重要なのは — 黒帯は自分が育てたものによって評価されます。</p>
 

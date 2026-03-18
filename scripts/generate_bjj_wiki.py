@@ -638,7 +638,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <style>
   :root {{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9;--green:#22c55e}}
   *{{box-sizing:border-box;margin:0;padding:0}}
-  body{{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;padding:0 16px}}
+  body{{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.8;padding:0 16px}}
   .container{{max-width:800px;margin:0 auto;padding:24px 0 64px}}
   header{{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px}}
   .logo{{font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none}}
@@ -703,6 +703,18 @@ def article_to_html(tech, lang_code, article, all_techniques):
   .beehiiv-wrap p{{color:var(--muted);font-size:0.88rem;line-height:1.6;margin-bottom:16px}}
   .beehiiv-btn{{display:inline-block;background:linear-gradient(135deg,#6e40c9,#4f46e5);color:#fff;padding:12px 28px;border-radius:10px;font-weight:700;text-decoration:none;font-size:0.9rem}}
   .beehiiv-btn:hover{{opacity:.9;text-decoration:none}}
+  /* Reading progress bar */
+  #read-progress{{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}}
+  /* Back to top */
+  #back-to-top{{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}}
+  #back-to-top:hover{{opacity:1}}
+  /* Auto TOC */
+  .toc{{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}}
+  .toc-title{{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}}
+  .toc-list{{list-style:none;padding:0;margin:0}}
+  .toc-list li{{margin:4px 0}}
+  .toc-list a{{color:var(--accent);font-size:.88rem;text-decoration:none}}
+  .toc-list a:hover{{text-decoration:underline}}
 </style>
 <script type="application/ld+json">
 {{
@@ -796,6 +808,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
   <header>
     <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -812,6 +825,11 @@ def article_to_html(tech, lang_code, article, all_techniques):
   {difficulty_html}
   {belt_guide_html}
   <p>{to_str(article.get('intro', ''))}</p>
+
+  <div id="toc" class="toc">
+    <div class="toc-title">{'Contents' if lang_code=='en' else '目次' if lang_code=='ja' else 'Conteúdo'}</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 
   <h2>{'How to Execute' if lang_code=='en' else 'ããæ¹' if lang_code=='ja' else 'Como Executar'}</h2>
   <div class="card"><p>{to_str(article.get('how_to','')).replace(chr(10),'<br>')}</p></div>
@@ -927,6 +945,40 @@ def article_to_html(tech, lang_code, article, all_techniques):
     function show(){{if(!shown){{shown=true;el.style.display='block';}}}}
     setTimeout(show,30000);
     window.addEventListener('scroll',function(){{if((window.scrollY/(document.body.scrollHeight-window.innerHeight))>.5)show();}},{{passive:true}});
+  }})();
+  </script>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({{top:0,behavior:'smooth'}})">↑</button>
+  <script>
+  (function(){{
+    // Reading progress bar
+    var prog=document.getElementById('read-progress');
+    // Back to top
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){{
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){{prog.style.width=(scrolled/total*100)+'%';}}
+      if(scrolled>300){{btn.style.display='flex';}}else{{btn.style.display='none';}}
+    }},{{passive:true}});
+    // Auto TOC from h2 elements
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){{
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){{
+        headings.forEach(function(h,i){{
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        }});
+        tocEl.style.display='block';
+      }}
+    }}
   }})();
   </script>
 </body>

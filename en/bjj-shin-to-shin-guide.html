@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🦴 Shin-to-Shin Guard Guide</h1>
     <p style="color:#9ca3af;margin-bottom:24px">Shin-to-shin guard is a versatile open guard position that creates immediate sweep threats and connects to X-guard, single-leg X, and leg lock entries in modern BJJ.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">What Is Shin-to-Shin Guard?</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">What Is Shin-to-Shin Guard?</h2>
 <p style="color:#d1d5db;line-height:1.8">In shin-to-shin guard, you are seated with one leg inside the opponent's near leg — your shin pressing against their shin — while the other leg controls their hip or posted on the mat. This creates a tripod-like structure that prevents guard passing and threatens multiple attacks.</p>
 <h2 style="color:#e2b714;margin-top:32px">Entries to Shin-to-Shin</h2>
 <p style="color:#d1d5db;line-height:1.8">You can enter shin-to-shin from: seated guard when the opponent stands or kneels, De La Riva guard by pulling your leg in, single-leg guard, or during guard recovery when the opponent is passing. It is especially useful when the opponent attempts to stand in your guard.</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

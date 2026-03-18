@@ -34,16 +34,33 @@
   .lang-switcher a.active { background: #e94560; color: white; border-color: #e94560; }
   footer { text-align: center; padding: 32px 24px; color: #52525b; font-size: 0.8rem; border-top: 1px solid #27272a; margin-top: 48px; }
   footer a { color: #71717a; text-decoration: none; }
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <header>
   <a href="../pt/index.html">🥋 BJJ Wiki</a>
 </header>
 <div class="container">
   <h1>Luta de Pegadas Avançada no BJJ</h1>
   <div class="meta">Last updated: 2026-03-18 &nbsp;|&nbsp; BJJ Wiki</div>
-  <h2>A Importância Estratégica da Luta de Pegadas</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>A Importância Estratégica da Luta de Pegadas</h2>
 <p>Iniciantes pensam em pegadas como apenas uma forma de segurar o oponente. Graplers avançados entendem a luta de pegadas como a batalha fundamental que determina o sucesso posicional. Quem controla as pegadas controla a luta.</p>
 
 <h2>Hierarquias de Pegadas Dominantes</h2>

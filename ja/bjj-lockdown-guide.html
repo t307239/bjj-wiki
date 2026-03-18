@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🔒 ロックダウンハーフガードガイド</h1>
     <p style="color:#9ca3af;margin-bottom:24px">ロックダウンは相手の下脚を固定するハーフガードポジションで、10th Planetシステムでのスイープとレッグアタックのための強力な基盤を作ります。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">ロックダウンとは？</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">ロックダウンとは？</h2>
 <p style="color:#d1d5db;line-height:1.8">ロックダウンはEddie Bravoによって広まったハーフガードバリエーションで、ボトムレッグが相手のトラップされた脚をフィギュアフォー配置で巻き付けます。脚を伸ばすことで相手のベースをストレッチし、ポスティングを防ぎ、スイープをセットアップします。</p>
 <h2 style="color:#e2b714;margin-top:32px">ロックダウンのロック方法</h2>
 <p style="color:#d1d5db;line-height:1.8">ハーフガードボトムから：相手の右脚をトラップしている状態で、トップ（左）脚を相手の脹脛の下に伸ばし、ボトム（右）足首の上に巻き付けてフィギュアフォーを作ります。膝を絞り合わせ、腰を伸ばして脚をストレッチしベースを崩します。</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

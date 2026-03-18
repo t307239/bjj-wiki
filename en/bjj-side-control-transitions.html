@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">↔️ Side Control Transitions Guide</h1>
     <p style="color:#9ca3af;margin-bottom:24px">Side control is a launching pad, not a destination. The ability to flow between side control, mount, back, knee-on-belly, and north-south is what separates advanced practitioners from beginners.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Side Control to Mount</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Side Control to Mount</h2>
 <p style="color:#d1d5db;line-height:1.8">The most common transition: walk your knees toward their hip (step-over mount), use a cross-face to keep their head pinned, post on the far side, and slide your knee across their stomach. Alternative: scarf hold to mount by driving your weight toward their legs. The step-over mount requires keeping them flat and preventing the elbow-knee escape.</p>
 <h2 style="color:#e2b714;margin-top:32px">Side Control to Knee-on-Belly</h2>
 <p style="color:#d1d5db;line-height:1.8">From side control: when they try to make space or turn into you, post your near knee on their stomach, post your far foot on the mat for base, and use the knee pressure to control their posture and setup attacks. Knee-on-belly scores 2 points in IBJJF.</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

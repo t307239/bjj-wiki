@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">💥 ガードブレイクガイド</h1>
     <p style="color:#9ca3af;margin-bottom:24px">クローズドガードを破ることはトップゲームの最初の課題です。信頼できるガードブレイクはパッシングゲームの基盤であり、どれだけ速く支配的なポジションに前進できるかを決定します。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">ガードブレイクが重要な理由</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">ガードブレイクが重要な理由</h2>
 <p style="color:#d1d5db;line-height:1.8">クローズドガードはパスを防ぎます。ガードを破るまで、試みることができる攻撃が制限され、下からのサブミッションとスイープに対して脆弱です。信頼できる安全なガードブレイクはトップゲームで最初に開発すべきテクニカルスキルです。</p>
 <h2 style="color:#e2b714;margin-top:32px">スタンディングガードブレイク</h2>
 <p style="color:#d1d5db;line-height:1.8">最も信頼性の高いガードブレイク：両手を腰に置き、ギロチンへのアクセスを防ぐためにポスチャーアップ、立ち上がり（1本ずつ足）、ガード内にマットに膝を置き、ガードが開くように太ももに前腕で制御された下向きの圧力をかけます。その後パッシングゲームに移行します。</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

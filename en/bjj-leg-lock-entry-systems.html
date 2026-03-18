@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -47,7 +48,11 @@
     <h1>BJJ Leg Lock Entry Systems — Complete Guide to Ashi Garami, Saddle & Outside Heel</h1>
     <p class="intro">Leg locks have revolutionized modern grappling. Success in the leg lock game starts before the submission — it begins with mastering the entry systems that give you reliable, safe positions from which to attack.</p>
     
-    <h2>The Three Pillars of Leg Lock Entries</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>The Three Pillars of Leg Lock Entries</h2>
     <p>Most leg lock attacks flow from three positional families: ashi garami (single leg X, standard ashi), the saddle (inside heel hook position), and outside ashi (outside heel hook position). Each has distinct entry paths and positional controls.</p>
     <h2>Entry from Guard</h2>
     <p>The most common entry paths come from open guard — particularly DLR, single leg X, and seated guard. Learning to transition from these guard positions into leg entanglements requires hip movement, grip control, and understanding of the knee line.</p>
@@ -78,5 +83,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

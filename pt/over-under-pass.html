@@ -25,7 +25,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Over Under Pass","step":[{"@type":"HowToStep","text":"Quebre a guarda fechada ou abra a guarda do oponente"},{"@type":"HowToStep","text":"Posicione um braço sobre a coxa e um braço sob a outra coxa"},{"@type":"HowToStep","text":"Agarre ambas as pernas — braço de cima agarra o quadril próximo, braço de baixo a coxa distante"},{"@type":"HowToStep","text":"Empurre o ombro no quadril/coxa deles com pressão corporal total"},{"@type":"HowToStep","text":"Caminhe os pés para o lado e achate-os com o smash"},{"@type":"HowToStep","text":"Passe para o controle lateral quando os quadris deles estiverem achatados"}]}</script>
 <style>
 *{box-sizing:border-box;}
-body{background:#0a0a1a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;margin:0;padding:0;}
+body{background:#0a0a1a;color:#e0e0e0;font-size:16px;font-family:'Segoe UI',sans-serif;margin:0;line-height:1.8;padding:0;}
 nav{background:#16213e;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;}
 nav a{color:#e94560;text-decoration:none;font-size:14px;font-weight:700;}
 .container{max-width:860px;margin:0 auto;padding:20px;}
@@ -38,9 +38,22 @@ h2{color:#4ade80;margin-top:24px;}
 .beehiiv-box{background:#1a1a2e;border:2px solid #e94560;border-radius:10px;padding:20px;text-align:center;margin:32px 0;}
 footer{background:#16213e;padding:20px;text-align:center;color:#888;font-size:12px;margin-top:40px;}
 footer a{color:#e94560;text-decoration:none;}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🏠 Home</a>
   <a href="techniques-az.html">📚 A-Z Index</a>
@@ -52,6 +65,10 @@ footer a{color:#e94560;text-decoration:none;}
 <h1>Over Under Pass</h1>
 <p>O over under pass (também chamado de smash pass) é uma técnica de passagem de guarda por pressão tornada famosa pelo 5x Campeão Mundial Bernardo Faria. Envolve controlar uma perna por cima e outra por baixo das pernas do oponente enquanto avança com o ombro.</p>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">Conteúdo</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>Como Executar</h2>
 <ol class="steps-list"><li style="padding:6px 0;font-size:14px;color:#ccc;">1. Quebre a guarda fechada ou abra a guarda do oponente</li><li style="padding:6px 0;font-size:14px;color:#ccc;">2. Posicione um braço sobre a coxa e um braço sob a outra coxa</li><li style="padding:6px 0;font-size:14px;color:#ccc;">3. Agarre ambas as pernas — braço de cima agarra o quadril próximo, braço de baixo a coxa distante</li><li style="padding:6px 0;font-size:14px;color:#ccc;">4. Empurre o ombro no quadril/coxa deles com pressão corporal total</li><li style="padding:6px 0;font-size:14px;color:#ccc;">5. Caminhe os pés para o lado e achate-os com o smash</li><li style="padding:6px 0;font-size:14px;color:#ccc;">6. Passe para o controle lateral quando os quadris deles estiverem achatados</li></ol>
 

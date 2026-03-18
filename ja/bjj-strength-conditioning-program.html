@@ -23,6 +23,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header class="site-header">
   <div class="container">
     <a href="../index.html" class="logo">🥋 BJJ Wiki</a>
@@ -35,7 +36,11 @@
   <article>
     <h1>BJJ Strength & Conditioning Program</h1>
     <p class="intro">適切に設計されたS&Cプログラムは、BJJパフォーマンスを劇的に向上させます。この12週間プランは、マットで最も重要な身体特性を構築します。</p>
-    <h2>フェーズ1：基礎筋力（1-4週）</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>フェーズ1：基礎筋力（1-4週）</h2>
 <p>See the comprehensive guide at <a href='https://bjj-wiki.com/ja/bjj-strength-conditioning-program.html'>BJJ Wiki</a> for full details on フェーズ1：基礎筋力（1-4週）.</p>
 <h2>フェーズ2：パワー開発（5-8週）</h2>
 <p>See the comprehensive guide at <a href='https://bjj-wiki.com/ja/bjj-strength-conditioning-program.html'>BJJ Wiki</a> for full details on フェーズ2：パワー開発（5-8週）.</p>
@@ -59,5 +64,36 @@
     <p>© 2026 BJJ Wiki | <a href="https://bjj-wiki.com">Home</a></p>
   </div>
 </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

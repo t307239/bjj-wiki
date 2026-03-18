@@ -48,7 +48,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
   <style>
-    body{margin:0;font-family:'Segoe UI',sans-serif;background:#0a0f1a;color:#e2e8f0}
+    body{margin:0;font-size:16px;font-family:'Segoe UI',sans-serif;background:#0a0f1a;color:#e2e8f0}
     nav{background:#111827;padding:12px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
     nav a{color:#9ca3af;text-decoration:none;font-size:.95rem}
     nav a:hover{color:#e2b714}
@@ -63,9 +63,22 @@
     .btn-yellow{background:#e2b714;color:#000;font-weight:700;padding:10px 24px;border-radius:8px;text-decoration:none;display:inline-block}
     .btn-outline{border:1px solid #e2b714;color:#e2b714;padding:10px 24px;border-radius:8px;text-decoration:none;display:inline-block}
     .float-cta{position:fixed;bottom:24px;right:24px;background:#e2b714;color:#000;font-weight:700;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(226,183,20,.4);z-index:999;display:none}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
 </head>
 <body>
+<div id="read-progress"></div>
   <nav>
     <a href="index.html" style="color:#e2b714;font-weight:700">BJJ Wiki</a>
     <a href="index.html">ホーム</a>
@@ -81,7 +94,11 @@
     <h1>サブミッション防御ガイド</h1>
     <p class="intro">サブミッション防御は個々のエスケープについてではありません。最初からサブミッションが決まらないように防ぐポスチャーと構造的原則についてです。</p>
     
-      <h2 style="color:#e2b714;margin-top:2rem">アームバー防御の基礎</h2>
+        <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:2rem">アームバー防御の基礎</h2>
       <p style="color:#d1d5db;line-height:1.8">アームバーは腕の分離と肘の伸展を必要とします。防御：肘を曲げて腕を体に近づけます。「プレイヤーハンズ」グリップが時間を稼ぎます。スタック防御とヒップエスケープが主要なエスケープです。</p>
       <h2 style="color:#e2b714;margin-top:2rem">チョーク防御の原則</h2>
       <p style="color:#d1d5db;line-height:1.8">すべてのチョークは首へのブレードまたは2点の血流制限を必要とします。防御：顎を引いて気管を保護し、肩のシュラッグとポスチャーがブラッドチョークを防御します。</p>

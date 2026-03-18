@@ -24,7 +24,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"ベルナルド・ファリア","url":"https://t307239.github.io/bjj-wiki/ja/athlete-bernardo-faria.html","description":"ベルナルド・ファリアのBJJプロフィール：5回世界チャンピオン、オーバーアンダーパスとディープハーフガードの達人。","nationality":"🇧🇷 ブラジル","memberOf":{"@type":"Organization","name":"アライアンスBJJ"} }</script>
 <style>
 *{box-sizing:border-box;}
-body{background:#0a0a1a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;margin:0;padding:0;}
+body{background:#0a0a1a;color:#e0e0e0;font-size:16px;font-family:'Segoe UI',sans-serif;margin:0;line-height:1.8;padding:0;}
 nav{background:#16213e;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;}
 nav a{color:#e94560;text-decoration:none;font-size:14px;font-weight:700;}
 .container{max-width:860px;margin:0 auto;padding:20px;}
@@ -41,10 +41,23 @@ h2{color:#4ade80;margin-top:28px;}
 footer{background:#16213e;padding:20px;text-align:center;color:#888;font-size:12px;margin-top:40px;}
 footer a{color:#e94560;text-decoration:none;}
 @media(max-width:600px){.moves-grid{grid-template-columns:1fr;}}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many BJJ World Championships has Bernardo Faria won?","acceptedAnswer":{"@type":"Answer","text":"Bernardo Faria has won 5 IBJJF World Championships, making him one of the most decorated BJJ competitors ever."}},{"@type":"Question","name":"What is Bernardo Faria's most famous technique?","acceptedAnswer":{"@type":"Answer","text":"Bernardo Faria is best known for his Over Under Pass — a devastating pressure passing technique that he has used to defeat world champions."}},{"@type":"Question","name":"Did Bernardo Faria win ADCC?","acceptedAnswer":{"@type":"Answer","text":"Yes. Bernardo Faria won ADCC 2015 in the +99kg division, cementing his status as one of the all-time BJJ greats."}}]}</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <nav>
   <a href="index.html">🏠 Home</a>
   <a href="athletes.html">🥇 Athletes</a>
@@ -60,6 +73,10 @@ footer a{color:#e94560;text-decoration:none;}
   <div class="stat">1987年生まれ</div>
 </div>
 
+  <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>キャリアハイライト</h2>
 <ul class="highlight-list">
 <li>IBJJF世界選手権5冠</li><li>ADCC 2015チャンピオン（+99kg）</li><li>パンアメリカン選手権5冠</li><li>コンペティション金メダル100個超</li><li>BJJ Fanaticsの共同創設者</li>

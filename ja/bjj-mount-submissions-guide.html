@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🏔️ マウントサブミッションガイド</h1>
     <p style="color:#9ca3af;margin-bottom:24px">マウントはBJJで最も高得点の通常ポジションで、多様なサブミッションへのアクセスを提供します。すべてのオプションを知ることで予測不能で極めて危険な存在になります。</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">ハイマウント vs ローマウント攻撃</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">ハイマウント vs ローマウント攻撃</h2>
 <p style="color:#d1d5db;line-height:1.8">マウントポジションによって使用可能なサブミッションが異なります。ローマウント（腰同士）：アメリカーナ・キムラ・エゼキエルチョークが主要。ハイマウント（腰が肩近く、テクニカルマウント）：アームバー・クロスカラーチョーク・ヘッドアンドアームトライアングルが主要。</p>
 <h2 style="color:#e2b714;margin-top:32px">マウントからのアームバー</h2>
 <p style="color:#d1d5db;line-height:1.8">テクニカルマウントへステップし（一方の膝が頭に向けてスライド、もう一方はヒップの横に残る）、ファーニーを腕と肩を越えて上げ、腕を集めながら座り込み、フィニッシュします。主なエントリーの課題は相手が真っすぐな腕を与えないことです。フレームしようとしたとき攻撃してください。</p>
@@ -110,5 +114,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

@@ -51,7 +51,11 @@
     <h1 style="color:#e2b714;font-size:2rem;margin-bottom:8px">🎯 High Percentage BJJ Attacks</h1>
     <p style="color:#9ca3af;margin-bottom:24px">These are the submissions that win the most matches at every level of BJJ competition — the core attacks every practitioner must master before exploring exotic techniques.</p>
 
-    <h2 style="color:#e2b714;margin-top:32px">Why High Percentage Matters</h2>
+      <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2 style="color:#e2b714;margin-top:32px">Why High Percentage Matters</h2>
 <p style="color:#d1d5db;line-height:1.8">Exotic techniques are tempting, but statistics show that the rear naked choke, armbar, triangle, and guillotine account for the overwhelming majority of competition finishes at all levels. Mastering these reliably is infinitely more valuable than knowing 50 rare submissions.</p>
 <h2 style="color:#e2b714;margin-top:32px">Rear Naked Choke (RNC)</h2>
 <p style="color:#d1d5db;line-height:1.8">The #1 finish in MMA and top-level no-gi. From back control, slip the choking arm under the chin to the neck crease, bring the other hand behind the head (blade cut grip), and squeeze while arching back. The choke works in 2-5 seconds when applied correctly. Practice the seat belt and hook entry to get there consistently.</p>
@@ -111,5 +115,36 @@
       <p>© 2026 BJJ Wiki — <a href="https://bjjfanatics.com/?ref=BJJWIKI" style="color:#e2b714;text-decoration:none">BJJ Fanatics</a></p>
     </div>
   </footer>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

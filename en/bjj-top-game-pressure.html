@@ -16,7 +16,7 @@
   <style>
     :root{--bg:#0a0f1e;--card:#111827;--accent:#e2b714;--text:#e5e7eb;--muted:#9ca3af}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;line-height:1.7}
+    body{background:var(--bg);color:var(--text);font-size:16px;font-family:'Segoe UI',sans-serif;line-height:1.8}
     header{background:linear-gradient(135deg,#0f1a2e,#1a1040);padding:20px;text-align:center;border-bottom:2px solid var(--accent)}
     header h1{color:var(--accent);font-size:1.8rem;margin-bottom:6px}
     header p{color:var(--muted);font-size:.95rem}
@@ -50,7 +50,19 @@
     .float-cta p{font-size:.82rem;margin-bottom:8px;color:#e0d9ff}
     .float-cta a{display:block;background:#fff;color:#7c3aed;text-align:center;padding:8px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none}
     .float-close{position:absolute;top:8px;right:10px;cursor:pointer;color:#aaa;font-size:.8rem}
-  </style>
+    /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
+</style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -67,9 +79,14 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <header><h1>⬇️ BJJ Top Game Pressure Passing</h1><p>Develop crushing top game pressure in BJJ: weight distribution, smash passing, maintaining dominant positions, and grinding opponents down.</p></header>
 <nav><a href="../en/index.html">🏠 Home</a><a href="../en/techniques-az.html">📖 A-Z</a><a href="../en/skill-tree.html">🌳 Skill Tree</a><a href="../en/bjj-training-tips.html">💡 Tips</a><a href="../en/bjj-competition-guide.html">🏆 Competition</a></nav>
 <div class="container">
+  <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
 <h2>The Pressure Passing Philosophy</h2>
 <p>Pressure passing dominates BJJ by using weight, friction, and psychological attrition. Instead of speed or athleticism, pressure players win by making opponents carry their weight — literally. Over time, the bottom player gasps while the top player breathes.</p>
 <h2>Fundamentals of Pressure Passing</h2>

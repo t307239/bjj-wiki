@@ -32,8 +32,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-  line-height:1.75;padding:0 16px}
+  font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  line-height:1.85;padding:0 16px}
 a{color:var(--accent2);text-decoration:none}
 a:hover{text-decoration:underline}
 
@@ -184,6 +184,18 @@ footer{padding:28px 0;border-top:1px solid var(--border);
 .share-btn.x{background:#000;color:#fff}
 .share-btn.reddit{background:#ff4500;color:#fff}
 .share-btn.copy{background:#2d3748;color:#fff;cursor:pointer;border:none;font-family:inherit}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
@@ -310,6 +322,7 @@ footer{padding:28px 0;border-top:1px solid var(--border);
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
   <header>
     <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -348,7 +361,11 @@ graph LR
     </div>
   </div>
 
-  <h2>やり方</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">目次</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>やり方</h2>
   <div class="card"><div class="step"><div class="step-num">1</div><div>サイドコントロールから相手の腕をコントロールし、膝を腹に乗せる準備をします。相手の襟や袖をしっかりグリップし、逃げ道を塞ぎましょう。</div></div><div class="step"><div class="step-num">2</div><div>相手の腹部（みぞおち付近が効果的）に片膝を乗せ、もう片方の足は相手の腰の近くに置き、つま先を立ててバランスを取ります。</div></div><div class="step"><div class="step-num">3</div><div>膝が乗っている側の手で相手の頭部や襟をコントロールし、反対側の手は相手の腰やズボンを掴み、常に相手の動きを制限します。</div></div><div class="step"><div class="step-num">4</div><div>体重を膝に乗せた足に集中させつつ、上半身は軽く前のめりになりすぎないよう、背筋を伸ばしてバランスを保ちます。</div></div><div class="step"><div class="step-num">5</div><div>相手がブリッジで反転しようとした際には、素早く体重移動で対応したり、マウントポジションへ移行する準備をしたりして、常に優位なポジションを維持します。</div></div><div class="step"><div class="step-num">6</div><div>膝のプレッシャーだけでなく、腕でのコントロールや相手の顔へのプレッシャーを組み合わせることで、さらに相手を追い詰めることができます。</div></div></div>
 
   <h2>コツと注意点</h2>

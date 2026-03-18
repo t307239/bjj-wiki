@@ -33,7 +33,7 @@
 <style>
   :root {--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9;--green:#22c55e}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;padding:0 16px}
+  body{background:var(--bg);color:var(--text);font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;padding:0 16px}
   .container{max-width:800px;margin:0 auto;padding:24px 0 64px}
   header{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
   .logo{font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none}
@@ -98,6 +98,18 @@
   .beehiiv-wrap p{color:var(--muted);font-size:0.88rem;line-height:1.6;margin-bottom:16px}
   .beehiiv-btn{display:inline-block;background:linear-gradient(135deg,#6e40c9,#4f46e5);color:#fff;padding:12px 28px;border-radius:10px;font-weight:700;text-decoration:none;font-size:0.9rem}
   .beehiiv-btn:hover{opacity:.9;text-decoration:none}
+  /* Reading progress bar */
+  #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
+  /* Back to top */
+  #back-to-top{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:opacity .2s}
+  #back-to-top:hover{opacity:1}
+  /* Auto TOC */
+  .toc{background:#0d0d1a;border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0 28px;display:none}
+  .toc-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .toc-list{list-style:none;padding:0;margin:0}
+  .toc-list li{margin:4px 0}
+  .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
+  .toc-list a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">
 {
@@ -191,6 +203,7 @@
 </script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
   <header>
     <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
@@ -208,7 +221,11 @@
   <div class="belt-guide-box" style="border:2px solid #2563eb;border-radius:10px;padding:16px;margin:24px 0;background:#0f1420"><span style="background:#2563eb;color:#fff;padding:4px 12px;border-radius:20px;font-size:.85em;font-weight:700">Blue Belt Technique</span><br><a href="../en/blue-belt-bjj-guide.html" style="color:#e2b714;font-weight:600;text-decoration:none;margin-top:8px;display:inline-block">ð See Full Guide â Blue Belt Guide</a></div>
   <p>The 50/50 Guard is a highly effective and often misunderstood leg entanglement position in Brazilian Jiu-Jitsu, where both practitioners have their legs intertwined in a mirrored fashion. This position offers unique opportunities for sweeps, <a href="../en/backtake.html" style="color:var(--accent,#7c6af7);text-decoration:underline">Back Take</a>s, and a wide array of leg lock submissions, making it a staple for modern grapplers. Mastering the 50/50 requires precise control, understanding of angles, and strategic grip fighting.</p>
 
-  <h2>How to Execute</h2>
+    <div id="toc" class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </div>
+<h2>How to Execute</h2>
   <div class="card"><p>**Entry from Open Guard**: From an open guard, secure a strong grip on your opponent's ankle and collar or sleeve. Use your free leg to hook their far leg, creating an angle to transition your other leg over their thigh.<br>**Establish the Entanglement**: As you rotate, bring your second leg over your opponent's other thigh, ensuring both your legs are inside their legs, and both of your opponent's legs are inside yours. You should now be facing opposite directions, each with one leg trapped by the other's legs.<br>**Achieve Positional Control**: Focus on controlling your opponent's posture and hips. Use your leg hooks and grapevines to limit their movement, and secure grips on their sleeves, collars, or pant legs to prevent them from posturing up or disengaging.<br>**Isolate a Leg**: With proper control, work to isolate one of your opponent's legs. This often involves adjusting your hips and leg placement to create an angle where you can attack their heel or knee.<br>**Set Up Submissions/Sweeps**: From a controlled 50/50, you can transition to various leg locks like <a href="../en/heel-hook.html" style="color:var(--accent,#7c6af7);text-decoration:underline">Heel Hook</a>s, knee bars, or toe holds. Alternatively, use your leg entanglement to off-balance and sweep your opponent, often leading to a dominant top position or back take.</p></div>
 
   <h2>Key Details & Tips</h2>
