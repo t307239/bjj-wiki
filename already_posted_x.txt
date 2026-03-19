@@ -1,2 +1,4 @@
+tripod-sweep
 wrist-lock
+x-pass
 z-guard
