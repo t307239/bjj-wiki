@@ -2,10 +2,10 @@ name: Auto Post to X (Twitter)
 
 on:
   schedule:
-    # 朝: 14:00 UTC = 10:00 AM EST / 7:00 AM PST — US朝の高トラフィック時間帯
-    - cron: '0 14 * * *'
-    # 夕: 23:00 UTC = 7:00 PM EST / 4:00 PM PST — US夕方の高トラフィック時間帯
-    - cron: '0 23 * * *'
+    # 昼: 03:00 UTC = 12:00 JST / 11:00 PM EST(前日) / 8:00 PM PST(前日)
+    - cron: '0 3 * * *'
+    # 夜: 12:00 UTC = 21:00 JST / 8:00 AM EST / 5:00 AM PST
+    - cron: '0 12 * * *'
   workflow_dispatch:
     inputs:
       dry_run:
