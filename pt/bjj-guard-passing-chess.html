@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xadrez de Passagem de Guarda no BJJ: Sistemas Estratégicos de Passagem | BJJ Wiki</title>
+  <meta name="description" content="Aprenda o pensamento estratégico semelhante ao xadrez por trás da passagem de guarda no BJJ. Entenda como ler as intenções do jogador de guarda, encadear técnicas de passagem e alcançar controle dominante.">
+  <meta property="og:title" content="Xadrez de Passagem de Guarda no BJJ: Sistemas Estratégicos de Passagem">
+  <meta property="og:description" content="Aprenda o pensamento estratégico semelhante ao xadrez por trás da passagem de guarda no BJJ. Entenda como ler as intenções do jogador de guarda, encadear técnicas de passagem e alcançar controle dominante.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://t307239.github.io/bjj-wiki/pt/bjj-guard-passing-chess.html">
+  <meta property="og:site_name" content="BJJ Wiki">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Xadrez de Passagem de Guarda no BJJ: Sistemas Estratégicos de Passagem">
+  <meta name="twitter:description" content="Aprenda o pensamento estratégico semelhante ao xadrez por trás da passagem de guarda no BJJ. Entenda como ler as intenções do jogador de guarda, encadear técnicas de passagem e alcançar controle dominante.">
+  
+  <link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/bjj-guard-passing-chess.html">
+  <link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/bjj-guard-passing-chess.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://t307239.github.io/bjj-wiki/pt/bjj-guard-passing-chess.html">
+  <link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/bjj-guard-passing-chess.html">
+  <link rel="canonical" href="https://t307239.github.io/bjj-wiki/pt/bjj-guard-passing-chess.html">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXX');</script>
+  <!-- End Google Tag Manager -->
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: #111827;
+      --card-hover: #161f31;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(124,58,237,0.5);
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --accent: #7c3aed;
+      --accent2: #e94560;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.8; }
+    .container { max-width: 860px; margin: 0 auto; padding: 20px 16px 80px; }
+    header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; }
+    .logo { font-size: 1.1rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+    .lang-nav { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .lang-nav a { color: var(--muted); text-decoration: none; font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border); transition: all 0.2s; }
+    .lang-nav a.active, .lang-nav a:hover { color: var(--text); border-color: var(--accent); }
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--text); }
+    h1 { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .meta-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+    .badge { font-size: 0.75rem; padding: 3px 10px; border-radius: 12px; font-weight: 600; border: 1px solid var(--border); }
+    .badge-belt { color: #fff; background: #1d4ed833; border-color: #1d4ed866; }
+    .badge-cat { color: var(--accent); background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.3); }
+    .badge-diff { color: var(--muted); }
+    .intro { color: var(--muted); font-size: 1rem; margin-bottom: 24px; padding: 14px 16px; background: var(--card); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; }
+    .toc { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 28px; }
+    .toc h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 10px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin: 4px 0; }
+    .toc a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .toc a:hover { text-decoration: underline; }
+    section { margin-bottom: 32px; scroll-margin-top: 80px; }
+    h2 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    p { color: var(--text); margin-bottom: 12px; }
+    .tips-box { background: var(--card); border: 1px solid rgba(124,58,237,0.2); border-radius: 12px; padding: 16px 20px; margin: 28px 0; }
+    .tips-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 12px; }
+    .tips-box ul { list-style: none; padding: 0; }
+    .tips-box li { padding: 6px 0 6px 20px; position: relative; font-size: 0.95rem; color: var(--text); }
+    .tips-box li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+    .cta-banner { background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(233,69,96,0.15)); border: 1px solid rgba(124,58,237,0.3); border-radius: 12px; padding: 16px 20px; text-align: center; margin: 28px 0; }
+    .cta-banner a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 1rem; }
+    .cta-banner a:hover { text-decoration: underline; }
+    .share-bar { display: flex; align-items: center; gap: 10px; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .share-bar a { color: var(--text); text-decoration: none; font-size: 0.85rem; padding: 6px 14px; border: 1px solid var(--border); border-radius: 20px; transition: all 0.2s; }
+    .share-bar a:hover { border-color: var(--accent); color: var(--accent); }
+    footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); }
+    footer a { color: var(--muted); text-decoration: none; }
+    .progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(to right, var(--accent), var(--accent2)); z-index: 999; transition: width 0.1s; }
+    .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #fff; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 18px; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(124,58,237,0.4); z-index: 100; }
+    @media (max-width: 600px) { h1 { font-size: 1.3rem; } }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="progress-bar" id="progressBar"></div>
+<div class="container">
+  <header>
+    <a href="https://t307239.github.io/bjj-wiki/pt/index.html" class="logo">🥋 BJJ Wiki</a>
+    <nav class="lang-nav">
+  <a href="https://t307239.github.io/bjj-wiki/en/bjj-guard-passing-chess.html" class="">🇺🇸 EN</a>
+  <a href="https://t307239.github.io/bjj-wiki/ja/bjj-guard-passing-chess.html" class="">🇯🇵 JA</a>
+  <a href="https://t307239.github.io/bjj-wiki/pt/bjj-guard-passing-chess.html" class="active">🇧🇷 PT</a>
+</nav>
+  </header>
+
+  <nav class="breadcrumb">
+    <a href="https://t307239.github.io/bjj-wiki/pt/index.html">Início</a> › Passagem de Guarda › Xadrez de Passagem de Guarda no BJJ: Sistemas Estratégicos de Passagem
+  </nav>
+
+  <h1>Xadrez de Passagem de Guarda no BJJ: Sistemas Estratégicos de Passagem</h1>
+  <div class="meta-badges">
+    <span class="badge badge-belt">Faixa Azul</span>
+    <span class="badge badge-cat">Passagem de Guarda</span>
+    <span class="badge badge-diff">Intermediário</span>
+  </div>
+
+  <p class="intro">A passagem de guarda no BJJ é como uma partida de xadrez — cada movimento tem um contra, e os melhores passadores pensam vários passos à frente. Este guia explora a estrutura estratégica que transforma técnicas individuais de passagem em um sistema coerente e imparável.</p>
+
+  <nav class="toc">
+    <h3>Sumário</h3>
+    <ol>
+      <li><a href="#section-1">Lendo o Jogador de Guarda</a></li>
+<li><a href="#section-2">Sequências e Combinações de Passagem</a></li>
+<li><a href="#section-3">Criando e Explorando Ângulos</a></li>
+<li><a href="#section-4">Passagem de Velocidade vs Passagem de Pressão</a></li>
+<li><a href="#section-5">Terminando a Passagem de Forma Limpa</a></li>
+    </ol>
+  </nav>
+
+  
+  <section id="section-1">
+    <h2>Lendo o Jogador de Guarda</h2>
+    <p>Antes de tentar passar, identifique o tipo de guarda do seu adversário e seus ataques preferidos. Eles estão ameaçando a gola? Preparando uma rasteira? Entender o 'jogo A' deles diz quais ângulos de passagem são seguros e quais são armadilhas.</p>
+  </section>
+  <section id="section-2">
+    <h2>Sequências e Combinações de Passagem</h2>
+    <p>Os passadores de guarda de elite encadeiam técnicas deliberadamente. Uma ameaça de passagem de joelho força o jogador de guarda a enquadrar para fora, abrindo um torreando. A ameaça do torreando faz com que ele traga os joelhos para dentro, reabrindo o corte de joelho. Este loop é a base da passagem de pressão.</p>
+  </section>
+  <section id="section-3">
+    <h2>Criando e Explorando Ângulos</h2>
+    <p>A maioria das guardas é mais fraca em certos ângulos. A meia guarda é vulnerável no lado do gancho por baixo. A guarda aranha desmorona quando o passador ataca em 45 graus. Desenvolva o hábito de circular e se reposicionar para encontrar a fraqueza estrutural de cada guarda.</p>
+  </section>
+  <section id="section-4">
+    <h2>Passagem de Velocidade vs Passagem de Pressão</h2>
+    <p>A passagem de velocidade (torreando, arraste de perna) vence guardas flexíveis mas requer timing preciso. A passagem de pressão (smash pass, duplo por baixo) funciona contra enquadramentos rígidos mas requer comprometimento. Leia os atributos físicos do seu adversário para escolher o estilo certo.</p>
+  </section>
+  <section id="section-5">
+    <h2>Terminando a Passagem de Forma Limpa</h2>
+    <p>Muitos passadores alcançam o controle lateral brevemente mas o perdem imediatamente. Concentre-se em peso peito a peito, controle do crossface e prevenindo o gancho por baixo antes de comemorar. A passagem está completa quando você tem controle lateral estável sem ameaça de gancho por baixo.</p>
+  </section>
+
+  <div class="tips-box">
+    <h3>💡 Dicas Rápidas</h3>
+    <ul>
+  <li>Sempre lute por grips antes de tentar passar — sem grips, sem controle.</li>
+  <li>Estabeleça sua base antes de comprometer a direção da passagem.</li>
+  <li>Use a posição da cabeça para bloquear o gancho por baixo do lado oposto.</li>
+  <li>Passagens lentas devem ser implacáveis; passagens rápidas devem ser explosivas uma vez comprometidas.</li>
+  <li>Treine passagem contra resistência para construir timing, não apenas técnica.</li>
+</ul>
+  </div>
+
+  <div class="cta-banner">
+    <a href="https://bjj-app-one.vercel.app" onclick="gtag('event','cta_click',{page:'bjj-guard-passing-chess'});">Registre seu treino de BJJ com o BJJ App →</a>
+  </div>
+
+  <div class="share-bar">
+    <span style="color:var(--muted);font-size:0.85rem;">Share:</span>
+    <a href="https://twitter.com/intent/tweet?text=Xadrez%20de%20Passagem%20de%20Guarda%20no%20BJJ:%20Sistemas%20Estratégicos%20de%20Passagem%20-%20https://t307239.github.io/bjj-wiki/pt/bjj-guard-passing-chess.html%20%23BJJ%20%23grappling" target="_blank" rel="noopener">𝕏 Compartilhar</a>
+  </div>
+
+  <footer>
+    <p>© 2025 BJJ Wiki | <a href="https://t307239.github.io/bjj-wiki/en/index.html">English</a> | <a href="https://t307239.github.io/bjj-wiki/ja/index.html">日本語</a> | <a href="https://t307239.github.io/bjj-wiki/pt/index.html">Português</a></p>
+  </footer>
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', function() {
+    var s = document.documentElement.scrollTop;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progressBar').style.width = (s/h*100) + '%';
+    document.getElementById('backToTop').style.display = s > 300 ? 'flex' : 'none';
+  });
+</script>
+</body>
+</html>
