@@ -6,51 +6,61 @@
 <title>All BJJ Techniques | BJJ Wiki</title>
 <meta name="description" content="Complete encyclopedia of Brazilian Jiu-Jitsu techniques. Learn guards, passes, submissions, sweeps and more.">
 <style>
-  :root{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9}
+  :root{
+    --bg:#0b0f1a;
+    --card:#111827;
+    --card-hover:#161f31;
+    --border:rgba(255,255,255,0.08);
+    --border-hover:rgba(124,58,237,0.5);
+    --text:#e2e8f0;
+    --muted:#64748b;
+    --accent:#7c3aed;
+    --accent2:#e94560;
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-size:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;padding:0 16px}
+  body{background:var(--bg);color:var(--text);font-size:15px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.7;padding:0 16px}
   .container{max-width:900px;margin:0 auto;padding:24px 0 64px}
-  header{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
-  .logo{font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none}
+  header{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:28px}
+  .logo{font-size:1.3rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
   .logo span{color:var(--accent)}
   h1{font-size:2rem;font-weight:800;margin-bottom:8px}
   .subtitle{color:var(--muted);margin-bottom:32px}
-  .cat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+  .cat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px;transition:border-color .2s}
   .cat-card h2{font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:12px}
   .tech-links{display:flex;flex-wrap:wrap;gap:8px}
-  .tech-links a{background:#1e1e2e;color:var(--muted);text-decoration:none;padding:4px 12px;border-radius:6px;font-size:0.85rem;border:1px solid var(--border)}
+  .tech-links a{background:var(--card);color:var(--muted);text-decoration:none;padding:4px 12px;border-radius:6px;font-size:0.85rem;border:1px solid var(--border);transition:border-color .15s,color .15s}
   .tech-links a:hover{color:var(--text);border-color:var(--accent)}
   footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:0.8rem}
 
   .search-wrap{position:relative;margin-bottom:16px}
   .search-wrap .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none}
-  #tech-search{width:100%;padding:10px 12px 10px 38px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:0.9rem;outline:none}
-  #tech-search:focus{border-color:var(--accent)}
+  #tech-search{width:100%;padding:10px 12px 10px 38px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:0.9rem;outline:none;transition:border-color .2s}
+  #tech-search:focus{border-color:var(--border-hover)}
   .filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-  .filter-pill{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:20px;font-size:0.82rem;cursor:pointer;transition:all .15s}
+  .filter-pill{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:5px 14px;border-radius:20px;font-size:0.8rem;cursor:pointer;transition:all .2s;white-space:nowrap}
   .filter-pill:hover{border-color:var(--accent);color:var(--text)}
-  .filter-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .filter-pill.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
   .cat-section{margin-bottom:28px}
   .cat-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
   .cat-header h2{font-size:0.95rem;font-weight:700;color:var(--accent)}
   .cat-count{background:var(--border);color:var(--muted);font-size:0.75rem;padding:2px 8px;border-radius:12px}
   .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
-  .tech-card{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;text-decoration:none;color:var(--text);font-size:0.85rem;transition:border-color .15s}
-  .tech-card:hover{border-color:var(--accent);color:var(--text)}
+  .tech-card{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-decoration:none;color:var(--text);font-size:0.85rem;transition:border-color .2s,background .2s}
+  .tech-card:hover{border-color:var(--border-hover);background:var(--card-hover);color:var(--text)}
   .tech-name{font-weight:500}
   .arrow{color:var(--muted);font-size:0.8rem}
   .no-results{color:var(--muted);text-align:center;padding:32px 0}
-  .beehiiv-wrap{background:linear-gradient(135deg,#1a0a2e,#0d0820);border:1px solid var(--accent);border-radius:12px;padding:20px 24px;margin:32px 0;text-align:center}
+  .beehiiv-wrap{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(233,69,96,0.08));border:1px solid rgba(124,58,237,0.3);border-radius:12px;padding:20px 24px;margin:32px 0;text-align:center}
   .beehiiv-title{font-size:1rem;font-weight:700;margin-bottom:6px}
   .beehiiv-desc{color:var(--muted);font-size:0.85rem}
-  .feat-card{display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--text);transition:border-color .2s}
-  .feat-card:hover{border-color:var(--accent)}
+  .feat-card{display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--text);transition:border-color .2s,background .2s}
+  .feat-card:hover{border-color:var(--border-hover);background:var(--card-hover)}
   .feat-card span{font-weight:700;font-size:0.95rem}
   .feat-card small{color:var(--muted);font-size:0.8rem}
   .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:8px}
   .card h3{font-size:0.9rem;font-weight:600}
   .card h3 a{color:var(--text);text-decoration:none}
-  .card h3 a:hover{color:var(--accent)}
+  .card h3 a:hover{color:var(--accent)}.card{transition:border-color .15s}.card:hover{border-color:rgba(255,255,255,0.12)}
   /* Reading progress bar */
   #read-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:9999;transition:width .1s linear}
   /* Back to top */
@@ -244,12 +254,12 @@
 <!-- Formspree Contact Form -->
 
 <style>
-.guide-tabs{display:flex;gap:8px;overflow-x:auto;padding:0 0 12px;margin:32px 0 0;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
-.guide-tabs::-webkit-scrollbar{height:4px}
-.guide-tabs::-webkit-scrollbar-thumb{background:#2d2d4e;border-radius:2px}
-.guide-tab{flex-shrink:0;padding:8px 18px;border-radius:20px;border:1px solid #1e2a3a;background:#111827;color:#9aa8bb;cursor:pointer;font-size:.9rem;font-family:inherit;transition:all .2s;white-space:nowrap;outline:none}
-.guide-tab.active{background:#7c3aed;border-color:#7c3aed;color:#fff;font-weight:700}
-.guide-tab:hover:not(.active){border-color:#7c3aed;color:#e2e2ee}
+.guide-tabs{display:flex;gap:6px;overflow-x:auto;padding:0 0 12px;margin:28px 0 0;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.guide-tabs::-webkit-scrollbar{height:3px}
+.guide-tabs::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.guide-tab{flex-shrink:0;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:.85rem;font-family:inherit;transition:all .2s;white-space:nowrap;outline:none}
+.guide-tab.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.guide-tab:hover:not(.active){border-color:var(--border-hover);color:var(--text)}
 </style>
 <div class="guide-tabs">
   <button class="guide-tab active" onclick="showGuideTab('guide-featured', this)">📌 Featured</button>
