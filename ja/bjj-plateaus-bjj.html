@@ -64,6 +64,25 @@ footer .footer-bottom{text-align:center;margin-top:32px;color:#4b5563;font-size:
   .toc-list li{margin:4px 0}
   .toc-list a{color:var(--accent);font-size:.88rem;text-decoration:none}
   .toc-list a:hover{text-decoration:underline}
+
+  /* === Sidebar TOC === */
+  .wiki-sidebar{position:fixed;top:88px;left:max(12px,calc(50% - 620px));width:196px;max-height:calc(100vh - 108px);overflow-y:auto;scrollbar-width:none;z-index:20;padding-right:4px}
+  .wiki-sidebar::-webkit-scrollbar{display:none}
+  .wiki-sidebar-logo{font-size:.78rem;font-weight:800;letter-spacing:-.01em;color:var(--text);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+  .wiki-sidebar-logo span{color:var(--accent)}
+  .wiki-sidebar-title{font-size:.68rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px}
+  .wiki-toc-link{display:block;font-size:.78rem;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:5px;margin:1px 0;border-left:2px solid transparent;transition:color .15s,background .15s,border-color .15s;line-height:1.35}
+  .wiki-toc-link:hover{color:var(--text);background:rgba(255,255,255,.05);text-decoration:none}
+  .wiki-toc-link.active{color:var(--accent);border-left-color:var(--accent);background:rgba(124,58,237,.1)}
+  @media(max-width:1200px){.wiki-sidebar{display:none}}
+  /* === Updated card & border tokens === */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+  .faq{background:var(--card);border:1px solid var(--border)}
+  .aff-box{border-color:var(--accent)}
+  /* === Refined typography === */
+  body{background:var(--bg);color:var(--text);font-size:16px;line-height:1.8}
+  h2{font-size:1.15rem;font-weight:700;margin:32px 0 12px;padding-left:12px;border-left:3px solid var(--accent);scroll-margin-top:80px}
+  p{color:#c2c2d9;margin-bottom:16px}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"【BJJ】Overcoming BJJ Plateaus","description":"Break through skill plateaus with strategic training.","author":{"@type":"Organization","name":"BJJ Wiki"},"publisher":{"@type":"Organization","name":"BJJ Wiki","url":"https://t307239.github.io/bjj-wiki/"},"datePublished":"2026-03-16","dateModified":"2026-03-16","inLanguage":"ja","mainEntityOfPage":"https://t307239.github.io/bjj-wiki/ja/bjj-plateaus-bjj"}
@@ -173,5 +192,50 @@ window.addEventListener('scroll',function(){if(window.scrollY/document.body.scro
   </div>
   <div class="footer-bottom"><a href="../about.html">About</a> · <a href="../privacy.html">Privacy</a> · © 2026 BJJ Wiki</div>
 </footer>
+
+<script>
+(function(){
+  if(window.innerWidth<1200)return;
+  var hs=document.querySelectorAll('.container h2');
+  if(hs.length<2)return;
+  // assign IDs
+  hs.forEach(function(h,i){if(!h.id)h.id='hs'+i;});
+  // build sidebar
+  var sb=document.createElement('nav');
+  sb.className='wiki-sidebar';
+  var logo=document.createElement('div');
+  logo.className='wiki-sidebar-logo';
+  logo.innerHTML='BJJ<span>Wiki</span>';
+  sb.appendChild(logo);
+  var ttl=document.createElement('div');
+  ttl.className='wiki-sidebar-title';
+  ttl.textContent='On This Page';
+  sb.appendChild(ttl);
+  var links=[];
+  hs.forEach(function(h){
+    var a=document.createElement('a');
+    a.className='wiki-toc-link';
+    a.href='#'+h.id;
+    a.textContent=h.textContent.replace(/^[\s\u200b]+/,'');
+    sb.appendChild(a);
+    links.push(a);
+  });
+  document.body.appendChild(sb);
+  // IntersectionObserver
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(l){l.classList.remove('active');});
+          var al=sb.querySelector('a[href="#'+e.target.id+'"]');
+          if(al)al.classList.add('active');
+        }
+      });
+    },{rootMargin:'-15% 0px -75% 0px'});
+    hs.forEach(function(h){io.observe(h);});
+  }
+})();
+</script>
+
 </body>
 </html>

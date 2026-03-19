@@ -46,5 +46,50 @@ window.addEventListener('scroll',function(){{
     }
   })();
   </script>
+
+<script>
+(function(){
+  if(window.innerWidth<1200)return;
+  var hs=document.querySelectorAll('.container h2');
+  if(hs.length<2)return;
+  // assign IDs
+  hs.forEach(function(h,i){if(!h.id)h.id='hs'+i;});
+  // build sidebar
+  var sb=document.createElement('nav');
+  sb.className='wiki-sidebar';
+  var logo=document.createElement('div');
+  logo.className='wiki-sidebar-logo';
+  logo.innerHTML='BJJ<span>Wiki</span>';
+  sb.appendChild(logo);
+  var ttl=document.createElement('div');
+  ttl.className='wiki-sidebar-title';
+  ttl.textContent='On This Page';
+  sb.appendChild(ttl);
+  var links=[];
+  hs.forEach(function(h){
+    var a=document.createElement('a');
+    a.className='wiki-toc-link';
+    a.href='#'+h.id;
+    a.textContent=h.textContent.replace(/^[\s\u200b]+/,'');
+    sb.appendChild(a);
+    links.push(a);
+  });
+  document.body.appendChild(sb);
+  // IntersectionObserver
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(l){l.classList.remove('active');});
+          var al=sb.querySelector('a[href="#'+e.target.id+'"]');
+          if(al)al.classList.add('active');
+        }
+      });
+    },{rootMargin:'-15% 0px -75% 0px'});
+    hs.forEach(function(h){io.observe(h);});
+  }
+})();
+</script>
+
 </body>
 </html>
