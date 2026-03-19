@@ -77,6 +77,10 @@
     .progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(to right, var(--accent), var(--accent2)); z-index: 999; transition: width 0.1s; }
     .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #fff; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 18px; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(124,58,237,0.4); z-index: 100; }
     @media (max-width: 600px) { h1 { font-size: 1.3rem; } }
+  
+    .yt-search-btn { display: inline-flex; align-items: center; gap: 6px; color: #fff; background: #ff0000; border: none; padding: 6px 14px; border-radius: 20px; font-size: .85rem; font-weight: 600; text-decoration: none; transition: opacity .15s; }
+    .yt-search-btn:hover { opacity: .85; }
+    .yt-search-btn svg { width: 14px; height: 14px; fill: #fff; }
   </style>
 </head>
 <body>
@@ -156,6 +160,7 @@
   </div>
 
   <div class="share-bar">
+    <a href="https://www.youtube.com/results?search_query=BJJポジショナルコントロールの基礎トップに留まるアート+BJJ+tutorial" target="_blank" rel="noopener" class="yt-search-btn"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> ▶ YouTubeで動画を見る</a>
     <span style="color:var(--muted);font-size:0.85rem;">Share:</span>
     <a href="https://twitter.com/intent/tweet?text=BJJポジショナルコントロールの基礎：トップに留まるアート%20-%20https://t307239.github.io/bjj-wiki/ja/bjj-positional-control-fundamentals.html%20%23BJJ%20%23grappling" target="_blank" rel="noopener">𝕏 シェア</a>
   </div>
