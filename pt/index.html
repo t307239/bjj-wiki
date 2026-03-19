@@ -116,12 +116,66 @@
 
   </div>
   
+
+<style>
+/* Accordion cat-sections */
+.cat-section .tech-grid { display: none }
+.cat-section.open .tech-grid { display: grid }
+.cat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  margin-bottom: 0;
+  user-select: none;
+  transition: border-color .2s, background .2s;
+}
+.cat-header:hover { border-color: var(--border-hover); background: var(--card-hover) }
+.cat-section.open .cat-header {
+  border-color: var(--accent);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+  background: var(--card-hover);
+}
+.cat-section .tech-grid {
+  border: 1px solid var(--accent);
+  border-top: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
+  background: var(--card);
+  gap: 8px;
+}
+.cat-chevron {
+  font-size: .75rem;
+  color: var(--muted);
+  transition: transform .2s;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+.cat-section.open .cat-chevron { transform: rotate(90deg); color: var(--accent) }
+.cat-header h2 { margin: 0; font-size: .95rem }
+.cat-header .cat-count {
+  font-size: .75rem;
+  background: rgba(124,58,237,0.15);
+  color: var(--accent);
+  border-radius: 10px;
+  padding: 1px 8px;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+.cat-header-left { display: flex; align-items: center; gap: 8px }
+/* Compact cat-section spacing */
+.cat-section { margin-bottom: 6px }
+</style>
+
 <div class="cat-section" data-cat="submission">
-  <div class="cat-header">
-      <div id="toc" class="toc">
-    <div class="toc-title">Conteúdo</div>
-    <ul class="toc-list" id="toc-list"></ul>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Chokes</h2><span class="cat-count">8</span></div><span class="cat-chevron">▶</span></div>
 <h2>Choke</h2><span class="cat-count">8</span>
   </div>
   <div class="tech-grid">
@@ -136,17 +190,13 @@
   </div>
 </div>
 <div class="cat-section" data-cat="defense">
-  <div class="cat-header">
-    <h2>Defense</h2><span class="cat-count">1</span>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Defense</h2><span class="cat-count">1</span></div><span class="cat-chevron">▶</span></div>
   <div class="tech-grid">
 <a class="tech-card" href="sprawl.html"><span class="tech-name">Sprawl</span><span class="arrow">→</span></a>
   </div>
 </div>
 <div class="cat-section" data-cat="guard">
-  <div class="cat-header">
-    <h2>Guard</h2><span class="cat-count">10</span>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Guard</h2><span class="cat-count">10</span></div><span class="cat-chevron">▶</span></div>
   <div class="tech-grid">
 <a class="tech-card" href="closed-guard.html"><span class="tech-name">Closed Guard</span><span class="arrow">→</span></a>
 <a class="tech-card" href="open-guard.html"><span class="tech-name">Open Guard</span><span class="arrow">→</span></a>
@@ -161,9 +211,7 @@
   </div>
 </div>
 <div class="cat-section" data-cat="submission">
-  <div class="cat-header">
-    <h2>Joint Lock</h2><span class="cat-count">5</span>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Joint Lock</h2><span class="cat-count">5</span></div><span class="cat-chevron">▶</span></div>
   <div class="tech-grid">
 <a class="tech-card" href="armbar.html"><span class="tech-name">Armbar</span><span class="arrow">→</span></a>
 <a class="tech-card" href="kimura.html"><span class="tech-name">Kimura</span><span class="arrow">→</span></a>
@@ -173,9 +221,7 @@
   </div>
 </div>
 <div class="cat-section" data-cat="submission">
-  <div class="cat-header">
-    <h2>Leg Lock</h2><span class="cat-count">6</span>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Leg Lock</h2><span class="cat-count">6</span></div><span class="cat-chevron">▶</span></div>
   <div class="tech-grid">
 <a class="tech-card" href="heel-hook.html"><span class="tech-name">Heel Hook</span><span class="arrow">→</span></a>
 <a class="tech-card" href="inside-heel-hook.html"><span class="tech-name">Inside Heel Hook</span><span class="arrow">→</span></a>
@@ -186,9 +232,7 @@
   </div>
 </div>
 <div class="cat-section" data-cat="passing">
-  <div class="cat-header">
-    <h2>Passing</h2><span class="cat-count">5</span>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Passing</h2><span class="cat-count">5</span></div><span class="cat-chevron">▶</span></div>
   <div class="tech-grid">
 <a class="tech-card" href="guard-pass.html"><span class="tech-name">Guard Pass</span><span class="arrow">→</span></a>
 <a class="tech-card" href="torreando-pass.html"><span class="tech-name">Torreando Pass</span><span class="arrow">→</span></a>
@@ -198,9 +242,7 @@
   </div>
 </div>
 <div class="cat-section" data-cat="position">
-  <div class="cat-header">
-    <h2>Position</h2><span class="cat-count">6</span>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Position</h2><span class="cat-count">6</span></div><span class="cat-chevron">▶</span></div>
   <div class="tech-grid">
 <a class="tech-card" href="mount.html"><span class="tech-name">Mount</span><span class="arrow">→</span></a>
 <a class="tech-card" href="back-mount.html"><span class="tech-name">Back Mount</span><span class="arrow">→</span></a>
@@ -211,9 +253,7 @@
   </div>
 </div>
 <div class="cat-section" data-cat="sweep">
-  <div class="cat-header">
-    <h2>Sweep</h2><span class="cat-count">4</span>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Sweep</h2><span class="cat-count">4</span></div><span class="cat-chevron">▶</span></div>
   <div class="tech-grid">
 <a class="tech-card" href="scissor-sweep.html"><span class="tech-name">Scissor Sweep</span><span class="arrow">→</span></a>
 <a class="tech-card" href="flower-sweep.html"><span class="tech-name">Flower Sweep</span><span class="arrow">→</span></a>
@@ -222,9 +262,7 @@
   </div>
 </div>
 <div class="cat-section" data-cat="takedown">
-  <div class="cat-header">
-    <h2>Takedown</h2><span class="cat-count">4</span>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Takedown</h2><span class="cat-count">4</span></div><span class="cat-chevron">▶</span></div>
   <div class="tech-grid">
 <a class="tech-card" href="double-leg-takedown.html"><span class="tech-name">Double Leg Takedown</span><span class="arrow">→</span></a>
 <a class="tech-card" href="single-leg-takedown.html"><span class="tech-name">Single Leg Takedown</span><span class="arrow">→</span></a>
@@ -233,9 +271,7 @@
   </div>
 </div>
 <div class="cat-section" data-cat="transition">
-  <div class="cat-header">
-    <h2>Transition</h2><span class="cat-count">1</span>
-  </div>
+  <div class="cat-header" onclick="toggleCat(this)"><div class="cat-header-left"><h2>Transition</h2><span class="cat-count">1</span></div><span class="cat-chevron">▶</span></div>
   <div class="tech-grid">
 <a class="tech-card" href="backtake.html"><span class="tech-name">Back Take</span><span class="arrow">→</span></a>
   </div>
@@ -5243,60 +5279,14 @@ function showGuideTab(id,btn){
   window.addEventListener('scroll',function(){if((window.scrollY/(document.body.scrollHeight-window.innerHeight))>.5)show();},{passive:true});
 })();
 </script>
-<div class="card"><h3><a href="bjj-inside-heel-hook-system.html">Inside Heel Hook System</a></h3></div>
-<div class="card"><h3><a href="bjj-outside-heel-hook-system.html">Outside Heel Hook System</a></h3></div>
-<div class="card"><h3><a href="bjj-kneebar-system.html">Kneebar System</a></h3></div>
-<div class="card"><h3><a href="bjj-triangle-choke-system.html">Triangle Choke System</a></h3></div>
-<div class="card"><h3><a href="bjj-darce-anaconda-system.html">Darce Anaconda System</a></h3></div>
-<div class="card"><h3><a href="bjj-knee-on-belly-system.html">Knee On Belly System</a></h3></div>
-<div class="card"><h3><a href="bjj-mount-pressure-system.html">Mount Pressure System</a></h3></div>
-<div class="card"><h3><a href="bjj-toreando-pass-system.html">Toreando Pass System</a></h3></div>
-<div class="card"><h3><a href="bjj-knee-slice-pass-system.html">Knee Slice Pass System</a></h3></div>
-<div class="card"><h3><a href="bjj-over-under-pass.html">Over Under Pass</a></h3></div>
-<div class="card"><h3><a href="bjj-berimbolo-system.html">Berimbolo System</a></h3></div>
-<div class="card"><h3><a href="bjj-competition-weight-cutting.html">Competition Weight Cutting</a></h3></div>
-<div class="card"><h3><a href="bjj-referee-rules-guide.html">Referee Rules Guide</a></h3></div>
-<div class="card"><h3><a href="bjj-match-visualization.html">Match Visualization</a></h3></div>
-<div class="card"><h3><a href="bjj-guard-pull-competition.html">Guard Pull Competition</a></h3></div>
-<div class="card"><h3><a href="bjj-post-competition-analysis.html">Post Competition Analysis</a></h3></div>
-<div class="card"><h3><a href="bjj-flow-rolling-benefits.html">Flow Rolling Benefits</a></h3></div>
-<div class="card"><h3><a href="bjj-injury-prevention-training.html">Injury Prevention Training</a></h3></div>
-<div class="card"><h3><a href="bjj-worm-guard-system.html">Worm Guard System</a></h3></div>
-<div class="card"><h3><a href="bjj-truck-position-system.html">Truck Position System</a></h3></div>
-<div class="card"><h3><a href="bjj-strength-training-guide.html">Strength Training Guide</a></h3></div>
-<div class="card"><h3><a href="bjj-opening-gym-guide.html">Opening Gym Guide</a></h3></div>
-<div class="card"><h3><a href="bjj-coaching-principles.html">Coaching Principles</a></h3></div>
-<div class="card"><h3><a href="bjj-lineage-affiliation.html">Lineage Affiliation</a></h3></div>
-<div class="card"><h3><a href="bjj-etiquette-dojo-guide.html">Etiquette Dojo Guide</a></h3></div>
-<div class="card"><h3><a href="bjj-connection-principle.html">Connection Principle</a></h3></div>
-<div class="card"><h3><a href="bjj-angles-control.html">Angles Control</a></h3></div>
-<div class="card"><h3><a href="bjj-weight-distribution-mastery.html">Weight Distribution Mastery</a></h3></div>
-<div class="card"><h3><a href="bjj-reactive-vs-proactive.html">Reactive Vs Proactive</a></h3></div>
-<div class="card"><h3><a href="bjj-long-game-development.html">Long Game Development</a></h3></div>
-</div>
-<a href="bjj-advanced-concepts-guide.html" class="tech-card"><span class="tech-name">Conceitos Avançados BJJ</span><span class="arrow">→</span></a>
-<a href="bjj-flow-rolling-advanced.html" class="tech-card"><span class="tech-name">Flow Rolling Avançado</span><span class="arrow">→</span></a>
-<a href="bjj-positional-drilling-system.html" class="tech-card"><span class="tech-name">Sistema de Drilling Posicional</span><span class="arrow">→</span></a>
-<a href="bjj-guard-attacks-advanced-system.html" class="tech-card"><span class="tech-name">Sistema Avançado de Ataques</span><span class="arrow">→</span></a>
-<a href="bjj-passing-systems-complete.html" class="tech-card"><span class="tech-name">Sistemas Completos de Passagem</span><span class="arrow">→</span></a>
-<div class="card"><a href="bjj-guard-development-system.html"><strong>Sistema de Desenvolvimento de Guarda no BJJ</strong><br><small>Guarda</small></a></div>
-<div class="card"><a href="bjj-reaction-training-bjj.html"><strong>Treinamento de Reação no BJJ</strong><br><small>Métodos de Treinamento</small></a></div>
-<div class="card"><a href="bjj-chest-to-chest-control.html"><strong>Controle Peito a Peito no BJJ</strong><br><small>Controle Posicional</small></a></div>
-<div class="card"><a href="bjj-offense-first-bjj.html"><strong>BJJ com Prioridade Ofensiva</strong><br><small>Estratégia Competitiva</small></a></div>
-<div class="card"><a href="bjj-submission-matrix.html"><strong>Matriz de Finalizações no BJJ</strong><br><small>Finalizações</small></a></div>
-</body>
-</html><div class="card"><h3><a href="bjj-rubber-guard-advanced.html">Sistema Avançado de Rubber Guard</a></h3></div>
-<div class="card"><h3><a href="bjj-deep-half-guard-mastery.html">Maestria na Deep Half Guard</a></h3></div>
-<div class="card"><h3><a href="bjj-leg-entanglement-entries.html">Entradas de Leg Entanglement</a></h3></div>
-<div class="card"><h3><a href="bjj-back-take-advanced-system.html">Sistema Avançado de Back Take</a></h3></div>
-<div class="card"><h3><a href="bjj-submission-finishing-details.html">Detalhes de Finalização</a></h3></div>
-<div class="card"><a href="bjj-inversion-system.html"><strong>BJJ インバージョンシステム</strong><br><small>上級ガード</small></a></div>
-<div class="card"><a href="bjj-wrist-lock-complete.html"><strong>手首ロック完全ガイド</strong><br><small>サブミッション</small></a></div>
-<div class="card"><a href="bjj-mat-culture-etiquette.html"><strong>マット文化とエチケット</strong><br><small>BJJライフスタイル</small></a></div>
-<div class="card"><a href="bjj-wrestling-takedown-for-bjj.html"><strong>BJJのためのレスリングテイクダウン</strong><br><small>テイクダウン</small></a></div>
 
-<div class="card"><a href="bjj-guard-pulling-strategy.html"><strong>Estratégia de Puxada de Guarda</strong><br><small>Guarda</small></a></div>
-<div class="card"><a href="bjj-pressure-top-game.html"><strong>Jogo de Pressão no Topo</strong><br><small>Jogo no Topo</small></a></div>
-<div class="card"><a href="bjj-conceptual-bjj-approach.html"><strong>Abordagem Conceitual do BJJ</strong><br><small>Conceitos</small></a></div>
-<div class="card"><a href="bjj-for-grapplers.html"><strong>BJJ para Grapplers</strong><br><small>Grupos Especiais</small></a></div>
-<div class="card"><a href="bjj-body-triangle-system.html"><strong>Sistema de Triângulo Corporal</strong><br><small>Controle das Costas</small></a></div>
+<script>
+function toggleCat(el) {
+  var sec = el.closest('.cat-section');
+  if (!sec) return;
+  sec.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
