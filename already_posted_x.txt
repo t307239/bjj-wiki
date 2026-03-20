@@ -1,3 +1,5 @@
+techniques-az
+triangle-choke
 tripod-sweep
 wrist-lock
 x-guard
