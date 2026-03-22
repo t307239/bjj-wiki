@@ -485,10 +485,13 @@ def article_to_html(tech, lang_code, article, all_techniques):
     ])
 
     # è¨èªåæ¿ãªã³ã¯
-    lang_switcher = " | ".join([
-        f'<a href="../{lc}/{tech["slug"]}.html">{LANGUAGES[lc]["name"]}</a>'
-        for lc in LANGUAGES if lc != lang_code
+    # 言語切替ナビ (lang-nav)
+    _lang_flags = {"en": "🇺🇸 EN", "ja": "🇯🇵 JA", "pt": "🇧🇷 PT"}
+    lang_nav_links = "".join([
+        f'<a href="../{lc}/{tech["slug"]}.html" {"class=\\"active\\"" if lc == lang_code else ""}>{_lang_flags[lc]}</a>'
+        for lc in LANGUAGES
     ])
+    lang_nav = f'<nav class="lang-nav">{lang_nav_links}</nav>'
 
     keywords_str = ", ".join(article.get("keywords", []))
 
@@ -646,8 +649,9 @@ def article_to_html(tech, lang_code, article, all_techniques):
   nav{{margin-top:8px;font-size:0.85rem;color:var(--muted)}}
   nav a{{color:var(--muted);text-decoration:none;margin-right:12px}}
   nav a:hover{{color:var(--text)}}
-  .lang-switcher{{font-size:0.8rem;color:var(--muted);margin-top:6px}}
-  .lang-switcher a{{color:var(--accent);text-decoration:none;margin:0 4px}}
+  .lang-nav{{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}}
+  .lang-nav a{{color:var(--muted);text-decoration:none;font-size:.85rem;padding:2px 8px;border-radius:4px;border:1px solid var(--border);transition:all .2s}}
+  .lang-nav a.active,.lang-nav a:hover{{color:var(--text);border-color:var(--accent)}}
   .badge{{display:inline-block;font-size:0.72rem;padding:2px 10px;border-radius:20px;background:#1e1e2e;color:var(--muted);border:1px solid var(--border);margin-bottom:12px}}
   h1{{font-size:2rem;font-weight:800;margin-bottom:16px;line-height:1.2}}
   h2{{font-size:1.2rem;font-weight:700;margin:32px 0 12px;padding-left:12px;border-left:3px solid var(--accent)}}
@@ -814,12 +818,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <div id="read-progress"></div>
 <div class="container">
   <header>
-    <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
-    <nav>
-      <a href="../index.html">{labels['home']}</a>
-      <a href="../index.html">{labels['all']}</a>
-    </nav>
-    <div class="lang-switcher">{lang_switcher}</div>
+    <a href="../{lang_code}/index.html" class="logo">🥋 BJJ Wiki</a>
+    {lang_nav}
   </header>
 
   <span class="badge">{tech['category']}</span><br>
