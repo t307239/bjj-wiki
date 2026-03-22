@@ -42,7 +42,7 @@
     .breadcrumb a:hover{color:var(--text)}
     h1{font-size:1.6rem;font-weight:800;line-height:1.3;margin-bottom:12px;letter-spacing:-0.02em}
     h2{font-size:1.2rem;font-weight:700;color:var(--accent);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-    h3{color:#7c3aed;margin:20px 0 8px;font-size:1.05rem}
+    h3{color:var(--accent);margin:20px 0 8px;font-size:1.05rem}
     p{color:var(--text);margin-bottom:12px}
     ul,ol{padding-left:20px;margin-bottom:14px}
     li{margin-bottom:6px;color:var(--text)}
@@ -84,19 +84,29 @@
 </head>
 <body>
 <div id="read-progress"></div>
+<div class="container">
+<header>
+  <a href="../en/index.html" class="logo">🥋 BJJ Wiki</a>
+  <nav class="lang-nav">
+    <a href="../en/bjj-wrist-lock-complete.html" class="active">🇺🇸 EN</a>
+    <a href="../ja/bjj-wrist-lock-complete.html">🇯🇵 JA</a>
+    <a href="../pt/bjj-wrist-lock-complete.html">🇧🇷 PT</a>
+  </nav>
+</header>
+
 <nav>
   <a href="/en/index.html">Home</a>
   <a href="/en/index.html">BJJ Wiki</a>
   <span style="color:#666">›</span>
   <span style="color:#ccc">Submissions</span>
 </nav>
-<header>
-  <h1>BJJ Wrist Lock Complete System</h1>
-  <div class="meta">
+
+<h1>BJJ Wrist Lock Complete System</h1>
+<div class="meta">
     <span class="badge cat">Submissions</span>
     <span class="badge diff-intermediate">Intermediate</span>
   </div>
-</header>
+
 <div class="container">
   <div class="lang-links">
     <a href="https://wiki.bjj-app.net/en/bjj-wrist-lock-complete.html">🇺🇸 English</a>
@@ -141,7 +151,7 @@
     </ul>
   </div>
   <div class="cta-banner" onclick="gtag('event','cta_click',{'page':'bjj-wrist-lock-complete'})">
-    <a href="https://bjj-app-one.vercel.app">Track your BJJ training →</a>
+    <a href="https://bjj-app.net">Track your BJJ training →</a>
   </div>
 </div>
 <footer>

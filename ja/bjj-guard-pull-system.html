@@ -44,7 +44,7 @@
     .breadcrumb a:hover{color:var(--text)}
     h1{font-size:1.6rem;font-weight:800;line-height:1.3;margin-bottom:12px;letter-spacing:-0.02em}
     h2{font-size:1.2rem;font-weight:700;color:var(--accent);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-    h3{color:#7c3aed;margin:20px 0 8px;font-size:1.05rem}
+    h3{color:var(--accent);margin:20px 0 8px;font-size:1.05rem}
     p{color:var(--text);margin-bottom:12px}
     ul,ol{padding-left:20px;margin-bottom:14px}
     li{margin-bottom:6px;color:var(--text)}
@@ -98,19 +98,17 @@
 </head>
 <body>
 <div id="read-progress"></div>
-<nav>
-  <a href="index.html">🥋 BJJ Wiki</a>
-  <a href="techniques-az.html">全技一覧</a>
-  <a href="news.html">ニュース</a>
-  <a href="skill-tree.html">スキルツリー</a>
-  <a href="sparring-simulator.html">Simulator</a>
-  <div class="lang-switch">
-    <a href="../en/bjj-guard-pull-system.html">EN</a>
-    <a href="../ja/bjj-guard-pull-system.html">JA</a>
-    <a href="../pt/bjj-guard-pull-system.html">PT</a>
-  </div>
-</nav>
+
 <div class="container">
+<header>
+  <a href="../ja/index.html" class="logo">🥋 BJJ Wiki</a>
+  <nav class="lang-nav">
+    <a href="../en/bjj-guard-pull-system.html">🇺🇸 EN</a>
+    <a href="../ja/bjj-guard-pull-system.html" class="active">🇯🇵 JA</a>
+    <a href="../pt/bjj-guard-pull-system.html">🇧🇷 PT</a>
+  </nav>
+</header>
+
 <h1>ガードプルシステム BJJ完全戦略</h1>
 <p class="meta">初級〜上級 · ギ &amp; ノーギ · エントリー戦略</p>
 <p>ガードプルは、テイクダウンを争う代わりに意図的に地面のガードポジションを確立することです。</p>

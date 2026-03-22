@@ -43,7 +43,7 @@
     .breadcrumb a:hover{color:var(--text)}
     h1{font-size:1.6rem;font-weight:800;line-height:1.3;margin-bottom:12px;letter-spacing:-0.02em}
     h2{font-size:1.2rem;font-weight:700;color:var(--accent);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-    h3{color:#7c3aed;margin:20px 0 8px;font-size:1.05rem}
+    h3{color:var(--accent);margin:20px 0 8px;font-size:1.05rem}
     p{color:var(--text);margin-bottom:12px}
     ul,ol{padding-left:20px;margin-bottom:14px}
     li{margin-bottom:6px;color:var(--text)}
@@ -134,13 +134,16 @@
 <body>
 <div id="read-progress"></div>
 <div class="container">
-  <header>
-    <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
-    <nav>
-      <a href="../index.html">Início</a>
-      <a href="index.html">Techniques</a>
-    </nav>
-  </header>
+<header>
+  <a href="../pt/index.html" class="logo">🥋 BJJ Wiki</a>
+  <nav class="lang-nav">
+    <a href="../en/bjj-attacking-from-turtle.html">🇺🇸 EN</a>
+    <a href="../ja/bjj-attacking-from-turtle.html">🇯🇵 JA</a>
+    <a href="../pt/bjj-attacking-from-turtle.html" class="active">🇧🇷 PT</a>
+  </nav>
+</header>
+
+  
 
   <div class="difficulty-bar">
     <span class="badge">Técnicas</span>
@@ -191,7 +194,7 @@
 
   <div class="cta-banner">
     <p>🥋 <strong>Learn more techniques and progress your BJJ game</strong></p>
-    <a href="https://bjj-app-one.vercel.app" class="cta-btn" target="_blank" rel="noopener">Open BJJ App</a>
+    <a href="https://bjj-app.net" class="cta-btn" target="_blank" rel="noopener">Open BJJ App</a>
   </div>
 
   </div>

@@ -43,7 +43,7 @@
     .breadcrumb a:hover{color:var(--text)}
     h1{font-size:1.6rem;font-weight:800;line-height:1.3;margin-bottom:12px;letter-spacing:-0.02em}
     h2{font-size:1.2rem;font-weight:700;color:var(--accent);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-    h3{color:#7c3aed;margin:20px 0 8px;font-size:1.05rem}
+    h3{color:var(--accent);margin:20px 0 8px;font-size:1.05rem}
     p{color:var(--text);margin-bottom:12px}
     ul,ol{padding-left:20px;margin-bottom:14px}
     li{margin-bottom:6px;color:var(--text)}
@@ -209,14 +209,16 @@
 <body>
 <div id="read-progress"></div>
 <div class="container">
-  <header>
-    <a href="../index.html" class="logo">BJJ<span>Wiki</span></a>
-    <nav>
-      <a href="../index.html">ホーム</a>
-      <a href="index.html">全技一覧</a>
-    </nav>
-    <div class="lang-switcher"><a href="../en/rubber-guard.html">English</a> | <a href="../pt/rubber-guard.html">Português</a></div>
-  </header>
+<header>
+  <a href="../ja/index.html" class="logo">🥋 BJJ Wiki</a>
+  <nav class="lang-nav">
+    <a href="../en/rubber-guard.html">🇺🇸 EN</a>
+    <a href="../ja/rubber-guard.html" class="active">🇯🇵 JA</a>
+    <a href="../pt/rubber-guard.html">🇧🇷 PT</a>
+  </nav>
+</header>
+
+  
 
   <span class="badge">Guard</span><br>
   <span class="belt belt-青帯以上">青帯以上</span>
@@ -278,7 +280,7 @@ graph LR
 .athletes-section h2{font-size:.9rem;font-weight:700;color:var(--accent2,#a78bfa);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
 .athlete-chips{display:flex;flex-wrap:wrap;gap:10px}
 .athlete-chip{display:flex;align-items:center;gap:10px;background:#141926;border:1px solid #1f2840;border-radius:12px;padding:12px 16px;text-decoration:none;color:#e8eaf6;transition:border-color .2s}
-.athlete-chip:hover{border-color:#7c6af7;text-decoration:none}
+.athlete-chip:hover{border-color:var(--accent);text-decoration:none}
 .ac-name{font-weight:700;font-size:.9rem}
 .ac-dvd{font-size:.75rem;color:#a78bfa;margin-top:2px}
 .ac-fanatics{display:inline-block;margin-top:6px;font-size:.75rem;background:linear-gradient(135deg,#7c6af7,#a78bfa);color:#fff;padding:3px 10px;border-radius:20px}
@@ -349,7 +351,7 @@ graph LR
 .gear-box h3{font-size:.82rem;font-weight:700;color:#6b7699;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
 .gear-links{display:flex;flex-wrap:wrap;gap:8px}
 .gear-link{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#141926;border:1px solid #1f2840;border-radius:8px;font-size:.8rem;color:#a78bfa;text-decoration:none;font-weight:600}
-.gear-link:hover{border-color:#7c6af7;text-decoration:none}
+.gear-link:hover{border-color:var(--accent);text-decoration:none}
 </style>
 
 <div style="background:#0f1420;border:1px solid #3b2d6e;border-radius:12px;padding:14px 18px;margin:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px"><div><div style="font-size:.85rem;font-weight:700;color:#a78bfa">📍 進捗を記録</div><div style="font-size:.78rem;color:var(--muted,#7a7a9a)">スキルツリーでこの技の習得をチェック</div></div><a href="../ja/skill-tree.html" style="background:#6e40c9;color:#fff;padding:7px 16px;border-radius:8px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">🌳 スキルツリーを開く →</a></div>
