@@ -40,7 +40,7 @@ SITEMAP = os.path.join(WIKI_ROOT, "sitemap.xml")
 LANGS = {"en": EN_DIR, "ja": JA_DIR, "pt": PT_DIR}
 BASE_URL = "https://t307239.github.io/bjj-wiki"
 AFFILIATE_TAG = "bjj06-22"
-APP_URL = "bjj-app-one.vercel.app"
+APP_URL = "bjj-app.net"
 
 # How many pages to sample per test (keep fast; full scan optional)
 SAMPLE_SIZE = 50
@@ -560,6 +560,159 @@ class TestIndexHtmlClean(unittest.TestCase):
             self.assertIn(
                 "search.json", content,
                 f"[{lang}] index.html に search.json への参照がない"
+            )
+
+
+class TestHreflangUrlConsistency(unittest.TestCase):
+    """
+    hreflang URL consistency check (added Day 4fo).
+
+    For each page that HAS hreflang tags, verify:
+      1. The URL for hreflang="en"   contains /en/   in its path.
+      2. The URL for hreflang="ja"   contains /ja/   in its path.
+      3. The URL for hreflang="pt*"  contains /pt/   in its path.
+      4. The slug in every hreflang URL matches the page's own filename (sans ext).
+      5. x-default (when present) points to the /en/ variant.
+    """
+
+    HREFLANG_RE = re.compile(
+        r'<link[^>]+rel=["\']alternate["\'][^>]+hreflang=["\']([^"\']+)["\'][^>]+href=["\']([^"\']+)["\']',
+        re.IGNORECASE,
+    )
+    BASE = "https://wiki.bjj-app.net"
+
+    def _extract_hreflang_map(self, content: str) -> dict[str, str]:
+        """Return {hreflang_value: href_url} for all alternate link tags."""
+        return {hl: url for hl, url in self.HREFLANG_RE.findall(content)}
+
+    def _check_lang(self, lang: str, lang_dir: str):
+        files = sampled(all_html_files(lang_dir))
+        failures = []
+        for path in files:
+            content = read(path)
+            hmap = self._extract_hreflang_map(content)
+            if not hmap:
+                continue  # older pages without hreflang – skip
+
+            slug = os.path.splitext(os.path.basename(path))[0]
+
+            # Check each lang URL contains the correct directory prefix
+            lang_dir_checks = {
+                "en":   "/en/",
+                "ja":   "/ja/",
+            }
+            for hl_key, expected_dir in lang_dir_checks.items():
+                url = hmap.get(hl_key, "")
+                if url and expected_dir not in url:
+                    failures.append(
+                        f"{os.path.basename(path)}: hreflang={hl_key} URL に "
+                        f"'{expected_dir}' が含まれない: {url}"
+                    )
+
+            # pt or pt-BR
+            pt_url = hmap.get("pt") or hmap.get("pt-BR", "")
+            if pt_url and "/pt/" not in pt_url:
+                failures.append(
+                    f"{os.path.basename(path)}: hreflang=pt* URL に '/pt/' が含まれない: {pt_url}"
+                )
+
+            # Slug consistency: every URL must end with /{slug}.html
+            for hl_key, url in hmap.items():
+                if not url:
+                    continue
+                expected_suffix = f"/{slug}.html"
+                if not url.endswith(expected_suffix):
+                    failures.append(
+                        f"{os.path.basename(path)}: hreflang={hl_key} URL の slug が "
+                        f"ページ名と不一致 (期待: ...{expected_suffix}, 実際: {url})"
+                    )
+
+            # x-default must point to /en/ when present
+            xdefault = hmap.get("x-default", "")
+            if xdefault and "/en/" not in xdefault:
+                failures.append(
+                    f"{os.path.basename(path)}: x-default が /en/ を指していない: {xdefault}"
+                )
+
+        if failures:
+            self.fail(
+                f"[{lang}] hreflang URL 整合性エラー ({len(failures)}件):\n"
+                + "\n".join(failures[:5])
+            )
+
+    def test_en_hreflang_url_consistency(self):
+        self._check_lang("en", EN_DIR)
+
+    def test_ja_hreflang_url_consistency(self):
+        self._check_lang("ja", JA_DIR)
+
+    def test_pt_hreflang_url_consistency(self):
+        self._check_lang("pt", PT_DIR)
+
+
+class TestTranslationCompleteness(unittest.TestCase):
+    """
+    JA/PT pages must use translated UI text in nav and footer (added Day 4fo).
+
+    - JA pages: breadcrumb/footer home link text must be 'ホーム', not 'Home'
+    - PT pages: breadcrumb/footer home link text must be 'Início', not 'Home'
+
+    Method: look for >Home< anchor text pattern in nav/footer context.
+    False-positive guard: only flag files where the translated term is absent
+    AND the English term is present.
+    """
+
+    # Matches literal >Home< as anchor text (case-sensitive, not e.g. 'Homepage')
+    EN_HOME_RE = re.compile(r'>Home<')
+
+    JA_HOME_TERM  = "ホーム"
+    PT_HOME_TERMS = ("Início", "Inicio")   # accent variant for robustness
+
+    def test_ja_home_translated(self):
+        files = sampled(all_html_files(JA_DIR))
+        failures = []
+        for path in files:
+            content = read(path)
+            has_en_home  = bool(self.EN_HOME_RE.search(content))
+            has_ja_home  = self.JA_HOME_TERM in content
+            # Only flag when English "Home" is present AND Japanese translation is absent
+            if has_en_home and not has_ja_home:
+                failures.append(os.path.basename(path))
+        if failures:
+            self.fail(
+                f"[ja] ナビ/フッターに英語 'Home' が残存 ('{self.JA_HOME_TERM}' なし) "
+                f"({len(failures)}/{len(files)}):\n" + "\n".join(failures[:5])
+            )
+
+    def test_pt_home_translated(self):
+        files = sampled(all_html_files(PT_DIR))
+        failures = []
+        for path in files:
+            content = read(path)
+            has_en_home  = bool(self.EN_HOME_RE.search(content))
+            has_pt_home  = any(t in content for t in self.PT_HOME_TERMS)
+            if has_en_home and not has_pt_home:
+                failures.append(os.path.basename(path))
+        if failures:
+            self.fail(
+                f"[pt] ナビ/フッターに英語 'Home' が残存 ('Início' なし) "
+                f"({len(failures)}/{len(files)}):\n" + "\n".join(failures[:5])
+            )
+
+    def test_ja_last_updated_translated(self):
+        """'Last updated' should appear as '最終更新' in JA pages."""
+        EN_TERM = "Last updated"
+        JA_TERM = "最終更新"
+        files = sampled(all_html_files(JA_DIR))
+        failures = []
+        for path in files:
+            content = read(path)
+            if EN_TERM in content and JA_TERM not in content:
+                failures.append(os.path.basename(path))
+        if failures:
+            self.fail(
+                f"[ja] 'Last updated' が '{JA_TERM}' に翻訳されていないページ "
+                f"({len(failures)}/{len(files)}):\n" + "\n".join(failures[:5])
             )
 
 
