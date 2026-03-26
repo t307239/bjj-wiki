@@ -77,6 +77,33 @@ QUEUE_FILE       = WIKI_ROOT / "fetch_queue.json"
 RATE_STATE_FILE  = WIKI_ROOT / "rate_limit_state.json"
 REPORTS_DIR      = WIKI_ROOT / "reports"
 
+# ── ローカル HTML からタイトルを取得するヘルパー ──────────────────────────────
+
+def get_title_from_html(wiki_root: Path, slug: str, lang: str) -> str:
+    """
+    ローカル HTML ファイルからページタイトルを取得する。
+    wiki_pages テーブルには title カラムがないため、HTML ファイルを参照。
+    """
+    html_path = wiki_root / lang / f"{slug}.html"
+    if not html_path.exists():
+        return slug.replace("-", " ").title()
+    try:
+        with open(html_path, encoding="utf-8") as f:
+            content = f.read(4096)  # 先頭4KB で充分
+        # <h1>タグ（最も正確なタイトル）
+        m = re.search(r"<h1[^>]*>(.*?)</h1>", content, re.IGNORECASE | re.DOTALL)
+        if m:
+            return re.sub(r"<[^>]+>", "", m.group(1)).strip()
+        # <title>タグ（フォールバック）
+        m = re.search(r"<title[^>]*>(.*?)</title>", content, re.IGNORECASE | re.DOTALL)
+        if m:
+            title = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+            return title.split("|")[0].strip()
+    except Exception:
+        pass
+    return slug.replace("-", " ").title()
+
+
 # ── 定数 ──────────────────────────────────────────────────────────────────────
 
 MAX_DAILY_CALLS  = 80           # YouTube への検索リクエスト上限（安全マージン込み）
@@ -622,13 +649,12 @@ class VideoFetcherEngine:
             if not self.force:
                 pages = self.db.select(
                     "wiki_pages",
-                    f"slug=eq.{slug}&lang=eq.{lang}&select=video_url",
+                    f"slug=eq.{slug}&select=video_url",
                 )
                 if pages is None:
-                    print("         ❌ DB 取得エラー → スキップ")
-                    stats["failed"] += 1
-                    continue
-                if pages and pages[0].get("video_url"):
+                    # DB接続エラー時: スキップせず続行（video_url未設定と仮定）
+                    print("         ⚠️  DB 冪等性チェック失敗 → 続行（仮定: 未設定）")
+                elif pages and pages[0].get("video_url"):
                     print("         ✅ 既に video_url 設定済み → スキップ（冪等）")
                     stats["skipped"] += 1
                     continue
@@ -669,7 +695,7 @@ class VideoFetcherEngine:
             else:
                 ok = self.db.update(
                     "wiki_pages",
-                    f"slug=eq.{slug}&lang=eq.{lang}",
+                    f"slug=eq.{slug}",
                     {"video_url": best.embed_url},
                 )
                 if ok:
@@ -778,23 +804,30 @@ def main():
         return
 
     # ── 通常モード: DB から未設定 slug を取得 ─────────────────────────────────
+    # ※ wiki_pages には slug と video_url のみ（lang/title カラムなし）
+    # タイトルはローカル HTML ファイルから取得する
     if args.slug:
         # 単体スラグ
         pages = db.select(
             "wiki_pages",
-            f"slug=eq.{args.slug}&lang=eq.{args.lang}&select=slug,lang,title",
+            f"slug=eq.{args.slug}&select=slug",
         )
         if not pages:
-            print(f"❌ slug={args.slug} lang={args.lang} が見つかりません")
-            return
-        slugs = [{"slug": p["slug"], "lang": p["lang"], "title": p.get("title", p["slug"])}
+            # DBにない場合でもローカルHTMLが存在すれば処理する
+            html_path = WIKI_ROOT / args.lang / f"{args.slug}.html"
+            if not html_path.exists():
+                print(f"❌ slug={args.slug} が見つかりません（DB + ローカルHTML両方）")
+                return
+            pages = [{"slug": args.slug}]
+        slugs = [{"slug": p["slug"], "lang": args.lang,
+                  "title": get_title_from_html(WIKI_ROOT, p["slug"], args.lang)}
                  for p in pages]
     else:
         # video_url が NULL の全スラグを取得（冪等性のセカンドライン）
+        # wiki_pages テーブルに slug が登録されていない場合は HTML ファイルでフォールバック
         query_parts = [
             "video_url=is.null",
-            "select=slug,lang,title",
-            f"lang=eq.{args.lang}",
+            "select=slug",
             "order=slug.asc",
         ]
         if args.limit > 0:
@@ -802,12 +835,20 @@ def main():
 
         pages = db.select("wiki_pages", "&".join(query_parts))
         if pages is None:
-            return
+            # DB 接続失敗時: ローカル HTML ファイルから直接スキャン
+            print("⚠️  DB 接続失敗 → ローカル HTML ファイルからフォールバック")
+            lang_dir = WIKI_ROOT / args.lang
+            html_files = sorted(lang_dir.glob("*.html")) if lang_dir.exists() else []
+            limit = args.limit if args.limit > 0 else len(html_files)
+            pages = [{"slug": f.stem} for f in html_files[:limit]]
         if not pages:
-            print(f"✅ video_url が未設定のページはありません（lang={args.lang}）")
+            print(f"✅ video_url が未設定のページはありません")
             return
-        slugs = [{"slug": p["slug"], "lang": p["lang"], "title": p.get("title", p["slug"])}
-                 for p in pages]
+        slugs = [{"slug": p["slug"], "lang": args.lang,
+                  "title": get_title_from_html(WIKI_ROOT, p["slug"], args.lang)}
+                 for p in pages
+                 # ローカルHTMLが存在する lang のみ対象
+                 if (WIKI_ROOT / args.lang / f"{p['slug']}.html").exists()]
 
     engine.run(slugs)
 
