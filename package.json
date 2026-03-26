@@ -3,13 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "migrate": "tsx scripts/migrate-local.ts",
+    "update-categories": "tsx scripts/update-categories.ts",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "test:quality": "python3 scripts/test_wiki_quality.py",
     "serve": "npx serve . -l 8787"
   },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "tsx": "^4.19.2"
+  },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
-    "serve": "^14.2.0"
+    "@types/node": "^22.13.14",
+    "serve": "^14.2.0",
+    "typescript": "^5.8.2"
   }
 }
