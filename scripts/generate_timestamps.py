@@ -9,8 +9,8 @@ import os, re, json, time, urllib.request, urllib.parse, argparse
 
 BASE    = os.path.expanduser("~/Claude/bjj-wiki")
 SECRETS = os.path.expanduser("~/.secrets")
-CACHE   = os.path.join(BASE, "youtube_cache.json")
-OUT     = os.path.join(BASE, "timestamps.json")
+CACHE   = os.path.join(BASE, "cache", "youtube_cache.json")
+OUT     = os.path.join(BASE, "cache", "timestamps.json")
 
 def load_secrets():
     secrets = {}

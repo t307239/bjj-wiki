@@ -73,8 +73,9 @@ from typing import Optional
 WIKI_ROOT        = Path(__file__).parent.parent
 DOTENV_FILE      = WIKI_ROOT / ".env"
 SECRETS_FILE     = Path.home() / ".secrets"
-QUEUE_FILE       = WIKI_ROOT / "fetch_queue.json"
-RATE_STATE_FILE  = WIKI_ROOT / "rate_limit_state.json"
+CACHE_DIR        = WIKI_ROOT / "cache"
+QUEUE_FILE       = CACHE_DIR / "fetch_queue.json"
+RATE_STATE_FILE  = CACHE_DIR / "rate_limit_state.json"
 REPORTS_DIR      = WIKI_ROOT / "reports"
 
 # ── ローカル HTML からタイトルを取得するヘルパー ──────────────────────────────

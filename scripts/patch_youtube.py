@@ -9,7 +9,7 @@ import os, re, glob, json, time, urllib.request, urllib.parse, argparse
 
 BASE    = os.path.expanduser("~/Claude/bjj-wiki")
 SECRETS = os.path.expanduser("~/.secrets")
-CACHE   = os.path.join(BASE, "youtube_cache.json")
+CACHE   = os.path.join(BASE, "cache", "youtube_cache.json")
 
 def load_secrets():
     secrets = {}

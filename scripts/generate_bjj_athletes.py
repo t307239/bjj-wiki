@@ -607,7 +607,7 @@ def main():
     if not api_key:
         print("❌ GEMINI_API_KEY required"); return
     
-    cache_file = os.path.join(BASE, "athletes_cache.json")
+    cache_file = os.path.join(BASE, "cache", "athletes_cache.json")
     cache = {}
     if os.path.exists(cache_file):
         with open(cache_file) as f:

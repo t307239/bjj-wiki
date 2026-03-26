@@ -1092,13 +1092,13 @@ def generate_index():
 
 # ===== ã­ã£ãã·ã¥ç®¡ç =====
 def load_cache():
-    path = os.path.join(SITE_DIR, "generated.json")
+    path = os.path.join(SITE_DIR, "cache", "generated.json")
     if os.path.exists(path):
         with open(path) as f: return json.load(f)
     return {}
 
 def save_cache(cache):
-    path = os.path.join(SITE_DIR, "generated.json")
+    path = os.path.join(SITE_DIR, "cache", "generated.json")
     with open(path, "w", encoding="utf-8") as f: json.dump(cache, f, ensure_ascii=False, indent=2)
 
 # ===== ã¡ã¤ã³ =====

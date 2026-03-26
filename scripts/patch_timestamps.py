@@ -8,7 +8,7 @@ Run from ~/Claude/bjj-wiki/
 import os, json, argparse
 
 BASE = os.path.expanduser("~/Claude/bjj-wiki")
-TS_FILE = os.path.join(BASE, "timestamps.json")
+TS_FILE = os.path.join(BASE, "cache", "timestamps.json")
 
 TS_CSS = """
   /* Timestamps */

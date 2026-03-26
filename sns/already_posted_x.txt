@@ -1,0 +1,8 @@
+techniques-az
+triangle-choke
+tripod-sweep
+wrist-lock
+x-guard
+x-guard-sweep
+x-pass
+z-guard

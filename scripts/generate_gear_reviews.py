@@ -260,7 +260,7 @@ def main():
     if not api_key:
         print("❌ GEMINI_API_KEY required"); return
     
-    cache_file = os.path.join(BASE,"gear_cache.json")
+    cache_file = os.path.join(BASE, "cache", "gear_cache.json")
     cache = json.load(open(cache_file)) if os.path.exists(cache_file) else {}
     
     todo = [p for p in GEAR_PAGES if p["slug"] not in cache][:args.limit]
