@@ -136,6 +136,34 @@ ANTI_KEYWORDS = [
 ]
 
 
+# ── クエリ生成ヘルパー ────────────────────────────────────────────────────────
+
+def _slug_to_search_term(slug: str) -> str:
+    """
+    スラグを YouTube 検索キーワードに変換。
+    例:
+      "armbar"              → "armbar"
+      "50-50-guard"         → "50/50 guard"
+      "athlete-ffion-davies"→ "Ffion Davies"
+      "arm-triangle-choke"  → "arm triangle choke"
+    """
+    term = slug.replace("athlete-", "")        # アスリートプレフィックス除去
+    term = term.replace("-", " ")              # ハイフン→スペース
+    term = re.sub(r"\b50 50\b", "50/50", term) # 50/50 ガード特殊処理
+    return term.strip()
+
+
+def _build_search_query(slug: str, search_term: str) -> str:
+    """
+    スラグの種別に応じたクエリを構築。
+    - アスリートページ: アスリート名 + "BJJ"（tutorial不要・名前でヒット優先）
+    - 通常ページ: キーワード + "BJJ tutorial"
+    """
+    if slug.startswith("athlete-"):
+        return f'"{search_term}" BJJ'
+    return f'"{search_term}" BJJ tutorial'
+
+
 # ── 環境変数 ──────────────────────────────────────────────────────────────────
 
 def load_env() -> dict:
@@ -246,13 +274,21 @@ class VideoSearcher(abc.ABC):
         """
         スラグ・タイトルから最適な動画を1件選ぶ共通ロジック。
         バックエンドに依存しない。
+
+        【クエリ設計】
+        ページタイトル全文を引用符で囲むと YouTube でヒット0になりやすい
+        （"Mastering the BJJ Armbar: A Comprehensive Guide" など）。
+        スラグを短いキーワードに変換して使う。
+        - 通常ページ: "armbar" BJJ tutorial
+        - アスリート: "Ffion Davies" BJJ（tutorial不要）
         """
-        query = f'"{title}" BJJ (intitle:"how to" OR intitle:"tutorial") -playlist'
+        search_term = _slug_to_search_term(slug)
+        query = _build_search_query(slug, search_term)
         candidates = self.search(query, max_results=10)
         if not candidates:
             return None
 
-        scored = [self._score(v, title) for v in candidates]
+        scored = [self._score(v, title, slug) for v in candidates]
         scored.sort(key=lambda v: v.score, reverse=True)
 
         best = scored[0]
@@ -261,7 +297,7 @@ class VideoSearcher(abc.ABC):
         return best
 
     @staticmethod
-    def _score(video: VideoResult, page_title: str) -> VideoResult:
+    def _score(video: VideoResult, page_title: str, slug: str = "") -> VideoResult:
         """タイトル・チャンネル・キーワードからスコアを計算して付与"""
         title_lower   = video.title.lower()
         channel_lower = video.channel.lower()
@@ -288,6 +324,16 @@ class VideoSearcher(abc.ABC):
         # アンチキーワード（試合・ハイライト等）
         if any(kw in title_lower for kw in ANTI_KEYWORDS):
             score -= 30
+
+        # アスリートページ: 選手名が動画タイトル・チャンネルに含まれなければ大幅減点
+        # （関係ない一般チュートリアルを弾く）
+        if slug.startswith("athlete-"):
+            athlete_parts = [
+                w for w in slug.replace("athlete-", "").split("-") if len(w) > 2
+            ]
+            name_matched = any(p in title_lower or p in channel_lower for p in athlete_parts)
+            if not name_matched:
+                score -= 40
 
         # 極端に短い動画（shorts 等）は減点
         if video.duration:
@@ -636,7 +682,7 @@ class VideoFetcherEngine:
         print(f"\n🔍 処理対象: {len(slugs)} 件")
         print(f"📊 {self.rate}  残り: {self.rate.remaining()} calls\n")
 
-        stats = {"processed": 0, "updated": 0, "skipped": 0, "queued": 0, "failed": 0}
+        stats = {"processed": 0, "updated": 0, "skipped": 0, "queued": 0, "no_match": 0, "failed": 0}
 
         for i, item in enumerate(slugs, 1):
             slug  = item["slug"]
@@ -681,7 +727,7 @@ class VideoFetcherEngine:
 
             if best is None:
                 print("         ⚠️  適切な動画が見つかりませんでした")
-                stats["failed"] += 1
+                stats["no_match"] += 1
                 continue
 
             print(f"         🎯 [{best.score:+3d}pt] {best.title[:55]}")
@@ -711,7 +757,8 @@ class VideoFetcherEngine:
         print(f"  ✅ 更新: {stats['updated']}")
         print(f"  ⏭️  スキップ（設定済み）: {stats['skipped']}")
         print(f"  ⏳ キュー追加（明日処理）: {stats['queued']}")
-        print(f"  ❌ 失敗: {stats['failed']}")
+        print(f"  ⚠️  動画なし（マッチなし）: {stats['no_match']}")
+        print(f"  ❌ DB更新失敗 / 検索エラー: {stats['failed']}")
         print(f"  📊 本日の API 呼び出し数: {MAX_DAILY_CALLS - self.rate.remaining()}/{MAX_DAILY_CALLS}")
 
         if self.queue:
