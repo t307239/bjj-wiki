@@ -76,8 +76,7 @@ footer a:hover{color:#e2b714}
 <p>これらの技術を継続的に練習することで、スキルを向上させBJJゲームを改善します。</p>
 <h2>さらに読む</h2>
 <p>BJJ WikiのA-Zインデックスの関連トピックを探索して、すべてのテクニックの包括的なカバレッジを取得します。</p>
-<div style="margin:32px 0;padding:24px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:12px;text-align:center">
-  <div style="color:#e2b714;font-weight:700;font-size:1.1rem;margin-bottom:8px">📧 BJJ Weekly Digest</div>
+
   <div style="color:#9ca3af;font-size:.9rem;margin-bottom:16px">Get the latest techniques & competition news</div>
   
 </div>
@@ -87,10 +86,7 @@ footer a:hover{color:#e2b714}
 </div>
 </div>
 
-<script>
-setTimeout(function(){{document.getElementById('float-cta').style.display='block'}},30000);
-window.addEventListener('scroll',function(){{if(window.scrollY>window.innerHeight*.5)document.getElementById('float-cta').style.display='block'}});
-</script>
+
 <footer>
   <div style="margin-bottom:16px">
     <a href="index.html">Home</a>
@@ -106,5 +102,14 @@ window.addEventListener('scroll',function(){{if(window.scrollY>window.innerHeigh
   </div>
   <div>© 2025 BJJ Wiki — All rights reserved</div>
 </footer>
+<div id="float-cta" style="display:none;position:fixed;bottom:20px;right:20px;z-index:9999;background:linear-gradient(135deg,#1e1b4b,#0f172a);border:1px solid rgba(139,92,246,0.4);border-radius:16px;padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,0.5);max-width:280px">
+  <p style="color:#a78bfa;font-size:.8rem;margin:0 0 10px">BJJ App でスマートに練習記録</p>
+  <a href="https://bjj-app.net/login" target="_blank" rel="noopener" style="display:block;text-align:center;padding:8px 16px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem">無料で始める →</a>
+  <button onclick="document.getElementById('float-cta').style.display='none'" style="position:absolute;top:8px;right:10px;background:none;border:none;color:#6b7280;cursor:pointer;font-size:16px;line-height:1">×</button>
+</div>
+<script>
+setTimeout(function(){document.getElementById('float-cta').style.display='block'},30000);
+window.addEventListener('scroll',function(){if(window.scrollY>window.innerHeight*.5)document.getElementById('float-cta').style.display='block'});
+</script>
 </body>
 </html>
