@@ -135,7 +135,7 @@
     <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/skill-tree.html">
 </head>
 <body>
-<div id="read-progress"></div>
+
 <div class="container">
 <header>
   <a href="../en/index.html" class="logo">🥋 BJJ Wiki</a>
@@ -158,7 +158,7 @@
   <!-- Overall progress bar -->
   <div class="overall-progress">
     <span class="overall-label">Overall Progress</span>
-    <div class="overall-bar-wrap"><div class="overall-bar" id="overall-bar" style="width:0%"></div></div>
+    
     <span class="overall-count" id="overall-count">0 / 0</span>
   </div>
 
@@ -167,10 +167,10 @@
     <div class="belt-header">
       <span class="belt-badge badge-white">⬜ White Belt</span>
       <span class="belt-title">Fundamentals</span>
-      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-white" id="bar-white" style="width:0%"></div></div>
+      
       <span class="belt-count" id="count-white">0 / 15</span>
     </div>
-    <div class="tech-grid" id="grid-white"></div>
+    
   </div>
 
   <!-- ===== BLUE BELT ===== -->
@@ -178,10 +178,10 @@
     <div class="belt-header">
       <span class="belt-badge badge-blue">🔵 Blue Belt</span>
       <span class="belt-title">Intermediate Game</span>
-      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-blue" id="bar-blue" style="width:0%"></div></div>
+      
       <span class="belt-count" id="count-blue">0 / 20</span>
     </div>
-    <div class="tech-grid" id="grid-blue"></div>
+    
   </div>
 
   <!-- ===== PURPLE BELT (GATED) ===== -->
@@ -189,7 +189,7 @@
     <div class="belt-header">
       <span class="belt-badge badge-purple">🟣 Purple Belt</span>
       <span class="belt-title">Advanced Techniques</span>
-      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-purple" id="bar-purple" style="width:0%"></div></div>
+      
       <span class="belt-count" id="count-purple">🔒 Locked</span>
     </div>
     <div id="purple-gate">
@@ -201,7 +201,7 @@
         <div class="gate-already" onclick="unlockAdvanced('skip')">Already subscribed? Click here →</div>
       </div>
     </div>
-    <div class="tech-grid" id="grid-purple" style="display:none"></div>
+    
   </div>
 
   <!-- ===== BROWN BELT (GATED) ===== -->
@@ -209,10 +209,10 @@
     <div class="belt-header">
       <span class="belt-badge badge-brown">🟤 Brown Belt</span>
       <span class="belt-title">Expert Concepts</span>
-      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-brown" id="bar-brown" style="width:0%"></div></div>
+      
       <span class="belt-count" id="count-brown">0 / 10</span>
     </div>
-    <div class="tech-grid" id="grid-brown"></div>
+    
   </div>
 
   <!-- ===== BLACK BELT (GATED) ===== -->
@@ -220,10 +220,10 @@
     <div class="belt-header">
       <span class="belt-badge badge-black">⬛ Black Belt</span>
       <span class="belt-title">Mastery</span>
-      <div class="belt-progress-wrap"><div class="belt-progress-bar bp-black" id="bar-black" style="width:0%"></div></div>
+      
       <span class="belt-count" id="count-black">0 / 10</span>
     </div>
-    <div class="tech-grid" id="grid-black"></div>
+    
   </div>
 
   <!-- Beehiiv CTA footer -->
@@ -568,11 +568,7 @@ renderAll();
 
     <p style="margin:0;color:#e3f2fd;font-size:.95rem">Level up your BJJ Skill Tree — Track Your Progress from White to Black Belt with world-class instructionals on BJJ Fanatics.</p>
   </div>
-  <a href="https://bjjfanatics.com/search?q=skill+tree&ref=BJJWIKI" target="_blank" rel="noopener sponsored"
-     style="background:#1565c0;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:700;white-space:nowrap;font-size:.9rem"
-     onclick="gtag('event','fanatics_click',{technique:'skill-tree',lang:'en'})">
-    🎬 Browse Instructionals (20% OFF: BJJWIKI)
-  </a>
+  
 </div>
 
 <div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Track Your BJJ Training</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Log sessions & techniques. Build your streak. Free.</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">Start Free →</a></div>
