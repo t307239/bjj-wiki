@@ -245,15 +245,7 @@ function esc(s) {
 function submitBee() {
   var email = document.getElementById('bee-email').value.trim();
   if (!email || !email.includes('@')) return;
-  fetch('https://api.beehiiv.com/v2/publications/pub_3b7e80fc-2a63-4b5b-a0bf-35649de37d37/subscriptions', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({email:email,reactivate_existing:false,send_welcome_email:true})
-  }).catch(function(){});
-  var form = document.querySelector('.bee-form');
-  if (form) form.innerHTML = '<p style="color:#4ade80;font-size:.95rem">✓ Subscribed!</p>';
-  gtag('event','newsletter_signup',{'page':'index_en'});
-}
+  
 </script>
 
 </body>

@@ -206,9 +206,7 @@
   <p style="margin:0 0 10px;font-size:13px;color:#ccc;">Alimente seu treino com a dieta certa:</p>
   <a href="bjj-diet-nutrition.html" style="display:inline-block;background:#4ade80;color:#0a0a1a;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:700;font-size:13px;">🥗 Guia de Nutrição →</a>
 </div>
-<div class="aff-box" style="background:linear-gradient(135deg,#0a1428,#0d1f3c);border:1px solid #1565c0;border-radius:12px;padding:20px 24px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-  <div>
-    <div style="font-size:.8rem;color:#64b5f6;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">🎬 Learn from the Best</div>
+
     <p style="margin:0;color:#e3f2fd;font-size:.95rem">Take your BJJ to the next level with world-class instructionals on BJJ Fanatics.</p>
   </div>
   <a href="https://bjjfanatics.com/?ref=BJJWIKI" target="_blank" rel="noopener sponsored"
@@ -216,13 +214,9 @@
     🎬 Browse Instructionals (20% OFF: BJJWIKI)
   </a>
 </div>
-  <div class="beehiiv-box" style="background:linear-gradient(135deg,#0a1a0a,#0d2010);border:1px solid #2e7d32;border-radius:12px;padding:20px 24px;margin:32px 0;text-align:center;">
-  <div style="font-size:1.05rem;font-weight:700;color:#a5d6a7;margin-bottom:8px">📬 BJJ Wiki Newsletter</div>
+  
   <p style="margin:0 0 16px;color:#c8e6c9;font-size:.9rem">Training tips, new technique breakdowns, and competition insights — weekly, free.</p>
-  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
-     style="background:#2e7d32;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.9rem">
-    Subscribe Free
-  </a>
+  
 </div>
   </article>
 
@@ -282,15 +276,19 @@
 </footer>
 
 <!-- Floating Newsletter CTA -->
-<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
-  <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button>
-  <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📬 Newsletter Semanal de BJJ</div>
-  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Dicas de treino e análises de competição. Grátis.</p>
-  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
-     style="display:block;background:#2e7d32;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Registre seu BJJ</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Sessões, técnicas e sequências. Grátis.</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">Começar Grátis →</a></div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Sessões, técnicas e sequências. Grátis.</p>
+  <a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="gtag&&gtag('event','float_cta_click',{lang:'pt'})">Começar Grátis →</a>
+</div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Sessões, técnicas e sequências. Grátis.</p>
+  <a href="https://bjj-app.net/login"
+     style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
      onclick="gtag('event','float_cta_click',{lang:'pt'})">
-    Assinar Grátis →
+    Começar Grátis →
   </a>
+</div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Dicas de treino e análises de competição. Grátis.</p>
+  
 </div>
 <style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
 <script>(function(){if(localStorage.getItem('cta_dismissed'))return;var shown=false;function show(){if(!shown){shown=true;document.getElementById('float-cta').style.display='block';}}setTimeout(show,30000);window.addEventListener('scroll',function(){var pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);if(pct>0.5)show();},{passive:true});})();</script>

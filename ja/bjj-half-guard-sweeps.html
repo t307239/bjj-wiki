@@ -113,7 +113,7 @@
 <ul><li><strong>オールドスクールスイープ：</strong>ロックダウン＋アンダーフック、ロックダウンレッグを伸ばしながら後ろに這い出る</li><li><strong>ウェイタースイープ（ディープハーフから）：</strong>近い脚を持ち上げながら下を転がる</li><li><strong>ドッグファイトからバックテイク：</strong>両者が立ってアンダーフック→フォークリフト、足払い、またはバックテイク</li><li><strong>ニーシールドスイープ：</strong>腹にニーシールド、襟を引きながら脚を伸ばす</li></ul>
 <div class='tip-box'><strong>💡 アンダーフックか死か：</strong>ハーフガードスイープを試みる前に確認 — アンダーフックを持っていますか？なければほとんどのスイープは失敗します。アンダーフックを回収することがハーフガードの最優先事項です。</div>
 
-<div class="aff-box"><p>世界クラスの指導でBJJを加速させよう</p><a class="aff-btn" href="https://bjjfanatics.com/?ref=BJJWIKI" target="_blank" rel="noopener noreferrer nofollow">🎬 教則動画</a></div>
+
 <div class="faq"><h2>よくある質問</h2>
   <div class="faq-item"><div class="faq-q">ハーフガードのロックダウンとは？</div><div class="faq-a">ロックダウンはハーフガードから相手の近い脚に巻き付けるフィギュアフォーの脚のエンタングルメントです。スマッシュを防いでオールドスクールスイープを生み出します。エディ・ブラボーの10thプラネットシステムはロックダウンを中心に構築されています。</div></div>
   <div class="faq-item"><div class="faq-q">ハーフガードからアンダーフックを得るには？</div><div class="faq-a">スペースを作るためにエビ歩きし、脇の下に腕を泳がせて、奪い返されないように相手の体を手前に引きます。代替として、まずニーシールドを使ってスペースを作ります。</div></div>
@@ -123,7 +123,7 @@
 <div style="background:#0d1120;padding:32px 16px;text-align:center;margin-top:40px">
   <h3 style="color:#e94560;margin-bottom:8px">📬 BJJ Wiki ニュースレター</h3>
   <p style="color:#9ca3af;font-size:.9rem;margin-bottom:16px">週刊テクニック、ヒント、最新情報</p>
-  <iframe src="https://bjjwiki.beehiiv.com/subscribe" width="100%" height="52" frameborder="0" scrolling="no" style="max-width:480px;border-radius:8px"></iframe>
+  
 </div>
 <footer>
   <p>© 2026 BJJ Wiki — <a href="../ja/about.html">About</a> · <a href="../ja/privacy.html">Privacy</a> · <a href="../feed.xml">RSS</a></p>
@@ -134,10 +134,9 @@
     <a href="../ja/skill-tree.html">スキルツリー</a>
   </div>
 </footer>
-<div class="float-cta" id="floatCta">
-  <span class="float-close" onclick="document.getElementById('floatCta').style.display='none'">✕ close</span>
-  <p>🥋 毎週BJJのヒントを受け取る</p>
-  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">無料登録 →</a>
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 BJJ App で練習を記録</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">セッション・テクニック・ストリークを無料で管理。</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">無料で始める →</a></div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">セッション・テクニック・ストリークを無料で管理。</p>
+  <a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="gtag&&gtag('event','float_cta_click',{lang:'ja'})">無料で始める →</a>
 </div>
 <script>
   var _shown=false;

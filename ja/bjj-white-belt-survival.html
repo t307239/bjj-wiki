@@ -118,10 +118,7 @@
 <h2>最初の1ヶ月に期待すること</h2>
 <p>常にサブミットされます。これは正しいです。スパーリングが始まった瞬間に全てのテクニックを忘れます。これも正しいです。完全に迷子になります。これも正しいです。BJJの学習曲線はほぼ全ての他の活動より急勾配です。それでも来てください。曲線は予想より速く緩やかになります。</p>
 
-<div class="aff-box">
-  <p>World-class BJJ instruction at your fingertips</p>
-  <a class="aff-btn" href="https://bjjfanatics.com/?ref=BJJWIKI" target="_blank" rel="noopener noreferrer nofollow">🎬 BJJ Instructionals</a>
-</div>
+
 <div class="faq">
   <h2>よくある質問</h2>
   <div class="faq-item"><div class="faq-q">白帯にはどのくらいいるべきですか？</div><div class="faq-a">ほとんどの実践者は青帯に昇格するまでに1〜2年を白帯で過ごします。昇帯は固定された時間要件ではなくテクニックの発展とマット時間に基づいています。昇帯のタイミングではなく学習に集中してください。</div></div><div class="faq-item"><div class="faq-q">白帯が犯す最大のミスは何ですか？</div><div class="faq-a">緊張して過度な力を使う。十分に早くタップしない。スパーリングに飛びつくためにドリリングをスキップする。より経験豊富な生徒と進歩を比較する。パスだけに集中してガードディフェンスを無視する。</div></div><div class="faq-item"><div class="faq-q">白帯は全員とスパーリングすべきですか？</div><div class="faq-a">はい、ただし意識を持って。上位帯とのスパーリングはディフェンスとサバイバルを教えます。同レベルのパートナーとのスパーリングはオフェンスを構築します。未知のトレーニングパートナーのコントロールレベルを理解するまで、100%で行かないようにします。</div></div>
@@ -130,7 +127,7 @@
 <div style="background:#0d1120;padding:32px 16px;text-align:center;margin-top:40px">
   <h3 style="color:#e94560;margin-bottom:8px">📬 BJJ Wiki ニュースレター</h3>
   <p style="color:#9ca3af;font-size:.9rem;margin-bottom:16px">毎週の技・ヒント・アップデート</p>
-  <iframe src="https://bjjwiki.beehiiv.com/subscribe" width="100%" height="52" frameborder="0" scrolling="no" style="max-width:480px;border-radius:8px"></iframe>
+  
 </div>
 <footer>
   <p>© 2026 BJJ Wiki — <a href="../ja/about.html">About</a> · <a href="../ja/privacy.html">Privacy</a> · <a href="../feed.xml">RSS</a></p>
@@ -141,10 +138,9 @@
     <a href="../ja/skill-tree.html">スキルツリー</a>
   </div>
 </footer>
-<div class="float-cta" id="floatCta">
-  <span class="float-close" onclick="document.getElementById('floatCta').style.display='none'">✕ close</span>
-  <p>🥋 毎週BJJのヒントを受け取る</p>
-  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">無料購読 →</a>
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 BJJ App で練習を記録</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">セッション・テクニック・ストリークを無料で管理。</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">無料で始める →</a></div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">セッション・テクニック・ストリークを無料で管理。</p>
+  <a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="gtag&&gtag('event','float_cta_click',{lang:'ja'})">無料で始める →</a>
 </div>
 <script>
   var _shown=false;

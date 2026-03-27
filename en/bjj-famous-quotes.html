@@ -118,10 +118,7 @@
 <h2>Modern Era Quotes</h2>
 <p>"Position before submission, but submission before survival. Survive first." — paraphrase from multiple black belts. "BJJ is chess, but chess where you have to carry the board and the pieces at the same time." — Gordon Ryan. "The gentle art is not about being gentle — it's about using efficiency instead of brute force." — common modern teaching.</p>
 
-<div class="aff-box">
-  <p>World-class BJJ instruction at your fingertips</p>
-  <a class="aff-btn" href="https://bjjfanatics.com/?ref=BJJWIKI" target="_blank" rel="noopener noreferrer nofollow">🎬 BJJ Instructionals</a>
-</div>
+
 <div class="faq">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-item"><div class="faq-q">Who said 'position before submission'?</div><div class="faq-a">The principle is widely attributed to Hélio Gracie and the foundational Gracie Jiu-Jitsu curriculum. The exact phrasing varies, but the concept appears throughout early BJJ teaching: establish dominant position before hunting for submissions.</div></div><div class="faq-item"><div class="faq-q">What is the most famous Rickson Gracie quote?</div><div class="faq-a">Rickson is known for 'BJJ is life, life is BJJ' and 'A man who dares to waste one hour of time has not discovered the value of life' (misattributed to him from Darwin). His most authentic documented statement is about the connection between training and personal development.</div></div><div class="faq-item"><div class="faq-q">What do BJJ instructors say about tapping?</div><div class="faq-a">Consistent theme across all lineages: tapping is intelligence, not weakness. Common phrasing: 'Tap early, tap often,' 'A tap is a gift from your training partner,' and 'Protecting your body is a skill.' These reflect the BJJ culture of sustainable long-term training.</div></div>
@@ -130,7 +127,7 @@
 <div style="background:#0d1120;padding:32px 16px;text-align:center;margin-top:40px">
   <h3 style="color:#e94560;margin-bottom:8px">📬 BJJ Wiki Newsletter</h3>
   <p style="color:#9ca3af;font-size:.9rem;margin-bottom:16px">Weekly techniques, tips and updates</p>
-  <iframe src="https://bjjwiki.beehiiv.com/subscribe" width="100%" height="52" frameborder="0" scrolling="no" style="max-width:480px;border-radius:8px"></iframe>
+  
 </div>
 <footer>
   <p>© 2026 BJJ Wiki — <a href="../en/about.html">About</a> · <a href="../en/privacy.html">Privacy</a> · <a href="../feed.xml">RSS</a></p>
@@ -141,10 +138,9 @@
     <a href="../en/skill-tree.html">Skill Tree</a>
   </div>
 </footer>
-<div class="float-cta" id="floatCta">
-  <span class="float-close" onclick="document.getElementById('floatCta').style.display='none'">✕ close</span>
-  <p>🥋 Get weekly BJJ tips</p>
-  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe Free →</a>
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Track Your BJJ Training</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Log sessions & techniques. Build your streak. Free.</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">Start Free →</a></div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Log sessions & techniques. Build your streak. Free.</p>
+  <a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="gtag&&gtag('event','float_cta_click',{lang:'en'})">Start Free →</a>
 </div>
 <script>
   var _shown=false;

@@ -128,10 +128,7 @@
 
 <div class="info-box"><strong>ℹ️ 注意：</strong>静的ストレッチは練習前ではなく後に最適。練習前は動的モビリティワークに集中。練習後に静的ホールドで柔軟性を向上させる。</div>
 
-<div class="aff-box">
-  <p>Accelerate your BJJ with world-class instruction</p>
-  <a class="aff-btn" href="https://bjjfanatics.com/?ref=BJJWIKI" target="_blank" rel="noopener noreferrer nofollow">🎬 Instructionals</a>
-</div>
+
 <div class="faq">
   <h2>よくある質問</h2>
   <div class="faq-item"><div class="faq-q">BJJをするために柔軟である必要がありますか？</div><div class="faq-a">いいえ — BJJを始めるために既存の柔軟性は必要ない。しかし、時間をかけて柔軟性を発達させることでゲームが大幅に向上する、特にガードプレーで。BJJ自体も定期的なトレーニングを通じて多くの実践的な柔軟性を発達させる。</div></div><div class="faq-item"><div class="faq-q">BJJ特有の柔軟性向上にどれくらいかかりますか？</div><div class="faq-a">一貫した毎日のモビリティワーク（10〜15分）で、ほとんどの選手は6〜8週間で意味のある改善に気づく。股関節とハムストリングの柔軟性は一貫した取り組みに特によく反応する。</div></div><div class="faq-item"><div class="faq-q">ヨガはBJJのモビリティワークに代わることができますか？</div><div class="faq-a">ヨガはBJJモビリティワークの優れた補完だが、異なるパターンを強調する。ヨガ重視の実践とBJJ特有の股関節・脊椎モビリティワークの組み合わせが理想的。</div></div>
@@ -140,7 +137,7 @@
 <div style="background:#0d1120;padding:32px 16px;text-align:center;margin-top:40px">
   <h3 style="color:#e94560;margin-bottom:8px">📬 BJJ Wiki ニュースレター</h3>
   <p style="color:#9ca3af;font-size:.9rem;margin-bottom:16px">週次テクニック、ヒントとアップデート</p>
-  <iframe src="https://bjjwiki.beehiiv.com/subscribe" width="100%" height="52" frameborder="0" scrolling="no" style="max-width:480px;border-radius:8px"></iframe>
+  
 </div>
 <footer>
   <p>© 2026 BJJ Wiki — <a href="../ja/about.html">About</a> · <a href="../ja/privacy.html">Privacy</a> · <a href="../feed.xml">RSS</a></p>
@@ -151,10 +148,9 @@
     <a href="../ja/skill-tree.html">スキルツリー</a>
   </div>
 </footer>
-<div class="float-cta" id="floatCta">
-  <span class="float-close" onclick="document.getElementById('floatCta').style.display='none'">✕ 閉じる</span>
-  <p>🥋 週次BJJヒントを受け取る</p>
-  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">無料登録 →</a>
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 BJJ App で練習を記録</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">セッション・テクニック・ストリークを無料で管理。</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">無料で始める →</a></div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">セッション・テクニック・ストリークを無料で管理。</p>
+  <a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="gtag&&gtag('event','float_cta_click',{lang:'ja'})">無料で始める →</a>
 </div>
 <script>
   var _shown=false;

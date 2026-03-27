@@ -107,14 +107,24 @@
   <div style="background:#111119;border:1px solid #2a2a3e;border-radius:12px;padding:20px;margin:28px 0;text-align:center">
     <p style="font-weight:700;color:#e2e2ee;margin-bottom:6px">📩 Newsletter Gratuita de BJJ</p>
     <p style="font-size:.85rem;color:#7a7a9a;margin-bottom:14px">Dicas semanais para mulheres no BJJ</p>
-    <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener" style="display:inline-block;background:#6e40c9;color:#fff;padding:10px 24px;border-radius:8px;font-weight:700;font-size:.9rem;text-decoration:none">Assinar Grátis →</a>
+    
   </div>
   <nav style="display:flex;justify-content:space-between;padding:20px 0;border-top:1px solid #1e1e2e;font-size:.88rem">
     <a href="white-belt-bjj-guide.html" style="color:#6e40c9">← Prev</a><a href="bjj-for-self-defense.html" style="color:#6e40c9">Next →</a>
   </nav>
 </main>
 <footer>© 2025 BJJ Wiki · <a href="privacy.html" style="color:#7a7a9a">Privacy</a> · <a href="about.html" style="color:#7a7a9a">About</a></footer>
-<div id="float-cta" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:none;max-width:280px"><div style="background:#1a1a2e;border:1px solid #6e40c9;border-radius:12px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.5);position:relative"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:10px;background:none;border:none;color:#7a7a9a;font-size:18px;cursor:pointer">×</button><p style="margin:0 0 8px;font-size:.85rem;font-weight:700;color:#e2e2ee">📩 Free BJJ Newsletter</p><p style="margin:0 0 12px;font-size:.78rem;color:#7a7a9a">Dicas semanais para mulheres no BJJ</p><a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener" style="display:block;text-align:center;background:#6e40c9;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700">Subscribe Free →</a></div></div>
+<div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Registre seu BJJ</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Sessões, técnicas e sequências. Grátis.</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">Começar Grátis →</a></div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Sessões, técnicas e sequências. Grátis.</p>
+  <a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="gtag&&gtag('event','float_cta_click',{lang:'pt'})">Começar Grátis →</a>
+</div>
+  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Sessões, técnicas e sequências. Grátis.</p>
+  <a href="https://bjj-app.net/login"
+     style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
+     onclick="gtag('event','float_cta_click',{lang:'pt'})">
+    Começar Grátis →
+  </a>
+</div></div>
 <script>(function(){if(localStorage.getItem('cta_dismissed'))return;var el=document.getElementById('float-cta'),shown=false;function show(){if(!shown){shown=true;el.style.display='block';}}setTimeout(show,30000);window.addEventListener('scroll',function(){if((window.scrollY/(document.body.scrollHeight-window.innerHeight))>.5)show();},{passive:true});})();</script>
 
 <script>
