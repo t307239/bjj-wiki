@@ -184,10 +184,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Track Beehiiv CTA click
-  document.querySelectorAll('a[href*="beehiiv"]').forEach(function(el) {
+  document.querySelectorAll('a[href*="app-cta"]').forEach(function(el) {
     el.addEventListener('click', function() {
       if (typeof gtag !== 'undefined') {
-        gtag('event', 'news_beehiiv_click', { page_location: location.href });
+        gtag('event', 'news_app-cta_click', { page_location: location.href });
       }
     });
   });
