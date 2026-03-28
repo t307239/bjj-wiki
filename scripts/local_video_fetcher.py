@@ -154,15 +154,19 @@ def _slug_to_search_term(slug: str) -> str:
     return term.strip()
 
 
-def _build_search_query(slug: str, search_term: str) -> str:
+def _build_search_query(slug: str, search_term: str, *, use_quotes: bool = True) -> str:
     """
     スラグの種別に応じたクエリを構築。
     - アスリートページ: アスリート名 + "BJJ"（tutorial不要・名前でヒット優先）
     - 通常ページ: キーワード + "BJJ tutorial"
+    - use_quotes=False: 短い一般語の引用符なしフォールバック用
     """
     if slug.startswith("athlete-"):
         return f'"{search_term}" BJJ'
-    return f'"{search_term}" BJJ tutorial'
+    if use_quotes:
+        return f'"{search_term}" BJJ tutorial'
+    # フォールバック: 引用符なし（短い一般語でヒット率向上）
+    return f'{search_term} BJJ tutorial technique'
 
 
 # ── 環境変数 ──────────────────────────────────────────────────────────────────
@@ -271,10 +275,13 @@ class VideoSearcher(abc.ABC):
         """
         ...
 
-    def find_best_video(self, title: str, slug: str) -> Optional[VideoResult]:
+    def find_best_video(self, title: str, slug: str) -> tuple[Optional[VideoResult], int]:
         """
         スラグ・タイトルから最適な動画を1件選ぶ共通ロジック。
         バックエンドに依存しない。
+
+        Returns: (best_video_or_None, search_call_count)
+          search_call_count はレート制限のカウント用（フォールバックで2回になりうる）
 
         【クエリ設計】
         ページタイトル全文を引用符で囲むと YouTube でヒット0になりやすい
@@ -282,20 +289,40 @@ class VideoSearcher(abc.ABC):
         スラグを短いキーワードに変換して使う。
         - 通常ページ: "armbar" BJJ tutorial
         - アスリート: "Ffion Davies" BJJ（tutorial不要）
+
+        引用符付きで結果なし or スコア不足の場合、引用符なしで再検索（フォールバック）。
         """
         search_term = _slug_to_search_term(slug)
-        query = _build_search_query(slug, search_term)
+        calls = 0
+
+        # 1回目: 引用符付き検索（精度優先）
+        query = _build_search_query(slug, search_term, use_quotes=True)
+        best = self._search_and_score(query, title, slug)
+        calls += 1
+        if best and best.score >= 10:
+            return best, calls
+
+        # 2回目: 引用符なしフォールバック（リコール優先）
+        if not slug.startswith("athlete-"):
+            query_fallback = _build_search_query(slug, search_term, use_quotes=False)
+            if query_fallback != query:
+                print(f"         🔄 フォールバック検索: {query_fallback}")
+                time.sleep(REQUEST_INTERVAL)  # フォールバック前にも間隔を空ける
+                best_fb = self._search_and_score(query_fallback, title, slug)
+                calls += 1
+                if best_fb and best_fb.score >= 10:
+                    return best_fb, calls
+
+        return None, calls
+
+    def _search_and_score(self, query: str, title: str, slug: str) -> Optional[VideoResult]:
+        """検索→スコアリング→ベスト候補を返す内部ヘルパー"""
         candidates = self.search(query, max_results=10)
         if not candidates:
             return None
-
         scored = [self._score(v, title, slug) for v in candidates]
         scored.sort(key=lambda v: v.score, reverse=True)
-
-        best = scored[0]
-        if best.score < 10:
-            return None  # 関連性が低すぎる場合は採用しない
-        return best
+        return scored[0]
 
     @staticmethod
     def _score(video: VideoResult, page_title: str, slug: str = "") -> VideoResult:
@@ -716,14 +743,14 @@ class VideoFetcherEngine:
             # ── 検索実行 ────────────────────────────────────────────────────
             time.sleep(REQUEST_INTERVAL)
             try:
-                best = self.searcher.find_best_video(title, slug)
+                best, search_calls = self.searcher.find_best_video(title, slug)
             except Exception as e:
                 print(f"         ❌ 検索エラー: {e}")
                 stats["failed"] += 1
                 self.rate.increment()
                 continue
 
-            self.rate.increment()
+            self.rate.increment(search_calls)
             stats["processed"] += 1
 
             if best is None:
