@@ -61,7 +61,6 @@ header{background:rgba(11,15,26,0.95);border-bottom:1px solid var(--border);padd
 /* CTA banner */
 .cta-banner{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(233,69,96,.1));border:1px solid rgba(124,58,237,.3);border-radius:14px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0}
 .cta-btn{white-space:nowrap;padding:10px 20px;background:var(--accent2);color:#fff;border-radius:8px;font-weight:600;font-size:.9rem}
-/* Beehiiv */
 .bee-wrap{background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(233,69,96,.08));border:1px solid rgba(124,58,237,.25);border-radius:14px;padding:28px;text-align:center;margin:32px 0}
 .bee-title{font-size:1.1rem;font-weight:700;margin-bottom:6px}
 .bee-desc{color:var(--muted);font-size:.9rem;margin-bottom:16px}
@@ -121,15 +120,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div id="no-results" class="no-results" style="display:none">Nenhum resultado encontrado. Tente outro termo de pesquisa.</div>
 
-  <!-- Beehiiv subscription -->
   <div class="bee-wrap">
-    <div class="bee-title">Junte-se a 2.000+ Praticantes de BJJ</div>
-    <div class="bee-desc">Receba o guia gratuito para faixa branca</div>
-    <div class="bee-form">
-      <input class="bee-input" type="email" id="bee-email" placeholder="email@example.com">
-      <button class="bee-btn" onclick="submitBee()">Acesso Gratuito →</button>
-    </div>
-    <div class="bee-note">No spam. Unsubscribe anytime.</div>
+    <div class="app-cta-wrap" style="text-align:center;padding:32px 20px;background:linear-gradient(135deg,#0a1a10,#0f172a);border:1px solid #1e3a2e;border-radius:16px;margin:24px 0">
+    <div style="font-size:1.1rem;font-weight:700;color:#e2e8f0;margin-bottom:8px">📱 Track Your BJJ Training</div>
+    <div style="font-size:.9rem;color:#94a3b8;margin-bottom:16px">Log sessions, save techniques, build streaks. Free forever.</div>
+    <a href="https://bjj-app.net/login" style="display:inline-block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:14px 32px;border-radius:30px;font-weight:700;text-decoration:none;font-size:1rem;transition:transform .2s">Start Free →</a>
+  </div>
   </div>
 </div>
 
@@ -241,12 +237,3 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ---- Beehiiv ----
-function submitBee() {
-  var email = document.getElementById('bee-email').value.trim();
-  if (!email || !email.includes('@')) return;
-  
-</script>
-
-</body>
-</html>
