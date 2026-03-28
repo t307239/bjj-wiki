@@ -24,7 +24,7 @@
     header p{color:var(--muted);font-size:.95rem}
     .logo{font-size:1.1rem;font-weight:700;color:var(--accent);letter-spacing:-0.02em;text-decoration:none}
     .lang-nav{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-    .lang-nav a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:2px 8px;border-radius:4px;border:1px solid var(--border);transition:all .2s}
+    .lang-nav a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:6px 14px;border-radius:4px;border:1px solid var(--border);transition:all .2s}
     .lang-nav a.active,.lang-nav a:hover{color:var(--text);border-color:var(--accent)}
     nav{background:var(--card);padding:10px 20px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:.85rem;border-radius:8px;margin-bottom:16px}
     nav a{color:var(--muted);text-decoration:none}
@@ -209,9 +209,6 @@
 
 <!-- Floating CTA -->
 <div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Track Your BJJ Training</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Log sessions & techniques. Build your streak. Free.</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">Start Free →</a></div>
-  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Log sessions & techniques. Build your streak. Free.</p>
-  <a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="gtag&&gtag('event','float_cta_click',{lang:'en'})">Start Free →</a>
-</div>
 <script>
   var _shown=false;
   function _showCta(){if(!_shown&&!sessionStorage.getItem('cta_closed')){document.getElementById('floatCta').style.display='block';_shown=true;}}

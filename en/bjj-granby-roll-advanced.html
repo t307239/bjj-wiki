@@ -34,7 +34,7 @@
     header p{color:var(--muted);font-size:.95rem}
     .logo{font-size:1.1rem;font-weight:700;color:var(--accent);letter-spacing:-0.02em;text-decoration:none}
     .lang-nav{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-    .lang-nav a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:2px 8px;border-radius:4px;border:1px solid var(--border);transition:all .2s}
+    .lang-nav a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:6px 14px;border-radius:4px;border:1px solid var(--border);transition:all .2s}
     .lang-nav a.active,.lang-nav a:hover{color:var(--text);border-color:var(--accent)}
     nav{background:var(--card);padding:10px 20px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:.85rem;border-radius:8px;margin-bottom:16px}
     nav a{color:var(--muted);text-decoration:none}
@@ -137,30 +137,6 @@
 
 </div>
 <div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Track Your BJJ Training</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Log sessions & techniques. Build your streak. Free.</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">Start Free →</a></div>
-  <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Log sessions & techniques. Build your streak. Free.</p>
-  <a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="gtag&&gtag('event','float_cta_click',{lang:'en'})">Start Free →</a>
-</div>
-
-<section id="faq" style="margin:32px 0">
-  <h2 style="color:#e2e8f0;font-size:1.2rem;font-weight:800;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">Frequently Asked Questions</h2>
-  
-  <div class="faq-item" style="margin-bottom:16px;padding:14px 16px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:8px">
-    <h3 style="color:#e2e8f0;font-size:0.95rem;font-weight:700;margin-bottom:6px">What does 'The Granby Roll Explained' involve in this context?</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">The the granby roll explained phase focuses on developing precise technique, building muscle memory through repetition, and understanding the underlying mechanics that make this approach effective in live rolling.</p>
-  </div>
-  <div class="faq-item" style="margin-bottom:16px;padding:14px 16px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:8px">
-    <h3 style="color:#e2e8f0;font-size:0.95rem;font-weight:700;margin-bottom:6px">What does 'Proper Positioning' involve in this context?</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">The proper positioning phase focuses on developing precise technique, building muscle memory through repetition, and understanding the underlying mechanics that make this approach effective in live rolling.</p>
-  </div>
-  <div class="faq-item" style="margin-bottom:16px;padding:14px 16px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:8px">
-    <h3 style="color:#e2e8f0;font-size:0.95rem;font-weight:700;margin-bottom:6px">What does 'Execution Mechanics' involve in this context?</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">The execution mechanics phase focuses on developing precise technique, building muscle memory through repetition, and understanding the underlying mechanics that make this approach effective in live rolling.</p>
-  </div>
-  <div class="faq-item" style="margin-bottom:16px;padding:14px 16px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:8px">
-    <h3 style="color:#e2e8f0;font-size:0.95rem;font-weight:700;margin-bottom:6px">What does 'Advanced Variations' involve in this context?</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">The advanced variations phase focuses on developing precise technique, building muscle memory through repetition, and understanding the underlying mechanics that make this approach effective in live rolling.</p>
-  </div>
-</section>
 <script>
 setTimeout(function(){var c=document.getElementById('floatCta');if(c)c.style.display='block';},30000);
 window.addEventListener('scroll',function(){if(window.scrollY>window.innerHeight*0.5){var c=document.getElementById('floatCta');if(c)c.style.display='block';}});
