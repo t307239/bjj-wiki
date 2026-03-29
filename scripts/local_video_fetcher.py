@@ -136,6 +136,13 @@ ANTI_KEYWORDS = [
     "adcc", "worlds", " vs ", "subscribe", "promo", "free class",
 ]
 
+# アスリートページでは「highlight」「compilation」「best of」は適切なコンテンツ
+# 試合・トーナメント系のみペナルティ適用
+ATHLETE_ANTI_KEYWORDS = [
+    "match", "tournament", "adcc", "worlds", " vs ",
+    "subscribe", "promo", "free class",
+]
+
 
 # ── クエリ生成ヘルパー ────────────────────────────────────────────────────────
 
@@ -350,7 +357,9 @@ class VideoSearcher(abc.ABC):
             score += 15
 
         # アンチキーワード（試合・ハイライト等）
-        if any(kw in title_lower for kw in ANTI_KEYWORDS):
+        # アスリートページでは highlight/compilation/best of を許可
+        anti_list = ATHLETE_ANTI_KEYWORDS if slug.startswith("athlete-") else ANTI_KEYWORDS
+        if any(kw in title_lower for kw in anti_list):
             score -= 30
 
         # アスリートページ: 選手名が動画タイトル・チャンネルに含まれなければ大幅減点
