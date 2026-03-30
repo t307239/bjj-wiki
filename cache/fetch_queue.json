@@ -1,1 +1,272 @@
-[]
+[
+  {
+    "slug": "bjj-arm-in-guillotine",
+    "lang": "en",
+    "title": "Arm-In Guillotine: Advanced Gi Choke Technique",
+    "queued_at": "2026-03-30T01:10:21.734259+00:00"
+  },
+  {
+    "slug": "bjj-arm-trap-from-back",
+    "lang": "en",
+    "title": "Arm Trap Attacks from Back",
+    "queued_at": "2026-03-30T01:10:22.325209+00:00"
+  },
+  {
+    "slug": "bjj-arm-triangle-details",
+    "lang": "en",
+    "title": "BJJ Arm Triangle Choke Details Guide",
+    "queued_at": "2026-03-30T01:10:22.862187+00:00"
+  },
+  {
+    "slug": "bjj-arm-triangle-from-mount",
+    "lang": "en",
+    "title": "Arm Triangle from Mount",
+    "queued_at": "2026-03-30T01:10:23.371742+00:00"
+  },
+  {
+    "slug": "bjj-armbar-defense-guide",
+    "lang": "en",
+    "title": "Armbar Defense Guide",
+    "queued_at": "2026-03-30T01:10:23.887351+00:00"
+  },
+  {
+    "slug": "bjj-armbar-details-bjj",
+    "lang": "en",
+    "title": "Armbar Finishing Details",
+    "queued_at": "2026-03-30T01:10:24.401608+00:00"
+  },
+  {
+    "slug": "bjj-armbar-finishing-details",
+    "lang": "en",
+    "title": "Armbar Finishing Details",
+    "queued_at": "2026-03-30T01:10:24.909425+00:00"
+  },
+  {
+    "slug": "bjj-armbar-from-back",
+    "lang": "en",
+    "title": "BJJ Armbar From Back Attack Guide",
+    "queued_at": "2026-03-30T01:10:25.141496+00:00"
+  },
+  {
+    "slug": "bjj-armbar-from-guard-details",
+    "lang": "en",
+    "title": "Armbar From Guard Details",
+    "queued_at": "2026-03-30T01:10:25.638151+00:00"
+  },
+  {
+    "slug": "bjj-armbar-from-mount-details",
+    "lang": "en",
+    "title": "BJJ Armbar From Mount Details Guide",
+    "queued_at": "2026-03-30T01:10:25.850223+00:00"
+  },
+  {
+    "slug": "bjj-armbar-from-mount-guide",
+    "lang": "en",
+    "title": "Armbar From Mount Guide",
+    "queued_at": "2026-03-30T01:10:26.073747+00:00"
+  },
+  {
+    "slug": "bjj-armbar-from-side-guide",
+    "lang": "en",
+    "title": "Armbar From Side Control",
+    "queued_at": "2026-03-30T01:10:26.302333+00:00"
+  },
+  {
+    "slug": "bjj-armbar-guide",
+    "lang": "en",
+    "title": "BJJ Armbar: Complete Guide to Setup, Finish, and Armbar Variations",
+    "queued_at": "2026-03-30T01:10:26.520375+00:00"
+  },
+  {
+    "slug": "bjj-armbar-omoplata-chain",
+    "lang": "en",
+    "title": "Armbar Omoplata Chain",
+    "queued_at": "2026-03-30T01:10:26.730392+00:00"
+  },
+  {
+    "slug": "bjj-armbar-setup-guide",
+    "lang": "en",
+    "title": "Armbar Setup Guide",
+    "queued_at": "2026-03-30T01:10:26.968326+00:00"
+  },
+  {
+    "slug": "bjj-armbar-to-triangle-flow",
+    "lang": "en",
+    "title": "Armbar to Triangle Flow Drills",
+    "queued_at": "2026-03-30T01:10:27.494153+00:00"
+  },
+  {
+    "slug": "bjj-armbar-variations",
+    "lang": "en",
+    "title": "Armbar Variations Guide",
+    "queued_at": "2026-03-30T01:10:27.729322+00:00"
+  },
+  {
+    "slug": "bjj-armpit-control-bjj",
+    "lang": "en",
+    "title": "Armpit Control Technique Guide",
+    "queued_at": "2026-03-30T01:10:27.931098+00:00"
+  },
+  {
+    "slug": "bjj-ashi-from-passing",
+    "lang": "en",
+    "title": "Ashi Garami Entries While Passing",
+    "queued_at": "2026-03-30T01:10:28.154040+00:00"
+  },
+  {
+    "slug": "bjj-ashi-garami-defense",
+    "lang": "en",
+    "title": "Defending Ashi Garami",
+    "queued_at": "2026-03-30T01:10:28.367576+00:00"
+  },
+  {
+    "slug": "bjj-ashi-garami-guide",
+    "lang": "en",
+    "title": "Ashi Garami Guide: Mastering Leglock Control Position",
+    "queued_at": "2026-03-30T01:10:28.608574+00:00"
+  },
+  {
+    "slug": "bjj-ashi-garami-setup",
+    "lang": "en",
+    "title": "Ashi Garami Setups",
+    "queued_at": "2026-03-30T01:10:28.835129+00:00"
+  },
+  {
+    "slug": "bjj-ashi-garami-variations",
+    "lang": "en",
+    "title": "Ashi Garami Variations — BJJ Wiki",
+    "queued_at": "2026-03-30T01:10:29.048911+00:00"
+  },
+  {
+    "slug": "bjj-athlete-mindset",
+    "lang": "en",
+    "title": "BJJ Athlete Mindset: Train Like the Champions Do",
+    "queued_at": "2026-03-30T01:10:29.303907+00:00"
+  },
+  {
+    "slug": "bjj-athletic-bjj-game",
+    "lang": "en",
+    "title": "Athletic/Explosive BJJ Game",
+    "queued_at": "2026-03-30T01:10:29.518923+00:00"
+  },
+  {
+    "slug": "bjj-attacking-from-turtle",
+    "lang": "en",
+    "title": "Attacking from Turtle Position - Top & Bottom Turtle Attacks",
+    "queued_at": "2026-03-30T01:10:29.744995+00:00"
+  },
+  {
+    "slug": "bjj-attacking-from-turtle-advanced",
+    "lang": "en",
+    "title": "Attacking from Turtle Position - Advanced System",
+    "queued_at": "2026-03-30T01:10:30.260252+00:00"
+  },
+  {
+    "slug": "bjj-attribute-development",
+    "lang": "en",
+    "title": "Developing BJJ Attributes — BJJ Wiki",
+    "queued_at": "2026-03-30T01:10:30.466695+00:00"
+  },
+  {
+    "slug": "bjj-back-attacks-advanced",
+    "lang": "en",
+    "title": "Advanced Back Attacks in BJJ: Finishing Systems",
+    "queued_at": "2026-03-30T01:10:30.676784+00:00"
+  },
+  {
+    "slug": "bjj-back-attacks-fundamentals",
+    "lang": "en",
+    "title": "BJJ Back Attacks Fundamentals",
+    "queued_at": "2026-03-30T01:10:30.883172+00:00"
+  },
+  {
+    "slug": "bjj-back-attacks-guide",
+    "lang": "en",
+    "title": "BJJ Back Attacks Complete Guide",
+    "queued_at": "2026-03-30T01:10:31.092298+00:00"
+  },
+  {
+    "slug": "bjj-back-attacks-system",
+    "lang": "en",
+    "title": "Back Attacks System: Complete Offensive Guide from Back Control",
+    "queued_at": "2026-03-30T01:10:31.307179+00:00"
+  },
+  {
+    "slug": "bjj-back-control-body-triangle",
+    "lang": "en",
+    "title": "Back Control Body Triangle",
+    "queued_at": "2026-03-30T01:10:31.515338+00:00"
+  },
+  {
+    "slug": "bjj-back-control-complete",
+    "lang": "en",
+    "title": "Back Control: Complete System & Dominance",
+    "queued_at": "2026-03-30T01:10:31.723647+00:00"
+  },
+  {
+    "slug": "bjj-back-control-concepts",
+    "lang": "en",
+    "title": "BJJ Back Control Concepts: Hooks, Seatbelt, and Finishing",
+    "queued_at": "2026-03-30T01:10:31.941608+00:00"
+  },
+  {
+    "slug": "bjj-back-control-finishing",
+    "lang": "en",
+    "title": "Back Control Finishing Details - RNC Variations, Bow-and-Arrow & Body Triangle",
+    "queued_at": "2026-03-30T01:10:32.163102+00:00"
+  },
+  {
+    "slug": "bjj-back-control-finishing-details",
+    "lang": "en",
+    "title": "Back Control Finishing Details - Complete System",
+    "queued_at": "2026-03-30T01:10:32.386440+00:00"
+  },
+  {
+    "slug": "bjj-back-control-fundamentals",
+    "lang": "en",
+    "title": "BJJ Back Control: The Most Dominant Position in Grappling",
+    "queued_at": "2026-03-30T01:10:32.590941+00:00"
+  },
+  {
+    "slug": "bjj-back-control-hooks",
+    "lang": "en",
+    "title": "Hook Management from Back Control",
+    "queued_at": "2026-03-30T01:10:32.801405+00:00"
+  },
+  {
+    "slug": "bjj-back-control-mastery",
+    "lang": "en",
+    "title": "Back Control Mastery",
+    "queued_at": "2026-03-30T01:10:33.006539+00:00"
+  },
+  {
+    "slug": "bjj-back-control-pressure",
+    "lang": "en",
+    "title": "Back Control Pressure Techniques",
+    "queued_at": "2026-03-30T01:10:33.223333+00:00"
+  },
+  {
+    "slug": "bjj-back-control-system",
+    "lang": "en",
+    "title": "BJJ Back Control System: Hooks, Submissions & Escapes",
+    "queued_at": "2026-03-30T01:10:33.429729+00:00"
+  },
+  {
+    "slug": "bjj-back-escape-counter-guide",
+    "lang": "en",
+    "title": "Back Escape Counter Guide",
+    "queued_at": "2026-03-30T01:10:33.632494+00:00"
+  },
+  {
+    "slug": "bjj-back-escape-guide",
+    "lang": "en",
+    "title": "Back Escape Guide",
+    "queued_at": "2026-03-30T01:10:33.834768+00:00"
+  },
+  {
+    "slug": "bjj-back-escape-roll-guide",
+    "lang": "en",
+    "title": "Back Escape Roll Guide",
+    "queued_at": "2026-03-30T01:10:34.035627+00:00"
+  }
+]
