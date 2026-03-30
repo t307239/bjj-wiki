@@ -2,14 +2,18 @@ name: Auto Post to Pinterest
 
 on:
   schedule:
-    - cron: '0 1 * * *'  # 毎朝10:00 JST (UTC 01:00)
+    - cron: '0 23 * * *'  # 08:00 JST (23:00 UTC 前日)
+    - cron: '0 2 * * *'   # 11:00 JST (02:00 UTC)
+    - cron: '0 5 * * *'   # 14:00 JST (05:00 UTC)
+    - cron: '0 8 * * *'   # 17:00 JST (08:00 UTC)
+    - cron: '0 12 * * *'  # 21:00 JST (12:00 UTC)
   workflow_dispatch:      # 手動実行も可能
 
 jobs:
   post:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -26,6 +30,15 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/auto_post_pinterest.py
+
+      - name: Commit posted log
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
+          git add already_posted_pinterest.txt || true
+          git diff --staged --quiet || git commit -m "Auto: update Pinterest posted log $(date '+%Y-%m-%d %H:%M')"
+          git push || true
 
       - name: Notify Telegram on failure
         if: failure()
