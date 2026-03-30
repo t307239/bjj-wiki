@@ -2,10 +2,8 @@ name: Auto Post to X (Twitter)
 
 on:
   schedule:
-    # 昼: 03:00 UTC = 12:00 JST / 11:00 PM EST(前日) / 8:00 PM PST(前日)
+    # 12:00 JST (03:00 UTC) — 1日1回
     - cron: '0 3 * * *'
-    # 夜: 12:00 UTC = 21:00 JST / 8:00 AM EST / 5:00 AM PST
-    - cron: '0 12 * * *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -13,9 +11,9 @@ on:
         type: boolean
         default: false
       limit:
-        description: 'Max tweets to post (default: 2)'
+        description: 'Max tweets to post (default: 1)'
         type: number
-        default: 2
+        default: 1
 
 jobs:
   post:

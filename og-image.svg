@@ -1,28 +1,107 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0B1120"/>
-      <stop offset="50%" stop-color="#141930"/>
-      <stop offset="100%" stop-color="#0B1120"/>
+      <stop offset="0%" stop-color="#070B14"/>
+      <stop offset="100%" stop-color="#0D1425"/>
     </linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#7c6af7"/>
-      <stop offset="100%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#c084fc"/>
     </linearGradient>
+    <linearGradient id="glow" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#7c6af7" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#7c6af7" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+    <filter id="softblur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
   </defs>
+
+  <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect x="0" y="0" width="1200" height="5" fill="url(#accent)"/>
-  <rect x="0" y="625" width="1200" height="5" fill="url(#accent)"/>
-  <text x="600" y="230" font-family="Arial Black, sans-serif" font-size="48" fill="#6b7699" text-anchor="middle" letter-spacing="8">BRAZILIAN JIU-JITSU</text>
-  <text x="540" y="340" font-family="Arial Black, sans-serif" font-size="120" font-weight="900" fill="#e8eaf6" text-anchor="middle">BJJ</text>
-  <text x="780" y="340" font-family="Arial Black, sans-serif" font-size="120" font-weight="900" fill="#7c6af7" text-anchor="middle">Wiki</text>
-  <text x="600" y="420" font-family="Arial, sans-serif" font-size="30" fill="#6b7699" text-anchor="middle">Technique Encyclopedia &amp; Training Resource</text>
-  <text x="600" y="480" font-family="Arial, sans-serif" font-size="22" fill="#4a5170" text-anchor="middle">wiki.bjj-app.net</text>
-  <!-- Feature pills -->
-  <rect x="260" y="510" width="160" height="36" rx="18" fill="#7c6af720" stroke="#7c6af740" stroke-width="1"/>
-  <text x="340" y="534" font-family="Arial, sans-serif" font-size="16" fill="#a78bfa" text-anchor="middle">4,600+ Pages</text>
-  <rect x="440" y="510" width="140" height="36" rx="18" fill="#7c6af720" stroke="#7c6af740" stroke-width="1"/>
-  <text x="510" y="534" font-family="Arial, sans-serif" font-size="16" fill="#a78bfa" text-anchor="middle">3 Languages</text>
-  <rect x="600" y="510" width="160" height="36" rx="18" fill="#7c6af720" stroke="#7c6af740" stroke-width="1"/>
-  <text x="680" y="534" font-family="Arial, sans-serif" font-size="16" fill="#a78bfa" text-anchor="middle">Free &amp; Open</text>
+
+  <!-- Glow orb left -->
+  <ellipse cx="200" cy="315" rx="280" ry="220" fill="#7c6af7" opacity="0.07" filter="url(#blur)"/>
+  <!-- Glow orb right -->
+  <ellipse cx="1000" cy="315" rx="280" ry="220" fill="#c084fc" opacity="0.05" filter="url(#blur)"/>
+
+  <!-- Grid lines (subtle) -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
+
+  <!-- Belt stripe decoration (left side) -->
+  <rect x="72" y="180" width="6" height="270" rx="3" fill="#ffffff" opacity="0.08"/>
+  <rect x="82" y="220" width="6" height="190" rx="3" fill="#3b82f6" opacity="0.5"/>
+  <rect x="92" y="250" width="6" height="130" rx="3" fill="#7c6af7" opacity="0.7"/>
+  <rect x="102" y="270" width="6" height="90" rx="3" fill="#c084fc" opacity="0.8"/>
+
+  <!-- BJJ Figure silhouette — guard position (right side) -->
+  <g transform="translate(820, 120)" opacity="0.12">
+    <!-- Bottom player (guard) - simplified geometric -->
+    <ellipse cx="120" cy="360" rx="80" ry="25" fill="#7c6af7"/>
+    <rect x="80" y="240" width="80" height="120" rx="20" fill="#7c6af7"/>
+    <ellipse cx="120" cy="235" rx="35" ry="40" fill="#7c6af7"/>
+    <!-- Legs up -->
+    <line x1="120" y1="300" x2="50" y2="180" stroke="#7c6af7" stroke-width="28" stroke-linecap="round"/>
+    <line x1="120" y1="300" x2="200" y2="190" stroke="#7c6af7" stroke-width="28" stroke-linecap="round"/>
+    <!-- Top player (inside guard) -->
+    <ellipse cx="120" cy="155" rx="30" ry="35" fill="#a78bfa"/>
+    <rect x="90" y="185" width="60" height="90" rx="15" fill="#a78bfa"/>
+    <!-- Arms -->
+    <line x1="90" y1="210" x2="40" y2="250" stroke="#a78bfa" stroke-width="20" stroke-linecap="round"/>
+    <line x1="150" y1="210" x2="200" y2="260" stroke="#a78bfa" stroke-width="20" stroke-linecap="round"/>
+  </g>
+
+  <!-- Main content -->
+  <!-- Label -->
+  <text x="140" y="218" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-size="13" font-weight="700" fill="#7c6af7" letter-spacing="5" opacity="0.9">BRAZILIAN JIU-JITSU</text>
+
+  <!-- Main title -->
+  <text x="138" y="328" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-size="128" font-weight="900" fill="#ffffff" letter-spacing="-2">BJJ</text>
+  <text x="138" y="420" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-size="128" font-weight="900" fill="url(#accent)" letter-spacing="-2">Wiki</text>
+
+  <!-- Divider -->
+  <rect x="138" y="445" width="280" height="3" rx="2" fill="url(#accent)" opacity="0.6"/>
+
+  <!-- Subtitle -->
+  <text x="138" y="490" font-family="'Arial', sans-serif" font-size="22" fill="#94a3b8" letter-spacing="1">Technique Encyclopedia &amp; Training Resource</text>
+
+  <!-- Stats row -->
+  <g transform="translate(138, 528)">
+    <!-- Stat 1 -->
+    <text x="0" y="0" font-family="'Arial Black', sans-serif" font-size="20" font-weight="900" fill="#ffffff">4,600+</text>
+    <text x="62" y="0" font-family="'Arial', sans-serif" font-size="20" fill="#64748b"> Pages</text>
+    <!-- Dot separator -->
+    <circle cx="148" cy="-5" r="3" fill="#7c6af7" opacity="0.6"/>
+    <!-- Stat 2 -->
+    <text x="162" y="0" font-family="'Arial Black', sans-serif" font-size="20" font-weight="900" fill="#ffffff">3</text>
+    <text x="178" y="0" font-family="'Arial', sans-serif" font-size="20" fill="#64748b"> Languages</text>
+    <!-- Dot separator -->
+    <circle cx="294" cy="-5" r="3" fill="#7c6af7" opacity="0.6"/>
+    <!-- Stat 3 -->
+    <text x="308" y="0" font-family="'Arial', sans-serif" font-size="20" fill="#64748b">Free &amp; Open</text>
+  </g>
+
+  <!-- URL badge -->
+  <rect x="138" y="572" width="218" height="34" rx="17" fill="#7c6af7" opacity="0.15" stroke="#7c6af7" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="247" y="595" font-family="'Arial', sans-serif" font-size="15" fill="#a78bfa" text-anchor="middle" letter-spacing="0.5">wiki.bjj-app.net</text>
+
+  <!-- Bottom accent bar -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
 </svg>

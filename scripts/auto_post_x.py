@@ -42,7 +42,7 @@ from datetime import datetime, timezone
 SITE_BASE_URL = "https://t307239.github.io/bjj-wiki"
 POSTED_LOG    = os.path.join(os.path.dirname(os.path.dirname(__file__)), "already_posted_x.txt")
 MAX_TWEET_LEN = 280
-DEFAULT_LIMIT = 2  # 1回の実行で最大投稿数（1日2回実行 × 2件 = 4件/日、月120件で余裕あり）
+DEFAULT_LIMIT = 1  # 1回の実行で最大投稿数（1日1回実行 × 1件 = 1件/日）
 
 # ハッシュタグ（スペースを考慮してコンパクトに）
 HASHTAGS = "#BJJ #BrazilianJiuJitsu #柔術"
@@ -246,8 +246,8 @@ def main():
     print(f"未投稿:     {remaining}件")
     print(f"今回投稿上限: {limit}件")
     if remaining > 0:
-        days_to_complete = (remaining + limit * 2 - 1) // (limit * 2)  # 2回/日想定
-        print(f"完了まで約: {days_to_complete}日（1日{limit*2}件ペース）")
+        days_to_complete = (remaining + limit - 1) // limit  # 1回/日想定
+        print(f"完了まで約: {days_to_complete}日（1日{limit}件ペース）")
     print()
 
     count = 0

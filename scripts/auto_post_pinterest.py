@@ -30,7 +30,7 @@ def post_to_pinterest(title, description, link, board_id):
         "title": title[:100],
         "description": description[:500],
         "link": link,
-        "media_source": {"source_type": "image_url", "url": "https://t307239.github.io/bjj-wiki/og-image.svg"},
+        "media_source": {"source_type": "image_url", "url": "https://t307239.github.io/bjj-wiki/og-image.png"},
         "alt_text": title + " - BJJ technique guide"
     }
     try:
