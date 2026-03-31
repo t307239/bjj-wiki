@@ -3,17 +3,22 @@
 quality_audit.py — BJJ Wiki コンテンツ品質監査 + ゴミ検出器
 
 ローカルの HTML ファイルをスキャンし、WIKI_TEMPLATES.md 基準で 0〜100点スコアリング。
-ゴミ記事（40点未満）・要改善記事（40〜74点）を CSV 出力する。
+品質閾値（100点満点を目標とした5段階評価）:
+  🏆 EXCELLENT (95+)  — 100点を目指すべきモデル記事
+  ✅ GOOD     (90-94) — 十分な品質
+  ⚠️  POOR     (80-89) — 改善が必要（目標ラインの 80 に届いていない）
+  🔴 BAD      (60-79) — SEO負債リスク。早急に改善
+  💀 GARBAGE  (<60)   — デプロイ不可レベル
 
 使い方:
     python3 quality_audit.py                  # 全記事スキャン
     python3 quality_audit.py --lang en        # 英語のみ
-    python3 quality_audit.py --garbage-only   # 40点未満のみ出力
-    python3 quality_audit.py --fix-preview    # 修正プレビュー（dry-run）
+    python3 quality_audit.py --garbage-only   # 80点未満のみ出力
+    python3 quality_audit.py --fix-preview    # 修正提案を表示
 
 出力:
     ~/Claude/bjj-wiki/quality_report.csv
-    ~/Claude/bjj-wiki/garbage_slugs.txt   (40点未満 slug リスト)
+    ~/Claude/bjj-wiki/garbage_slugs.txt   (80点未満 slug リスト)
 
 依存: Python 3.8+ のみ（標準ライブラリ）
 """
@@ -47,10 +52,12 @@ SCORE_WEIGHTS = {
 # 動画ボーナスが適用されるジャンル
 VIDEO_REQUIRED_TYPES = {"Technique", "Drill"}
 
-# 判定閾値（SEO負債回避のため GARBAGE を 60 に引き上げ）
-GARBAGE_THRESHOLD = 60
-POOR_THRESHOLD    = 75
-GOOD_THRESHOLD    = 85
+# 判定閾値（100点を目標とした段階的な品質ゲート）
+GARBAGE_THRESHOLD   = 60   # 💀 < 60  : デプロイ不可
+BAD_THRESHOLD       = 80   # 🔴 60-79 : SEO負債リスク（目標ライン未達）
+POOR_THRESHOLD      = 90   # ⚠️  80-89 : 改善余地あり
+GOOD_THRESHOLD      = 95   # ✅ 90-94 : 良質
+EXCELLENT_THRESHOLD = 95   # 🏆 95+   : モデル記事（100を目指す）
 
 # ─────────────────────────────────────────────────────
 # HTML 解析
@@ -190,9 +197,10 @@ def score_article(metrics: dict) -> tuple[int, dict[str, int]]:
 
 
 def grade(score: int) -> str:
-    if score >= GOOD_THRESHOLD:    return "✅ GOOD"
-    if score >= POOR_THRESHOLD:    return "⚠️  POOR"
-    if score >= GARBAGE_THRESHOLD: return "🔴 BAD"
+    if score >= EXCELLENT_THRESHOLD: return "🏆 EXCELLENT"
+    if score >= POOR_THRESHOLD:      return "✅ GOOD"
+    if score >= BAD_THRESHOLD:       return "⚠️  POOR"
+    if score >= GARBAGE_THRESHOLD:   return "🔴 BAD"
     return "💀 GARBAGE"
 
 
@@ -220,7 +228,7 @@ def scan_language(lang: str, garbage_only: bool) -> list[dict]:
         metrics = parse_article(html)
         score, breakdown = score_article(metrics)
 
-        if garbage_only and score >= GARBAGE_THRESHOLD:
+        if garbage_only and score < BAD_THRESHOLD:
             continue
 
         results.append({
@@ -247,7 +255,7 @@ def scan_language(lang: str, garbage_only: bool) -> list[dict]:
 def main():
     parser = argparse.ArgumentParser(description="BJJ Wiki Quality Auditor")
     parser.add_argument("--lang",         choices=LANGUAGES + ["all"], default="all")
-    parser.add_argument("--garbage-only", action="store_true", help="40点未満のみ出力")
+    parser.add_argument("--garbage-only", action="store_true", help="80点未満（目標ライン未達）のみ出力")
     parser.add_argument("--fix-preview",  action="store_true", help="修正提案を表示")
     args = parser.parse_args()
 
@@ -270,33 +278,27 @@ def main():
             writer.writerows(all_results)
         print(f"\n✅ CSV出力完了: {csv_path}")
 
-    # ゴミ slug リスト（40点未満）
-    garbage = [r for r in all_results if r["score"] < GARBAGE_THRESHOLD]
-    if garbage:
+    # 80点未満 slug リスト（目標ラインに未達の記事）
+    below_target = [r for r in all_results if r["score"] < BAD_THRESHOLD]
+    if below_target:
         garbage_path = WIKI_ROOT / "garbage_slugs.txt"
         with open(garbage_path, "w", encoding="utf-8") as f:
-            for r in garbage:
+            for r in below_target:
                 f.write(f"{r['lang']}/{r['slug']}\n")
-        print(f"💀 ゴミ記事 {len(garbage)} 件: {garbage_path}")
+        print(f"🔴 目標ライン(80)未達: {len(below_target)} 件 → {garbage_path}")
 
     # サマリー表示
     print(f"\n{'─'*60}")
     print(f"総スキャン: {len(all_results)} 記事")
-    for threshold, label in [
-        (GOOD_THRESHOLD, "✅ GOOD (75+)"),
-        (POOR_THRESHOLD, "⚠️  POOR (60-74)"),
-        (GARBAGE_THRESHOLD, "🔴 BAD (40-59)"),
-        (0, "💀 GARBAGE (<40)"),
-    ]:
-        count = sum(1 for r in all_results if r["score"] >= threshold)
-        if threshold == 0:
-            count = sum(1 for r in all_results if r["score"] < GARBAGE_THRESHOLD)
-        elif threshold == GARBAGE_THRESHOLD:
-            count = sum(1 for r in all_results if GARBAGE_THRESHOLD <= r["score"] < POOR_THRESHOLD)
-        elif threshold == POOR_THRESHOLD:
-            count = sum(1 for r in all_results if POOR_THRESHOLD <= r["score"] < GOOD_THRESHOLD)
-        else:
-            count = sum(1 for r in all_results if r["score"] >= GOOD_THRESHOLD)
+    bands = [
+        ("🏆 EXCELLENT (95+)",  lambda s: s >= EXCELLENT_THRESHOLD),
+        ("✅ GOOD     (90-94)", lambda s: POOR_THRESHOLD <= s < EXCELLENT_THRESHOLD),
+        ("⚠️  POOR     (80-89)", lambda s: BAD_THRESHOLD <= s < POOR_THRESHOLD),
+        ("🔴 BAD      (60-79)", lambda s: GARBAGE_THRESHOLD <= s < BAD_THRESHOLD),
+        ("💀 GARBAGE  (<60)",   lambda s: s < GARBAGE_THRESHOLD),
+    ]
+    for label, cond in bands:
+        count = sum(1 for r in all_results if cond(r["score"]))
         print(f"  {label}: {count} 件")
 
     if all_results:
