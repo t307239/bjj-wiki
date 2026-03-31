@@ -1,3 +1,86 @@
+## 2026-03-31 分析レポート（本日 cron 実行後・確定版）
+
+> 生成時刻: 2026-03-31 自動タスク（Cowork Scheduled Task）
+
+### 実行結果サマリ
+
+| 指標 | 値 |
+|---|---|
+| 実行日時 | 2026-03-31 JST（cron 9:10 JST 実行） |
+| 処理件数 | **80 件** |
+| ✅ 更新成功 | **80 件**（100%） |
+| ⏭️ スキップ（設定済み） | 0 件 |
+| ⏳ キュー追加（明日処理） | 0 件 |
+| ⚠️ 動画なし（マッチなし） | 0 件 |
+| ❌ DB更新失敗 / 検索エラー | 0 件 |
+| 📊 本日の API 呼び出し数 | **80 / 80（全消化）** |
+| キュー残件数（翌日分） | **45 件** |
+
+> 🎉 **完璧なラン！** 80件全件が動画 URL 更新済み。エラー・マッチなしゼロ。
+
+**処理範囲**: `bjj-arm-in-guillotine` → `bjj-beginner-mistakes-avoid`
+**バックエンド**: LocalYouTubeSearcher (requests + ytInitialData)
+
+---
+
+### 累積進捗
+
+| 指標 | 値 |
+|---|---|
+| 全 EN ページ数 | **1,566 ページ** |
+| キュー残件数（翌日分） | **45 件** |
+| 本日処理ページ数 | **80 件** |
+| 翌日完了見込み | 残り45件 < 80件上限 → **明日1回で全消化** |
+
+> 🏁 **明日（2026-04-01）の実行でキューが全完了し、Content 99 → 100 達成見込み**
+
+---
+
+### エラーパターン分析
+
+**検出されたエラー: なし**
+
+- `ytInitialData が見つかりません`: 0件 ✅
+- `JSON パース失敗`: 0件 ✅
+- `検索エラー` / タイムアウト: 0件 ✅
+- `日次上限到達` でのキュー追加: 0件 ✅
+- `適切な動画が見つかりませんでした`: 0件 ✅
+
+> ℹ️ `urllib3 v2 + LibreSSL 2.8.3` の `NotOpenSSLWarning` が継続出力中だが、動作に影響なし（既知の環境依存警告）。
+
+---
+
+### スクリプト自動修正
+
+**なし** — エラーパターンが検出されなかったため、スクリプト修正は不要。
+
+---
+
+### 本日処理されたページ（80件 — 代表サンプル）
+
+| # | スラグ | 取得動画（抜粋） | スコア |
+|---|---|---|---|
+| 1 | bjj-arm-in-guillotine | Arm in Guillotine Technique by SBG Idaho | +60 |
+| 8 | bjj-armbar-from-back | Back Attacks 5: How to Switch to an Armbar (Stephan Kesting) | +85 |
+| 31 | bjj-back-attacks-guide | The Ultimate Guide to BJJ Weak Side Back Attacks (Stephan Kesting, 1h+) | **+95** |
+| 47 | bjj-back-escape-system | How To Do The Perfect Back Escape by Adam Wardziński | +85 |
+| 79 | bjj-beginner-mistakes | Learn From White Belt Mistakes (Jordan Teaches Jiujitsu) | +60 |
+| 80 | bjj-beginner-mistakes-avoid | The 20 MOST COMMON Beginner Mistakes (Jordan Teaches Jiujitsu) | +60 |
+
+---
+
+### 改善提案ステータス（累積）
+
+| # | 提案 | ステータス | 備考 |
+|---|---|---|---|
+| 1 | cron 9:10 JST に変更 | ✅ **解決済み** | 3日連続で正常動作確認 |
+| 2 | fetch.log リダイレクト確認 | ✅ **正常動作中** | ログ正常取得を確認 |
+| 3 | ANTI_KEYWORDS 緩和（アスリート） | ✅ **修正済み**（2026-03-29） | athlete-* の highlight/compilation 許可 |
+| 4 | null キャッシュ再試行（kimura等） | 🟡 **低優先度に降格** | no_match 0件継続中。新規ページは全てマッチ成功 |
+| 5 | スコアリング閾値の動的調整 | 🟡 **低優先度に降格** | no_match 0件のため影響なし |
+
+---
+
 ## 2026-03-30 分析レポート（本日 cron 実行後・確定版）
 
 > 生成時刻: 自動タスク（Cowork Scheduled Task）
