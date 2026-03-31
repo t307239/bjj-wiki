@@ -740,7 +740,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
-  :root {{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9;--green:#22c55e}}
+  :root {{--bg:#0f172a;--card:#18181b;--card-hover:#1c1c22;--border:rgba(255,255,255,0.10);--border-hover:rgba(233,69,96,0.5);--text:#e2e8f0;--muted:#64748b;--accent:#e94560;--accent2:#7c3aed;--green:#22c55e}}
   *{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.8;padding:0 16px}}
   .container{{max-width:800px;margin:0 auto;padding:24px 0 64px}}
