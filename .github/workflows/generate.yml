@@ -35,9 +35,9 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          LIMIT=${{ github.event.inputs.limit || '5' }}
+          LIMIT=${{ github.event.inputs.limit || '50' }}
           LANG=${{ github.event.inputs.lang || 'all' }}
-          FORCE=${{ github.event.inputs.force || 'false' }}
+          FORCE=${{ github.event.inputs.force || 'true' }}
           FORCE_FLAG=""
           if [ "$FORCE" = "true" ]; then FORCE_FLAG="--force"; fi
           python scripts/generate_bjj_wiki.py --limit "$LIMIT" --lang "$LANG" $FORCE_FLAG
