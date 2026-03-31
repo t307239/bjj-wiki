@@ -30,7 +30,7 @@ def post_to_pinterest(title, description, link, board_id):
         "title": title[:100],
         "description": description[:500],
         "link": link,
-        "media_source": {"source_type": "image_url", "url": "https://wiki.bjj-app.net/og-image.png"},
+        "media_source": {"source_type": "image_url", "url": "https://bjj-app.net/og-image.svg"},
         "alt_text": title + " - BJJ technique guide"
     }
     try:
@@ -84,7 +84,7 @@ def main():
         except: continue
         title, desc = extract_title_and_desc(html)
         if not title or not desc: continue
-        url = f"https://wiki.bjj-app.net/en/{slug}.html"
+        url = f"https://bjj-app.net/wiki/en/{slug}"
         print(f"[POST] {slug}: {title[:60]}")
         if access_token and board_id:
             if post_to_pinterest(title, desc, url, board_id):

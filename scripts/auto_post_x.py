@@ -39,7 +39,7 @@ from datetime import datetime, timezone
 # ────────────────────────────────────────────
 #  設定
 # ────────────────────────────────────────────
-SITE_BASE_URL = "https://wiki.bjj-app.net"
+SITE_BASE_URL = "https://bjj-app.net/wiki"
 POSTED_LOG    = os.path.join(os.path.dirname(os.path.dirname(__file__)), "already_posted_x.txt")
 MAX_TWEET_LEN = 280
 DEFAULT_LIMIT = 1  # 1回の実行で最大投稿数（1日1回実行 × 1件 = 1件/日）
@@ -265,7 +265,7 @@ def main():
             skipped_no_meta += 1
             continue
 
-        page_url = f"{SITE_BASE_URL}/en/{slug}.html"
+        page_url = f"{SITE_BASE_URL}/en/{slug}"
         tweet    = build_tweet(meta["title"], meta["description"], page_url)
 
         print(f"  📝 {slug}")

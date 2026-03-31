@@ -60,6 +60,20 @@ jobs:
       - name: Update sitemap lastmod
         run: python scripts/patch_sitemap.py
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Node dependencies
+        run: npm install
+
+      - name: Migrate HTML to Supabase (wiki_pages / wiki_translations)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run migrate
+
       - name: Commit and push
         run: |
           git config user.name  "github-actions[bot]"
