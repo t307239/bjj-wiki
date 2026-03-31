@@ -1,0 +1,5 @@
+en/arm-triangle-choke
+en/harai-goshi
+en/ippon-seoi-nage
+en/morote-seoi-nage
+en/snap-down
