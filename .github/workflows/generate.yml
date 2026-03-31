@@ -74,6 +74,12 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: npm run migrate
 
+      - name: Score quality (A+C+G - update quality_score / quality_flags)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python scripts/score_quality.py
+
       - name: Commit and push
         run: |
           git config user.name  "github-actions[bot]"

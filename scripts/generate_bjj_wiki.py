@@ -323,7 +323,7 @@ def call_gemini(prompt):
     return None
 
 # ===== è¨äºçæãã­ã³ãã =====
-def build_article_prompt(technique, lang_code):
+def build_article_prompt(technique, lang_code, all_slugs=None):
     lang_instructions = {
         "en": "Write everything in English.",
         "ja": "すべて日本語で書いてください。",
@@ -332,18 +332,25 @@ def build_article_prompt(technique, lang_code):
     instruction = lang_instructions[lang_code]
     tech_name = technique["name"]
     tech_slug = technique["slug"]
+    slug_hint = ""
+    if all_slugs:
+        other = [s for s in all_slugs if s != tech_slug][:80]
+        slug_hint = f"\n\nAVAILABLE RELATED SLUGS (pick 3 for semantic_links): {', '.join(other)}"
+
     return f"""You are a world-class Brazilian Jiu-Jitsu black belt instructor with 20+ years of teaching experience.
 {instruction}
 
 Your reader is a WHITE BELT — a beginner with no body movement habits yet and high injury risk.
-Write a precise, biomechanically accurate technique guide for: **{tech_name}** (Category: {technique["category"]})
+Write a precise, biomechanically accurate technique guide for: **{tech_name}** (Category: {technique["category"]}){slug_hint}
 
 ABSOLUTE RULES:
 1. NEVER use vague language: ban "pull hard", "move quickly", "engage properly". Describe exact grips (collar, sleeve, pants, wrist), exact weight distribution (hip angle, knee direction, base width), exact frame positions.
 2. Every paragraph must be 3 lines or fewer. Long prose blocks are forbidden.
 3. All list fields must use markdown bullet points (- item) or numbered steps (1. step).
-4. White belt warning section is MANDATORY — include at least 2 specific injury risks with exact description of what goes wrong biomechanically.
-5. Drill progressions must be numbered steps from 0% resistance to live rolling.
+4. White belt warning section is MANDATORY — minimum 3 specific injury risks with EXACT biomechanical failure mode.
+5. Drill progressions: minimum 6 numbered steps from 0% to live rolling. Include rep counts.
+6. Each section (biomechanics, warnings, drills, counters) must have minimum 5 substantive points.
+7. FAQ: write 3 DIFFERENT long-tail questions that real white belts Google (e.g. "why does my wrist hurt when I do {tech_name}", "how do I {tech_name} against a bigger opponent"). Include specific biomechanical answers.
 
 Return ONLY valid JSON with this exact structure (no markdown wrapper, no extra text):
 {{{{
@@ -351,13 +358,18 @@ Return ONLY valid JSON with this exact structure (no markdown wrapper, no extra 
   "meta_description": "150-160 char meta for search engines, include \"{tech_name} BJJ\"",
   "h1": "Main H1 heading (include \"{tech_name}\")",
   "belt_level": "Recommended belt level: White/Blue/Purple/Brown/Black",
-  "technique_overview_md": "2-3 paragraph overview. Each paragraph max 3 lines. State what position this starts from and what it achieves. No abstractions.",
-  "biomechanics_and_grips_md": "Numbered step-by-step execution. Each step names the EXACT grip, EXACT hip/pelvis position, EXACT weight transfer. Min 5 steps. Use 1. 2. 3. format.",
-  "white_belt_warning_md": "Bullet list of 3-4 common white belt errors. Each bullet: (a) wrong movement, (b) which joint is damaged, (c) correct alternative. Use - format.",
-  "drill_progressions_md": "Numbered progression from isolated drilling to live rolling. Min 5 steps. Include rep counts and resistance percentages. Use 1. 2. 3. format.",
-  "counters_and_when_to_use_md": "Two parts: \"When to Attempt\" (2-3 bullet triggers) then \"Primary Counters\" (2-3 bullet defenses). Use - format.",
-  "faq_q1": "Most common white belt question about {tech_name}",
-  "faq_a1": "Concrete answer with specific biomechanical detail (2-3 sentences max)",
+  "technique_overview_md": "3 paragraphs. Paragraph 1: what position this starts from and what it achieves. Paragraph 2: why white belts fail at this (frame of mind). Paragraph 3: the ONE key mechanical insight that makes it work. Each paragraph max 3 lines.",
+  "biomechanics_and_grips_md": "Numbered step-by-step execution. Each step: EXACT grip name, EXACT hip/pelvis angle, EXACT weight transfer direction. Minimum 7 steps. Use 1. 2. 3. format.",
+  "white_belt_warning_md": "Bullet list of 3-5 common white belt errors. Each bullet: (a) wrong movement described precisely, (b) which joint/ligament is damaged and HOW, (c) exact correct alternative movement. Use - format.",
+  "drill_progressions_md": "Numbered progression from isolated solo drilling to live rolling. Minimum 6 steps. Each step has rep count and resistance percentage (0%, 25%, 50%, 75%, 90%, 100%). Use 1. 2. 3. format.",
+  "counters_and_when_to_use_md": "Two clearly labeled sections: WHEN TO ATTEMPT (3 specific positional triggers) and PRIMARY COUNTERS (3 defenses with exact body mechanics). Use - format.",
+  "faq_q1": "Long-tail white belt question about a specific failure/pain/confusion with {tech_name}",
+  "faq_a1": "Biomechanically precise answer (3-4 sentences) with exact fix",
+  "faq_q2": "Second different long-tail question (e.g. against bigger opponent, no-gi variation, competition scenario)",
+  "faq_a2": "Biomechanically precise answer (3-4 sentences) with exact fix",
+  "faq_q3": "Third long-tail question about a common misconception or timing issue with {tech_name}",
+  "faq_a3": "Biomechanically precise answer (3-4 sentences) with exact fix",
+  "semantic_links": ["slug-1", "slug-2", "slug-3"],
   "keywords": ["{tech_slug}", "bjj {tech_name.lower()}", "{tech_name.lower()} technique", "bjj white belt", "{tech_name.lower()} tutorial"]
 }}}}"""
 
@@ -710,6 +722,55 @@ def article_to_html(tech, lang_code, article, all_techniques):
         "ja": "\u25b6 YouTube\u3067\u52d5\u753b\u3092\u898b\u308b",
         "pt": "\u25b6 Assistir no YouTube",
     }[lang_code]
+
+    # J: Dynamic Contextual CTA based on technique category
+    _cat = technique.get("category", "").lower()
+    if lang_code == "en":
+        if "submission" in _cat or "choke" in _cat or "lock" in _cat:
+            _cta_headline = f"Landed your first {tech['name']}? Log every tap."
+            _cta_sub = "Track submissions, sessions & streaks — free forever."
+        elif "guard" in _cat:
+            _cta_headline = f"Building your {tech['name']} game?"
+            _cta_sub = f"Log every {tech['name']} attempt and measure your progress in BJJ App."
+        elif "sweep" in _cat:
+            _cta_headline = f"How many times did you hit {tech['name']} this week?"
+            _cta_sub = "Track sweep success rate and training streaks — free."
+        elif "pass" in _cat:
+            _cta_headline = f"Drilling your {tech['name']} pass?"
+            _cta_sub = "Log guard pass success rate and sparring sessions in BJJ App."
+        elif "escape" in _cat or "defense" in _cat:
+            _cta_headline = f"Surviving with {tech['name']}? Track your progress."
+            _cta_sub = "Log survival rate, escapes & training consistency — free forever."
+        elif "takedown" in _cat or "throw" in _cat:
+            _cta_headline = f"Shot a {tech['name']} today? Record it."
+            _cta_sub = "Track takedown attempts, training sessions & improvement — free."
+        else:
+            _cta_headline = f"Practicing {tech['name']} today?"
+            _cta_sub = "Log sessions, track techniques & streaks — free forever."
+    elif lang_code == "ja":
+        _cta_headline = f"{tech['name']}を練習中ですか？"
+        _cta_sub = "練習回数・テクニック・連続記録を一元管理。ずっと無料。"
+    else:
+        _cta_headline = f"Praticando {tech['name']} hoje?"
+        _cta_sub = "Registre treinos, técnicas e sequências — sempre gratuito."
+
+    # I: Semantic Links section
+    _sem_slugs = article.get("semantic_links", [])
+    if isinstance(_sem_slugs, list) and _sem_slugs:
+        _sem_items = []
+        for _s in _sem_slugs[:4]:
+            _t = next((t for t in all_techniques if t["slug"] == _s), None)
+            if _t:
+                _sem_items.append(f'<a href="../{lang_code}/{_s}.html" style="display:inline-block;background:#1a1a2e;border:1px solid #3a3a6a;border-radius:8px;padding:8px 14px;color:#a78bfa;text-decoration:none;font-size:.85rem;font-weight:600">{_t["name"]} →</a>')
+        if _sem_items:
+            _dig_label = {"en": "Dig Deeper", "ja": "関連テクニックを深掘り", "pt": "Aprofunde-se"}[lang_code]
+            _dig_sub = {"en": "Techniques that connect with " + tech["name"], "ja": tech["name"] + "と組み合わせて使う技", "pt": "Técnicas que se conectam com " + tech["name"]}[lang_code]
+            _semantic_links_html = f'<div style="background:#0f1420;border:1px solid #2a2a4a;border-radius:12px;padding:20px 24px;margin:28px 0"><h3 style="font-size:.9rem;font-weight:700;color:#a78bfa;margin-bottom:6px">🔗 {_dig_label}</h3><p style="font-size:.8rem;color:#64748b;margin-bottom:14px">{_dig_sub}</p><div style="display:flex;flex-wrap:wrap;gap:8px">{"".join(_sem_items)}</div></div>'
+        else:
+            _semantic_links_html = ""
+    else:
+        _semantic_links_html = ""
+
     return f"""<!DOCTYPE html>
 <html lang="{lang_code}">
 <head>
@@ -1010,9 +1071,12 @@ def article_to_html(tech, lang_code, article, all_techniques):
   {yoga_html}
   {gear_html}
 
-  <div class="faq">
-    <div class="faq-q">Q: {article.get('faq_q1','')}</div>
-    <p>{article.get('faq_a1','')}</p>
+  <!-- FAQ Section (long-tail SEO) -->
+  <div style="margin:32px 0">
+    <h2>{'Common BJJ Problems & FAQ' if lang_code=='en' else 'よくある質問・トラブル' if lang_code=='ja' else 'Perguntas Frequentes'}</h2>
+    {(('<div class="faq"><div class="faq-q">Q: ' + str(article.get('faq_q1','')) + '</div><p>' + str(article.get('faq_a1','')) + '</p></div>') if article.get('faq_q1') else '')}
+    {(('<div class="faq"><div class="faq-q">Q: ' + str(article.get('faq_q2','')) + '</div><p>' + str(article.get('faq_a2','')) + '</p></div>') if article.get('faq_q2') else '')}
+    {(('<div class="faq"><div class="faq-q">Q: ' + str(article.get('faq_q3','')) + '</div><p>' + str(article.get('faq_a3','')) + '</p></div>') if article.get('faq_q3') else '')}
   </div>
 
   {'<h2>Related Techniques</h2>' if lang_code=='en' else '<h2>é¢é£æ</h2>' if lang_code=='ja' else '<h2>TÃ©cnicas Relacionadas</h2>'}
@@ -1028,13 +1092,16 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
   {beehiiv_html}
 
-  <!-- BJJ App CTA Banner -->
+  <!-- Semantic Dig Deeper (I: Semantic Linking) -->
+  {_semantic_links_html}
+
+  <!-- BJJ App CTA Banner (J: Dynamic Contextual CTA) -->
   <div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid rgba(233,69,96,0.3);border-radius:12px;padding:20px 24px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
     <div>
-      <p style="margin:0 0 4px;font-size:.95rem;font-weight:700;color:#e2e2ee">🥋 {'Track Your BJJ Progress' if lang_code=='en' else '柔術の練習を記録しよう' if lang_code=='ja' else 'Registre seu Progresso no BJJ'}</p>
-      <p style="margin:0;font-size:.82rem;color:#7a7a9a">{'Log sessions, track techniques & streaks — free forever.' if lang_code=='en' else '練習回数・テクニック・連続記録を一元管理。ずっと無料。' if lang_code=='ja' else 'Registre treinos, técnicas e sequências — sempre gratuito.'}</p>
+      <p style="margin:0 0 4px;font-size:.95rem;font-weight:700;color:#e2e2ee">🥋 {_cta_headline}</p>
+      <p style="margin:0;font-size:.82rem;color:#7a7a9a">{_cta_sub}</p>
     </div>
-    <a href="https://bjj-app-one.vercel.app" target="_blank" rel="noopener" onclick="gtag&&gtag('event','app_cta_click',{{page:location.pathname,lang:'{lang_code}'}})" style="flex-shrink:0;background:#e94560;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700;white-space:nowrap">{'Try Free →' if lang_code=='en' else '無料で試す →' if lang_code=='ja' else 'Experimente Grátis →'}</a>
+    <a href="https://bjj-app.net/login" target="_blank" rel="noopener" onclick="gtag&&gtag('event','app_cta_click',{{page:location.pathname,lang:'{lang_code}',tech:'{tech['slug']}'}})" style="flex-shrink:0;background:#e94560;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700;white-space:nowrap">{'Try Free →' if lang_code=='en' else '無料で試す →' if lang_code=='ja' else 'Experimente Grátis →'}</a>
   </div>
 
   <!-- Share Bar -->
@@ -1222,6 +1289,42 @@ def save_cache(cache):
     with open(path, "w", encoding="utf-8") as f: json.dump(cache, f, ensure_ascii=False, indent=2)
 
 # ===== ã¡ã¤ã³ =====
+
+def _fetch_low_quality_slugs():
+    """F: Supabase から quality_score 低い順にスラッグを取得して優先度付き再生成キューを返す"""
+    supabase_url = os.environ.get("SUPABASE_URL", "")
+    service_key  = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not supabase_url or not service_key:
+        return []
+    try:
+        proj_id = supabase_url.split("//")[1].split(".")[0]
+        mgmt_url = f"https://api.supabase.com/v1/projects/{proj_id}/database/query"
+        sql = ("SELECT wp.slug, wt.quality_score FROM wiki_translations wt "
+               "JOIN wiki_pages wp ON wp.id = wt.page_id "
+               "WHERE wt.language_code = 'en' AND wt.quality_score IS NOT NULL "
+               "ORDER BY wt.quality_score ASC LIMIT 200")
+        data = json.dumps({"query": sql}).encode()
+        req = urllib.request.Request(mgmt_url, data=data,
+            headers={"Content-Type": "application/json",
+                     "Authorization": f"Bearer {service_key}"},
+            method="POST")
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            rows = json.loads(resp.read())
+        slugs = [r["slug"] for r in rows if r.get("slug")]
+        print(f"[F] 優先度キュー: {len(slugs)}件取得 (quality_score低順)")
+        return slugs
+    except Exception as e:
+        print(f"[F] 優先度キュー取得失敗（スキップ）: {e}")
+        return []
+
+
+def _sort_techniques_by_priority(techniques, priority_slugs):
+    """F: priority_slugs の順番で TECHNIQUES を並び替え、未スコアは末尾に"""
+    if not priority_slugs:
+        return techniques
+    slug_order = {slug: i for i, slug in enumerate(priority_slugs)}
+    return sorted(techniques, key=lambda t: slug_order.get(t["slug"], len(priority_slugs)))
+
 def main():
     import argparse
     parser = argparse.ArgumentParser()
@@ -1235,6 +1338,11 @@ def main():
     langs  = list(LANGUAGES.keys()) if args.lang == "all" else [args.lang]
     count  = 0
 
+    # F: 優先度キュー — quality_score 低順に再生成
+    priority_slugs     = _fetch_low_quality_slugs() if args.force else []
+    techniques_ordered = _sort_techniques_by_priority(TECHNIQUES, priority_slugs)
+    all_slugs          = [t["slug"] for t in TECHNIQUES]
+
     # ããããã¼ã¸çæ
     with open(os.path.join(SITE_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(generate_index())
@@ -1246,7 +1354,7 @@ def main():
         os.makedirs(lang_dir, exist_ok=True)
         techniques_by_category = {}
 
-        for tech in TECHNIQUES:
+        for tech in techniques_ordered:
             cache_key = f"{lang_code}/{tech['slug']}"
             out_path  = os.path.join(lang_dir, f"{tech['slug']}.html")
 
@@ -1263,7 +1371,7 @@ def main():
                 break
 
             print(f"[{lang_code}] {tech['name']} çæä¸­...")
-            raw = call_gemini(build_article_prompt(tech, lang_code))
+            raw = call_gemini(build_article_prompt(tech, lang_code, all_slugs))
             if not raw:
                 print(f"[WARNING] {tech['name']} çæå¤±æãã¹ã­ãã")
                 continue
