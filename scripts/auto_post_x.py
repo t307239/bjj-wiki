@@ -117,7 +117,7 @@ def _build_oauth_header(
 
 
 def post_tweet(text: str, dry_run: bool = False) -> dict | None:
-    """X API v2 でツイートを投稿する"""
+    """X API v2 でツイートを投稿する。失敗時は例外を送出する。"""
     if dry_run:
         print(f"  [DRY RUN] Would tweet ({len(text)} chars):")
         print(f"  {text!r}")
@@ -129,8 +129,7 @@ def post_tweet(text: str, dry_run: bool = False) -> dict | None:
     access_token_secret = os.environ.get("X_ACCESS_TOKEN_SECRET", "")
 
     if not all([api_key, api_secret, access_token, access_token_secret]):
-        print("  ❌ X API credentials not set. Skipping tweet.")
-        return None
+        raise RuntimeError("X API credentials not set (X_API_KEY / X_API_SECRET / X_ACCESS_TOKEN / X_ACCESS_TOKEN_SECRET)")
 
     url     = "https://api.twitter.com/2/tweets"
     payload = json.dumps({"text": text}).encode("utf-8")
@@ -146,8 +145,7 @@ def post_tweet(text: str, dry_run: bool = False) -> dict | None:
             return result.get("data", result)
     except urllib.error.HTTPError as e:
         body = e.read().decode()
-        print(f"  ❌ Twitter API error {e.code}: {body}")
-        return None
+        raise RuntimeError(f"Twitter API error {e.code}: {body}")
 
 
 def send_telegram(msg: str) -> None:
@@ -271,17 +269,21 @@ def main():
         tweet    = build_tweet(meta["title"], meta["description"], page_url)
 
         print(f"  📝 {slug}")
-        result = post_tweet(tweet, dry_run=dry_run)
-
-        if result:
-            count += 1
-            newly_posted.append(slug)
-            posted.add(slug)
-            print(f"  ✅ posted ({count}/{limit}): {tweet[:70]}...")
+        try:
+            result = post_tweet(tweet, dry_run=dry_run)
+        except RuntimeError as e:
+            error_msg = str(e)
+            print(f"  ❌ {error_msg}")
             if not dry_run:
-                time.sleep(2)  # Rate limit対策
-        else:
-            print(f"  ⚠️ skip: {slug}")
+                send_telegram(f"❌ BJJ Wiki X投稿失敗\n{error_msg}\n\n対処: Twitter Developer Portal でAccessTokenを再生成し、GitHub Secretsを更新してください")
+            sys.exit(1)
+
+        count += 1
+        newly_posted.append(slug)
+        posted.add(slug)
+        print(f"  ✅ posted ({count}/{limit}): {tweet[:70]}...")
+        if not dry_run:
+            time.sleep(2)  # Rate limit対策
 
     if not dry_run:
         save_posted_log(posted)
