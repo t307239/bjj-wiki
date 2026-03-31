@@ -325,33 +325,41 @@ def call_gemini(prompt):
 # ===== è¨äºçæãã­ã³ãã =====
 def build_article_prompt(technique, lang_code):
     lang_instructions = {
-        "en": "Write in English.",
-        "ja": "æ¥æ¬èªã§æ¸ãã¦ãã ããã",
-        "pt": "Escreva em PortuguÃªs brasileiro.",
+        "en": "Write everything in English.",
+        "ja": "すべて日本語で書いてください。",
+        "pt": "Escreva tudo em Português brasileiro.",
     }
     instruction = lang_instructions[lang_code]
-    return f"""You are an expert Brazilian Jiu-Jitsu instructor and SEO content writer.
+    tech_name = technique["name"]
+    tech_slug = technique["slug"]
+    return f"""You are a world-class Brazilian Jiu-Jitsu black belt instructor with 20+ years of teaching experience.
 {instruction}
 
-Write a comprehensive BJJ technique guide for: **{technique['name']}** (Category: {technique['category']})
+Your reader is a WHITE BELT — a beginner with no body movement habits yet and high injury risk.
+Write a precise, biomechanically accurate technique guide for: **{tech_name}** (Category: {technique["category"]})
 
-Return ONLY valid JSON with this exact structure (no markdown, no extra text):
-{{
-  "title": "SEO-optimized page title (include BJJ and technique name)",
-  "meta_description": "150-160 char meta description for search engines",
-  "h1": "Main heading for the article",
-  "intro": "2-3 sentence introduction explaining what this technique is",
-  "how_to": "Step-by-step instructions (4-6 steps, each 1-2 sentences)",
-  "key_details": "Important details, common mistakes, and tips (3-4 points)",
-  "variations": "2-3 common variations or related techniques",
-  "when_to_use": "Situations and positions where this technique works best",
-  "counters": "2-3 main defenses or counters against this technique",
-  "belt_level": "Recommended belt level (White/Blue/Purple/Brown/Black)",
-  "pro_tip": "One expert pro tip that most beginners miss (1-2 sentences)",
-  "faq_q1": "Frequently asked question about this technique",
-  "faq_a1": "Answer to the FAQ",
-  "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"]
-}}"""
+ABSOLUTE RULES:
+1. NEVER use vague language: ban "pull hard", "move quickly", "engage properly". Describe exact grips (collar, sleeve, pants, wrist), exact weight distribution (hip angle, knee direction, base width), exact frame positions.
+2. Every paragraph must be 3 lines or fewer. Long prose blocks are forbidden.
+3. All list fields must use markdown bullet points (- item) or numbered steps (1. step).
+4. White belt warning section is MANDATORY — include at least 2 specific injury risks with exact description of what goes wrong biomechanically.
+5. Drill progressions must be numbered steps from 0% resistance to live rolling.
+
+Return ONLY valid JSON with this exact structure (no markdown wrapper, no extra text):
+{{{{
+  "title": "SEO title including \"{tech_name}\" and \"BJJ\" (60 chars max)",
+  "meta_description": "150-160 char meta for search engines, include \"{tech_name} BJJ\"",
+  "h1": "Main H1 heading (include \"{tech_name}\")",
+  "belt_level": "Recommended belt level: White/Blue/Purple/Brown/Black",
+  "technique_overview_md": "2-3 paragraph overview. Each paragraph max 3 lines. State what position this starts from and what it achieves. No abstractions.",
+  "biomechanics_and_grips_md": "Numbered step-by-step execution. Each step names the EXACT grip, EXACT hip/pelvis position, EXACT weight transfer. Min 5 steps. Use 1. 2. 3. format.",
+  "white_belt_warning_md": "Bullet list of 3-4 common white belt errors. Each bullet: (a) wrong movement, (b) which joint is damaged, (c) correct alternative. Use - format.",
+  "drill_progressions_md": "Numbered progression from isolated drilling to live rolling. Min 5 steps. Include rep counts and resistance percentages. Use 1. 2. 3. format.",
+  "counters_and_when_to_use_md": "Two parts: \"When to Attempt\" (2-3 bullet triggers) then \"Primary Counters\" (2-3 bullet defenses). Use - format.",
+  "faq_q1": "Most common white belt question about {tech_name}",
+  "faq_a1": "Concrete answer with specific biomechanical detail (2-3 sentences max)",
+  "keywords": ["{tech_slug}", "bjj {tech_name.lower()}", "{tech_name.lower()} technique", "bjj white belt", "{tech_name.lower()} tutorial"]
+}}}}"""
 
 # ===== é£æåº¦ã»é¸æã»Yogaã»ã®ã¢ ãããã³ã° =====
 DIFFICULTY_MAP = {
@@ -463,6 +471,46 @@ GEAR_CAT_MAP = {
 }
 
 # ===== è¨äºJSONãHTMLã«å¤æ =====
+# ===== Markdownライト変換ヘルパー =====
+def md_to_html(text: str) -> str:
+    """ライトMarkdown (numbered list / bullet list / bold) → HTML変換"""
+    import re as _re
+    if not text:
+        return ""
+    lines = text.split("\n")
+    out = []
+    in_ul = False
+    in_ol = False
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            if in_ul: out.append("</ul>"); in_ul = False
+            if in_ol: out.append("</ol>"); in_ol = False
+            continue
+        # numbered list
+        if _re.match(r"^\d+\.\s", stripped):
+            if in_ul: out.append("</ul>"); in_ul = False
+            if not in_ol: out.append('<ol style="padding-left:20px;margin:8px 0">'); in_ol = True
+            item = _re.sub(r"^\d+\.\s*", "", stripped)
+            item = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", item)
+            out.append(f"<li style=\"color:#c2c2d9;margin-bottom:6px\">{item}</li>")
+        # bullet list
+        elif stripped.startswith("- ") or stripped.startswith("* "):
+            if in_ol: out.append("</ol>"); in_ol = False
+            if not in_ul: out.append('<ul style="padding-left:20px;margin:8px 0">'); in_ul = True
+            item = stripped[2:].strip()
+            item = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", item)
+            out.append(f"<li style=\"color:#c2c2d9;margin-bottom:6px\">{item}</li>")
+        else:
+            if in_ul: out.append("</ul>"); in_ul = False
+            if in_ol: out.append("</ol>"); in_ol = False
+            para = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", stripped)
+            out.append(f"<p style=\"color:#c2c2d9;margin-bottom:10px\">{para}</p>")
+    if in_ul: out.append("</ul>")
+    if in_ol: out.append("</ol>")
+    return "\n".join(out)
+
+
 def article_to_html(tech, lang_code, article, all_techniques):
     lang = LANGUAGES[lang_code]
     nav_labels = {
@@ -488,7 +536,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
     # 言語切替ナビ (lang-nav)
     _lang_flags = {"en": "🇺🇸 EN", "ja": "🇯🇵 JA", "pt": "🇧🇷 PT"}
     lang_nav_links = "".join([
-        f'<a href="../{lc}/{tech["slug"]}.html" {"class=\\"active\\"" if lc == lang_code else ""}>{_lang_flags[lc]}</a>'
+        '<a href="../' + lc + '/' + tech["slug"] + '.html"' + (' class="active"' if lc == lang_code else '') + '>' + _lang_flags[lc] + '</a>'
         for lc in LANGUAGES
     ])
     lang_nav = f'<nav class="lang-nav">{lang_nav_links}</nav>'
@@ -606,6 +654,57 @@ def article_to_html(tech, lang_code, article, all_techniques):
         f'</div>'
     )
 
+    # CTA strings that can't have backslash in f-string expression (Python < 3.12)
+    _cta_video_msg = {
+        "en": "🥋 Can’t find the exact detail you need? Save your instructor’s video URL in ",
+        "ja": "🥋 道場のコーチのディテールが違う場合は、",
+        "pt": "🥋 N\u00e3o encontrou o detalhe que precisa? Salve o URL do seu instrutor no ",
+    }[lang_code]
+    _cta_video_link = {
+        "en": "BJJ App (free) →",
+        "ja": "BJJ App（無料）のTechnique Logに保存しよう →",
+        "pt": "BJJ App (grátis) →",
+    }[lang_code]
+    _related_video_label = {
+        "en": "Related Video",
+        "ja": "関連動画",
+        "pt": "Vídeo Relacionado",
+    }[lang_code]
+    _video_sub_label = {
+        "en": "Watch step-by-step breakdowns from black belt instructors:",
+        "ja": "黒帯インストラクターのステップ解説を見る：",
+        "pt": "Assista breakdowns de instrutores faixa preta:",
+    }[lang_code]
+    _search_label = {
+        "en": "▶ Search ",
+        "ja": "▶ ",
+        "pt": "▶ Buscar ",
+    }[lang_code]
+    _search_suffix = {
+        "en": " on YouTube",
+        "ja": " をYouTubeで検索",
+        "pt": " no YouTube",
+    }[lang_code]
+    _warn_label = {
+        "en": "⚠️ White Belt Warnings",
+        "ja": "⚠️ 白帯の注意点",
+        "pt": "⚠️ Avisos para Faixa Branca",
+    }[lang_code]
+    _grips_label = {
+        "en": "Grips &amp; Mechanics",
+        "ja": "グリップ・生体力学",
+        "pt": "Pegadas e Mecânica",
+    }[lang_code]
+    _drills_label = {
+        "en": "Drill Progressions",
+        "ja": "ドリル段階",
+        "pt": "Progressão de Drills",
+    }[lang_code]
+    _when_counters_label = {
+        "en": "When to Use &amp; Counters",
+        "ja": "使うタイミング・カウンター",
+        "pt": "Quando Usar e Defesas",
+    }[lang_code]
     return f"""<!DOCTYPE html>
 <html lang="{lang_code}">
 <head>
@@ -635,6 +734,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <link rel="alternate" hreflang="en" href="{SITE_URL}/en/{tech['slug']}.html">
 <link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/{tech['slug']}.html">
 <link rel="alternate" hreflang="pt" href="{SITE_URL}/pt/{tech['slug']}.html">
+<link rel="icon" href="{SITE_URL}/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{SITE_URL}/og-image.svg">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
@@ -827,29 +928,43 @@ def article_to_html(tech, lang_code, article, all_techniques):
   <h1>{to_str(article.get('h1', tech['name']))}</h1>
   {difficulty_html}
   {belt_guide_html}
-  <p>{to_str(article.get('intro', ''))}</p>
+  <p>{md_to_html(to_str(article.get('technique_overview_md', article.get('intro', ''))))}</p>
 
   <div id="toc" class="toc">
     <div class="toc-title">{'Contents' if lang_code=='en' else '目次' if lang_code=='ja' else 'Conteúdo'}</div>
     <ul class="toc-list" id="toc-list"></ul>
   </div>
 
-  <h2>{'How to Execute' if lang_code=='en' else 'ããæ¹' if lang_code=='ja' else 'Como Executar'}</h2>
-  <div class="card"><p>{to_str(article.get('how_to','')).replace(chr(10),'<br>')}</p></div>
+  <h2>{_grips_label}</h2>
+  <div class="card">{md_to_html(to_str(article.get('biomechanics_and_grips_md', article.get('how_to', ''))))}</div>
 
-  <h2>{'Key Details & Tips' if lang_code=='en' else 'ã³ãã¨æ³¨æç¹' if lang_code=='ja' else 'Detalhes e Dicas'}</h2>
-  <div class="card"><p>{to_str(article.get('key_details','')).replace(chr(10),'<br>')}</p></div>
+  <h2 style="color:#fca5a5;border-left-color:#dc2626">{_warn_label}</h2>
+  <div class="card" style="background:#1a0505;border-color:#dc262640">{md_to_html(to_str(article.get('white_belt_warning_md', article.get('key_details', ''))))}</div>
 
-  <h2>{'Variations' if lang_code=='en' else 'ããªã¨ã¼ã·ã§ã³' if lang_code=='ja' else 'VariaÃ§Ãµes'}</h2>
-  <div class="card"><p>{to_str(article.get('variations','')).replace(chr(10),'<br>')}</p></div>
+  <h2>{_drills_label}</h2>
+  <div class="card">{md_to_html(to_str(article.get('drill_progressions_md', article.get('variations', ''))))}</div>
 
-  <h2>{'When to Use' if lang_code=='en' else 'ä½¿ãã¿ã¤ãã³ã°' if lang_code=='ja' else 'Quando Usar'}</h2>
-  <div class="card"><p>{to_str(article.get('when_to_use','')).replace(chr(10),'<br>')}</p></div>
+  <h2>{_when_counters_label}</h2>
+  <div class="card">{md_to_html(to_str(article.get('counters_and_when_to_use_md', article.get('when_to_use', '') + ' ' + article.get('counters', ''))))}</div>
 
-  <h2>{'Counters & Defenses' if lang_code=='en' else 'ã«ã¦ã³ã¿ã¼ã»é²å¾¡' if lang_code=='ja' else 'Defesas e Contra-ataques'}</h2>
-  <div class="card"><p>{to_str(article.get('counters','')).replace(chr(10),'<br>')}</p></div>
+  <h2>{_related_video_label}</h2>
+  <div class="card" style="background:#0a0a1a;border-color:#3a3a6a">
+    <p style="color:#9ca3af;font-size:.9rem;margin-bottom:12px">{_video_sub_label}</p>
+    <a class="yt-search-btn" href="https://www.youtube.com/results?search_query={tech['name'].replace(' ','+')}+BJJ+tutorial" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      {_search_label}{tech['name']}{_search_suffix}
+    </a>
+    <div style="margin-top:14px;padding:12px 16px;background:#0d2010;border:1px solid #22c55e40;border-radius:8px">
+      <p style="color:#86efac;font-size:.85rem;margin:0">
+        {_cta_video_msg}
+        <a href="https://bjj-app.net/login" style="color:#4ade80;font-weight:700;text-decoration:none">{_cta_video_link}</a>
+      </p>
+    </div>
+  </div>
 
   {athletes_html}
+
+    {athletes_html}
 
   {'<!-- Pro Tip --><div class="pro-tip"><div class="pro-tip-label">ð¡ ' + ('PRO TIP' if lang_code=="en" else 'ãã­ã®ã³ã' if lang_code=="ja" else 'DICA DE PRO') + '</div><p>' + to_str(article.get("pro_tip","")).replace(chr(10),'<br>') + '</p></div>' if article.get('pro_tip') else ''}
 
