@@ -47,10 +47,10 @@ SCORE_WEIGHTS = {
 # 動画ボーナスが適用されるジャンル
 VIDEO_REQUIRED_TYPES = {"Technique", "Drill"}
 
-# 判定閾値
-GARBAGE_THRESHOLD = 40
-POOR_THRESHOLD    = 60
-GOOD_THRESHOLD    = 75
+# 判定閾値（SEO負債回避のため GARBAGE を 60 に引き上げ）
+GARBAGE_THRESHOLD = 60
+POOR_THRESHOLD    = 75
+GOOD_THRESHOLD    = 85
 
 # ─────────────────────────────────────────────────────
 # HTML 解析
