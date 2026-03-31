@@ -705,6 +705,11 @@ def article_to_html(tech, lang_code, article, all_techniques):
         "ja": "使うタイミング・カウンター",
         "pt": "Quando Usar e Defesas",
     }[lang_code]
+    _yt_btn_label = {
+        "en": "\u25b6 Watch on YouTube",
+        "ja": "\u25b6 YouTube\u3067\u52d5\u753b\u3092\u898b\u308b",
+        "pt": "\u25b6 Assistir no YouTube",
+    }[lang_code]
     return f"""<!DOCTYPE html>
 <html lang="{lang_code}">
 <head>
@@ -1039,7 +1044,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
       <a class="share-btn x" href="https://twitter.com/intent/tweet?url={SITE_URL}/{lang_code}/{tech['slug']}.html&text={tech['name'].replace(' ','+')}+%23BJJ+%23bjjwiki" target="_blank" rel="noopener noreferrer">ð {'Post on X' if lang_code=='en' else 'Xã«æç¨¿' if lang_code=='ja' else 'Postar no X'}</a>
       <a class="share-btn reddit" href="https://www.reddit.com/submit?url={SITE_URL}/{lang_code}/{tech['slug']}.html&title={tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer">â¬ Reddit</a>
       <button class="share-btn copy" onclick="navigator.clipboard.writeText('{SITE_URL}/{lang_code}/{tech['slug']}.html').then(()=>{{this.textContent='â {'Copied!' if lang_code=='en' else 'ã³ãã¼æ¸ï¼' if lang_code=='ja' else 'Copiado!'}';setTimeout(()=>this.textContent='ð {'Copy Link' if lang_code=='en' else 'ãªã³ã¯ã³ãã¼' if lang_code=='ja' else 'Copiar'}',2000)}})">ð {'Copy Link' if lang_code=='en' else 'ãªã³ã¯ã³ãã¼' if lang_code=='ja' else 'Copiar'}</button>
-      <a class="yt-search-btn" href="https://www.youtube.com/results?search_query={tech['name'].replace(' ','+')}+BJJ+tutorial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> {'\u25b6 Watch on YouTube' if lang_code=='en' else '\u25b6 YouTube\u3067\u52d5\u753b\u3092\u898b\u308b' if lang_code=='ja' else '\u25b6 Assistir no YouTube'}</a>
+      <a class="yt-search-btn" href="https://www.youtube.com/results?search_query={tech['name'].replace(' ','+')}+BJJ+tutorial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> {_yt_btn_label}</a>
     </div>
   </div>
 
