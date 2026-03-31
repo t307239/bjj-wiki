@@ -2,323 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BJJ Wiki — Complete Brazilian Jiu-Jitsu Guide</title>
-<meta name="description" content="Free BJJ techniques, guides & tutorials. 1,500+ pages covering submissions, guards, passes, sweeps and competition strategy.">
-<meta property="og:title" content="BJJ Wiki — Complete Brazilian Jiu-Jitsu Guide">
-<meta property="og:description" content="Free BJJ techniques, guides & tutorials. 1,500+ pages covering submissions, guards, passes, sweeps and competition strategy.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary">
-<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/index.html">
-<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/index.html">
-<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/index.html">
-<link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/index.html">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,'dataLayer','script','dataLayer','GTM-WC3DKRB');</script>
-<!-- End Google Tag Manager -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All BJJ Techniques | BJJ Wiki</title>
+<meta name="description" content="Complete encyclopedia of Brazilian Jiu-Jitsu techniques. Learn guards, passes, submissions, sweeps and more.">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--card:#18181b;--card-hover:#1c1c22;--border:rgba(255,255,255,0.10);--border-hover:rgba(124,58,237,0.5);--text:#e2e8f0;--muted:#64748b;--accent:#7c3aed;--accent2:#e94560}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh}
-a{color:inherit;text-decoration:none}
-/* Header */
-header{background:rgba(11,15,26,0.95);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
-.logo{font-weight:800;font-size:1.2rem;letter-spacing:-0.02em;color:#fff}.logo span{color:var(--accent2)}
-/* Hero */
-.hero{text-align:center;padding:48px 20px 32px;max-width:680px;margin:0 auto}
-.hero h1{font-size:2.4rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:10px}
-.hero h1 span{color:var(--accent2)}
-.hero-sub{color:var(--muted);font-size:1rem;margin-bottom:28px}
-/* Search */
-.search-wrap{position:relative;max-width:560px;margin:0 auto 20px}
-#search{width:100%;padding:14px 48px 14px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:1rem;outline:none;transition:border-color .2s}
-#search:focus{border-color:var(--accent)}
-#search::placeholder{color:var(--muted)}
-.search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
-/* Category pills */
-.cat-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px;padding:0 16px}
-.cat-pill{padding:6px 14px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-size:.85rem;cursor:pointer;color:var(--muted);transition:all .15s}
-.cat-pill:hover,.cat-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
-/* Results */
-.container{max-width:1200px;margin:0 auto;padding:0 16px 60px}
-.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;color:var(--muted);font-size:.85rem}
-.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.result-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .2s,background .2s;cursor:pointer}
-.result-card:hover{border-color:var(--border-hover);background:var(--card-hover)}
-.result-title{font-weight:600;font-size:.95rem;margin-bottom:6px;color:var(--text)}
-.result-desc{font-size:.8rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.result-meta{display:flex;gap:6px;margin-top:8px}
-.badge{font-size:.7rem;padding:2px 8px;border-radius:10px;background:rgba(124,58,237,.15);color:var(--accent)}
-.no-results{text-align:center;color:var(--muted);padding:60px 20px}
-#load-more-wrap{text-align:center;margin-top:24px}
-#load-more{padding:10px 28px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;font-size:.9rem;transition:all .15s}
-#load-more:hover{border-color:var(--accent)}
-/* CTA banner */
-.cta-banner{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(233,69,96,.1));border:1px solid rgba(124,58,237,.3);border-radius:14px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0}
-.cta-btn{white-space:nowrap;padding:10px 20px;background:var(--accent2);color:#fff;border-radius:8px;font-weight:600;font-size:.9rem}
-/* Footer */
-footer{border-top:1px solid var(--border);padding:24px;text-align:center;color:var(--muted);font-size:.8rem}
-@media(max-width:600px){.hero h1{font-size:1.8rem}.cta-banner{flex-direction:column;text-align:center}}
+  :root{--bg:#0a0a0f;--card:#111119;--border:#1e1e2e;--text:#e2e2ee;--muted:#7a7a9a;--accent:#6e40c9}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0 16px}
+  .container{max-width:900px;margin:0 auto;padding:24px 0 64px}
+  header{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
+  .logo{font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none}
+  .logo span{color:var(--accent)}
+  h1{font-size:2rem;font-weight:800;margin-bottom:8px}
+  .subtitle{color:var(--muted);margin-bottom:32px}
+  .cat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+  .cat-card h2{font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:12px}
+  .tech-links{display:flex;flex-wrap:wrap;gap:8px}
+  .tech-links a{background:#1e1e2e;color:var(--muted);text-decoration:none;padding:4px 12px;border-radius:6px;font-size:0.85rem;border:1px solid var(--border)}
+  .tech-links a:hover{color:var(--text);border-color:var(--accent)}
+  footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:0.8rem}
 </style>
-<meta property="og:image" content="https://wiki.bjj-app.net/og/en-index.svg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://wiki.bjj-app.net/og-image.png">
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WC3DKRB"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-
-<div class="hero">
-  <h1>BJJ<span> Wiki</span></h1>
-  <p class="hero-sub">1,500+ techniques, guides & tutorials for all <strong>belt</strong> levels</p>
-  <div class="search-wrap">
-    <input id="search" type="search" placeholder="Search techniques, positions, submissions…" autocomplete="off" oninput="onSearch(this.value)">
-    <svg class="search-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-  </div>
-  <div class="cat-pills">
-<button class="cat-pill active" data-cat="all" onclick="filterCat('all',this)">🥋 All</button>
-<button class="cat-pill" data-cat="submission" onclick="filterCat('submission',this)">💀 Submissions</button>
-<button class="cat-pill" data-cat="guard" onclick="filterCat('guard',this)">🛡️ <strong>Guard</strong></button>
-<button class="cat-pill" data-cat="passing" onclick="filterCat('passing',this)">⚔️ Passing</button>
-<button class="cat-pill" data-cat="sweep" onclick="filterCat('sweep',this)">🌀 Sweeps</button>
-<button class="cat-pill" data-cat="takedown" onclick="filterCat('takedown',this)">🤸 Takedowns</button>
-<button class="cat-pill" data-cat="position" onclick="filterCat('position',this)">🏔️ Positions</button>
-<button class="cat-pill" data-cat="escape" onclick="filterCat('escape',this)">🔓 Escapes</button>
-<button class="cat-pill" data-cat="conditioning" onclick="filterCat('conditioning',this)">⚡ Conditioning</button>
-<button class="cat-pill" data-cat="concepts" onclick="filterCat('concepts',this)">🧠 Concepts</button>
-  </div>
-</div>
-
 <div class="container">
-  <!-- CTA Banner -->
-  <div class="cta-banner">
-    <span style="font-size:.95rem">Track your BJJ training</span>
-    <a href="https://bjj-app.net" class="cta-btn" onclick="gtag('event','cta_click',{'page':'index'})">Free App →</a>
-  </div>
-
-  <!-- Results section -->
-  <div class="results-header">
-    <span id="results-count"></span>
-    <span id="results-label"></span>
-  </div>
-  <div id="results-grid" class="results-grid"></div>
-  <div id="load-more-wrap" style="display:none">
-    <button id="load-more" onclick="loadMore()">Load more</button>
-  </div>
-  <div id="no-results" class="no-results" style="display:none">No results found. Try a different search term.</div>
-
-  <div>
-    <div class="app-cta-wrap" style="text-align:center;padding:32px 20px;background:linear-gradient(135deg,#0a1a10,#0f172a);border:1px solid #1e3a2e;border-radius:16px;margin:24px 0">
-    <div style="font-size:1.1rem;font-weight:700;color:#e2e8f0;margin-bottom:8px">📱 Track Your BJJ Training</div>
-    <div style="font-size:.9rem;color:#94a3b8;margin-bottom:16px">Log sessions, save techniques, build streaks. Free forever.</div>
-    <a href="https://bjj-app.net/login" style="display:inline-block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:14px 32px;border-radius:30px;font-weight:700;text-decoration:none;font-size:1rem;transition:transform .2s">Start Free →</a>
-  </div>
-  </div>
+  <header><a href="../index.html" class="logo">BJJ<span>Wiki</span></a></header>
+  <h1>All BJJ Techniques</h1>
+  <p class="subtitle">Complete encyclopedia of Brazilian Jiu-Jitsu techniques. Learn guards, passes, submissions, sweeps and more.</p>
+  <div class="cat-card"><h2>Guard</h2><div class="tech-links"><a href="closed-guard.html">Closed Guard</a><a href="open-guard.html">Open Guard</a></div></div>
+  <footer><p>BJJ Wiki</p></footer>
 </div>
-
-
-<section style="margin:32px 0">
-  <h2 style="color:#e2e8f0;font-size:1.2rem;font-weight:800;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">Common Mistakes in Index</h2>
-  
-  <div style="margin-bottom:16px;padding:14px 16px;background:#1a0a0a;border-left:3px solid #dc2626;border-radius:0 8px 8px 0">
-    <h3 style="color:#fca5a5;font-size:0.95rem;font-weight:700;margin-bottom:6px">Rushing the Setup</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Attempting to finish before proper mechanics are in place results in failed attempts and positional loss. Prioritize <strong>position</strong> before <strong>submission</strong>.</p>
-  </div>
-  <div style="margin-bottom:16px;padding:14px 16px;background:#1a0a0a;border-left:3px solid #dc2626;border-radius:0 8px 8px 0">
-    <h3 style="color:#fca5a5;font-size:0.95rem;font-weight:700;margin-bottom:6px">Using Strength Over <strong>Technique</strong></h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Muscling through setups creates bad habits and fails against stronger or more skilled opponents. Focus on <strong>leverage</strong> and angles.</p>
-  </div>
-  <div style="margin-bottom:16px;padding:14px 16px;background:#1a0a0a;border-left:3px solid #dc2626;border-radius:0 8px 8px 0">
-    <h3 style="color:#fca5a5;font-size:0.95rem;font-weight:700;margin-bottom:6px">Skipping <strong>Drilling</strong></h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Techniques only become available in live <strong>rolling</strong> after extensive drilling. Regular repetition builds the muscle memory needed for execution under <strong>pressure</strong>.</p>
-  </div>
-  <div style="margin-bottom:16px;padding:14px 16px;background:#1a0a0a;border-left:3px solid #dc2626;border-radius:0 8px 8px 0">
-    <h3 style="color:#fca5a5;font-size:0.95rem;font-weight:700;margin-bottom:6px">Ignoring Defensive Reactions</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Every technique has common counters. Learn the most frequent defensive reactions and have follow-up attacks ready.</p>
-  </div>
-</section>
-
-<section style="margin:32px 0">
-  <h2 style="color:#e2e8f0;font-size:1.2rem;font-weight:800;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">Training Tips for Index</h2>
-  
-  <div style="margin-bottom:16px;padding:14px 16px;background:#0a1a0a;border-left:3px solid #16a34a;border-radius:0 8px 8px 0">
-    <h3 style="color:#86efac;font-size:0.95rem;font-weight:700;margin-bottom:6px">Shadow Drill at Full Speed</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Perform the technique slowly, then progressively increase to competition speed while maintaining crisp mechanics. Video yourself to catch form breakdowns.</p>
-  </div>
-  <div style="margin-bottom:16px;padding:14px 16px;background:#0a1a0a;border-left:3px solid #16a34a;border-radius:0 8px 8px 0">
-    <h3 style="color:#86efac;font-size:0.95rem;font-weight:700;margin-bottom:6px">Use a Skilled Partner</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Training with a partner who can give realistic resistance and honest feedback accelerates technical development more than repetitions with a passive uke.</p>
-  </div>
-  <div style="margin-bottom:16px;padding:14px 16px;background:#0a1a0a;border-left:3px solid #16a34a;border-radius:0 8px 8px 0">
-    <h3 style="color:#86efac;font-size:0.95rem;font-weight:700;margin-bottom:6px">Isolate Weak Phases</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Break the technique into phases and identify which phase breaks down under pressure. Spend disproportionate drilling time on that specific phase.</p>
-  </div>
-  <div style="margin-bottom:16px;padding:14px 16px;background:#0a1a0a;border-left:3px solid #16a34a;border-radius:0 8px 8px 0">
-    <h3 style="color:#86efac;font-size:0.95rem;font-weight:700;margin-bottom:6px">Compete in Tournaments</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Competition reveals real weaknesses that controlled training obscures. Even white belts benefit from early competitive experience.</p>
-  </div>
-</section>
-
-<section style="margin:32px 0">
-  <h2 style="color:#e2e8f0;font-size:1.2rem;font-weight:800;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">Learning Progression for Index</h2>
-  <ol style="padding-left:20px;margin:0"><li style="color:#9ca3af;font-size:0.9rem;margin-bottom:8px;padding-left:4px">Start with controlled drilling of the core mechanics at 30% resistance.</li><li style="color:#9ca3af;font-size:0.9rem;margin-bottom:8px;padding-left:4px">Progress to positional <strong>sparring</strong>: your partner starts in the relevant position and you practice Index with moderate resistance.</li><li style="color:#9ca3af;font-size:0.9rem;margin-bottom:8px;padding-left:4px">Integrate into flow rolling — actively hunt for Index opportunities without forcing.</li><li style="color:#9ca3af;font-size:0.9rem;margin-bottom:8px;padding-left:4px">Add to live sparring with full resistance. Focus on recognizing setups, not just finishing.</li><li style="color:#9ca3af;font-size:0.9rem;margin-bottom:8px;padding-left:4px">Record and review footage to identify timing gaps and mechanical errors.</li></ol>
-</section>
-
-<section style="margin:32px 0">
-  <h2 style="color:#e2e8f0;font-size:1.2rem;font-weight:800;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">Recommended Drills for Index</h2>
-  <ul style="padding-left:20px;margin:0"><li style="color:#9ca3af;font-size:0.9rem;margin-bottom:12px"><strong style="color:#e2e8f0">Isolated Entry Drill</strong> — With a cooperative partner, repeat the entry sequence for Index 20 times each side. Focus on timing and body positioning.</li><li style="color:#9ca3af;font-size:0.9rem;margin-bottom:12px"><strong style="color:#e2e8f0">Reaction Drill</strong> — Partner resists at 40–60%. Practice recognizing when the Index window opens and executing within 1–2 seconds.</li><li style="color:#9ca3af;font-size:0.9rem;margin-bottom:12px"><strong style="color:#e2e8f0">Chain Drill</strong> — Link Index with 2 follow-up attacks. If the primary is defended, flow immediately into the backup without pausing.</li><li style="color:#9ca3af;font-size:0.9rem;margin-bottom:12px"><strong style="color:#e2e8f0">Timed Round</strong> — 3-minute positional round: start in the setup position and apply Index as many times as possible. Track completions per session.</li></ul>
-</section>
-
-<section style="margin:32px 0">
-  <h2 style="color:#e2e8f0;font-size:1.2rem;font-weight:800;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">Competition Applications of Index</h2>
-  <p style="color:#9ca3af;font-size:0.95rem;line-height:1.7;margin-bottom:12px">
-    In competition, <strong>Index</strong> must be executed under pressure, fatigue, and against opponents who actively study counter-strategies.
-    The timing windows are shorter and the physical resistance is higher than in the gym.
-  </p>
-  <ul style="padding-left:20px;margin:0">
-    <li style="color:#9ca3af;font-size:0.9rem;margin-bottom:8px"><strong style="color:#e2e8f0">Gi vs <strong>No-Gi</strong></strong> — Friction and <strong>grip</strong> rules change the entry mechanics significantly. Train both formats if you compete in both.</li>
-    <li style="color:#9ca3af;font-size:0.9rem;margin-bottom:8px"><strong style="color:#e2e8f0">Points vs Submission-Only</strong> — In points formats, threatening Index can score through positional changes even if the finish isn't achieved.</li>
-    <li style="color:#9ca3af;font-size:0.9rem;margin-bottom:8px"><strong style="color:#e2e8f0">Managing Adrenaline</strong> — Competition adrenaline causes muscle tension that disrupts fine motor technique. Slow deliberate breathing and pre-match drilling help maintain mechanics.</li>
-    <li style="color:#9ca3af;font-size:0.9rem;margin-bottom:8px"><strong style="color:#e2e8f0">Scouting</strong> — At higher levels, opponents watch footage. Build setups that work even when the finish is anticipated.</li>
-  </ul>
-</section>
-
-<section id="faq" style="margin:32px 0">
-  <h2 style="color:#e2e8f0;font-size:1.2rem;font-weight:800;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)">Frequently Asked Questions</h2>
-  
-  <div class="faq-item" style="margin-bottom:16px;padding:14px 16px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:8px">
-    <h3 style="color:#e2e8f0;font-size:0.95rem;font-weight:700;margin-bottom:6px">How long does it take to learn Index?</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Most practitioners develop functional competency with Index within 3–6 months of consistent drilling. Mastery — the ability to execute reliably in live rolling against resisting opponents — typically takes 1–2 years.</p>
-  </div>
-  <div class="faq-item" style="margin-bottom:16px;padding:14px 16px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:8px">
-    <h3 style="color:#e2e8f0;font-size:0.95rem;font-weight:700;margin-bottom:6px">Is Index effective for beginners?</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">Yes. Index is part of the core BJJ curriculum and taught at all belt levels. Beginners should focus on the fundamental mechanics and concepts before refining advanced entries.</p>
-  </div>
-  <div class="faq-item" style="margin-bottom:16px;padding:14px 16px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:8px">
-    <h3 style="color:#e2e8f0;font-size:0.95rem;font-weight:700;margin-bottom:6px">How often should I drill Index?</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">3–5 times per week is ideal for rapid skill acquisition. Even 10 focused repetitions per session compounds over time — consistency matters more than volume.</p>
-  </div>
-  <div class="faq-item" style="margin-bottom:16px;padding:14px 16px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:8px">
-    <h3 style="color:#e2e8f0;font-size:0.95rem;font-weight:700;margin-bottom:6px">What positions connect to Index?</h3>
-    <p style="color:#9ca3af;font-size:0.9rem;margin:0">BJJ is a linked system. Index flows naturally to and from related positions. Study transitions in both directions to build a complete positional game.</p>
-  </div>
-</section>
-<footer>
-  <div style="margin-bottom:8px"><a href="../en/index.html" style="color:#e2b714;text-decoration:none">🇺🇸 EN</a> | <a href="../ja/index.html" style="color:#9ca3af;text-decoration:none">🇯🇵 JA</a> | <a href="../pt/index.html" style="color:#9ca3af;text-decoration:none">🇧🇷 PT</a></div>
-  &copy; 2025 BJJ Wiki — Free Brazilian Jiu-Jitsu guides
-</footer>
-
-<script>
-// ---- Config ----
-var POPULAR = [{s:"bjj-<strong>triangle</strong>-choke-guide",t:"<strong>Triangle Choke</strong>",e:"⬛",c:"submission"},{s:"bjj-rear-naked-choke",t:"<strong>Rear Naked Choke</strong>",e:"⬛",c:"submission"},{s:"bjj-<strong>armbar</strong>-guide",t:"Armbar Guide",e:"⬛",c:"submission"},{s:"bjj-closed-guard-attacks",t:"<strong>Closed Guard</strong> Attacks",e:"🔒",c:"guard"},{s:"bjj-guard-passing-concepts",t:"Guard Passing Concepts",e:"⚔️",c:"passing"},{s:"bjj-open-guard-mastery",t:"<strong>Open Guard</strong> Mastery",e:"🌐",c:"guard"},{s:"bjj-leg-lock-system",t:"Leg Lock System",e:"🦵",c:"submission"},{s:"bjj-back-control-system",t:"<strong>Back Control</strong> System",e:"🎯",c:"position"},{s:"bjj-competition-strategy",t:"Competition Strategy",e:"🏆",c:"concepts"},{s:"bjj-beginners-guide",t:"Beginner's Guide",e:"🥋",c:"concepts"},{s:"bjj-drilling-guide",t:"Drilling Guide",e:"🔁",c:"concepts"},{s:"bjj-flow-rolling",t:"Flow Rolling",e:"🌊",c:"concepts"}];
-var BELT = {"white": "White Belt", "blue": "Blue Belt", "purple": "Purple Belt", "brown": "Brown Belt", "black": "Black Belt"};
-var allData = null;
-var filtered = [];
-var shown = 0;
-var PAGE = 24;
-var activeCat = "all";
-var searchQ = "";
-
-// ---- Init ----
-window.addEventListener('load', function() {
-  renderCards(POPULAR.map(function(p){
-    return {s:p.s,t:p.t,d:"",c:p.c,b:"white"};
-  }), false);
-  document.getElementById('results-count').textContent = "Popular Guides";
-  // Lazy load search.json
-  fetch('search.json').then(function(r){return r.json();}).then(function(data){
-    allData = data;
-  }).catch(function(){});
-});
-
-// ---- Search ----
-function onSearch(q) {
-  searchQ = q.trim().toLowerCase();
-  if (!allData) {
-    fetch('search.json').then(function(r){return r.json();}).then(function(data){
-      allData = data;
-      doFilter();
-    });
-  } else {
-    doFilter();
-  }
-}
-
-function filterCat(cat, el) {
-  activeCat = cat;
-  document.querySelectorAll('.cat-pill').forEach(function(p){p.classList.remove('active');});
-  el.classList.add('active');
-  if (!allData) {
-    fetch('search.json').then(function(r){return r.json();}).then(function(data){
-      allData = data;
-      doFilter();
-    });
-  } else {
-    doFilter();
-  }
-}
-
-function doFilter() {
-  var q = searchQ;
-  var cat = activeCat;
-  if (!allData) return;
-  filtered = allData.filter(function(item) {
-    var catOk = cat === "all" || item.c === cat;
-    var qOk   = !q || item.t.toLowerCase().includes(q) || (item.d && item.d.toLowerCase().includes(q)) || item.s.includes(q.replace(/ /g,'-'));
-    return catOk && qOk;
-  });
-  shown = 0;
-  renderCards(filtered.slice(0, PAGE), true);
-  shown = Math.min(PAGE, filtered.length);
-  document.getElementById('results-count').textContent = filtered.length + " results";
-  document.getElementById('no-results').style.display = filtered.length ? 'none' : '';
-  document.getElementById('load-more-wrap').style.display = filtered.length > PAGE ? '' : 'none';
-}
-
-function loadMore() {
-  var next = filtered.slice(shown, shown + PAGE);
-  appendCards(next);
-  shown += next.length;
-  if (shown >= filtered.length) {
-    document.getElementById('load-more-wrap').style.display = 'none';
-  }
-}
-
-function renderCards(items, clear) {
-  var grid = document.getElementById('results-grid');
-  if (clear) grid.innerHTML = '';
-  appendCards(items);
-}
-
-function appendCards(items) {
-  var grid = document.getElementById('results-grid');
-  var html = '';
-  items.forEach(function(item) {
-    var slug = item.s || item.slug || '';
-    var title = item.t || item.title || slug;
-    var desc = item.d || item.desc || '';
-    var belt = BELT[item.b] || BELT['white'] || '';
-    html += '<a href="' + slug + '.html" class="result-card">';
-    html += '<div class="result-title">' + esc(title) + '</div>';
-    if (desc) html += '<div class="result-desc">' + esc(desc) + '</div>';
-    html += '<div class="result-meta"><span class="badge">' + esc(belt) + '</span></div>';
-    html += '</a>';
-  });
-  grid.innerHTML += html;
-}
-
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
+</body>
+</html>
