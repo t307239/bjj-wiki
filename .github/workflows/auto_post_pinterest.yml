@@ -36,7 +36,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin main || true
-          git add already_posted_pinterest.txt || true
+          git add scripts/already_posted_pinterest.txt || true
           git diff --staged --quiet || git commit -m "Auto: update Pinterest posted log $(date '+%Y-%m-%d %H:%M')"
           git push || true
 
