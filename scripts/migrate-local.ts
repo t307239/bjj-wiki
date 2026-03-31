@@ -2,6 +2,7 @@
  * scripts/migrate-local.ts
  *
  * ローカルのHTMLディレクトリを走査し、wiki_pages / wiki_translations に upsert する。
+ * バルク upsert 方式: API コール数を ~7800 → ~55 に削減 (40min → 1min)
  *
  * 使い方:
  *   npx tsx scripts/migrate-local.ts
@@ -43,64 +44,54 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
   auth: { persistSession: false },
 });
 
+/** バルク upsert のバッチサイズ（translations は大きいので小さめに） */
+const TRANSLATION_BATCH_SIZE = 80;
+const PAGES_BATCH_SIZE = 500;
+
+// ─────────────────────────────────────────
+// ユーティリティ
+// ─────────────────────────────────────────
+
+function chunkArray<T>(arr: T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size));
+  }
+  return chunks;
+}
+
 // ─────────────────────────────────────────
 // HTMLパース ヘルパー
 // ─────────────────────────────────────────
 
-/** <meta http-equiv="refresh"> があればリダイレクトファイルと判定 */
 function isRedirectFile($: CheerioAPI): boolean {
   return $('meta[http-equiv="refresh"]').length > 0;
 }
 
-/**
- * <title> から "| BJJ Wiki" などの不要なサフィックスを除去してタイトルを抽出。
- * 空の場合は空文字を返す。
- */
 function extractTitle($: CheerioAPI): string {
   const raw = $("title").text().trim();
-  // "Some Title | BJJ Wiki" → "Some Title"
-  // "Some Title - BJJ Wiki" → "Some Title"
   return raw
     .replace(/\s*[\|｜\-–—]\s*BJJ Wiki.*$/i, "")
     .replace(/\s*[\|｜\-–—]\s*BJJウィキ.*$/i, "")
     .trim();
 }
 
-/** <meta name="description"> を取得 */
 function extractDescription($: CheerioAPI): string {
   return $('meta[name="description"]').attr("content")?.trim() ?? "";
 }
 
-/**
- * メインコンテンツの HTML を抽出。
- * .container が存在すればその innerHTML を使う。なければ <body> をフォールバック。
- * ヘッダー・フッター・ナビ・スクリプト・スタイルは除去する。
- */
 function extractContentHtml($: CheerioAPI): string {
   const container = $(".container");
   const root = container.length ? container : $("body");
 
-  // 除去対象のセレクター
   const removeSelectors = [
-    "header",
-    "footer",
-    "nav",
-    "script",
-    "style",
-    "noscript",
-    ".progress-bar",
-    ".back-to-top",
-    "#back-to-top",
-    ".float-cta",
-    ".contact-section",
-    ".beehiiv-wrap",
-    ".share-bar",
+    "header", "footer", "nav", "script", "style", "noscript",
+    ".progress-bar", ".back-to-top", "#back-to-top",
+    ".float-cta", ".contact-section", ".beehiiv-wrap", ".share-bar",
   ];
 
-  // クローンして不要要素を削除
   const cloned = root.clone();
   removeSelectors.forEach((sel) => cloned.find(sel).remove());
-
   return cloned.html()?.trim() ?? "";
 }
 
@@ -109,9 +100,10 @@ function extractContentHtml($: CheerioAPI): string {
 // ─────────────────────────────────────────
 
 async function main() {
-  console.log("🚀 Wiki migration 開始\n");
+  console.log("🚀 Wiki migration 開始 (バルクモード)\n");
+  const startTime = Date.now();
 
-  // slug ごとに { lang → parsed data } を収集
+  // ─── Phase 1: HTML ファイルを全言語分パース ───
   const slugMap = new Map<string, Map<Language, {
     title: string;
     description: string;
@@ -132,30 +124,20 @@ async function main() {
     let parsed = 0;
 
     for (const file of files) {
-      const slug = basename(file, ".html"); // "armbar.html" → "armbar"
+      const slug = basename(file, ".html");
       const filePath = join(langDir, file);
       const html = readFileSync(filePath, "utf-8");
       const $ = load(html);
 
-      // リダイレクトファイルはスキップ
-      if (isRedirectFile($)) {
-        skipped++;
-        continue;
-      }
+      if (isRedirectFile($)) { skipped++; continue; }
 
       const title = extractTitle($);
       const description = extractDescription($);
       const contentHtml = extractContentHtml($);
 
-      if (!title) {
-        // タイトルが空のファイルもスキップ
-        skipped++;
-        continue;
-      }
+      if (!title) { skipped++; continue; }
 
-      if (!slugMap.has(slug)) {
-        slugMap.set(slug, new Map());
-      }
+      if (!slugMap.has(slug)) slugMap.set(slug, new Map());
       slugMap.get(slug)!.set(lang, { title, description, contentHtml });
       parsed++;
     }
@@ -163,94 +145,87 @@ async function main() {
     console.log(`   ✅ ${parsed} ページ解析 / ⏭  ${skipped} スキップ`);
   }
 
-  console.log(`\n📊 合計 slug 数: ${slugMap.size}`);
-  console.log("⬆️  Supabase に upsert 中...\n");
+  const allSlugs = [...slugMap.keys()];
+  console.log(`\n📊 合計 slug 数: ${allSlugs.length}`);
 
-  let successCount = 0;
-  let errorCount = 0;
+  // ─── Phase 2: wiki_pages を一括 upsert ───
+  console.log("\n⬆️  wiki_pages バルク upsert...");
+  const pageRows = allSlugs.map((slug) => ({ slug }));
+  const pageChunks = chunkArray(pageRows, PAGES_BATCH_SIZE);
 
-  for (const [slug, langMap] of slugMap) {
-    // 1. wiki_pages upsert (slug で衝突時は updated_at を更新しない — created_at を保持)
-    const { data: pageData, error: pageError } = await supabase
+  for (const [i, chunk] of pageChunks.entries()) {
+    const { error } = await supabase
       .from("wiki_pages")
-      .upsert({ slug }, { onConflict: "slug", ignoreDuplicates: true })
-      .select("id")
-      .single();
+      .upsert(chunk, { onConflict: "slug", ignoreDuplicates: true });
+    if (error) console.error(`  ⚠️  wiki_pages batch ${i + 1} error:`, error.message);
+    else console.log(`  ✅ wiki_pages batch ${i + 1}/${pageChunks.length} (${chunk.length}件)`);
+  }
 
-    if (pageError) {
-      // ignoreDuplicates=true の場合、既存行は null を返すので SELECT で取得
-      const { data: existing, error: fetchError } = await supabase
-        .from("wiki_pages")
-        .select("id")
-        .eq("slug", slug)
-        .single();
+  // ─── Phase 3: slug → id マップを取得 ───
+  console.log("\n🔍 wiki_pages ID マップ取得...");
+  const pageIdMap = new Map<string, string>();
+  const slugChunks = chunkArray(allSlugs, 500);
 
-      if (fetchError || !existing) {
-        console.error(`❌ wiki_pages upsert 失敗 [${slug}]:`, pageError.message);
-        errorCount++;
-        continue;
-      }
+  for (const chunk of slugChunks) {
+    const { data, error } = await supabase
+      .from("wiki_pages")
+      .select("id, slug")
+      .in("slug", chunk);
+    if (error) { console.error("  ❌ ID 取得失敗:", error.message); continue; }
+    data?.forEach((p) => pageIdMap.set(p.slug, p.id));
+  }
+  console.log(`  ✅ ${pageIdMap.size}件の ID を取得`);
 
-      // 2. 各言語の wiki_translations upsert
-      for (const [lang, data] of langMap) {
-        const { error: transError } = await supabase
-          .from("wiki_translations")
-          .upsert(
-            {
-              page_id: existing.id,
-              language_code: lang,
-              title: data.title,
-              description: data.description,
-              content_html: data.contentHtml,
-              content_type: null, // AI分類は後フェーズで実施
-              updated_at: new Date().toISOString(),
-            },
-            { onConflict: "page_id,language_code" }
-          );
+  // ─── Phase 4: wiki_translations をバルク upsert ───
+  console.log("\n⬆️  wiki_translations バルク upsert...");
+  const now = new Date().toISOString();
 
-        if (transError) {
-          console.error(`❌ wiki_translations upsert 失敗 [${slug}/${lang}]:`, transError.message);
-          errorCount++;
-        }
-      }
-    } else {
-      // 新規挿入成功
-      const pageId = pageData?.id;
+  const allTranslations: object[] = [];
+  for (const [slug, langMap] of slugMap) {
+    const pageId = pageIdMap.get(slug);
+    if (!pageId) { console.warn(`  ⚠️  page_id not found for slug: ${slug}`); continue; }
 
-      for (const [lang, data] of langMap) {
-        const { error: transError } = await supabase
-          .from("wiki_translations")
-          .upsert(
-            {
-              page_id: pageId,
-              language_code: lang,
-              title: data.title,
-              description: data.description,
-              content_html: data.contentHtml,
-              content_type: null,
-              updated_at: new Date().toISOString(),
-            },
-            { onConflict: "page_id,language_code" }
-          );
-
-        if (transError) {
-          console.error(`❌ wiki_translations upsert 失敗 [${slug}/${lang}]:`, transError.message);
-          errorCount++;
-        }
-      }
-    }
-
-    successCount++;
-
-    // 100件ごとに進捗表示
-    if (successCount % 100 === 0) {
-      console.log(`   ... ${successCount} / ${slugMap.size} 完了`);
+    for (const [lang, data] of langMap) {
+      allTranslations.push({
+        page_id: pageId,
+        language_code: lang,
+        title: data.title,
+        description: data.description,
+        content_html: data.contentHtml,
+        content_type: null,
+        updated_at: now,
+      });
     }
   }
 
+  console.log(`  📦 合計 ${allTranslations.length} 件の translations を ${TRANSLATION_BATCH_SIZE} 件ずつ処理`);
+  const transChunks = chunkArray(allTranslations, TRANSLATION_BATCH_SIZE);
+  let transSuccess = 0;
+  let transError = 0;
+
+  for (const [i, chunk] of transChunks.entries()) {
+    const { error } = await supabase
+      .from("wiki_translations")
+      .upsert(chunk, { onConflict: "page_id,language_code" });
+
+    if (error) {
+      console.error(`  ❌ translations batch ${i + 1} error:`, error.message);
+      transError += chunk.length;
+    } else {
+      transSuccess += chunk.length;
+    }
+
+    // 10バッチごとに進捗表示
+    if ((i + 1) % 10 === 0) {
+      console.log(`  ... ${i + 1}/${transChunks.length} バッチ完了 (${transSuccess} 件成功)`);
+    }
+  }
+
+  const elapsed = Math.round((Date.now() - startTime) / 1000);
   console.log("\n✅ migration 完了");
-  console.log(`   成功: ${successCount} slugs`);
-  console.log(`   エラー: ${errorCount}`);
+  console.log(`   translations 成功: ${transSuccess} 件`);
+  console.log(`   translations エラー: ${transError} 件`);
+  console.log(`   所要時間: ${elapsed}秒`);
 }
 
 main().catch((err) => {
