@@ -50,6 +50,12 @@ jobs:
       - name: Patch internal links (keyword-match links into link-poor pages)
         run: python scripts/patch_internal_links.py --lang all --min-links 2
 
+      - name: Inject video iframes from Supabase video_url into HTML files
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python scripts/patch_video_from_supabase.py --lang all
+
       - name: Generate BJJ News page
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

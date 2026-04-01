@@ -84,7 +84,7 @@ def main():
         except: continue
         title, desc = extract_title_and_desc(html)
         if not title or not desc: continue
-        url = f"https://bjj-app.net/wiki/en/{slug}"
+        url = f"https://wiki.bjj-app.net/en/{slug}.html"
         print(f"[POST] {slug}: {title[:60]}")
         if access_token and board_id:
             if post_to_pinterest(title, desc, url, board_id):
