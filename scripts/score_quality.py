@@ -5,12 +5,11 @@ scripts/score_quality.py
 wiki_translations の content_html を採点して quality_score / quality_flags を更新する。
 GitHub Actions の migrate ステップ後に実行される。
 
-採点基準 (合計100点):
-  - コンテンツ長     0-30点  (3k+ → 30, 2k+ → 20, 1k+ → 10, それ以下 → 0)
-  - H2 セクション数  0-25点  (6個+ → 25, 4-5個 → 18, 2-3個 → 10, 1個 → 5, 0個 → 0)
-  - FAQ セクション   0-20点  (3 Q&A → 20, 2 Q&A → 13, 1 Q&A → 7, なし → 0)
-  - 動画リンク       0-15点  (YouTube リンクあり → 15)
-  - 内部リンク数     0-10点  (3個+ → 10, 1-2個 → 5, なし → 0)
+採点基準 (合計100点) — 構造チェック重視 (文字数非依存):
+  - H2 セクション数  0-30点  (6個+ → 30, 4-5個 → 22, 2-3個 → 15, 1個 → 5, 0個 → 0)
+  - FAQ セクション   0-25点  (3 Q&A → 25, 2 Q&A → 17, 1 Q&A → 9, なし → 0)
+  - 動画 iframe      0-25点  (<iframe ... youtube → 25, YouTube リンクのみ → 15, なし → 0)
+  - 内部リンク数     0-20点  (3個+ → 20, 1-2個 → 10, なし → 0)
 
 使い方:
   python scripts/score_quality.py
@@ -101,77 +100,71 @@ def score_content(content_html: str) -> tuple[int, dict]:
     """
     content_html を採点して (score: int, flags: dict) を返す。
     flags: 各軸の得点と不足項目を記録する辞書
+    文字数スコアを廃止し、構造チェック4軸で100点満点に。
     """
     if not content_html or len(content_html) < 50:
         return 0, {"error": "empty_content"}
 
     html = content_html
 
-    # --- コンテンツ長 ---
-    text_only = re.sub(r"<[^>]+>", "", html)
-    char_len   = len(text_only.strip())
-    if char_len >= 4000:
-        len_score = 30
-    elif char_len >= 3000:
-        len_score = 25
-    elif char_len >= 2000:
-        len_score = 20
-    elif char_len >= 1000:
-        len_score = 10
-    else:
-        len_score = 0
-
-    # --- H2 セクション数 ---
+    # --- H2 セクション数 (0-30点) ---
     h2_count = len(re.findall(r"<h2[\s>]", html, re.IGNORECASE))
     if h2_count >= 6:
-        h2_score = 25
+        h2_score = 30
     elif h2_count >= 4:
-        h2_score = 18
+        h2_score = 22
     elif h2_count >= 2:
-        h2_score = 10
+        h2_score = 15
     elif h2_count == 1:
         h2_score = 5
     else:
         h2_score = 0
 
-    # --- FAQ セクション ---
+    # --- FAQ セクション (0-25点) ---
     # faq-q クラスまたは "Q:" パターンをカウント
     faq_count = len(re.findall(r'class=["\']faq-q["\']', html)) or len(re.findall(r">\s*Q:\s", html))
     if faq_count >= 3:
-        faq_score = 20
+        faq_score = 25
     elif faq_count == 2:
-        faq_score = 13
+        faq_score = 17
     elif faq_count == 1:
-        faq_score = 7
+        faq_score = 9
     else:
         faq_score = 0
 
-    # --- 動画リンク ---
-    has_video = bool(re.search(r"youtube\.com|youtu\.be", html, re.IGNORECASE))
-    vid_score = 15 if has_video else 0
+    # --- 動画 iframe (0-25点) ---
+    # <iframe src="...youtube..."> を優先検出。リンクのみの場合は部分点
+    has_iframe = bool(re.search(r"<iframe[^>]+(?:youtube\.com|youtu\.be)", html, re.IGNORECASE))
+    has_yt_link = bool(re.search(r"youtube\.com|youtu\.be", html, re.IGNORECASE))
+    if has_iframe:
+        vid_score = 25
+    elif has_yt_link:
+        vid_score = 15
+    else:
+        vid_score = 0
+    has_video = has_yt_link  # 後方互換フラグ
 
-    # --- 内部リンク ---
+    # --- 内部リンク数 (0-20点) ---
     # <a href="../en/slug.html"> または <a href="../slug.html"> パターン
     internal_links = re.findall(r'href=["\']\.\.\/[a-z]{2}\/[a-z][^"\']+\.html["\']', html)
     if len(internal_links) >= 3:
-        link_score = 10
+        link_score = 20
     elif len(internal_links) >= 1:
-        link_score = 5
+        link_score = 10
     else:
         link_score = 0
 
-    total = len_score + h2_score + faq_score + vid_score + link_score
+    total = h2_score + faq_score + vid_score + link_score
 
     flags = {
-        "len_score":      len_score,
         "h2_score":       h2_score,
         "faq_score":      faq_score,
         "vid_score":      vid_score,
         "link_score":     link_score,
-        "char_len":       char_len,
         "h2_count":       h2_count,
         "faq_count":      faq_count,
         "has_video":      has_video,
+        "has_iframe":     has_iframe,
         "internal_links": len(internal_links),
         # G: セクション完全性チェック
         "missing_sections": _check_missing_sections(html),

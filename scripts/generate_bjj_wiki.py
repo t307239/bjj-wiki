@@ -1290,6 +1290,27 @@ def save_cache(cache):
 
 # ===== ã¡ã¤ã³ =====
 
+def _validate_article_structure(html: str, slug: str, lang_code: str) -> bool:
+    """
+    生成された HTML が最低品質基準を満たしているかチェック。
+    基準: H2 >= 4 / 内部リンク >= 2 / FAQ セクション存在
+    合格 → True (キャッシュ登録)
+    不合格 → False (キャッシュ非登録 → 次回実行で再生成)
+    """
+    h2_count = len(re.findall(r"<h2[\s>]", html, re.IGNORECASE))
+    internal_links = re.findall(r'href=["\']\.\.\/[a-z]{2}\/[a-z][^"\']+\.html["\']', html)
+    has_faq = bool(re.search(r'class=["\']faq-q["\']', html))
+
+    ok = h2_count >= 4 and len(internal_links) >= 2 and has_faq
+    if not ok:
+        print(
+            f"[WARN] {lang_code}/{slug}: 品質ゲート不合格 — "
+            f"H2:{h2_count}/4+ 内部リンク:{len(internal_links)}/2+ "
+            f"FAQ:{'✓' if has_faq else '✗'} → キャッシュ非登録（次回再生成）"
+        )
+    return ok
+
+
 def _fetch_low_quality_slugs():
     """F: Supabase から quality_score 低い順にスラッグを取得して優先度付き再生成キューを返す"""
     supabase_url = os.environ.get("SUPABASE_URL", "")
@@ -1391,7 +1412,9 @@ def main():
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(html)
 
-            cache[cache_key] = datetime.datetime.now().isoformat()
+            # 品質ゲート: 合格時のみキャッシュ登録（不合格は次回再生成）
+            if _validate_article_structure(html, tech["slug"], lang_code):
+                cache[cache_key] = datetime.datetime.now().isoformat()
             count += 1
             print(f"[OK] {cache_key} â {out_path}")
             # 10件ごとにTelegram進捗通知
