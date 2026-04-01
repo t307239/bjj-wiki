@@ -1079,9 +1079,6 @@ def article_to_html(tech, lang_code, article, all_techniques):
     {(('<div class="faq"><div class="faq-q">Q: ' + str(article.get('faq_q3','')) + '</div><p>' + str(article.get('faq_a3','')) + '</p></div>') if article.get('faq_q3') else '')}
   </div>
 
-  {'<h2>Related Techniques</h2>' if lang_code=='en' else '<h2>é¢é£æ</h2>' if lang_code=='ja' else '<h2>TÃ©cnicas Relacionadas</h2>'}
-  <div class="related-links">{related_links}</div>
-
   <!-- Related Techniques Card Grid -->
   <div style="background:#0f1420;border:1px solid #1f2840;border-radius:12px;padding:24px;margin:32px 0">
     <h3 style="font-size:1rem;font-weight:700;color:#7c6af7;margin-bottom:16px">ð¥ {'Related Techniques' if lang_code=='en' else 'é¢é£æ' if lang_code=='ja' else 'TÃ©cnicas Relacionadas'}</h3>

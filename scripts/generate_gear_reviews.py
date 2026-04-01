@@ -285,7 +285,7 @@ def main():
         cache[page["slug"]] = True
         time.sleep(1)
     
-    with open(cache_file,"w") as f:
+    with open(cache_file, "w", encoding="utf-8") as f:
         json.dump(cache, f)
     
     # sitemap更新

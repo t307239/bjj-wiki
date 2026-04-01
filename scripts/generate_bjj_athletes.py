@@ -643,7 +643,7 @@ def main():
         cache[slug] = True
         athlete["generated"] = True
         athletes_data.append(athlete)
-        with open(cache_file,"w") as f:
+        with open(cache_file, "w", encoding="utf-8") as f:
             json.dump(cache, f)
     
     # athletes.html 生成（英語版をルートに）

@@ -66,7 +66,7 @@ for lang in ["en", "ja", "pt"]:
 
 # Create CNAME file for GitHub Pages custom domain
 cname_path = os.path.join(WIKI_ROOT, "CNAME")
-with open(cname_path, "w") as f:
+with open(cname_path, "w", encoding="utf-8") as f:
     f.write("wiki.bjj-app.net\n")
 print(f"Created CNAME file: wiki.bjj-app.net")
 

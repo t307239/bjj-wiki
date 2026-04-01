@@ -717,7 +717,7 @@ def main():
             time.sleep(0.5)  # Rate limit respect
 
         cache[slug] = {"done": True, "ts": datetime.datetime.now().isoformat()}
-        with open(cache_file, "w") as f:
+        with open(cache_file, "w", encoding="utf-8") as f:
             json.dump(cache, f, indent=2)
         success += 1
         print()

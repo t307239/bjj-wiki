@@ -453,7 +453,7 @@ print(f"\n✅ Total pages generated: {total_pages}")
 print(f"   Expected: 75 × 3 = 225 pages")
 
 # Mark completion
-with open(BATCH_MARKER, "w") as f:
+with open(BATCH_MARKER, "w", encoding="utf-8") as f:
     f.write(f"Batch 191-205 completed. Total pages: {total_pages}\n")
 
 print("✅ Batch marker created")
