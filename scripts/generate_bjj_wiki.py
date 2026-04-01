@@ -111,7 +111,7 @@ def add_internal_links(html: str, current_slug: str, lang: str) -> str:
             if pat.search(p):
                 url = f"../{lang}/{slug}.html"
                 p = pat.sub(
-                    f'<a href="{url}" style="color:var(--accent,#7c6af7);text-decoration:underline">{name}</a>',
+                    f'<a href="{url}" style="color:var(--accent,#7c3aed);text-decoration:underline">{name}</a>',
                     p, count=1)
                 linked.add(slug)
                 break
@@ -761,11 +761,11 @@ def article_to_html(tech, lang_code, article, all_techniques):
         for _s in _sem_slugs[:4]:
             _t = next((t for t in all_techniques if t["slug"] == _s), None)
             if _t:
-                _sem_items.append(f'<a href="../{lang_code}/{_s}.html" style="display:inline-block;background:#1a1a2e;border:1px solid #3a3a6a;border-radius:8px;padding:8px 14px;color:#a78bfa;text-decoration:none;font-size:.85rem;font-weight:600">{_t["name"]} →</a>')
+                _sem_items.append(f'<a href="../{lang_code}/{_s}.html" style="display:inline-block;background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:8px;padding:8px 14px;color:var(--accent,#7c3aed);text-decoration:none;font-size:.85rem;font-weight:600">{_t["name"]} →</a>')
         if _sem_items:
             _dig_label = {"en": "Dig Deeper", "ja": "関連テクニックを深掘り", "pt": "Aprofunde-se"}[lang_code]
             _dig_sub = {"en": "Techniques that connect with " + tech["name"], "ja": tech["name"] + "と組み合わせて使う技", "pt": "Técnicas que se conectam com " + tech["name"]}[lang_code]
-            _semantic_links_html = f'<div style="background:#0f1420;border:1px solid #2a2a4a;border-radius:12px;padding:20px 24px;margin:28px 0"><h3 style="font-size:.9rem;font-weight:700;color:#a78bfa;margin-bottom:6px">🔗 {_dig_label}</h3><p style="font-size:.8rem;color:#64748b;margin-bottom:14px">{_dig_sub}</p><div style="display:flex;flex-wrap:wrap;gap:8px">{"".join(_sem_items)}</div></div>'
+            _semantic_links_html = f'<div style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px 24px;margin:28px 0"><h3 style="font-size:.9rem;font-weight:700;color:var(--accent,#7c3aed);margin-bottom:6px">🔗 {_dig_label}</h3><p style="font-size:.8rem;color:var(--muted,#64748b);margin-bottom:14px">{_dig_sub}</p><div style="display:flex;flex-wrap:wrap;gap:8px">{"".join(_sem_items)}</div></div>'
         else:
             _semantic_links_html = ""
     else:
@@ -806,7 +806,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
-  :root {{--bg:#0f172a;--card:#18181b;--card-hover:#1c1c22;--border:rgba(255,255,255,0.10);--border-hover:rgba(233,69,96,0.5);--text:#e2e8f0;--muted:#64748b;--accent:#e94560;--accent2:#7c3aed;--green:#22c55e}}
+  :root {{--bg:#0f172a;--card:#18181b;--card-hover:#1c1c22;--border:rgba(255,255,255,0.10);--border-hover:rgba(124,58,237,0.5);--text:#e2e8f0;--muted:#64748b;--accent:#7c3aed;--accent2:#e94560;--green:#22c55e}}
   *{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.8;padding:0 16px}}
   .container{{max-width:800px;margin:0 auto;padding:24px 0 64px}}
@@ -835,9 +835,9 @@ def article_to_html(tech, lang_code, article, all_techniques):
   .related-links{{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}}
   .related-links a{{background:#1e1e2e;color:var(--muted);text-decoration:none;padding:4px 12px;border-radius:6px;font-size:0.85rem;border:1px solid var(--border)}}
   .related-links a:hover{{color:var(--text);border-color:var(--accent)}}
-  .aff-box{{background:linear-gradient(135deg,#1a0a2e,#0d0d1a);border:1px solid var(--accent);border-radius:12px;padding:20px;margin:32px 0;text-align:center}}
+  .aff-box{{background:linear-gradient(135deg,#0d0a1a,#0d0d1a);border:1px solid var(--accent2);border-radius:12px;padding:20px;margin:32px 0;text-align:center}}
   .aff-box p{{color:var(--muted);font-size:0.9rem;margin-bottom:12px}}
-  .aff-btn{{display:inline-block;background:var(--accent);color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem}}
+  .aff-btn{{display:inline-block;background:var(--accent2);color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem}}
   .pro-tip{{background:linear-gradient(135deg,#0a1a0a,#0f1f0f);border:1px solid #22c55e;border-radius:12px;padding:20px;margin:24px 0}}
   .pro-tip-label{{color:#22c55e;font-size:0.8rem;font-weight:700;letter-spacing:0.05em;margin-bottom:8px}}
   .share-bar{{margin:32px 0;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;text-align:center}}
@@ -1096,12 +1096,12 @@ def article_to_html(tech, lang_code, article, all_techniques):
   {_semantic_links_html}
 
   <!-- BJJ App CTA Banner (J: Dynamic Contextual CTA) -->
-  <div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid rgba(233,69,96,0.3);border-radius:12px;padding:20px 24px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+  <div style="background:var(--card,#18181b);border:1px solid rgba(233,69,96,0.3);border-radius:12px;padding:20px 24px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
     <div>
       <p style="margin:0 0 4px;font-size:.95rem;font-weight:700;color:#e2e2ee">🥋 {_cta_headline}</p>
       <p style="margin:0;font-size:.82rem;color:#7a7a9a">{_cta_sub}</p>
     </div>
-    <a href="https://bjj-app.net/login" target="_blank" rel="noopener" onclick="gtag&&gtag('event','app_cta_click',{{page:location.pathname,lang:'{lang_code}',tech:'{tech['slug']}'}})" style="flex-shrink:0;background:#e94560;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700;white-space:nowrap">{'Try Free →' if lang_code=='en' else '無料で試す →' if lang_code=='ja' else 'Experimente Grátis →'}</a>
+    <a href="https://bjj-app.net/login" target="_blank" rel="noopener" onclick="gtag&&gtag('event','app_cta_click',{{page:location.pathname,lang:'{lang_code}',tech:'{tech['slug']}'}})" style="flex-shrink:0;background:var(--accent2,#e94560);color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700;white-space:nowrap">{'Try Free →' if lang_code=='en' else '無料で試す →' if lang_code=='ja' else 'Experimente Grátis →'}</a>
   </div>
 
   <!-- Share Bar -->
@@ -1121,7 +1121,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
   </footer>
 </div>
   <div id="float-cta" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:none;max-width:280px">
-    <div style="background:#1a1a2e;border:1px solid #6e40c9;border-radius:12px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.5);position:relative">
+    <div style="background:var(--card,#18181b);border:1px solid var(--accent,#7c3aed);border-radius:12px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.5);position:relative">
       <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:10px;background:none;border:none;color:#7a7a9a;font-size:18px;cursor:pointer">Ã</button>
       <p style="margin:0 0 8px;font-size:.85rem;font-weight:700;color:#e2e2ee">ð© Free BJJ Newsletter</p>
       <p style="margin:0 0 12px;font-size:.78rem;color:#7a7a9a">Weekly tips, techniques & drills</p>
