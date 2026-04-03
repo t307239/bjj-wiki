@@ -7,8 +7,8 @@ Each page gets a unique SVG OG image with:
 - BJJ Wiki branding
 - Consistent dark SaaS design
 
-Updates each HTML file's og:image AND twitter:image meta tags
-to point to the page-specific SVG.
+Updates each HTML file's og:image meta tag to point to the page-specific SVG.
+twitter:image uses the default og-image.png (Twitter does not support SVG).
 
 Usage:
     python3 scripts/gen_og_images.py          # Generate for all pages
@@ -24,6 +24,9 @@ WIKI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OG_DIR = os.path.join(WIKI_ROOT, "og")
 SITE_URL = "https://wiki.bjj-app.net"
 LANGS = ["en", "ja", "pt"]
+
+# Default PNG for Twitter (SVG not supported by Twitter)
+DEFAULT_TWITTER_IMAGE = f"{SITE_URL}/og-image.png"
 
 # Maximum title length before we shrink font
 TITLE_MAX_SINGLE_LINE = 35
@@ -134,9 +137,9 @@ def update_og_image_tag(html_content: str, og_image_url: str) -> str:
     return html_content
 
 
-def update_twitter_image_tag(html_content: str, og_image_url: str) -> str:
-    """Replace or add twitter:image meta tag to use per-page OG image."""
-    new_tag = f'<meta name="twitter:image" content="{og_image_url}">'
+def update_twitter_image_tag(html_content: str, twitter_image_url: str) -> str:
+    """Replace or add twitter:image meta tag (PNG for Twitter compatibility)."""
+    new_tag = f'<meta name="twitter:image" content="{twitter_image_url}">'
     if 'name="twitter:image"' in html_content:
         html_content = re.sub(
             r'<meta\s+name="twitter:image"\s+content="[^"]*"\s*/?>',
@@ -194,9 +197,9 @@ def main():
                 with open(svg_path, "w", encoding="utf-8") as f:
                     f.write(svg_content)
 
-                # Update HTML — both og:image and twitter:image
+                # Update HTML — og:image = per-page SVG, twitter:image = default PNG
                 new_content = update_og_image_tag(content, og_image_url)
-                new_content = update_twitter_image_tag(new_content, og_image_url)
+                new_content = update_twitter_image_tag(new_content, DEFAULT_TWITTER_IMAGE)
                 if new_content != content:
                     with open(fpath, "w", encoding="utf-8") as f:
                         f.write(new_content)
