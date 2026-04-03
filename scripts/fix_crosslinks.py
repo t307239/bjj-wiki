@@ -72,16 +72,51 @@ def extract_keywords(filename: str, title: str) -> set:
                 topics.add(topic)
                 break
 
+    # ファイル名セグメントからも抽出（bjj-guard-retention → guard, retention）
+    segments = filename.replace('.html', '').split('-')
+    for seg in segments:
+        seg_lower = seg.lower()
+        if seg_lower in ('bjj', 'html', 'the', 'and', 'for', 'in', 'of', 'to', 'a', 'an',
+                         'vs', 'best', 'guide', 'how', 'what', 'why', 'with'):
+            continue
+        # セグメントをトピックに直接マッピング
+        for topic, keywords in TOPIC_KEYWORDS.items():
+            for kw in keywords:
+                if seg_lower == kw.lower() or seg_lower in kw.lower():
+                    topics.add(topic)
+                    break
+
     return topics
 
 
-def compute_relevance(topics_a: set, topics_b: set) -> float:
-    """2ページ間のトピック関連度を計算"""
-    if not topics_a or not topics_b:
-        return 0.0
-    intersection = topics_a & topics_b
-    union = topics_a | topics_b
-    return len(intersection) / len(union) if union else 0.0
+def extract_filename_segments(filename: str) -> set:
+    """ファイル名をセグメントに分割（マッチング用）"""
+    segments = filename.replace('.html', '').lower().split('-')
+    # ストップワード除外
+    stopwords = {'bjj', 'html', 'the', 'and', 'for', 'in', 'of', 'to', 'a', 'an',
+                 'vs', 'best', 'guide', 'how', 'what', 'why', 'with', 'your', 'from'}
+    return {s for s in segments if s not in stopwords and len(s) > 2}
+
+
+def compute_relevance(topics_a: set, topics_b: set,
+                      segs_a: set = None, segs_b: set = None) -> float:
+    """2ページ間のトピック関連度を計算（セグメントマッチングも考慮）"""
+    score = 0.0
+
+    # トピックベース（Jaccard類似度）
+    if topics_a and topics_b:
+        intersection = topics_a & topics_b
+        union = topics_a | topics_b
+        score = len(intersection) / len(union) if union else 0.0
+
+    # セグメントベースのボーナス（トピックが一致しなくても類似ファイル名なら加点）
+    if segs_a and segs_b:
+        seg_intersection = segs_a & segs_b
+        if seg_intersection:
+            seg_score = len(seg_intersection) / max(len(segs_a), len(segs_b))
+            score = max(score, seg_score * 0.8)  # セグメントマッチはやや低め
+
+    return score
 
 
 def get_page_title(html: str, filename: str) -> str:
@@ -137,9 +172,12 @@ def build_index(lang_dir: Path) -> dict:
         existing_links = get_existing_related_links(html)
         has_related = 'related-section' in html or 'Related Techniques' in html
 
+        segments = extract_filename_segments(name)
+
         index[name] = {
             'title': title,
             'topics': topics,
+            'segments': segments,
             'path': fpath,
             'has_related': has_related,
             'existing_links': [l.split('/')[-1] for l in existing_links],
@@ -161,7 +199,8 @@ def find_related_pages(page: str, index: dict, max_results: int = TARGET_LINKS) 
         if is_pillar_page(other):
             continue
 
-        relevance = compute_relevance(page_topics, info['topics'])
+        relevance = compute_relevance(page_topics, info['topics'],
+                                       page_info.get('segments'), info.get('segments'))
         if relevance > 0:
             candidates.append((other, info['title'], relevance))
 
