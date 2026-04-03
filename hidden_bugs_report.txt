@@ -1,5 +1,5 @@
 Hidden Bug Detector Report
-Scanned: 1566 files
+Scanned: 3132 files
 CRITICAL: 0
 WARNING: 0
 INFO: 0

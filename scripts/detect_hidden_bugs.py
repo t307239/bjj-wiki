@@ -41,34 +41,65 @@ ALL_LANGUAGES = ["en", "ja", "pt"]  # --lang pt で個別指定は可能
 CURRENT_YEAR = "2026"
 
 # ── Locale純粋性パターン ──────────────────────────────
-# ブランド名・固有名詞・技名など「各言語ページで英語のまま許容する」ホワイトリスト
-ENGLISH_WHITELIST = re.compile(
+# ═══════════════════════════════════════════════════════
+# BJJ用語二層ルール
+# ───────────────────────────────────────────────────────
+# Layer 1: BJJ専門用語（カタカナ・英語ともにどのlocaleでも許容）
+#   → 柔術コミュニティで定着した用語。日本語に無理に訳さない。
+# Layer 2: UI/ナビゲーション文言（localeに合わせて必ず翻訳）
+#   → CTA、フッターリンク、フォーム等のインターフェース文言。
+# ═══════════════════════════════════════════════════════
+
+# ── Layer 1: BJJ専門用語（全locale共通で英語/カタカナ許容）──
+# カタカナ表記: ディフェンス、ガード、スイープ等は日本語ページでそのまま使ってよい
+# 英語表記: Guard, Mount, Submission 等はJAページの本文中で許容
+
+BJJ_TERMS_ENGLISH = re.compile(
     r"""(?x)
-    BJJ|MMA|UFC|IBJJF|ADCC|EBI|Gi|No[-\s]?Gi|
-    Armbar|Kimura|Americana|Omoplata|Triangle|Guillotine|
-    Rear[\s]?Naked[\s]?Choke|D'?Arce|Anaconda|Ezekiel|
+    # 組織・大会
+    BJJ|MMA|UFC|IBJJF|ADCC|EBI|Gi|No[-\s]?Gi|SJJIF|UAEJJF|
+    # サブミッション
+    Armbar|Arm[\s]?Bar|Kimura|Americana|Omoplata|Triangle|Guillotine|
+    Rear[\s]?Naked[\s]?Choke|RNC|D'?Arce|Anaconda|Ezekiel|
+    Gogoplata|Peruvian[\s]?Necktie|Von[\s]?Flue|Baseball[\s]?Choke|
+    Bow[\s]?and[\s]?Arrow|Clock[\s]?Choke|Loop[\s]?Choke|Paper[\s]?Cutter|
+    Heel[\s]?Hook|Toe[\s]?Hold|Knee[\s]?Bar|Wrist[\s]?Lock|
+    Ankle[\s]?Lock|Calf[\s]?Slicer|Straight[\s]?Ankle|Outside[\s]?Heel[\s]?Hook|
+    Inside[\s]?Heel[\s]?Hook|Estima[\s]?Lock|Aoki[\s]?Lock|
+    # ポジション
     Guard|Mount|Side[\s]?Control|Back[\s]?Control|Half[\s]?Guard|
     Closed[\s]?Guard|Open[\s]?Guard|Butterfly[\s]?Guard|
-    De[\s]La[\s]Riva|Spider[\s]?Guard|Lasso[\s]?Guard|
+    De[\s]La[\s]Riva|DLR|Spider[\s]?Guard|Lasso[\s]?Guard|
     X[-\s]?Guard|Rubber[\s]?Guard|Worm[\s]?Guard|
-    Berimbolo|Sweep|Pass|Takedown|Submission|Escape|
-    Heel[\s]?Hook|Toe[\s]?Hold|Knee[\s]?Bar|Wrist[\s]?Lock|
-    Ankle[\s]?Lock|Calf[\s]?Slicer|
-    Hip[\s]?Escape|Bridge|Shrimp|Sprawl|
-    Drill|Roll|Spar|
+    Z[-\s]?Guard|Deep[\s]?Half|Reverse[\s]?De[\s]La[\s]Riva|RDLR|
+    50[-/]50|Ashi[\s]?Garami|Saddle|Inside[\s]?Sankaku|
+    Knee[\s]?on[\s]?Belly|KOB|North[-\s]?South|Turtle|Crucifix|Truck|
+    Full[\s]?Mount|Back[\s]?Mount|
+    # ムーブメント・アクション
+    Berimbolo|Sweep|Pass|Guard[\s]?Pass|Takedown|Submission|Escape|
+    Hip[\s]?Escape|Bridge|Shrimp|Sprawl|Inversion|Granby|
+    Underhook|Overhook|Whizzer|Pummeling|
+    Drill|Roll|Spar|Flow[\s]?Roll|Positional[\s]?Sparring|
+    # グリップ・パーツ
+    Lapel|Collar|Sleeve|Grip|Cross[\s]?Grip|Same[-\s]?Side[\s]?Grip|
+    Pistol[\s]?Grip|Butterfly[\s]?Hook|
     Joint[\s]?Lock|Choke|Strangle|
-    North[-\s]?South|Turtle|Crucifix|Truck|
-    Lapel|Collar|Sleeve|Grip|
+    # コンセプト
+    Pressure|Base|Posture|Frame|Hip[\s]?Movement|
+    Positional[\s]?Hierarchy|Top[\s]?Game|Bottom[\s]?Game|
+    Open[\s]?Mat|Comp|Competition|
+    # 人名（著名選手・指導者）
     John[\s]Danaher|Marcelo[\s]Garcia|Gordon[\s]Ryan|
     Roger[\s]Gracie|Helio[\s]Gracie|Rickson[\s]Gracie|
-    Marcus[\s]"Buchecha"|
+    Marcus[\s]"?Buchecha"?|Andre[\s]Galvao|Bernardo[\s]Faria|
+    Craig[\s]Jones|Mikey[\s]Musumeci|Caio[\s]Terra|Cobrinha|
+    Keenan[\s]Cornelius|Lachlan[\s]Giles|
+    # ブランド・サービス
     YouTube|Instagram|Facebook|Twitter|
     BJJ\s?App|BJJ\s?Wiki|
-    Pro|Free|CSV|PDF|API|URL|
-    Cow[\s]Face[\s]Pose|Eagle[\s]Pose|Pigeon[\s]Pose|
-    Technique[\s]Map|Video[\s]Timestamps|
     ROYDEAN|RoyDean|
-    Privacy[\s]Policy|About|Contact|
+    Google|Cloudflare|CDN|
+    # テクニカル（HTML/CSS等、検出対象外）
     class=|style=|href=|src=|data-|onclick=|
     https?://|www\.|\.html|\.css|\.js|\.png|\.jpg|\.svg|
     UTF-8|charset|viewport|content=|
@@ -77,12 +108,53 @@ ENGLISH_WHITELIST = re.compile(
     none|auto|center|wrap|nowrap|
     div|span|section|header|footer|nav|main|article|
     img|iframe|script|link|meta|
-    Google|Cloudflare|CDN
+    Pro|Free|CSV|PDF|API|URL|
+    Cow[\s]Face[\s]Pose|Eagle[\s]Pose|Pigeon[\s]Pose|
+    Technique[\s]Map|Video[\s]Timestamps|
+    Privacy[\s]Policy|About|Contact
     """,
     re.IGNORECASE,
 )
 
-# JAページで検出すべき「英語のまま残っている」テキストパターン
+# JAページで許容するカタカナBJJ用語
+# （ディフェンスは防御より自然、パスガードは通過より自然、など）
+BJJ_TERMS_KATAKANA = {
+    # ポジション
+    "ガード", "マウント", "サイドコントロール", "バックコントロール",
+    "ハーフガード", "クローズドガード", "オープンガード", "バタフライガード",
+    "スパイダーガード", "ラッソガード", "ラバーガード", "ワームガード",
+    "デラヒーバ", "ディープハーフ", "タートル",
+    # サブミッション
+    "アームバー", "キムラ", "アメリカーナ", "オモプラッタ", "トライアングル",
+    "ギロチン", "リアネイキドチョーク", "ダースチョーク", "アナコンダ",
+    "エゼキエル", "ゴゴプラッタ", "ヒールフック", "トーホールド",
+    "ニーバー", "リストロック", "アンクルロック", "カーフスライサー",
+    # ムーブメント
+    "スイープ", "パス", "パスガード", "テイクダウン", "サブミッション",
+    "エスケープ", "ディフェンス", "オフェンス", "トランジション",
+    "インバージョン", "ベリンボロ", "グランビー",
+    "アンダーフック", "オーバーフック", "ウィザー", "パミリング",
+    "ブリッジ", "シュリンプ", "スプロール",
+    # グリップ
+    "ラペル", "カラー", "スリーブ", "グリップ", "フック",
+    # コンセプト
+    "プレッシャー", "ベース", "ポスチャー", "フレーム",
+    "トップゲーム", "ボトムゲーム", "オープンマット",
+    # ドリル・スパーリング
+    "ドリル", "スパーリング", "ロール", "フローロール", "ポジショナル",
+    # 帯
+    "ホワイトベルト", "ブルーベルト", "パープルベルト", "ブラウンベルト", "ブラックベルト",
+    # Gi / No-Gi
+    "ノーギ",
+    # 大会
+    "コンペ", "コンペティション", "トーナメント", "マッチ",
+    # 体重クラス
+    "ルースター", "ライトフェザー", "フェザー", "ライト",
+    "ミドル", "ミディアムヘビー", "ヘビー", "スーパーヘビー", "ウルトラヘビー",
+}
+
+# ── Layer 2: UI/ナビゲーション（locale別に翻訳必須）──
+# JAページで英語が残っていたらCRITICAL
 JA_FORBIDDEN_ENGLISH = [
     (r"Related\s+Techniques", "関連テクニック"),
     (r"Related\s+Video", "関連動画"),
@@ -175,19 +247,15 @@ def check_locale_purity_en(filepath: str, html: str, report: BugReport):
     """ENページのlocale純粋性チェック（日本語混入検知）"""
     visible = extract_non_code_html(html)
     matches = EN_FORBIDDEN_JAPANESE.findall(visible)
-    # ホワイトリスト: 言語セレクターの「日本語」は許容
-    # ホワイトリスト: 言語セレクター、柔道/武道の固有名詞・技名
+    # ホワイトリスト: 言語セレクター + 柔道固有名詞 + BJJカタカナ用語
     EN_JP_WHITELIST = {
         "日本語", "ポルトガル語", "日本語版",
-        # 柔道技名
+        # 柔道技名（漢字）
         "一本背負投", "大外刈", "内股", "払腰", "背負投",
         "袖釣込腰", "大内刈", "小内刈", "送足払", "巴投",
         # 人名
         "今成正和",
-        # BJJ体重クラス（カタカナ）
-        "ルースター", "ライトフェザー", "フェザー", "ライト",
-        "ミドル", "ミディアムヘビー", "ヘビー", "スーパーヘビー", "ウルトラヘビー",
-    }
+    } | BJJ_TERMS_KATAKANA  # BJJ用語のカタカナはEN/PTページでも許容
     for m in matches:
         if len(m) <= 2:
             continue
@@ -219,9 +287,7 @@ def check_locale_purity_pt(filepath: str, html: str, report: BugReport):
         "一本背負投", "大外刈", "内股", "払腰", "背負投",
         "袖釣込腰", "大内刈", "小内刈", "送足払", "巴投",
         "今成正和",
-        "ルースター", "ライトフェザー", "フェザー", "ライト",
-        "ミドル", "ミディアムヘビー", "ヘビー", "スーパーヘビー", "ウルトラヘビー",
-    }
+    } | BJJ_TERMS_KATAKANA
     jp_matches = PT_FORBIDDEN_JAPANESE.findall(visible)
     for m in jp_matches:
         if len(m) <= 2:

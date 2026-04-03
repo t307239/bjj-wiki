@@ -76,6 +76,7 @@ SECRETS_FILE     = Path.home() / ".secrets"
 CACHE_DIR        = WIKI_ROOT / "cache"
 QUEUE_FILE       = CACHE_DIR / "fetch_queue.json"
 RATE_STATE_FILE  = CACHE_DIR / "rate_limit_state.json"
+NO_MATCH_FILE    = CACHE_DIR / "no_match_slugs.json"  # マッチしなかったslug記録
 REPORTS_DIR      = WIKI_ROOT / "reports"
 
 # ── ローカル HTML からタイトルを取得するヘルパー ──────────────────────────────
@@ -712,6 +713,24 @@ class VideoFetcherEngine:
         self.rate      = RateLimitState()
         self.queue     = FetchQueue()
 
+    def _record_no_match(self, slug: str):
+        """マッチしなかったslugを記録。次回以降の再検索や分析に使用"""
+        try:
+            data = {}
+            if NO_MATCH_FILE.exists():
+                data = json.loads(NO_MATCH_FILE.read_text(encoding="utf-8"))
+            today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            if slug not in data:
+                data[slug] = {"first_seen": today, "attempts": 0}
+            data[slug]["attempts"] += 1
+            data[slug]["last_attempt"] = today
+            NO_MATCH_FILE.parent.mkdir(parents=True, exist_ok=True)
+            NO_MATCH_FILE.write_text(
+                json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
+            )
+        except Exception as e:
+            print(f"         ⚠️  no_match記録失敗: {e}")
+
     def run(self, slugs: list[dict]):
         """
         slugs: [{"slug": str, "lang": str, "title": str}, ...]
@@ -742,6 +761,17 @@ class VideoFetcherEngine:
                     stats["skipped"] += 1
                     continue
 
+            # ── no_match 3回以上はスキップ（API呼び出し節約）──────────────
+            if not self.force and NO_MATCH_FILE.exists():
+                try:
+                    nm_data = json.loads(NO_MATCH_FILE.read_text(encoding="utf-8"))
+                    if slug in nm_data and nm_data[slug].get("attempts", 0) >= 3:
+                        print(f"         ⏭️  3回以上マッチなし → スキップ（動画なしと判定）")
+                        stats["skipped"] += 1
+                        continue
+                except Exception:
+                    pass
+
             # ── 日次レート制限チェック ──────────────────────────────────────
             if self.rate.remaining() <= 0:
                 self.queue.push(slug, lang, title)
@@ -765,6 +795,7 @@ class VideoFetcherEngine:
             if best is None:
                 print("         ⚠️  適切な動画が見つかりませんでした")
                 stats["no_match"] += 1
+                self._record_no_match(slug)
                 continue
 
             print(f"         🎯 [{best.score:+3d}pt] {best.title[:55]}")
@@ -804,6 +835,17 @@ class VideoFetcherEngine:
 
         if self.dry_run:
             print("\n⚠️  DRY-RUN モード: DB への書き込みは行っていません")
+
+        # no_match 統計
+        if NO_MATCH_FILE.exists():
+            try:
+                nm_data = json.loads(NO_MATCH_FILE.read_text(encoding="utf-8"))
+                multi_attempt = {k: v for k, v in nm_data.items() if v.get("attempts", 0) >= 2}
+                print(f"\n📋 累計マッチなし: {len(nm_data)} slugs")
+                if multi_attempt:
+                    print(f"   うち2回以上失敗: {len(multi_attempt)} slugs（動画が存在しない可能性高）")
+            except Exception:
+                pass
 
 
 # ── メイン ────────────────────────────────────────────────────────────────────
