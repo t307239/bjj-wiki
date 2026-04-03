@@ -36,7 +36,8 @@ from collections import defaultdict
 # ─────────────────────────────────────────────────────
 
 WIKI_ROOT = Path(__file__).parent.parent
-LANGUAGES = ["en", "ja", "pt"]
+LANGUAGES = ["en", "ja"]  # PTは後回し（柔術コンテンツ充実後）
+ALL_LANGUAGES = ["en", "ja", "pt"]  # --lang pt で個別指定は可能
 CURRENT_YEAR = "2026"
 
 # ── Locale純粋性パターン ──────────────────────────────
@@ -459,7 +460,7 @@ def write_report_file(report: BugReport, total_files: int):
 
 def main():
     parser = argparse.ArgumentParser(description="Wiki Hidden Bug Detector")
-    parser.add_argument("--lang", choices=LANGUAGES, help="特定言語のみスキャン")
+    parser.add_argument("--lang", choices=ALL_LANGUAGES, help="特定言語のみスキャン（pt含む）")
     parser.add_argument("--fix-hint", action="store_true", help="修正ヒント付き出力")
     parser.add_argument("--ci", action="store_true", help="CI用（exitcode=CRITICAL数）")
     args = parser.parse_args()

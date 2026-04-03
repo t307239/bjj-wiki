@@ -1,24 +1,37 @@
 #!/usr/bin/env python3
 """
-patch_locale_full.py — 全ページに対するlocale純粋性 + ヨガコメントアウト完全パッチ
+patch_locale_full.py — Wiki locale純粋性パッチ（安全モード対応）
 
-前回のpatch_locale_yoga_footer.pyで漏れたファイルを含め、
-全4,698ページを確実にパッチする。
+対象: JA + EN のみ（PTは後回し — 柔術コンテンツ充実後に対応）
+ヨガ: コメントアウト済みファイルはスキップ（ヨガWikiは後回し）
 
-パッチ内容:
-  1. JA: 英語テキスト→日本語に置換
-  2. PT: 英語テキスト→ポルトガル語に置換
-  3. EN: 日本語混入テキスト→英語に置換（コンタクトフォーム等）
-  4. 全言語: ヨガセクションのコメントアウト
-  5. 全言語: ©年号を2026に更新
+安全機能:
+  --dry-run     書き込みせず差分だけ表示（デフォルト）
+  --apply       実際に書き込む
+  --verify      パッチ前後で既存テストを実行し、壊れていないことを確認
+  --sample N    差分をN件だけ表示（dry-run時）
+
+使い方:
+    python3 scripts/patch_locale_full.py                   # dry-run（安全）
+    python3 scripts/patch_locale_full.py --sample 5        # 5件だけプレビュー
+    python3 scripts/patch_locale_full.py --apply            # 実行
+    python3 scripts/patch_locale_full.py --apply --verify   # 実行+前後テスト
+
+依存: Python 3.8+ 標準ライブラリのみ
 """
 
 import os
 import re
 import sys
+import difflib
+import argparse
+import subprocess
 from pathlib import Path
 
 WIKI_ROOT = Path(__file__).parent.parent
+
+# ── 対象言語（PTは後回し）──────────────────────
+TARGET_LANGS = ["en", "ja"]
 
 # ── 言語別置換マップ ─────────────────────────
 REPLACEMENTS = {
@@ -60,8 +73,8 @@ REPLACEMENTS = {
         # Related Video
         (r'>関連動画\s*/\s*Related\s*Video<', '>Related Video<'),
         # Pillar page CTA (Japanese → English)
-        (r'練習記録アプリ', 'BJJ Training Log'),
         (r'BJJ練習記録アプリ', 'BJJ Training Log App'),
+        (r'練習記録アプリ', 'BJJ Training Log'),
         (r'練習回数・テクニック・連続記録を一元管理。無料で始められます。', 'Track sessions, techniques, and streaks. Free forever.'),
         (r'>無料で始める →<', '>Start Free →<'),
         (r'>無料で始める<', '>Start Free<'),
@@ -78,52 +91,6 @@ REPLACEMENTS = {
         (r'&copy;\s*2025', '&copy; 2026'),
         (r'&copy;\s*2024', '&copy; 2026'),
     ],
-    "pt": [
-        # Related Techniques header
-        (r'<h3>🥋\s*Related\s+Techniques</h3>', '<h3>🥋 Técnicas Relacionadas</h3>'),
-        (r'<h3>\s*🥋\s*Related\s+Techniques\s*</h3>', '<h3>🥋 Técnicas Relacionadas</h3>'),
-        (r'>Related Techniques<', '>Técnicas Relacionadas<'),
-        # Related Video header
-        (r'>関連動画\s*/\s*Related\s*Video<', '>Vídeo Relacionado<'),
-        (r'>Related Video<', '>Vídeo Relacionado<'),
-        # Contact form
-        (r'お問い合わせ\s*/\s*Contact', 'Contato'),
-        (r'>Contact Us<', '>Contato<'),
-        (r'>Send<', '>Enviar<'),
-        (r'placeholder="Your Name"', 'placeholder="Seu Nome"'),
-        (r'placeholder="Your Email"', 'placeholder="Seu Email"'),
-        (r'placeholder="Your Message"', 'placeholder="Sua Mensagem"'),
-        (r'placeholder="Your name"', 'placeholder="Seu Nome"'),
-        (r'placeholder="Your email"', 'placeholder="Seu Email"'),
-        (r'placeholder="Your message"', 'placeholder="Sua Mensagem"'),
-        # Footer links
-        (r'>Privacy Policy<', '>Política de Privacidade<'),
-        (r'>About<(?!/)', '>Sobre<'),
-        # Floating CTA
-        (r'>Track Your BJJ Training<', '>Acompanhe Seu Treino de BJJ<'),
-        (r'Track Your BJJ Training', 'Acompanhe Seu Treino de BJJ'),
-        # Copyright
-        (r'&copy;\s*2025', '&copy; 2026'),
-        (r'&copy;\s*2024', '&copy; 2026'),
-        # Remove Japanese from PT pages
-        (r'お問い合わせ', 'Contato'),
-        (r'>送信<', '>Enviar<'),
-        # Pillar page CTA (Japanese → Portuguese)
-        (r'練習記録アプリ', 'App de Registro de Treino'),
-        (r'BJJ練習記録アプリ', 'App de Registro de BJJ'),
-        (r'練習回数・テクニック・連続記録を一元管理。無料で始められます。', 'Registre treinos, técnicas e sequências. Grátis para sempre.'),
-        (r'>無料で始める →<', '>Comece Grátis →<'),
-        (r'>無料で始める<', '>Comece Grátis<'),
-        (r'>練習を記録しよう<', '>Registre Seu Treino<'),
-        (r'練習ログ・テクニック帳・目標トラッカー', 'Registro de treino, diário de técnicas, rastreador de metas'),
-        (r'>トラッキングアプリ<', '>App de Rastreamento<'),
-        (r'>ホーム<', '>Início<'),
-        # Pillar page CTA variant 2
-        (r'BJJ練習を記録しよう', 'Registre Seu Treino de BJJ'),
-        (r'無料BJJトラッキングアプリ', 'App Gratuito de BJJ'),
-        (r'練習回数・テクニック・連続記録を一元管理', 'Registre treinos, técnicas e sequências'),
-        (r'無料で始められます', 'Grátis para sempre'),
-    ],
 }
 
 
@@ -132,7 +99,6 @@ def comment_out_yoga(html: str) -> str:
     if "YOGA SECTION HIDDEN" in html:
         return html  # 既にコメントアウト済み
 
-    # yoga-box のstyleとdiv をコメントアウト
     # Pattern 1: <style>.yoga-box{...}</style> + <div class="yoga-box">...</div>
     pattern = re.compile(
         r'(\s*<style>\.yoga-box\{[^<]*</style>\s*'
@@ -159,12 +125,12 @@ def comment_out_yoga(html: str) -> str:
     return html
 
 
-def patch_file(filepath: Path, lang: str) -> bool:
-    """単一ファイルをパッチ。変更があればTrue返す"""
+def compute_patch(filepath: Path, lang: str) -> tuple[str, str] | None:
+    """パッチ前後のテキストを返す。変更なしならNone"""
     try:
         original = filepath.read_text(encoding="utf-8")
     except Exception:
-        return False
+        return None
 
     html = original
 
@@ -176,31 +142,185 @@ def patch_file(filepath: Path, lang: str) -> bool:
     html = comment_out_yoga(html)
 
     if html != original:
-        filepath.write_text(html, encoding="utf-8")
+        return (original, html)
+    return None
+
+
+def show_diff(filepath: Path, original: str, patched: str, max_context: int = 3):
+    """ファイル単位の差分を表示"""
+    orig_lines = original.splitlines(keepends=True)
+    new_lines = patched.splitlines(keepends=True)
+    diff = difflib.unified_diff(
+        orig_lines, new_lines,
+        fromfile=f"a/{filepath.name}",
+        tofile=f"b/{filepath.name}",
+        n=max_context,
+    )
+    diff_text = "".join(diff)
+    if diff_text:
+        print(diff_text)
+    return bool(diff_text)
+
+
+def run_tests() -> bool:
+    """既存テストスイートを実行し、全PASSならTrueを返す"""
+    test_script = WIKI_ROOT / "scripts" / "test_wiki_quality.py"
+    if not test_script.exists():
+        print("  ⚠️  test_wiki_quality.py が見つかりません。スキップ。")
         return True
-    return False
+
+    print("  🧪 テスト実行中...")
+    result = subprocess.run(
+        [sys.executable, str(test_script)],
+        cwd=str(WIKI_ROOT),
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+
+    if result.returncode == 0:
+        print("  ✅ テスト全PASS")
+        return True
+    else:
+        print(f"  ❌ テスト失敗 (exit code {result.returncode})")
+        # 失敗内容のサマリー
+        for line in result.stdout.splitlines()[-10:]:
+            print(f"     {line}")
+        for line in result.stderr.splitlines()[-5:]:
+            print(f"     {line}")
+        return False
+
+
+def run_detector() -> int:
+    """detect_hidden_bugs.py を実行し、CRITICAL数を返す"""
+    detector = WIKI_ROOT / "scripts" / "detect_hidden_bugs.py"
+    if not detector.exists():
+        print("  ⚠️  detect_hidden_bugs.py が見つかりません。スキップ。")
+        return 0
+
+    print("  🔍 Hidden Bug Detector 実行中...")
+    result = subprocess.run(
+        [sys.executable, str(detector), "--ci", "--lang", "ja"],
+        cwd=str(WIKI_ROOT),
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    # --ci mode: exit code = CRITICAL count
+    critical = result.returncode
+    print(f"  {'✅' if critical == 0 else '❌'} CRITICAL: {critical}")
+    return critical
 
 
 def main():
-    total = 0
-    changed = 0
+    parser = argparse.ArgumentParser(
+        description="Wiki locale patch（安全モード）",
+        epilog="デフォルトはdry-run。--applyで実行。",
+    )
+    parser.add_argument("--apply", action="store_true",
+                        help="実際にファイルを書き換える（省略時はdry-run）")
+    parser.add_argument("--verify", action="store_true",
+                        help="パッチ前後でテストを実行して破壊がないことを確認")
+    parser.add_argument("--sample", type=int, default=0,
+                        help="dry-run時に差分を表示する最大ファイル数（0=全件）")
+    args = parser.parse_args()
 
-    for lang in ["en", "ja", "pt"]:
+    is_dry_run = not args.apply
+
+    if is_dry_run:
+        print("\n🔒 DRY-RUN モード（ファイルは変更されません）")
+        print("   実行するには: python3 scripts/patch_locale_full.py --apply\n")
+    else:
+        print("\n⚡ APPLY モード（ファイルを書き換えます）\n")
+
+    # ── verify: パッチ前テスト ──
+    if args.verify and not is_dry_run:
+        print("━━━ パッチ前テスト ━━━")
+        pre_test_ok = run_tests()
+        pre_critical = run_detector()
+        if not pre_test_ok:
+            print("\n❌ パッチ前にテストが失敗しています。先にテスト修正を。")
+            sys.exit(1)
+        print()
+
+    # ── パッチ計算 ──
+    total = 0
+    changes = []  # (filepath, original, patched)
+
+    for lang in TARGET_LANGS:
         lang_dir = WIKI_ROOT / lang
         if not lang_dir.exists():
             continue
 
         files = sorted(lang_dir.glob("*.html"))
-        lang_changed = 0
         for f in files:
             total += 1
-            if patch_file(f, lang):
-                changed += 1
-                lang_changed += 1
+            result = compute_patch(f, lang)
+            if result:
+                changes.append((f, result[0], result[1]))
 
-        print(f"  {lang}: {lang_changed}/{len(files)} ファイル修正")
+    # ── サマリー ──
+    print(f"スキャン: {total} ファイル（{', '.join(TARGET_LANGS)}）")
+    print(f"変更対象: {len(changes)} ファイル\n")
 
-    print(f"\n合計: {changed}/{total} ファイル修正")
+    if not changes:
+        print("✅ パッチ不要 — 全ファイルがクリーンです。")
+        return
+
+    # ── dry-run: 差分表示 ──
+    if is_dry_run:
+        sample_count = args.sample if args.sample > 0 else len(changes)
+        shown = 0
+        for filepath, original, patched in changes[:sample_count]:
+            rel = filepath.relative_to(WIKI_ROOT)
+            print(f"── {rel} ──")
+            show_diff(filepath, original, patched)
+            shown += 1
+            print()
+
+        remaining = len(changes) - shown
+        if remaining > 0:
+            print(f"... 他 {remaining} ファイル（--sample で表示数を変更可能）")
+
+        print(f"\n🔒 DRY-RUN 完了。{len(changes)} ファイルが変更予定。")
+        print(f"   実行: python3 scripts/patch_locale_full.py --apply")
+        return
+
+    # ── apply: 書き込み ──
+    applied = 0
+    for filepath, original, patched in changes:
+        filepath.write_text(patched, encoding="utf-8")
+        applied += 1
+
+    lang_counts = {}
+    for filepath, _, _ in changes:
+        lang = filepath.parent.name
+        lang_counts[lang] = lang_counts.get(lang, 0) + 1
+
+    for lang, count in sorted(lang_counts.items()):
+        print(f"  {lang}: {count} ファイル修正")
+    print(f"\n合計: {applied}/{total} ファイル修正")
+
+    # ── verify: パッチ後テスト ──
+    if args.verify:
+        print("\n━━━ パッチ後テスト ━━━")
+        post_test_ok = run_tests()
+        post_critical = run_detector()
+
+        if not post_test_ok:
+            print("\n❌ パッチ後にテストが失敗しました！")
+            print("   パッチで既存コンテンツが壊れた可能性があります。")
+            print("   git checkout で戻すことを検討してください。")
+            sys.exit(1)
+
+        if post_critical > pre_critical:
+            print(f"\n⚠️  CRITICAL が増加しました: {pre_critical} → {post_critical}")
+        elif post_critical < pre_critical:
+            print(f"\n✅ CRITICAL が減少しました: {pre_critical} → {post_critical}")
+        else:
+            print(f"\n✅ CRITICAL 変化なし: {post_critical}")
+
+        print("\n✅ パッチ完了 — 安全検証PASS")
 
 
 if __name__ == "__main__":
