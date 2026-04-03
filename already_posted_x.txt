@@ -1,3 +1,4 @@
+techniques-az
 top-bjj-submissions
 torreando-pass
 turtle-position
