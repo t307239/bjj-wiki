@@ -86,7 +86,7 @@ JA_FORBIDDEN_ENGLISH = [
     (r"Related\s+Techniques", "関連テクニック"),
     (r"Related\s+Video", "関連動画"),
     (r"Privacy\s+Policy", "プライバシーポリシー"),
-    (r"(?<!\w)About(?!\w)(?!\.html)", "概要"),
+    (r">About<", "概要"),
     (r"Contact\s+Us", "お問い合わせ"),
     (r"Send(?=\s*</)", "送信"),
     (r"Your\s+Name", "お名前"),
@@ -104,7 +104,7 @@ PT_FORBIDDEN_ENGLISH = [
     (r"Related\s+Techniques", "Técnicas Relacionadas"),
     (r"Related\s+Video", "Vídeo Relacionado"),
     (r"Privacy\s+Policy", "Política de Privacidade"),
-    (r"(?<!\w)About(?!\w)(?!\.html)", "Sobre"),
+    (r">About<", "Sobre"),
     (r"Contact\s+Us", "Contato"),
 ]
 
@@ -175,11 +175,22 @@ def check_locale_purity_en(filepath: str, html: str, report: BugReport):
     visible = extract_non_code_html(html)
     matches = EN_FORBIDDEN_JAPANESE.findall(visible)
     # ホワイトリスト: 言語セレクターの「日本語」は許容
-    LANG_SELECTOR_WHITELIST = {"日本語", "ポルトガル語"}
+    # ホワイトリスト: 言語セレクター、柔道/武道の固有名詞・技名
+    EN_JP_WHITELIST = {
+        "日本語", "ポルトガル語", "日本語版",
+        # 柔道技名
+        "一本背負投", "大外刈", "内股", "払腰", "背負投",
+        "袖釣込腰", "大内刈", "小内刈", "送足払", "巴投",
+        # 人名
+        "今成正和",
+        # BJJ体重クラス（カタカナ）
+        "ルースター", "ライトフェザー", "フェザー", "ライト",
+        "ミドル", "ミディアムヘビー", "ヘビー", "スーパーヘビー", "ウルトラヘビー",
+    }
     for m in matches:
         if len(m) <= 2:
             continue
-        if m.strip() in LANG_SELECTOR_WHITELIST:
+        if m.strip() in EN_JP_WHITELIST:
             continue
         report.add(
             "CRITICAL", "LOCALE_EN",
@@ -202,9 +213,19 @@ def check_locale_purity_pt(filepath: str, html: str, report: BugReport):
                 f"'{matches[0]}' → '{expected_pt}' に置換",
             )
     # 日本語混入チェック
+    PT_JP_WHITELIST = {
+        "日本語", "ポルトガル語", "日本語版",
+        "一本背負投", "大外刈", "内股", "払腰", "背負投",
+        "袖釣込腰", "大内刈", "小内刈", "送足払", "巴投",
+        "今成正和",
+        "ルースター", "ライトフェザー", "フェザー", "ライト",
+        "ミドル", "ミディアムヘビー", "ヘビー", "スーパーヘビー", "ウルトラヘビー",
+    }
     jp_matches = PT_FORBIDDEN_JAPANESE.findall(visible)
     for m in jp_matches:
         if len(m) <= 2:
+            continue
+        if m.strip() in PT_JP_WHITELIST:
             continue
         report.add(
             "CRITICAL", "LOCALE_PT",

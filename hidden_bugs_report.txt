@@ -1,9 +1,9 @@
 Hidden Bug Detector Report
 Scanned: 4698 files
-CRITICAL: 199
+CRITICAL: 0
 WARNING: 40
 INFO: 338
-Total: 577
+Total: 378
 
 [INFO] [EMPTY_LINKS] en/bjj-academy-startup-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
@@ -15,8 +15,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-back-control-body-triangle.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-back-escape-system.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-back-take-entries.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-back-take-systems.html: 空リンク/# リンクが 3 件
@@ -27,10 +25,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-biomechanics-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-bjj-strength-training.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-bjj-strength-training.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-black-belt-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-blue-belt-guide.html: 空リンク/# リンクが 3 件
@@ -43,12 +37,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-competition-diet-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-competition-mindset.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-competition-tactics-advanced.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-competition-tactics-advanced.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-competition-weight-cutting.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-complete-beginners-guide.html: 空リンク/# リンクが 3 件
@@ -87,30 +75,18 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-gordon-ryan-leg-locks.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-grip-fighting-advanced.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-grip-fighting-advanced.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-growth-mindset-bjj.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-guard-passing-concepts.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-guard-passing-concepts.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-guard-passing-systems-advanced.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-guard-pull-competition.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-guard-pull-strategy-advanced.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-guard-retention-advanced.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-ibjjf-nogi-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-ibjjf-rules-complete-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-injury-prevention-guide.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-injury-prevention-training.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-inside-heel-hook-system.html: 空リンク/# リンクが 3 件
@@ -143,10 +119,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-match-visualization.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-mental-performance.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-mental-performance.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-mikey-musumeci-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-mma-crossover.html: 空リンク/# リンクが 3 件
@@ -163,12 +135,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-nogi-submissions.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-nutrition-science.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-nutrition-timing.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-nutrition-timing.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-online-coaching-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-opening-gym-guide.html: 空リンク/# リンクが 3 件
@@ -181,14 +147,8 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-periodization-program.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-periodization-training.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-periodization-training.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-polaris-rules-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-position-map.html: 日本語混入: '日本語版...' (4文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-post-competition-analysis.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-prehab-routine.html: 空リンク/# リンクが 3 件
@@ -199,10 +159,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-reactive-vs-proactive.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-recovery-protocols.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-recovery-protocols.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-referee-rules-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-rickson-gracie-system.html: 空リンク/# リンクが 3 件
@@ -223,18 +179,10 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-strength-training-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-submission-defense-systems.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-submission-defense-systems.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-submission-only-rules-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-submission-pressure-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-takedown-entry-systems.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-takedown-entry-systems.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-top-game-concepts.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-toreando-pass-system.html: 空リンク/# リンクが 3 件
@@ -245,32 +193,12 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-truck-position-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/bjj-weight-classes-guide.html: 日本語混入: 'ルースター...' (5文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-weight-classes-guide.html: 日本語混入: 'ライトフェザー...' (7文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-weight-classes-guide.html: 日本語混入: 'フェザー...' (4文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-weight-classes-guide.html: 日本語混入: 'ライト...' (3文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-weight-classes-guide.html: 日本語混入: 'ミドル...' (3文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-weight-classes-guide.html: 日本語混入: 'ミディアムヘビー...' (8文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-weight-classes-guide.html: 日本語混入: 'ヘビー...' (3文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-weight-classes-guide.html: 日本語混入: 'スーパーヘビー...' (7文字)
-  FIX: 該当テキストを英語に置換
-[CRITICAL] [LOCALE_EN] en/bjj-weight-classes-guide.html: 日本語混入: 'ウルトラヘビー...' (7文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/bjj-weight-distribution-mastery.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-worm-guard-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] en/bjj-wrestling-for-bjj.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_EN] en/imanari-roll.html: 日本語混入: '今成正和...' (4文字)
-  FIX: 該当テキストを英語に置換
 [INFO] [EMPTY_LINKS] en/sparring-simulator.html: 空リンク/# リンクが 5 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-academy-startup-guide.html: 空リンク/# リンクが 3 件
@@ -279,8 +207,6 @@ Total: 577
   FIX: 「無料で始める」等の日本語CTAに修正
 [INFO] [EMPTY_LINKS] ja/bjj-adcc-rules-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-adcc-rules-strategy.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-andre-galvao-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] ja/bjj-andre-galvao-system.html: JAページに英語CTA ('Start Free' 等) が残存
@@ -291,8 +217,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-back-control-body-triangle.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-back-control-body-triangle.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-back-escapes-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-back-take-entries.html: 空リンク/# リンクが 3 件
@@ -315,8 +239,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-cardio-training-bjj.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-cardio-training-bjj.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-clock-choke-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-closed-guard-attacks.html: 空リンク/# リンクが 3 件
@@ -345,8 +267,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-craig-jones-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-craig-jones-game-plan.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [WARNING] [CTA_LANG] ja/bjj-crucifix-position-system.html: JAページに英語CTA ('Start Free' 等) が残存
   FIX: 「無料で始める」等の日本語CTAに修正
 [INFO] [EMPTY_LINKS] ja/bjj-darce-anaconda-system.html: 空リンク/# リンクが 3 件
@@ -357,24 +277,18 @@ Total: 577
   FIX: 「無料で始める」等の日本語CTAに修正
 [INFO] [EMPTY_LINKS] ja/bjj-ebi-rules-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-ebi-rules-strategy.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-energy-systems.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-etiquette-dojo-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-film-study-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-film-study-guide.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-flexibility-mobility-program.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] ja/bjj-flexibility-mobility-program.html: JAページに英語CTA ('Start Free' 等) が残存
   FIX: 「無料で始める」等の日本語CTAに修正
 [INFO] [EMPTY_LINKS] ja/bjj-flexibility-routine.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-flexibility-routine.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-flow-rolling-benefits.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-flow-state-training.html: 空リンク/# リンクが 3 件
@@ -383,18 +297,12 @@ Total: 577
   FIX: 「無料で始める」等の日本語CTAに修正
 [INFO] [EMPTY_LINKS] ja/bjj-garry-tonon-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-garry-tonon-game-plan.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-gordon-ryan-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-gordon-ryan-game-plan.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-gordon-ryan-leg-locks.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-growth-mindset-bjj.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-growth-mindset-bjj.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-guard-break-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-guard-passing-systems-advanced.html: 空リンク/# リンクが 3 件
@@ -411,8 +319,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-ibjjf-nogi-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-ibjjf-nogi-strategy.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-ibjjf-rules-complete-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] ja/bjj-ibjjf-rules-complete-guide.html: JAページに英語CTA ('Start Free' 等) が残存
@@ -461,20 +367,14 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-mikey-musumeci-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-mikey-musumeci-game-plan.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-mma-crossover.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-modern-guard-systems.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-modern-guard-systems.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-mount-escapes-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-mount-pressure-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-mount-pressure-system.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-mount-submissions-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-neck-spine-injury-guide.html: 空リンク/# リンクが 3 件
@@ -483,8 +383,6 @@ Total: 577
   FIX: 「無料で始める」等の日本語CTAに修正
 [INFO] [EMPTY_LINKS] ja/bjj-nicholas-meregali-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-nicholas-meregali-game-plan.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-nogi-guard-systems.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-nogi-submissions.html: 空リンク/# リンクが 3 件
@@ -507,20 +405,14 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-polaris-rules-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-polaris-rules-strategy.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-post-competition-analysis.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-prehab-routine.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-prehab-routine.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-pressure-pressure-game-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] ja/bjj-pressure-pressure-game-guide.html: JAページに英語CTA ('Start Free' 等) が残存
   FIX: 「無料で始める」等の日本語CTAに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-problem-solving-bjj.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-purple-belt-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-reactive-vs-proactive.html: 空リンク/# リンクが 3 件
@@ -567,8 +459,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-training-intensity-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_JA] ja/bjj-training-tips.html: 英語残存: 'about' (expected: '概要')
-  FIX: 'about' → '概要' に置換
 [INFO] [EMPTY_LINKS] ja/bjj-triangle-choke-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/bjj-triangle-variations.html: 空リンク/# リンクが 3 件
@@ -591,24 +481,12 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] ja/sparring-simulator.html: 空リンク/# リンクが 5 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/best-bjj-ear-guards.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/best-bjj-knee-pads.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/best-bjj-rash-guard.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bicep-slicer.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-academy-startup-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] pt/bjj-academy-startup-guide.html: PTページに英語CTA ('Start Free' 等) が残存
   FIX: 「Comece Grátis」等のPT語CTAに修正
 [INFO] [EMPTY_LINKS] pt/bjj-adcc-rules-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-adcc-rules-strategy.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-advanced-leg-lock-systems.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-andre-galvao-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] pt/bjj-andre-galvao-system.html: PTページに英語CTA ('Start Free' 等) が残存
@@ -619,28 +497,8 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-back-control-body-triangle.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-back-control-body-triangle.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-back-escape-system.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-back-escape-system.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-back-escape-system.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-back-escape-system.html: 日本語混入: '練習回数・テクニック・連続記録を一元管理...' (20文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-back-escape-system.html: 日本語混入: '無料で始められます...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-back-escape-system.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-back-escape-system.html: 日本語混入: 'ホーム...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-back-escapes-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-back-system-advanced.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-back-take-advanced-system.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-back-take-entries.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-back-take-systems.html: 空リンク/# リンクが 3 件
@@ -653,30 +511,14 @@ Total: 577
   FIX: 「Comece Grátis」等のPT語CTAに修正
 [INFO] [EMPTY_LINKS] pt/bjj-biomechanics-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-bjj-strength-training.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-bjj-strength-training.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-bjj-strength-training.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-bjj-strength-training.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-black-belt-concepts.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-black-belt-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-blue-belt-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-blue-belt-requirements.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-body-triangle-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-cardio-training-bjj.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-cardio-training-bjj.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-chest-to-chest-control.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-clock-choke-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-closed-guard-attacks.html: 空リンク/# リンクが 3 件
@@ -687,32 +529,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-competition-diet-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-game-planning.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-mindset.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-mindset.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-mindset.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-mindset.html: 日本語混入: '練習回数・テクニック・連続記録を一元管理...' (20文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-mindset.html: 日本語混入: '無料で始められます...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-mindset.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-mindset.html: 日本語混入: 'ホーム...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-prep-advanced.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-tactics-advanced.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-tactics-advanced.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-tactics-advanced.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-competition-tactics-advanced.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-competition-weight-cutting.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-complete-beginners-guide.html: 空リンク/# リンクが 3 件
@@ -731,42 +547,28 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-craig-jones-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-craig-jones-game-plan.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [WARNING] [CTA_LANG] pt/bjj-crucifix-position-system.html: PTページに英語CTA ('Start Free' 等) が残存
   FIX: 「Comece Grátis」等のPT語CTAに修正
 [INFO] [EMPTY_LINKS] pt/bjj-darce-anaconda-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-deep-half-guard-mastery.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-defensive-guard-play.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-drilling-methodology.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] pt/bjj-drilling-methodology.html: PTページに英語CTA ('Start Free' 等) が残存
   FIX: 「Comece Grátis」等のPT語CTAに修正
 [INFO] [EMPTY_LINKS] pt/bjj-ebi-rules-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-ebi-rules-strategy.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-energy-systems.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-etiquette-dojo-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-fight-iq-development.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-film-study-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-film-study-guide.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-flexibility-mobility-program.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] pt/bjj-flexibility-mobility-program.html: PTページに英語CTA ('Start Free' 等) が残存
   FIX: 「Comece Grátis」等のPT語CTAに修正
 [INFO] [EMPTY_LINKS] pt/bjj-flexibility-routine.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-flexibility-routine.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-flow-rolling-benefits.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-flow-state-training.html: 空リンク/# リンクが 3 件
@@ -775,66 +577,20 @@ Total: 577
   FIX: 「Comece Grátis」等のPT語CTAに修正
 [INFO] [EMPTY_LINKS] pt/bjj-garry-tonon-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-garry-tonon-game-plan.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-gi-vs-nogi-comparison.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-gordon-ryan-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-gordon-ryan-game-plan.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-gordon-ryan-leg-locks.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-grip-fighting-advanced.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-grip-fighting-advanced.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-grip-fighting-advanced.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-grip-fighting-advanced.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-growth-mindset-bjj.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-growth-mindset-bjj.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-guard-break-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-concepts-advanced.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-development-system.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-passing-chess.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-passing-concepts.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-passing-concepts.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-passing-concepts.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-passing-concepts.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-guard-passing-systems-advanced.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-guard-pull-competition.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-guard-pull-strategy-advanced.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-retention-advanced.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-retention-advanced.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-retention-advanced.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-retention-advanced.html: 日本語混入: '練習回数・テクニック・連続記録を一元管理...' (20文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-retention-advanced.html: 日本語混入: '無料で始められます...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-retention-advanced.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-retention-advanced.html: 日本語混入: 'ホーム...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-guard-sweeps-masterclass.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-guillotine-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-high-percentage-attacks.html: 空リンク/# リンクが 3 件
@@ -843,32 +599,14 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-ibjjf-nogi-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-ibjjf-nogi-strategy.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-ibjjf-rules-complete-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] pt/bjj-ibjjf-rules-complete-guide.html: PTページに英語CTA ('Start Free' 等) が残存
   FIX: 「Comece Grátis」等のPT語CTAに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-injury-prevention-guide.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-injury-prevention-guide.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-injury-prevention-guide.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-injury-prevention-guide.html: 日本語混入: '練習回数・テクニック・連続記録を一元管理...' (20文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-injury-prevention-guide.html: 日本語混入: '無料で始められます...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-injury-prevention-guide.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-injury-prevention-guide.html: 日本語混入: 'ホーム...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-injury-prevention-training.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-inside-heel-hook-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-inversion-system.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-john-danaher-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-judo-throws-for-bjj.html: 空リンク/# リンクが 3 件
@@ -891,8 +629,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-kneebar-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-leg-entanglement-entries.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-leg-lock-entries-advanced.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-leg-lock-entry-systems.html: 空リンク/# リンクが 3 件
@@ -907,36 +643,18 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-marcelo-garcia-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-mat-culture-etiquette.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-match-visualization.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-mental-performance.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-mental-performance.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-mental-performance.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-mental-performance.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-mikey-musumeci-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-mikey-musumeci-game-plan.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-mma-crossover.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-mma-guard-work.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-modern-guard-systems.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-modern-guard-systems.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-mount-escapes-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-mount-pressure-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-mount-pressure-system.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-mount-submissions-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-neck-spine-injury-guide.html: 空リンク/# リンクが 3 件
@@ -945,38 +663,12 @@ Total: 577
   FIX: 「Comece Grátis」等のPT語CTAに修正
 [INFO] [EMPTY_LINKS] pt/bjj-nicholas-meregali-game-plan.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-nicholas-meregali-game-plan.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-nogi-guard-systems.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-nogi-submissions.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] pt/bjj-north-south-position-attacks.html: PTページに英語CTA ('Start Free' 等) が残存
   FIX: 「Comece Grátis」等のPT語CTAに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-science.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-science.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-science.html: 日本語混入: '練習記録アプリ...' (7文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-science.html: 日本語混入: '練習回数・テクニック・連続記録を一元管理...' (20文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-science.html: 日本語混入: '無料で始められます...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-science.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-science.html: 日本語混入: 'ホーム...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-timing.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-timing.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-timing.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-nutrition-timing.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-offense-first-bjj.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-online-coaching-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] pt/bjj-online-coaching-guide.html: PTページに英語CTA ('Start Free' 等) が残存
@@ -991,56 +683,26 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-periodization-program.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-periodization-training.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-periodization-training.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-periodization-training.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-periodization-training.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-polaris-rules-strategy.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-polaris-rules-strategy.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-position-map.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-positional-control-fundamentals.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-post-competition-analysis.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-prehab-routine.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-prehab-routine.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-pressure-pressure-game-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] pt/bjj-pressure-pressure-game-guide.html: PTページに英語CTA ('Start Free' 等) が残存
   FIX: 「Comece Grátis」等のPT語CTAに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-problem-solving-bjj.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
 [INFO] [EMPTY_LINKS] pt/bjj-purple-belt-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-reaction-training-bjj.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-reactive-vs-proactive.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-recovery-protocols.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-recovery-protocols.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-recovery-protocols.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-recovery-protocols.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-referee-rules-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-rickson-gracie-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-roger-gracie-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-rubber-guard-advanced.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-sambo-for-bjj.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-self-defense-guide.html: 空リンク/# リンクが 3 件
@@ -1063,40 +725,12 @@ Total: 577
   FIX: 「Comece Grátis」等のPT語CTAに修正
 [INFO] [EMPTY_LINKS] pt/bjj-strength-training-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-chain-attacks.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-defense-systems.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-defense-systems.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-defense-systems.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-defense-systems.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-finishing-details.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-hunting-advanced.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-matrix.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-submission-only-rules-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [WARNING] [CTA_LANG] pt/bjj-submission-only-rules-guide.html: PTページに英語CTA ('Start Free' 等) が残存
   FIX: 「Comece Grátis」等のPT語CTAに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-only-strategy.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-submission-pressure-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-submission-setup-chains.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-takedown-entry-systems.html: 日本語混入: '練習を記録しよう...' (8文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-takedown-entry-systems.html: 日本語混入: '練習ログ・テクニック帳・目標トラッカー...' (19文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-takedown-entry-systems.html: 日本語混入: 'トラッキングアプリ...' (9文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-takedown-entry-systems.html: 日本語混入: '無料で始める...' (6文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-top-game-concepts.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-top-game-system.html: 空リンク/# リンクが 3 件
@@ -1105,10 +739,6 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-training-intensity-guide.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-training-tips.html: 英語残存: 'about' (expected: 'Sobre')
-  FIX: 'about' → 'Sobre' に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-transition-game-advanced.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/bjj-triangle-choke-system.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-triangle-variations.html: 空リンク/# リンクが 3 件
@@ -1129,33 +759,5 @@ Total: 577
   FIX: 適切なURLまたはアンカーに修正
 [INFO] [EMPTY_LINKS] pt/bjj-wrestling-for-bjj.html: 空リンク/# リンクが 3 件
   FIX: 適切なURLまたはアンカーに修正
-[CRITICAL] [LOCALE_PT] pt/bjj-wrestling-integration.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-wrestling-takedown-for-bjj.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/bjj-wrist-lock-complete.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/cement-mixer.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/crucifix.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/dog-fight.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/electric-chair.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/imanari-roll.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/ippon-seoi-nage.html: 日本語混入: '一本背負投...' (5文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/knee-shield.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/lockdown.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/paper-cutter-choke.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/peruvian-necktie.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
-[CRITICAL] [LOCALE_PT] pt/quarter-guard.html: 日本語混入: '日本語...' (3文字)
-  FIX: 該当テキストをポルトガル語に置換
 [INFO] [EMPTY_LINKS] pt/sparring-simulator.html: 空リンク/# リンクが 5 件
   FIX: 適切なURLまたはアンカーに修正

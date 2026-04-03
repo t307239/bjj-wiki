@@ -60,8 +60,8 @@ REPLACEMENTS = {
         # Related Video
         (r'>関連動画\s*/\s*Related\s*Video<', '>Related Video<'),
         # Pillar page CTA (Japanese → English)
-        (r'>練習記録アプリ<', '>BJJ Training Log<'),
-        (r'>BJJ練習記録アプリ<', '>BJJ Training Log App<'),
+        (r'練習記録アプリ', 'BJJ Training Log'),
+        (r'BJJ練習記録アプリ', 'BJJ Training Log App'),
         (r'練習回数・テクニック・連続記録を一元管理。無料で始められます。', 'Track sessions, techniques, and streaks. Free forever.'),
         (r'>無料で始める →<', '>Start Free →<'),
         (r'>無料で始める<', '>Start Free<'),
@@ -69,6 +69,11 @@ REPLACEMENTS = {
         (r'練習ログ・テクニック帳・目標トラッカー', 'Training log, technique journal, goal tracker'),
         (r'>トラッキングアプリ<', '>Tracking App<'),
         (r'>ホーム<', '>Home<'),
+        # Pillar page CTA variant 2
+        (r'BJJ練習を記録しよう', 'Log Your BJJ Training'),
+        (r'無料BJJトラッキングアプリ', 'Free BJJ Tracking App'),
+        (r'練習回数・テクニック・連続記録を一元管理', 'Track sessions, techniques, and streaks'),
+        (r'無料で始められます', 'Free forever'),
         # Copyright
         (r'&copy;\s*2025', '&copy; 2026'),
         (r'&copy;\s*2024', '&copy; 2026'),
@@ -103,6 +108,21 @@ REPLACEMENTS = {
         # Remove Japanese from PT pages
         (r'お問い合わせ', 'Contato'),
         (r'>送信<', '>Enviar<'),
+        # Pillar page CTA (Japanese → Portuguese)
+        (r'練習記録アプリ', 'App de Registro de Treino'),
+        (r'BJJ練習記録アプリ', 'App de Registro de BJJ'),
+        (r'練習回数・テクニック・連続記録を一元管理。無料で始められます。', 'Registre treinos, técnicas e sequências. Grátis para sempre.'),
+        (r'>無料で始める →<', '>Comece Grátis →<'),
+        (r'>無料で始める<', '>Comece Grátis<'),
+        (r'>練習を記録しよう<', '>Registre Seu Treino<'),
+        (r'練習ログ・テクニック帳・目標トラッカー', 'Registro de treino, diário de técnicas, rastreador de metas'),
+        (r'>トラッキングアプリ<', '>App de Rastreamento<'),
+        (r'>ホーム<', '>Início<'),
+        # Pillar page CTA variant 2
+        (r'BJJ練習を記録しよう', 'Registre Seu Treino de BJJ'),
+        (r'無料BJJトラッキングアプリ', 'App Gratuito de BJJ'),
+        (r'練習回数・テクニック・連続記録を一元管理', 'Registre treinos, técnicas e sequências'),
+        (r'無料で始められます', 'Grátis para sempre'),
     ],
 }
 
