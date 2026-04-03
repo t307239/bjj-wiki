@@ -59,6 +59,19 @@ REPLACEMENTS = {
         # Floating CTA
         (r'>Track Your BJJ Training<', '>柔術トレーニングを記録しよう<'),
         (r'Track Your BJJ Training', '柔術トレーニングを記録しよう'),
+        # Pillar page CTA variant 1 (cta-banner)
+        (r'Track Your BJJ Progress', '柔術の上達を記録しよう'),
+        (r'Record techniques, track streaks, and analyze your game with BJJ App', 'テクニック・連続記録・上達分析をBJJ Appで管理'),
+        (r'>Start Free →<', '>無料で始める →<'),
+        (r'>\s*Start Free →\s*<', '>無料で始める →<'),
+        # Pillar page CTA variant 2 (cta div)
+        (r'Log sessions, track techniques, and measure growth', '練習・テクニック・成長を記録しよう'),
+        (r'>Try BJJ App Free →<', '>BJJ Appを無料で試す →<'),
+        (r'Try BJJ App Free →', 'BJJ Appを無料で試す →'),
+        # Pillar page CTA variant 3 (HTML entity arrow + different description)
+        (r'>Start Free &rarr;<', '>無料で始める →<'),
+        (r'Start Free &rarr;', '無料で始める →'),
+        (r'Track your BJJ progress and set training goals\. Free to start\.', '柔術の上達を記録し、練習目標を設定しよう。無料で始められます。'),
         # Copyright
         (r'&copy;\s*2025', '&copy; 2026'),
         (r'&copy;\s*2024', '&copy; 2026'),

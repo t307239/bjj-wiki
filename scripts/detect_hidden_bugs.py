@@ -279,8 +279,15 @@ def check_copyright_year(filepath: str, html: str, report: BugReport):
 
 
 def check_empty_links(filepath: str, html: str, report: BugReport):
-    """空リンク・#のみリンク検知"""
-    empty_hrefs = re.findall(r'href=["\'](?:#|)["\']', html)
+    """空リンク・#のみリンク検知（<script>内は除外）"""
+    # scriptタグの中身を除去してからチェック（JS内の href='#'+id 等は誤検知）
+    html_no_script = re.sub(r'<script[^>]*>.*?</script>', '', html, flags=re.DOTALL)
+    # JS動的ページ（simulator等）は href="#" を正当に使うため除外
+    INTERACTIVE_PAGES = {"sparring-simulator.html", "quiz.html", "game.html"}
+    basename = os.path.basename(filepath)
+    if basename in INTERACTIVE_PAGES:
+        return
+    empty_hrefs = re.findall(r'href=["\'](?:#|)["\']', html_no_script)
     if len(empty_hrefs) > 2:  # 目次の#は許容、3つ以上なら問題
         report.add(
             "INFO", "EMPTY_LINKS",
@@ -312,12 +319,12 @@ def check_mixed_cta_language(filepath: str, html: str, lang: str, report: BugRep
     """CTAボタンの言語がlocaleと不一致"""
     if lang == "ja":
         # JAページで英語CTAが残存
-        if re.search(r"Start\s+Free|Sign\s+Up\s+Free|Get\s+Started", html, re.IGNORECASE):
-            # floating CTAなど
+        if re.search(r"Start\s+Free|Sign\s+Up\s+Free|Get\s+Started|Try\s+BJJ\s+App\s+Free|Track\s+Your\s+BJJ\s+Progress", html, re.IGNORECASE):
+            # floating CTA / pillar page CTA
             report.add(
                 "WARNING", "CTA_LANG",
                 filepath,
-                "JAページに英語CTA ('Start Free' 等) が残存",
+                "JAページに英語CTA ('Start Free' / 'Try BJJ App Free' 等) が残存",
                 "「無料で始める」等の日本語CTAに修正",
             )
     elif lang == "pt":
