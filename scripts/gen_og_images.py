@@ -7,7 +7,8 @@ Each page gets a unique SVG OG image with:
 - BJJ Wiki branding
 - Consistent dark SaaS design
 
-Updates each HTML file's og:image meta tag to point to the page-specific SVG.
+Updates each HTML file's og:image AND twitter:image meta tags
+to point to the page-specific SVG.
 
 Usage:
     python3 scripts/gen_og_images.py          # Generate for all pages
@@ -121,7 +122,6 @@ def extract_title(html_content: str) -> str | None:
 
 def update_og_image_tag(html_content: str, og_image_url: str) -> str:
     """Replace or add og:image meta tag in HTML."""
-    # Replace existing og:image
     new_tag = f'<meta property="og:image" content="{og_image_url}">'
     if 'property="og:image"' in html_content:
         html_content = re.sub(
@@ -130,8 +130,29 @@ def update_og_image_tag(html_content: str, og_image_url: str) -> str:
             html_content,
         )
     else:
-        # Insert after og:title or before </head>
         html_content = html_content.replace("</head>", f"  {new_tag}\n</head>")
+    return html_content
+
+
+def update_twitter_image_tag(html_content: str, og_image_url: str) -> str:
+    """Replace or add twitter:image meta tag to use per-page OG image."""
+    new_tag = f'<meta name="twitter:image" content="{og_image_url}">'
+    if 'name="twitter:image"' in html_content:
+        html_content = re.sub(
+            r'<meta\s+name="twitter:image"\s+content="[^"]*"\s*/?>',
+            new_tag,
+            html_content,
+        )
+    else:
+        # Insert after og:image or before </head>
+        if 'property="og:image"' in html_content:
+            html_content = re.sub(
+                r'(<meta\s+property="og:image"\s+content="[^"]*"\s*/?>)',
+                rf'\1\n{new_tag}',
+                html_content,
+            )
+        else:
+            html_content = html_content.replace("</head>", f"  {new_tag}\n</head>")
     return html_content
 
 
@@ -173,8 +194,9 @@ def main():
                 with open(svg_path, "w", encoding="utf-8") as f:
                     f.write(svg_content)
 
-                # Update HTML
+                # Update HTML — both og:image and twitter:image
                 new_content = update_og_image_tag(content, og_image_url)
+                new_content = update_twitter_image_tag(new_content, og_image_url)
                 if new_content != content:
                     with open(fpath, "w", encoding="utf-8") as f:
                         f.write(new_content)
