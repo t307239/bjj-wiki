@@ -12,6 +12,7 @@ AUDIT_FRAMEWORK.md のスコアリングでは検知できない、
   4. テンプレート不整合（©年号、CTA言語ミスマッチ）
   5. リンク切れ候補（hrefが空 or # のみ）
   6. HTMLタグ不整合（閉じタグ漏れの兆候）
+  7. SEO検証（H1タグ欠落、meta description品質、canonical URL欠落）
 
 使い方:
     python3 scripts/detect_hidden_bugs.py              # 全チェック
@@ -423,6 +424,87 @@ def check_bilingual_headers(filepath: str, html: str, lang: str, report: BugRepo
             )
 
 
+def check_seo_h1(filepath: str, html: str, report: BugReport):
+    """H1タグの存在チェック — SEOの基本要素"""
+    h1_matches = re.findall(r"<h1[^>]*>", html, re.IGNORECASE)
+    if len(h1_matches) == 0:
+        report.add(
+            "WARNING", "SEO_NO_H1",
+            filepath,
+            "H1タグが存在しない（SEO必須要素）",
+            "<h1>ページタイトル</h1> を追加",
+        )
+    elif len(h1_matches) > 1:
+        report.add(
+            "INFO", "SEO_MULTI_H1",
+            filepath,
+            f"H1タグが {len(h1_matches)} 個ある（推奨: 1個）",
+            "H1は1つに統一し、残りはH2に変更",
+        )
+
+
+def check_seo_meta_description(filepath: str, html: str, report: BugReport):
+    """meta descriptionの品質チェック"""
+    meta_match = re.search(
+        r'<meta\s+name=["\']description["\']\s+content=["\']([^"\']*)["\']',
+        html, re.IGNORECASE
+    )
+    if not meta_match:
+        # content="" が先に来るパターンも検出
+        meta_match = re.search(
+            r'<meta\s+content=["\']([^"\']*)["\'][\s]+name=["\']description["\']',
+            html, re.IGNORECASE
+        )
+
+    if not meta_match:
+        report.add(
+            "WARNING", "SEO_NO_META_DESC",
+            filepath,
+            "meta descriptionが存在しない",
+            '<meta name="description" content="ページの説明文"> を追加',
+        )
+        return
+
+    desc = meta_match.group(1).strip()
+    desc_len = len(desc)
+
+    if desc_len == 0:
+        report.add(
+            "WARNING", "SEO_EMPTY_META_DESC",
+            filepath,
+            "meta descriptionが空",
+            "50〜160文字の説明文を設定",
+        )
+    elif desc_len < 50:
+        report.add(
+            "INFO", "SEO_SHORT_META_DESC",
+            filepath,
+            f"meta descriptionが短すぎる ({desc_len}文字 < 50文字): '{desc[:40]}...'",
+            "50〜160文字の説明文に拡充",
+        )
+    elif desc_len > 160:
+        report.add(
+            "INFO", "SEO_LONG_META_DESC",
+            filepath,
+            f"meta descriptionが長すぎる ({desc_len}文字 > 160文字)",
+            "160文字以内にトリミング（検索結果で途切れる）",
+        )
+
+
+def check_seo_canonical(filepath: str, html: str, report: BugReport):
+    """canonical URLの存在チェック"""
+    canonical_match = re.search(
+        r'<link\s+rel=["\']canonical["\']', html, re.IGNORECASE
+    )
+    if not canonical_match:
+        report.add(
+            "INFO", "SEO_NO_CANONICAL",
+            filepath,
+            "canonical URLが未設定（重複コンテンツ防止に推奨）",
+            '<link rel="canonical" href="https://wiki.bjj-app.net/lang/page.html"> を追加',
+        )
+
+
 def check_mixed_cta_language(filepath: str, html: str, lang: str, report: BugReport):
     """CTAボタンの言語がlocaleと不一致"""
     if lang == "ja":
@@ -481,6 +563,11 @@ def scan_all(langs: list[str] = None, fix_hint: bool = False) -> BugReport:
             check_bilingual_headers(rel_path, html, lang, report)
             check_mixed_cta_language(rel_path, html, lang, report)
             check_broken_internal_links(rel_path, html, lang, report)
+
+            # SEOチェック
+            check_seo_h1(rel_path, html, report)
+            check_seo_meta_description(rel_path, html, report)
+            check_seo_canonical(rel_path, html, report)
 
             # 言語別チェック
             if lang == "ja":

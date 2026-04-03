@@ -1,6 +1,581 @@
 Hidden Bug Detector Report
 Scanned: 3132 files
 CRITICAL: 0
-WARNING: 0
-INFO: 0
-Total: 0
+WARNING: 46
+INFO: 241
+Total: 287
+
+[INFO] [SEO_LONG_META_DESC] en/50-50-guard.html: meta descriptionが長すぎる (177文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[WARNING] [SEO_NO_H1] en/about.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/about.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_LONG_META_DESC] en/arm-triangle-choke.html: meta descriptionが長すぎる (196文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[WARNING] [SEO_NO_H1] en/arm-triangle.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/arm-triangle.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_SHORT_META_DESC] en/athlete-andre-galvao.html: meta descriptionが短すぎる (12文字 < 50文字): 'Andre Galvao...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-bernardo-faria.html: meta descriptionが短すぎる (14文字 < 50文字): 'Bernardo Faria...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-bia-mesquita.html: meta descriptionが短すぎる (12文字 < 50文字): 'Bia Mesquita...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-buchecha.html: meta descriptionが短すぎる (23文字 < 50文字): 'Marcus Buchecha Almeida...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-caio-terra.html: meta descriptionが短すぎる (10文字 < 50文字): 'Caio Terra...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-claudio-calasans.html: meta descriptionが短すぎる (16文字 < 50文字): 'Claudio Calasans...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-cobrinha.html: meta descriptionが短すぎる (21文字 < 50文字): 'Rubens Charles Maciel...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-craig-jones.html: meta descriptionが短すぎる (11文字 < 50文字): 'Craig Jones...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-ffion-davies.html: meta descriptionが短すぎる (12文字 < 50文字): 'Ffion Davies...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-garry-tonon.html: meta descriptionが短すぎる (11文字 < 50文字): 'Garry Tonon...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-gianni-grippo.html: meta descriptionが短すぎる (13文字 < 50文字): 'Gianni Grippo...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-john-danaher.html: meta descriptionが短すぎる (12文字 < 50文字): 'John Danaher...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-keenan-cornelius.html: meta descriptionが短すぎる (16文字 < 50文字): 'Keenan Cornelius...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-lachlan-giles.html: meta descriptionが短すぎる (13文字 < 50文字): 'Lachlan Giles...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-leandro-lo.html: meta descriptionが短すぎる (10文字 < 50文字): 'Leandro Lo...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-mackenzie-dern.html: meta descriptionが短すぎる (14文字 < 50文字): 'Mackenzie Dern...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/athlete-marcelo-garcia.html: meta descriptionが長すぎる (163文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/athlete-mikey-musumeci.html: meta descriptionが短すぎる (14文字 < 50文字): 'Mikey Musumeci...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-nicky-ryan.html: meta descriptionが短すぎる (10文字 < 50文字): 'Nicky Ryan...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-rafael-lovato-jr.html: meta descriptionが短すぎる (17文字 < 50文字): 'Rafael Lovato Jr....'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-rafael-mendes.html: meta descriptionが短すぎる (13文字 < 50文字): 'Rafael Mendes...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-romulo-barral.html: meta descriptionが短すぎる (13文字 < 50文字): 'Romulo Barral...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-xande-ribeiro-2.html: meta descriptionが短すぎる (13文字 < 50文字): 'Saulo Ribeiro...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/athlete-xande-ribeiro.html: meta descriptionが短すぎる (13文字 < 50文字): 'Xande Ribeiro...'
+  FIX: 50〜160文字の説明文に拡充
+[WARNING] [SEO_NO_H1] en/back-control.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/back-control.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] en/best-bjj-instructionals.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[INFO] [SEO_LONG_META_DESC] en/bicep-slicer.html: meta descriptionが長すぎる (162文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-andre-galvao-system.html: meta descriptionが短すぎる (20文字 < 50文字): 'Analyze André Galvão...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-attacking-from-turtle.html: meta descriptionが長すぎる (170文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-beginners-guide.html: meta descriptionが短すぎる (36文字 < 50文字): 'Starting BJJ? This complete beginner...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/bjj-bernardo-faria-system.html: meta descriptionが短すぎる (21文字 < 50文字): 'Master Bernardo Faria...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-black-belt-concepts.html: meta descriptionが長すぎる (174文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-breaking-leg-defense.html: meta descriptionが短すぎる (28文字 < 50文字): 'Techniques to break opponent...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-competition-tactics-advanced.html: meta descriptionが長すぎる (161文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-complete-beginners-guide.html: meta descriptionが短すぎる (25文字 < 50文字): 'The ultimate BJJ beginner...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-conceptual-learning-framework.html: meta descriptionが長すぎる (164文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-d-arce-choke-details.html: meta descriptionが短すぎる (12文字 < 50文字): 'Master the D...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/bjj-d-arce-choke-guide.html: meta descriptionが短すぎる (43文字 < 50文字): 'Entry, finishing, and timing for one of ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/bjj-darce-anaconda-system.html: meta descriptionが短すぎる (9文字 < 50文字): 'The BJJ D...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/bjj-darce-choke-guide.html: meta descriptionが短すぎる (11文字 < 50文字): 'Learn the D...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-defensive-guard-play.html: meta descriptionが長すぎる (162文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-double-guard-pull.html: meta descriptionが長すぎる (165文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-drilling-methodology.html: meta descriptionが長すぎる (170文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-elbow-control-bjj.html: meta descriptionが短すぎる (20文字 < 50文字): 'Controlling opponent...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-escapes-masterclass.html: meta descriptionが長すぎる (178文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-flow-state-training.html: meta descriptionが長すぎる (168文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-for-self-defense.html: meta descriptionが短すぎる (40文字 < 50文字): 'Is BJJ good for self-defense? Yes — here...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/bjj-for-women.html: meta descriptionが短すぎる (21文字 < 50文字): 'BJJ for women: why it...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/bjj-gordon-ryan-leg-locks.html: meta descriptionが短すぎる (11文字 < 50文字): 'Gordon Ryan...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/bjj-gracies-family-history.html: meta descriptionが短すぎる (28文字 < 50文字): 'Understand the Gracie family...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-grip-fighting-advanced.html: meta descriptionが長すぎる (162文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-guard-passing-systems-advanced.html: meta descriptionが長すぎる (183文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-john-danaher-system.html: meta descriptionが短すぎる (12文字 < 50文字): 'John Danaher...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-knee-injury-prevention.html: meta descriptionが長すぎる (164文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-mental-performance.html: meta descriptionが長すぎる (161文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-mma-guard-work.html: meta descriptionが長すぎる (165文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-neck-spine-injury-guide.html: meta descriptionが長すぎる (164文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-position-before-submission.html: meta descriptionが短すぎる (14文字 < 50文字): 'Understand BJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-positional-control-fundamentals.html: meta descriptionが長すぎる (169文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-pressure-pressure-game-guide.html: meta descriptionが長すぎる (165文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-reaction-based-bjj.html: meta descriptionが短すぎる (45文字 < 50文字): 'Learn reaction-based BJJ: respond to opp...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-recovery-protocols.html: meta descriptionが長すぎる (164文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-rickson-gracie-system.html: meta descriptionが短すぎる (14文字 < 50文字): 'Rickson Gracie...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/bjj-roger-gracie-system.html: meta descriptionが短すぎる (12文字 < 50文字): 'Roger Gracie...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/bjj-single-leg-counter-bjj.html: meta descriptionが短すぎる (21文字 < 50文字): 'Counter your opponent...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-submission-defense-systems.html: meta descriptionが長すぎる (169文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/bjj-submission-finishing-details.html: meta descriptionが短すぎる (35文字 < 50文字): 'Technical finishing details for BJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/bjj-top-game-concepts.html: meta descriptionが長すぎる (172文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-training-intensity-guide.html: meta descriptionが長すぎる (171文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/bjj-transition-game-advanced.html: meta descriptionが長すぎる (161文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/cement-mixer.html: meta descriptionが長すぎる (189文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/closed-guard.html: meta descriptionが長すぎる (168文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/crucifix.html: meta descriptionが長すぎる (161文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/d-arce-choke.html: meta descriptionが短すぎる (5文字 < 50文字): 'The D...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] en/darce-choke.html: meta descriptionが短すぎる (35文字 < 50文字): 'Learn how to execute the powerful D...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/deep-half-guard.html: meta descriptionが長すぎる (176文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/double-under-pass.html: meta descriptionが長すぎる (181文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/electric-chair.html: meta descriptionが長すぎる (166文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[WARNING] [SEO_NO_H1] en/guard-passing.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/guard-passing.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] en/guard-recovery.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/guard-recovery.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] en/guillotine.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/guillotine.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_LONG_META_DESC] en/harai-goshi.html: meta descriptionが長すぎる (174文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/ippon-seoi-nage.html: meta descriptionが長すぎる (184文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[WARNING] [SEO_NO_H1] en/knee-slice.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/knee-slice.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_LONG_META_DESC] en/lasso-guard.html: meta descriptionが長すぎる (172文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[WARNING] [SEO_NO_H1] en/leg-drag.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/leg-drag.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] en/leg-locks.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/leg-locks.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_LONG_META_DESC] en/morote-seoi-nage.html: meta descriptionが長すぎる (178文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_SHORT_META_DESC] en/over-under-pass.html: meta descriptionが短すぎる (43文字 < 50文字): 'Master the over under pass — Bernardo Fa...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_LONG_META_DESC] en/paper-cutter-choke.html: meta descriptionが長すぎる (161文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[WARNING] [SEO_NO_H1] en/privacy.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/privacy.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_LONG_META_DESC] en/quarter-guard.html: meta descriptionが長すぎる (162文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/reverse-de-la-riva.html: meta descriptionが長すぎる (176文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[WARNING] [SEO_NO_H1] en/toreando-pass.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] en/toreando-pass.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_LONG_META_DESC] en/x-pass.html: meta descriptionが長すぎる (175文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] en/z-guard.html: meta descriptionが長すぎる (165文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[WARNING] [SEO_NO_H1] ja/about.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/about.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] ja/arm-triangle.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/arm-triangle.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_LONG_META_DESC] ja/athlete-bernardo-faria.html: meta descriptionが長すぎる (166文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-buchecha.html: meta descriptionが長すぎる (169文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-caio-terra.html: meta descriptionが長すぎる (188文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-claudio-calasans.html: meta descriptionが長すぎる (172文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-cobrinha.html: meta descriptionが長すぎる (185文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-craig-jones.html: meta descriptionが長すぎる (163文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-ffion-davies.html: meta descriptionが長すぎる (161文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-gordon-ryan.html: meta descriptionが長すぎる (175文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-john-danaher.html: meta descriptionが長すぎる (194文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-keenan-cornelius.html: meta descriptionが長すぎる (179文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-lachlan-giles.html: meta descriptionが長すぎる (202文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-leandro-lo.html: meta descriptionが長すぎる (191文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-mackenzie-dern.html: meta descriptionが長すぎる (174文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-marcelo-garcia.html: meta descriptionが長すぎる (164文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-nicky-ryan.html: meta descriptionが長すぎる (162文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-rafael-mendes.html: meta descriptionが長すぎる (163文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[INFO] [SEO_LONG_META_DESC] ja/athlete-xande-ribeiro.html: meta descriptionが長すぎる (162文字 > 160文字)
+  FIX: 160文字以内にトリミング（検索結果で途切れる）
+[WARNING] [SEO_NO_H1] ja/back-control.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/back-control.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] ja/best-bjj-instructionals.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[INFO] [SEO_SHORT_META_DESC] ja/best-bjj-techniques-beginners.html: meta descriptionが短すぎる (48文字 < 50文字): 'BJJ初心者向け最強テクニックの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-absolute-division-strategy.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】アブソリュート大会戦略の詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-adaptation-bjj.html: meta descriptionが短すぎる (47文字 < 50文字): '【BJJ】相手への適応スキルの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-ankle-lock-guide.html: meta descriptionが短すぎる (45文字 < 50文字): '🦶 アンクルロックガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-back-control-complete.html: meta descriptionが短すぎる (48文字 < 50文字): 'バックコントロール完全システムの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-back-control-mastery.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】バックコントロール極意の詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-back-system-advanced.html: meta descriptionが短すぎる (45文字 < 50文字): 'BJJバックシステム上級の詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-back-take-entries.html: meta descriptionが短すぎる (47文字 < 50文字): 'BJJバックテイクエントリーの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-balance-training-bjj.html: meta descriptionが短すぎる (49文字 < 50文字): 'BJJバランスと調整トレーニングの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-beginner-mistakes-avoid.html: meta descriptionが短すぎる (49文字 < 50文字): '最も一般的なBJJ初心者の間違いの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-belt-promotion-guide.html: meta descriptionが短すぎる (45文字 < 50文字): 'BJJ帯昇格システム説明の詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-berimbolo.html: meta descriptionが短すぎる (43文字 < 50文字): '🌀 ベリンボロガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-black-belt-requirements.html: meta descriptionが短すぎる (43文字 < 50文字): '⚫ BJJ黒帯の要件の詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-brabo-choke-guide.html: meta descriptionが短すぎる (49文字 < 50文字): 'ブラボチョークサイドコントロールの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-breakdown-technique-bjj.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】テクニック分解の方法の詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-brown-belt-requirements.html: meta descriptionが短すぎる (43文字 < 50文字): '🟤 BJJ茶帯の要件の詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-business-guide.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】BJJビジネスガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-closed-guard-mastery.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】クローズドガード極意の詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-collar-choke-variations.html: meta descriptionが短すぎる (46文字 < 50文字): '【BJJ】衣襟チョーク変種の詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-competition-day-nutrition.html: meta descriptionが短すぎる (47文字 < 50文字): '【BJJ】大会当日の栄養戦略の詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-competition-guide.html: meta descriptionが短すぎる (41文字 < 50文字): 'BJJ試合ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解説...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-competition-nerves-management.html: meta descriptionが短すぎる (42文字 < 50文字): '試合神経管理ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-competition-prep-advanced.html: meta descriptionが短すぎる (42文字 < 50文字): 'BJJ競技準備上級の詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-complete-game-guide.html: meta descriptionが短すぎる (45文字 < 50文字): 'BJJ完全なゲームガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-core-strength-development.html: meta descriptionが短すぎる (44文字 < 50文字): '【BJJ】コア強度開発の詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-d-arce-choke-guide.html: meta descriptionが短すぎる (43文字 < 50文字): 'Entry, finishing, and timing for one of ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-darce-choke-guide.html: meta descriptionが短すぎる (45文字 < 50文字): 'ダースチョーク完全ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-double-leg-takedown.html: meta descriptionが短すぎる (49文字 < 50文字): '🏋️ ダブルレッグタックルガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-elbow-control-bjj.html: meta descriptionが短すぎる (20文字 < 50文字): 'Controlling opponent...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-explosive-strength-guide.html: meta descriptionが短すぎる (46文字 < 50文字): '【BJJ】爆発的パワー開発の詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-explosiveness-training.html: meta descriptionが短すぎる (48文字 < 50文字): 'BJJパワー爆発性トレーニングの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-film-study-bjj.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】フィルムスタディの技法の詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-film-study-guide.html: meta descriptionが短すぎる (49文字 < 50文字): 'Film Study Guideの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-first-year-bjj.html: meta descriptionが短すぎる (47文字 < 50文字): '【BJJ】最初の1年のガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-flexibility-training-bjj.html: meta descriptionが短すぎる (47文字 < 50文字): '【BJJ】柔軟性トレーニングの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-flow-between-positions.html: meta descriptionが短すぎる (47文字 < 50文字): '【BJJ】ポジション間フローの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-for-life-guide.html: meta descriptionが短すぎる (47文字 < 50文字): '【BJJ】BJJライフガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-for-women.html: meta descriptionが短すぎる (42文字 < 50文字): '女性のためのBJJの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-game-planning-guide.html: meta descriptionが短すぎる (44文字 < 50文字): 'BJJゲーム計画ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-gi-chokes-guide.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】ギチョーク完全ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-gi-culture-etiquette.html: meta descriptionが短すぎる (48文字 < 50文字): 'BJJ道場文化と着物エチケットの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-gi-grips-guide.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】ギグリップ完全ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-gi-guard-attacks.html: meta descriptionが短すぎる (46文字 < 50文字): '【BJJ】ギガードアタックの詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-gordon-ryan-system-guide.html: meta descriptionが短すぎる (49文字 < 50文字): 'ゴードン・ライアンシステムガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-grip-strength-development.html: meta descriptionが短すぎる (46文字 < 50文字): '【BJJ】グリップ強度開発の詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-guard-concepts-advanced.html: meta descriptionが短すぎる (46文字 < 50文字): 'BJJガードコンセプト上級の詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-guard-gripping-systems.html: meta descriptionが短すぎる (46文字 < 50文字): 'ガードグリッピングシステムの詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-guard-mastery-guide.html: meta descriptionが短すぎる (44文字 < 50文字): 'BJJガード習熟ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-guard-recovery.html: meta descriptionが短すぎる (43文字 < 50文字): '🔄 BJJガード回復の詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-guard-retention-system.html: meta descriptionが短すぎる (42文字 < 50文字): 'ガード保持システムの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-guard-vs-standing.html: meta descriptionが短すぎる (45文字 < 50文字): 'ガードアタック対立ち対手の詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-guillotine-system-guide.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】ギロチンシステムガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-half-guard-attacks.html: meta descriptionが短すぎる (48文字 < 50文字): '⚡ ハーフガードアタックガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-half-guard-mastery.html: meta descriptionが短すぎる (46文字 < 50文字): '【BJJ】ハーフガード極意の詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-history-origins.html: meta descriptionが短すぎる (48文字 < 50文字): 'BJJ歴史：柔道からモダンまでの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-history.html: meta descriptionが短すぎる (39文字 < 50文字): 'BJJの歴史の詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解説。...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-ice-bath-bjj.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】冷水療法でのリカバリーの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-judo-for-bjj.html: meta descriptionが短すぎる (47文字 < 50文字): '🥋 BJJのための柔道ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-kids-competition-guide.html: meta descriptionが短すぎる (46文字 < 50文字): '【BJJ】キッズ大会ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-knee-cut-pass-mechanics.html: meta descriptionが短すぎる (45文字 < 50文字): 'ニーカットパスメカニクスの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-knee-on-belly-escape.html: meta descriptionが短すぎる (46文字 < 50文字): 'ニーオンベリー脱出システムの詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-kneebar.html: meta descriptionが短すぎる (42文字 < 50文字): '🦴 ニーバーガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-lapel-guard-guide.html: meta descriptionが短すぎる (46文字 < 50文字): '【BJJ】衣襟ガードガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-lasso-guard.html: meta descriptionが短すぎる (44文字 < 50文字): '🌀 BJJラッソガードの詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-leg-drag-pass-complete.html: meta descriptionが短すぎる (48文字 < 50文字): 'レッグドラッグパス完全システムの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-live-rolling-progression.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】ライブローリング進行の詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-long-game-bjj.html: meta descriptionが短すぎる (49文字 < 50文字): 'Long Game in BJJの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-marcelo-garcia-system-guide.html: meta descriptionが短すぎる (49文字 < 50文字): 'マルセロ・ガルシアシステムガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-masters-competition-guide.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】マスターズ大会ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-mat-hygiene-guide.html: meta descriptionが短すぎる (44文字 < 50文字): 'マット衛生皮膚健康予防の詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-match-strategy-guide.html: meta descriptionが短すぎる (45文字 < 50文字): 'マッチ戦略フレームワークの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-mental-performance.html: meta descriptionが短すぎる (47文字 < 50文字): 'メンタルパフォーマンスBJJの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-mindfulness.html: meta descriptionが短すぎる (46文字 < 50文字): '🧠 BJJマインドフルネスの詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-mount-control-guide.html: meta descriptionが短すぎる (47文字 < 50文字): '【BJJ】マウント制御ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-mount-mastery-guide.html: meta descriptionが短すぎる (45文字 < 50文字): 'BJJマウント習熟ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-no-gi-back-attacks.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】ノーギバックアタックの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-no-gi-guard-game.html: meta descriptionが短すぎる (46文字 < 50文字): '【BJJ】ノーギガード戦略の詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-no-gi-guard-guide.html: meta descriptionが短すぎる (49文字 < 50文字): 'No-Gi Guard Gameの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-no-gi-guard-passing.html: meta descriptionが短すぎる (48文字 < 50文字): 'ノーギガードパッシングシステムの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-no-gi-passing-guide.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】ノーギパッシングガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-no-gi-wrestling.html: meta descriptionが短すぎる (43文字 < 50文字): 'ノーギレスリング基本の詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-nogi-guard-guide.html: meta descriptionが短すぎる (49文字 < 50文字): 'Nogi Guard Guideの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-north-south-escape.html: meta descriptionが短すぎる (47文字 < 50文字): 'ノースサウスエスケープガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-north-south-position.html: meta descriptionが短すぎる (49文字 < 50文字): '🧭 ノースサウスポジションガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-nutrition-guide.html: meta descriptionが短すぎる (41文字 < 50文字): 'BJJ栄養ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解説...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-omoplata.html: meta descriptionが短すぎる (44文字 < 50文字): '🌀 オモプラータガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-open-guard-fundamentals.html: meta descriptionが短すぎる (48文字 < 50文字): '🛡️ オープンガード基礎ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-over-under-pass-details.html: meta descriptionが短すぎる (45文字 < 50文字): 'オーバーアンダーパス詳細の詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-passing-mastery-guide.html: meta descriptionが短すぎる (46文字 < 50文字): 'BJJパッシング習熟ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-peak-performance-guide.html: meta descriptionが短すぎる (49文字 < 50文字): 'BJJピークパフォーマンスガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-periodization-guide.html: meta descriptionが短すぎる (48文字 < 50文字): 'BJJ期分けトレーニングガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-points-scoring-guide.html: meta descriptionが短すぎる (46文字 < 50文字): 'ポイント&スコアリング解説の詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-points-scoring-strategy.html: meta descriptionが短すぎる (44文字 < 50文字): '【BJJ】ポイント戦略の詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-position-transition-guide.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】ポジション遷移ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-prehab-routine.html: meta descriptionが短すぎる (47文字 < 50文字): 'Prehab Routineの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-pressure-passing-concepts.html: meta descriptionが短すぎる (49文字 < 50文字): 'プレッシャーパッシングコンセプトの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-progressive-overload-bjj.html: meta descriptionが短すぎる (47文字 < 50文字): '【BJJ】漸進的過負荷の原則の詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-purple-belt-requirements.html: meta descriptionが短すぎる (43文字 < 50文字): '🟣 BJJ紫帯の要件の詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-quarter-guard-survival.html: meta descriptionが短すぎる (47文字 < 50文字): 'クォーターガード サバイバルの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-rear-naked-choke-system.html: meta descriptionが短すぎる (47文字 < 50文字): '【BJJ】裸絞め完全システムの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-recovering-guard.html: meta descriptionが短すぎる (45文字 < 50文字): 'ガード回復システムガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-rubber-guard.html: meta descriptionが短すぎる (44文字 < 50文字): '🪢 ラバーガードガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-seat-belt-grip-mechanics.html: meta descriptionが短すぎる (48文字 < 50文字): 'シートベルトグリップメカニクスの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-seated-guard-guide.html: meta descriptionが短すぎる (45文字 < 50文字): 'シーティングガードガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-shrimping-details.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】シュリンプムーブの詳細の詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-side-control-escapes.html: meta descriptionが短すぎる (47文字 < 50文字): 'サイドコントロール脱出ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-side-control-mastery.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】サイドコントロール極意の詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-single-leg-takedown.html: meta descriptionが短すぎる (49文字 < 50文字): '🦵 シングルレッグタックルガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-solo-drilling-guide.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】ソロドリリングガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-style-development-guide.html: meta descriptionが短すぎる (45文字 < 50文字): 'BJJスタイル開発ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-submission-finish-details.html: meta descriptionが短すぎる (48文字 < 50文字): 'BJJサブミッション終了の詳細の詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-submission-only-strategy.html: meta descriptionが短すぎる (44文字 < 50文字): 'サブオンリーBJJ戦略の詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-takedown-mastery-guide.html: meta descriptionが短すぎる (47文字 < 50文字): 'BJJテイクダウン習熟ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-takedowns-guide.html: meta descriptionが短すぎる (47文字 < 50文字): 'BJJテイクダウン完全ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-tap-recognition-guide.html: meta descriptionが短すぎる (44文字 < 50文字): 'BJJタップ認識ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wiki...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-terminology.html: meta descriptionが短すぎる (45文字 < 50文字): 'BJJ用語集：完全ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-three-year-bjj.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】3年間のBJJ成長パスの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-top-game-guide.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】トップゲーム完全ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-torreando-pass-variations.html: meta descriptionが短すぎる (48文字 < 50文字): 'トレアンドパス バリエーションの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-tournament-preparation.html: meta descriptionが短すぎる (45文字 < 50文字): '🏆 BJJ大会準備ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-training-with-advanced.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】上級者とのトレーニングの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-training-with-beginners.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】初心者とのトレーニングの詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-transfer-of-training.html: meta descriptionが短すぎる (49文字 < 50文字): '【BJJ】トレーニング転移の概念の詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-travel-guide.html: meta descriptionが短すぎる (46文字 < 50文字): '【BJJ】BJJ旅行ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-turtle-position.html: meta descriptionが短すぎる (47文字 < 50文字): '🐢 タートルポジションガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ W...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-ufc-bjj-influence.html: meta descriptionが短すぎる (48文字 < 50文字): 'BJJのUFC・MMAへの影響の詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-understanding-bjj.html: meta descriptionが短すぎる (48文字 < 50文字): '【BJJ】BJJのより深い理解の詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-video-analysis-guide.html: meta descriptionが短すぎる (45文字 < 50文字): '【BJJ】動画分析ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wik...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-warm-up-routine.html: meta descriptionが短すぎる (48文字 < 50文字): 'BJJウォームアップ完全ガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-weakness-exploitation-guide.html: meta descriptionが短すぎる (46文字 < 50文字): 'BJJ弱点を利用するガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wi...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/bjj-x-guard.html: meta descriptionが短すぎる (43文字 < 50文字): '✖️ Xガードガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/blue-belt-bjj-guide.html: meta descriptionが短すぎる (41文字 < 50文字): '青帯BJJガイドの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解説...'
+  FIX: 50〜160文字の説明文に拡充
+[INFO] [SEO_SHORT_META_DESC] ja/frame.html: meta descriptionが短すぎる (48文字 < 50文字): 'Frame — BJJ技術解説の詳細ガイド。テクニック、コツ、練習方法をBJJ ...'
+  FIX: 50〜160文字の説明文に拡充
+[WARNING] [SEO_NO_H1] ja/guard-passing.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/guard-passing.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] ja/guard-recovery.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/guard-recovery.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] ja/guillotine.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/guillotine.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_SHORT_META_DESC] ja/hip-throw.html: meta descriptionが短すぎる (43文字 < 50文字): '大腰（ヒップスロー）の詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで...'
+  FIX: 50〜160文字の説明文に拡充
+[WARNING] [SEO_NO_H1] ja/knee-slice.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/knee-slice.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] ja/leg-drag.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/leg-drag.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] ja/leg-locks.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/leg-locks.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_SHORT_META_DESC] ja/news.html: meta descriptionが短すぎる (42文字 < 50文字): '📰 BJJニュースの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解...'
+  FIX: 50〜160文字の説明文に拡充
+[WARNING] [SEO_NO_H1] ja/privacy.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/privacy.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[WARNING] [SEO_NO_H1] ja/toreando-pass.html: H1タグが存在しない（SEO必須要素）
+  FIX: <h1>ページタイトル</h1> を追加
+[WARNING] [SEO_NO_META_DESC] ja/toreando-pass.html: meta descriptionが存在しない
+  FIX: <meta name="description" content="ページの説明文"> を追加
+[INFO] [SEO_SHORT_META_DESC] ja/x-pass.html: meta descriptionが短すぎる (49文字 < 50文字): 'X-Pass — BJJ技術解説の詳細ガイド。テクニック、コツ、練習方法をBJJ...'
+  FIX: 50〜160文字の説明文に拡充
