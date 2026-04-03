@@ -363,6 +363,41 @@ def check_empty_links(filepath: str, html: str, report: BugReport):
         )
 
 
+def check_broken_internal_links(filepath: str, html: str, lang: str, report: BugReport):
+    """内部リンク切れ検知（存在しない .html ファイルへのリンク）"""
+    html_no_script = re.sub(r'<script[^>]*>.*?</script>', '', html, flags=re.DOTALL)
+    html_no_comment = re.sub(r'<!--.*?-->', '', html_no_script, flags=re.DOTALL)
+
+    broken = []
+    for href in re.findall(r'href="([^"]+\.html)"', html_no_comment):
+        # 外部リンクはスキップ
+        if href.startswith('http'):
+            continue
+        # ターゲットファイルのパスを解決
+        if '/' in href:
+            # ../en/xxx.html or en/xxx.html
+            parts = href.split('/')
+            target_lang = parts[-2] if len(parts) >= 2 else lang
+            target_file = parts[-1]
+        else:
+            target_lang = lang
+            target_file = href
+
+        target_path = WIKI_ROOT / target_lang / target_file
+        if not target_path.exists():
+            broken.append(href)
+
+    if broken:
+        # 重複除去
+        broken_unique = sorted(set(broken))
+        report.add(
+            "WARNING", "BROKEN_LINK",
+            filepath,
+            f"リンク切れ {len(broken_unique)} 件: {', '.join(broken_unique[:3])}{'...' if len(broken_unique) > 3 else ''}",
+            "リンク先ファイルを作成するか、リンクを修正",
+        )
+
+
 def check_bilingual_headers(filepath: str, html: str, lang: str, report: BugReport):
     """「日本語 / English」のような二言語併記ヘッダー検知"""
     patterns = [
@@ -438,6 +473,7 @@ def scan_all(langs: list[str] = None, fix_hint: bool = False) -> BugReport:
             check_empty_links(rel_path, html, report)
             check_bilingual_headers(rel_path, html, lang, report)
             check_mixed_cta_language(rel_path, html, lang, report)
+            check_broken_internal_links(rel_path, html, lang, report)
 
             # 言語別チェック
             if lang == "ja":
