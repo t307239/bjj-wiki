@@ -373,12 +373,20 @@ def check_broken_internal_links(filepath: str, html: str, lang: str, report: Bug
         # 外部リンクはスキップ
         if href.startswith('http'):
             continue
-        # ターゲットファイルのパスを解決
+
+        # パス解決:
+        # ../en/xxx.html → en/xxx.html (正常な言語切替リンク)
+        # ../xxx.html → 言語ディレクトリなし（パス不正、ただしen/xxx.htmlがあれば実害小）
+        # xxx.html → 同ディレクトリ内 (lang/xxx.html)
         if '/' in href:
-            # ../en/xxx.html or en/xxx.html
-            parts = href.split('/')
-            target_lang = parts[-2] if len(parts) >= 2 else lang
+            parts = href.rstrip('/').split('/')
             target_file = parts[-1]
+            # 言語ディレクトリが含まれるか
+            if len(parts) >= 2 and parts[-2] in ("en", "ja", "pt"):
+                target_lang = parts[-2]
+            else:
+                # ../xxx.html のような不正パス → 同言語で探す
+                target_lang = lang
         else:
             target_lang = lang
             target_file = href
@@ -388,7 +396,6 @@ def check_broken_internal_links(filepath: str, html: str, lang: str, report: Bug
             broken.append(href)
 
     if broken:
-        # 重複除去
         broken_unique = sorted(set(broken))
         report.add(
             "WARNING", "BROKEN_LINK",

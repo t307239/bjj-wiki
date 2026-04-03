@@ -222,7 +222,6 @@ function appendCards(items) {
     var title = item.t || item.title || slug;
     var desc = item.d || item.desc || '';
     var belt = BELT[item.b] || BELT['white'] || '';
-    html += '<a href="' + slug + '.html" class="result-card">';
     html += '<div class="result-title">' + esc(title) + '</div>';
     if (desc) html += '<div class="result-desc">' + esc(desc) + '</div>';
     html += '<div class="result-meta"><span class="badge">' + esc(belt) + '</span></div>';
