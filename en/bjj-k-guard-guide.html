@@ -37,6 +37,7 @@
   </script>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://wiki.bjj-app.net/og-image.png">
+<link rel="stylesheet" href="/wiki-components.css">
 </head>
 <body style="background:#0a0a0a;color:#e2e8f0;font-family:'Segoe UI',sans-serif;margin:0;padding:0">
 <div class="container">
@@ -51,9 +52,9 @@
 
   <nav style="background:#111827;padding:12px 24px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
     <a href="index.html" style="color:#e94560;font-weight:700;text-decoration:none">BJJ Wiki</a>
-    <a href="index.html" style="color:#9ca3af;text-decoration:none">Home</a>
-    <a href="techniques-az.html" style="color:#9ca3af;text-decoration:none">Techniques A-Z</a>
-    <a href="news.html" style="color:#9ca3af;text-decoration:none">News</a>
+    <a href="index.html" class="wc-link-muted">Home</a>
+    <a href="techniques-az.html" class="wc-link-muted">Techniques A-Z</a>
+    <a href="news.html" class="wc-link-muted">News</a>
     <div style="margin-left:auto;display:flex;gap:12px">
       <a href="../en/bjj-k-guard-guide.html" style="color:#9ca3af;font-size:.85rem;text-decoration:none">EN</a>
       <a href="../ja/bjj-k-guard-guide.html" style="color:#9ca3af;font-size:.85rem;text-decoration:none">JA</a>
@@ -82,9 +83,9 @@
 
     <div style="background:#111827;border:1px solid #1e2a3a;border-radius:10px;padding:20px;margin:32px 0">
       <h2 style="color:#e94560;margin-top:0">Frequently Asked Questions</h2>
-      <div style="margin-bottom:16px"><strong style="color:#e94560">Is K-guard safe for training?</strong><p style="color:#d1d5db;margin-top:6px">K-guard itself is safe to practice. The outside heel hook (its primary finish) requires careful training — only practice with experienced partners who understand heel hook safety and always tap early.</p></div>
-<div style="margin-bottom:16px"><strong style="color:#e94560">What belt level is K-guard appropriate for?</strong><p style="color:#d1d5db;margin-top:6px">Entering K-guard can be practiced at purple belt and above. The outside heel hook should only be trained where it is permitted — typically nogi training at advanced levels.</p></div>
-<div style="margin-bottom:16px"><strong style="color:#e94560">Is K-guard legal in IBJJF?</strong><p style="color:#d1d5db;margin-top:6px">The K-guard position itself is legal. Outside heel hooks are not legal in most IBJJF gi divisions and are restricted by belt level in no-gi. Check the current IBJJF no-gi ruleset for your division.</p></div>
+      <div class="wc-mb16"><strong style="color:#e94560">Is K-guard safe for training?</strong><p style="color:#d1d5db;margin-top:6px">K-guard itself is safe to practice. The outside heel hook (its primary finish) requires careful training — only practice with experienced partners who understand heel hook safety and always tap early.</p></div>
+<div class="wc-mb16"><strong style="color:#e94560">What belt level is K-guard appropriate for?</strong><p style="color:#d1d5db;margin-top:6px">Entering K-guard can be practiced at purple belt and above. The outside heel hook should only be trained where it is permitted — typically nogi training at advanced levels.</p></div>
+<div class="wc-mb16"><strong style="color:#e94560">Is K-guard legal in IBJJF?</strong><p style="color:#d1d5db;margin-top:6px">The K-guard position itself is legal. Outside heel hooks are not legal in most IBJJF gi divisions and are restricted by belt level in no-gi. Check the current IBJJF no-gi ruleset for your division.</p></div>
 
     </div>
 
@@ -102,7 +103,7 @@
   </main>
 
   <!-- Float CTA -->
-  <div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Track Your BJJ Training</div><p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Log sessions &amp; techniques. Build your streak. Free.</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">Start Free →</a></div>
+  <div id="float-cta" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease"><button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button><div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Track Your BJJ Training</div><p class="wc-text-tip">Log sessions &amp; techniques. Build your streak. Free.</p><a href="https://bjj-app.net/login" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center">Start Free →</a></div>
 <script>
 (function(){
   if(window.innerWidth<1200)return;
@@ -148,9 +149,9 @@
 </script>
 
 
-<div style="margin:32px 0 16px;padding:20px;background:#0c1220;border:1px solid #1e293b;border-radius:16px">
-  <h2 style="color:#a5b4fc;font-size:1rem;margin:0 0 12px;font-weight:700">Related Techniques</h2>
-  <div style="display:flex;flex-wrap:wrap;gap:0">
+<div class="wc-section-box">
+  <h2 class="wc-section-box-title">Related Techniques</h2>
+  <div class="wc-section-box-grid">
     <a href="../en/50-50-guard.html" style="display:inline-block;margin:4px;padding:6px 14px;background:#141926;border:1px solid #1e293b;border-radius:20px;color:#a5b4fc;text-decoration:none;font-size:.85rem;transition:border-color .2s">The Ultimate BJJ 50/50 Guard Technique Guide</a>
     <a href="../en/best-bjj-ear-guards.html" style="display:inline-block;margin:4px;padding:6px 14px;background:#141926;border:1px solid #1e293b;border-radius:20px;color:#a5b4fc;text-decoration:none;font-size:.85rem;transition:border-color .2s">Best BJJ Ear Guards 2026 — Stop Cauliflower E...</a>
     <a href="../en/best-bjj-guards.html" style="display:inline-block;margin:4px;padding:6px 14px;background:#141926;border:1px solid #1e293b;border-radius:20px;color:#a5b4fc;text-decoration:none;font-size:.85rem;transition:border-color .2s">Best BJJ Guards</a>
@@ -159,6 +160,6 @@
     <a href="../en/bjj-50-50-guard-guide.html" style="display:inline-block;margin:4px;padding:6px 14px;background:#141926;border:1px solid #1e293b;border-radius:20px;color:#a5b4fc;text-decoration:none;font-size:.85rem;transition:border-color .2s">BJJ 50/50 Guard — Leg Entanglement & Heel Hoo...</a>
   </div>
 </div>
-<footer style="margin:40px 0 0;padding:20px 16px;border-top:1px solid #1a2a3a;text-align:center"><p style="color:#546e7a;font-size:.72rem;line-height:1.6;max-width:600px;margin:0 auto">The content on BJJ Wiki is for educational purposes only and does not constitute professional instruction. Brazilian Jiu-Jitsu involves inherent risks of injury. Always train under the supervision of a qualified instructor. BJJ App Inc. assumes no liability for injuries resulting from the application of techniques described herein. Practice techniques appropriate for your experience level. Beginners should focus on fundamentals and avoid advanced submissions (heel hooks, kneebars) without instructor guidance.</p></footer>
+<footer class="wc-footer"><p class="wc-footer-text">The content on BJJ Wiki is for educational purposes only and does not constitute professional instruction. Brazilian Jiu-Jitsu involves inherent risks of injury. Always train under the supervision of a qualified instructor. BJJ App Inc. assumes no liability for injuries resulting from the application of techniques described herein. Practice techniques appropriate for your experience level. Beginners should focus on fundamentals and avoid advanced submissions (heel hooks, kneebars) without instructor guidance.</p></footer>
 </body>
 </html>
