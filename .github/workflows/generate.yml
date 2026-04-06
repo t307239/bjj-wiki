@@ -103,6 +103,12 @@ jobs:
           git pull --rebase origin main
           git push
 
+      - name: Submit URLs to IndexNow (Bing/Yandex 即時インデックス通知)
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: python tools/submit_indexnow.py --limit 10000
+        continue-on-error: true  # IndexNow 失敗でも記事生成全体は止めない
+
       - name: Notify Telegram on failure
         if: failure()
         env:
