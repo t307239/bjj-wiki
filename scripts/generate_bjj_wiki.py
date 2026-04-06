@@ -724,7 +724,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
     }[lang_code]
 
     # J: Dynamic Contextual CTA based on technique category
-    _cat = technique.get("category", "").lower()
+    _cat = tech.get("category", "").lower()
     if lang_code == "en":
         if "submission" in _cat or "choke" in _cat or "lock" in _cat:
             _cta_headline = f"Landed your first {tech['name']}? Log every tap."
