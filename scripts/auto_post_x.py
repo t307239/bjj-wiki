@@ -139,13 +139,20 @@ def post_tweet(text: str, dry_run: bool = False) -> dict | None:
     req.add_header("Authorization", auth)
     req.add_header("Content-Type", "application/json")
 
-    try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            result = json.loads(resp.read().decode())
-            return result.get("data", result)
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        raise RuntimeError(f"Twitter API error {e.code}: {body}")
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                result = json.loads(resp.read().decode())
+                return result.get("data", result)
+        except urllib.error.HTTPError as e:
+            body = e.read().decode()
+            # Cloudflare bot challenge（Just a moment...）は一時的なブロック → リトライ
+            if e.code == 403 and "just a moment" in body.lower() and attempt < 2:
+                wait = 30 * (attempt + 1)
+                print(f"  [RETRY] Cloudflare 403 検知 → {wait}s 待機後リトライ ({attempt+1}/3)")
+                time.sleep(wait)
+                continue
+            raise RuntimeError(f"Twitter API error {e.code}: {body[:500]}")
 
 
 def send_telegram(msg: str) -> None:

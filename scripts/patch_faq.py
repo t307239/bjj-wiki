@@ -203,6 +203,39 @@ def save_cache(cache: dict) -> None:
     with open(CACHE_PATH, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
+# ===== FAQ JSON パース（修復ロジック付き）=====
+def parse_faq_json(raw: str) -> dict | None:
+    """Gemini が返す malformed JSON を段階的に修復してパース。"""
+    # Step 1: markdown コードブロック除去
+    text = re.sub(r'^```[a-z]*\n?', '', raw.strip(), flags=re.MULTILINE)
+    text = re.sub(r'\n?```$', '', text, flags=re.MULTILINE)
+    text = text.strip()
+
+    # Try 1: 直接パース
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    # Try 2: trailing comma 除去（,} / ,]）
+    try:
+        fixed = re.sub(r',\s*([}\]])', r'\1', text)
+        return json.loads(fixed)
+    except json.JSONDecodeError:
+        pass
+
+    # Try 3: regex で Q&A を直接抽出（JSON truncated の場合のフォールバック）
+    faq: dict = {}
+    for i in range(1, 4):
+        q_m = re.search(rf'"faq_q{i}"\s*:\s*"((?:[^"\\]|\\.)*)"', text)
+        a_m = re.search(rf'"faq_a{i}"\s*:\s*"((?:[^"\\]|\\.)*)"', text)
+        if q_m:
+            faq[f'faq_q{i}'] = q_m.group(1).replace('\\"', '"')
+        if a_m:
+            faq[f'faq_a{i}'] = a_m.group(1).replace('\\"', '"')
+    return faq if len(faq) >= 2 else None
+
+
 # ===== メイン =====
 def main():
     parser = argparse.ArgumentParser()
@@ -256,13 +289,10 @@ def main():
                 print(f"  [WARN] Gemini 失敗: {slug}")
                 continue
 
-            # JSON パース
-            try:
-                text = re.sub(r'^```[a-z]*\n?', '', raw.strip(), flags=re.MULTILINE)
-                text = re.sub(r'\n?```$',        '', text,        flags=re.MULTILINE)
-                faq  = json.loads(text.strip())
-            except Exception as e:
-                print(f"  [WARN] JSON パース失敗 ({slug}): {e}")
+            # JSON パース（修復ロジック付き）
+            faq = parse_faq_json(raw)
+            if faq is None:
+                print(f"  [WARN] JSON パース失敗 ({slug}): 修復不可")
                 continue
 
             faq_html = build_faq_html(faq, lang)
