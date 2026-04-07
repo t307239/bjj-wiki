@@ -1,47 +1,192 @@
 {
   "50-50-guard": {
     "first_seen": "2026-04-06",
-    "attempts": 1,
-    "last_attempt": "2026-04-06"
+    "attempts": 2,
+    "last_attempt": "2026-04-07"
   },
   "about": {
     "first_seen": "2026-04-06",
-    "attempts": 1,
-    "last_attempt": "2026-04-06"
+    "attempts": 2,
+    "last_attempt": "2026-04-07"
   },
   "adcc-rules": {
     "first_seen": "2026-04-06",
-    "attempts": 1,
-    "last_attempt": "2026-04-06"
+    "attempts": 2,
+    "last_attempt": "2026-04-07"
   },
   "americana": {
     "first_seen": "2026-04-06",
-    "attempts": 1,
-    "last_attempt": "2026-04-06"
+    "attempts": 2,
+    "last_attempt": "2026-04-07"
   },
   "anaconda-choke": {
     "first_seen": "2026-04-06",
-    "attempts": 1,
-    "last_attempt": "2026-04-06"
+    "attempts": 2,
+    "last_attempt": "2026-04-07"
   },
   "ankle-lock": {
     "first_seen": "2026-04-06",
-    "attempts": 1,
-    "last_attempt": "2026-04-06"
+    "attempts": 2,
+    "last_attempt": "2026-04-07"
   },
   "ankle-pick": {
     "first_seen": "2026-04-06",
-    "attempts": 1,
-    "last_attempt": "2026-04-06"
+    "attempts": 2,
+    "last_attempt": "2026-04-07"
   },
   "arm-drag": {
     "first_seen": "2026-04-06",
-    "attempts": 1,
-    "last_attempt": "2026-04-06"
+    "attempts": 2,
+    "last_attempt": "2026-04-07"
   },
   "arm-triangle-choke": {
     "first_seen": "2026-04-06",
+    "attempts": 2,
+    "last_attempt": "2026-04-07"
+  },
+  "arm-triangle": {
+    "first_seen": "2026-04-07",
     "attempts": 1,
-    "last_attempt": "2026-04-06"
+    "last_attempt": "2026-04-07"
+  },
+  "armbar-vs-kimura": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "armbar": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-andre-galvao": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-bernardo-faria": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-bia-mesquita": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-buchecha": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-caio-terra": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-claudio-calasans": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-cobrinha": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-craig-jones": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-ffion-davies": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-garry-tonon": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-gianni-grippo": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-gordon-ryan": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-john-danaher": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-keenan-cornelius": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-lachlan-giles": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-leandro-lo": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-mackenzie-dern": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-marcelo-garcia": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-mikey-musumeci": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-nicky-ryan": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-rafael-lovato-jr": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-rafael-mendes": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-romulo-barral": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-xande-ribeiro-2": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athlete-xande-ribeiro": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
+  },
+  "athletes": {
+    "first_seen": "2026-04-07",
+    "attempts": 1,
+    "last_attempt": "2026-04-07"
   }
 }
