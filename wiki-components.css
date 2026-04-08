@@ -1,5 +1,16 @@
 /* wiki-components.css — 共通コンポーネントスタイル（インラインCSS外出し） */
 
+/* ── W-2: Contents (TOC) 空ボックス非表示 ── */
+/* #toc-list は JS で未populate のため常に空 → ボックスごと非表示 */
+.toc{display:none}
+
+/* ── W-1: Related Techniques グリッド ── */
+.related-section{margin:32px 0 24px}
+.related-section h3{color:#e94560;font-size:1.05rem;font-weight:700;margin-bottom:12px}
+.related-grid{display:flex;flex-direction:column;gap:6px}
+.related-grid a{display:block;padding:10px 14px;background:#1a1a2e;border:1px solid #2a2a4a;border-radius:8px;color:#64b5f6;text-decoration:none;font-size:.9rem;line-height:1.4;transition:background .15s,border-color .15s}
+.related-grid a:hover{background:#1e2a3a;border-color:#4a6a8a;text-decoration:none}
+
 /* ── タグ（テクニックタグ、カテゴリタグ）── */
 .wc-tag{display:inline-block;margin:4px;padding:6px 14px;background:#141926;border:1px solid #1e293b;border-radius:20px;color:#90caf9;font-size:.8rem;text-decoration:none;transition:all .2s}
 .wc-tag:hover{background:#1e293b;border-color:#e94560}
