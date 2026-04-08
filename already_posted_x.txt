@@ -1,4 +1,5 @@
 seat-belt-control
+sitting-guard
 snap-down
 spider-guard
 sprawl
