@@ -1,5 +1,6 @@
 seat-belt-control
 sitting-guard
+smash-pass
 snap-down
 spider-guard
 sprawl
