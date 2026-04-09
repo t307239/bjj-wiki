@@ -1,5 +1,6 @@
 seat-belt-control
 sickle-sweep
+side-control
 single-leg-takedown
 sitting-guard
 smash-pass
