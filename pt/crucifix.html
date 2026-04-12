@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/wiki-v2.css">
 <title>[PT] Crucifix no BJJ: Controle, Finalizações e Escapes | BJJ Wiki</title>
 <meta name="description" content="Guia completo da posição Crucifix no BJJ — como alcançá-la da tartaruga, finalizações disponíveis e como escapar. Aplicações em gi e no-gi.">
 <meta name="keywords" content="crucifix BJJ, posição crucifix grappling, crucifix da tartaruga, crucifix choke, controle de braço BJJ">
@@ -22,56 +23,6 @@
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/crucifix.html">
 <link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/crucifix.html">
 <link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/crucifix.html">
-<style>
-    :root{--bg:#0f172a;--card:#18181b;--card-hover:#1c1c22;--border:rgba(255,255,255,0.10);--border-hover:rgba(233,69,96,0.5);--text:#e2e8f0;--muted:#64748b;--accent:#e94560;--accent2:#7c3aed}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.8}
-    .container{max-width:860px;margin:0 auto;padding:20px 16px 80px}
-    header{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:24px;text-align:left}
-    .logo{font-size:1.1rem;font-weight:700;color:var(--accent);letter-spacing:-0.02em;text-decoration:none}
-    .lang-nav{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-    .lang-nav a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:6px 14px;border-radius:4px;border:1px solid var(--border);transition:all .2s}
-    .lang-nav a.active,.lang-nav a:hover{color:var(--text);border-color:var(--accent)}
-    nav{background:var(--card);padding:10px 20px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:.85rem;border-radius:8px;margin-bottom:16px}
-    nav a{color:var(--muted);text-decoration:none}
-    nav a:hover{color:var(--accent)}
-    .breadcrumb{font-size:.8rem;color:var(--muted);margin-bottom:12px}
-    .breadcrumb a{color:var(--muted);text-decoration:none}
-    h1{font-size:1.6rem;font-weight:800;line-height:1.3;margin-bottom:12px;letter-spacing:-0.02em;overflow-wrap:break-word}
-    h2{font-size:1.2rem;font-weight:700;color:var(--accent);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-    h3{color:var(--accent);margin:20px 0 8px;font-size:1.05rem}
-    p{color:var(--text);margin-bottom:12px}
-    ul,ol{padding-left:20px;margin-bottom:14px}
-    li{margin-bottom:6px;color:var(--text)}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .meta-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
-    .badge{font-size:.75rem;padding:3px 10px;border-radius:12px;font-weight:600;border:1px solid var(--border)}
-    .badge-cat{color:var(--accent);background:rgba(233,69,96,0.1);border-color:rgba(233,69,96,0.3)}
-    .intro{color:var(--muted);font-size:1rem;margin-bottom:24px;padding:14px 16px;background:var(--card);border-left:3px solid var(--accent);border-radius:0 8px 8px 0}
-    .toc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:28px}
-    .toc h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:10px}
-    .toc ol{padding-left:20px}
-    .toc li{margin:4px 0}
-    .toc a{color:var(--accent);text-decoration:none;font-size:.9rem}
-    section{margin-bottom:32px;scroll-margin-top:80px}
-    .tips-box{background:var(--card);border:1px solid rgba(233,69,96,0.2);border-radius:12px;padding:16px 20px;margin:28px 0}
-    .tips-box h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:12px}
-    .tips-box ul{list-style:none;padding:0}
-    .tips-box li{padding:6px 0 6px 20px;position:relative;font-size:.95rem;color:var(--text)}
-    .tips-box li::before{content:'\25B8';position:absolute;left:0;color:var(--accent)}
-    .cta-banner{background:linear-gradient(135deg,rgba(233,69,96,0.15),rgba(124,58,237,0.1));border:1px solid rgba(233,69,96,0.3);border-radius:12px;padding:16px 20px;text-align:center;margin:28px 0}
-    .cta-banner a{color:var(--accent);font-weight:700;font-size:1rem}
-    .related-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .related-links a{padding:6px 14px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:.85rem;color:var(--text);text-decoration:none}
-    .related-links a:hover{border-color:var(--accent);color:var(--accent)}
-    .faq{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:16px 0}
-    .faq-q{font-weight:700;color:var(--accent);margin-bottom:8px}
-    footer{text-align:center;color:var(--muted);font-size:.8rem;margin-top:48px;padding-top:16px;border-top:1px solid var(--border)}
-    footer a{color:var(--muted);text-decoration:none}
-    .progress-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(to right,var(--accent),var(--accent2));z-index:999;transition:width .1s}
-    @media(max-width:600px){h1{font-size:1.3rem}}
-</style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -115,7 +66,7 @@
 <div class="container">
 
 <header>
-  <a class="logo" href="../index.html">🥋 BJJ Wiki<span style="display:inline-block;font-size:.6rem;font-weight:700;background:#7c3aed;color:#fff;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:middle;letter-spacing:.03em;line-height:1.5">β</span></a>
+  <a class="logo" href="../index.html">🥋 BJJ Wiki<span class="badge-beta">β</span></a>
   <div class="lang-nav">
     <a href="../en/crucifix.html" >🇺🇸 English</a>
     <a href="../ja/crucifix.html" >🇯🇵 日本語</a>
@@ -215,7 +166,6 @@
 </div>
 
 <!-- YOGA SECTION HIDDEN
-<style>.yoga-box{background:linear-gradient(135deg,#0a1a10,#0f1a0a);border:1px solid #22c55e;border-radius:12px;padding:20px;margin:24px 0}.yoga-box h3{font-size:.85rem;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}.yoga-box p{font-size:.85rem;color:#6b9e6b;margin-bottom:12px}.yoga-chips{display:flex;flex-wrap:wrap;gap:8px}.yoga-chip{display:inline-block;padding:6px 14px;background:#0d2010;border:1px solid #22c55e40;border-radius:20px;font-size:.82rem;color:#86efac;text-decoration:none;font-weight:600}.yoga-chip:hover{background:#22c55e;color:#000;text-decoration:none}</style>
 <div class="yoga-box"><h3>🧘 Yoga Poses to Improve This Technique</h3><p>Build flexibility and body awareness:</p><div class="yoga-chips"><a class="yoga-chip" href="https://yoga.bjj-app.net/en/thread-the-needle.html" target="_blank" rel="noopener">🧘 Thread the Needle</a><a class="yoga-chip" href="https://yoga.bjj-app.net/en/shoulder-stretch.html" target="_blank" rel="noopener">🧘 Shoulder Stretch</a><a class="yoga-chip" href="https://yoga.bjj-app.net/en/sphinx-pose.html" target="_blank" rel="noopener">🧘 Sphinx Pose</a></div></div>
 YOGA SECTION HIDDEN -->
 

@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/wiki-v2.css">
 <title>BJJループチョーク完全ガイド：ブラジリアン柔術の強力なチョークをマスターする | BJJ Wiki</title>
 <meta name="description" content="ブラジリアン柔術のループチョークは、予測不能なチョークで、相手の襟を巧妙に利用します。このガイドで、効果的なかけ方、コツ、よくある間違い、そして練習法を学びましょう。">
 <meta name="keywords" content="BJJループチョーク, ブラジリアン柔術チョーク, ループチョークやり方, BJJチョーク, 柔術テクニック">
@@ -24,67 +25,7 @@
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/loop-choke.html">
 <link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/loop-choke.html">
 <link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/loop-choke.html">
-<link rel="stylesheet" href="/wiki-components.css">
-<style>
-    :root{--bg:#0f172a;--card:#18181b;--card-hover:#1c1c22;--border:rgba(255,255,255,0.10);--border-hover:rgba(233,69,96,0.5);--text:#e2e8f0;--muted:#64748b;--accent:#e94560;--accent2:#7c3aed}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.8}
-    .container{max-width:860px;margin:0 auto;padding:20px 16px 80px}
-    header{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:24px;text-align:left}
-    header h1{color:var(--accent);font-size:1.6rem;font-weight:800;margin-bottom:6px;letter-spacing:-0.02em;overflow-wrap:break-word}
-    header p{color:var(--muted);font-size:.95rem}
-    .logo{font-size:1.1rem;font-weight:700;color:var(--accent);letter-spacing:-0.02em;text-decoration:none}
-    .lang-nav{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-    .lang-nav a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:6px 14px;border-radius:4px;border:1px solid var(--border);transition:all .2s}
-    .lang-nav a.active,.lang-nav a:hover{color:var(--text);border-color:var(--accent)}
-    nav{background:var(--card);padding:10px 20px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:.85rem;border-radius:8px;margin-bottom:16px}
-    nav a{color:var(--muted);text-decoration:none}
-    nav a:hover{color:var(--accent)}
-    .breadcrumb{font-size:.8rem;color:var(--muted);margin-bottom:12px}
-    .breadcrumb a{color:var(--muted);text-decoration:none}
-    .breadcrumb a:hover{color:var(--text)}
-    h1{font-size:1.6rem;font-weight:800;line-height:1.3;margin-bottom:12px;letter-spacing:-0.02em;overflow-wrap:break-word}
-    h2{font-size:1.2rem;font-weight:700;color:var(--accent);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-    h3{color:var(--accent);margin:20px 0 8px;font-size:1.05rem}
-    p{color:var(--text);margin-bottom:12px}
-    ul,ol{padding-left:20px;margin-bottom:14px}
-    li{margin-bottom:6px;color:var(--text)}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .meta-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
-    .badge{font-size:.75rem;padding:3px 10px;border-radius:12px;font-weight:600;border:1px solid var(--border)}
-    .badge-belt{color:#fff;background:#1d4ed833;border-color:#1d4ed866}
-    .badge-cat{color:var(--accent);background:rgba(233,69,96,0.1);border-color:rgba(233,69,96,0.3)}
-    .badge-diff{color:var(--muted)}
-    .intro{color:var(--muted);font-size:1rem;margin-bottom:24px;padding:14px 16px;background:var(--card);border-left:3px solid var(--accent);border-radius:0 8px 8px 0}
-    .toc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:28px}
-    .toc h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:10px}
-    .toc ol{padding-left:20px}
-    .toc li{margin:4px 0}
-    .toc a{color:var(--accent);text-decoration:none;font-size:.9rem}
-    .toc a:hover{text-decoration:underline}
-    section{margin-bottom:32px;scroll-margin-top:80px}
-    .tips-box,.tip-box{background:var(--card);border:1px solid rgba(233,69,96,0.2);border-radius:12px;padding:16px 20px;margin:28px 0}
-    .tips-box h3,.tip-box h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:12px}
-    .tips-box ul,.tip-box ul{list-style:none;padding:0}
-    .tips-box li,.tip-box li{padding:6px 0 6px 20px;position:relative;font-size:.95rem;color:var(--text)}
-    .tips-box li::before,.tip-box li::before{content:'▸';position:absolute;left:0;color:var(--accent)}
-    .cta-banner{background:linear-gradient(135deg,rgba(233,69,96,0.15),rgba(124,58,237,0.1));border:1px solid rgba(233,69,96,0.3);border-radius:12px;padding:16px 20px;text-align:center;margin:28px 0}
-    .cta-banner a{color:var(--accent);text-decoration:none;font-weight:700;font-size:1rem}
-    .cta-banner a:hover{text-decoration:underline}
-    .share-bar{display:flex;align-items:center;gap:10px;margin-top:32px;padding-top:16px;border-top:1px solid var(--border)}
-    .share-bar a{color:var(--text);text-decoration:none;font-size:.85rem;padding:6px 14px;border:1px solid var(--border);border-radius:20px;transition:all .2s}
-    .share-bar a:hover{border-color:var(--accent);color:var(--accent)}
-    footer{text-align:center;color:var(--muted);font-size:.8rem;margin-top:48px;padding-top:16px;border-top:1px solid var(--border)}
-    footer a{color:var(--muted);text-decoration:none}
-    .progress-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(to right,var(--accent),var(--accent2));z-index:999;transition:width .1s}
-    .back-to-top,#back-to-top{position:fixed;bottom:24px;right:24px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:18px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(233,69,96,0.4);z-index:100}
-    
-    .gi-shops h2{color:var(--accent)}
-    .gi-shops h3{color:var(--text)}
-    @media(max-width:600px){h1{font-size:1.3rem}header h1{font-size:1.3rem}}
-  </style>
-  <!-- Google Analytics -->
+<!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -166,12 +107,6 @@
   "embedUrl": "https://www.youtube.com/embed/SNASDxyjcAA"
 }
 </script>
-<style>
-.difficulty-bar{display:flex;align-items:center;gap:12px;margin:12px 0 28px;flex-wrap:wrap}
-.belt-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;font-size:0.78rem;font-weight:700;letter-spacing:.05em}
-.stars{font-size:1.1rem;letter-spacing:2px}
-.diff-label{font-size:0.8rem;color:#6b7699}
-</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -212,7 +147,7 @@
 <div id="read-progress"></div>
 <div class="container">
 <header>
-  <a href="../ja/index.html" class="logo">🥋 BJJ Wiki<span style="display:inline-block;font-size:.6rem;font-weight:700;background:#7c3aed;color:#fff;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:middle;letter-spacing:.03em;line-height:1.5">β</span></a>
+  <a href="../ja/index.html" class="logo">🥋 BJJ Wiki<span class="badge-beta">β</span></a>
   <nav class="lang-nav">
     <a href="../en/loop-choke.html">🇺🇸 EN</a>
     <a href="../ja/loop-choke.html" class="active">🇯🇵 JA</a>
@@ -300,12 +235,8 @@ graph LR
   
   
 <!-- YOGA SECTION HIDDEN
-<style>.yoga-box{background:linear-gradient(135deg,#0a1a10,#0f1a0a);border:1px solid #22c55e;border-radius:12px;padding:20px;margin:24px 0}.yoga-box h3{font-size:.85rem;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}.yoga-box p{font-size:.85rem;color:#6b9e6b;margin-bottom:12px}.yoga-chips{display:flex;flex-wrap:wrap;gap:8px}.yoga-chip{display:inline-block;padding:6px 14px;background:#0d2010;border:1px solid #22c55e40;border-radius:20px;font-size:.82rem;color:#86efac;text-decoration:none;font-weight:600}.yoga-chip:hover{background:#22c55e;color:#000;text-decoration:none}</style>
 <div class="yoga-box"><h3>🧘 この技に効くヨガポーズ</h3><p>必要な柔軟性・可動域を高めます：</p><div class="yoga-chips"><a class="yoga-chip" href="https://yoga.bjj-app.net/en/cat-cow-pose.html" target="_blank" rel="noopener">🧘 Cat-Cow Pose</a><a class="yoga-chip" href="https://yoga.bjj-app.net/en/childs-pose.html" target="_blank" rel="noopener">🧘 Child's Pose</a></div></div>
 YOGA SECTION HIDDEN -->
-
-<style>.gear-box{background:#0f1420;border:1px solid #1f2840;border-radius:12px;padding:18px;margin:20px 0}.gear-box h3{font-size:.82rem;font-weight:700;color:#6b7699;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}.gear-links{display:flex;flex-wrap:wrap;gap:8px}.gear-link{display:inline-block;padding:6px 14px;background:#141926;border:1px solid #1f2840;border-radius:20px;font-size:.82rem;color:#8899bb;text-decoration:none}.gear-link:hover{border-color:#6b7699;color:#c0cce8;text-decoration:none}</style>
-
 <div style="background:#0f1420;border:1px solid #3b2d6e;border-radius:12px;padding:14px 18px;margin:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px"><div><div style="font-size:.85rem;font-weight:700;color:#a78bfa">📍 進捗を記録</div><div style="font-size:.78rem;color:var(--muted,#7a7a9a)">スキルツリーでこの技の習得をチェック</div></div><a href="../ja/skill-tree.html" style="background:#6e40c9;color:#fff;padding:7px 16px;border-radius:8px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">🌳 スキルツリーを開く →</a></div>
 <div class="app-cta-wrap">
   <div class="app-cta-inner">
@@ -379,14 +310,6 @@ YOGA SECTION HIDDEN -->
   themeVariables:{darkMode:true,background:'#141926',primaryColor:'#7c6af7',
     primaryTextColor:'#e8eaf6',lineColor:'#6b7699',edgeLabelBackground:'#141926'}
 });</script>
-
-<style>
-.yt-lazy{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;border-radius:8px;cursor:pointer}
-.yt-lazy img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.85}
-.yt-lazy .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;background:rgba(255,0,0,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.yt-lazy .play-btn::after{content:'';border:0 solid transparent;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:22px solid white;margin-left:4px}
-.yt-lazy iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-</style>
 <script>
 document.addEventListener('click',function(e){
   var t=e.target.closest('.yt-lazy');
@@ -415,7 +338,6 @@ document.addEventListener('click',function(e){
   <p class="wc-text-tip">新技解説・コンペ情報を毎週お届け。無料。</p>
   
 </div>
-<style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
 <script>(function(){if(localStorage.getItem('cta_dismissed'))return;var shown=false;function show(){if(!shown){shown=true;}}setTimeout(show,30000);window.addEventListener('scroll',function(){var pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);if(pct>0.5)show();},{passive:true});})();</script>
 
 <nav style="display:flex;gap:10px;align-items:stretch;margin:32px 0" aria-label="Technique navigation">
