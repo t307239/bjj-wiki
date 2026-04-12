@@ -4,7 +4,7 @@ BJJ Wiki -> Pinterest Auto Post Script
 Scans /en/ HTML pages, extracts title/description, posts to Pinterest API v5
 Tracks posted pages in already_posted_pinterest.txt
 """
-import os, json, re, urllib.request, urllib.error
+import os, json, re, sys, urllib.request, urllib.error
 from datetime import datetime
 from pathlib import Path
 
@@ -18,6 +18,10 @@ def send_telegram(msg):
             data=payload, headers={"Content-Type": "application/json"}, method="POST")
         urllib.request.urlopen(req, timeout=10)
     except: pass
+
+class AuthFailure(Exception):
+    """Pinterest認証失敗 — トークン期限切れの可能性"""
+    pass
 
 def post_to_pinterest(title, description, link, board_id):
     access_token = os.environ.get("PINTEREST_ACCESS_TOKEN", "")
@@ -40,7 +44,10 @@ def post_to_pinterest(title, description, link, board_id):
         print(f"[OK] Pin: {result.get('id')} - {title[:50]}")
         return True
     except urllib.error.HTTPError as e:
-        print(f"[ERROR] Pinterest {e.code}: {e.read().decode()}")
+        body = e.read().decode()
+        print(f"[ERROR] Pinterest {e.code}: {body}")
+        if e.code == 401:
+            raise AuthFailure(f"Pinterest 401: {body}")
         return False
     except Exception as e:
         print(f"[ERROR] {str(e)}")
@@ -73,8 +80,10 @@ def main():
         print(f"[ERROR] {en_dir} not found"); return
     html_files = sorted(en_dir.glob("*.html"), key=lambda f: f.stat().st_mtime, reverse=True)
     posted_slugs = load_posted_slugs()
-    print(f"Files: {len(html_files)}, Already posted: {len(posted_slugs)}")
+    remaining = len([f for f in html_files if f.stem not in posted_slugs and f.stem not in ("index", "about", "contact", "404")])
+    print(f"Files: {len(html_files)}, Already posted: {len(posted_slugs)}, Remaining: {remaining}")
     posted_count = 0
+    error_count = 0
     for html_file in html_files:
         if posted_count >= 5: break
         slug = html_file.stem
@@ -87,13 +96,28 @@ def main():
         url = f"https://wiki.bjj-app.net/en/{slug}.html"
         print(f"[POST] {slug}: {title[:60]}")
         if access_token and board_id:
-            if post_to_pinterest(title, desc, url, board_id):
-                save_posted_slug(slug); posted_count += 1
+            try:
+                if post_to_pinterest(title, desc, url, board_id):
+                    save_posted_slug(slug); posted_count += 1
+                    error_count = 0
+                else:
+                    error_count += 1
+            except AuthFailure as e:
+                print(f"[FATAL] 認証失敗 — トークン期限切れの可能性: {e}")
+                send_telegram(f"🚨 Pinterest認証失敗！トークンを再発行してください\nhttps://developers.pinterest.com/apps/\n({datetime.now().strftime('%m/%d %H:%M')})")
+                sys.exit(1)
         else:
             print(f"[DRY-RUN] {title}")
             save_posted_slug(slug); posted_count += 1
-    print(f"Done: {posted_count} pins posted.")
-    send_telegram(f"📌 Pinterest: {posted_count}件投稿 ({datetime.now().strftime('%m/%d %H:%M')})")
+        if error_count >= 3:
+            print("[WARN] 連続3件失敗 — 中断します")
+            send_telegram(f"⚠️ Pinterest連続エラー3件で中断 ({datetime.now().strftime('%m/%d %H:%M')})")
+            break
+    print(f"Done: {posted_count} pins posted, {remaining - posted_count} remaining.")
+    if posted_count > 0:
+        send_telegram(f"📌 Pinterest: {posted_count}件投稿 (残{remaining - posted_count}件) ({datetime.now().strftime('%m/%d %H:%M')})")
+    elif error_count == 0 and remaining == 0:
+        send_telegram(f"✅ Pinterest: 全ページ投稿完了！ ({datetime.now().strftime('%m/%d %H:%M')})")
 
 if __name__ == "__main__":
     main()
