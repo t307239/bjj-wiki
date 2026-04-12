@@ -14,7 +14,7 @@ Topics:
 import os, re
 
 WIKI_DIR = os.path.join(os.path.dirname(__file__), "..")
-BASE_URL  = "https://t307239.github.io/bjj-wiki"
+BASE_URL  = "https://wiki.bjj-app.net"
 
 TOPICS = [
     {

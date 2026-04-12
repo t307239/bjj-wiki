@@ -38,7 +38,7 @@ PT_DIR  = os.path.join(WIKI_ROOT, "pt")
 SITEMAP = os.path.join(WIKI_ROOT, "sitemap.xml")
 
 LANGS = {"en": EN_DIR, "ja": JA_DIR, "pt": PT_DIR}
-BASE_URL = "https://t307239.github.io/bjj-wiki"
+BASE_URL = "https://wiki.bjj-app.net"
 AFFILIATE_TAG = "bjj06-22"
 APP_URL = "bjj-app.net"
 

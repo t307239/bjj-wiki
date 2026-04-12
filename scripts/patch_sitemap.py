@@ -10,7 +10,7 @@ import os
 import glob
 import datetime
 
-SITE_URL = "https://t307239.github.io/bjj-wiki"
+SITE_URL = "https://wiki.bjj-app.net"
 SITE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 TODAY    = datetime.date.today().isoformat()
 

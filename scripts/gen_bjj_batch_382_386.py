@@ -87,9 +87,9 @@ def build_html(slug, data, lang):
     content = data[content_key]
 
     hreflang_links = {
-        "en": f'<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">',
-        "ja": f'<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/{slug}.html">',
-        "pt": f'<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/{slug}.html">',
+        "en": f'<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/{slug}.html">',
+        "ja": f'<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/{slug}.html">',
+        "pt": f'<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/{slug}.html">',
     }
 
     lang_attr = {"en": "en", "ja": "ja", "pt": "pt"}
@@ -104,8 +104,8 @@ def build_html(slug, data, lang):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
-<link rel="canonical" href="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
+<meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
+<link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
 {hreflang_links['en']}
 {hreflang_links['ja']}
 {hreflang_links['pt']}

@@ -256,7 +256,7 @@ def patch_article(path):
                   fix_card, html, flags=re.DOTALL)
 
     # 3) Fix YOUR_USERNAME in URLs
-    html = html.replace("YOUR_USERNAME.github.io/bjj-wiki", "t307239.github.io/bjj-wiki")
+    html = html.replace("YOUR_USERNAME.github.io/bjj-wiki", "wiki.bjj-app.net")
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)

@@ -453,7 +453,7 @@ def make_page(tech, lang):
         sections_html += f"<h2>{sec_title}</h2>\n<div class=\"card\">\n{make_steps(steps)}</div>\n"
 
     related_html = "\n".join(f'<a href="{rs}.html">{rn}</a>' for rs,rn in related)
-    share_url = f"https://t307239.github.io/bjj-wiki/{lang}/{slug}.html"
+    share_url = f"https://wiki.bjj-app.net/{lang}/{slug}.html"
     share_text = {
         "en": f"Just learned about {name} on BJJ Wiki! {share_url} #BJJ",
         "ja": f"BJJ Wikiで{name}を学んだ！ {share_url} #BJJ #柔術",
@@ -471,15 +471,15 @@ def make_page(tech, lang):
 <meta name="description" content="{desc}">
 <meta property="og:title" content="{name} | BJJ Wiki">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
+<meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
-<link rel="canonical" href="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
-<link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">
-<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">
-<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/{slug}.html">
-<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/{slug}.html">
+<meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
+<link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
+<link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/{slug}.html">
+<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/{slug}.html">
+<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/{slug}.html">
+<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/{slug}.html">
 <link rel="alternate" type="application/rss+xml" title="BJJ Wiki RSS" href="../feed.xml">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>

@@ -172,10 +172,10 @@ def build_page(lang, slug, title, desc, keywords, content_html):
     assert len(desc) <= 160, f"desc too long ({len(desc)}): {desc}"
 
     lang_attr = {'en': 'en', 'ja': 'ja', 'pt': 'pt'}[lang]
-    canonical = f'https://t307239.github.io/bjj-wiki/{lang}/{slug}'
-    hreflang_en = f'https://t307239.github.io/bjj-wiki/en/{slug}'
-    hreflang_ja = f'https://t307239.github.io/bjj-wiki/ja/{slug}'
-    hreflang_pt = f'https://t307239.github.io/bjj-wiki/pt/{slug}'
+    canonical = f'https://wiki.bjj-app.net/{lang}/{slug}'
+    hreflang_en = f'https://wiki.bjj-app.net/en/{slug}'
+    hreflang_ja = f'https://wiki.bjj-app.net/ja/{slug}'
+    hreflang_pt = f'https://wiki.bjj-app.net/pt/{slug}'
 
     return f"""<!DOCTYPE html>
 <html lang="{lang_attr}">
@@ -193,7 +193,7 @@ def build_page(lang, slug, title, desc, keywords, content_html):
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
+<meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
@@ -233,7 +233,7 @@ footer .footer-bottom{{text-align:center;margin-top:32px;color:#4b5563;font-size
 @media(max-width:600px){{h1{{font-size:1.5rem}}}}
 </style>
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"Article","headline":"{title}","description":"{desc}","author":{{"@type":"Organization","name":"BJJ Wiki"}},"publisher":{{"@type":"Organization","name":"BJJ Wiki","url":"https://t307239.github.io/bjj-wiki/"}},"datePublished":"2026-03-16","dateModified":"2026-03-16","inLanguage":"{lang_attr}","mainEntityOfPage":"{canonical}"}}
+{{"@context":"https://schema.org","@type":"Article","headline":"{title}","description":"{desc}","author":{{"@type":"Organization","name":"BJJ Wiki"}},"publisher":{{"@type":"Organization","name":"BJJ Wiki","url":"https://wiki.bjj-app.net/"}},"datePublished":"2026-03-16","dateModified":"2026-03-16","inLanguage":"{lang_attr}","mainEntityOfPage":"{canonical}"}}
 </script>
 </head>
 <body>

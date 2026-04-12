@@ -15,7 +15,7 @@ from datetime import datetime
 # ===== Configuration =====
 IS_CI = os.environ.get("GITHUB_ACTIONS") == "true"
 SITE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-SITE_URL = "https://t307239.github.io/bjj-wiki"
+SITE_URL = "https://wiki.bjj-app.net"
 
 LANGUAGES = {
     "en": {"name": "English", "dir": "en"},

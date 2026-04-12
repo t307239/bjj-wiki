@@ -851,7 +851,7 @@ PAGES = [
 
 
 def build_hreflang(slug):
-    base = "https://t307239.github.io/bjj-wiki"
+    base = "https://wiki.bjj-app.net"
     return f"""
   <link rel="alternate" hreflang="en" href="{base}/en/{slug}.html" />
   <link rel="alternate" hreflang="ja" href="{base}/ja/{slug}.html" />
@@ -860,7 +860,7 @@ def build_hreflang(slug):
 
 
 def build_page(slug, lang, data, hreflang):
-    base_url = "https://t307239.github.io/bjj-wiki"
+    base_url = "https://wiki.bjj-app.net"
     page_url = f"{base_url}/{lang}/{slug}.html"
     now = datetime.date.today().isoformat()
 
@@ -1033,7 +1033,7 @@ def update_sitemap(new_slugs):
 
     today = datetime.date.today().isoformat()
     new_entries = ""
-    base_url = "https://t307239.github.io/bjj-wiki"
+    base_url = "https://wiki.bjj-app.net"
     for slug in new_slugs:
         for lang in ["en", "ja", "pt"]:
             url = f"{base_url}/{lang}/{slug}.html"

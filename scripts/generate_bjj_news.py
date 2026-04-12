@@ -7,7 +7,7 @@ Sources: r/bjj RSS, BJJee RSS, FloGrappling (scrape)
 import os, json, time, datetime, urllib.request, urllib.error, re
 from xml.etree import ElementTree as ET
 
-SITE_URL  = "https://t307239.github.io/bjj-wiki"
+SITE_URL  = "https://wiki.bjj-app.net"
 OUT_DIR   = os.path.join(os.path.dirname(__file__), "..")
 GA4_ID    = "G-7LM8L3TRZM"
 ADSENSE   = "ca-pub-5529701443220352"

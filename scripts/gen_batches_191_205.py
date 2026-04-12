@@ -139,12 +139,12 @@ def build_html(lang, slug, title_en, desc_en, keywords, content_html):
         title = title_en
 
     lang_attr = {"en": "en", "ja": "ja", "pt": "pt"}[lang]
-    canonical = f"https://t307239.github.io/bjj-wiki/{lang}/{slug}"
+    canonical = f"https://wiki.bjj-app.net/{lang}/{slug}"
 
-    hreflang_links = f'''<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">
-<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/{slug}.html">
-<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/{slug}.html">
-<link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">'''
+    hreflang_links = f'''<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/{slug}.html">
+<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/{slug}.html">
+<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/{slug}.html">
+<link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/{slug}.html">'''
 
     json_ld = json.dumps({
         "@context": "https://schema.org",
@@ -152,12 +152,12 @@ def build_html(lang, slug, title_en, desc_en, keywords, content_html):
         "headline": title,
         "description": desc_en,
         "author": {"@type": "Organization", "name": "BJJ Wiki"},
-        "publisher": {"@type": "Organization", "name": "BJJ Wiki", "url": "https://t307239.github.io/bjj-wiki/"},
+        "publisher": {"@type": "Organization", "name": "BJJ Wiki", "url": "https://wiki.bjj-app.net/"},
         "datePublished": "2026-03-16",
         "dateModified": "2026-03-16",
         "inLanguage": lang_attr,
         "mainEntityOfPage": canonical,
-        "image": "https://t307239.github.io/bjj-wiki/og-image.svg"
+        "image": "https://wiki.bjj-app.net/og-image.svg"
     }, ensure_ascii=False)
 
     share_url = quote(canonical)
@@ -177,7 +177,7 @@ def build_html(lang, slug, title_en, desc_en, keywords, content_html):
 <meta property="og:description" content="{desc_en}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
+<meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc_en}">

@@ -4,7 +4,7 @@ Add BreadcrumbList JSON-LD to all pages missing it.
 """
 import os, re, json
 
-BASE_URL = 'https://t307239.github.io/bjj-wiki'
+BASE_URL = 'https://wiki.bjj-app.net'
 fixed = 0
 
 for lang in ['en', 'ja', 'pt']:

@@ -5,7 +5,7 @@ AdSense自動挿入スクリプト
 
 AdSense取得手順:
   1. https://adsense.google.com にアクセス
-  2. 「ご利用開始」→ サイトURL: https://t307239.github.io/bjj-wiki/
+  2. 「ご利用開始」→ サイトURL: https://wiki.bjj-app.net/
   3. 承認後に「広告コード」からpub-IDを取得
   4. このスクリプトを --pub-id オプションで実行
 """

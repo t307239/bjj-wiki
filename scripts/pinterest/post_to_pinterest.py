@@ -14,7 +14,7 @@ try:
     from config import ACCESS_TOKEN, BASE_URL
 except ImportError:
     ACCESS_TOKEN = os.environ.get("PINTEREST_TOKEN", "")
-    BASE_URL = "https://t307239.github.io/bjj-wiki"
+    BASE_URL = "https://wiki.bjj-app.net"
 
 HEADERS = {
     "Authorization": f"Bearer {ACCESS_TOKEN}",
@@ -41,7 +41,7 @@ PAGES = [
 ]
 
 # 投稿用画像URL（BJJ Wikiのカバー画像）
-DEFAULT_IMAGE = "https://t307239.github.io/bjj-wiki/og-image.png"
+DEFAULT_IMAGE = "https://wiki.bjj-app.net/og-image.png"
 
 
 def get_boards():

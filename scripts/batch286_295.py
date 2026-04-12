@@ -10,7 +10,7 @@ from pathlib import Path
 # ===== 設定 =====
 IS_CI = os.environ.get("GITHUB_ACTIONS") == "true"
 SITE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..")) if IS_CI else os.path.expanduser("~/Claude/bjj-wiki")
-SITE_URL = "https://t307239.github.io/bjj-wiki"
+SITE_URL = "https://wiki.bjj-app.net"
 
 LANGUAGES = {
     "en": {"name": "English", "dir": "en"},

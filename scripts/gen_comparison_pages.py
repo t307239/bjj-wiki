@@ -9,7 +9,7 @@ from datetime import date
 TODAY = date.today().isoformat()
 ADSENSE_ID = 'ca-pub-5529701443220352'
 GA4_ID = 'G-7LM8L3TRZM'
-BASE_URL = 'https://t307239.github.io/bjj-wiki'
+BASE_URL = 'https://wiki.bjj-app.net'
 
 COMPARISONS = [
     {

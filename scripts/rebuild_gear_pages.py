@@ -20,7 +20,7 @@ LANG_CFG = {
         "title": "Top BJJ Gi Brands 2026: Complete Buyer's Guide | BJJ Wiki",
         "h1":    "Top BJJ Gi Brands 2026",
         "desc":  "Best BJJ Gi brands compared: Fuji, Sanabul, Hayabusa, Origin, Tatami & more. Reviews, recommendations, and direct links to top gis.",
-        "canon": "https://t307239.github.io/bjj-wiki/en/bjj-gi-brands-guide.html",
+        "canon": "https://wiki.bjj-app.net/en/bjj-gi-brands-guide.html",
         "nav_home": "🏠 Home",
         "nav_home_href": "../en/index.html",
         "amazon_domain": "amazon.com",
@@ -121,7 +121,7 @@ LANG_CFG = {
         "title": "BJJ道衣ブランドガイド 2026：柔術着おすすめ比較 | BJJ Wiki",
         "h1":    "BJJ道衣ブランドガイド 2026",
         "desc":  "ブラジリアン柔術の道衣（ギ）おすすめブランド比較：伊佐見・FUJI・Scramble・Venum・Tatami。アマゾンで買える人気道衣を一覧で紹介。",
-        "canon": "https://t307239.github.io/bjj-wiki/ja/bjj-gi-brands-guide.html",
+        "canon": "https://wiki.bjj-app.net/ja/bjj-gi-brands-guide.html",
         "nav_home": "🏠 ホーム",
         "nav_home_href": "../ja/index.html",
         "amazon_domain": "amazon.co.jp",
@@ -221,7 +221,7 @@ LANG_CFG = {
         "title": "Melhores Marcas de Kimono BJJ 2026: Guia Completo | BJJ Wiki",
         "h1":    "Melhores Marcas de Kimono BJJ 2026",
         "desc":  "Comparação das melhores marcas de kimono de Jiu-Jitsu Brasileiro: Atama, Koral, Tatami, Gameness e mais. Links diretos para comprar na Amazon.",
-        "canon": "https://t307239.github.io/bjj-wiki/pt/bjj-gi-brands-guide.html",
+        "canon": "https://wiki.bjj-app.net/pt/bjj-gi-brands-guide.html",
         "nav_home": "🏠 Início",
         "nav_home_href": "../pt/index.html",
         "amazon_domain": "amazon.com.br",
@@ -355,10 +355,10 @@ def brand_card(cfg, brand):
 
 def build_page(lang, cfg):
     hreflang_links = "\n".join([
-        f'  <link rel="alternate" hreflang="{l}" href="https://t307239.github.io/bjj-wiki/{l}/bjj-gi-brands-guide.html">'
+        f'  <link rel="alternate" hreflang="{l}" href="https://wiki.bjj-app.net/{l}/bjj-gi-brands-guide.html">'
         for l in ["en","ja","pt"]
     ])
-    hreflang_links += '\n  <link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/bjj-gi-brands-guide.html">'
+    hreflang_links += '\n  <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/bjj-gi-brands-guide.html">'
 
     premium_cards = "\n".join(brand_card(cfg, b) for b in cfg["brands"])
     budget_cards  = "\n".join(brand_card(cfg, b) for b in cfg["budget_brands"])
@@ -436,7 +436,7 @@ def build_page(lang, cfg):
     @media(max-width:1200px){{.wiki-sidebar{{display:none}}}}
   </style>
   <script type="application/ld+json">
-  {{"@context":"https://schema.org","@type":"Article","headline":"{cfg['h1']}","description":"{cfg['desc']}","url":"{cfg['canon']}","datePublished":"2026-03-19","dateModified":"2026-03-19","publisher":{{"@type":"Organization","name":"{ld_pub_name}","url":"https://t307239.github.io/bjj-wiki/"}},"inLanguage":"{ld_lang}"}}
+  {{"@context":"https://schema.org","@type":"Article","headline":"{cfg['h1']}","description":"{cfg['desc']}","url":"{cfg['canon']}","datePublished":"2026-03-19","dateModified":"2026-03-19","publisher":{{"@type":"Organization","name":"{ld_pub_name}","url":"https://wiki.bjj-app.net/"}},"inLanguage":"{ld_lang}"}}
   </script>
   {GTM_JS}
 </head>

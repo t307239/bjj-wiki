@@ -7,7 +7,7 @@ Batch 286-295 Part 2: 残り102テーマを150ページに拡張
 import os
 
 SITE_DIR = os.path.expanduser("~/Claude/bjj-wiki")
-SITE_URL = "https://t307239.github.io/bjj-wiki"
+SITE_URL = "https://wiki.bjj-app.net"
 
 ARTICLES_PART2 = {
     # Batch 289: ノーギ上級特化

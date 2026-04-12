@@ -416,7 +416,7 @@ def generate_html(slug: str, lang: str, data: dict) -> str:
     # Build alternates
     alternates = []
     for alt_lang in ["en", "ja", "pt"]:
-        alt_url = f"https://t307239.github.io/bjj-wiki/{alt_lang}/{slug}.html"
+        alt_url = f"https://wiki.bjj-app.net/{alt_lang}/{slug}.html"
         alternates.append(f'<link rel="alternate" hreflang="{alt_lang}" href="{alt_url}" />')
 
     html = f"""<!DOCTYPE html>
@@ -428,10 +428,10 @@ def generate_html(slug: str, lang: str, data: dict) -> str:
     <meta name="description" content="{description}">
     <meta property="og:title" content="{title}">
     <meta property="og:description" content="{description}">
-    <meta property="og:url" content="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
+    <meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
     <meta property="og:type" content="article">
     {chr(10).join(alternates)}
-    <link rel="canonical" href="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
+    <link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
     <link rel="icon" type="image/png" href="../../favicon.ico">
     <style>
         body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #f5f5f5; }}

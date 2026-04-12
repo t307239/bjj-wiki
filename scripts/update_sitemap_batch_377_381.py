@@ -6,7 +6,7 @@ from datetime import datetime
 
 IS_CI = os.environ.get("GITHUB_ACTIONS") == "true"
 SITE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..")) if IS_CI else "/sessions/keen-sharp-davinci/mnt/Claude/bjj-wiki"
-SITE_URL = "https://t307239.github.io/bjj-wiki"
+SITE_URL = "https://wiki.bjj-app.net"
 
 # 5 themes × 3 languages = 15 new URLs
 NEW_ARTICLES = [

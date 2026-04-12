@@ -137,7 +137,7 @@ _load_secrets()
 IS_CI          = os.environ.get("GITHUB_ACTIONS") == "true"
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 SITE_DIR       = os.path.abspath(os.path.join(os.path.dirname(__file__), "..")) if IS_CI else os.path.expanduser("~/Claude/bjj-wiki")
-SITE_URL       = "https://t307239.github.io/bjj-wiki"
+SITE_URL       = "https://wiki.bjj-app.net"
 AMAZON_TAG     = "bjj06-22"
 
 # Amazon カテゴリ別 ASIN 直リンクマッピング

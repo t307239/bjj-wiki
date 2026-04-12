@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 BJJ Wiki - Internal Link Checker
-Checks for broken internal links within t307239.github.io/bjj-wiki/
+Checks for broken internal links within wiki.bjj-app.net/
 """
 
 import os

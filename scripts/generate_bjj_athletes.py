@@ -8,7 +8,7 @@ BJJ選手名鑑 自動生成
 import os, json, time, datetime, urllib.request, urllib.error, re, argparse
 
 BASE     = os.path.dirname(__file__) + "/.."
-SITE_URL = "https://t307239.github.io/bjj-wiki"
+SITE_URL = "https://wiki.bjj-app.net"
 GA4_ID   = "G-7LM8L3TRZM"
 ADSENSE  = "ca-pub-5529701443220352"
 AMAZON_TAG = "bjj06-22"

@@ -241,10 +241,10 @@ def make_page(slug, lang, data, all_data):
 
     # hreflang
     hreflang = f'''
-    <link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">
-    <link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/{slug}.html">
-    <link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/{slug}.html">
-    <link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">'''
+    <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/{slug}.html">
+    <link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/{slug}.html">
+    <link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/{slug}.html">
+    <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/{slug}.html">'''
 
     # Build body content
     content_sections = ''
@@ -321,12 +321,12 @@ def make_page(slug, lang, data, all_data):
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{title}</title>
   <meta name="description" content="{desc}">
-  <link rel="canonical" href="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
+  <link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{desc}">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
-  <meta property="og:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
+  <meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
+  <meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
   <meta name="twitter:card" content="summary_large_image">
   {hreflang}
   <script async src="https://www.googletagmanager.com/gtag/js?id={GA4_ID}"></script>

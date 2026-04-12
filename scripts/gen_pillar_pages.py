@@ -62,14 +62,14 @@ def page(lang, slug, title, desc, h1, intro, sections_html, faqs_html, en_slug=N
 <meta name="description" content="{desc}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:url" content="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
-<meta property="og:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
+<meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
+<meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
 <meta property="og:type" content="article">
-<link rel="canonical" href="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
-<link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/{es}.html">
-<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/{es}.html">
-<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/{slug}.html">
-<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/{slug}.html">
+<link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
+<link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/{es}.html">
+<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/{es}.html">
+<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/{slug}.html">
+<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/{slug}.html">
 <link rel="alternate" type="application/rss+xml" title="BJJ Wiki RSS" href="../feed.xml">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>

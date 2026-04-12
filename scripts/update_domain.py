@@ -2,7 +2,7 @@
 """
 BJJ Wiki — ドメイン一括更新スクリプト
 
-旧URL: t307239.github.io/bjj-wiki
+旧URL: wiki.bjj-app.net
 新URL: wiki.bjj-app.net
 
 対象:
@@ -15,10 +15,10 @@ import os
 import re
 
 WIKI_ROOT = os.path.join(os.path.dirname(__file__), "..")
-OLD_DOMAIN = "t307239.github.io/bjj-wiki"
+OLD_DOMAIN = "wiki.bjj-app.net"
 NEW_DOMAIN = "wiki.bjj-app.net"
 
-# Also handle https://t307239.github.io/bjj-wiki/ → https://wiki.bjj-app.net/
+# Also handle https://wiki.bjj-app.net/ → https://wiki.bjj-app.net/
 OLD_BASE = f"https://{OLD_DOMAIN}"
 NEW_BASE = f"https://{NEW_DOMAIN}"
 

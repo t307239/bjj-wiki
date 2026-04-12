@@ -198,10 +198,10 @@ def build_index(lang):
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{L["og_locale"]}">
 <meta name="twitter:card" content="summary">
-<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/index.html">
-<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/index.html">
-<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/index.html">
-<link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/index.html">
+<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/index.html">
+<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/index.html">
+<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/index.html">
+<link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/index.html">
 {GTM_SCRIPT}
 <style>
 *{{box-sizing:border-box;margin:0;padding:0}}

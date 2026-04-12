@@ -8,7 +8,7 @@ def page(lang, slug, title, desc, kw, h1, lead, sections, belt, category, relate
     """Build a full HTML page matching the existing BJJ Wiki template."""
     en_slug = slug if lang == 'en' else (ja_slug or slug)
     lang_alts = {
-        'en': f'<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">\n<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/{slug}.html">\n<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/{slug}.html">',
+        'en': f'<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/{slug}.html">\n<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/{slug}.html">\n<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/{slug}.html">',
     }
     belt_class = {'White Belt':'belt-white','Blue Belt':'belt-blue','Purple Belt':'belt-purple','Brown Belt':'belt-brown','Black Belt':'belt-black'}.get(belt,'belt-blue')
     sections_html = ''
@@ -16,7 +16,7 @@ def page(lang, slug, title, desc, kw, h1, lead, sections, belt, category, relate
         steps_html = ''.join(f'<div class="step"><div class="step-num">{i+1}</div><div><strong>{s[0]}</strong> — {s[1]}</div></div>' for i,s in enumerate(sec_steps))
         sections_html += f'<h2>{sec_title}</h2><div class="card">{steps_html}</div>\n'
     related_html = ''.join(f'<a href="{rs}.html">{rn}</a>' for rs,rn in zip(related_slugs, related_names))
-    share_url = f'https://t307239.github.io/bjj-wiki/{lang}/{slug}.html'
+    share_url = f'https://wiki.bjj-app.net/{lang}/{slug}.html'
     share_text = {'en': f'Just learned about {title} on BJJ Wiki! {share_url} #BJJ',
                   'ja': f'BJJ Wikiで{title}を学んだ！ {share_url} #BJJ #柔術',
                   'pt': f'Aprendi sobre {title} no BJJ Wiki! {share_url} #BJJ'}[lang]
@@ -46,25 +46,25 @@ def page(lang, slug, title, desc, kw, h1, lead, sections, belt, category, relate
 <meta name="keywords" content="{kw}">
 <meta property="og:title" content="{title} | BJJ Wiki">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="https://t307239.github.io/bjj-wiki/og-image.svg">
+<meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
-<link rel="canonical" href="https://t307239.github.io/bjj-wiki/{lang}/{slug}.html">
-<link rel="alternate" hreflang="x-default" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">
-<link rel="alternate" hreflang="en" href="https://t307239.github.io/bjj-wiki/en/{slug}.html">
-<link rel="alternate" hreflang="ja" href="https://t307239.github.io/bjj-wiki/ja/{slug}.html">
-<link rel="alternate" hreflang="pt" href="https://t307239.github.io/bjj-wiki/pt/{slug}.html">
+<meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
+<link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
+<link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/{slug}.html">
+<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/{slug}.html">
+<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/{slug}.html">
+<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/{slug}.html">
 <link rel="alternate" type="application/rss+xml" title="BJJ Wiki RSS" href="../feed.xml">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"Article","headline":"{title}","description":"{desc}","datePublished":"{TODAY}","dateModified":"{TODAY}","author":{{"@type":"Organization","name":"BJJ Wiki"}},"publisher":{{"@type":"Organization","name":"BJJ Wiki","url":"https://t307239.github.io/bjj-wiki/"}}}}
+{{"@context":"https://schema.org","@type":"Article","headline":"{title}","description":"{desc}","datePublished":"{TODAY}","dateModified":"{TODAY}","author":{{"@type":"Organization","name":"BJJ Wiki"}},"publisher":{{"@type":"Organization","name":"BJJ Wiki","url":"https://wiki.bjj-app.net/"}}}}
 </script>
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"BJJ Wiki","item":"https://t307239.github.io/bjj-wiki/"}},{{"@type":"ListItem","position":2,"name":"{category}","item":"https://t307239.github.io/bjj-wiki/{lang}/index.html"}},{{"@type":"ListItem","position":3,"name":"{h1}"}}]}}
+{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"BJJ Wiki","item":"https://wiki.bjj-app.net/"}},{{"@type":"ListItem","position":2,"name":"{category}","item":"https://wiki.bjj-app.net/{lang}/index.html"}},{{"@type":"ListItem","position":3,"name":"{h1}"}}]}}
 </script>
 <style>
 :root{{--bg:#080b12;--surface:#0f1420;--card:#141926;--border:#1f2840;--text:#e8eaf6;--muted:#6b7699;--accent:#7c6af7;--accent2:#a78bfa;--green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;}}

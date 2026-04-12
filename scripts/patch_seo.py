@@ -12,7 +12,7 @@ import os, re, glob, json
 BASE = os.path.expanduser("~/Claude/bjj-wiki")
 ALREADY_MARKER = "application/ld+json"
 
-BASE_URL = "https://t307239.github.io/bjj-wiki"
+BASE_URL = "https://wiki.bjj-app.net"
 
 LANG_LABELS = {
     "en": ("BJJ Wiki", "BJJ Techniques"),

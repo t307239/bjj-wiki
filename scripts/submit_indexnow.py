@@ -29,7 +29,7 @@ from xml.etree import ElementTree as ET
 INDEXNOW_KEY = os.environ.get("INDEXNOW_KEY", "fa79ec2d19ad4b1cae5db99a7d6e1f3b")
 CANONICAL_HOST = "wiki.bjj-app.net"
 CANONICAL_BASE = f"https://{CANONICAL_HOST}"
-GITHUB_PAGES_BASE = "https://t307239.github.io/bjj-wiki"
+GITHUB_PAGES_BASE = "https://wiki.bjj-app.net"
 
 # IndexNow allows max 10,000 URLs per request; use 9,000 to be safe
 BATCH_SIZE = 9000
