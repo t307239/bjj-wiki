@@ -43,11 +43,17 @@ jobs:
           fi
 
       - name: Run enrich_sections.py
+        id: enrich
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           LIMIT="${{ github.event.inputs.limit || '1600' }}"
-          python scripts/enrich_sections.py --lang "${{ steps.lang.outputs.lang }}" --limit "$LIMIT"
+          python scripts/enrich_sections.py --lang "${{ steps.lang.outputs.lang }}" --limit "$LIMIT" 2>&1 | tee /tmp/enrich.log
+          # 最終行から結果を抽出
+          SUCCESS=$(grep -oP 'Success: \K\d+' /tmp/enrich.log || echo "0")
+          FAILED=$(grep -oP 'Failed:\s+\K\d+' /tmp/enrich.log || echo "0")
+          echo "success=$SUCCESS" >> $GITHUB_OUTPUT
+          echo "failed=$FAILED" >> $GITHUB_OUTPUT
 
       - name: Commit changes
         run: |
@@ -56,8 +62,20 @@ jobs:
           git add -A
           CHANGED=$(git diff --cached --numstat | wc -l)
           if [ "$CHANGED" -gt 0 ]; then
-            git commit -m "wiki: enrich FAQ+Difficulty ${{ steps.lang.outputs.lang }} — auto batch"
+            git commit -m "wiki: enrich FAQ+Difficulty ${{ steps.lang.outputs.lang }} — ${{ steps.enrich.outputs.success }} pages"
             git push
           else
             echo "No changes to commit"
           fi
+
+      - name: Job Summary
+        if: always()
+        run: |
+          echo "## Wiki Enrich Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Language | \`${{ steps.lang.outputs.lang }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Success | ${{ steps.enrich.outputs.success }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Failed | ${{ steps.enrich.outputs.failed }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
