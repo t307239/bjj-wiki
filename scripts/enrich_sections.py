@@ -29,7 +29,7 @@ from pathlib import Path
 WIKI_ROOT = Path(__file__).resolve().parent.parent
 PROGRESS_FILE = WIKI_ROOT / "scripts" / ".enrich_progress.json"
 DEFAULT_LANG = "ja"
-DEFAULT_LIMIT = 500
+DEFAULT_LIMIT = 50
 RPM_LIMIT = 12          # 15 RPM free tier, 12 for safety
 SLEEP_BETWEEN = 60 / RPM_LIMIT  # ~5s between calls
 MAX_RETRIES = 3
