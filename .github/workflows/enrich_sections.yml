@@ -46,8 +46,8 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          LIMIT=${{ github.event.inputs.limit || '50' }}
-          python scripts/enrich_sections.py --lang ${{ steps.lang.outputs.lang }} --limit "$LIMIT"
+          LIMIT="${{ github.event.inputs.limit || '50' }}"
+          python scripts/enrich_sections.py --lang "${{ steps.lang.outputs.lang }}" --limit "$LIMIT"
 
       - name: Commit changes
         run: |
