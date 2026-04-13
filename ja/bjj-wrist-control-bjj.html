@@ -153,6 +153,51 @@ window.addEventListener('scroll',function(){
 })();
 </script>
 
+<div class="cta-banner"><a href="https://bjj-app.net/login">🥋 BJJ練習を無料で記録しよう — BJJ Appを試す →</a></div>
+<div class="share-bar">
+<span style="color:var(--muted);font-size:.85rem">共有:</span>
+<a href="https://twitter.com/intent/tweet?url=https://wiki.bjj-app.net/ja/bjj-wrist-control-bjj.html&text=【BJJ】Wrist Control Techniques" target="_blank" rel="noopener">𝕏 ポスト</a>
+<a href="https://www.reddit.com/submit?url=https://wiki.bjj-app.net/ja/bjj-wrist-control-bjj.html&title=【BJJ】Wrist Control Techniques" target="_blank" rel="noopener">Reddit</a>
+</div>
+<div class="beehiiv-wrap"><h3>📬 2,000人以上の柔術家に参加</h3>
+<p>無料BJJ白帯ガイド＋毎週の技術解説・練習のコツ・独占コンテンツ。スパムなし。いつでも配信停止可能。</p>
+<a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">無料アクセスを取得 →</a></div>
 <footer class="wc-footer"><p class="wc-footer-text">BJJ Wikiの内容は教育目的のみを意図しており、専門的な指導を構成するものではありません。ブラジリアン柔術には固有の怪我のリスクがあります。必ず有資格の指導者の監督の下でトレーニングしてください。BJJ App Inc.は、ここに記載された技術の適用により生じた怪我について一切の責任を負いません。 自身の経験レベルに適したテクニックを練習してください。初心者はファンダメンタルに集中し、指導者なしでの上級サブミッション（ヒールフック、膝十字等）の練習は避けてください。</p></footer>
+<button id="back-to-top" class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  // Reading progress bar
+  var prog=document.getElementById('read-progress');
+  // Back to top
+  var btn=document.getElementById('back-to-top');
+  if(prog||btn){
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0&&prog){prog.style.width=(scrolled/total*100)+'%';}
+      if(btn){btn.style.display=scrolled>300?'flex':'none';}
+    },{passive:true});
+  }
+  // Auto TOC from h2 elements
+  var headings=document.querySelectorAll('h2');
+  if(headings.length>=3){
+    var tocEl=document.getElementById('toc');
+    var listEl=document.getElementById('toc-list');
+    if(tocEl&&listEl){
+      headings.forEach(function(h,i){
+        var id='section-'+i;
+        h.id=id;
+        var li=document.createElement('li');
+        var a=document.createElement('a');
+        a.href='#'+id;
+        a.textContent=h.textContent;
+        li.appendChild(a);
+        listEl.appendChild(li);
+      });
+      tocEl.style.display='block';
+    }
+  }
+})();
+</script>
 </body>
 </html>

@@ -140,5 +140,50 @@
 })();
 </script>
 
+<div class="cta-banner"><a href="https://bjj-app.net/login">🥋 Registre seu treino de BJJ grátis — Experimente o BJJ App →</a></div>
+<div class="share-bar">
+<span style="color:var(--muted);font-size:.85rem">Compartilhar:</span>
+<a href="https://twitter.com/intent/tweet?url=https://wiki.bjj-app.net/pt/bjj-crucifix-position.html&text=Posição Crucifixo no BJJ | BJJ Wiki" target="_blank" rel="noopener">𝕏 Post</a>
+<a href="https://www.reddit.com/submit?url=https://wiki.bjj-app.net/pt/bjj-crucifix-position.html&title=Posição Crucifixo no BJJ | BJJ Wiki" target="_blank" rel="noopener">Reddit</a>
+</div>
+<div class="beehiiv-wrap"><h3>📬 Junte-se a 2,000+ Praticantes de BJJ</h3>
+<p>Receba o Guia Gratuito do Brás Branco + análises de técnicas semanais, dicas de treino e conteúdo exclusivo. Sem spam. Desinscrever a qualquer momento.</p>
+<a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">Obter Acesso Gratuito →</a></div>
 <footer style="margin:40px 0 0;padding:20px 16px;border-top:1px solid #1a2a3a;text-align:center"><p style="color:#546e7a;font-size:.72rem;line-height:1.6;max-width:600px;margin:0 auto">O conteúdo do BJJ Wiki é apenas para fins educacionais e não constitui instrução profissional. O Jiu-Jitsu Brasileiro envolve riscos inerentes de lesão. Sempre treine sob a supervisão de um instrutor qualificado. O BJJ App Inc. não assume responsabilidade por lesões resultantes da aplicação das técnicas aqui descritas. Pratique técnicas adequadas ao seu nível de experiência. Iniciantes devem focar nos fundamentos e evitar finalizações avançadas (heel hooks, kneebars) sem orientação de um instrutor.</p></footer>
+<button id="back-to-top" class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  // Reading progress bar
+  var prog=document.getElementById('read-progress');
+  // Back to top
+  var btn=document.getElementById('back-to-top');
+  if(prog||btn){
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0&&prog){prog.style.width=(scrolled/total*100)+'%';}
+      if(btn){btn.style.display=scrolled>300?'flex':'none';}
+    },{passive:true});
+  }
+  // Auto TOC from h2 elements
+  var headings=document.querySelectorAll('h2');
+  if(headings.length>=3){
+    var tocEl=document.getElementById('toc');
+    var listEl=document.getElementById('toc-list');
+    if(tocEl&&listEl){
+      headings.forEach(function(h,i){
+        var id='section-'+i;
+        h.id=id;
+        var li=document.createElement('li');
+        var a=document.createElement('a');
+        a.href='#'+id;
+        a.textContent=h.textContent;
+        li.appendChild(a);
+        listEl.appendChild(li);
+      });
+      tocEl.style.display='block';
+    }
+  }
+})();
+</script>
 </body></html>

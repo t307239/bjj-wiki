@@ -23,7 +23,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between a D'Arce and guillotine?", "acceptedAnswer": {"@type": "Answer", "text": "Both are arm-in chokes that compress the neck, but the guillotine is applied from bottom/guard with the arm threading from front-to-back, while the D'Arce is applied from top position with the arm going under the armpit. The D'Arce is a top-position weapon; the guillotine primarily a guard position weapon."}}, {"@type": "Question", "name": "Is the D'Arce choke legal in gi BJJ?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the D'Arce choke is legal at all belt levels in both gi and no-gi BJJ competition, including IBJJF events. It is not considered a dangerous technique in the way that certain leg locks are restricted."}}, {"@type": "Question", "name": "What is a D'Arce choke called in Portuguese?", "acceptedAnswer": {"@type": "Answer", "text": "In Portuguese and Brazilian BJJ circles, the D'Arce is sometimes called 'chave de ombro' (shoulder lock choke) or simply referenced by its English name. The Anaconda choke, its cousin, is widely used under that same name in Brazil."}}]}</script>
 <meta name="description" content="The D'Arce choke is a blood choke that compresses the carotid arteries by wrapping one arm under the opponent's armpit (the 'arm-in' position), threading...">
 </head>
-<body><div class="container">
+<body>
+<div id="read-progress" class="progress-bar"></div><div class="container">
 <header>
   <a href="../index.html" class="logo">🥋 BJJ Wiki<span class="badge-beta">β</span></a>
   <div class="lang-nav"><a href="../../en/d-arce-choke.html" class="active">🇺🇸 EN</a> <a href="../../ja/d-arce-choke.html" class="">🇯🇵 JA</a> <a href="../../pt/d-arce-choke.html" class="">🇧🇷 PT</a></div>
@@ -77,5 +78,49 @@
   </div>
 </div>
 
+<div class="share-bar">
+<span style="color:var(--muted);font-size:.85rem">Share:</span>
+<a href="https://twitter.com/intent/tweet?url=https://wiki.bjj-app.net/en/d-arce-choke.html&text=D'Arce Choke — BJJ Neck Lock Submission Guide | BJJ Wiki" target="_blank" rel="noopener">𝕏 Post</a>
+<a href="https://www.reddit.com/submit?url=https://wiki.bjj-app.net/en/d-arce-choke.html&title=D'Arce Choke — BJJ Neck Lock Submission Guide | BJJ Wiki" target="_blank" rel="noopener">Reddit</a>
+</div>
+<div class="beehiiv-wrap"><h3>📬 Join 2,000+ BJJ Practitioners</h3>
+<p>Get the free BJJ White Belt Guide plus technique breakdowns, training tips &amp; exclusive content every week. No spam. Unsubscribe anytime.</p>
+<a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">Get Free Access →</a></div>
 <footer>BJJ Wiki · Last updated: 2026-03-30 · <a href="../privacy.html">Privacy</a> · <a href="../about.html">About</a></footer>
-</div></body></html>
+</div><button id="back-to-top" class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  // Reading progress bar
+  var prog=document.getElementById('read-progress');
+  // Back to top
+  var btn=document.getElementById('back-to-top');
+  if(prog||btn){
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0&&prog){prog.style.width=(scrolled/total*100)+'%';}
+      if(btn){btn.style.display=scrolled>300?'flex':'none';}
+    },{passive:true});
+  }
+  // Auto TOC from h2 elements
+  var headings=document.querySelectorAll('h2');
+  if(headings.length>=3){
+    var tocEl=document.getElementById('toc');
+    var listEl=document.getElementById('toc-list');
+    if(tocEl&&listEl){
+      headings.forEach(function(h,i){
+        var id='section-'+i;
+        h.id=id;
+        var li=document.createElement('li');
+        var a=document.createElement('a');
+        a.href='#'+id;
+        a.textContent=h.textContent;
+        li.appendChild(a);
+        listEl.appendChild(li);
+      });
+      tocEl.style.display='block';
+    }
+  }
+})();
+</script>
+</body></html>

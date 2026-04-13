@@ -22,7 +22,8 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ニーバーは危険ですか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。後十字靭帯や関節構造を攻撃するため、尊重しないと深刻な靭帯損傷につながります。常に早めにタップし、パートナーとのスロードリルで練習してください。"}}, {"@type": "Question", "name": "ニーバーとヒールフックの違いは？", "acceptedAnswer": {"@type": "Answer", "text": "ニーバーは腰を支点にすねを引いて膝を過伸展させる直線的なロック。ヒールフックはかかとに回転力を与えて内側・外側の靭帯を攻撃する。ヒールフックは痛みが出る前にダメージが蓄積するため、より危険とされる。"}}, {"@type": "Question", "name": "ニーバーは何帯から競技で使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "IBJJFでは茶帯・黒帯のみ許可。ADCCやEBIなどのノーギ大会では一般的に成人競技者に許可されています。出場大会の最新ルールを必ず確認してください。"}}]}</script>
 </head>
-<body><div class="container">
+<body>
+<div id="read-progress" class="progress-bar"></div><div class="container">
 <header>
   <a href="../index.html" class="logo">🥋 BJJ Wiki<span class="badge-beta">β</span></a>
   <div class="lang-nav"><a href="../../en/kneebar.html" class="">🇺🇸 EN</a> <a href="../../ja/kneebar.html" class="active">🇯🇵 JA</a> <a href="../../pt/kneebar.html" class="">🇧🇷 PT</a></div>
@@ -76,5 +77,49 @@
   </div>
 </div>
 
+<div class="share-bar">
+<span style="color:var(--muted);font-size:.85rem">共有:</span>
+<a href="https://twitter.com/intent/tweet?url=https://wiki.bjj-app.net/ja/kneebar.html&text=ニーバー — BJJレッグロック完全ガイド | BJJ Wiki" target="_blank" rel="noopener">𝕏 ポスト</a>
+<a href="https://www.reddit.com/submit?url=https://wiki.bjj-app.net/ja/kneebar.html&title=ニーバー — BJJレッグロック完全ガイド | BJJ Wiki" target="_blank" rel="noopener">Reddit</a>
+</div>
+<div class="beehiiv-wrap"><h3>📬 2,000人以上の柔術家に参加</h3>
+<p>無料BJJ白帯ガイド＋毎週の技術解説・練習のコツ・独占コンテンツ。スパムなし。いつでも配信停止可能。</p>
+<a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">無料アクセスを取得 →</a></div>
 <footer>BJJ Wiki · Last updated: 2026-03-30 · <a href="../privacy.html">Privacy</a> · <a href="../about.html">概要</a></footer>
-</div></body></html>
+</div><button id="back-to-top" class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  // Reading progress bar
+  var prog=document.getElementById('read-progress');
+  // Back to top
+  var btn=document.getElementById('back-to-top');
+  if(prog||btn){
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0&&prog){prog.style.width=(scrolled/total*100)+'%';}
+      if(btn){btn.style.display=scrolled>300?'flex':'none';}
+    },{passive:true});
+  }
+  // Auto TOC from h2 elements
+  var headings=document.querySelectorAll('h2');
+  if(headings.length>=3){
+    var tocEl=document.getElementById('toc');
+    var listEl=document.getElementById('toc-list');
+    if(tocEl&&listEl){
+      headings.forEach(function(h,i){
+        var id='section-'+i;
+        h.id=id;
+        var li=document.createElement('li');
+        var a=document.createElement('a');
+        a.href='#'+id;
+        a.textContent=h.textContent;
+        li.appendChild(a);
+        listEl.appendChild(li);
+      });
+      tocEl.style.display='block';
+    }
+  }
+})();
+</script>
+</body></html>

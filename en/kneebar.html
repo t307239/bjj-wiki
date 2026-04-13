@@ -22,7 +22,8 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is a kneebar dangerous?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — a kneebar attacks the PCL and joint structures of the knee. It can cause serious ligament damage if not respected. Always tap early, drill at slow speed with a cooperative partner, and only apply with submission intent in appropriate competition formats."}}, {"@type": "Question", "name": "What is the difference between a kneebar and a heel hook?", "acceptedAnswer": {"@type": "Answer", "text": "A kneebar hyperextends the knee joint by using the hip as a fulcrum and pulling the shin while pushing the knee. A heel hook attacks the same joint but with a rotational force applied to the heel — targeting the medial or lateral ligaments. Heel hooks are generally considered more dangerous because the rotational damage can occur before pain registers."}}, {"@type": "Question", "name": "At what level is the kneebar allowed in competition?", "acceptedAnswer": {"@type": "Answer", "text": "In IBJJF, the kneebar is restricted to brown and black belt divisions. In ADCC, EBI, WNO and most no-gi submission-only events it is generally allowed for adult competitors. Always verify current rules for your specific event."}}]}</script>
 </head>
-<body><div class="container">
+<body>
+<div id="read-progress" class="progress-bar"></div><div class="container">
 <header>
   <a href="../index.html" class="logo">🥋 BJJ Wiki<span class="badge-beta">β</span></a>
   <div class="lang-nav"><a href="../../en/kneebar.html" class="active">🇺🇸 EN</a> <a href="../../ja/kneebar.html" class="">🇯🇵 JA</a> <a href="../../pt/kneebar.html" class="">🇧🇷 PT</a></div>
@@ -82,5 +83,49 @@
   </div>
 </div>
 
+<div class="share-bar">
+<span style="color:var(--muted);font-size:.85rem">Share:</span>
+<a href="https://twitter.com/intent/tweet?url=https://wiki.bjj-app.net/en/kneebar.html&text=Kneebar — Complete BJJ Leg Lock Guide | BJJ Wiki" target="_blank" rel="noopener">𝕏 Post</a>
+<a href="https://www.reddit.com/submit?url=https://wiki.bjj-app.net/en/kneebar.html&title=Kneebar — Complete BJJ Leg Lock Guide | BJJ Wiki" target="_blank" rel="noopener">Reddit</a>
+</div>
+<div class="beehiiv-wrap"><h3>📬 Join 2,000+ BJJ Practitioners</h3>
+<p>Get the free BJJ White Belt Guide plus technique breakdowns, training tips &amp; exclusive content every week. No spam. Unsubscribe anytime.</p>
+<a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">Get Free Access →</a></div>
 <footer>BJJ Wiki · Last updated: 2026-03-30 · <a href="../privacy.html">Privacy</a> · <a href="../about.html">About</a></footer>
-</div></body></html>
+</div><button id="back-to-top" class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  // Reading progress bar
+  var prog=document.getElementById('read-progress');
+  // Back to top
+  var btn=document.getElementById('back-to-top');
+  if(prog||btn){
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0&&prog){prog.style.width=(scrolled/total*100)+'%';}
+      if(btn){btn.style.display=scrolled>300?'flex':'none';}
+    },{passive:true});
+  }
+  // Auto TOC from h2 elements
+  var headings=document.querySelectorAll('h2');
+  if(headings.length>=3){
+    var tocEl=document.getElementById('toc');
+    var listEl=document.getElementById('toc-list');
+    if(tocEl&&listEl){
+      headings.forEach(function(h,i){
+        var id='section-'+i;
+        h.id=id;
+        var li=document.createElement('li');
+        var a=document.createElement('a');
+        a.href='#'+id;
+        a.textContent=h.textContent;
+        li.appendChild(a);
+        listEl.appendChild(li);
+      });
+      tocEl.style.display='block';
+    }
+  }
+})();
+</script>
+</body></html>
