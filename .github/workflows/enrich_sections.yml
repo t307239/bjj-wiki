@@ -12,7 +12,7 @@ on:
       limit:
         description: '処理ページ数'
         required: false
-        default: '50'
+        default: '1600'
 
 jobs:
   enrich:
@@ -46,7 +46,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          LIMIT="${{ github.event.inputs.limit || '50' }}"
+          LIMIT="${{ github.event.inputs.limit || '1600' }}"
           python scripts/enrich_sections.py --lang "${{ steps.lang.outputs.lang }}" --limit "$LIMIT"
 
       - name: Commit changes
