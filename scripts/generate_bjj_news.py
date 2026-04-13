@@ -72,7 +72,7 @@ Return JSON array: [{{"title":"clear title","summary":"1-2 sentence summary"}}]
 Items:
 {items_text}"""
     
-    models = ["gemini-2.0-flash","gemini-1.5-flash","gemini-2.5-flash-preview-04-17"]
+    models = ["gemini-2.5-flash-lite","gemini-2.5-flash"]
     for model in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
         data = json.dumps({"contents":[{"parts":[{"text":prompt}]}]}).encode()

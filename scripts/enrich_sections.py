@@ -57,10 +57,10 @@ def call_gemini(prompt):
         return None
 
     models = [
-        ("gemini-2.0-flash", "v1beta"),
-        ("gemini-2.0-flash", "v1"),
-        ("gemini-2.0-flash-lite-001", "v1beta"),
-        ("gemini-1.5-flash-latest", "v1beta"),
+        ("gemini-2.5-flash-lite", "v1beta"),   # 無料tier: 15 RPM, 1000 RPD
+        ("gemini-2.5-flash-lite", "v1"),
+        ("gemini-2.5-flash", "v1beta"),         # 無料tier: 5 RPM, 100 RPD
+        ("gemini-2.5-flash", "v1"),
     ]
     data = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],

@@ -293,11 +293,10 @@ TECHNIQUES = [
 def call_gemini(prompt):
     # ç¡ætierãåé ­âææ(2.5ç³»)ã¯æçµãã©ã¼ã«ããã¯ã®ã¿
     models = [
-        ("gemini-2.0-flash",         "v1beta"),   # ç¡ætier
-        ("gemini-2.0-flash",         "v1"),        # ç¡ætier
-        ("gemini-2.0-flash-lite-001","v1beta"),    # ç¡ætier
-        ("gemini-1.5-flash-latest",  "v1beta"),    # ç¡ætier
-        ("gemini-2.5-flash",         "v1beta"),    # ææ(æçµææ®µ)
+        ("gemini-2.5-flash-lite", "v1beta"),   # free: 15 RPM, 1000 RPD
+        ("gemini-2.5-flash-lite", "v1"),
+        ("gemini-2.5-flash",      "v1beta"),   # free: 5 RPM, 100 RPD
+        ("gemini-2.5-flash",      "v1"),
     ]
     data = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
