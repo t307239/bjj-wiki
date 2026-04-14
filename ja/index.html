@@ -2,193 +2,18 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>å¨BJJæä¸è¦§ | BJJ Wiki</title>
+<meta name="description" content="ãã©ã¸ãªã¢ã³æè¡ï¼BJJï¼ã®æè¡ç¾ç§äºå¸ãã¬ã¼ãããã¹ãçµãæãé¢ç¯æãã¹ã¤ã¼ããç¶²ç¾ã">
 <link rel="stylesheet" href="/wiki-v2.css">
-<title>BJJ Wiki — ブラジリアン柔術完全ガイド</title>
-<meta name="description" content="BJJテクニック・ガイド・チュートリアル無料。チョーク、ガード、パス、スウィープなど1,500+ページ。">
-<meta property="og:title" content="BJJ Wiki — ブラジリアン柔術完全ガイド">
-<meta property="og:description" content="BJJテクニック・ガイド・チュートリアル無料。チョーク、ガード、パス、スウィープなど1,500+ページ。">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="ja_JP">
-<meta name="twitter:card" content="summary">
-<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/index.html">
-<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/index.html">
-<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/index.html">
-<link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/index.html">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WC3DKRB');</script>
-<!-- End Google Tag Manager -->
-<meta property="og:image" content="https://wiki.bjj-app.net/og/ja-index.svg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://wiki.bjj-app.net/og-image.png">
-  <link rel="canonical" href="https://wiki.bjj-app.net/ja/index.html">
 </head>
-<body class="theme-index">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WC3DKRB"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-
-<div class="hero">
-  <h1>BJJ<span> Wiki</span></h1>
-  <p class="hero-sub">1,500+テクニック・ガイド — 全帯対応</p>
-  <div class="search-wrap">
-    <input id="search" type="search" placeholder="テクニック・ポジション・サブミッションを検索…" autocomplete="off" oninput="onSearch(this.value)">
-    <svg class="search-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-  </div>
-  <div class="cat-pills">
-<button class="cat-pill active" data-cat="all" onclick="filterCat('all',this)">🥋 すべて</button>
-<button class="cat-pill" data-cat="submission" onclick="filterCat('submission',this)">💀 チョーク</button>
-<button class="cat-pill" data-cat="guard" onclick="filterCat('guard',this)">🛡️ ガード</button>
-<button class="cat-pill" data-cat="passing" onclick="filterCat('passing',this)">⚔️ パス</button>
-<button class="cat-pill" data-cat="sweep" onclick="filterCat('sweep',this)">🌀 スウィープ</button>
-<button class="cat-pill" data-cat="takedown" onclick="filterCat('takedown',this)">🤸 テイクダウン</button>
-<button class="cat-pill" data-cat="position" onclick="filterCat('position',this)">🏔️ ポジション</button>
-<button class="cat-pill" data-cat="escape" onclick="filterCat('escape',this)">🔓 エスケープ</button>
-<button class="cat-pill" data-cat="conditioning" onclick="filterCat('conditioning',this)">⚡ コンディショニング</button>
-<button class="cat-pill" data-cat="concepts" onclick="filterCat('concepts',this)">🧠 コンセプト</button>
-  </div>
-</div>
-
+<body>
 <div class="container">
-  <!-- CTA Banner -->
-  <div class="cta-banner">
-    <span style="font-size:.95rem">BJJ練習を記録しよう</span>
-    <a href="https://bjj-app.net" class="cta-btn" onclick="gtag('event','cta_click',{'page':'index'})">無料アプリ →</a>
-  </div>
-
-  <!-- Results section -->
-  <div class="results-header">
-    <span id="results-count"></span>
-    <span id="results-label"></span>
-  </div>
-  <div id="results-grid" class="results-grid"></div>
-  <div id="load-more-wrap" style="display:none">
-    <button id="load-more" onclick="loadMore()">Load more</button>
-  </div>
-  <div id="no-results" class="no-results" style="display:none">結果が見つかりませんでした。別のキーワードで試してください。</div>
-
-  <div>
-    <div class="app-cta-wrap" style="text-align:center;padding:32px 20px;background:linear-gradient(135deg,#0a1a10,#0f172a);border:1px solid #1e3a2e;border-radius:16px;margin:24px 0">
-    <div style="font-size:1.1rem;font-weight:700;color:#e2e8f0;margin-bottom:8px">📱 BJJトレーニングを記録</div>
-    <div style="font-size:.9rem;color:#94a3b8;margin-bottom:16px">練習記録・テクニック管理・ストリーク追跡。ずっと無料。</div>
-    <a href="https://bjj-app.net/login" style="display:inline-block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:14px 32px;border-radius:30px;font-weight:700;text-decoration:none;font-size:1rem;transition:transform .2s">無料で始める →</a>
-  </div>
-  </div>
+  <header><a href="../index.html" class="logo">BJJ<span>Wiki</span></a></header>
+  <h1>å¨BJJæä¸è¦§</h1>
+  <p class="subtitle">ãã©ã¸ãªã¢ã³æè¡ï¼BJJï¼ã®æè¡ç¾ç§äºå¸ãã¬ã¼ãããã¹ãçµãæãé¢ç¯æãã¹ã¤ã¼ããç¶²ç¾ã</p>
+  <div class="cat-card"><h2>Choke</h2><div class="tech-links"><a href="rear-naked-choke.html">Rear Naked Choke</a><a href="triangle-choke.html">Triangle Choke</a><a href="guillotine-choke.html">Guillotine Choke</a><a href="bow-and-arrow-choke.html">Bow and Arrow Choke</a><a href="ezekiel-choke.html">Ezekiel Choke</a><a href="darce-choke.html">D'Arce Choke</a><a href="anaconda-choke.html">Anaconda Choke</a><a href="loop-choke.html">Loop Choke</a><a href="arm-triangle-choke.html">Arm Triangle Choke</a><a href="north-south-choke.html">North-South Choke</a><a href="baseball-choke.html">Baseball Choke</a><a href="cross-collar-choke.html">Cross Collar Choke</a><a href="clock-choke.html">Clock Choke</a><a href="lapel-choke.html">Lapel Choke</a></div></div><div class="cat-card"><h2>Defense</h2><div class="tech-links"><a href="guard-retention.html">Guard Retention</a><a href="hip-escape.html">Hip Escape</a><a href="frame.html">Frame</a><a href="sprawl.html">Sprawl</a><a href="back-defense.html">Back Defense</a></div></div><div class="cat-card"><h2>Escape</h2><div class="tech-links"><a href="shrimp-escape.html">Shrimp Escape</a><a href="bridge-and-roll.html">Bridge and Roll</a><a href="elbow-knee-escape.html">Elbow-Knee Escape</a></div></div><div class="cat-card"><h2>Guard</h2><div class="tech-links"><a href="closed-guard.html">Closed Guard</a><a href="open-guard.html">Open Guard</a><a href="half-guard.html">Half Guard</a><a href="spider-guard.html">Spider Guard</a><a href="de-la-riva-guard.html">De La Riva Guard</a><a href="berimbolo.html">Berimbolo</a><a href="butterfly-guard.html">Butterfly Guard</a><a href="rubber-guard.html">Rubber Guard</a><a href="x-guard.html">X-Guard</a><a href="worm-guard.html">Worm Guard</a><a href="reverse-de-la-riva.html">Reverse De La Riva</a><a href="50-50-guard.html">50/50 Guard</a><a href="lasso-guard.html">Lasso Guard</a><a href="deep-half-guard.html">Deep Half Guard</a><a href="z-guard.html">Z-Guard</a><a href="sitting-guard.html">Sitting Guard</a></div></div><div class="cat-card"><h2>Joint Lock</h2><div class="tech-links"><a href="armbar.html">Armbar</a><a href="kimura.html">Kimura</a><a href="americana.html">Americana</a><a href="omoplata.html">Omoplata</a><a href="wrist-lock.html">Wrist Lock</a><a href="straight-armbar.html">Straight Armbar</a><a href="monoplata.html">Monoplata</a></div></div><div class="cat-card"><h2>Leg Lock</h2><div class="tech-links"><a href="heel-hook.html">Heel Hook</a><a href="inside-heel-hook.html">Inside Heel Hook</a><a href="outside-heel-hook.html">Outside Heel Hook</a><a href="knee-bar.html">Knee Bar</a><a href="toe-hold.html">Toe Hold</a><a href="calf-slicer.html">Calf Slicer</a><a href="ankle-lock.html">Ankle Lock</a><a href="estima-lock.html">Estima Lock</a></div></div><div class="cat-card"><h2>Passing</h2><div class="tech-links"><a href="guard-pass.html">Guard Pass</a><a href="torreando-pass.html">Torreando Pass</a><a href="knee-slice-pass.html">Knee Slice Pass</a><a href="leg-drag-pass.html">Leg Drag Pass</a><a href="headquarters-pass.html">Headquarters Pass</a><a href="stack-pass.html">Stack Pass</a><a href="double-under-pass.html">Double Under Pass</a><a href="pressure-pass.html">Pressure Pass</a><a href="smash-pass.html">Smash Pass</a><a href="x-pass.html">X-Pass</a></div></div><div class="cat-card"><h2>Position</h2><div class="tech-links"><a href="mount.html">Mount</a><a href="back-mount.html">Back Mount</a><a href="side-control.html">Side Control</a><a href="north-south.html">North-South</a><a href="knee-on-belly.html">Knee on Belly</a><a href="s-mount.html">S-Mount</a><a href="modified-mount.html">Modified Mount</a><a href="body-triangle.html">Body Triangle</a><a href="turtle-position.html">Turtle Position</a><a href="seat-belt-control.html">Seat Belt Control</a><a href="front-headlock.html">Front Headlock</a><a href="underhook.html">Underhook</a><a href="overhook.html">Overhook</a></div></div><div class="cat-card"><h2>Sweep</h2><div class="tech-links"><a href="scissor-sweep.html">Scissor Sweep</a><a href="flower-sweep.html">Flower Sweep</a><a href="hip-bump-sweep.html">Hip Bump Sweep</a><a href="pendulum-sweep.html">Pendulum Sweep</a><a href="tripod-sweep.html">Tripod Sweep</a><a href="elevator-sweep.html">Elevator Sweep</a><a href="sickle-sweep.html">Sickle Sweep</a><a href="overhead-sweep.html">Overhead Sweep</a><a href="balloon-sweep.html">Balloon Sweep</a><a href="x-guard-sweep.html">X-Guard Sweep</a></div></div><div class="cat-card"><h2>Takedown</h2><div class="tech-links"><a href="double-leg-takedown.html">Double Leg Takedown</a><a href="single-leg-takedown.html">Single Leg Takedown</a><a href="osoto-gari.html">Osoto Gari</a><a href="ankle-pick.html">Ankle Pick</a><a href="harai-goshi.html">Harai Goshi</a><a href="ippon-seoi-nage.html">Ippon Seoi Nage</a><a href="morote-seoi-nage.html">Morote Seoi Nage</a><a href="snap-down.html">Snap Down</a><a href="russian-tie.html">Russian Tie</a></div></div><div class="cat-card"><h2>Transition</h2><div class="tech-links"><a href="arm-drag.html">Arm Drag</a><a href="granby-roll.html">Granby Roll</a><a href="backtake.html">Back Take</a><a href="technical-standup.html">Technical Stand-Up</a><a href="stand-in-base.html">Stand In Base</a></div></div>
+  <footer><p>BJJ Wiki</p></footer>
 </div>
-
-<footer>
-  <div style="margin-bottom:8px"><a href="../en/index.html" class="wc-link-muted">🇺🇸 EN</a> | <a href="../ja/index.html" style="color:#e2b714;text-decoration:none">🇯🇵 JA</a> | <a href="../pt/index.html" class="wc-link-muted">🇧🇷 PT</a></div>
-  &copy; 2026 BJJ Wiki — 無料のブラジリアン柔術ガイド
-</footer>
-
-<script>
-// ---- Config ----
-var POPULAR = [{s:"bjj-triangle-choke-guide",t:"\u30c8\u30e9\u30a4\u30a2\u30f3\u30b0\u30eb\u30c1\u30e7\u30fc\u30af",e:"⬛",c:"submission"},{s:"bjj-rear-naked-choke",t:"\u88f8\u7d5e\u3081\uff08RNC\uff09",e:"⬛",c:"submission"},{s:"bjj-armbar-guide",t:"\u8155\u5341\u5b57\u56fa\u3081",e:"⬛",c:"submission"},{s:"bjj-closed-guard-attacks",t:"\u30af\u30ed\u30fc\u30ba\u30c9\u30ac\u30fc\u30c9\u653b\u6483",e:"🔒",c:"guard"},{s:"bjj-guard-passing-concepts",t:"\u30ac\u30fc\u30c9\u30d1\u30b9\u57fa\u790e",e:"⚔️",c:"passing"},{s:"bjj-open-guard-mastery",t:"\u30aa\u30fc\u30d7\u30f3\u30ac\u30fc\u30c9\u5b8c\u5168\u7fd2\u5f97",e:"🌐",c:"guard"},{s:"bjj-leg-lock-system",t:"\u30ec\u30c3\u30b0\u30ed\u30c3\u30af\u30b7\u30b9\u30c6\u30e0",e:"🦵",c:"submission"},{s:"bjj-back-control-system",t:"\u30d0\u30c3\u30af\u30b3\u30f3\u30c8\u30ed\u30fc\u30eb",e:"🎯",c:"position"},{s:"bjj-competition-strategy",t:"\u7af6\u6280\u6226\u7565",e:"🏆",c:"concepts"},{s:"bjj-beginners-guide",t:"\u521d\u5fc3\u8005\u30ac\u30a4\u30c9",e:"🥋",c:"concepts"},{s:"bjj-drilling-guide",t:"\u30c9\u30ea\u30ea\u30f3\u30b0\u30ac\u30a4\u30c9",e:"🔁",c:"concepts"},{s:"bjj-flow-rolling",t:"\u30d5\u30ed\u30fc\u30ed\u30fc\u30ea\u30f3\u30b0",e:"🌊",c:"concepts"}];
-var BELT = {"white": "白帯", "blue": "青帯", "purple": "紫帯", "brown": "茶帯", "black": "黒帯"};
-var allData = null;
-var filtered = [];
-var shown = 0;
-var PAGE = 24;
-var activeCat = "all";
-var searchQ = "";
-
-// ---- Init ----
-window.addEventListener('load', function() {
-  renderCards(POPULAR.map(function(p){
-    return {s:p.s,t:p.t,d:"",c:p.c,b:"white"};
-  }), false);
-  document.getElementById('results-count').textContent = "人気のガイド";
-  // Lazy load search.json
-  fetch('search.json').then(function(r){return r.json();}).then(function(data){
-    allData = data;
-  }).catch(function(){});
-});
-
-// ---- Search ----
-function onSearch(q) {
-  searchQ = q.trim().toLowerCase();
-  if (!allData) {
-    fetch('search.json').then(function(r){return r.json();}).then(function(data){
-      allData = data;
-      doFilter();
-    });
-  } else {
-    doFilter();
-  }
-}
-
-function filterCat(cat, el) {
-  activeCat = cat;
-  document.querySelectorAll('.cat-pill').forEach(function(p){p.classList.remove('active');});
-  el.classList.add('active');
-  if (!allData) {
-    fetch('search.json').then(function(r){return r.json();}).then(function(data){
-      allData = data;
-      doFilter();
-    });
-  } else {
-    doFilter();
-  }
-}
-
-function doFilter() {
-  var q = searchQ;
-  var cat = activeCat;
-  if (!allData) return;
-  filtered = allData.filter(function(item) {
-    var catOk = cat === "all" || item.c === cat;
-    var qOk   = !q || item.t.toLowerCase().includes(q) || (item.d && item.d.toLowerCase().includes(q)) || item.s.includes(q.replace(/ /g,'-'));
-    return catOk && qOk;
-  });
-  shown = 0;
-  renderCards(filtered.slice(0, PAGE), true);
-  shown = Math.min(PAGE, filtered.length);
-  document.getElementById('results-count').textContent = filtered.length + " results";
-  document.getElementById('no-results').style.display = filtered.length ? 'none' : '';
-  document.getElementById('load-more-wrap').style.display = filtered.length > PAGE ? '' : 'none';
-}
-
-function loadMore() {
-  var next = filtered.slice(shown, shown + PAGE);
-  appendCards(next);
-  shown += next.length;
-  if (shown >= filtered.length) {
-    document.getElementById('load-more-wrap').style.display = 'none';
-  }
-}
-
-function renderCards(items, clear) {
-  var grid = document.getElementById('results-grid');
-  if (clear) grid.innerHTML = '';
-  appendCards(items);
-}
-
-function appendCards(items) {
-  var grid = document.getElementById('results-grid');
-  var html = '';
-  items.forEach(function(item) {
-    var slug = item.s || item.slug || '';
-    var title = item.t || item.title || slug;
-    var desc = item.d || item.desc || '';
-    var belt = BELT[item.b] || BELT['white'] || '';
-    html += '<div class="result-title">' + esc(title) + '</div>';
-    if (desc) html += '<div class="result-desc">' + esc(desc) + '</div>';
-    html += '<div class="result-meta"><span class="badge">' + esc(belt) + '</span></div>';
-    html += '</a>';
-  });
-  grid.innerHTML += html;
-}
-
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
+</body>
+</html>
