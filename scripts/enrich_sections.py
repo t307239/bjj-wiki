@@ -343,56 +343,61 @@ def main():
 
         print(f"[{i}/{len(targets)}] {slug} ({tech_name})")
 
-        # Rate limiting
-        if api_calls > 0:
-            time.sleep(SLEEP_BETWEEN)
+        try:
+            # Rate limiting
+            if api_calls > 0:
+                time.sleep(SLEEP_BETWEEN)
 
-        # Call Gemini
-        prompt = build_enrich_prompt(tech_name, args.lang)
-        raw = call_gemini(prompt)
-        api_calls += 1
+            # Call Gemini
+            prompt = build_enrich_prompt(tech_name, args.lang)
+            raw = call_gemini(prompt)
+            api_calls += 1
 
-        if not raw:
-            print(f"  ✗ Gemini returned empty")
-            fail += 1
-            continue
+            if not raw:
+                print(f"  ✗ Gemini returned empty")
+                fail += 1
+                continue
 
-        data = parse_response(raw)
-        if not data:
-            print(f"  ✗ Failed to parse JSON")
-            fail += 1
-            continue
+            data = parse_response(raw)
+            if not data:
+                print(f"  ✗ Failed to parse JSON")
+                fail += 1
+                continue
 
-        # Read current file
-        content = filepath.read_text(encoding="utf-8")
-        modified = False
+            # Read current file
+            content = filepath.read_text(encoding="utf-8")
+            modified = False
 
-        # Inject FAQ
-        if target["needs_faq"] and "faq" in data:
-            faq_items = data["faq"]
-            if isinstance(faq_items, list) and len(faq_items) >= 1:
-                content = inject_faq(content, faq_items, args.lang)
-                page_url = f"https://wiki.bjj-app.net/{args.lang}/{slug}.html"
-                content = inject_faq_jsonld(content, faq_items, page_url)
+            # Inject FAQ
+            if target["needs_faq"] and "faq" in data:
+                faq_items = data["faq"]
+                if isinstance(faq_items, list) and len(faq_items) >= 1:
+                    content = inject_faq(content, faq_items, args.lang)
+                    page_url = f"https://wiki.bjj-app.net/{args.lang}/{slug}.html"
+                    content = inject_faq_jsonld(content, faq_items, page_url)
+                    modified = True
+                    print(f"  ✓ FAQ ({len(faq_items)} questions)")
+
+            # Inject Difficulty
+            if target["needs_difficulty"] and "belt_level" in data:
+                belt = data.get("belt_level", "blue")
+                stars = data.get("stars", "★★☆☆☆")
+                diff = data.get("difficulty_level", "Intermediate")
+                content = inject_difficulty(content, belt, stars, diff)
                 modified = True
-                print(f"  ✓ FAQ ({len(faq_items)} questions)")
+                print(f"  ✓ Difficulty ({belt} / {diff})")
 
-        # Inject Difficulty
-        if target["needs_difficulty"] and "belt_level" in data:
-            belt = data.get("belt_level", "blue")
-            stars = data.get("stars", "★★☆☆☆")
-            diff = data.get("difficulty_level", "Intermediate")
-            content = inject_difficulty(content, belt, stars, diff)
-            modified = True
-            print(f"  ✓ Difficulty ({belt} / {diff})")
+            if modified:
+                filepath.write_text(content, encoding="utf-8")
+                success += 1
+            else:
+                fail += 1
 
-        if modified:
-            filepath.write_text(content, encoding="utf-8")
-            success += 1
-        else:
+        except Exception as e:
+            print(f"  ✗ Unexpected error: {e}")
             fail += 1
 
-        # Save progress
+        # Save progress (outside try so it runs even on error)
         progress["completed"][args.lang].append(slug)
         if i % 10 == 0:
             save_progress(progress)

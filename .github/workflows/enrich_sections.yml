@@ -2,7 +2,7 @@ name: Enrich Wiki Sections (FAQ + Difficulty)
 
 on:
   schedule:
-    - cron: '0 1 * * *'  # 毎日 10:00 JST
+    - cron: '0 2 * * *'  # 毎日 11:00 JST（generate.yml 完了後に実行）
   workflow_dispatch:
     inputs:
       lang:
@@ -63,6 +63,7 @@ jobs:
           CHANGED=$(git diff --cached --numstat | wc -l)
           if [ "$CHANGED" -gt 0 ]; then
             git commit -m "wiki: enrich FAQ+Difficulty ${{ steps.lang.outputs.lang }} — ${{ steps.enrich.outputs.success }} pages"
+            git pull --rebase origin main || true
             git push
           else
             echo "No changes to commit"
