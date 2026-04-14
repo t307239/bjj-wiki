@@ -54,6 +54,12 @@ jobs:
           FAILED=$(grep -oP 'Failed:\s+\K\d+' /tmp/enrich.log || echo "0")
           echo "success=$SUCCESS" >> $GITHUB_OUTPUT
           echo "failed=$FAILED" >> $GITHUB_OUTPUT
+          # ── 完了検知: "All done!" が出力されたら該当言語の完了フラグを立てる ──
+          if grep -q "All done" /tmp/enrich.log; then
+            echo "all_done=true" >> $GITHUB_OUTPUT
+          else
+            echo "all_done=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Commit changes
         run: |
@@ -69,6 +75,19 @@ jobs:
             echo "No changes to commit"
           fi
 
+      # ── 完了通知: この言語のFAQ+Difficulty注入が全ページ完了したらTelegramで通知 ──
+      # "All done!" = find_targets() が空 = 未処理ページ0件
+      - name: Notify completion via Telegram
+        if: steps.enrich.outputs.all_done == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          LANG="${{ steps.lang.outputs.lang }}"
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="✅ Wiki FAQ+Difficulty 注入完了 [$LANG] $(date '+%Y-%m-%d') — 全ページ処理済み！"
+
       - name: Job Summary
         if: always()
         run: |
@@ -79,4 +98,5 @@ jobs:
           echo "| Language | \`${{ steps.lang.outputs.lang }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Success | ${{ steps.enrich.outputs.success }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Failed | ${{ steps.enrich.outputs.failed }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| All Done | ${{ steps.enrich.outputs.all_done }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Status | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
