@@ -290,8 +290,9 @@ def extract_page_meta(filepath: str) -> dict | None:
 
 def build_tweet(slug: str, title: str, description: str, url: str) -> str:
     """テンプレベースのツイート文を生成（280文字以内）"""
-    # タイトルをクリーンアップ
-    clean_title = re.sub(r"\s*[-|–—].*$", "", title).strip()
+    # タイトルをクリーンアップ（" | BJJ Wiki" 等のサフィックス除去。ハイフン入り語は保持）
+    clean_title = re.sub(r"\s+[|–—]\s+.*$", "", title).strip()
+    clean_title = re.sub(r"\s+-\s+BJJ Wiki.*$", "", clean_title).strip()
     if not clean_title:
         clean_title = title
 

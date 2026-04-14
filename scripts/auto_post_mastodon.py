@@ -1,24 +1,25 @@
 #!/usr/bin/env python3
 """
-auto_post_threads.py — BJJ Wiki → Threads 自動投稿
+auto_post_mastodon.py — BJJ Wiki → Mastodon 自動投稿
 
-Threads API (Meta Graph API) を使用。
-テキスト投稿（500文字以内）+ リンク付き。
+Mastodon API を使用。テキスト投稿（500文字以内）。
+完全無料・分散型SNS。フィットネス/格闘技コミュニティに到達可能。
 
 必要な環境変数（GitHub Secrets）:
-  THREADS_ACCESS_TOKEN   — Long-lived User Access Token
-  THREADS_USER_ID        — Threads User ID
-  TELEGRAM_BOT_TOKEN     — Telegram通知用（任意）
-  TELEGRAM_CHAT_ID       — Telegram チャットID（任意）
+  MASTODON_INSTANCE     — インスタンスURL（例: https://mastodon.social）
+  MASTODON_ACCESS_TOKEN — アクセストークン
+  TELEGRAM_BOT_TOKEN    — Telegram通知用（任意）
+  TELEGRAM_CHAT_ID      — Telegram チャットID（任意）
 
-Threads Developer Portal での設定:
-  1. https://developers.facebook.com/ でアプリ作成
-  2. Threads API → threads_basic, threads_content_publish のパーミッション取得
-  3. User Access Token を取得（60日有効、refresh可能）
-  4. User ID: GET https://graph.threads.net/v1.0/me?access_token=TOKEN
+セットアップ:
+  1. Mastodonインスタンスでアカウント作成（mastodon.social 推奨）
+  2. Settings → Development → New Application
+     - Application name: BJJ Wiki Bot
+     - Scopes: write:statuses
+  3. 生成された Access Token を GitHub Secrets に設定
 
 Usage:
-  python3 scripts/auto_post_threads.py [--dry-run] [--limit N]
+  python3 scripts/auto_post_mastodon.py [--dry-run] [--limit N]
 """
 
 import os
@@ -33,12 +34,9 @@ import urllib.error
 from datetime import datetime
 
 SITE_BASE_URL = "https://wiki.bjj-app.net"
-APP_URL = "https://bjj-app.net"
-POSTED_LOG = os.path.join(os.path.dirname(os.path.dirname(__file__)), "already_posted_threads.txt")
+POSTED_LOG = os.path.join(os.path.dirname(os.path.dirname(__file__)), "already_posted_mastodon.txt")
 MAX_POST_LEN = 500
 DEFAULT_LIMIT = 1
-
-THREADS_API_BASE = "https://graph.threads.net/v1.0"
 
 
 # ────────────────────────────────────────────
@@ -71,89 +69,63 @@ def detect_category(slug: str, title: str) -> str:
 
 POST_TEMPLATES = {
     "technique": [
-        "{title}\n\n{short_desc}\n\nFull guide: {url}\n\nTrack your training free at bjj-app.net\n\n{tags}",
-        "Technique spotlight: {title}\n\n{short_desc}\n\nLearn more: {url}\n\n{tags}",
-        "Want to improve your {title_lower}?\n\nRead the full breakdown: {url}\n\nLog your rolls at bjj-app.net\n\n{tags}",
+        "{title}\n\n{short_desc}\n\nFull guide: {url}\n\nTrack your BJJ training free at bjj-app.net\n\n{tags}",
+        "Technique breakdown: {title}\n\n{short_desc}\n\n{url}\n\n{tags}",
+        "Want to improve your {title_lower}?\n\nRead the full guide: {url}\n\n{tags}",
     ],
     "athlete": [
         "{title}\n\n{short_desc}\n\nFull profile: {url}\n\n{tags}",
-        "BJJ Legend: {title}\n\n{short_desc}\n\nRead more: {url}\n\n{tags}",
+        "BJJ Legend: {title}\n\n{url}\n\n{tags}",
     ],
     "training": [
-        "{title}\n\n{short_desc}\n\nFull guide: {url}\n\nFree training tracker: bjj-app.net\n\n{tags}",
-        "Training tip: {title}\n\n{url}\n\nTrack your progress: bjj-app.net\n\n{tags}",
+        "{title}\n\n{short_desc}\n\n{url}\n\nFree training log: bjj-app.net\n\n{tags}",
     ],
     "general": [
-        "{title}\n\n{short_desc}\n\nRead more: {url}\n\n{tags}",
+        "{title}\n\n{short_desc}\n\n{url}\n\n{tags}",
         "New on BJJ Wiki: {title}\n\n{url}\n\n{tags}",
     ],
 }
 
 HASHTAG_POOLS = {
-    "technique": ["#BJJ", "#BrazilianJiuJitsu", "#JiuJitsu", "#Grappling", "#BJJTechnique"],
-    "athlete": ["#BJJ", "#BrazilianJiuJitsu", "#JiuJitsu", "#BJJLegend", "#MartialArts"],
-    "training": ["#BJJ", "#BrazilianJiuJitsu", "#BJJTraining", "#Grappling", "#JiuJitsuLife"],
+    "technique": ["#BJJ", "#BrazilianJiuJitsu", "#JiuJitsu", "#Grappling", "#MartialArts"],
+    "athlete": ["#BJJ", "#BrazilianJiuJitsu", "#MartialArts", "#JiuJitsu"],
+    "training": ["#BJJ", "#BrazilianJiuJitsu", "#Grappling", "#Training"],
     "general": ["#BJJ", "#BrazilianJiuJitsu", "#JiuJitsu", "#Grappling"],
 }
 
 
 # ────────────────────────────────────────────
-#  Threads API
+#  Mastodon API
 # ────────────────────────────────────────────
-def create_threads_post(text: str, user_id: str, access_token: str, dry_run: bool = False) -> dict | None:
-    """Threads API でテキスト投稿を作成する（2ステップ: create → publish）"""
+def mastodon_post(text: str, instance: str, access_token: str, dry_run: bool = False) -> dict | None:
+    """Mastodon API でステータスを投稿"""
     if dry_run:
         print(f"  [DRY RUN] ({len(text)} chars):")
         print(f"  {text[:200]}...")
         return {"id": "dry_run"}
 
-    # Step 1: Create media container
-    create_url = f"{THREADS_API_BASE}/{user_id}/threads"
-    params = {
-        "media_type": "TEXT",
-        "text": text,
-        "access_token": access_token,
-    }
-    encoded = urllib.parse.urlencode(params).encode()
+    url = f"{instance.rstrip('/')}/api/v1/statuses"
+    payload = json.dumps({
+        "status": text,
+        "visibility": "public",
+        "language": "en",
+    }).encode()
+
+    req = urllib.request.Request(url, data=payload, method="POST")
+    req.add_header("Authorization", f"Bearer {access_token}")
+    req.add_header("Content-Type", "application/json")
 
     try:
-        req = urllib.request.Request(create_url, data=encoded, method="POST")
-        with urllib.request.urlopen(req, timeout=30) as resp:
+        with urllib.request.urlopen(req, timeout=15) as resp:
             result = json.loads(resp.read().decode())
-            container_id = result.get("id")
-            if not container_id:
-                print(f"  [ERROR] No container ID: {result}")
-                return None
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        print(f"  [ERROR] Create failed {e.code}: {body[:300]}")
-        if e.code == 401:
-            raise RuntimeError(f"Threads auth failed: {body}")
-        return None
-
-    # Step 2: Publish
-    time.sleep(2)  # Wait for container to be ready
-    publish_url = f"{THREADS_API_BASE}/{user_id}/threads_publish"
-    publish_params = {
-        "creation_id": container_id,
-        "access_token": access_token,
-    }
-    encoded = urllib.parse.urlencode(publish_params).encode()
-
-    try:
-        req = urllib.request.Request(publish_url, data=encoded, method="POST")
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            result = json.loads(resp.read().decode())
-            post_id = result.get("id")
-            print(f"  [OK] Thread {post_id}")
+            print(f"  [OK] Toot: {result.get('id', '')}")
             return result
     except urllib.error.HTTPError as e:
         body = e.read().decode()
-        print(f"  [ERROR] Publish failed {e.code}: {body[:300]}")
+        print(f"  [ERROR] Mastodon {e.code}: {body[:300]}")
+        if e.code == 401 or e.code == 403:
+            raise RuntimeError(f"Mastodon auth failed: {body}")
         return None
-
-
-import urllib.parse
 
 
 def send_telegram(msg: str) -> None:
@@ -192,9 +164,8 @@ def extract_page_meta(filepath: str) -> dict | None:
     return {"title": title, "description": desc}
 
 
-def build_threads_post(slug: str, title: str, description: str, url: str) -> str:
+def build_post(slug: str, title: str, description: str, url: str) -> str:
     """テンプレートベースの投稿文生成（500文字以内）"""
-    # " | BJJ Wiki" 等のサフィックス除去（ハイフン入り語は保持）
     clean_title = re.sub(r"\s+[|–—]\s+.*$", "", title).strip()
     clean_title = re.sub(r"\s+-\s+BJJ Wiki.*$", "", clean_title).strip()
     if not clean_title:
@@ -250,13 +221,13 @@ def main():
             except ValueError:
                 pass
 
-    access_token = os.environ.get("THREADS_ACCESS_TOKEN", "")
-    user_id = os.environ.get("THREADS_USER_ID", "")
+    instance = os.environ.get("MASTODON_INSTANCE", "")
+    access_token = os.environ.get("MASTODON_ACCESS_TOKEN", "")
 
-    if not access_token or not user_id:
-        print("[WARN] THREADS_ACCESS_TOKEN or THREADS_USER_ID not set — skipping")
-        print("Setup: https://developers.facebook.com/ → Threads API")
-        sys.exit(0)  # Exit 0 so GHA doesn't fail
+    if not instance or not access_token:
+        print("[WARN] MASTODON_INSTANCE or MASTODON_ACCESS_TOKEN not set — skipping")
+        print("Setup: mastodon.social → Settings → Development → New Application")
+        sys.exit(0)
 
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     en_dir = os.path.join(base, "en")
@@ -266,7 +237,7 @@ def main():
     remaining = total_pages - len(posted)
 
     mode = "DRY RUN" if dry_run else "LIVE"
-    print(f"=== BJJ Wiki Threads Auto Post ({mode}) ===")
+    print(f"=== BJJ Wiki Mastodon Auto Post ({mode}) ===")
     print(f"Total: {total_pages} | Posted: {len(posted)} | Remaining: {remaining}")
     print()
 
@@ -287,15 +258,15 @@ def main():
 
         page_url = f"{SITE_BASE_URL}/en/{slug}.html"
         category = detect_category(slug, meta["title"])
-        post_text = build_threads_post(slug, meta["title"], meta["description"], page_url)
+        post_text = build_post(slug, meta["title"], meta["description"], page_url)
 
         print(f"  [{category}] {slug}")
         try:
-            result = create_threads_post(post_text, user_id, access_token, dry_run=dry_run)
+            result = mastodon_post(post_text, instance, access_token, dry_run=dry_run)
         except RuntimeError as e:
             print(f"  FAIL: {e}")
             if not dry_run:
-                send_telegram(f"Threads auth failed: {e}")
+                send_telegram(f"Mastodon auth failed: {e}")
             sys.exit(1)
 
         if result:
@@ -303,19 +274,17 @@ def main():
             newly_posted.append(slug)
             posted.add(slug)
             if not dry_run:
-                time.sleep(3)  # Rate limit
-        else:
-            print(f"  [SKIP] Failed to post {slug}")
+                time.sleep(3)
 
     if not dry_run:
         save_posted_log(posted)
 
-    print(f"\n=== Done: {count} threads ===")
+    print(f"\n=== Done: {count} toots ===")
     print(f"  Remaining: {total_pages - len(posted)}/{total_pages}")
 
     if count > 0 and not dry_run:
         send_telegram(
-            f"Threads: {count} posts\n"
+            f"Mastodon: {count} posts\n"
             + "\n".join(f"  {s}" for s in newly_posted)
         )
 

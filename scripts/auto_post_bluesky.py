@@ -1,24 +1,23 @@
 #!/usr/bin/env python3
 """
-auto_post_threads.py — BJJ Wiki → Threads 自動投稿
+auto_post_bluesky.py — BJJ Wiki → Bluesky 自動投稿
 
-Threads API (Meta Graph API) を使用。
-テキスト投稿（500文字以内）+ リンク付き。
+AT Protocol (atproto) を使用。テキスト投稿 + リンクカード。
+Blueskyは完全無料API。海外BJJコミュニティに強い。
 
 必要な環境変数（GitHub Secrets）:
-  THREADS_ACCESS_TOKEN   — Long-lived User Access Token
-  THREADS_USER_ID        — Threads User ID
-  TELEGRAM_BOT_TOKEN     — Telegram通知用（任意）
-  TELEGRAM_CHAT_ID       — Telegram チャットID（任意）
+  BLUESKY_HANDLE     — Blueskyハンドル（例: bjjwiki.bsky.social）
+  BLUESKY_APP_PASSWORD — App Password（Settings → App Passwords で生成）
+  TELEGRAM_BOT_TOKEN  — Telegram通知用（任意）
+  TELEGRAM_CHAT_ID    — Telegram チャットID（任意）
 
-Threads Developer Portal での設定:
-  1. https://developers.facebook.com/ でアプリ作成
-  2. Threads API → threads_basic, threads_content_publish のパーミッション取得
-  3. User Access Token を取得（60日有効、refresh可能）
-  4. User ID: GET https://graph.threads.net/v1.0/me?access_token=TOKEN
+セットアップ:
+  1. https://bsky.app/ でアカウント作成
+  2. Settings → App Passwords → Generate App Password
+  3. GitHub Secrets に BLUESKY_HANDLE / BLUESKY_APP_PASSWORD を設定
 
 Usage:
-  python3 scripts/auto_post_threads.py [--dry-run] [--limit N]
+  python3 scripts/auto_post_bluesky.py [--dry-run] [--limit N]
 """
 
 import os
@@ -30,15 +29,14 @@ import glob
 import random
 import urllib.request
 import urllib.error
-from datetime import datetime
+from datetime import datetime, timezone
 
 SITE_BASE_URL = "https://wiki.bjj-app.net"
-APP_URL = "https://bjj-app.net"
-POSTED_LOG = os.path.join(os.path.dirname(os.path.dirname(__file__)), "already_posted_threads.txt")
-MAX_POST_LEN = 500
+POSTED_LOG = os.path.join(os.path.dirname(os.path.dirname(__file__)), "already_posted_bluesky.txt")
+MAX_POST_LEN = 300  # Bluesky 300 char limit
 DEFAULT_LIMIT = 1
 
-THREADS_API_BASE = "https://graph.threads.net/v1.0"
+BSKY_API = "https://bsky.social/xrpc"
 
 
 # ────────────────────────────────────────────
@@ -71,89 +69,108 @@ def detect_category(slug: str, title: str) -> str:
 
 POST_TEMPLATES = {
     "technique": [
-        "{title}\n\n{short_desc}\n\nFull guide: {url}\n\nTrack your training free at bjj-app.net\n\n{tags}",
-        "Technique spotlight: {title}\n\n{short_desc}\n\nLearn more: {url}\n\n{tags}",
-        "Want to improve your {title_lower}?\n\nRead the full breakdown: {url}\n\nLog your rolls at bjj-app.net\n\n{tags}",
+        "{title}\n\n{short_desc}\n\nFull guide: {url}",
+        "Technique spotlight: {title}\n\n{url}",
+        "Level up your game: {title}\n\n{short_desc}\n\n{url}",
     ],
     "athlete": [
-        "{title}\n\n{short_desc}\n\nFull profile: {url}\n\n{tags}",
-        "BJJ Legend: {title}\n\n{short_desc}\n\nRead more: {url}\n\n{tags}",
+        "{title}\n\n{short_desc}\n\n{url}",
+        "BJJ Legend: {title}\n\nFull profile: {url}",
     ],
     "training": [
-        "{title}\n\n{short_desc}\n\nFull guide: {url}\n\nFree training tracker: bjj-app.net\n\n{tags}",
-        "Training tip: {title}\n\n{url}\n\nTrack your progress: bjj-app.net\n\n{tags}",
+        "{title}\n\n{short_desc}\n\n{url}",
+        "Training tip: {title}\n\n{url}",
     ],
     "general": [
-        "{title}\n\n{short_desc}\n\nRead more: {url}\n\n{tags}",
-        "New on BJJ Wiki: {title}\n\n{url}\n\n{tags}",
+        "{title}\n\n{short_desc}\n\n{url}",
+        "New on BJJ Wiki: {title}\n\n{url}",
     ],
 }
 
-HASHTAG_POOLS = {
-    "technique": ["#BJJ", "#BrazilianJiuJitsu", "#JiuJitsu", "#Grappling", "#BJJTechnique"],
-    "athlete": ["#BJJ", "#BrazilianJiuJitsu", "#JiuJitsu", "#BJJLegend", "#MartialArts"],
-    "training": ["#BJJ", "#BrazilianJiuJitsu", "#BJJTraining", "#Grappling", "#JiuJitsuLife"],
-    "general": ["#BJJ", "#BrazilianJiuJitsu", "#JiuJitsu", "#Grappling"],
-}
-
 
 # ────────────────────────────────────────────
-#  Threads API
+#  Bluesky AT Protocol API
 # ────────────────────────────────────────────
-def create_threads_post(text: str, user_id: str, access_token: str, dry_run: bool = False) -> dict | None:
-    """Threads API でテキスト投稿を作成する（2ステップ: create → publish）"""
+def bsky_login(handle: str, app_password: str) -> tuple[str, str]:
+    """ログインしてaccess JWT + DID を取得"""
+    url = f"{BSKY_API}/com.atproto.server.createSession"
+    payload = json.dumps({"identifier": handle, "password": app_password}).encode()
+    req = urllib.request.Request(url, data=payload, method="POST")
+    req.add_header("Content-Type", "application/json")
+
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        data = json.loads(resp.read().decode())
+        return data["accessJwt"], data["did"]
+
+
+def bsky_create_post(text: str, link_url: str, link_title: str, link_desc: str,
+                     access_jwt: str, did: str, dry_run: bool = False) -> dict | None:
+    """Bluesky投稿を作成（リンクカード facet 付き）"""
     if dry_run:
         print(f"  [DRY RUN] ({len(text)} chars):")
         print(f"  {text[:200]}...")
-        return {"id": "dry_run"}
+        return {"uri": "dry_run"}
 
-    # Step 1: Create media container
-    create_url = f"{THREADS_API_BASE}/{user_id}/threads"
-    params = {
-        "media_type": "TEXT",
+    # リンクのバイト位置を検出（facet用）
+    text_bytes = text.encode("utf-8")
+    url_bytes = link_url.encode("utf-8")
+    url_start = text_bytes.find(url_bytes)
+
+    facets = []
+    if url_start >= 0:
+        facets.append({
+            "index": {
+                "byteStart": url_start,
+                "byteEnd": url_start + len(url_bytes),
+            },
+            "features": [{
+                "$type": "app.bsky.richtext.facet#link",
+                "uri": link_url,
+            }]
+        })
+
+    # 外部リンクカード（embed）
+    embed = {
+        "$type": "app.bsky.embed.external",
+        "external": {
+            "uri": link_url,
+            "title": link_title[:300],
+            "description": link_desc[:300] if link_desc else "",
+        }
+    }
+
+    record = {
+        "$type": "app.bsky.feed.post",
         "text": text,
-        "access_token": access_token,
+        "createdAt": datetime.now(timezone.utc).isoformat(),
+        "langs": ["en"],
     }
-    encoded = urllib.parse.urlencode(params).encode()
+    if facets:
+        record["facets"] = facets
+    record["embed"] = embed
+
+    url = f"{BSKY_API}/com.atproto.repo.createRecord"
+    payload = json.dumps({
+        "repo": did,
+        "collection": "app.bsky.feed.post",
+        "record": record,
+    }).encode()
+
+    req = urllib.request.Request(url, data=payload, method="POST")
+    req.add_header("Authorization", f"Bearer {access_jwt}")
+    req.add_header("Content-Type", "application/json")
 
     try:
-        req = urllib.request.Request(create_url, data=encoded, method="POST")
-        with urllib.request.urlopen(req, timeout=30) as resp:
+        with urllib.request.urlopen(req, timeout=15) as resp:
             result = json.loads(resp.read().decode())
-            container_id = result.get("id")
-            if not container_id:
-                print(f"  [ERROR] No container ID: {result}")
-                return None
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        print(f"  [ERROR] Create failed {e.code}: {body[:300]}")
-        if e.code == 401:
-            raise RuntimeError(f"Threads auth failed: {body}")
-        return None
-
-    # Step 2: Publish
-    time.sleep(2)  # Wait for container to be ready
-    publish_url = f"{THREADS_API_BASE}/{user_id}/threads_publish"
-    publish_params = {
-        "creation_id": container_id,
-        "access_token": access_token,
-    }
-    encoded = urllib.parse.urlencode(publish_params).encode()
-
-    try:
-        req = urllib.request.Request(publish_url, data=encoded, method="POST")
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            result = json.loads(resp.read().decode())
-            post_id = result.get("id")
-            print(f"  [OK] Thread {post_id}")
+            print(f"  [OK] Post: {result.get('uri', '')[:60]}")
             return result
     except urllib.error.HTTPError as e:
         body = e.read().decode()
-        print(f"  [ERROR] Publish failed {e.code}: {body[:300]}")
+        print(f"  [ERROR] Bluesky {e.code}: {body[:300]}")
+        if e.code == 401:
+            raise RuntimeError(f"Bluesky auth failed: {body}")
         return None
-
-
-import urllib.parse
 
 
 def send_telegram(msg: str) -> None:
@@ -192,8 +209,8 @@ def extract_page_meta(filepath: str) -> dict | None:
     return {"title": title, "description": desc}
 
 
-def build_threads_post(slug: str, title: str, description: str, url: str) -> str:
-    """テンプレートベースの投稿文生成（500文字以内）"""
+def build_post(slug: str, title: str, description: str, url: str) -> str:
+    """テンプレートベースの投稿文生成（300文字以内）"""
     # " | BJJ Wiki" 等のサフィックス除去（ハイフン入り語は保持）
     clean_title = re.sub(r"\s+[|–—]\s+.*$", "", title).strip()
     clean_title = re.sub(r"\s+-\s+BJJ Wiki.*$", "", clean_title).strip()
@@ -205,24 +222,22 @@ def build_threads_post(slug: str, title: str, description: str, url: str) -> str
 
     random.seed(slug)
     template = templates[hash(slug) % len(templates)]
-    tags = " ".join(HASHTAG_POOLS.get(category, HASHTAG_POOLS["general"])[:4])
 
     short_desc = description.split(".")[0].strip()
     if short_desc and not short_desc.endswith("."):
         short_desc += "."
-    if len(short_desc) > 120:
-        short_desc = short_desc[:117] + "..."
+    if len(short_desc) > 100:
+        short_desc = short_desc[:97] + "..."
 
     post = template.format(
         title=clean_title,
         title_lower=clean_title.lower() if clean_title[0].isupper() else clean_title,
         short_desc=short_desc,
         url=url,
-        tags=tags,
     )
 
     if len(post) > MAX_POST_LEN:
-        post = f"{clean_title}\n\n{url}\n\n{tags}"
+        post = f"{clean_title}\n\n{url}"
 
     return post.strip()[:MAX_POST_LEN]
 
@@ -250,13 +265,25 @@ def main():
             except ValueError:
                 pass
 
-    access_token = os.environ.get("THREADS_ACCESS_TOKEN", "")
-    user_id = os.environ.get("THREADS_USER_ID", "")
+    handle = os.environ.get("BLUESKY_HANDLE", "")
+    app_password = os.environ.get("BLUESKY_APP_PASSWORD", "")
 
-    if not access_token or not user_id:
-        print("[WARN] THREADS_ACCESS_TOKEN or THREADS_USER_ID not set — skipping")
-        print("Setup: https://developers.facebook.com/ → Threads API")
-        sys.exit(0)  # Exit 0 so GHA doesn't fail
+    if not handle or not app_password:
+        print("[WARN] BLUESKY_HANDLE or BLUESKY_APP_PASSWORD not set — skipping")
+        print("Setup: bsky.app → Settings → App Passwords")
+        sys.exit(0)
+
+    # ログイン
+    access_jwt = ""
+    did = ""
+    if not dry_run:
+        try:
+            access_jwt, did = bsky_login(handle, app_password)
+            print(f"[AUTH] Logged in as {handle} (DID: {did[:20]}...)")
+        except Exception as e:
+            print(f"[FATAL] Bluesky login failed: {e}")
+            send_telegram(f"Bluesky login failed: {e}")
+            sys.exit(1)
 
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     en_dir = os.path.join(base, "en")
@@ -266,7 +293,7 @@ def main():
     remaining = total_pages - len(posted)
 
     mode = "DRY RUN" if dry_run else "LIVE"
-    print(f"=== BJJ Wiki Threads Auto Post ({mode}) ===")
+    print(f"=== BJJ Wiki Bluesky Auto Post ({mode}) ===")
     print(f"Total: {total_pages} | Posted: {len(posted)} | Remaining: {remaining}")
     print()
 
@@ -287,15 +314,22 @@ def main():
 
         page_url = f"{SITE_BASE_URL}/en/{slug}.html"
         category = detect_category(slug, meta["title"])
-        post_text = build_threads_post(slug, meta["title"], meta["description"], page_url)
+        post_text = build_post(slug, meta["title"], meta["description"], page_url)
+
+        # タイトルをクリーンアップ（embed用）
+        clean_title = re.sub(r"\s+[|–—]\s+.*$", "", meta["title"]).strip()
+        clean_title = re.sub(r"\s+-\s+BJJ Wiki.*$", "", clean_title).strip()
 
         print(f"  [{category}] {slug}")
         try:
-            result = create_threads_post(post_text, user_id, access_token, dry_run=dry_run)
+            result = bsky_create_post(
+                post_text, page_url, clean_title, meta["description"],
+                access_jwt, did, dry_run=dry_run
+            )
         except RuntimeError as e:
             print(f"  FAIL: {e}")
             if not dry_run:
-                send_telegram(f"Threads auth failed: {e}")
+                send_telegram(f"Bluesky auth failed: {e}")
             sys.exit(1)
 
         if result:
@@ -303,19 +337,17 @@ def main():
             newly_posted.append(slug)
             posted.add(slug)
             if not dry_run:
-                time.sleep(3)  # Rate limit
-        else:
-            print(f"  [SKIP] Failed to post {slug}")
+                time.sleep(2)
 
     if not dry_run:
         save_posted_log(posted)
 
-    print(f"\n=== Done: {count} threads ===")
+    print(f"\n=== Done: {count} posts ===")
     print(f"  Remaining: {total_pages - len(posted)}/{total_pages}")
 
     if count > 0 and not dry_run:
         send_telegram(
-            f"Threads: {count} posts\n"
+            f"Bluesky: {count} posts\n"
             + "\n".join(f"  {s}" for s in newly_posted)
         )
 
