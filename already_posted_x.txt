@@ -5,6 +5,7 @@ over-under-pass
 overhead-sweep
 overhook
 paper-cutter-choke
+pendulum-sweep
 peruvian-necktie
 pressure-pass
 purple-belt-bjj-guide
