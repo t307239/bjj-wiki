@@ -1,3 +1,4 @@
+triangle-choke
 twister
 x-guard
 x-pass
