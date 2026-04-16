@@ -7,6 +7,7 @@ overhook
 paper-cutter-choke
 pendulum-sweep
 peruvian-necktie
+posture
 pressure-pass
 purple-belt-bjj-guide
 quarter-guard
