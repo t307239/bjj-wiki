@@ -1,4 +1,5 @@
 news
+north-south-choke
 omoplata
 open-guard
 osoto-gari
