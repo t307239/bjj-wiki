@@ -1,4 +1,5 @@
 triangle-choke
+tripod-sweep
 twister
 underhook
 worm-guard
