@@ -5,6 +5,7 @@ twister
 underhook
 von-flue-choke
 worm-guard
+wrist-lock
 x-guard
 x-guard-sweep
 x-pass
