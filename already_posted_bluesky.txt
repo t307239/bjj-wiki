@@ -3,6 +3,7 @@ tripod-sweep
 turtle-position
 twister
 underhook
+von-flue-choke
 worm-guard
 x-guard
 x-guard-sweep
