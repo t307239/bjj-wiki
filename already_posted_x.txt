@@ -1,5 +1,6 @@
 morote-seoi-nage
 mount
+mounted-triangle
 news
 north-south
 north-south-choke
