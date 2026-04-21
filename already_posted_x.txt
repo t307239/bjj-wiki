@@ -1,4 +1,5 @@
 leg-drag
+loop-choke
 modified-mount
 monoplata
 morote-seoi-nage
