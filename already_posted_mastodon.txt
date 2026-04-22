@@ -1,3 +1,4 @@
+straight-armbar
 technical-standup
 techniques-az
 toe-hold
