@@ -1,5 +1,6 @@
 leg-drag
 leg-drag-pass
+leg-locks
 loop-choke
 modified-mount
 monoplata
