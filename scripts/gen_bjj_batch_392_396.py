@@ -963,7 +963,7 @@ def build_hreflang(slug):
 
 
 def build_page(slug, lang, data, hreflang):
-    lang_attr = {"en": "en", "ja": "ja", "pt": "pt-BR"}[lang]
+    lang_attr = {"en": "en", "ja": "ja", "pt": "pt"}[lang]
     title = data["title"]
     desc = data["desc"]
     h1 = data["h1"]

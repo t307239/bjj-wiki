@@ -398,7 +398,7 @@ def build_page(lang, cfg):
         "pt": ("Marca","Preço","Tecido","IBJJF","Avaliação"),
     }[lang]
 
-    ld_lang = {"en":"en","ja":"ja","pt":"pt-BR"}[lang]
+    ld_lang = {"en":"en","ja":"ja","pt":"pt"}[lang]
     ld_pub_name = "BJJ Wiki"
 
     html = f"""<!DOCTYPE html>

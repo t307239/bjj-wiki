@@ -20,7 +20,7 @@ LANG_LABELS = {
     "pt": ("BJJ Wiki", "Técnicas de BJJ"),
 }
 
-LANG_CODES = {"en": "en", "ja": "ja", "pt": "pt-BR"}
+LANG_CODES = {"en": "en", "ja": "ja", "pt": "pt"}
 
 def extract_title(html):
     m = re.search(r'<title>([^<]+)</title>', html)
