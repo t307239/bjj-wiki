@@ -39,7 +39,8 @@ SITEMAP = os.path.join(WIKI_ROOT, "sitemap.xml")
 
 LANGS = {"en": EN_DIR, "ja": JA_DIR, "pt": PT_DIR}
 BASE_URL = "https://wiki.bjj-app.net"
-AFFILIATE_TAG = "bjj06-22"
+# AFFILIATE_TAG removed — CLAUDE.md: アフィリリンク完全禁止
+AFFILIATE_TAG = "bjj06-22"  # kept for assertNotIn test below
 APP_URL = "bjj-app.net"
 
 # How many pages to sample per test (keep fast; full scan optional)
@@ -278,8 +279,9 @@ class TestAmazonAffiliateLinks(unittest.TestCase):
                 if not os.path.exists(path):
                     continue  # page may not exist in all langs
                 content = read(path)
-                self.assertIn(AFFILIATE_TAG, content,
-                    f"{lang}/{slug}.html にアフィリエイトタグ {AFFILIATE_TAG} なし")
+                # CLAUDE.md: アフィリリンク完全禁止 — 存在しないことを検証
+                self.assertNotIn(AFFILIATE_TAG, content,
+                    f"{lang}/{slug}.html にアフィリエイトタグ {AFFILIATE_TAG} が残存")
 
 
 class TestCtaBanner(unittest.TestCase):

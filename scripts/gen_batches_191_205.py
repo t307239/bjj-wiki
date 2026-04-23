@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# ⚠️ DEPRECATED — DO NOT RUN ⚠️
+# このスクリプトはアフィリリンク(bjj06-22/bjjfanatics)を含む旧バッチスクリプトです。
+# CLAUDE.md「アフィリリンク完全禁止」ルールにより使用禁止。
+# 実行するとアフィリリンクが再注入され先祖返りします。
+# 代わりに generate_bjj_wiki.py を使用してください。
 """
 Batch 191-205 Generator: Passing, No-Gi, Escapes, Control, Competition, Conditioning, Guards, Mount, Back, Mastery, Flow
 Generated pages: 75 × 3 languages = 225 pages

@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# ⚠️ DEPRECATED — DO NOT RUN ⚠️
+# このスクリプトはアフィリリンク(bjj06-22/bjjfanatics)を含む旧バッチスクリプトです。
+# CLAUDE.md「アフィリリンク完全禁止」ルールにより使用禁止。
+# 実行するとアフィリリンクが再注入され先祖返りします。
+# 代わりに generate_bjj_wiki.py を使用してください。
 """
 Patch Fanatics affiliate links + Beehiiv CTA to pages missing them.
 """
