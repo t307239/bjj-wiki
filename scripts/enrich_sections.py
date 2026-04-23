@@ -138,6 +138,10 @@ def inject_faq(content, faq_items, lang):
 
 def inject_difficulty(content, belt_level, stars, difficulty_level):
     """Inject difficulty bar after first h1"""
+    # 既存の difficulty-bar があれば重複注入しない
+    if 'difficulty-bar' in content:
+        return content
+
     belt_colors = {
         "white": ("#e2e2ee", "#111"),
         "blue": ("#2563eb", "#fff"),
