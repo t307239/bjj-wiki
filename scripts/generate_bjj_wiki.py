@@ -441,17 +441,17 @@ YOGA_CAT_DEFAULTS = {
 }
 
 GEAR_CAT_MAP = {
-    "Guard":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-rashguard","👕 Best Rashguard")],
-    "Joint Lock":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-mouthguard","🦷 Best Mouthguard")],
-    "Leg Lock":[("best-no-gi-shorts","🩳 Best No-Gi Shorts"),("best-bjj-knee-pads","🦵 Best Knee Pads")],
-    "Choke":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-belt","🎽 Best BJJ Belt")],
-    "Sweep":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-rashguard","👕 Best Rashguard")],
-    "Takedown":[("best-no-gi-shorts","🩳 Best No-Gi Shorts"),("best-bjj-rashguard","👕 Best Rashguard")],
-    "Passing":[("best-bjj-knee-pads","🦵 Best Knee Pads"),("best-bjj-rashguard","👕 Best Rashguard")],
-    "Position":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-mouthguard","🦷 Best Mouthguard")],
-    "Escape":[("best-bjj-rashguard","👕 Best Rashguard"),("best-bjj-knee-pads","🦵 Best Knee Pads")],
-    "Transition":[("best-bjj-rashguard","👕 Best Rashguard"),("best-bjj-gi-beginners","🥋 Best BJJ Gi")],
-    "Defense":[("best-bjj-mouthguard","🦷 Best Mouthguard"),("best-bjj-rashguard","👕 Best Rashguard")],
+    "Guard":[("best-bjj-gi-guide","🥋 Best BJJ Gi"),("best-bjj-rash-guard","👕 Best Rashguard")],
+    "Joint Lock":[("best-bjj-gi-guide","🥋 Best BJJ Gi"),("best-bjj-mouthguard","🦷 Best Mouthguard")],
+    "Leg Lock":[("best-bjj-rash-guard","👕 Best Rashguard"),("best-bjj-knee-pads","🦵 Best Knee Pads")],
+    "Choke":[("best-bjj-gi-guide","🥋 Best BJJ Gi"),("best-bjj-mouthguard","🦷 Best Mouthguard")],
+    "Sweep":[("best-bjj-gi-guide","🥋 Best BJJ Gi"),("best-bjj-rash-guard","👕 Best Rashguard")],
+    "Takedown":[("best-bjj-rash-guard","👕 Best Rashguard"),("best-bjj-knee-pads","🦵 Best Knee Pads")],
+    "Passing":[("best-bjj-knee-pads","🦵 Best Knee Pads"),("best-bjj-rash-guard","👕 Best Rashguard")],
+    "Position":[("best-bjj-gi-guide","🥋 Best BJJ Gi"),("best-bjj-mouthguard","🦷 Best Mouthguard")],
+    "Escape":[("best-bjj-rash-guard","👕 Best Rashguard"),("best-bjj-knee-pads","🦵 Best Knee Pads")],
+    "Transition":[("best-bjj-rash-guard","👕 Best Rashguard"),("best-bjj-gi-guide","🥋 Best BJJ Gi")],
+    "Defense":[("best-bjj-mouthguard","🦷 Best Mouthguard"),("best-bjj-rash-guard","👕 Best Rashguard")],
 }
 
 # ===== 記事JSONをHTMLに変換 =====
@@ -620,7 +620,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
     gear_label  = {"en":"⚙️ Recommended Gear","ja":"⚙️ おすすめギア","pt":"⚙️ Equipamento Recomendado"}[lang_code]
     if gear_items:
         gear_links = "".join([
-            f'<a class="gear-link" href="../../gear/{sl}.html">{nm}</a>'
+            f'<a class="gear-link" href="{sl}.html">{nm}</a>'
             for sl, nm in gear_items
         ])
         gear_html = f'<div class="gear-box"><h3>{gear_label}</h3><div class="gear-links">{gear_links}</div></div>'
