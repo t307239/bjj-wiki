@@ -168,7 +168,9 @@ def build_gear_html(page, content):
   "description":"{meta}",
   "datePublished":"2026-03-13T00:00:00+09:00",
   "dateModified":"{now}",
-  "url":"{SITE_URL}/en/{slug}.html"
+  "url":"{SITE_URL}/en/{slug}.html",
+  "author":{{"@type":"Organization","name":"BJJ Wiki","url":"{SITE_URL}/"}},
+  "publisher":{{"@type":"Organization","name":"BJJ Wiki","url":"{SITE_URL}/"}}
 }}
 </script>
 <script type="application/ld+json">{faq_schema}</script>

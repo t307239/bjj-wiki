@@ -788,6 +788,11 @@ def article_to_html(tech, lang_code, article, all_techniques):
   "inLanguage": "{lang_code}",
   "datePublished": "2026-03-13T00:00:00+09:00",
   "dateModified": "{datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S+09:00')}",
+  "author": {{
+    "@type": "Organization",
+    "name": "BJJ Wiki",
+    "url": "{SITE_URL}/"
+  }},
   "publisher": {{
     "@type": "Organization",
     "name": "BJJ Wiki",

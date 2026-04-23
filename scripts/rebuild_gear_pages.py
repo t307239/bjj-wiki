@@ -441,7 +441,7 @@ def build_page(lang, cfg):
     @media(max-width:1200px){{.wiki-sidebar{{display:none}}}}
   </style>
   <script type="application/ld+json">
-  {{"@context":"https://schema.org","@type":"Article","headline":"{cfg['h1']}","description":"{cfg['desc']}","url":"{cfg['canon']}","datePublished":"2026-03-19","dateModified":"2026-03-19","publisher":{{"@type":"Organization","name":"{ld_pub_name}","url":"https://wiki.bjj-app.net/"}},"inLanguage":"{ld_lang}"}}
+  {{"@context":"https://schema.org","@type":"Article","headline":"{cfg['h1']}","description":"{cfg['desc']}","url":"{cfg['canon']}","datePublished":"2026-03-19","dateModified":"2026-03-19","author":{{"@type":"Organization","name":"BJJ Wiki","url":"https://wiki.bjj-app.net/"}},"publisher":{{"@type":"Organization","name":"{ld_pub_name}","url":"https://wiki.bjj-app.net/"}},"inLanguage":"{ld_lang}"}}
   </script>
   {GTM_JS}
 </head>

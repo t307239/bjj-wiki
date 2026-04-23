@@ -75,7 +75,7 @@ def page(lang, slug, title, desc, h1, intro, sections_html, faqs_html, en_slug=N
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"Article","headline":"{h1}","description":"{desc}","datePublished":"{TODAY}","dateModified":"{TODAY}","inLanguage":"{lang}","publisher":{{"@type":"Organization","name":"BJJ Wiki"}}}}
+{{"@context":"https://schema.org","@type":"Article","headline":"{h1}","description":"{desc}","datePublished":"{TODAY}","dateModified":"{TODAY}","inLanguage":"{lang}","author":{{"@type":"Organization","name":"BJJ Wiki","url":"https://wiki.bjj-app.net/"}},"publisher":{{"@type":"Organization","name":"BJJ Wiki"}}}}
 </script>
 <style>{CSS}</style>
 </head>

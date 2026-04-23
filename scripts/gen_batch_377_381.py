@@ -409,6 +409,11 @@ footer{{padding:28px 0;border-top:1px solid var(--border);
   "description": "{lang_info['meta']}",
   "url": "{SITE_URL}/{lang_code}/{article_key}.html",
   "inLanguage": "{lang_code}",
+  "author": {{
+    "@type": "Organization",
+    "name": "BJJ Wiki",
+    "url": "{SITE_URL}/"
+  }},
   "publisher": {{
     "@type": "Organization",
     "name": "BJJ Wiki",

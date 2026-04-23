@@ -61,9 +61,7 @@ def build_jsonld(html, slug, lang):
         "description": desc,
         "url": url,
         "inLanguage": lang_code,
-        "publisher": {
-            "@type": "Organization",
-            "name": "BJJ Wiki",
+        "author":{"@type":"Organization","name":"BJJ Wiki","url":"https://wiki.bjj-app.net/"},"publisher":{"@type":"Organization","name":"BJJ Wiki",
             "url": f"{BASE_URL}/"
         },
         "mainEntityOfPage": {
