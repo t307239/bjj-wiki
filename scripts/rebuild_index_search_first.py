@@ -199,7 +199,7 @@ def build_index(lang):
 <meta property="og:type" content="website">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:locale" content="{L["og_locale"]}">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/index.html">
 <link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/index.html">
 <link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/index.html">
