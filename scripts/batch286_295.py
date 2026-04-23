@@ -37,7 +37,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★★", "label": "Expert"
         },
         "ja": {
-            "title": "[JA] ゴードン・ライアンのゲームプラン - バックコントロール&レッグロックシステム",
+            "title": "ゴードン・ライアンのゲームプラン - バックコントロール&レッグロックシステム",
             "meta": "ゴードン・ライアンの試合必勝戦略。バックコントロールとレッグロック体系の詳細解説。",
             "h1": "ゴードン・ライアンのゲームプラン：バックコントロール完全マスター",
             "intro": "ゴードン・ライアンはBJJ競技におけるレッグロック攻撃を革命化しました。バックコントロールとレッグロック攻撃の体系的アプローチが彼の特徴です。",
@@ -47,7 +47,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★★", "label": "エキスパート"
         },
         "pt": {
-            "title": "[PT] Plano de Jogo de Gordon Ryan - Sistema de Controle de Costas & Leg Lock",
+            "title": "Plano de Jogo de Gordon Ryan - Sistema de Controle de Costas & Leg Lock",
             "meta": "Aprenda a estratégia de Gordon Ryan para competição. Análise detalhada do sistema de leg lock e controle de costas.",
             "h1": "Plano de Jogo de Gordon Ryan: Domínio do Controle de Costas",
             "intro": "Gordon Ryan revolucionou os ataques de leg lock no BJJ competitivo. Sua abordagem sistemática combina controle de costas implacável com entradas de leg lock precisas.",
@@ -70,7 +70,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★★", "label": "Expert"
         },
         "ja": {
-            "title": "[JA] クレイグ・ジョーンズのゲームプラン - ヒールフック&バックテイク",
+            "title": "クレイグ・ジョーンズのゲームプラン - ヒールフック&バックテイク",
             "meta": "クレイグ・ジョーンズの試合戦略。ヒールフック・バックテイク・プレッシャーの完全解説。",
             "h1": "クレイグ・ジョーンズのゲームプラン：ヒールフック狩りのマスター",
             "intro": "クレイグ・ジョーンズはヒールフック狩りの攻撃性と、不規則なポジションからのバックテイク能力で知られています。",
@@ -80,7 +80,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★★", "label": "エキスパート"
         },
         "pt": {
-            "title": "[PT] Plano de Jogo de Craig Jones - Heel Hook & Back Take",
+            "title": "Plano de Jogo de Craig Jones - Heel Hook & Back Take",
             "meta": "Análise do plano de jogo de Craig Jones. Estratégias de heel hook e back take agressivo.",
             "h1": "Plano de Jogo de Craig Jones: Domínio de Heel Hook",
             "intro": "Craig Jones é conhecido por sua agressiva perseguição de heel hooks e capacidade de tomar as costas de posições não convencionais.",
@@ -103,7 +103,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★☆", "label": "Expert"
         },
         "ja": {
-            "title": "[JA] ミッキー・ムスメシのゲームプラン - テクニカルガード&ハーフガード",
+            "title": "ミッキー・ムスメシのゲームプラン - テクニカルガード&ハーフガード",
             "meta": "ミッキー・ムスメシのガードゲーム。テクニカルガード・ハーフガード・柔軟性を活かした完全ガイド。",
             "h1": "ミッキー・ムスメシのゲームプラン：ガード完全マスター",
             "intro": "ミッキー・ムスメシのテクニカルガードゲームはBJJのボトムゲームを革命化しました。柔軟性と正確なタイミングの組み合わせが彼の特徴。",
@@ -113,7 +113,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★☆", "label": "エキスパート"
         },
         "pt": {
-            "title": "[PT] Plano de Jogo de Mikey Musumeci - Guard Técnico & Half Guard",
+            "title": "Plano de Jogo de Mikey Musumeci - Guard Técnico & Half Guard",
             "meta": "Análise do jogo de guard de Mikey Musumeci. Técnicas avançadas de half guard e rubber guard.",
             "h1": "Plano de Jogo de Mikey Musumeci: Sistema de Domínio de Guard",
             "intro": "O jogo técnico de guard de Mikey Musumeci revolucionou como os competidores abordam o jogo de baixo.",
@@ -136,7 +136,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★★", "label": "Expert"
         },
         "ja": {
-            "title": "[JA] ガリー・トノンのゲームプラン - アグレッシブスクランブル&レッグロック",
+            "title": "ガリー・トノンのゲームプラン - アグレッシブスクランブル&レッグロック",
             "meta": "ガリー・トノンのスクランブルゲーム。ノーギ競技での攻撃的戦略と持久力の詳細。",
             "h1": "ガリー・トノンのゲームプラン：スクランブル完全支配",
             "intro": "ガリー・トノンはアスレチックスクランブルとノーギ競技での無休のプレッシャーで有名です。",
@@ -146,7 +146,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★★", "label": "エキスパート"
         },
         "pt": {
-            "title": "[PT] Plano de Jogo de Garry Tonon - Scrambles Agressivos & Leg Locks",
+            "title": "Plano de Jogo de Garry Tonon - Scrambles Agressivos & Leg Locks",
             "meta": "Estratégia de scramble agressivo de Garry Tonon. Técnicas de leg lock e submission hunting.",
             "h1": "Plano de Jogo de Garry Tonon: Domínio de Scrambles",
             "intro": "Garry Tonon é famoso por seus scrambles atlético e pressão implacável na competição sem-gi.",
@@ -169,7 +169,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★☆", "label": "Expert"
         },
         "ja": {
-            "title": "[JA] ニコラス・メレガリのゲームプラン - トップゲーム&プレッシャーパス",
+            "title": "ニコラス・メレガリのゲームプラン - トップゲーム&プレッシャーパス",
             "meta": "ニコラス・メレガリのトップゲーム。プレッシャーパッシング・ポジショナルコントロール完全解説。",
             "h1": "ニコラス・メレガリのゲームプラン：トップゲーム完全支配",
             "intro": "ニコラス・メレガリのテクニカルトップゲームは正確なパッシングと無休のプレッシャーコントロールの組み合わせ。",
@@ -179,7 +179,7 @@ ARTICLES = {
             "belt": "black", "stars": "★★★★☆", "label": "エキスパート"
         },
         "pt": {
-            "title": "[PT] Plano de Jogo de Nicholas Meregali - Top Game & Pressure Passing",
+            "title": "Plano de Jogo de Nicholas Meregali - Top Game & Pressure Passing",
             "meta": "Análise do top game de Nicholas Meregali. Sistema de pressure passing e domínio posicional.",
             "h1": "Plano de Jogo de Nicholas Meregali: Domínio do Top Game",
             "intro": "O jogo técnico de top de Nicholas Meregali combina passing preciso com controle de pressão implacável.",
@@ -204,7 +204,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★☆☆", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] ADCCルール戦略 - サブミッション重視の競技タクティクス",
+            "title": "ADCCルール戦略 - サブミッション重視の競技タクティクス",
             "meta": "ADCCルールでのサブミッション狩り戦略。レッグロック・テイクダウン・バック支配の完全解説。",
             "h1": "ADCCルール戦略：サブミッション狩り完全攻略",
             "intro": "ADCCルールはサブミッション攻撃とレッグロック狩りを強調します。ADCCルール理解がハイレベル競技での戦略的優位をもたらします。",
@@ -214,7 +214,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★☆☆", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Estratégia ADCC Rules - Competição Focada em Submissões",
+            "title": "Estratégia ADCC Rules - Competição Focada em Submissões",
             "meta": "Domine a estratégia ADCC rules para competição focada em submissões. Tática de leg locks e controle de costas.",
             "h1": "Estratégia ADCC Rules: Caça de Submissões Definitiva",
             "intro": "ADCC rules enfatizam ataques de submissão e perseguição de leg locks.",
@@ -237,7 +237,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★★☆☆", "label": "Beginner"
         },
         "ja": {
-            "title": "[JA] IJBJFノーギルール戦略 - ポイント重視の競技タクティクス",
+            "title": "IJBJFノーギルール戦略 - ポイント重視の競技タクティクス",
             "meta": "IJBJFノーギ競技戦略。ポイントシステム・ペナルティ回避・試合タイムマネジメント完全解説。",
             "h1": "IJBJFノーギ戦略：ポイントシステム完全攻略",
             "intro": "IJBJFノーギ競技はポイントスコアリングとポジショナルコントロール強調。ポイントシステム習得が公式競技での戦略的優位をもたらします。",
@@ -247,7 +247,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★★☆☆", "label": "初級"
         },
         "pt": {
-            "title": "[PT] Estratégia IBJJF No-Gi Rules - Tática Baseada em Pontos",
+            "title": "Estratégia IBJJF No-Gi Rules - Tática Baseada em Pontos",
             "meta": "Guia de estratégia IBJJF no-gi. Sistema de pontos, evitar penalidades e perseguição de submissões.",
             "h1": "Estratégia IBJJF No-Gi: Domine o Sistema de Pontos",
             "intro": "Competição IBJJF no-gi enfatiza scoring de pontos e controle posicional.",
@@ -270,7 +270,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★☆", "label": "Advanced"
         },
         "ja": {
-            "title": "[JA] サブオンリールール戦略 - アグレッシブフィニッシング",
+            "title": "サブオンリールール戦略 - アグレッシブフィニッシング",
             "meta": "サブオンリー競技戦略。ポイント圧力なしでのアグレッシブサブミッション狩り完全解説。",
             "h1": "サブオンリー戦略：純粋なサブミッション狩り",
             "intro": "サブオンリールールはポイントスコアリングを排除し純粋なサブミッション攻撃を強調。この形式はアグレッシブ・テクニカルなサブミッション狩りを報酬。",
@@ -280,7 +280,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★☆", "label": "上級"
         },
         "pt": {
-            "title": "[PT] Estratégia Submission Only Rules - Táticas Agressivas de Finalização",
+            "title": "Estratégia Submission Only Rules - Táticas Agressivas de Finalização",
             "meta": "Estratégia de competição submission-only. Perseguição agressiva de submissão sem pressão de pontos.",
             "h1": "Estratégia Submission Only: Caça Pura de Submissões",
             "intro": "Regras submission-only eliminam scoring de pontos e enfatizam ataques de submissão pura.",
@@ -303,7 +303,7 @@ ARTICLES = {
             "belt": "purple", "stars": "★★★★☆", "label": "Advanced"
         },
         "ja": {
-            "title": "[JA] EBIルール戦略 - オーバータイム&バックスタート",
+            "title": "EBIルール戦略 - オーバータイム&バックスタート",
             "meta": "Evolution of Brazilian Jiu-Jitsu(EBI)ルール戦略。オーバータイムルール・バックスタート位置完全解説。",
             "h1": "EBIルール戦略：オーバータイム&バックスタート完全攻略",
             "intro": "EBIルールはユニークなオーバータイム形式とバックスタート規制をフィーチャー。これらのメカニクス理解がEBI競技での大きな優位をもたらします。",
@@ -313,7 +313,7 @@ ARTICLES = {
             "belt": "purple", "stars": "★★★★☆", "label": "上級"
         },
         "pt": {
-            "title": "[PT] Estratégia EBI Rules - Táticas de Overtime & Back Start",
+            "title": "Estratégia EBI Rules - Táticas de Overtime & Back Start",
             "meta": "Estratégia EBI rules. Domine as regras de overtime e vantagens de back start.",
             "h1": "Estratégia EBI Rules: Domínio de Overtime & Back Start",
             "intro": "Regras EBI apresentam formatos únicos de overtime e regulações de back start.",
@@ -336,7 +336,7 @@ ARTICLES = {
             "belt": "purple", "stars": "★★★★☆", "label": "Advanced"
         },
         "ja": {
-            "title": "[JA] Polarisルール戦略 - ノーポイント形式タクティクス",
+            "title": "Polarisルール戦略 - ノーポイント形式タクティクス",
             "meta": "Polaris rules戦略。ノーポイント形式でのサブミッション重視タクティクス完全解説。",
             "h1": "Polarisルール戦略：ノーポイントサブミッション完全攻略",
             "intro": "Polarisルールはポイントスコアリングなしで純粋なサブミッションとポジショナル支配を強調。この形式は選手向けユニークな戦略環境を作成。",
@@ -346,7 +346,7 @@ ARTICLES = {
             "belt": "purple", "stars": "★★★★☆", "label": "上級"
         },
         "pt": {
-            "title": "[PT] Estratégia Polaris Rules - Táticas Formato Sem Pontos",
+            "title": "Estratégia Polaris Rules - Táticas Formato Sem Pontos",
             "meta": "Estratégia Polaris rules para competição focada em submissões. Domine táticas para wrestling sem pontos.",
             "h1": "Estratégia Polaris Rules: Táticas de Submissão Sem Pontos",
             "intro": "Regras Polaris enfatizam submissão pura e domínio posicional sem scoring de pontos.",
@@ -373,7 +373,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★☆☆☆", "label": "Beginner"
         },
         "ja": {
-            "title": "[JA] BJJ柔軟性ルーティン - 可動域を素早く拡大",
+            "title": "BJJ柔軟性ルーティン - 可動域を素早く拡大",
             "meta": "日々のBJJ柔軟性ルーティン。股関節・肩柔軟性・ハムストリングスでグラップリング向上。",
             "h1": "BJJ柔軟性ルーティン：可動域を素早く拡大",
             "intro": "柔軟性はBJJ成功に重要。日々の柔軟性ルーティンはガード保持・スウィープ実行・怪我予防を向上。",
@@ -383,7 +383,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★☆☆☆", "label": "初級"
         },
         "pt": {
-            "title": "[PT] Rotina de Flexibilidade BJJ - Desenvolva Amplitude de Movimento Rápido",
+            "title": "Rotina de Flexibilidade BJJ - Desenvolva Amplitude de Movimento Rápido",
             "meta": "Rotina diária de flexibilidade BJJ. Mobilidade de quadril, flexibilidade de ombro para melhor grappling.",
             "h1": "Rotina de Flexibilidade BJJ: Desenvolva Mobilidade Rapidamente",
             "intro": "Flexibilidade é crucial para sucesso em BJJ.",
@@ -407,7 +407,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★☆☆", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] BJJ筋トレ - 爆発力を構築",
+            "title": "BJJ筋トレ - 爆発力を構築",
             "meta": "BJJアスリート向け筋トレ。テイクダウン・パッシング・サブミッション力の向上。",
             "h1": "BJJ筋トレ：グラップリング力の構築",
             "intro": "筋トレはBJJアスリートに必須。適切なトレーニングはテイクダウン・ガードパス・サブミッションコントロール向上。",
@@ -417,7 +417,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★☆☆", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Treinamento de Força BJJ - Construa Potência Explosiva",
+            "title": "Treinamento de Força BJJ - Construa Potência Explosiva",
             "meta": "Treinamento de força para atletas de BJJ. Exercícios para takedowns, passagem e poder de submissão.",
             "h1": "Treinamento de Força BJJ: Construa Poder de Grappling",
             "intro": "Treinamento de força é essencial para atletas de BJJ.",
@@ -441,7 +441,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★☆☆☆", "label": "Beginner"
         },
         "ja": {
-            "title": "[JA] BJJ有酸素運動 - グラップリング持久力",
+            "title": "BJJ有酸素運動 - グラップリング持久力",
             "meta": "BJJアスリート向け有酸素運動。高強度インターバルトレーニングで持久力向上。",
             "h1": "BJJ有酸素運動：試合向け持久力の構築",
             "intro": "心肺系コンディショニングは試合全体の高強度グラップリング維持に重要。適切な有酸素運動はパフォーマンス向上。",
@@ -451,7 +451,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★☆☆☆", "label": "初級"
         },
         "pt": {
-            "title": "[PT] Treinamento Cardio BJJ - Desenvolva Resistência de Grappling",
+            "title": "Treinamento Cardio BJJ - Desenvolva Resistência de Grappling",
             "meta": "Treinamento cardio especificamente para atletas de BJJ. Treinamento de intervalo de alta intensidade para resistência.",
             "h1": "Treinamento Cardio BJJ: Construa Resistência de Torneio",
             "intro": "Condicionamento cardiovascular é crítico para manter grappling de alta intensidade durante partidas de torneio.",
@@ -475,7 +475,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★☆☆☆", "label": "Beginner"
         },
         "ja": {
-            "title": "[JA] BJJ怪我予防ガイド - あなたの体を守る",
+            "title": "BJJ怪我予防ガイド - あなたの体を守る",
             "meta": "BJJ怪我予防戦略。一般的怪我エリア予防：肘・膝・肩・首。",
             "h1": "BJJ怪我予防：一般的怪我からの保護",
             "intro": "BJJは固有の怪我リスクを持つ。包括的な予防戦略は関節・腱・整体健康を長期トレーニング成功に保護。",
@@ -485,7 +485,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★☆☆☆", "label": "初級"
         },
         "pt": {
-            "title": "[PT] Guia de Prevenção de Lesões BJJ - Proteja Seu Corpo",
+            "title": "Guia de Prevenção de Lesões BJJ - Proteja Seu Corpo",
             "meta": "Estratégias de prevenção de lesões em BJJ. Proteja áreas comuns: cotovelos, joelhos, ombros e pescoço.",
             "h1": "Prevenção de Lesões em BJJ: Proteja-se de Lesões Comuns",
             "intro": "BJJ carrega riscos de lesão inerentes.",
@@ -509,7 +509,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★☆☆☆", "label": "Beginner"
         },
         "ja": {
-            "title": "[JA] BJJプレハブルーティン - 練習前アクティベーション",
+            "title": "BJJプレハブルーティン - 練習前アクティベーション",
             "meta": "BJJアスリート向けプレハブルーティン。練習前アクティベーション運動で怪我予防。",
             "h1": "BJJプレハブルーティン：練習前に体をアクティベート",
             "intro": "適切なプレハブルーティンはトレーニング向け体を準備し怪我を予防。アクティベーション運動は効果的に筋肉と関節を温める。",
@@ -519,7 +519,7 @@ ARTICLES = {
             "belt": "white", "stars": "★★☆☆☆", "label": "初級"
         },
         "pt": {
-            "title": "[PT] Rotina de Pré-reabilitação BJJ - Exercícios de Ativação Pré-Treinamento",
+            "title": "Rotina de Pré-reabilitação BJJ - Exercícios de Ativação Pré-Treinamento",
             "meta": "Rotina de pré-reabilitação para atletas de BJJ. Exercícios de ativação antes do treino para prevenção de lesões.",
             "h1": "Rotina de Pré-reabilitação BJJ: Ative Seu Corpo Antes do Treino",
             "intro": "Uma rotina de pré-reabilitação apropriada prepara seu corpo para treinar e previne lesões.",
@@ -544,7 +544,7 @@ ARTICLES = {
             "belt": "purple", "stars": "★★★★☆", "label": "Advanced"
         },
         "ja": {
-            "title": "[JA] ノーギレッグエンタングルメント深掘り",
+            "title": "ノーギレッグエンタングルメント深掘り",
             "meta": "高度なノーギレッグエンタングルメント。サドル・ヒールフック完全マスター。",
             "h1": "ノーギレッグエンタングルメント：アドバンスド体系",
             "intro": "レッグエンタングルメントはノーギBJJで重要。体系マスターで競技優位。",
@@ -554,7 +554,7 @@ ARTICLES = {
             "belt": "purple", "stars": "★★★★☆", "label": "上級"
         },
         "pt": {
-            "title": "[PT] Aprofundamento em Entrelacamentos de Perna No-Gi",
+            "title": "Aprofundamento em Entrelacamentos de Perna No-Gi",
             "meta": "Entrelacamentos avançados de perna sem-gi e escapes.",
             "h1": "Entrelacamentos de Perna No-Gi: Sistema Avançado",
             "intro": "Entrelacamentos de perna são críticos no BJJ sem-gi.",

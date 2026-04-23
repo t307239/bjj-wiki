@@ -41,7 +41,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★☆", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] タートルポジションからの攻撃 - トップ&ボトムシステム",
+            "title": "タートルポジションからの攻撃 - トップ&ボトムシステム",
             "meta": "タートルポジション攻撃マスター。トップタートル攻撃・ボトムエスケープ・グランビーロール・完全システム解説。",
             "h1": "タートルポジション攻撃：完全システム",
             "intro": "タートルポジションはトップ・ボトム両プレイヤーにユニークな攻撃機会を提供します。トップタートル攻撃、ボトムタートル遷移、グランビーロールシステムを完全解説。",
@@ -51,7 +51,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★☆", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Ataque da Posição de Tartaruga - Sistemas de Topo e Fundo",
+            "title": "Ataque da Posição de Tartaruga - Sistemas de Topo e Fundo",
             "meta": "Domine ataques da posição de tartaruga. Aprenda ataques de tartaruga no topo, escapes de fundo, granby roll e sistemas completos.",
             "h1": "Ataque da Posição de Tartaruga: Sistema Completo",
             "intro": "A posição de tartaruga oferece oportunidades ofensivas únicas para jogadores de topo e fundo. Este guia abrangente cobre ataques de tartaruga no topo, transições de tartaruga no fundo e o legendário sistema de granby roll.",
@@ -74,7 +74,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★★", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] BJJコンディショニング科学 - エネルギーシステム・強度・ピリオダイゼーション",
+            "title": "BJJコンディショニング科学 - エネルギーシステム・強度・ピリオダイゼーション",
             "meta": "BJJコンディショニング科学マスター。エネルギーシステム・VO2max・HRV・科学的ピリオダイゼーション完全解説。",
             "h1": "BJJコンディショニング科学：エビデンスベース原則",
             "intro": "現代BJJコンディショニングはスポーツ科学に基礎。3つのエネルギーシステム、VO2max開発、HRVモニタリング、競技ピリオダイゼーションを完全解説。",
@@ -84,7 +84,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★★", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Ciência do Condicionamento do BJJ - Sistemas de Energia, Força & Periodização",
+            "title": "Ciência do Condicionamento do BJJ - Sistemas de Energia, Força & Periodização",
             "meta": "Domine a ciência do condicionamento do BJJ. Sistemas de energia, treinamento de VO2 max, monitoramento de HRV e periodização científica.",
             "h1": "Ciência do Condicionamento do BJJ: Princípios Baseados em Evidências",
             "intro": "O condicionamento moderno do BJJ é fundamentado na ciência do esporte. Este guia cobre os três sistemas de energia utilizados no jiu-jitsu, desenvolvimento de VO2 máximo, monitoramento de variabilidade da frequência cardíaca (HRV) e modelos de periodização comprovados para sucesso competitivo.",
@@ -107,7 +107,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★☆", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] ガードセットアップマスタークラス - クローズド・ハーフ・バタフライ・DLR・スパイダー完全習得",
+            "title": "ガードセットアップマスタークラス - クローズド・ハーフ・バタフライ・DLR・スパイダー完全習得",
             "meta": "ガードセットアップ5種類完全マスター。クローズド・ハーフ・バタフライ・DLR・スパイダーのエントリーシステム詳細。",
             "h1": "ガードセットアップマスタークラス：完全エントリーシステム",
             "intro": "ガードプルはアート。5つの必須ガード(クローズド・ハーフ・バタフライ・DLR・スパイダー)への体系的エントリーを完全習得。",
@@ -117,7 +117,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★☆", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Masterclass de Setups de Guard - Entradas em Guard Fechado, Meio, Borboleta, DLR & Aranha",
+            "title": "Masterclass de Setups de Guard - Entradas em Guard Fechado, Meio, Borboleta, DLR & Aranha",
             "meta": "Domine entradas de guard. Sistemas de setup para guard fechado, meio guard, butterfly guard, De La Riva e spider guard.",
             "h1": "Masterclass de Setups de Guard: Sistemas Completos de Entrada",
             "intro": "O guard pull é uma forma de arte. Este masterclass cobre entradas sistemáticas em cinco tipos de guard essenciais: guard fechado, meio guard, butterfly guard, De La Riva (DLR) e spider guard.",
@@ -140,7 +140,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★★", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] バックコントロール・フィニッシング詳細 - RNC・ボウアンドアロー・ボディトライアングル",
+            "title": "バックコントロール・フィニッシング詳細 - RNC・ボウアンドアロー・ボディトライアングル",
             "meta": "バックコントロール・フィニッシング完全習得。RNCバリエーション・ボウアンドアロー・ボディトライアングル完全解説。",
             "h1": "バックコントロール・フィニッシング：チョーク完全解説",
             "intro": "バックコントロールはBJJで最もドミナント。RNC・ボウアンドアロー・ボディトライアングル3つのフィニッシング方法を完全習得。",
@@ -150,7 +150,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★★", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Detalhes de Acabamento de Controle de Costas - Variações de RNC, Arco-e-Flecha & Triângulo de Corpo",
+            "title": "Detalhes de Acabamento de Controle de Costas - Variações de RNC, Arco-e-Flecha & Triângulo de Corpo",
             "meta": "Domine o acabamento do controle de costas. Aprenda variações de RNC, perfeição do arco-e-flecha e finalizações de triângulo de corpo.",
             "h1": "Acabamento do Controle de Costas: Detalhes Avançados de Choke",
             "intro": "O controle de costas é a posição mais dominante no jiu-jitsu. Este guia cobre três métodos de acabamento: o Rear Naked Choke (RNC) com múltiplas variações de grip, o choke arco-e-flecha usando controle de lapela, e o triângulo de corpo para pressão absoluta de peito.",
@@ -173,7 +173,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★★", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] スウィープからサブミッションへ - 掃き技から即座のサブミッション攻撃チェーン",
+            "title": "スウィープからサブミッションへ - 掃き技から即座のサブミッション攻撃チェーン",
             "meta": "スウィープ・サブミッション・チェーンマスター。掃き技から即座のチョーク・アームバー・レッグロックへの完全習得。",
             "h1": "スウィープからサブミッション：シームレスチェーン攻撃",
             "intro": "最高のスウィープは即座のサブミッション機会を作成。スウィープから相手がリセットする前に即座のサブミッション攻撃へのシームレス遷移を習得。",
@@ -183,7 +183,7 @@ ARTICLES = {
             "belt": "blue", "stars": "★★★★★", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Sweeps para Submissões - Encadeando Sweeps em Ataques de Submissão Imediatos",
+            "title": "Sweeps para Submissões - Encadeando Sweeps em Ataques de Submissão Imediatos",
             "meta": "Domine cadeias de sweep-submissão. Aprenda transições contínuas de sweeps bem-sucedidos em ataques de submissão imediatos.",
             "h1": "Sweeps para Submissões: Ataques de Cadeia Contínua",
             "intro": "Os melhores sweeps criam oportunidades de submissão imediata. Este guia ensina como encadear sweeps bem-sucedidos em ataques de submissão devastadores antes do adversário se resetar.",

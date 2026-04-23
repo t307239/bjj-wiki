@@ -24,7 +24,7 @@ ARTICLES_PART2 = {
             "belt": "purple", "stars": "★★★★☆", "label": "Advanced"
         },
         "ja": {
-            "title": "[JA] ノーギトップコントロール上級 - ボディロック&プレッシャー",
+            "title": "ノーギトップコントロール上級 - ボディロック&プレッシャー",
             "meta": "ノーギトップコントロール上級。ボディロック・プレッシャーベースグラップリング完全マスター。",
             "h1": "ノーギトップコントロール上級：プレッシャーマスター",
             "intro": "ギなしのトップコントロールは異なるメカニクスが必要。ボディロックとプレッシャーベースグラップリングをマスター。",
@@ -34,7 +34,7 @@ ARTICLES_PART2 = {
             "belt": "purple", "stars": "★★★★☆", "label": "上級"
         },
         "pt": {
-            "title": "[PT] Controle Avançado de Top No-Gi - Sistema de Body Lock & Pressão",
+            "title": "Controle Avançado de Top No-Gi - Sistema de Body Lock & Pressão",
             "meta": "Domine controle avançado de top no-gi. Técnicas de body lock e grappling baseado em pressão.",
             "h1": "Controle Avançado de Top No-Gi: Domínio de Pressão",
             "intro": "Controle de top sem gi requer mecânica diferente.",
@@ -58,7 +58,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★★☆", "label": "Advanced"
         },
         "ja": {
-            "title": "[JA] ノーギガード上級 - クリンチ&シングルレッグ",
+            "title": "ノーギガード上級 - クリンチ&シングルレッグ",
             "meta": "ノーギガード上級テクニック。クリンチエントリー・シングルレッグX完全解説。",
             "h1": "ノーギガード上級：クリンチ&シングルレッグ体系",
             "intro": "ノーギガードは異なるテクニカルアプローチが必要。クリンチベースエントリーとレッグロック体系をマスター。",
@@ -68,7 +68,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★★☆", "label": "上級"
         },
         "pt": {
-            "title": "[PT] Guard Avançado No-Gi - Técnicas de Clinch & Single Leg",
+            "title": "Guard Avançado No-Gi - Técnicas de Clinch & Single Leg",
             "meta": "Técnicas avançadas de guard no-gi. Entradas de clinch e sistemas de single-leg X-guard.",
             "h1": "Guard Avançado No-Gi: Sistemas de Clinch & Single Leg",
             "intro": "Guard no-gi requer abordagens técnicas diferentes.",
@@ -93,7 +93,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★☆☆", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] BJJフィルムスタディガイド - エリート選手に学ぶ",
+            "title": "BJJフィルムスタディガイド - エリート選手に学ぶ",
             "meta": "BJJ試合映像の効果的な学習法。ビデオ分析テクニックの完全解説。",
             "h1": "BJJフィルムスタディ：ビデオ分析マスター",
             "intro": "フィルムスタディは最も効果的な学習方法の一つ。エリート選手の技実行を見ることで秘密を学べる。",
@@ -103,7 +103,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★☆☆", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Guia de Estudo de Filme BJJ - Aprenda de Atletas Elite",
+            "title": "Guia de Estudo de Filme BJJ - Aprenda de Atletas Elite",
             "meta": "Como estudar vídeo de luta de BJJ efetivamente. Técnicas de análise de vídeo para aprendizagem.",
             "h1": "Estudo de Filme BJJ: Domine Análise de Vídeo",
             "intro": "O estudo de filme é um dos métodos de aprendizagem mais eficazes.",
@@ -128,7 +128,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★☆☆", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] BJJピリオダイゼーション - トレーニング体系化",
+            "title": "BJJピリオダイゼーション - トレーニング体系化",
             "meta": "BJJピリオダイゼーション。オフシーズン・インシーズントレーニング完全計画ガイド。",
             "h1": "BJJピリオダイゼーション：戦略的トレーニング計画",
             "intro": "ピリオダイゼーションはトレーニング年を最大結果のために体系化。オフシーズンとインシーズンサイクルはパフォーマンス最適化。",
@@ -138,7 +138,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★☆☆", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Periodização BJJ - Ciclos de Treinamento & Pico de Performance",
+            "title": "Periodização BJJ - Ciclos de Treinamento & Pico de Performance",
             "meta": "Métodos de periodização para BJJ. Planejamento de treinamento off-season e in-season.",
             "h1": "Periodização BJJ: Planejamento Estratégico de Treinamento",
             "intro": "A periodização estrutura seu ano de treinamento para resultados máximos.",
@@ -163,7 +163,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★★☆", "label": "Advanced"
         },
         "ja": {
-            "title": "[JA] モダンガードシステム - ボトムゲーム進化",
+            "title": "モダンガードシステム - ボトムゲーム進化",
             "meta": "モダンBJJガード進化。最新ガードテクニック・タクティカルアプローチ完全解説。",
             "h1": "モダンガードシステム：ボトムゲーム進化",
             "intro": "ガードシステムは常に進化。モダンガードは柔軟性・可動性・サブミッション脅威を強調。",
@@ -173,7 +173,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★★☆", "label": "上級"
         },
         "pt": {
-            "title": "[PT] Sistemas de Guard Modernos - Evolução do Jogo de Fundo",
+            "title": "Sistemas de Guard Modernos - Evolução do Jogo de Fundo",
             "meta": "Evolução moderna do guard BJJ. Técnicas de guard mais recentes e abordagens táticas.",
             "h1": "Sistemas de Guard Modernos: Evolução do Bottom Game",
             "intro": "Sistemas de guard evoluem constantemente.",
@@ -198,7 +198,7 @@ ARTICLES_PART2 = {
             "belt": "white", "stars": "★★★☆☆", "label": "Intermediate"
         },
         "ja": {
-            "title": "[JA] マウントプレッシャーシステム - 支配的ポジショナルコントロール",
+            "title": "マウントプレッシャーシステム - 支配的ポジショナルコントロール",
             "meta": "マウントプレッシャーテクニック。支配的ポジションコントロール完全マスター。",
             "h1": "マウントプレッシャーシステム：ポジショナル支配",
             "intro": "マウントプレッシャーマスターはあなたをほぼ無敵にする。相手の呼吸を制御し、エスケープオプションを制限。",
@@ -208,7 +208,7 @@ ARTICLES_PART2 = {
             "belt": "white", "stars": "★★★☆☆", "label": "中級"
         },
         "pt": {
-            "title": "[PT] Sistema de Pressão Mount - Controle Posicional Dominante",
+            "title": "Sistema de Pressão Mount - Controle Posicional Dominante",
             "meta": "Técnicas de pressão mount. Domine controle de posição dominante e ameaças de submissão.",
             "h1": "Sistema de Pressão Mount: Domínio Posicional",
             "intro": "Domínio de pressão mount o torna quase imbatível.",
@@ -233,7 +233,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★★☆", "label": "Advanced"
         },
         "ja": {
-            "title": "[JA] バックコントロール+ボディトライアングル - 究極のフィニッシング",
+            "title": "バックコントロール+ボディトライアングル - 究極のフィニッシング",
             "meta": "バックコントロール+ボディトライアングル。究極のサブミッション体系完全マスター。",
             "h1": "バックコントロール+ボディトライアングル：究極のバック攻撃",
             "intro": "バックマウントからのボディトライアングルはエスケープをほぼ不可能に。この破壊的な組み合わせをマスター。",
@@ -243,7 +243,7 @@ ARTICLES_PART2 = {
             "belt": "blue", "stars": "★★★★☆", "label": "上級"
         },
         "pt": {
-            "title": "[PT] Controle de Costas com Body Triangle - Sistema de Finalização Definitivo",
+            "title": "Controle de Costas com Body Triangle - Sistema de Finalização Definitivo",
             "meta": "Controle de costas mais body triangle. Domine o sistema de submissão final da posição de costas.",
             "h1": "Controle de Costas + Body Triangle: Ataque Final de Costas",
             "intro": "Body triangle do back mount torna escape virtualmente impossível.",
@@ -268,7 +268,7 @@ ARTICLES_PART2 = {
             "belt": "white", "stars": "★★☆☆☆", "label": "Beginner"
         },
         "ja": {
-            "title": "[JA] BJJでの成長マインドセット - プラトー打破",
+            "title": "BJJでの成長マインドセット - プラトー打破",
             "meta": "BJJ成長マインドセット。トレーニングプラトー・メンタルバリア打破完全ガイド。",
             "h1": "BJJでの成長マインドセット：プラトー打破",
             "intro": "成長マインドセットはBJJ進捗に重要。チャレンジを受け入れ、失敗を学習機会として見て。",
@@ -278,7 +278,7 @@ ARTICLES_PART2 = {
             "belt": "white", "stars": "★★☆☆☆", "label": "初級"
         },
         "pt": {
-            "title": "[PT] Mentalidade de Crescimento em BJJ - Supere Platôs",
+            "title": "Mentalidade de Crescimento em BJJ - Supere Platôs",
             "meta": "Desenvolva mentalidade de crescimento para BJJ. Supere platôs de treinamento e barreiras mentais.",
             "h1": "Mentalidade de Crescimento em BJJ: Supere Platôs de Treinamento",
             "intro": "Mentalidade de crescimento é crítica para progresso em BJJ.",

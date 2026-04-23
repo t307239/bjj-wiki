@@ -43,7 +43,7 @@ TOPICS = [
             "cta": "🥋 Track Your Guard Game with BJJ App →",
         },
         "ja": {
-            "title": "[JA] BJJ オープンガード完全マスター",
+            "title": "BJJ オープンガード完全マスター",
             "desc": "BJJのオープンガードを完全に習得するシステム。ガード維持・スウィープ・アタック・ポジション間のトランジションを解説。",
             "difficulty": "intermediate",
             "diff_label": "中級",
@@ -66,7 +66,7 @@ TOPICS = [
             "cta": "🥋 BJJ Appでガードゲームを記録しよう →",
         },
         "pt": {
-            "title": "[PT] Maestria na Guarda Aberta de BJJ",
+            "title": "Maestria na Guarda Aberta de BJJ",
             "desc": "Domine a guarda aberta no BJJ com um sistema completo cobrindo manutenção, raspagens, ataques e transições entre posições.",
             "difficulty": "intermediate",
             "diff_label": "Intermediário",
@@ -115,7 +115,7 @@ TOPICS = [
             "cta": "🥋 Log Your Passing Progress with BJJ App →",
         },
         "ja": {
-            "title": "[JA] BJJ アドバンストプレッシャーパッシング完全ガイド",
+            "title": "BJJ アドバンストプレッシャーパッシング完全ガイド",
             "desc": "BJJのアドバンストプレッシャーパッシングをマスターする。体重配分・ヒップコントロール・連続パスアタックで現代のガードを封じる方法を学ぶ。",
             "difficulty": "advanced",
             "diff_label": "上級",
@@ -138,7 +138,7 @@ TOPICS = [
             "cta": "🥋 BJJ AppでパッシングをログJしよう →",
         },
         "pt": {
-            "title": "[PT] Passagem por Pressão Avançada no BJJ",
+            "title": "Passagem por Pressão Avançada no BJJ",
             "desc": "Domine a passagem por pressão avançada no BJJ. Aprenda a fechar guardas modernas com distribuição de peso, controle de quadril e ataques de passagem sequenciais.",
             "difficulty": "advanced",
             "diff_label": "Avançado",
@@ -187,7 +187,7 @@ TOPICS = [
             "cta": "🥋 Track Your Top Game with BJJ App →",
         },
         "ja": {
-            "title": "[JA] BJJ マウントコントロール詳細解説",
+            "title": "BJJ マウントコントロール詳細解説",
             "desc": "BJJにおけるマウントコントロールの詳細なメカニクスを学ぶ。体重配分・ヒップポジション・アームコントロール・サブミッションチェーンを解説。",
             "difficulty": "intermediate",
             "diff_label": "中級",
@@ -210,7 +210,7 @@ TOPICS = [
             "cta": "🥋 BJJ Appでトップゲームを記録しよう →",
         },
         "pt": {
-            "title": "[PT] Detalhes do Controle de Monte no BJJ",
+            "title": "Detalhes do Controle de Monte no BJJ",
             "desc": "Aprenda a mecânica detalhada do controle de monte no BJJ. Domine distribuição de peso, posição de quadril, controle de braço e encadeamento de finalizações.",
             "difficulty": "intermediate",
             "diff_label": "Intermediário",
@@ -259,7 +259,7 @@ TOPICS = [
             "cta": "🥋 Track Your Competition Strategy with BJJ App →",
         },
         "ja": {
-            "title": "[JA] BJJ ダブルガードプル — タクティクスと戦略",
+            "title": "BJJ ダブルガードプル — タクティクスと戦略",
             "desc": "BJJ競技でのダブルガードプルをマスターする。両者がガードプルした際のボトム状況で勝つ方法、スコアリング戦略、スウィープ・サブミッションシーケンスを解説。",
             "difficulty": "intermediate",
             "diff_label": "中級",
@@ -282,7 +282,7 @@ TOPICS = [
             "cta": "🥋 BJJ Appで競技戦略を記録しよう →",
         },
         "pt": {
-            "title": "[PT] Double Guard Pull no BJJ — Táticas e Estratégia",
+            "title": "Double Guard Pull no BJJ — Táticas e Estratégia",
             "desc": "Domine o double guard pull na competição de BJJ. Aprenda a vencer por baixo quando ambos os jogadores puxam guarda, com estratégia de pontuação e sequências de raspagem/finalização.",
             "difficulty": "intermediate",
             "diff_label": "Intermediário",
@@ -331,7 +331,7 @@ TOPICS = [
             "cta": "🥋 Build Your Bottom Game with BJJ App →",
         },
         "ja": {
-            "title": "[JA] BJJ ボトムゲーム完全マスターガイド",
+            "title": "BJJ ボトムゲーム完全マスターガイド",
             "desc": "BJJの完全なボトムゲームをマスターする。すべてのボトムポジションからのスウィープ・サブミッション・ガードリテンション・ポジショナルトランジションを解説。",
             "difficulty": "advanced",
             "diff_label": "上級",
@@ -354,7 +354,7 @@ TOPICS = [
             "cta": "🥋 BJJ Appでボトムゲームを構築しよう →",
         },
         "pt": {
-            "title": "[PT] Maestria no Jogo de Baixo no BJJ",
+            "title": "Maestria no Jogo de Baixo no BJJ",
             "desc": "Domine o jogo de baixo completo no BJJ. Raspagens, finalizações, retenção de guarda e transições posicionais de todas as posições de baixo.",
             "difficulty": "advanced",
             "diff_label": "Avançado",
@@ -405,7 +405,7 @@ def make_html(slug, lang, data, base_url=BASE_URL):
         for i, s in enumerate(steps)
     )
 
-    share_text = title.replace("[JA] ", "").replace("[PT] ", "")
+    share_text = title.replace("", "").replace("", "")
     page_url = f"{base_url}/{lang}/{slug}.html"
 
     other_langs = {"en": "EN", "ja": "JA", "pt": "PT"}
