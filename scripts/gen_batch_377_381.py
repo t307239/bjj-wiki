@@ -264,6 +264,7 @@ def generate_html(article_key, lang_code, article_data):
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <meta charset="UTF-8">
+  <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{lang_info['title']} | BJJ Wiki</title>
 <meta name="description" content="{lang_info['meta']}">

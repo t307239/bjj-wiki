@@ -946,6 +946,7 @@ def build_page(slug, lang, data, hreflang):
 <html lang="{lang}">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{data['title']}</title>
   <meta name="description" content="{data['desc']}" />

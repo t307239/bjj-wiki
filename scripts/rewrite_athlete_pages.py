@@ -508,6 +508,7 @@ def build_html(athlete, content, lang):
 <html lang="{lang}">
 <head>
 <meta charset="UTF-8">
+  <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title_tag} | BJJ Wiki</title>
 <meta name="description" content="{meta_desc}">

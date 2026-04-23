@@ -149,7 +149,8 @@ def build_gear_html(page, content):
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+  <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title} | BJJ Wiki</title>
 <meta name="description" content="{meta}">
 <meta property="og:title" content="{title}">

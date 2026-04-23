@@ -312,7 +312,8 @@ def build_page(slug, lang, data):
     return f'''<!DOCTYPE html>
 <html lang="{lang}">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+  <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{data["title"]}</title>
 <meta name="description" content="{data["meta"]}">
 <meta property="og:title" content="{data["title"]}">

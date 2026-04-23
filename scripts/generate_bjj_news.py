@@ -160,6 +160,7 @@ def build_html(news_en, news_ja, date_str):
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <meta charset="UTF-8">
+  <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BJJ News Today — Brazilian Jiu-Jitsu Latest Updates | BJJ Wiki</title>
 <meta name="description" content="Latest BJJ news, competition results, and technique updates. Daily Brazilian Jiu-Jitsu news aggregated from r/bjj, BJJee, and Grapplearts.">

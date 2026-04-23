@@ -72,6 +72,7 @@ def patch_file(filepath: str) -> bool:
     # 3. Add wiki-v2.css link if not already present
     if "/wiki-v2.css" not in content:
         # Insert after <meta name="viewport" ...> or after <meta charset="UTF-8">
+  <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
         viewport_pattern = r'(<meta\s+name="viewport"[^>]*>)'
         charset_pattern = r'(<meta\s+charset="UTF-8"\s*/?>)'
 
