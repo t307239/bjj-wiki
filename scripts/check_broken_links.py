@@ -9,7 +9,10 @@ import re
 from pathlib import Path
 from collections import defaultdict
 
-WIKI_DIR = "/sessions/keen-sharp-davinci/mnt/bjj-wiki"
+# リポジトリ自身の位置から解決する（旧実装は別 Cowork セッションの死にパス
+# "/sessions/keen-sharp-davinci/..." が hardcode されており、os.path.isdir が
+# False → 検査0件で silent pass していた。これで broken-link 監査が復活する）。
+WIKI_DIR = str(Path(__file__).resolve().parent.parent)
 LANGS = ["en", "ja", "pt"]
 
 def get_all_pages():

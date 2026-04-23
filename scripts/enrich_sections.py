@@ -22,7 +22,7 @@ enrich_sections.py — Gemini無料枠でFAQ・Difficulty・Belt Levelを既存W
   ~/Claude/bjj-wiki/.env または ~/.secrets に GEMINI_API_KEY を記載
 """
 
-import os, sys, re, json, time, argparse, urllib.request, urllib.error
+import os, sys, re, json, time, argparse, html, urllib.request, urllib.error
 from pathlib import Path
 
 # ── Config ──
@@ -67,11 +67,18 @@ def call_gemini(prompt):
         "generationConfig": {"temperature": 0.5, "maxOutputTokens": 1024}
     }).encode()
 
+    # Security: API key は URL query ではなく x-goog-api-key ヘッダで送る。
+    # URL query だとネットワーク中継/proxy/サーバーログ/例外の str 化経由で漏洩する。
+    # HTTPError の e.read() や str(e) にも URL が含まれるリスクがあった。
+    headers = {
+        "Content-Type": "application/json",
+        "x-goog-api-key": GEMINI_API_KEY,
+    }
     for model, api_ver in models:
-        url = f"https://generativelanguage.googleapis.com/{api_ver}/models/{model}:generateContent?key={GEMINI_API_KEY}"
+        url = f"https://generativelanguage.googleapis.com/{api_ver}/models/{model}:generateContent"
         for attempt in range(MAX_RETRIES):
             try:
-                req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+                req = urllib.request.Request(url, data=data, headers=headers, method="POST")
                 with urllib.request.urlopen(req, timeout=30) as res:
                     result = json.loads(res.read())
                     text = result["candidates"][0]["content"]["parts"][0]["text"]
@@ -87,7 +94,8 @@ def call_gemini(prompt):
                     print(f"  [{model}] HTTP {e.code} → next model")
                     break
             except Exception as e:
-                print(f"  [{model}] Error: {e}")
+                # Exception message に URL/ key が混ざらないよう種別のみ出力
+                print(f"  [{model}] Error: {type(e).__name__}")
                 break
     return None
 
@@ -111,6 +119,9 @@ Return ONLY valid JSON (no markdown, no explanation):
 {{"difficulty_level": "...", "belt_level": "...", "stars": "...", "faq": [{{"q": "...", "a": "..."}}, {{"q": "...", "a": "..."}}, {{"q": "...", "a": "..."}}]}}"""
 
 # ── HTML Injection ──
+# Security note: q/a は Gemini の自由生成テキスト。prompt injection 経由で
+# `</summary><script>...` 等が混入すると wiki.bjj-app.net 上の persistent XSS に
+# 直結するため、HTML 側は必ず html.escape、JSON-LD 側は json.dumps を経由する。
 def inject_faq(content, faq_items, lang):
     """Inject FAQ section before footer"""
     faq_title = {"en": "Frequently Asked Questions", "ja": "よくある質問", "pt": "Perguntas Frequentes"}[lang]
@@ -120,7 +131,9 @@ def inject_faq(content, faq_items, lang):
         q = item.get("q", "")
         a = item.get("a", "")
         if q and a:
-            details_html += f"""    <details><summary>{q}</summary><p>{a}</p></details>\n"""
+            q_safe = html.escape(q, quote=True)
+            a_safe = html.escape(a, quote=True)
+            details_html += f"""    <details><summary>{q_safe}</summary><p>{a_safe}</p></details>\n"""
 
     faq_section = f"""<section class="faq-section">
   <h2>{faq_title}</h2>
@@ -149,7 +162,16 @@ def inject_difficulty(content, belt_level, stars, difficulty_level):
         "brown": ("#92400e", "#fff"),
         "black": ("#111", "#fff"),
     }
-    bg, fg = belt_colors.get(belt_level, ("#2563eb", "#fff"))
+    # belt_level は Gemini 出力。未知値は "blue" にフォールバックしつつ、
+    # class 名 / 絵文字ラベルにも未検証で流れないよう whitelist に強制。
+    if belt_level not in belt_colors:
+        belt_level = "blue"
+    bg, fg = belt_colors[belt_level]
+
+    # stars / difficulty_level は Gemini 出力の自由テキスト。
+    # HTML に直接埋めるので html.escape（XSS 防御）必須。
+    stars_safe = html.escape(stars, quote=True)
+    difficulty_safe = html.escape(difficulty_level, quote=True)
 
     badge_html = (
         f'<span class="belt belt-{belt_level}">'
@@ -157,8 +179,8 @@ def inject_difficulty(content, belt_level, stars, difficulty_level):
     )
     diff_html = f"""<div class="difficulty-bar">
   {badge_html}
-  <span class="stars">{stars}</span>
-  <span class="diff-label">{difficulty_level}</span>
+  <span class="stars">{stars_safe}</span>
+  <span class="diff-label">{difficulty_safe}</span>
 </div>"""
 
     # Insert after closing </h1>
@@ -180,27 +202,36 @@ def inject_faq_jsonld(content, faq_items, page_url):
     if '"FAQPage"' in content:
         return content
 
-    faq_entities = []
+    # Security: 手動で `"` のみ escape していた旧実装だと
+    # `</script>` / `<!--` / 制御文字経由で script injection が成立していた。
+    # json.dumps(ensure_ascii=False) に任せて proper に escape し、
+    # 最後に `</script` を含むケースを念のため防ぐ。
+    mainEntity = []
     for item in faq_items:
         q = item.get("q", "")
         a = item.get("a", "")
         if q and a:
-            # Escape for JSON
-            q_esc = q.replace('"', '\\"')
-            a_esc = a.replace('"', '\\"')
-            faq_entities.append(
-                f'{{"@type":"Question","name":"{q_esc}","acceptedAnswer":{{"@type":"Answer","text":"{a_esc}"}}}}'
-            )
+            mainEntity.append({
+                "@type": "Question",
+                "name": q,
+                "acceptedAnswer": {"@type": "Answer", "text": a},
+            })
 
-    if not faq_entities:
+    if not mainEntity:
         return content
 
-    jsonld = (
-        '<script type="application/ld+json">'
-        '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":['
-        + ",".join(faq_entities)
-        + "]}</script>"
+    payload = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": mainEntity,
+    }
+    # ensure_ascii=False で日本語/ポルトガル語を正しく保持しつつ、
+    # `</`（/ を \/ に）escape して <script> タグ終端の混入を封殺。
+    payload_json = (
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        .replace("</", "<\\/")
     )
+    jsonld = f'<script type="application/ld+json">{payload_json}</script>'
 
     # Insert before </head>
     head_end = content.find("</head>")
@@ -398,15 +429,20 @@ def main():
             if modified:
                 filepath.write_text(content, encoding="utf-8")
                 success += 1
+                # 成功時だけ `completed` に積む。失敗時に積むと、Gemini 429 や
+                # parse 失敗で 空 FAQ のまま永久スキップされていた（見かけのカバ
+                # レッジは100%に達するが中身は空という regression）。
+                progress["completed"][args.lang].append(slug)
             else:
                 fail += 1
+                # parse は通ったが差分無し（全セクション注入済み）の場合のみ
+                # completed 扱いにする余地あり。いまは保守的に append しない。
 
         except Exception as e:
-            print(f"  ✗ Unexpected error: {e}")
+            print(f"  ✗ Unexpected error: {type(e).__name__}: {e}")
             fail += 1
+            # 例外時は completed に積まない → 次回 re-run で再試行される。
 
-        # Save progress (outside try so it runs even on error)
-        progress["completed"][args.lang].append(slug)
         if i % 10 == 0:
             save_progress(progress)
 
