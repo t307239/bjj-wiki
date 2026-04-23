@@ -11,6 +11,7 @@ turtle-position
 twister
 underhook
 von-flue-choke
+white-belt-bjj-guide
 worm-guard
 wrist-lock
 x-guard
