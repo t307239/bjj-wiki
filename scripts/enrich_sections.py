@@ -172,6 +172,10 @@ def inject_difficulty(content, belt_level, stars, difficulty_level):
 
 def inject_faq_jsonld(content, faq_items, page_url):
     """Inject FAQPage JSON-LD for rich snippets"""
+    # 既存の FAQPage JSON-LD があれば重複注入しない
+    if '"FAQPage"' in content:
+        return content
+
     faq_entities = []
     for item in faq_items:
         q = item.get("q", "")
