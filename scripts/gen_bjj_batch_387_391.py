@@ -955,7 +955,7 @@ def build_page(slug, lang, data, hreflang):
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
   {hreflang}
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../wiki-v2.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
