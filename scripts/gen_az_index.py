@@ -142,6 +142,7 @@ def make_az_page(lang, techs):
   <meta property="og:title" content="{title_tag}">
   <meta property="og:description" content="{desc}">
   <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BJJ Wiki">
   <meta property="og:url" content="{BASE_URL}/{lang}/techniques-az.html">
   <meta property="og:image" content="{BASE_URL}/og-image.svg">
   <meta name="twitter:card" content="summary_large_image">

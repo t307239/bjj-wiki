@@ -317,6 +317,7 @@ def build_page(slug, lang, data):
 <title>{data["title"]}</title>
 <meta name="description" content="{data["meta"]}">
 <meta property="og:title" content="{data["title"]}">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:description" content="{data["meta"]}">
 <meta property="og:image" content="{SITE}/og-image.png">
 <meta property="og:url" content="{SITE}/{lang}/{slug}.html">

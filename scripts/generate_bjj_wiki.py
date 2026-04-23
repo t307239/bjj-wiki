@@ -758,6 +758,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <meta property="og:title" content="{article.get('title', tech['name'])}">
 <meta property="og:description" content="{article.get('meta_description', '')}">
 <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="{SITE_URL}/{lang_code}/{tech['slug']}.html">
 <meta property="og:image" content="{SITE_URL}/og-image.svg">
 <meta property="og:image:width" content="1200">

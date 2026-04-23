@@ -430,6 +430,7 @@ def generate_html(slug: str, lang: str, data: dict) -> str:
     <meta property="og:description" content="{description}">
     <meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
     <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BJJ Wiki">
     {chr(10).join(alternates)}
     <link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
     <link rel="icon" type="image/png" href="../../favicon.ico">

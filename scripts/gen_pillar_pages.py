@@ -66,6 +66,7 @@ def page(lang, slug, title, desc, h1, intro, sections_html, faqs_html, en_slug=N
 <meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
 <meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
 <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BJJ Wiki">
 <link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/{es}.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/{es}.html">

@@ -105,6 +105,7 @@ def build_html(slug, data, lang):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
 <link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
 {hreflang_links['en']}

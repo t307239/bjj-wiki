@@ -480,6 +480,7 @@ def make_page(tech, lang):
 <meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/{lang}/{slug}.html">
 <link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/{slug}.html">

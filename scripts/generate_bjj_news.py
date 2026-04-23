@@ -165,6 +165,7 @@ def build_html(news_en, news_ja, date_str):
 <title>BJJ News Today — Brazilian Jiu-Jitsu Latest Updates | BJJ Wiki</title>
 <meta name="description" content="Latest BJJ news, competition results, and technique updates. Daily Brazilian Jiu-Jitsu news aggregated from r/bjj, BJJee, and Grapplearts.">
 <meta property="og:title" content="BJJ News Today — Latest Brazilian Jiu-Jitsu Updates">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:description" content="Daily BJJ news: competition results, new instructionals, rule changes.">
 <meta property="og:image" content="{SITE_URL}/og-image.svg">
 <meta property="og:url" content="{SITE_URL}/news.html">

@@ -954,6 +954,7 @@ def build_page(slug, lang, data, hreflang):
   <meta property="og:description" content="{data['desc']}" />
   <meta property="og:url" content="{page_url}" />
   <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="BJJ Wiki">
   <meta name="twitter:card" content="summary" />
   {hreflang}
   <link rel="stylesheet" href="../wiki-v2.css" />

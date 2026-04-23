@@ -340,6 +340,7 @@ def build_athlete_html(athlete, content, lang):
 <title>{title_tag} | BJJ Wiki</title>
 <meta name="description" content="{meta_desc}">
 <meta property="og:title" content="{title_tag}">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:description" content="{meta_desc}">
 <meta property="og:image" content="{SITE_URL}/og-image.svg">
 <meta property="og:url" content="{SITE_URL}/{lang}/athlete-{slug}.html">
@@ -497,6 +498,7 @@ def build_athletes_index(athletes_data, lang):
 <title>{L['title']} | BJJ Wiki</title>
 <meta name="description" content="{L['desc']}">
 <meta property="og:title" content="{L['title']}">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:image" content="{SITE_URL}/og-image.svg">
 <link rel="canonical" href="{SITE_URL}/athletes.html">
 <script async src="https://www.googletagmanager.com/gtag/js?id={GA4_ID}"></script>

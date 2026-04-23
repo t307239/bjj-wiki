@@ -297,6 +297,7 @@ def make_comparison_page(comp, lang):
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{desc}">
   <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BJJ Wiki">
   <meta property="og:image" content="{BASE_URL}/og-image.svg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="alternate" hreflang="en" href="{BASE_URL}/en/{slug}.html">

@@ -593,6 +593,7 @@ def article_to_html(slug: str, lang_code: str, article_data: dict) -> str:
 <title>{title} | BJJ Wiki</title>
 <meta name="description" content="{meta}">
 <meta property="og:title" content="{title}">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:description" content="{meta}">
 <link rel="canonical" href="{SITE_URL}/{lang_code}/{slug}.html">
 <link rel="alternate" hreflang="en" href="{SITE_URL}/en/{slug}.html">

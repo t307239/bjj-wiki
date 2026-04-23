@@ -198,6 +198,7 @@ def build_page(lang, slug, title, desc, keywords, content_html):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
 <meta name="twitter:card" content="summary_large_image">

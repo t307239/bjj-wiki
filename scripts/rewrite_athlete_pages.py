@@ -513,6 +513,7 @@ def build_html(athlete, content, lang):
 <title>{title_tag} | BJJ Wiki</title>
 <meta name="description" content="{meta_desc}">
 <meta property="og:title" content="{title_tag}">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:description" content="{meta_desc}">
 <meta property="og:image" content="{SITE_URL}/og-image.png">
 <meta property="og:url" content="{SITE_URL}/{lang}/athlete-{slug}.html">

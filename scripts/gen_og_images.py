@@ -114,6 +114,7 @@ def extract_title(html_content: str) -> str | None:
     if m:
         return html.unescape(m.group(1))
     # Fallback to <title>
+    <meta property="og:site_name" content="BJJ Wiki">
     m = re.search(r"<title>([^<]+)</title>", html_content)
     if m:
         title = html.unescape(m.group(1))

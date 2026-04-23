@@ -154,6 +154,7 @@ def build_gear_html(page, content):
 <title>{title} | BJJ Wiki</title>
 <meta name="description" content="{meta}">
 <meta property="og:title" content="{title}">
+    <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:description" content="{meta}">
 <meta property="og:image" content="{SITE_URL}/og-image.svg">
 <meta property="og:url" content="{SITE_URL}/en/{slug}.html">
