@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-BJJ Wiki - å¤è¨èªæè¡æè¾å¸ èªåçæã¹ã¯ãªãã
-- Gemini APIã§è±èª/æ¥æ¬èª/ãã«ãã¬ã«èªã®æè§£èª¬è¨äºãçæ
-- éçHTMLã¨ãã¦GitHub Pagesã«ããã­ã¤
+BJJ Wiki - 多言語柔術技辞典 自動生成スクリプト
+- Gemini APIで英語/日本語/ポルトガル語の技解説記事を生成
+- 静的HTMLとしてGitHub Pagesにデプロイ
 """
 
 import os, json, time, datetime, urllib.request, urllib.error, re
@@ -26,7 +26,7 @@ def send_telegram(msg: str) -> None:
     except Exception:
         pass  # 通知失敗は無視してビルドを継続
 
-# ===== åé¨ãªã³ã¯è¾æ¸ï¼æåâã¹ã©ãã°ï¼=====
+# ===== 内部リンク辞書（技名→スラッグ）=====
 INTERNAL_LINK_MAP = {
     "en": {
         "Armbar": "armbar", "Triangle Choke": "triangle-choke",
@@ -61,24 +61,24 @@ INTERNAL_LINK_MAP = {
         "North-South": "north-south", "Turtle": "turtle-position",
     },
     "ja": {
-        "ã¢ã¼ã ãã¼": "armbar", "ä¸è§çµã": "triangle-choke",
-        "è£¸çµã": "rear-naked-choke", "ã®ã­ãã³ãã§ã¼ã¯": "guillotine-choke",
-        "æ¨æã­ãã¯": "kimura", "ã¢ã¡ãªã«ã¼ã": "americana", "ãªã¢ãã©ã¼ã¿": "omoplata",
-        "ã¯ã­ã¼ãºãã¬ã¼ã": "closed-guard", "ãã¼ãã¬ã¼ã": "half-guard",
-        "ãã¿ãã©ã¤ã¬ã¼ã": "butterfly-guard", "ãã©ãã¼ãã¬ã¼ã": "de-la-riva-guard",
-        "ããã¯ãã¦ã³ã": "back-mount", "ãµã¤ãã³ã³ãã­ã¼ã«": "side-control",
-        "ãã¦ã³ã": "mount", "ãã¼ã«ããã¯": "heel-hook",
-        "ã¤ã³ãµã¤ããã¼ã«ããã¯": "inside-heel-hook", "ã¢ã¦ããµã¤ããã¼ã«ããã¯": "outside-heel-hook",
-        "ãã¼ãã¼": "knee-bar", "ãã¼ãã¼ã«ã": "toe-hold", "ã¢ã³ã¯ã«ã­ãã¯": "ankle-lock",
-        "ãã¼ã·ã¼ãã§ã¼ã¯": "darce-choke", "ã¢ãã³ã³ããã§ã¼ã¯": "anaconda-choke",
-        "ã¨ã¼ã­ã¨ã«ãã§ã¼ã¯": "ezekiel-choke", "ã«ã¼ãã¹ã©ã¤ãµã¼": "calf-slicer",
-        "ã¹ãã¤ãã¼ã¬ã¼ã": "spider-guard", "ã©ãã¼ã¬ã¼ã": "rubber-guard",
-        "ã©ãã½ã¼ã¬ã¼ã": "lasso-guard", "ãã£ã¼ããã¼ãã¬ã¼ã": "deep-half-guard",
-        "ãã¬ã¢ã³ããã¹": "torreando-pass", "ãã¼ã¹ã©ã¤ã¹ãã¹": "knee-slice-pass",
-        "ã·ã¶ã¼ã¹ã¤ã¼ã": "scissor-sweep", "ããããã³ãã¹ã¤ã¼ã": "hip-bump-sweep",
-        "ããã¯ãã¤ã¯": "backtake", "ã·ã¥ãªã³ãã¨ã¹ã±ã¼ã": "shrimp-escape",
-        "ã¢ã¼ã ãã©ãã°": "arm-drag", "ããã«ã¬ãã°": "double-leg-takedown",
-        "ã¹ãã­ã¼ã«": "sprawl", "ãã¼ã¹ãµã¦ã¹": "north-south",
+        "アームバー": "armbar", "三角絞め": "triangle-choke",
+        "裸絞め": "rear-naked-choke", "ギロチンチョーク": "guillotine-choke",
+        "木村ロック": "kimura", "アメリカーナ": "americana", "オモプラータ": "omoplata",
+        "クローズドガード": "closed-guard", "ハーフガード": "half-guard",
+        "バタフライガード": "butterfly-guard", "デラヒーバガード": "de-la-riva-guard",
+        "バックマウント": "back-mount", "サイドコントロール": "side-control",
+        "マウント": "mount", "ヒールフック": "heel-hook",
+        "インサイドヒールフック": "inside-heel-hook", "アウトサイドヒールフック": "outside-heel-hook",
+        "ニーバー": "knee-bar", "トーホールド": "toe-hold", "アンクルロック": "ankle-lock",
+        "ダーシーチョーク": "darce-choke", "アナコンダチョーク": "anaconda-choke",
+        "エゼキエルチョーク": "ezekiel-choke", "カーフスライサー": "calf-slicer",
+        "スパイダーガード": "spider-guard", "ラバーガード": "rubber-guard",
+        "ラッソーガード": "lasso-guard", "ディープハーフガード": "deep-half-guard",
+        "トレアンドパス": "torreando-pass", "ニースライスパス": "knee-slice-pass",
+        "シザースイープ": "scissor-sweep", "ヒップバンプスイープ": "hip-bump-sweep",
+        "バックテイク": "backtake", "シュリンプエスケープ": "shrimp-escape",
+        "アームドラッグ": "arm-drag", "ダブルレッグ": "double-leg-takedown",
+        "スプロール": "sprawl", "ノースサウス": "north-south",
     },
     "pt": {
         "Armbar": "armbar", "Triangle Choke": "triangle-choke",
@@ -91,12 +91,12 @@ INTERNAL_LINK_MAP = {
         "Guarda Borboleta": "butterfly-guard", "De La Riva": "de-la-riva-guard",
         "Choke Arco e Flecha": "bow-and-arrow-choke", "Montada": "mount",
         "Controle das Costas": "back-mount", "Raspagem Tesoura": "scissor-sweep",
-        "BraÃ§adeira": "arm-triangle-choke", "Chave de PÃ©": "ankle-lock",
+        "Braçadeira": "arm-triangle-choke", "Chave de Pé": "ankle-lock",
     },
 }
 
 def add_internal_links(html: str, current_slug: str, lang: str) -> str:
-    """<p>ã¿ã°åã®æåãåé¨ãªã³ã¯ã«å¤æï¼åæ1åã®ã¿ï¼"""
+    """<p>タグ内の技名を内部リンクに変換（各技1回のみ）"""
     link_map = INTERNAL_LINK_MAP.get(lang, INTERNAL_LINK_MAP["en"])
     linked = set()
 
@@ -119,7 +119,7 @@ def add_internal_links(html: str, current_slug: str, lang: str) -> str:
 
     return re.sub(r'<p[^>]*>.*?</p>', replace_in_p, html, flags=re.DOTALL)
 
-# ===== ~/.secrets ããAPIã­ã¼ãè£å® =====
+# ===== ~/.secrets からAPIキーを補完 =====
 def _load_secrets():
     path = os.path.expanduser("~/.secrets")
     if not os.path.exists(path): return
@@ -133,49 +133,22 @@ def _load_secrets():
                 os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 _load_secrets()
 
-# ===== è¨­å® =====
+# ===== 設定 =====
 IS_CI          = os.environ.get("GITHUB_ACTIONS") == "true"
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 SITE_DIR       = os.path.abspath(os.path.join(os.path.dirname(__file__), "..")) if IS_CI else os.path.expanduser("~/Claude/bjj-wiki")
 SITE_URL       = "https://wiki.bjj-app.net"
-AMAZON_TAG     = "bjj06-22"
-
-# Amazon カテゴリ別 ASIN 直リンクマッピング
-# slug にキーが含まれる場合、該当 ASIN の直リンクを使用（検索URLより CVR 高）
-# US: Jiu-Jitsu University (0981504434), Leg Locks (1933901144)
-# JP: QRコードでよくわかるBJJ (4583117485)
-AMAZON_ASIN_MAP = {
-    "leg-lock":   {"us": "1933901144", "jp": "4583117485"},
-    "heel-hook":  {"us": "1933901144", "jp": "4583117485"},
-    "ankle-lock": {"us": "1933901144", "jp": "4583117485"},
-    "kneebar":    {"us": "1933901144", "jp": "4583117485"},
-    "toe-hold":   {"us": "1933901144", "jp": "4583117485"},
-    # デフォルト: Jiu-Jitsu University (全ポジション網羅)
-    "default":    {"us": "0981504434", "jp": "4583117485"},
-}
-
-def get_amazon_url(slug: str, lang_code: str) -> str:
-    """スラッグとAmazon ASINマップから直リンクURLを生成。マップ外はstripbooks検索にフォールバック。"""
-    for keyword, asins in AMAZON_ASIN_MAP.items():
-        if keyword != "default" and keyword in slug:
-            asin = asins["jp"] if lang_code == "ja" else asins["us"]
-            domain = "amazon.co.jp" if lang_code == "ja" else "amazon.com"
-            return f"https://www.{domain}/dp/{asin}?tag={AMAZON_TAG}"
-    # デフォルトASIN（Jiu-Jitsu University）
-    default_asins = AMAZON_ASIN_MAP["default"]
-    asin = default_asins["jp"] if lang_code == "ja" else default_asins["us"]
-    domain = "amazon.co.jp" if lang_code == "ja" else "amazon.com"
-    return f"https://www.{domain}/dp/{asin}?tag={AMAZON_TAG}"
+## AMAZON_TAG / AMAZON_ASIN_MAP / get_amazon_url — REMOVED (CLAUDE.md: アフィリリンク完全禁止)
 
 LANGUAGES = {
     "en": {"name": "English",    "dir": "en"},
-    "ja": {"name": "æ¥æ¬èª",      "dir": "ja"},
-    "pt": {"name": "PortuguÃªs",  "dir": "pt"},
+    "ja": {"name": "日本語",      "dir": "ja"},
+    "pt": {"name": "Português",  "dir": "pt"},
 }
 
-# ===== æãªã¹ãï¼100æï¼=====
+# ===== 技リスト（100技）=====
 TECHNIQUES = [
-    # ã¬ã¼ãç³»
+    # ガード系
     {"slug": "closed-guard",        "name": "Closed Guard",        "category": "Guard"},
     {"slug": "open-guard",          "name": "Open Guard",          "category": "Guard"},
     {"slug": "half-guard",          "name": "Half Guard",          "category": "Guard"},
@@ -191,7 +164,7 @@ TECHNIQUES = [
     {"slug": "lasso-guard",         "name": "Lasso Guard",         "category": "Guard"},
     {"slug": "deep-half-guard",     "name": "Deep Half Guard",     "category": "Guard"},
     {"slug": "z-guard",             "name": "Z-Guard",             "category": "Guard"},
-    # ãã¹ç³»
+    # パス系
     {"slug": "guard-pass",          "name": "Guard Pass",          "category": "Passing"},
     {"slug": "torreando-pass",      "name": "Torreando Pass",      "category": "Passing"},
     {"slug": "knee-slice-pass",     "name": "Knee Slice Pass",     "category": "Passing"},
@@ -202,7 +175,7 @@ TECHNIQUES = [
     {"slug": "pressure-pass",       "name": "Pressure Pass",       "category": "Passing"},
     {"slug": "smash-pass",          "name": "Smash Pass",          "category": "Passing"},
     {"slug": "x-pass",              "name": "X-Pass",              "category": "Passing"},
-    # ãã¤ã¯ãã¦ã³
+    # テイクダウン
     {"slug": "double-leg-takedown", "name": "Double Leg Takedown", "category": "Takedown"},
     {"slug": "single-leg-takedown", "name": "Single Leg Takedown", "category": "Takedown"},
     {"slug": "osoto-gari",          "name": "Osoto Gari",          "category": "Takedown"},
@@ -211,7 +184,7 @@ TECHNIQUES = [
     {"slug": "ippon-seoi-nage",     "name": "Ippon Seoi Nage",     "category": "Takedown"},
     {"slug": "morote-seoi-nage",    "name": "Morote Seoi Nage",    "category": "Takedown"},
     {"slug": "snap-down",           "name": "Snap Down",           "category": "Takedown"},
-    # çµãæ
+    # 絞め技
     {"slug": "rear-naked-choke",    "name": "Rear Naked Choke",    "category": "Choke"},
     {"slug": "triangle-choke",      "name": "Triangle Choke",      "category": "Choke"},
     {"slug": "guillotine-choke",    "name": "Guillotine Choke",    "category": "Choke"},
@@ -226,7 +199,7 @@ TECHNIQUES = [
     {"slug": "cross-collar-choke",  "name": "Cross Collar Choke",  "category": "Choke"},
     {"slug": "clock-choke",         "name": "Clock Choke",         "category": "Choke"},
     {"slug": "lapel-choke",         "name": "Lapel Choke",         "category": "Choke"},
-    # é¢ç¯æ
+    # 関節技
     {"slug": "armbar",              "name": "Armbar",              "category": "Joint Lock"},
     {"slug": "kimura",              "name": "Kimura",              "category": "Joint Lock"},
     {"slug": "americana",           "name": "Americana",           "category": "Joint Lock"},
@@ -234,7 +207,7 @@ TECHNIQUES = [
     {"slug": "wrist-lock",          "name": "Wrist Lock",          "category": "Joint Lock"},
     {"slug": "straight-armbar",     "name": "Straight Armbar",     "category": "Joint Lock"},
     {"slug": "monoplata",           "name": "Monoplata",           "category": "Joint Lock"},
-    # ã¬ãã°ã­ãã¯
+    # レッグロック
     {"slug": "heel-hook",           "name": "Heel Hook",           "category": "Leg Lock"},
     {"slug": "inside-heel-hook",    "name": "Inside Heel Hook",    "category": "Leg Lock"},
     {"slug": "outside-heel-hook",   "name": "Outside Heel Hook",   "category": "Leg Lock"},
@@ -243,7 +216,7 @@ TECHNIQUES = [
     {"slug": "calf-slicer",         "name": "Calf Slicer",         "category": "Leg Lock"},
     {"slug": "ankle-lock",          "name": "Ankle Lock",          "category": "Leg Lock"},
     {"slug": "estima-lock",         "name": "Estima Lock",         "category": "Leg Lock"},
-    # ãã¸ã·ã§ã³
+    # ポジション
     {"slug": "mount",               "name": "Mount",               "category": "Position"},
     {"slug": "back-mount",          "name": "Back Mount",          "category": "Position"},
     {"slug": "side-control",        "name": "Side Control",        "category": "Position"},
@@ -252,7 +225,7 @@ TECHNIQUES = [
     {"slug": "s-mount",             "name": "S-Mount",             "category": "Position"},
     {"slug": "modified-mount",      "name": "Modified Mount",      "category": "Position"},
     {"slug": "body-triangle",       "name": "Body Triangle",       "category": "Position"},
-    # ã¹ã¤ã¼ã
+    # スイープ
     {"slug": "scissor-sweep",       "name": "Scissor Sweep",       "category": "Sweep"},
     {"slug": "flower-sweep",        "name": "Flower Sweep",        "category": "Sweep"},
     {"slug": "hip-bump-sweep",      "name": "Hip Bump Sweep",      "category": "Sweep"},
@@ -263,25 +236,25 @@ TECHNIQUES = [
     {"slug": "overhead-sweep",      "name": "Overhead Sweep",      "category": "Sweep"},
     {"slug": "balloon-sweep",       "name": "Balloon Sweep",       "category": "Sweep"},
     {"slug": "x-guard-sweep",       "name": "X-Guard Sweep",       "category": "Sweep"},
-    # ãµãããã·ã§ã³é£æº
+    # サブミッション連携
     {"slug": "arm-drag",            "name": "Arm Drag",            "category": "Transition"},
     {"slug": "granby-roll",         "name": "Granby Roll",         "category": "Transition"},
     {"slug": "shrimp-escape",       "name": "Shrimp Escape",       "category": "Escape"},
     {"slug": "bridge-and-roll",     "name": "Bridge and Roll",     "category": "Escape"},
     {"slug": "elbow-knee-escape",   "name": "Elbow-Knee Escape",   "category": "Escape"},
-    # ãã£ãã§ã³ã¹ã»ã¨ã¹ã±ã¼ã
+    # ディフェンス・エスケープ
     {"slug": "guard-retention",     "name": "Guard Retention",     "category": "Defense"},
     {"slug": "hip-escape",          "name": "Hip Escape",          "category": "Defense"},
     {"slug": "frame",               "name": "Frame",               "category": "Defense"},
     {"slug": "sprawl",              "name": "Sprawl",              "category": "Defense"},
     {"slug": "back-defense",        "name": "Back Defense",        "category": "Defense"},
-    # ãã©ã³ã¸ã·ã§ã³
+    # トランジション
     {"slug": "backtake",            "name": "Back Take",           "category": "Transition"},
     {"slug": "turtle-position",     "name": "Turtle Position",     "category": "Position"},
     {"slug": "technical-standup",   "name": "Technical Stand-Up",  "category": "Transition"},
     {"slug": "stand-in-base",       "name": "Stand In Base",       "category": "Transition"},
     {"slug": "sitting-guard",       "name": "Sitting Guard",       "category": "Guard"},
-    # ãã¼ã®ç¹å
+    # ノーギ特化
     {"slug": "seat-belt-control",   "name": "Seat Belt Control",   "category": "Position"},
     {"slug": "front-headlock",      "name": "Front Headlock",      "category": "Position"},
     {"slug": "russian-tie",         "name": "Russian Tie",         "category": "Takedown"},
@@ -289,9 +262,9 @@ TECHNIQUES = [
     {"slug": "overhook",            "name": "Overhook",            "category": "Position"},
 ]
 
-# ===== Gemini APIï¼è¤æ°ã¢ãã«ãã©ã¼ã«ããã¯ï¼=====
+# ===== Gemini API（複数モデルフォールバック）=====
 def call_gemini(prompt):
-    # ç¡ætierãåé ­âææ(2.5ç³»)ã¯æçµãã©ã¼ã«ããã¯ã®ã¿
+    # 無料tierを先頭→有料(2.5系)は最終フォールバックのみ
     models = [
         ("gemini-2.5-flash-lite", "v1beta"),   # free: 15 RPM, 1000 RPD
         ("gemini-2.5-flash-lite", "v1"),
@@ -310,18 +283,18 @@ def call_gemini(prompt):
                 with urllib.request.urlopen(req, timeout=60) as res:
                     result = json.loads(res.read())
                     text   = result["candidates"][0]["content"]["parts"][0]["text"]
-                    print(f"[OK] [{model}] çææå")
+                    print(f"[OK] [{model}] 生成成功")
                     return text
             except urllib.error.HTTPError as e:
                 if e.code == 429:
                     time.sleep(30 * (attempt + 1))
                 else:
-                    print(f"[{model}] HTTP {e.code} â æ¬¡ã®ã¢ãã«ã¸"); break
+                    print(f"[{model}] HTTP {e.code} → 次のモデルへ"); break
             except Exception as e:
-                print(f"[{model}] ã¨ã©ã¼: {e}"); break
+                print(f"[{model}] エラー: {e}"); break
     return None
 
-# ===== è¨äºçæãã­ã³ãã =====
+# ===== 記事生成プロンプト =====
 def build_article_prompt(technique, lang_code, all_slugs=None):
     lang_instructions = {
         "en": "Write everything in English.",
@@ -372,63 +345,63 @@ Return ONLY valid JSON with this exact structure (no markdown wrapper, no extra 
   "keywords": ["{tech_slug}", "bjj {tech_name.lower()}", "{tech_name.lower()} technique", "bjj white belt", "{tech_name.lower()} tutorial"]
 }}}}"""
 
-# ===== é£æåº¦ã»é¸æã»Yogaã»ã®ã¢ ãããã³ã° =====
+# ===== 難易度・選手・Yoga・ギア マッピング =====
 DIFFICULTY_MAP = {
-    "armbar":("blue","âââââ","Intermediate"),"triangle-choke":("blue","âââââ","Intermediate"),
-    "rear-naked-choke":("white","âââââ","Beginner"),"guillotine-choke":("blue","âââââ","Intermediate"),
-    "kimura":("blue","âââââ","Intermediate"),"americana":("white","âââââ","Beginner"),
-    "omoplata":("purple","âââââ","Advanced"),"heel-hook":("brown","âââââ","Expert"),
-    "inside-heel-hook":("brown","âââââ","Expert"),"outside-heel-hook":("brown","âââââ","Expert"),
-    "berimbolo":("purple","âââââ","Advanced"),"rubber-guard":("purple","âââââ","Advanced"),
-    "closed-guard":("white","âââââ","Beginner"),"half-guard":("white","âââââ","Beginner"),
-    "butterfly-guard":("blue","âââââ","Intermediate"),"de-la-riva-guard":("blue","âââââ","Intermediate"),
-    "x-guard":("purple","âââââ","Advanced"),"worm-guard":("purple","âââââ","Advanced"),
-    "50-50-guard":("blue","âââââ","Intermediate"),"knee-bar":("purple","âââââ","Advanced"),
-    "toe-hold":("blue","âââââ","Intermediate"),"ankle-lock":("blue","âââââ","Intermediate"),
-    "bow-and-arrow-choke":("blue","âââââ","Intermediate"),"back-mount":("blue","âââââ","Intermediate"),
-    "mount":("white","âââââ","Beginner"),"side-control":("white","âââââ","Beginner"),
-    "guard-pass":("blue","âââââ","Intermediate"),"scissor-sweep":("white","âââââ","Beginner"),
-    "hip-bump-sweep":("white","âââââ","Beginner"),"shrimp-escape":("white","âââââ","Beginner"),
-    "double-leg-takedown":("blue","âââââ","Intermediate"),"single-leg-takedown":("white","âââââ","Beginner"),
-    "darce-choke":("blue","âââââ","Intermediate"),"anaconda-choke":("blue","âââââ","Intermediate"),
-    "arm-triangle-choke":("blue","âââââ","Intermediate"),"north-south-choke":("purple","âââââ","Advanced"),
-    "baseball-choke":("blue","âââââ","Intermediate"),"lasso-guard":("blue","âââââ","Intermediate"),
-    "calf-slicer":("purple","âââââ","Advanced"),"wrist-lock":("blue","âââââ","Intermediate"),
-    "torreando-pass":("blue","âââââ","Intermediate"),"knee-slice-pass":("blue","âââââ","Intermediate"),
-    "north-south":("white","âââââ","Beginner"),"knee-on-belly":("blue","âââââ","Intermediate"),
+    "armbar":("blue","★★★☆☆","Intermediate"),"triangle-choke":("blue","★★★☆☆","Intermediate"),
+    "rear-naked-choke":("white","★★☆☆☆","Beginner"),"guillotine-choke":("blue","★★★☆☆","Intermediate"),
+    "kimura":("blue","★★★☆☆","Intermediate"),"americana":("white","★★☆☆☆","Beginner"),
+    "omoplata":("purple","★★★★☆","Advanced"),"heel-hook":("brown","★★★★★","Expert"),
+    "inside-heel-hook":("brown","★★★★★","Expert"),"outside-heel-hook":("brown","★★★★★","Expert"),
+    "berimbolo":("purple","★★★★☆","Advanced"),"rubber-guard":("purple","★★★★☆","Advanced"),
+    "closed-guard":("white","★☆☆☆☆","Beginner"),"half-guard":("white","★★☆☆☆","Beginner"),
+    "butterfly-guard":("blue","★★★☆☆","Intermediate"),"de-la-riva-guard":("blue","★★★☆☆","Intermediate"),
+    "x-guard":("purple","★★★★☆","Advanced"),"worm-guard":("purple","★★★★☆","Advanced"),
+    "50-50-guard":("blue","★★★☆☆","Intermediate"),"knee-bar":("purple","★★★★☆","Advanced"),
+    "toe-hold":("blue","★★★☆☆","Intermediate"),"ankle-lock":("blue","★★☆☆☆","Intermediate"),
+    "bow-and-arrow-choke":("blue","★★★☆☆","Intermediate"),"back-mount":("blue","★★★☆☆","Intermediate"),
+    "mount":("white","★★☆☆☆","Beginner"),"side-control":("white","★★☆☆☆","Beginner"),
+    "guard-pass":("blue","★★★☆☆","Intermediate"),"scissor-sweep":("white","★★☆☆☆","Beginner"),
+    "hip-bump-sweep":("white","★★☆☆☆","Beginner"),"shrimp-escape":("white","★☆☆☆☆","Beginner"),
+    "double-leg-takedown":("blue","★★★☆☆","Intermediate"),"single-leg-takedown":("white","★★☆☆☆","Beginner"),
+    "darce-choke":("blue","★★★☆☆","Intermediate"),"anaconda-choke":("blue","★★★☆☆","Intermediate"),
+    "arm-triangle-choke":("blue","★★★☆☆","Intermediate"),"north-south-choke":("purple","★★★★☆","Advanced"),
+    "baseball-choke":("blue","★★★☆☆","Intermediate"),"lasso-guard":("blue","★★★☆☆","Intermediate"),
+    "calf-slicer":("purple","★★★★☆","Advanced"),"wrist-lock":("blue","★★★☆☆","Intermediate"),
+    "torreando-pass":("blue","★★★☆☆","Intermediate"),"knee-slice-pass":("blue","★★★☆☆","Intermediate"),
+    "north-south":("white","★★☆☆☆","Beginner"),"knee-on-belly":("blue","★★★☆☆","Intermediate"),
 }
 BELT_BG = {"white":"#e2e2ee","blue":"#2563eb","purple":"#7c3aed","brown":"#92400e","black":"#111"}
 BELT_FG = {"white":"#111","blue":"#fff","purple":"#fff","brown":"#fff","black":"#fff"}
 
 ATHLETE_MAP = {
-    "armbar":[("john-danaher","John Danaher","ðºð¸"),("marcelo-garcia","Marcelo Garcia","ð§ð·"),("gordon-ryan","Gordon Ryan","ðºð¸")],
-    "triangle-choke":[("marcelo-garcia","Marcelo Garcia","ð§ð·"),("john-danaher","John Danaher","ðºð¸")],
-    "rear-naked-choke":[("gordon-ryan","Gordon Ryan","ðºð¸"),("marcelo-garcia","Marcelo Garcia","ð§ð·")],
-    "guillotine-choke":[("marcelo-garcia","Marcelo Garcia","ð§ð·"),("john-danaher","John Danaher","ðºð¸")],
-    "kimura":[("marcelo-garcia","Marcelo Garcia","ð§ð·"),("john-danaher","John Danaher","ðºð¸")],
-    "heel-hook":[("gordon-ryan","Gordon Ryan","ðºð¸"),("craig-jones","Craig Jones","ð¦ðº"),("john-danaher","John Danaher","ðºð¸")],
-    "inside-heel-hook":[("gordon-ryan","Gordon Ryan","ðºð¸"),("craig-jones","Craig Jones","ð¦ðº")],
-    "outside-heel-hook":[("gordon-ryan","Gordon Ryan","ðºð¸"),("craig-jones","Craig Jones","ð¦ðº")],
-    "berimbolo":[("mikey-musumeci","Mikey Musumeci","ðºð¸"),("caio-terra","Caio Terra","ð§ð·")],
-    "closed-guard":[("marcelo-garcia","Marcelo Garcia","ð§ð·"),("bernardo-faria","Bernardo Faria","ð§ð·")],
-    "half-guard":[("bernardo-faria","Bernardo Faria","ð§ð·"),("marcelo-garcia","Marcelo Garcia","ð§ð·")],
-    "butterfly-guard":[("marcelo-garcia","Marcelo Garcia","ð§ð·"),("john-danaher","John Danaher","ðºð¸")],
-    "omoplata":[("caio-terra","Caio Terra","ð§ð·"),("mikey-musumeci","Mikey Musumeci","ðºð¸")],
-    "rubber-guard":[("mikey-musumeci","Mikey Musumeci","ðºð¸")],
-    "bow-and-arrow-choke":[("marcelo-garcia","Marcelo Garcia","ð§ð·"),("andre-galvao","AndrÃ© GalvÃ£o","ð§ð·")],
-    "back-mount":[("gordon-ryan","Gordon Ryan","ðºð¸"),("marcelo-garcia","Marcelo Garcia","ð§ð·")],
-    "x-guard":[("marcelo-garcia","Marcelo Garcia","ð§ð·")],
-    "de-la-riva-guard":[("caio-terra","Caio Terra","ð§ð·"),("keenan-cornelius","Keenan Cornelius","ðºð¸")],
-    "worm-guard":[("keenan-cornelius","Keenan Cornelius","ðºð¸")],
-    "lasso-guard":[("keenan-cornelius","Keenan Cornelius","ðºð¸"),("caio-terra","Caio Terra","ð§ð·")],
-    "mount":[("andre-galvao","AndrÃ© GalvÃ£o","ð§ð·"),("marcelo-garcia","Marcelo Garcia","ð§ð·")],
-    "side-control":[("gordon-ryan","Gordon Ryan","ðºð¸"),("xande-ribeiro","Xande Ribeiro","ð§ð·")],
-    "50-50-guard":[("gordon-ryan","Gordon Ryan","ðºð¸"),("craig-jones","Craig Jones","ð¦ðº")],
-    "knee-bar":[("gordon-ryan","Gordon Ryan","ðºð¸"),("craig-jones","Craig Jones","ð¦ðº")],
-    "double-leg-takedown":[("marcelo-garcia","Marcelo Garcia","ð§ð·"),("andre-galvao","AndrÃ© GalvÃ£o","ð§ð·")],
-    "arm-drag":[("marcelo-garcia","Marcelo Garcia","ð§ð·")],
-    "anaconda-choke":[("marcelo-garcia","Marcelo Garcia","ð§ð·"),("craig-jones","Craig Jones","ð¦ðº")],
-    "darce-choke":[("john-danaher","John Danaher","ðºð¸"),("gordon-ryan","Gordon Ryan","ðºð¸")],
+    "armbar":[("john-danaher","John Danaher","🇺🇸"),("marcelo-garcia","Marcelo Garcia","🇧🇷"),("gordon-ryan","Gordon Ryan","🇺🇸")],
+    "triangle-choke":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("john-danaher","John Danaher","🇺🇸")],
+    "rear-naked-choke":[("gordon-ryan","Gordon Ryan","🇺🇸"),("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "guillotine-choke":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("john-danaher","John Danaher","🇺🇸")],
+    "kimura":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("john-danaher","John Danaher","🇺🇸")],
+    "heel-hook":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺"),("john-danaher","John Danaher","🇺🇸")],
+    "inside-heel-hook":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺")],
+    "outside-heel-hook":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺")],
+    "berimbolo":[("mikey-musumeci","Mikey Musumeci","🇺🇸"),("caio-terra","Caio Terra","🇧🇷")],
+    "closed-guard":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("bernardo-faria","Bernardo Faria","🇧🇷")],
+    "half-guard":[("bernardo-faria","Bernardo Faria","🇧🇷"),("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "butterfly-guard":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("john-danaher","John Danaher","🇺🇸")],
+    "omoplata":[("caio-terra","Caio Terra","🇧🇷"),("mikey-musumeci","Mikey Musumeci","🇺🇸")],
+    "rubber-guard":[("mikey-musumeci","Mikey Musumeci","🇺🇸")],
+    "bow-and-arrow-choke":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("andre-galvao","André Galvão","🇧🇷")],
+    "back-mount":[("gordon-ryan","Gordon Ryan","🇺🇸"),("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "x-guard":[("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "de-la-riva-guard":[("caio-terra","Caio Terra","🇧🇷"),("keenan-cornelius","Keenan Cornelius","🇺🇸")],
+    "worm-guard":[("keenan-cornelius","Keenan Cornelius","🇺🇸")],
+    "lasso-guard":[("keenan-cornelius","Keenan Cornelius","🇺🇸"),("caio-terra","Caio Terra","🇧🇷")],
+    "mount":[("andre-galvao","André Galvão","🇧🇷"),("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "side-control":[("gordon-ryan","Gordon Ryan","🇺🇸"),("xande-ribeiro","Xande Ribeiro","🇧🇷")],
+    "50-50-guard":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺")],
+    "knee-bar":[("gordon-ryan","Gordon Ryan","🇺🇸"),("craig-jones","Craig Jones","🇦🇺")],
+    "double-leg-takedown":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("andre-galvao","André Galvão","🇧🇷")],
+    "arm-drag":[("marcelo-garcia","Marcelo Garcia","🇧🇷")],
+    "anaconda-choke":[("marcelo-garcia","Marcelo Garcia","🇧🇷"),("craig-jones","Craig Jones","🇦🇺")],
+    "darce-choke":[("john-danaher","John Danaher","🇺🇸"),("gordon-ryan","Gordon Ryan","🇺🇸")],
 }
 
 YOGA_SLUG_MAP = {
@@ -468,20 +441,20 @@ YOGA_CAT_DEFAULTS = {
 }
 
 GEAR_CAT_MAP = {
-    "Guard":[("best-bjj-gi-beginners","ð¥ Best BJJ Gi"),("best-bjj-rashguard","ð Best Rashguard")],
-    "Joint Lock":[("best-bjj-gi-beginners","ð¥ Best BJJ Gi"),("best-bjj-mouthguard","ð¦· Best Mouthguard")],
-    "Leg Lock":[("best-no-gi-shorts","ð©³ Best No-Gi Shorts"),("best-bjj-knee-pads","ð¦µ Best Knee Pads")],
-    "Choke":[("best-bjj-gi-beginners","ð¥ Best BJJ Gi"),("best-bjj-belt","ð½ Best BJJ Belt")],
-    "Sweep":[("best-bjj-gi-beginners","ð¥ Best BJJ Gi"),("best-bjj-rashguard","ð Best Rashguard")],
-    "Takedown":[("best-no-gi-shorts","ð©³ Best No-Gi Shorts"),("best-bjj-rashguard","ð Best Rashguard")],
-    "Passing":[("best-bjj-knee-pads","ð¦µ Best Knee Pads"),("best-bjj-rashguard","ð Best Rashguard")],
-    "Position":[("best-bjj-gi-beginners","ð¥ Best BJJ Gi"),("best-bjj-mouthguard","ð¦· Best Mouthguard")],
-    "Escape":[("best-bjj-rashguard","ð Best Rashguard"),("best-bjj-knee-pads","ð¦µ Best Knee Pads")],
-    "Transition":[("best-bjj-rashguard","ð Best Rashguard"),("best-bjj-gi-beginners","ð¥ Best BJJ Gi")],
-    "Defense":[("best-bjj-mouthguard","ð¦· Best Mouthguard"),("best-bjj-rashguard","ð Best Rashguard")],
+    "Guard":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-rashguard","👕 Best Rashguard")],
+    "Joint Lock":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-mouthguard","🦷 Best Mouthguard")],
+    "Leg Lock":[("best-no-gi-shorts","🩳 Best No-Gi Shorts"),("best-bjj-knee-pads","🦵 Best Knee Pads")],
+    "Choke":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-belt","🎽 Best BJJ Belt")],
+    "Sweep":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-rashguard","👕 Best Rashguard")],
+    "Takedown":[("best-no-gi-shorts","🩳 Best No-Gi Shorts"),("best-bjj-rashguard","👕 Best Rashguard")],
+    "Passing":[("best-bjj-knee-pads","🦵 Best Knee Pads"),("best-bjj-rashguard","👕 Best Rashguard")],
+    "Position":[("best-bjj-gi-beginners","🥋 Best BJJ Gi"),("best-bjj-mouthguard","🦷 Best Mouthguard")],
+    "Escape":[("best-bjj-rashguard","👕 Best Rashguard"),("best-bjj-knee-pads","🦵 Best Knee Pads")],
+    "Transition":[("best-bjj-rashguard","👕 Best Rashguard"),("best-bjj-gi-beginners","🥋 Best BJJ Gi")],
+    "Defense":[("best-bjj-mouthguard","🦷 Best Mouthguard"),("best-bjj-rashguard","👕 Best Rashguard")],
 }
 
-# ===== è¨äºJSONãHTMLã«å¤æ =====
+# ===== 記事JSONをHTMLに変換 =====
 # ===== Markdownライト変換ヘルパー =====
 def md_to_html(text: str) -> str:
     """ライトMarkdown (numbered list / bullet list / bold) → HTML変換"""
@@ -526,24 +499,24 @@ def article_to_html(tech, lang_code, article, all_techniques):
     lang = LANGUAGES[lang_code]
     nav_labels = {
         "en": {"home": "Home", "all": "All Techniques", "category": "Category"},
-        "ja": {"home": "ãã¼ã ", "all": "å¨æä¸è¦§", "category": "ã«ãã´ãª"},
-        "pt": {"home": "InÃ­cio", "all": "Todas as TÃ©cnicas", "category": "Categoria"},
+        "ja": {"home": "ホーム", "all": "全技一覧", "category": "カテゴリ"},
+        "pt": {"home": "Início", "all": "Todas as Técnicas", "category": "Categoria"},
     }
     labels = nav_labels[lang_code]
 
-    # ãªã¹ã or æå­åãå®å¨ã«æå­ååãããã«ãã¼
+    # リスト or 文字列を安全に文字列化するヘルパー
     def to_str(v):
         if isinstance(v, list): return "\n".join(str(i) for i in v)
         return str(v) if v else ""
 
-    # åã«ãã´ãªã®é¢é£æãªã³ã¯
+    # 同カテゴリの関連技リンク
     related = [t for t in all_techniques if t["category"] == tech["category"] and t["slug"] != tech["slug"]][:5]
     related_links = "\n".join([
-        f'<a href="../{t["slug"]}.html">{t["name"]}</a>'
+        f'<a href="../{lang_code}/{t["slug"]}.html">{t["name"]}</a>'
         for t in related
     ])
 
-    # è¨èªåæ¿ãªã³ã¯
+    # 言語切替リンク
     # 言語切替ナビ (lang-nav)
     _lang_flags = {"en": "🇺🇸 EN", "ja": "🇯🇵 JA", "pt": "🇧🇷 PT"}
     lang_nav_links = "".join([
@@ -554,8 +527,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
     keywords_str = ", ".join(article.get("keywords", []))
 
-    # --- é£æåº¦ãã¼ ---
-    diff = DIFFICULTY_MAP.get(tech["slug"], ("white","âââââ","Intermediate"))
+    # --- 難易度バー ---
+    diff = DIFFICULTY_MAP.get(tech["slug"], ("white","★★☆☆☆","Intermediate"))
     diff_belt, diff_stars, diff_label_txt = diff
     diff_bg  = BELT_BG.get(diff_belt, "#e2e2ee")
     diff_fg  = BELT_FG.get(diff_belt, "#111")
@@ -567,16 +540,16 @@ def article_to_html(tech, lang_code, article, all_techniques):
         f'</div>'
     )
 
-    # --- ãã«ãã¬ã¤ãã¯ã­ã¹ãªã³ã¯ ---
+    # --- ベルトガイドクロスリンク ---
     _belt_guide_map = {
-        "white": {"en": ("white-belt-bjj-guide.html","White Belt Guide"), "ja": ("white-belt-bjj-guide.html","ç½å¸¯ã¬ã¤ã"), "pt": ("white-belt-bjj-guide.html","Guia Faixa Branca")},
-        "blue":  {"en": ("blue-belt-bjj-guide.html","Blue Belt Guide"),  "ja": ("blue-belt-bjj-guide.html","éå¸¯ã¬ã¤ã"),  "pt": ("blue-belt-bjj-guide.html","Guia Faixa Azul")},
-        "purple":{"en": ("bjj-purple-belt-requirements.html","Purple Belt Requirements"),"ja": ("bjj-purple-belt-requirements.html","ç´«å¸¯ææ ¼è¦ä»¶"),"pt": ("bjj-purple-belt-requirements.html","Requisitos Faixa Roxa")},
-        "brown": {"en": ("bjj-brown-belt-requirements.html","Brown Belt Requirements"),"ja": ("bjj-brown-belt-requirements.html","è¶å¸¯ææ ¼è¦ä»¶"),"pt": ("bjj-brown-belt-requirements.html","Requisitos Faixa Marrom")},
-        "black": {"en": ("bjj-black-belt-requirements.html","Black Belt Requirements"),"ja": ("bjj-black-belt-requirements.html","é»å¸¯ææ ¼è¦ä»¶"),"pt": ("bjj-black-belt-requirements.html","Requisitos Faixa Preta")},
+        "white": {"en": ("white-belt-bjj-guide.html","White Belt Guide"), "ja": ("white-belt-bjj-guide.html","白帯ガイド"), "pt": ("white-belt-bjj-guide.html","Guia Faixa Branca")},
+        "blue":  {"en": ("blue-belt-bjj-guide.html","Blue Belt Guide"),  "ja": ("blue-belt-bjj-guide.html","青帯ガイド"),  "pt": ("blue-belt-bjj-guide.html","Guia Faixa Azul")},
+        "purple":{"en": ("bjj-purple-belt-requirements.html","Purple Belt Requirements"),"ja": ("bjj-purple-belt-requirements.html","紫帯昇格要件"),"pt": ("bjj-purple-belt-requirements.html","Requisitos Faixa Roxa")},
+        "brown": {"en": ("bjj-brown-belt-requirements.html","Brown Belt Requirements"),"ja": ("bjj-brown-belt-requirements.html","茶帯昇格要件"),"pt": ("bjj-brown-belt-requirements.html","Requisitos Faixa Marrom")},
+        "black": {"en": ("bjj-black-belt-requirements.html","Black Belt Requirements"),"ja": ("bjj-black-belt-requirements.html","黒帯昇格要件"),"pt": ("bjj-black-belt-requirements.html","Requisitos Faixa Preta")},
     }
-    _cta_see_guide = {"en":"ð See Full Guide â","ja":"ð å®å¨ã¬ã¤ããè¦ã â","pt":"ð Ver Guia Completo â"}
-    _belt_level_label = {"en":f"{diff_belt.title()} Belt Technique","ja":f"{diff_belt.title()}å¸¯ãã¯ããã¯","pt":f"TÃ©cnica Faixa {diff_belt.title()}"}
+    _cta_see_guide = {"en":"📖 See Full Guide →","ja":"📖 完全ガイドを見る →","pt":"📖 Ver Guia Completo →"}
+    _belt_level_label = {"en":f"{diff_belt.title()} Belt Technique","ja":f"{diff_belt.title()}帯テクニック","pt":f"Técnica Faixa {diff_belt.title()}"}
     if diff_belt in _belt_guide_map and lang_code in _belt_guide_map[diff_belt]:
         _guide_href, _guide_label = _belt_guide_map[diff_belt][lang_code]
         belt_guide_html = (
@@ -588,8 +561,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
     else:
         belt_guide_html = ""
 
-    # --- é¸æã»ã¯ã·ã§ã³ ---
-    athlete_label = {"en":"ð Elite Athletes Who Use This","ja":"ð ãã®æãä½¿ãã¨ãªã¼ãé¸æ","pt":"ð Atletas de Elite"}[lang_code]
+    # --- 選手セクション ---
+    athlete_label = {"en":"🏆 Elite Athletes Who Use This","ja":"🏆 この技を使うエリート選手","pt":"🏆 Atletas de Elite"}[lang_code]
     athletes_list = ATHLETE_MAP.get(tech["slug"], [])
     if athletes_list:
         chips = "".join([
@@ -602,20 +575,20 @@ def article_to_html(tech, lang_code, article, all_techniques):
     else:
         athletes_html = ""
 
-    # --- Yoga ã¯ã­ã¹ãªã³ã¯ ---
+    # --- Yoga クロスリンク ---
     yoga_poses = YOGA_SLUG_MAP.get(tech["slug"], YOGA_CAT_DEFAULTS.get(tech["category"], []))[:3]
-    yoga_label  = {"en":"ð§ Yoga Poses to Improve This Technique","ja":"ð§ ãã®æã«å¹ãã¨ã¬ãã¼ãº","pt":"ð§ Yoga para Esta TÃ©cnica"}[lang_code]
-    yoga_sub    = {"en":"These poses build the flexibility & mobility you need:","ja":"å¿è¦ãªæè»æ§ã»å¯ååãé«ãã¾ãï¼","pt":"Melhore sua flexibilidade e mobilidade:"}[lang_code]
+    yoga_label  = {"en":"🧘 Yoga Poses to Improve This Technique","ja":"🧘 この技に効くヨガポーズ","pt":"🧘 Yoga para Esta Técnica"}[lang_code]
+    yoga_sub    = {"en":"These poses build the flexibility & mobility you need:","ja":"必要な柔軟性・可動域を高めます：","pt":"Melhore sua flexibilidade e mobilidade:"}[lang_code]
     if yoga_poses:
         yoga_chips = "".join([
-            f'<a class="yoga-chip" href="https://t307239.github.io/yoga-wiki/en/{sl}.html" target="_blank" rel="noopener">ð§ {nm}</a>'
+            f'<a class="yoga-chip" href="https://t307239.github.io/yoga-wiki/en/{sl}.html" target="_blank" rel="noopener">🧘 {nm}</a>'
             for sl, nm in yoga_poses
         ])
         yoga_html = f'<div class="yoga-box"><h3>{yoga_label}</h3><p>{yoga_sub}</p><div class="yoga-chips">{yoga_chips}</div></div>'
     else:
         yoga_html = ""
 
-    # --- ã³ã³ãã£ã·ã§ãã³ã°ããã¯ã¹ ---
+    # --- コンディショニングボックス ---
     _strength_slugs = {"double-leg-takedown","single-leg-takedown","hip-throw","o-soto-gari",
                        "harai-goshi","ippon-seoi-nage","snap-down","torreando-pass",
                        "knee-slice-pass","leg-drag-pass","x-pass","heel-hook","kimura",
@@ -625,12 +598,12 @@ def article_to_html(tech, lang_code, article, all_techniques):
                         "white-belt-bjj-guide","blue-belt-bjj-guide","bjj-strength-training",
                         "double-leg-takedown","single-leg-takedown","wrestling",
                         "bjj-competition-calendar-2026"}
-    _str_lbl = {"en":("â¡ Strength & Conditioning","Build explosive power for this technique:","bjj-strength-training.html","ðª Strength Training Guide â"),
-                "ja":("â¡ ç­ãã¬ã»ã³ã³ãã£ã·ã§ãã³ã°","ãã®æã®ççºåãé«ãããã¬ã¼ãã³ã°:","bjj-strength-training.html","ðª ç­ãã¬ã¬ã¤ããè¦ã â"),
-                "pt":("â¡ ForÃ§a & Condicionamento","Desenvolva potÃªncia explosiva para esta tÃ©cnica:","bjj-strength-training.html","ðª Guia de MusculaÃ§Ã£o â")}
-    _nut_lbl = {"en":("ð¥ BJJ Nutrition","Fuel your training with the right diet:","bjj-diet-nutrition.html","ð¥ Nutrition Guide â"),
-                "ja":("ð¥ BJJæ é¤å­¦","æ­£ããé£äºã§ç·´ç¿ããã©ã¼ãã³ã¹ãæå¤§å:","bjj-diet-nutrition.html","ð¥ æ é¤ã¬ã¤ããè¦ã â"),
-                "pt":("ð¥ NutriÃ§Ã£o para BJJ","Alimente seu treino com a dieta certa:","bjj-diet-nutrition.html","ð¥ Guia de NutriÃ§Ã£o â")}
+    _str_lbl = {"en":("⚡ Strength & Conditioning","Build explosive power for this technique:","bjj-strength-training.html","💪 Strength Training Guide →"),
+                "ja":("⚡ 筋トレ・コンディショニング","この技の爆発力を高めるトレーニング:","bjj-strength-training.html","💪 筋トレガイドを見る →"),
+                "pt":("⚡ Força & Condicionamento","Desenvolva potência explosiva para esta técnica:","bjj-strength-training.html","💪 Guia de Musculação →")}
+    _nut_lbl = {"en":("🥗 BJJ Nutrition","Fuel your training with the right diet:","bjj-diet-nutrition.html","🥗 Nutrition Guide →"),
+                "ja":("🥗 BJJ栄養学","正しい食事で練習パフォーマンスを最大化:","bjj-diet-nutrition.html","🥗 栄養ガイドを見る →"),
+                "pt":("🥗 Nutrição para BJJ","Alimente seu treino com a dieta certa:","bjj-diet-nutrition.html","🥗 Guia de Nutrição →")}
     def _cond_box(lbl, sub, pg, cta):
         return (f'<div class="conditioning-box" style="background:#1a2a1a;border-left:4px solid #4ade80;border-radius:8px;padding:14px 18px;margin:20px 0;">'
                 f'<p style="margin:0 0 6px;font-weight:700;color:#4ade80;">{lbl}</p>'
@@ -642,9 +615,9 @@ def article_to_html(tech, lang_code, article, all_techniques):
     if tech["slug"] in _nutrition_slugs:
         conditioning_html += _cond_box(*_nut_lbl[lang_code])
 
-    # --- ã®ã¢ããã¯ã¹ ---
+    # --- ギアボックス ---
     gear_items  = GEAR_CAT_MAP.get(tech["category"], [])
-    gear_label  = {"en":"âï¸ Recommended Gear","ja":"âï¸ ããããã®ã¢","pt":"âï¸ Equipamento Recomendado"}[lang_code]
+    gear_label  = {"en":"⚙️ Recommended Gear","ja":"⚙️ おすすめギア","pt":"⚙️ Equipamento Recomendado"}[lang_code]
     if gear_items:
         gear_links = "".join([
             f'<a class="gear-link" href="../../gear/{sl}.html">{nm}</a>'
@@ -856,15 +829,15 @@ def article_to_html(tech, lang_code, article, all_techniques):
       "name": "What is {tech['name']} in BJJ?",
       "acceptedAnswer": {{
         "@type": "Answer",
-        "text": "{'It is a fundamental BJJ technique in the ' + tech.get('category','grappling') + ' category. See the full breakdown above.' if lang_code=='en' else '{tech["name"]}ã¯BJJã®æã§ããè©³ç´°ã¯ä¸è¨ãåç§ã' if lang_code=='ja' else '{tech["name"]} Ã© uma tÃ©cnica de BJJ. Veja o detalhamento completo acima.'}"
+        "text": "{'It is a fundamental BJJ technique in the ' + tech.get('category','grappling') + ' category. See the full breakdown above.' if lang_code=='en' else '{tech["name"]}はBJJの技です。詳細は上記を参照。' if lang_code=='ja' else '{tech["name"]} é uma técnica de BJJ. Veja o detalhamento completo acima.'}"
       }}
     }},
     {{
       "@type": "Question",
-      "name": "{'How do I learn ' + tech['name'] + '?' if lang_code=='en' else tech['name'] + 'ã®ç¿å¾æ¹æ³ã¯ï¼' if lang_code=='ja' else 'Como aprender ' + tech['name'] + '?'}",
+      "name": "{'How do I learn ' + tech['name'] + '?' if lang_code=='en' else tech['name'] + 'の習得方法は？' if lang_code=='ja' else 'Como aprender ' + tech['name'] + '?'}",
       "acceptedAnswer": {{
         "@type": "Answer",
-        "text": "{'Follow the step-by-step guide above, drill with a partner, and watch competition footage. BJJ Fanatics instructionals also cover this technique in depth.' if lang_code=='en' else 'ä¸è¨ã®ã¹ããããã¤ã¹ãããã¬ã¤ãã«å¾ãããã¼ããã¼ã¨ããªã«ããè©¦åæ åãè¦ã¦ãã ããã' if lang_code=='ja' else 'Siga o guia passo a passo acima, treine com um parceiro e assista a filmagens de competiÃ§Ã£o.'}"
+        "text": "{'Follow the step-by-step guide above, drill with a partner, and watch competition footage. BJJ Fanatics instructionals also cover this technique in depth.' if lang_code=='en' else '上記のステップバイステップガイドに従い、パートナーとドリルし、試合映像を見てください。' if lang_code=='ja' else 'Siga o guia passo a passo acima, treine com um parceiro e assista a filmagens de competição.'}"
       }}
     }}
   ]
@@ -879,18 +852,18 @@ def article_to_html(tech, lang_code, article, all_techniques):
   "step": [
     {{
       "@type": "HowToStep",
-      "name": "{'Set up the position' if lang_code=='en' else 'ãã¸ã·ã§ã³ã®ã»ããã¢ãã' if lang_code=='ja' else 'Configurar a posiÃ§Ã£o'}",
-      "text": "{'Position yourself correctly relative to your opponent before attempting the technique.' if lang_code=='en' else 'æãè©¦ã¿ãåã«ç¸æã«å¯¾ãã¦æ­£ãããã¸ã·ã§ã³ãåãã' if lang_code=='ja' else 'Posicione-se corretamente em relaÃ§Ã£o ao seu oponente antes de tentar a tÃ©cnica.'}"
+      "name": "{'Set up the position' if lang_code=='en' else 'ポジションのセットアップ' if lang_code=='ja' else 'Configurar a posição'}",
+      "text": "{'Position yourself correctly relative to your opponent before attempting the technique.' if lang_code=='en' else '技を試みる前に相手に対して正しいポジションを取る。' if lang_code=='ja' else 'Posicione-se corretamente em relação ao seu oponente antes de tentar a técnica.'}"
     }},
     {{
       "@type": "HowToStep",
-      "name": "{'Execute the technique' if lang_code=='en' else 'æã®å®è¡' if lang_code=='ja' else 'Executar a tÃ©cnica'}",
-      "text": "{'Apply the technique with proper mechanics as described in the guide above.' if lang_code=='en' else 'ä¸è¨ã¬ã¤ãã®æ­£ããã¡ã«ãã¯ã¹ã§æãå®è¡ããã' if lang_code=='ja' else 'Aplique a tÃ©cnica com a mecÃ¢nica adequada conforme descrito no guia acima.'}"
+      "name": "{'Execute the technique' if lang_code=='en' else '技の実行' if lang_code=='ja' else 'Executar a técnica'}",
+      "text": "{'Apply the technique with proper mechanics as described in the guide above.' if lang_code=='en' else '上記ガイドの正しいメカニクスで技を実行する。' if lang_code=='ja' else 'Aplique a técnica com a mecânica adequada conforme descrito no guia acima.'}"
     }},
     {{
       "@type": "HowToStep",
-      "name": "{'Finish or transition' if lang_code=='en' else 'ãã£ããã·ã¥ã¾ãã¯ãã©ã³ã¸ã·ã§ã³' if lang_code=='ja' else 'Finalizar ou fazer transiÃ§Ã£o'}",
-      "text": "{'Finish the submission or transition to a dominant position. Drill until the movement is automatic.' if lang_code=='en' else 'ãµãããã·ã§ã³ã§ä»çããããæ¯éçãªãã¸ã·ã§ã³ã«ãã©ã³ã¸ã·ã§ã³ãåããèªåã«ãªãã¾ã§ããªã«ã' if lang_code=='ja' else 'Finalize a submissÃ£o ou faÃ§a transiÃ§Ã£o para uma posiÃ§Ã£o dominante. Treine atÃ© o movimento ser automÃ¡tico.'}"
+      "name": "{'Finish or transition' if lang_code=='en' else 'フィニッシュまたはトランジション' if lang_code=='ja' else 'Finalizar ou fazer transição'}",
+      "text": "{'Finish the submission or transition to a dominant position. Drill until the movement is automatic.' if lang_code=='en' else 'サブミッションで仕留めるか、支配的なポジションにトランジション。動きが自動になるまでドリル。' if lang_code=='ja' else 'Finalize a submissão ou faça transição para uma posição dominante. Treine até o movimento ser automático.'}"
     }}
   ]
 }}
@@ -947,41 +920,30 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
     {athletes_html}
 
-  {'<!-- Pro Tip --><div class="pro-tip"><div class="pro-tip-label">ð¡ ' + ('PRO TIP' if lang_code=="en" else 'ãã­ã®ã³ã' if lang_code=="ja" else 'DICA DE PRO') + '</div><p>' + to_str(article.get("pro_tip","")).replace(chr(10),'<br>') + '</p></div>' if article.get('pro_tip') else ''}
+  {'<!-- Pro Tip --><div class="pro-tip"><div class="pro-tip-label">💡 ' + ('PRO TIP' if lang_code=="en" else 'プロのコツ' if lang_code=="ja" else 'DICA DE PRO') + '</div><p>' + to_str(article.get("pro_tip","")).replace(chr(10),'<br>') + '</p></div>' if article.get('pro_tip') else ''}
 
   {conditioning_html}
-  <!-- ã«ã¼ã«ã»ããã¯ã­ã¹ãªã³ã¯ -->
+  <!-- ルールセットクロスリンク -->
   <div style="background:#0d1a2e;border-left:4px solid #3a86ff;border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0">
-    <p style="font-size:.9rem;font-weight:700;color:#93c5fd;margin-bottom:.6rem">{"ð Competition Rules" if lang_code=="en" else "ð è©¦åã«ã¼ã«" if lang_code=="ja" else "ð Regras de CompetiÃ§Ã£o"}</p>
+    <p style="font-size:.9rem;font-weight:700;color:#93c5fd;margin-bottom:.6rem">{"📋 Competition Rules" if lang_code=="en" else "📋 試合ルール" if lang_code=="ja" else "📋 Regras de Competição"}</p>
     <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-      <a href="ibjjf-rules.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">{"IBJJF Rules â" if lang_code=="en" else "IBJJFã«ã¼ã« â" if lang_code=="ja" else "Regras IBJJF â"}</a>
-      <a href="adcc-rules.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">{"ADCC Rules â" if lang_code=="en" else "ADCCã«ã¼ã« â" if lang_code=="ja" else "Regras ADCC â"}</a>
-      <a href="bjj-competition-guide.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">{"Competition Guide â" if lang_code=="en" else "ç«¶æã¬ã¤ã â" if lang_code=="ja" else "Guia de CompetiÃ§Ã£o â"}</a>
+      <a href="ibjjf-rules.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">{"IBJJF Rules →" if lang_code=="en" else "IBJJFルール →" if lang_code=="ja" else "Regras IBJJF →"}</a>
+      <a href="adcc-rules.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">{"ADCC Rules →" if lang_code=="en" else "ADCCルール →" if lang_code=="ja" else "Regras ADCC →"}</a>
+      <a href="bjj-competition-guide.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">{"Competition Guide →" if lang_code=="en" else "競技ガイド →" if lang_code=="ja" else "Guia de Competição →"}</a>
     </div>
   </div>
-  <!-- è©¦åæºåã¯ã­ã¹ãªã³ã¯ -->
+  <!-- 試合準備クロスリンク -->
   <div style="background:#1a0d2e;border-left:4px solid #ff6b6b;border-radius:8px;padding:14px 18px;margin:20px 0">
-    <strong style="color:#ff6b6b;font-size:.9rem">{"âï¸ Training Safety & Performance" if lang_code=="en" else "âï¸ ãã¬ã¼ãã³ã°ã®å®å¨ã¨ããã©ã¼ãã³ã¹" if lang_code=="ja" else "âï¸ SeguranÃ§a e Performance no Treino"}</strong>
+    <strong style="color:#ff6b6b;font-size:.9rem">{"⚕️ Training Safety & Performance" if lang_code=="en" else "⚕️ トレーニングの安全とパフォーマンス" if lang_code=="ja" else "⚕️ Segurança e Performance no Treino"}</strong>
     <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px">
-      <a href="bjj-injury-prevention.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"ð¡ï¸ Injury Prevention" if lang_code=="en" else "ð¡ï¸ æªæäºé²" if lang_code=="ja" else "ð¡ï¸ PrevenÃ§Ã£o de LesÃµes"}</a>
-      <a href="bjj-warm-up-routine.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"ð¥ Warm-Up" if lang_code=="en" else "ð¥ ã¦ã©ã¼ã ã¢ãã" if lang_code=="ja" else "ð¥ Aquecimento"}</a>
-      <a href="bjj-weight-cutting.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"âï¸ Weight Cutting" if lang_code=="en" else "âï¸ æ¸é" if lang_code=="ja" else "âï¸ Corte de Peso"}</a>
-      <a href="bjj-mental-game.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"ð§  Mental Game" if lang_code=="en" else "ð§  ã¡ã³ã¿ã«å¼·å" if lang_code=="ja" else "ð§  Jogo Mental"}</a>
-      <a href="bjj-competition-prep-checklist.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"ð Comp Prep" if lang_code=="en" else "ð è©¦ååãã§ãã¯" if lang_code=="ja" else "ð Prep CompetiÃ§Ã£o"}</a>
+      <a href="bjj-injury-prevention.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"🛡️ Injury Prevention" if lang_code=="en" else "🛡️ 怪我予防" if lang_code=="ja" else "🛡️ Prevenção de Lesões"}</a>
+      <a href="bjj-warm-up-routine.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"🔥 Warm-Up" if lang_code=="en" else "🔥 ウォームアップ" if lang_code=="ja" else "🔥 Aquecimento"}</a>
+      <a href="bjj-weight-cutting.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"⚖️ Weight Cutting" if lang_code=="en" else "⚖️ 減量" if lang_code=="ja" else "⚖️ Corte de Peso"}</a>
+      <a href="bjj-mental-game.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"🧠 Mental Game" if lang_code=="en" else "🧠 メンタル強化" if lang_code=="ja" else "🧠 Jogo Mental"}</a>
+      <a href="bjj-competition-prep-checklist.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">{"📋 Comp Prep" if lang_code=="en" else "📋 試合前チェック" if lang_code=="ja" else "📋 Prep Competição"}</a>
     </div>
   </div>
-  <!-- ã¢ãã£ãªã¨ã¤ã -->
-  <div class="aff-box" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-    <p style="flex:1;min-width:200px">{'Master this technique with world-class instruction' if lang_code=='en' else 'ãã®æãä¸çã¬ãã«ã®æå°ã§ç¿å¾ããã' if lang_code=='ja' else 'Domine esta tÃ©cnica com instruÃ§Ã£o de classe mundial'}</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <a class="aff-btn" href="https://bjjfanatics.com/search?q={tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer nofollow" onclick="gtag&&gtag('event','fanatics_click',{{technique:'{tech['slug']}',lang:'{lang_code}'}})">
-        {'ð¬ Instructionals' if lang_code=='en' else 'ð¬ æååç»' if lang_code=='ja' else 'ð¬ Instrucionais'}
-      </a>
-      <a class="aff-btn" href="{get_amazon_url(tech['slug'], lang_code)}" target="_blank" rel="noopener noreferrer nofollow" style="background:#ff9900;color:#111" onclick="gtag&&gtag('event','amazon_click',{{technique:'{tech['slug']}',lang:'{lang_code}'}})">
-        {'ð Books on Amazon' if lang_code=='en' else 'ð Amazonã§æ¬ãæ¢ã' if lang_code=='ja' else 'ð Livros na Amazon'}
-      </a>
-    </div>
-  </div>
+  <!-- CTA: app registration only (CLAUDE.md: affiliate links prohibited) -->
 
   {yoga_html}
   {gear_html}
@@ -996,7 +958,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
   <!-- Related Techniques Card Grid -->
   <div style="background:#0f1420;border:1px solid #1f2840;border-radius:12px;padding:24px;margin:32px 0">
-    <h3 style="font-size:1rem;font-weight:700;color:#7c6af7;margin-bottom:16px">ð¥ {'Related Techniques' if lang_code=='en' else 'é¢é£æ' if lang_code=='ja' else 'TÃ©cnicas Relacionadas'}</h3>
+    <h3 style="font-size:1rem;font-weight:700;color:#7c6af7;margin-bottom:16px">🥋 {'Related Techniques' if lang_code=='en' else '関連技' if lang_code=='ja' else 'Técnicas Relacionadas'}</h3>
     <div style="display:flex;flex-wrap:wrap;gap:8px">
       {related_links}
     </div>
@@ -1018,26 +980,26 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
   <!-- Share Bar -->
   <div class="share-bar">
-    <p>{'Share this technique' if lang_code=='en' else 'ãã®æãã·ã§ã¢' if lang_code=='ja' else 'Compartilhar esta tÃ©cnica'}</p>
+    <p>{'Share this technique' if lang_code=='en' else 'この技をシェア' if lang_code=='ja' else 'Compartilhar esta técnica'}</p>
     <div class="share-btns">
-      <a class="share-btn x" href="https://twitter.com/intent/tweet?url={SITE_URL}/{lang_code}/{tech['slug']}.html&text={tech['name'].replace(' ','+')}+%23BJJ+%23bjjwiki" target="_blank" rel="noopener noreferrer">ð {'Post on X' if lang_code=='en' else 'Xã«æç¨¿' if lang_code=='ja' else 'Postar no X'}</a>
-      <a class="share-btn reddit" href="https://www.reddit.com/submit?url={SITE_URL}/{lang_code}/{tech['slug']}.html&title={tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer">â¬ Reddit</a>
-      <button class="share-btn copy" onclick="navigator.clipboard.writeText('{SITE_URL}/{lang_code}/{tech['slug']}.html').then(()=>{{this.textContent='â {'Copied!' if lang_code=='en' else 'ã³ãã¼æ¸ï¼' if lang_code=='ja' else 'Copiado!'}';setTimeout(()=>this.textContent='ð {'Copy Link' if lang_code=='en' else 'ãªã³ã¯ã³ãã¼' if lang_code=='ja' else 'Copiar'}',2000)}})">ð {'Copy Link' if lang_code=='en' else 'ãªã³ã¯ã³ãã¼' if lang_code=='ja' else 'Copiar'}</button>
+      <a class="share-btn x" href="https://twitter.com/intent/tweet?url={SITE_URL}/{lang_code}/{tech['slug']}.html&text={tech['name'].replace(' ','+')}+%23BJJ+%23bjjwiki" target="_blank" rel="noopener noreferrer">𝕏 {'Post on X' if lang_code=='en' else 'Xに投稿' if lang_code=='ja' else 'Postar no X'}</a>
+      <a class="share-btn reddit" href="https://www.reddit.com/submit?url={SITE_URL}/{lang_code}/{tech['slug']}.html&title={tech['name'].replace(' ','+')}" target="_blank" rel="noopener noreferrer">⬆ Reddit</a>
+      <button class="share-btn copy" onclick="navigator.clipboard.writeText('{SITE_URL}/{lang_code}/{tech['slug']}.html').then(()=>{{this.textContent='✓ {'Copied!' if lang_code=='en' else 'コピー済！' if lang_code=='ja' else 'Copiado!'}';setTimeout(()=>this.textContent='📋 {'Copy Link' if lang_code=='en' else 'リンクコピー' if lang_code=='ja' else 'Copiar'}',2000)}})">📋 {'Copy Link' if lang_code=='en' else 'リンクコピー' if lang_code=='ja' else 'Copiar'}</button>
       <a class="yt-search-btn" href="https://www.youtube.com/results?search_query={tech['name'].replace(' ','+')}+BJJ+tutorial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> {_yt_btn_label}</a>
     </div>
   </div>
 
   <footer>
-    <p>BJJ Wiki â {'The free BJJ technique encyclopedia' if lang_code=='en' else 'ç¡æBJJæè¡ç¾ç§äºå¸' if lang_code=='ja' else 'A enciclopÃ©dia gratuita de tÃ©cnicas de BJJ'}</p>
+    <p>BJJ Wiki — {'The free BJJ technique encyclopedia' if lang_code=='en' else '無料BJJ技術百科事典' if lang_code=='ja' else 'A enciclopédia gratuita de técnicas de BJJ'}</p>
     <p style="margin-top:8px"><a href="../privacy.html" style="color:var(--muted)">Privacy Policy</a></p>
   </footer>
 </div>
   <div id="float-cta" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:none;max-width:280px">
     <div style="background:var(--card,#18181b);border:1px solid var(--accent,#7c3aed);border-radius:12px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.5);position:relative">
-      <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:10px;background:none;border:none;color:#7a7a9a;font-size:18px;cursor:pointer">Ã</button>
-      <p style="margin:0 0 8px;font-size:.85rem;font-weight:700;color:#e2e2ee">ð© Free BJJ Newsletter</p>
+      <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:10px;background:none;border:none;color:#7a7a9a;font-size:18px;cursor:pointer">×</button>
+      <p style="margin:0 0 8px;font-size:.85rem;font-weight:700;color:#e2e2ee">📩 Free BJJ Newsletter</p>
       <p style="margin:0 0 12px;font-size:.78rem;color:#7a7a9a">Weekly tips, techniques & drills</p>
-      <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener" onclick="gtag&&gtag('event','float_cta_click',{{page:location.pathname}})" style="display:block;text-align:center;background:#6e40c9;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700">Subscribe Free â</a>
+      <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener" onclick="gtag&&gtag('event','float_cta_click',{{page:location.pathname}})" style="display:block;text-align:center;background:#6e40c9;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700">Subscribe Free →</a>
     </div>
   </div>
   <script>
@@ -1087,14 +1049,14 @@ def article_to_html(tech, lang_code, article, all_techniques):
 </body>
 </html>"""
 
-# ===== ã«ãã´ãªå¥ã¤ã³ããã¯ã¹ãã¼ã¸ =====
+# ===== カテゴリ別インデックスページ =====
 def generate_category_index(lang_code, techniques_by_category):
     lang = LANGUAGES[lang_code]
-    titles = {"en": "All BJJ Techniques", "ja": "å¨BJJæä¸è¦§", "pt": "Todas as TÃ©cnicas de BJJ"}
+    titles = {"en": "All BJJ Techniques", "ja": "全BJJ技一覧", "pt": "Todas as Técnicas de BJJ"}
     descs  = {
         "en": "Complete encyclopedia of Brazilian Jiu-Jitsu techniques. Learn guards, passes, submissions, sweeps and more.",
-        "ja": "ãã©ã¸ãªã¢ã³æè¡ï¼BJJï¼ã®æè¡ç¾ç§äºå¸ãã¬ã¼ãããã¹ãçµãæãé¢ç¯æãã¹ã¤ã¼ããç¶²ç¾ã",
-        "pt": "EnciclopÃ©dia completa de tÃ©cnicas de Jiu-Jitsu Brasileiro. Aprenda guardas, passagens, finalizaÃ§Ãµes e muito mais."
+        "ja": "ブラジリアン柔術（BJJ）の技術百科事典。ガード、パス、絞め技、関節技、スイープを網羅。",
+        "pt": "Enciclopédia completa de técnicas de Jiu-Jitsu Brasileiro. Aprenda guardas, passagens, finalizações e muito mais."
     }
     cards = ""
     for cat, techs in sorted(techniques_by_category.items()):
@@ -1121,14 +1083,14 @@ def generate_category_index(lang_code, techniques_by_category):
 </body>
 </html>"""
 
-# ===== ããããã¼ã¸ =====
+# ===== トップページ =====
 def generate_index():
     return """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BJJ Wiki â Brazilian Jiu-Jitsu Technique Encyclopedia</title>
+<title>BJJ Wiki — Brazilian Jiu-Jitsu Technique Encyclopedia</title>
 <meta name="description" content="Free multilingual encyclopedia of Brazilian Jiu-Jitsu techniques. Available in English, Japanese and Portuguese.">
 <link rel="stylesheet" href="/wiki-v2.css">
 </head>
@@ -1138,27 +1100,27 @@ def generate_index():
   <p class="subtitle">The free Brazilian Jiu-Jitsu technique encyclopedia</p>
   <div class="lang-grid">
     <a class="lang-btn" href="en/index.html">
-      <div class="lang-flag">ðºð¸</div>
+      <div class="lang-flag">🇺🇸</div>
       <div class="lang-name">English</div>
       <div class="lang-sub">Browse in English</div>
     </a>
     <a class="lang-btn" href="ja/index.html">
-      <div class="lang-flag">ð¯ðµ</div>
-      <div class="lang-name">æ¥æ¬èª</div>
-      <div class="lang-sub">æ¥æ¬èªã§èª­ã</div>
+      <div class="lang-flag">🇯🇵</div>
+      <div class="lang-name">日本語</div>
+      <div class="lang-sub">日本語で読む</div>
     </a>
     <a class="lang-btn" href="pt/index.html">
-      <div class="lang-flag">ð§ð·</div>
-      <div class="lang-name">PortuguÃªs</div>
-      <div class="lang-sub">Ler em PortuguÃªs</div>
+      <div class="lang-flag">🇧🇷</div>
+      <div class="lang-name">Português</div>
+      <div class="lang-sub">Ler em Português</div>
     </a>
   </div>
-  <footer><p>BJJ Wiki â Free & Open Knowledge</p></footer>
+  <footer><p>BJJ Wiki — Free & Open Knowledge</p></footer>
 </div>
 </body>
 </html>"""
 
-# ===== ã­ã£ãã·ã¥ç®¡ç =====
+# ===== キャッシュ管理 =====
 def load_cache():
     path = os.path.join(SITE_DIR, "cache", "generated.json")
     if os.path.exists(path):
@@ -1169,7 +1131,7 @@ def save_cache(cache):
     path = os.path.join(SITE_DIR, "cache", "generated.json")
     with open(path, "w", encoding="utf-8") as f: json.dump(cache, f, ensure_ascii=False, indent=2)
 
-# ===== ã¡ã¤ã³ =====
+# ===== メイン =====
 
 def _validate_article_structure(html: str, slug: str, lang_code: str) -> bool:
     """
@@ -1230,9 +1192,9 @@ def _sort_techniques_by_priority(techniques, priority_slugs):
 def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--force", action="store_true", help="ã­ã£ãã·ã¥ç¡è¦ãã¦å¨åçæ")
-    parser.add_argument("--limit", type=int, default=5, help="1åã®å®è¡ã§çæããæå¤§è¨äºæ°ï¼ã³ã¹ãç®¡çï¼")
-    parser.add_argument("--lang", default="all", help="çæããè¨èª (en/ja/pt/all)")
+    parser.add_argument("--force", action="store_true", help="キャッシュ無視して全再生成")
+    parser.add_argument("--limit", type=int, default=5, help="1回の実行で生成する最大記事数（コスト管理）")
+    parser.add_argument("--lang", default="all", help="生成する言語 (en/ja/pt/all)")
     args = parser.parse_args()
 
     os.makedirs(SITE_DIR, exist_ok=True)
@@ -1245,12 +1207,12 @@ def main():
     techniques_ordered = _sort_techniques_by_priority(TECHNIQUES, priority_slugs)
     all_slugs          = [t["slug"] for t in TECHNIQUES]
 
-    # ããããã¼ã¸çæ
+    # トップページ生成
     with open(os.path.join(SITE_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(generate_index())
-    print("[OK] index.html çæå®äº")
+    print("[OK] index.html 生成完了")
 
-    # æãã¼ã¸çæ
+    # 技ページ生成
     for lang_code in langs:
         lang_dir = os.path.join(SITE_DIR, lang_code)
         os.makedirs(lang_dir, exist_ok=True)
@@ -1260,34 +1222,34 @@ def main():
             cache_key = f"{lang_code}/{tech['slug']}"
             out_path  = os.path.join(lang_dir, f"{tech['slug']}.html")
 
-            # ã«ãã´ãªåé¡
+            # カテゴリ分類
             cat = tech["category"]
             techniques_by_category.setdefault(cat, []).append(tech)
 
-            # ã­ã£ãã·ã¥æ¸ã¿ãã¤ãã¡ã¤ã«å­å¨ãªãã¹ã­ãã
+            # キャッシュ済みかつファイル存在ならスキップ
             if cache_key in cache and os.path.exists(out_path) and not args.force:
                 continue
 
             if count >= args.limit:
-                print(f"[INFO] ä¸é({args.limit}ä»¶)ã«éãã¾ãããæ¬¡åå®è¡ã§ç¶ããçæãã¾ãã")
+                print(f"[INFO] 上限({args.limit}件)に達しました。次回実行で続きを生成します。")
                 break
 
-            print(f"[{lang_code}] {tech['name']} çæä¸­...")
+            print(f"[{lang_code}] {tech['name']} 生成中...")
             raw = call_gemini(build_article_prompt(tech, lang_code, all_slugs))
             if not raw:
-                print(f"[WARNING] {tech['name']} çæå¤±æãã¹ã­ãã")
+                print(f"[WARNING] {tech['name']} 生成失敗。スキップ")
                 continue
 
-            # JSONãã¼ã¹
+            # JSONパース
             try:
                 text    = re.sub(r'^```[a-z]*\n?', '', raw.strip(), flags=re.MULTILINE)
                 text    = re.sub(r'\n?```$', '', text, flags=re.MULTILINE)
                 article = json.loads(text.strip())
             except Exception as e:
-                print(f"[WARNING] JSONãã¼ã¹å¤±æ: {e}")
+                print(f"[WARNING] JSONパース失敗: {e}")
                 continue
 
-            # HTMLçæã»ä¿å­ï¼åé¨ãªã³ã¯ä»ä¸ï¼
+            # HTML生成・保存（内部リンク付与）
             html = article_to_html(tech, lang_code, article, TECHNIQUES)
             html = add_internal_links(html, tech["slug"], lang_code)
             with open(out_path, "w", encoding="utf-8") as f:
@@ -1297,26 +1259,26 @@ def main():
             if _validate_article_structure(html, tech["slug"], lang_code):
                 cache[cache_key] = datetime.datetime.now().isoformat()
             count += 1
-            print(f"[OK] {cache_key} â {out_path}")
+            print(f"[OK] {cache_key} → {out_path}")
             # 10件ごとにTelegram進捗通知
             if count % 10 == 0:
                 send_telegram(f"📖 BJJ Wiki 生成中: {count}件完了")
-            time.sleep(1)  # APIè² è·è»½æ¸
+            time.sleep(1)  # API負荷軽減
 
-        # ã«ãã´ãªã¤ã³ããã¯ã¹çæ
+        # カテゴリインデックス生成
         idx_html = generate_category_index(lang_code, techniques_by_category)
         with open(os.path.join(lang_dir, "index.html"), "w", encoding="utf-8") as f:
             f.write(idx_html)
-        print(f"[OK] {lang_code}/index.html çæå®äº")
+        print(f"[OK] {lang_code}/index.html 生成完了")
 
     save_cache(cache)
-    print(f"\n[å®äº] {count}ä»¶ã®æ°è¦è¨äºãçæãã¾ãã")
+    print(f"\n[完了] {count}件の新規記事を生成しました")
     remaining = sum(
         1 for tech in TECHNIQUES
         for lc in langs
         if f"{lc}/{tech['slug']}" not in cache
     )
-    print(f"[æ®ã] ãã¨{remaining}ä»¶æªçæ")
+    print(f"[残り] あと{remaining}件未生成")
 
 if __name__ == "__main__":
     main()

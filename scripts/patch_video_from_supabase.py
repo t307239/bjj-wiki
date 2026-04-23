@@ -136,10 +136,9 @@ def patch_html(html: str, video_url: str, lang_code: str, force: bool = False) -
 
     iframe = make_iframe(video_url, lang_code)
 
-    # 挿入位置: aff-box の前 > share-bar の前 > footer の前 > </body> の前
-    if 'class="aff-box"' in html:
-        html = html.replace('<div class="aff-box">', iframe + '\n  <div class="aff-box">', 1)
-    elif 'class="share-bar"' in html:
+    # 挿入位置: share-bar の前 > footer の前 > </body> の前
+    # NOTE: aff-box は廃止済み (CLAUDE.md: アフィリリンク完全禁止)
+    if 'class="share-bar"' in html:
         html = html.replace('<div class="share-bar">', iframe + '\n  <div class="share-bar">', 1)
     elif "<footer>" in html:
         html = html.replace("<footer>", iframe + "\n  <footer>", 1)

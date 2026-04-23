@@ -8,7 +8,7 @@ import os, json, time, datetime, urllib.request, urllib.error, re, argparse
 
 BASE     = os.path.dirname(__file__) + "/.."
 SITE_URL = "https://wiki.bjj-app.net"
-AMAZON_TAG = "bjj06-22"
+# AMAZON_TAG removed (CLAUDE.md: affiliate links prohibited)
 GA4_ID   = "G-7LM8L3TRZM"
 ADSENSE  = "ca-pub-5529701443220352"
 
@@ -110,7 +110,7 @@ def build_gear_html(page, content):
         bf      = r.get("best_for","")
         rating  = r.get("rating",4)
         stars   = "★"*rating + "☆"*(5-rating)
-        amz_url = f"https://www.amazon.com/s?k=BJJ+{brand.replace(' ','+')}+{page['category']}&tag={AMAZON_TAG}"
+        amz_url = f"https://www.amazon.com/s?k=BJJ+{brand.replace(' ','+')}+{page['category']}"
         return f'''<div class="review-card">
   <div class="review-header">
     <span class="brand-name">{brand}</span>
@@ -215,7 +215,7 @@ footer{{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);text
   <div style="font-size:0.75rem;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">⭐ TOP PICK</div>
   <div style="font-size:1.2rem;font-weight:800;margin-bottom:6px">{top_pick}</div>
   <p style="color:var(--muted);font-size:0.9rem">{top_reason}</p>
-  <a href="https://www.amazon.com/s?k=BJJ+{top_pick.replace(' ','+')}+{page['category']}&tag={AMAZON_TAG}" 
+  <a href="https://www.amazon.com/s?k=BJJ+{top_pick.replace(' ','+')}+{page['category']}" 
      target="_blank" rel="noopener noreferrer nofollow"
      style="display:inline-block;margin-top:12px;background:#ff9900;color:#111;padding:10px 24px;border-radius:8px;font-weight:700">
     🛒 Shop {top_pick} on Amazon
@@ -229,7 +229,7 @@ footer{{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);text
 <div class="card">
   <strong>{budget}</strong> — {budget_r}
   <br>
-  <a href="https://www.amazon.com/s?k=BJJ+{budget.replace(' ','+')}+{page['category']}&tag={AMAZON_TAG}"
+  <a href="https://www.amazon.com/s?k=BJJ+{budget.replace(' ','+')}+{page['category']}"
      target="_blank" rel="noopener noreferrer nofollow"
      style="display:inline-block;margin-top:12px;background:#ff9900;color:#111;padding:8px 20px;border-radius:8px;font-weight:700;font-size:0.85rem">
     🛒 Shop Budget Pick
