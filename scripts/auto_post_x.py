@@ -415,13 +415,20 @@ def main():
             error_msg = str(e)
             print(f"  FAIL: {error_msg}")
             if not dry_run:
+                # 重複投稿防止: 例外時も確定済みの posted を先に save してから exit
+                save_posted_log(posted)
                 send_telegram(f"X post failed: {error_msg}")
             sys.exit(1)
 
-        count += 1
-        newly_posted.append(slug)
-        posted.add(slug)
-        print(f"  OK ({count}/{limit}): {tweet[:80]}...")
+        # result が None (API 返却なし) の場合も count を進めていた bug 修正:
+        # post 成功確認 (result truthy) でのみ posted に登録 + count++
+        if result:
+            count += 1
+            newly_posted.append(slug)
+            posted.add(slug)
+            print(f"  OK ({count}/{limit}): {tweet[:80]}...")
+        else:
+            print(f"  SKIP (no API response): {slug}")
         if not dry_run:
             time.sleep(2)
 

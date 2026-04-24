@@ -107,17 +107,20 @@ def create_threads_post(text: str, user_id: str, access_token: str, dry_run: boo
         print(f"  {text[:200]}...")
         return {"id": "dry_run"}
 
+    # Security: access_token は Authorization header で送信 (z143/z152 同型方針)
+    # Body に乗せると Meta サーバーログ・中間 proxy に残存するリスクがあるため
+    auth_headers = {"Authorization": f"Bearer {access_token}"}
+
     # Step 1: Create media container
     create_url = f"{THREADS_API_BASE}/{user_id}/threads"
     params = {
         "media_type": "TEXT",
         "text": text,
-        "access_token": access_token,
     }
     encoded = urllib.parse.urlencode(params).encode()
 
     try:
-        req = urllib.request.Request(create_url, data=encoded, method="POST")
+        req = urllib.request.Request(create_url, data=encoded, method="POST", headers=auth_headers)
         with urllib.request.urlopen(req, timeout=30) as resp:
             result = json.loads(resp.read().decode())
             container_id = result.get("id")
@@ -128,7 +131,9 @@ def create_threads_post(text: str, user_id: str, access_token: str, dry_run: boo
         body = e.read().decode()
         print(f"  [ERROR] Create failed {e.code}: {body[:300]}")
         if e.code == 401:
-            raise RuntimeError(f"Threads auth failed: {body}")
+            # Security: auth エラーの body には token-like な error descriptor が
+            # 含まれることがあるため詳細は raise せず status code のみ surface
+            raise RuntimeError(f"Threads auth failed (HTTP {e.code})")
         return None
 
     # Step 2: Publish
@@ -136,12 +141,11 @@ def create_threads_post(text: str, user_id: str, access_token: str, dry_run: boo
     publish_url = f"{THREADS_API_BASE}/{user_id}/threads_publish"
     publish_params = {
         "creation_id": container_id,
-        "access_token": access_token,
     }
     encoded = urllib.parse.urlencode(publish_params).encode()
 
     try:
-        req = urllib.request.Request(publish_url, data=encoded, method="POST")
+        req = urllib.request.Request(publish_url, data=encoded, method="POST", headers=auth_headers)
         with urllib.request.urlopen(req, timeout=30) as resp:
             result = json.loads(resp.read().decode())
             post_id = result.get("id")
