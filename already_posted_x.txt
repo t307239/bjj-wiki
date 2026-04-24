@@ -43,6 +43,7 @@ single-leg-takedown
 sitting-guard
 smash-pass
 snap-down
+sparring-simulator
 spider-guard
 sprawl
 stack-pass
