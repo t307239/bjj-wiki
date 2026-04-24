@@ -6,6 +6,7 @@ top-bjj-submissions
 toreando-pass
 torreando-pass
 triangle-choke
+triangle-vs-guillotine
 tripod-sweep
 turtle-position
 twister
