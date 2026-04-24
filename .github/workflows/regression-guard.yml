@@ -1,0 +1,44 @@
+name: GHA Regression Guard
+
+# z156 で追加: z140-z155 で発見した 12 pattern の自動検出
+# 以下のいずれかで走り、🔴 Critical があれば fail:
+#  - PR open/sync
+#  - main に push
+#  - 毎朝 9:30 JST (generate.yml = 10:00 JST の前に)
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**.py'
+      - '.github/workflows/**.yml'
+  schedule:
+    - cron: '30 0 * * *'  # 09:30 JST — generate.yml (10:00 JST) の前
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run GHA regression detection
+        id: lint
+        run: python3 scripts/detect_gha_regression.py --ci
+
+      - name: Notify Telegram on Critical
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="🔴 bjj-wiki: GHA regression detected ($(date '+%Y-%m-%d %H:%M')) — 先祖返りが発生。generate.yml 実行前に修正が必要。"

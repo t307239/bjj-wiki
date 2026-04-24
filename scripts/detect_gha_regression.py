@@ -35,6 +35,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = ROOT / "scripts"
 
+# 自己参照除外 (lint 自身がパターン定義を含むため)
+SELF_FILENAME = Path(__file__).name
+
 # ── Pattern Registry ────────────────────────────────────────────────
 
 PATTERNS = [
@@ -98,6 +101,9 @@ def scan_regex_pattern(pattern_id: str, severity: str, file_glob: str,
     for fp in ROOT.glob(file_glob):
         if not fp.is_file():
             continue
+        # 自己参照除外
+        if fp.name == SELF_FILENAME:
+            continue
         try:
             content = fp.read_text(encoding="utf-8", errors="ignore")
         except Exception:
@@ -146,6 +152,8 @@ def scan_month_labels_drift() -> list:
     MONTH_LABELS_PT が定義されていない箇所 (z147 regression)"""
     findings = []
     for fp in ROOT.glob("scripts/*.py"):
+        if fp.name == SELF_FILENAME:
+            continue
         try:
             c = fp.read_text(encoding="utf-8", errors="ignore")
         except Exception:

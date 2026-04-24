@@ -31,6 +31,12 @@ jobs:
         with:
           python-version: '3.11'
 
+      # z156: generate 実行前に regression lint (🔴 0 なら PASS)
+      # 失敗時は generate をキャンセルして先祖返りした script が
+      # 1,400+ ページを上書きするのを防ぐ
+      - name: Regression guard (detect_gha_regression.py)
+        run: python3 scripts/detect_gha_regression.py --ci
+
       - name: Generate articles
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
