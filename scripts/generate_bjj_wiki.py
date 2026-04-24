@@ -1066,25 +1066,63 @@ def generate_category_index(lang_code, techniques_by_category):
         "ja": "ブラジリアン柔術（BJJ）の技術百科事典。ガード、パス、絞め技、関節技、スイープを網羅。",
         "pt": "Enciclopédia completa de técnicas de Jiu-Jitsu Brasileiro. Aprenda guardas, passagens, finalizações e muito mais."
     }
+    # XSS 対策: title/desc は静的辞書だが将来の拡張に備えて html.escape
+    _title_safe = html.escape(titles[lang_code], quote=True)
+    _desc_safe = html.escape(descs[lang_code], quote=True)
+    _page_url = f"{SITE_URL}/{lang_code}/index.html"
+
     cards = ""
     for cat, techs in sorted(techniques_by_category.items()):
         links = "".join([f'<a href="{t["slug"]}.html">{t["name"]}</a>' for t in techs])
         cards += f'<div class="cat-card"><h2>{cat}</h2><div class="tech-links">{links}</div></div>'
+
+    # z130/z133/z136/z137/z138 と同等の SEO メタを全て付与 (tech ページ template と同水準)
+    _breadcrumb_jsonld = '<script type="application/ld+json">' + json.dumps({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "BJJ Wiki", "item": f"{SITE_URL}/"},
+            {"@type": "ListItem", "position": 2, "name": titles[lang_code], "item": _page_url},
+        ],
+    }, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + '</script>'
 
     return f"""<!DOCTYPE html>
 <html lang="{lang_code}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{titles[lang_code]} | BJJ Wiki</title>
-<meta name="description" content="{descs[lang_code]}">
+<title>{_title_safe} | BJJ Wiki</title>
+<meta name="description" content="{_desc_safe}">
+<meta property="og:site_name" content="BJJ Wiki">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{_page_url}">
+<meta property="og:title" content="{_title_safe}">
+<meta property="og:description" content="{_desc_safe}">
+<meta property="og:image" content="{SITE_URL}/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bjj_wiki">
+<meta name="twitter:title" content="{_title_safe}">
+<meta name="twitter:description" content="{_desc_safe}">
+<meta name="twitter:image" content="{SITE_URL}/og-image.svg">
+<link rel="canonical" href="{_page_url}">
+<link rel="alternate" hreflang="x-default" href="{SITE_URL}/en/index.html">
+<link rel="alternate" hreflang="en" href="{SITE_URL}/en/index.html">
+<link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/index.html">
+<link rel="alternate" hreflang="pt" href="{SITE_URL}/pt/index.html">
+<link rel="icon" href="{SITE_URL}/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{SITE_URL}/og-image.svg">
 <link rel="stylesheet" href="/wiki-v2.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
+{_breadcrumb_jsonld}
 </head>
 <body>
 <div class="container">
   <header><a href="../index.html" class="logo">BJJ<span>Wiki</span></a></header>
-  <h1>{titles[lang_code]}</h1>
-  <p class="subtitle">{descs[lang_code]}</p>
+  <h1>{_title_safe}</h1>
+  <p class="subtitle">{_desc_safe}</p>
   {cards}
   <footer><p>BJJ Wiki</p></footer>
 </div>
@@ -1093,14 +1131,50 @@ def generate_category_index(lang_code, techniques_by_category):
 
 # ===== トップページ =====
 def generate_index():
-    return """<!DOCTYPE html>
+    # z130/z133/z136 水準の SEO メタ + WebSite JSON-LD + hreflang を全装備
+    _title = "BJJ Wiki — Brazilian Jiu-Jitsu Technique Encyclopedia"
+    _desc = "Free multilingual encyclopedia of Brazilian Jiu-Jitsu techniques. Available in English, Japanese and Portuguese."
+    _website_jsonld = '<script type="application/ld+json">' + json.dumps({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "BJJ Wiki",
+        "url": f"{SITE_URL}/",
+        "description": _desc,
+        "inLanguage": ["en", "ja", "pt"],
+        "publisher": {"@type": "Organization", "name": "BJJ Wiki", "url": f"{SITE_URL}/"},
+    }, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + '</script>'
+
+    return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BJJ Wiki — Brazilian Jiu-Jitsu Technique Encyclopedia</title>
-<meta name="description" content="Free multilingual encyclopedia of Brazilian Jiu-Jitsu techniques. Available in English, Japanese and Portuguese.">
+<title>{_title}</title>
+<meta name="description" content="{_desc}">
+<meta property="og:site_name" content="BJJ Wiki">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{SITE_URL}/">
+<meta property="og:title" content="{_title}">
+<meta property="og:description" content="{_desc}">
+<meta property="og:image" content="{SITE_URL}/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bjj_wiki">
+<meta name="twitter:title" content="{_title}">
+<meta name="twitter:description" content="{_desc}">
+<meta name="twitter:image" content="{SITE_URL}/og-image.svg">
+<link rel="canonical" href="{SITE_URL}/">
+<link rel="alternate" hreflang="x-default" href="{SITE_URL}/en/index.html">
+<link rel="alternate" hreflang="en" href="{SITE_URL}/en/index.html">
+<link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/index.html">
+<link rel="alternate" hreflang="pt" href="{SITE_URL}/pt/index.html">
+<link rel="icon" href="{SITE_URL}/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{SITE_URL}/og-image.svg">
 <link rel="stylesheet" href="/wiki-v2.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
+{_website_jsonld}
 </head>
 <body>
 <div class="container">
