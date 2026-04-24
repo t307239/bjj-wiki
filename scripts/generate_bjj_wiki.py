@@ -5,7 +5,7 @@ BJJ Wiki - 多言語柔術技辞典 自動生成スクリプト
 - 静的HTMLとしてGitHub Pagesにデプロイ
 """
 
-import os, json, time, datetime, urllib.request, urllib.error, re
+import os, json, time, datetime, html, urllib.request, urllib.error, re
 
 # ===== Telegram通知 =====
 def send_telegram(msg: str) -> None:
@@ -531,6 +531,48 @@ def article_to_html(tech, lang_code, article, all_techniques):
 
     keywords_str = ", ".join(article.get("keywords", []))
 
+    # Security: Gemini 出力の title / meta_description は prompt injection 経由で
+    # </title>, </script>, `"` を含む可能性がある。html.escape() で HTML 属性・
+    # テキスト全てを安全化 (title / meta tags / JSON-LD すべて共通化)。
+    # JSON-LD の文字列値は json.dumps で別途 escape する。
+    _raw_title = article.get("title", tech["name"])
+    _raw_desc = article.get("meta_description", "")
+    _html_title = html.escape(_raw_title, quote=True)
+    _html_desc = html.escape(_raw_desc, quote=True)
+    _keywords_safe = html.escape(keywords_str, quote=True)
+
+    # JSON-LD: f-string 直挿入だと Gemini 出力の `"`/`\`/`</script>` で破壊される。
+    # json.dumps + `.replace("</","<\\/")` で script breakout を封殺。
+    # (z143 enrich_sections.py と同じ pattern)
+    def _jsonld(payload: dict) -> str:
+        s = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        return '<script type="application/ld+json">' + s.replace("</", "<\\/") + '</script>'
+
+    _article_url = f"{SITE_URL}/{lang_code}/{tech['slug']}.html"
+    _article_jsonld_block = _jsonld({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": _raw_title,
+        "description": _raw_desc,
+        "url": _article_url,
+        "inLanguage": lang_code,
+        "datePublished": "2026-03-13T00:00:00+09:00",
+        "dateModified": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+09:00"),
+        "author": {"@type": "Organization", "name": "BJJ Wiki", "url": f"{SITE_URL}/"},
+        "publisher": {"@type": "Organization", "name": "BJJ Wiki", "url": f"{SITE_URL}/"},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": _article_url},
+    })
+    _breadcrumb_jsonld_block = _jsonld({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "BJJ Wiki",
+             "item": f"{SITE_URL}/{lang_code}/index.html"},
+            {"@type": "ListItem", "position": 2, "name": _raw_title,
+             "item": _article_url},
+        ],
+    })
+
     # --- 難易度バー ---
     diff = DIFFICULTY_MAP.get(tech["slug"], ("white","★★☆☆☆","Intermediate"))
     diff_belt, diff_stars, diff_label_txt = diff
@@ -756,11 +798,11 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
-<title>{article.get('title', tech['name'])} | BJJ Wiki</title>
-<meta name="description" content="{article.get('meta_description', '')}">
-<meta name="keywords" content="{keywords_str}">
-<meta property="og:title" content="{article.get('title', tech['name'])}">
-<meta property="og:description" content="{article.get('meta_description', '')}">
+<title>{_html_title} | BJJ Wiki</title>
+<meta name="description" content="{_html_desc}">
+<meta name="keywords" content="{_keywords_safe}">
+<meta property="og:title" content="{_html_title}">
+<meta property="og:description" content="{_html_desc}">
 <meta property="og:type" content="article">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="{SITE_URL}/{lang_code}/{tech['slug']}.html">
@@ -769,8 +811,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@bjj_wiki">
-<meta name="twitter:title" content="{article.get('title', tech['name'])}">
-<meta name="twitter:description" content="{article.get('meta_description', '')[:200]}">
+<meta name="twitter:title" content="{_html_title}">
+<meta name="twitter:description" content="{html.escape(_raw_desc[:200], quote=True)}">
 <meta name="twitter:image" content="{SITE_URL}/og-image.svg">
 <link rel="canonical" href="{SITE_URL}/{lang_code}/{tech['slug']}.html">
 <link rel="alternate" hreflang="x-default" href="{SITE_URL}/en/{tech['slug']}.html">
@@ -783,52 +825,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
-<script type="application/ld+json">
-{{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{article.get('title', tech['name'])}",
-  "description": "{article.get('meta_description', '')}",
-  "url": "{SITE_URL}/{lang_code}/{tech['slug']}.html",
-  "inLanguage": "{lang_code}",
-  "datePublished": "2026-03-13T00:00:00+09:00",
-  "dateModified": "{datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S+09:00')}",
-  "author": {{
-    "@type": "Organization",
-    "name": "BJJ Wiki",
-    "url": "{SITE_URL}/"
-  }},
-  "publisher": {{
-    "@type": "Organization",
-    "name": "BJJ Wiki",
-    "url": "{SITE_URL}/"
-  }},
-  "mainEntityOfPage": {{
-    "@type": "WebPage",
-    "@id": "{SITE_URL}/{lang_code}/{tech['slug']}.html"
-  }}
-}}
-</script>
-<script type="application/ld+json">
-{{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "BJJ Wiki",
-      "item": "{SITE_URL}/{lang_code}/index.html"
-    }},
-    {{
-      "@type": "ListItem",
-      "position": 2,
-      "name": "{article.get('title', tech['name'])}",
-      "item": "{SITE_URL}/{lang_code}/{tech['slug']}.html"
-    }}
-  ]
-}}
-</script>
+{_article_jsonld_block}
+{_breadcrumb_jsonld_block}
 <script type="application/ld+json">
 {{
   "@context": "https://schema.org",
