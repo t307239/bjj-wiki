@@ -240,17 +240,19 @@ def load_secrets():
     return s
 
 def gemini_call(prompt, api_key):
+    # Security: API key は x-goog-api-key header 送信 (z143/z152 共通方針)
+    req_headers = {"Content-Type": "application/json", "x-goog-api-key": api_key}
     for model in GEMINI_MODELS:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
         data = json.dumps({"contents":[{"parts":[{"text":prompt}]}]}).encode()
-        req = urllib.request.Request(url, data=data,
-            headers={"Content-Type":"application/json"}, method="POST")
+        req = urllib.request.Request(url, data=data, headers=req_headers, method="POST")
         try:
             with urllib.request.urlopen(req, timeout=45) as r:
                 res = json.loads(r.read())
             return res["candidates"][0]["content"]["parts"][0]["text"]
         except Exception as e:
-            print(f"  {model}: {e}")
+            # exception message に URL/key が混ざらないよう種別のみ
+            print(f"  {model}: {type(e).__name__}")
             continue
     return None
 

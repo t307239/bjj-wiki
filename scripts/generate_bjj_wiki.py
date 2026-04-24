@@ -275,11 +275,14 @@ def call_gemini(prompt):
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"temperature": 0.7, "maxOutputTokens": 4096}
     }).encode()
+    # Security: API key は x-goog-api-key header 送信 (z143/z152 共通方針)
+    # URL query だとネットワーク中継/GHAログ/例外の str 化経由で漏洩する。
+    req_headers = {"Content-Type": "application/json", "x-goog-api-key": GEMINI_API_KEY}
     for model, api_ver in models:
-        url = f"https://generativelanguage.googleapis.com/{api_ver}/models/{model}:generateContent?key={GEMINI_API_KEY}"
+        url = f"https://generativelanguage.googleapis.com/{api_ver}/models/{model}:generateContent"
         for attempt in range(3):
             try:
-                req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+                req = urllib.request.Request(url, data=data, headers=req_headers, method="POST")
                 with urllib.request.urlopen(req, timeout=60) as res:
                     result = json.loads(res.read())
                     text   = result["candidates"][0]["content"]["parts"][0]["text"]
@@ -291,7 +294,8 @@ def call_gemini(prompt):
                 else:
                     print(f"[{model}] HTTP {e.code} → 次のモデルへ"); break
             except Exception as e:
-                print(f"[{model}] エラー: {e}"); break
+                # exception message に URL/key が混ざらないよう種別のみ
+                print(f"[{model}] エラー: {type(e).__name__}"); break
     return None
 
 # ===== 記事生成プロンプト =====

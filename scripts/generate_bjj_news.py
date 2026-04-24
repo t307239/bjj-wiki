@@ -73,11 +73,12 @@ Items:
 {items_text}"""
     
     models = ["gemini-2.5-flash-lite","gemini-2.5-flash"]
+    # Security: API key は x-goog-api-key header で送る (z143/z152 共通方針、URL 漏洩回避)
+    req_headers = {"Content-Type": "application/json", "x-goog-api-key": api_key}
     for model in models:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
         data = json.dumps({"contents":[{"parts":[{"text":prompt}]}]}).encode()
-        req = urllib.request.Request(url, data=data,
-            headers={"Content-Type":"application/json"}, method="POST")
+        req = urllib.request.Request(url, data=data, headers=req_headers, method="POST")
         try:
             with urllib.request.urlopen(req, timeout=30) as r:
                 res = json.loads(r.read())

@@ -17,7 +17,7 @@ FAQ セクションが存在しない既存ページに Gemini で FAQ 3本を�
   python scripts/patch_faq.py --force          # キャッシュ無視して再処理
 """
 
-import os, json, time, re, glob, argparse, datetime, urllib.request, urllib.error
+import os, json, time, re, glob, argparse, datetime, html, urllib.request, urllib.error
 
 # ===== シークレット読み込み =====
 def _load_secrets():
@@ -96,14 +96,20 @@ def call_gemini(prompt: str) -> str | None:
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"temperature": 0.6, "maxOutputTokens": 1024},
     }).encode()
+    # Security: API key は URL query ではなく x-goog-api-key ヘッダで送る
+    # (z143 enrich_sections.py と同じ pattern)
+    # URL query だとネットワーク中継/GHAログ/例外の str 化経由で漏洩する。
+    headers = {
+        "Content-Type": "application/json",
+        "x-goog-api-key": GEMINI_API_KEY,
+    }
     for model, api_ver in models:
         url = (f"https://generativelanguage.googleapis.com/{api_ver}"
-               f"/models/{model}:generateContent?key={GEMINI_API_KEY}")
+               f"/models/{model}:generateContent")
         for attempt in range(3):
             try:
                 req = urllib.request.Request(
-                    url, data=data,
-                    headers={"Content-Type": "application/json"}, method="POST",
+                    url, data=data, headers=headers, method="POST",
                 )
                 with urllib.request.urlopen(req, timeout=60) as res:
                     result = json.loads(res.read())
@@ -113,7 +119,9 @@ def call_gemini(prompt: str) -> str | None:
                     time.sleep(30 * (attempt + 1))
                 else:
                     break
-            except Exception:
+            except Exception as e:
+                # 例外メッセージに URL / key が混ざらないよう種別のみ出力
+                print(f"  [{model}] Error: {type(e).__name__}")
                 break
     return None
 
@@ -147,13 +155,18 @@ def build_faq_html(faq: dict, lang_code: str) -> str:
     q1, a1 = faq.get("faq_q1", ""), faq.get("faq_a1", "")
     q2, a2 = faq.get("faq_q2", ""), faq.get("faq_a2", "")
     q3, a3 = faq.get("faq_q3", ""), faq.get("faq_a3", "")
+    # Security: Gemini 出力の q/a は prompt injection 経由で
+    # `</div><script>...` 等が混入する恐れがあるため必ず html.escape
+    # (z143 enrich_sections.py と同じ方針で persistent XSS を封殺)
     items = ""
     for q, a in [(q1, a1), (q2, a2), (q3, a3)]:
         if q and a:
+            q_safe = html.escape(q, quote=True)
+            a_safe = html.escape(a, quote=True)
             items += (
                 f'\n  <div class="faq" style="{FAQ_DIV_STYLE}">'
-                f'<div class="faq-q" style="{FAQ_Q_STYLE}">Q: {q}</div>'
-                f'<p style="color:#c2c2d9;margin:0">{a}</p></div>'
+                f'<div class="faq-q" style="{FAQ_Q_STYLE}">Q: {q_safe}</div>'
+                f'<p style="color:#c2c2d9;margin:0">{a_safe}</p></div>'
             )
     if not items:
         return ""
