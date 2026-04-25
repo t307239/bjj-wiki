@@ -1,3 +1,4 @@
+smash-pass
 sprawl
 stack-pass
 straight-armbar
