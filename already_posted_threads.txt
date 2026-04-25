@@ -1,4 +1,5 @@
 stack-pass
+stand-in-base
 straight-armbar
 technical-standup
 techniques-az
