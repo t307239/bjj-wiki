@@ -1,4 +1,5 @@
 sitting-guard
+spider-guard
 sprawl
 stack-pass
 stand-in-base
