@@ -97,6 +97,15 @@ PATTERNS = [
 
 # ── Detection engine ────────────────────────────────────────────────
 
+SCAN_EXEMPT_FILES = {
+    # z175: archived legacy scripts not invoked from generate.yml. Kept as
+    # historical references but not active code paths.
+    "patch_floating_cta.py",  # 旧 newsletter floating CTA injector
+    "fix_docs.py",            # 旧 docs fixer (legacy float-cta テンプレ含む)
+    "fix_div_imbalance.py",   # コメントで float-cta を言及するのみ
+}
+
+
 def scan_regex_pattern(pattern_id: str, severity: str, file_glob: str,
                         regex: str, description: str, z_tag: str) -> list:
     """Generic regex-based pattern check."""
@@ -107,8 +116,8 @@ def scan_regex_pattern(pattern_id: str, severity: str, file_glob: str,
     for fp in ROOT.glob(file_glob):
         if not fp.is_file():
             continue
-        # 自己参照除外
-        if fp.name == SELF_FILENAME:
+        # 自己参照除外 + archived/unused script 除外
+        if fp.name == SELF_FILENAME or fp.name in SCAN_EXEMPT_FILES:
             continue
         try:
             content = fp.read_text(encoding="utf-8", errors="ignore")
