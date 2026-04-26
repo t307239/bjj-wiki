@@ -97,6 +97,7 @@
   <span class="badge">Guard</span><br>
   <span class="belt belt-white">White</span>
   <h1>Mastering the Closed Guard in BJJ: A White Belt Guide</h1>
+<!-- z175-top-cta --><div class="z175-top-cta" style="margin:1rem 0 1.5rem;padding:14px 18px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);border:1px solid #2e7d32;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-weight:700;color:#a5d6a7;font-size:.95rem">🥋 Track your BJJ training</div><div style="font-size:.85rem;color:#c8e6c9;margin-top:2px">Free forever. Sessions, techniques, streaks — all in one app.</div></div><a href="https://bjj-app.net/login?ref=wiki&page=top" style="background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.9rem;white-space:nowrap" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'top',lang:'en'})">Start Free →</a></div>
   <div class="difficulty-bar"><span class="diff-belt" style="background:#e2e2ee;color:#111">WHITE</span><span class="diff-stars">★☆☆☆☆</span><span class="diff-label">Beginner</span></div>
   <div class="belt-guide-box" style="border:2px solid #e2e2ee;border-radius:10px;padding:16px;margin:24px 0;background:#0f1420"><span style="background:#e2e2ee;color:#111;padding:4px 12px;border-radius:20px;font-size:.85em;font-weight:700">White Belt Technique</span><br><a href="../en/white-belt-bjj-guide.html" style="color:#e2b714;font-weight:600;text-decoration:none;margin-top:8px;display:inline-block">📖 See Full Guide → White Belt Guide</a></div>
   <p><p style="color:#c2c2d9;margin-bottom:10px">Closed Guard is a fundamental BJJ position where you establish control of your opponent's upper body by securing your legs around their hips and torso.</p>
@@ -242,7 +243,8 @@
     </div>
   </div>
 
-  <footer>
+  <!-- z175-bottom-cta --><div class="z175-bottom-cta" style="margin:2rem 0;padding:24px 24px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);border:2px solid #2e7d32;border-radius:14px;text-align:center"><div style="font-weight:700;color:#a5d6a7;font-size:1.1rem;margin-bottom:6px">📱 Stop forgetting what you drilled</div><div style="font-size:.9rem;color:#c8e6c9;margin-bottom:16px">Log every roll. Map every technique. Build the streak.</div><a href="https://bjj-app.net/login?ref=wiki&page=bottom" style="display:inline-block;background:#10B981;color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'bottom',lang:'en'})">Open BJJ App — Free →</a></div>
+<footer>
     <p>BJJ Wiki — The free BJJ technique encyclopedia</p>
     <p style="margin-top:8px"><a href="../privacy.html" style="color:var(--muted)">Privacy Policy</a></p>
   </footer>
@@ -299,5 +301,23 @@
     }
   })();
   </script>
+<!-- z175-float-cta --><div id="z175-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+<button onclick="document.getElementById('z175-float').style.display='none';try{localStorage.setItem('z175_float_dismissed',Date.now())}catch(e){}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
+<div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Track your training</div>
+<p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Sessions, techniques, streaks. Free.</p>
+<a href="https://bjj-app.net/login?ref=wiki&page=float" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'float',lang:'en'})">Start Free →</a>
+</div>
+<style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
+<script>(function(){
+try{
+  var d=localStorage.getItem('z175_float_dismissed');
+  if(d && (Date.now()-parseInt(d,10))<7*86400000) return;
+}catch(e){}
+var el=document.getElementById('z175-float');
+if(!el) return;
+var shown=false;
+function check(){if(shown) return; var sp=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; if(sp>=30){el.style.display='block';shown=true;window.removeEventListener('scroll',check);}}
+window.addEventListener('scroll',check,{passive:true});
+})();</script>
 </body>
 </html>

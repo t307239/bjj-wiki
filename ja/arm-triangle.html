@@ -39,5 +39,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: 自分より体格の大きい相手から、どのようにしてポジショニングをキープできますか？</div><p style="color:#c2c2d9;margin:0">体格の大きい相手に対しては、相手の重心をコントロールし、常に自分の重心を低く保つことが重要です。相手の腰や肩に密着し、体重をかけて相手のバランスを崩すことで、相手の力を無効化し、ポジショニングを維持しやすくなります。</p></div>
   <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: ガードパスをされた際に、首に強い圧迫を感じて苦しいのですが、これはなぜですか？</div><p style="color:#c2c2d9;margin:0"><a href="../ja/guard-pass.html" style="color:var(--accent,#7c3aed);text-decoration:underline">ガードパス</a>中に首に圧迫を感じるのは、相手があなたの首の付け根（頸動脈の近く）に顎を押し付けたり、肩で首を圧迫しているためです。この圧迫を避けるためには、顎をしっかりと引き、頭を相手の肩や腕にぶつけるようにして、首への直接的な圧力を逃がす必要があります。</p></div>
 </section>
+<!-- z175-float-cta --><div id="z175-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+<button onclick="document.getElementById('z175-float').style.display='none';try{localStorage.setItem('z175_float_dismissed',Date.now())}catch(e){}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
+<div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 練習を記録</div>
+<p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">セッション・技術・連続。無料。</p>
+<a href="https://bjj-app.net/login?ref=wiki&page=float" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'float',lang:'ja'})">無料で始める →</a>
+</div>
+<style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
+<script>(function(){
+try{
+  var d=localStorage.getItem('z175_float_dismissed');
+  if(d && (Date.now()-parseInt(d,10))<7*86400000) return;
+}catch(e){}
+var el=document.getElementById('z175-float');
+if(!el) return;
+var shown=false;
+function check(){if(shown) return; var sp=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; if(sp>=30){el.style.display='block';shown=true;window.removeEventListener('scroll',check);}}
+window.addEventListener('scroll',check,{passive:true});
+})();</script>
 </body>
 </html>
