@@ -33,8 +33,9 @@ LANG_DIRS = ["en", "ja", "pt"]
 # z### marker 検出 regex (HTML 内のコメントマーカー)
 MARKER_RE = re.compile(r"<!-- (z\d{3,}-[\w-]+) -->")
 
-# 5% 以上の差は 🔴 fail
-DIVERGENCE_THRESHOLD = 0.05
+# z176c: 1% に縮小 (1556 × 1% = 16 ファイル)。
+# 元 5% (78ファイルまで silent) は穴。
+DIVERGENCE_THRESHOLD = 0.01
 
 
 def count_markers_per_lang() -> dict[str, dict[str, int]]:
