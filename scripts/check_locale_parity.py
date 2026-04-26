@@ -86,6 +86,77 @@ def find_divergence(counts: dict[str, dict[str, int]]) -> list[dict]:
     return findings
 
 
+def check_marker_content_consistency() -> list[dict]:
+    """z176d (穴 #2): marker 内のコンテンツがロケール内で一貫しているか確認。
+
+    例: z176-bottom-cta が EN 1556 件あるはずが、新しいコピーへ更新時に
+    1500 件は新コピー、56 件は旧コピーのまま、という drift を検出する。
+
+    各 marker × locale で content 部分 (タグ/属性除いた可視テキスト) を hash 化し、
+    1 locale 内で hash 種類が 2 以上なら drift。
+    """
+    import hashlib
+    findings = []
+    # marker block 開始から最初の閉じタグまでを抽出
+    BLOCK_RE = re.compile(
+        r"<!-- (z\d{3,}-[\w-]+) -->(.*?)(?=<!-- z\d|<footer|</body>|$)",
+        re.DOTALL,
+    )
+    # 可視テキストのみ残すため HTML タグ・属性・空白を正規化
+    TAG_RE = re.compile(r"<[^>]+>")
+    WS_RE = re.compile(r"\s+")
+
+    def normalize(html: str) -> str:
+        text = TAG_RE.sub(" ", html)
+        text = WS_RE.sub(" ", text).strip()
+        return text
+
+    # {marker: {lang: {content_hash: count}}}
+    per_marker_lang_hash: dict = {}
+    for lang in LANG_DIRS:
+        d = ROOT / lang
+        if not d.exists():
+            continue
+        for fp in d.glob("*.html"):
+            if fp.name in ("index.html", "404.html"):
+                continue
+            try:
+                c = fp.read_text(encoding="utf-8")
+            except Exception:
+                continue
+            for m in BLOCK_RE.finditer(c):
+                marker = m.group(1)
+                content = normalize(m.group(2))
+                if not content:
+                    continue
+                h = hashlib.sha256(content.encode("utf-8")).hexdigest()[:10]
+                per_marker_lang_hash.setdefault(marker, {}).setdefault(lang, {}).setdefault(h, 0)
+                per_marker_lang_hash[marker][lang][h] += 1
+
+    # 各 marker × locale で hash 種類を数える。複数あれば drift。
+    for marker, lang_data in per_marker_lang_hash.items():
+        for lang, hash_counts in lang_data.items():
+            if len(hash_counts) > 1:
+                # ノイズ低減: 最頻出を「正規」とし、それ以外の合計が >1% なら fail
+                total = sum(hash_counts.values())
+                sorted_h = sorted(hash_counts.items(), key=lambda x: -x[1])
+                primary_hash, primary_count = sorted_h[0]
+                drift_count = total - primary_count
+                drift_pct = drift_count / total
+                # 同じ marker 内のコピー差は drift。z176d: threshold=0 (any drift = fail)
+                # 1 ファイルでも違うコピーがあれば検出する。
+                findings.append({
+                    "id": "MARKER_CONTENT_DRIFT",
+                    "severity": "🔴",
+                    "description": (
+                        f"{marker} ({lang}): {len(hash_counts)} 種類のコピー存在 "
+                        f"(主要 {primary_count} / 異なる {drift_count} = {round(drift_pct*100,1)}%) "
+                        f"→ patch_*.py 再実行 or marker を bump (z### 番号上げ) で全更新"
+                    ),
+                })
+    return findings
+
+
 def find_orphan_markers(counts: dict[str, dict[str, int]]) -> list[dict]:
     """Markers in HTML output that no generator script produces.
     These will be erased on next regeneration → silent regression."""
@@ -147,7 +218,8 @@ def main() -> int:
     # Findings
     divergence = find_divergence(counts)
     orphans = find_orphan_markers(counts)
-    all_findings = divergence + orphans
+    content_drift = check_marker_content_consistency()
+    all_findings = divergence + orphans + content_drift
     criticals = [f for f in all_findings if f["severity"] == "🔴"]
     warnings = [f for f in all_findings if f["severity"] == "🟡"]
 
