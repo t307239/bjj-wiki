@@ -1,24 +1,29 @@
 #!/usr/bin/env python3
 """
-patch_funnel_cta.py — z175: Wiki → アプリ登録 funnel 強化
+patch_funnel_cta.py — z176: Wiki → アプリ登録 funnel (再設計版)
 
-各記事に CTA は中段 1 箇所しかなく、上部/末尾/floating が欠落していたため、
-スクロール 0% / 末尾到達 / 中スクロール の 3 機会で離脱していた問題を解消。
+【z175 の反省】 4 CTA (top/中段/bottom/float) は過剰。Hevy/Strava/Notion を
+ベンチマークすると業界標準は 1-2 placement に集中。本実装は **末尾 + Floating**
+の 2 placement に絞り、コピーは generic ("Track your training") から具体的価値
+("Map your weak positions") に変更。
 
-【追加する CTA】
-  1. Top Hero CTA — H1 直後 (above the fold, fold 上で見える)
-  2. Bottom CTA  — FAQ 後・footer 前 (記事完読後)
-  3. Floating CTA — fixed bottom-right, スクロール 30% で出現 + ✕で dismiss
-                    (localStorage に dismiss 状態 7日間保持)
+【設置する CTA】
+  1. Bottom CTA  — FAQ 後・footer 前 (記事完読後の最も意欲が高い瞬間)
+  2. Floating CTA — fixed bottom-right、scroll 30% で出現 + ✕ で 7 日 dismiss
+
+【削除した CTA】
+  - Top Hero CTA (H1 直後) — 記事冒頭の集中阻害、CVR 寄与少と判定
+    z175 の `<!-- z175-top-cta -->` ブロックは本スクリプトが自動除去する。
 
 すべて i18n: lang ディレクトリ (en/ja/pt) で copy 切替。
 
 【Idempotent】
-  - <!-- z175-top-cta --> / z175-bottom-cta / z175-float-cta マーカー付与で再実行 OK
+  - <!-- z176-bottom-cta --> / z176-float-cta マーカーで再実行 OK
+  - z175-top-cta マーカーがあれば自動削除 (rollback)
   - 既存の `cta-banner` (中段) は触らない
 
 Usage:
-    python3 scripts/patch_funnel_cta.py [--dry-run]
+    python3 scripts/patch_funnel_cta.py [--dry-run] [--lang all|en|ja|pt]
 """
 from __future__ import annotations
 import argparse
@@ -28,67 +33,39 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# ── Localized copy ─────────────────────────────────────────────────────────
+# ── Localized copy (z176: 具体的価値ドリブン、Hevy/Strava スタイル) ──
 COPY = {
     "en": {
-        "top_title": "🥋 Track your BJJ training",
-        "top_sub": "Free forever. Sessions, techniques, streaks — all in one app.",
-        "top_btn": "Start Free →",
-        "bot_title": "📱 Stop forgetting what you drilled",
-        "bot_sub": "Log every roll. Map every technique. Build the streak.",
+        "bot_title": "📱 See your training as a heatmap",
+        "bot_sub": "Map weak positions. Track technique mastery. Free forever.",
         "bot_btn": "Open BJJ App — Free →",
-        "float_title": "📱 Track your training",
-        "float_sub": "Sessions, techniques, streaks. Free.",
-        "float_btn": "Start Free →",
+        "float_title": "📱 Track your roll",
+        "float_sub": "Heatmap, skill map, streaks. Free.",
+        "float_btn": "Open Free →",
     },
     "ja": {
-        "top_title": "🥋 練習を記録するならBJJ App",
-        "top_sub": "永久無料。セッション・テクニック・連続記録をひとつに。",
-        "top_btn": "無料で始める →",
-        "bot_title": "📱 ドリルした技、明日も覚えてる？",
-        "bot_sub": "全ロールを記録。全技をマップ化。連続記録を伸ばそう。",
+        "bot_title": "📱 練習をヒートマップで可視化",
+        "bot_sub": "弱点ポジションを見える化。技術習熟度をトラック。永久無料。",
         "bot_btn": "BJJ App を開く — 無料 →",
-        "float_title": "📱 練習を記録",
-        "float_sub": "セッション・技術・連続。無料。",
-        "float_btn": "無料で始める →",
+        "float_title": "📱 ロールを記録",
+        "float_sub": "ヒートマップ・スキルマップ・連続記録。無料。",
+        "float_btn": "無料で開く →",
     },
     "pt": {
-        "top_title": "🥋 Registre seu treino de BJJ",
-        "top_sub": "Grátis para sempre. Sessões, técnicas e sequências em um só lugar.",
-        "top_btn": "Começar Grátis →",
-        "bot_title": "📱 Pare de esquecer o que treinou",
-        "bot_sub": "Registre cada rola. Mapeie cada técnica. Construa a sequência.",
+        "bot_title": "📱 Veja seu treino como um mapa de calor",
+        "bot_sub": "Mapeie posições fracas. Acompanhe domínio de técnicas. Grátis.",
         "bot_btn": "Abrir BJJ App — Grátis →",
-        "float_title": "📱 Registre seu BJJ",
-        "float_sub": "Sessões, técnicas e sequências. Grátis.",
-        "float_btn": "Começar Grátis →",
+        "float_title": "📱 Registre sua rola",
+        "float_sub": "Mapa de calor, skill map, sequências. Grátis.",
+        "float_btn": "Abrir Grátis →",
     },
 }
 
-# ── HTML templates ─────────────────────────────────────────────────────────
-
-def top_cta_html(c: dict, lang: str) -> str:
-    return (
-        f'<!-- z175-top-cta --><div class="z175-top-cta" '
-        f'style="margin:1rem 0 1.5rem;padding:14px 18px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);'
-        f'border:1px solid #2e7d32;border-radius:12px;display:flex;align-items:center;justify-content:space-between;'
-        f'gap:1rem;flex-wrap:wrap">'
-        f'<div style="flex:1;min-width:200px">'
-        f'<div style="font-weight:700;color:#a5d6a7;font-size:.95rem">{c["top_title"]}</div>'
-        f'<div style="font-size:.85rem;color:#c8e6c9;margin-top:2px">{c["top_sub"]}</div>'
-        f'</div>'
-        f'<a href="https://bjj-app.net/login?ref=wiki&page=top" '
-        f'style="background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;'
-        f'font-weight:700;font-size:.9rem;white-space:nowrap" '
-        f"onclick=\"window.gtag&&gtag('event','wiki_cta_click',{{position:'top',lang:'{lang}'}})\">"
-        f'{c["top_btn"]}</a>'
-        f'</div>'
-    )
-
+# ── HTML templates (z176: top CTA 削除、bottom + float のみ) ──
 
 def bottom_cta_html(c: dict, lang: str) -> str:
     return (
-        f'<!-- z175-bottom-cta --><div class="z175-bottom-cta" '
+        f'<!-- z176-bottom-cta --><div class="z176-bottom-cta" '
         f'style="margin:2rem 0;padding:24px 24px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);'
         f'border:2px solid #2e7d32;border-radius:14px;text-align:center">'
         f'<div style="font-weight:700;color:#a5d6a7;font-size:1.1rem;margin-bottom:6px">{c["bot_title"]}</div>'
@@ -104,8 +81,8 @@ def bottom_cta_html(c: dict, lang: str) -> str:
 
 def float_cta_html(c: dict, lang: str) -> str:
     """Sticky floating CTA — appears after scroll 30%, dismissable for 7 days."""
-    return f'''<!-- z175-float-cta --><div id="z175-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
-<button onclick="document.getElementById('z175-float').style.display='none';try{{localStorage.setItem('z175_float_dismissed',Date.now())}}catch(e){{}}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
+    return f'''<!-- z176-float-cta --><div id="z176-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+<button onclick="document.getElementById('z176-float').style.display='none';try{{localStorage.setItem('z176_float_dismissed',Date.now())}}catch(e){{}}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
 <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">{c["float_title"]}</div>
 <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">{c["float_sub"]}</p>
 <a href="https://bjj-app.net/login?ref=wiki&page=float" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="window.gtag&&gtag('event','wiki_cta_click',{{position:'float',lang:'{lang}'}})">{c["float_btn"]}</a>
@@ -113,15 +90,24 @@ def float_cta_html(c: dict, lang: str) -> str:
 <style>@keyframes slideUp{{from{{transform:translateY(20px);opacity:0}}to{{transform:translateY(0);opacity:1}}}}</style>
 <script>(function(){{
 try{{
-  var d=localStorage.getItem('z175_float_dismissed');
+  var d=localStorage.getItem('z176_float_dismissed');
   if(d && (Date.now()-parseInt(d,10))<7*86400000) return;
 }}catch(e){{}}
-var el=document.getElementById('z175-float');
+var el=document.getElementById('z176-float');
 if(!el) return;
 var shown=false;
 function check(){{if(shown) return; var sp=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; if(sp>=30){{el.style.display='block';shown=true;window.removeEventListener('scroll',check);}}}}
 window.addEventListener('scroll',check,{{passive:true}});
 }})();</script>'''
+
+
+# ── z175 rollback regex ────────────────────────────────────────────────────
+# Remove z175-top-cta block and its old z175-bottom-cta / z175-float-cta.
+# Replaced by z176 markers with new copy.
+Z175_TOP_RE = re.compile(r'<!-- z175-top-cta -->.*?</div>(?=\s*<div class="difficulty-bar"|\s*<div class="meta"|\s*<p>|\s*\n)',
+                          re.DOTALL)
+Z175_BOTTOM_RE = re.compile(r'<!-- z175-bottom-cta -->.*?</div>\s*\n', re.DOTALL)
+Z175_FLOAT_RE = re.compile(r'<!-- z175-float-cta -->.*?\}\)\(\);</script>\s*\n?', re.DOTALL)
 
 
 # ── Patch logic ────────────────────────────────────────────────────────────
@@ -147,27 +133,36 @@ def patch_file(fp: Path, lang: str, dry_run: bool) -> tuple[bool, list[str]]:
 
     copy = COPY[lang]
 
-    # 1. Top CTA — insert after first </h1>
-    if "z175-top-cta" not in c:
-        m = H1_END_RE.search(c)
-        if m:
-            insert_at = m.end()
-            c = c[:insert_at] + "\n" + top_cta_html(copy, lang) + c[insert_at:]
-            actions.append("top")
+    # ─── z176 rollback: remove z175 markers (Top/Bottom/Float) ────────
+    # These had generic copy and excessive 4-CTA layout. Replaced by z176
+    # 2-CTA design (Bottom + Float only) with concrete value props.
+    if "z175-top-cta" in c:
+        c2 = Z175_TOP_RE.sub("", c)
+        if c2 != c:
+            c = c2
+            actions.append("rm_z175_top")
+    if "z175-bottom-cta" in c:
+        c2 = Z175_BOTTOM_RE.sub("", c)
+        if c2 != c:
+            c = c2
+            actions.append("rm_z175_bottom")
+    if "z175-float-cta" in c:
+        c2 = Z175_FLOAT_RE.sub("", c)
+        if c2 != c:
+            c = c2
+            actions.append("rm_z175_float")
 
-    # 2. Bottom CTA — insert before <footer> (after FAQ if any)
-    if "z175-bottom-cta" not in c:
-        # Find the LAST <footer> tag (in case of nested/multiple)
+    # ─── z176 inject: Bottom + Float only ─────────────────────────────
+    # 1. Bottom CTA — insert before <footer>
+    if "z176-bottom-cta" not in c:
         footer_matches = list(FOOTER_RE.finditer(c))
         if footer_matches:
             insert_at = footer_matches[-1].start()
-            # Walk back to find the closing </div> or </section> just before <footer>
-            # We just want to insert right before <footer>
             c = c[:insert_at] + bottom_cta_html(copy, lang) + "\n" + c[insert_at:]
             actions.append("bottom")
 
-    # 3. Floating CTA — insert before </body>
-    if "z175-float-cta" not in c:
+    # 2. Floating CTA — insert before </body>
+    if "z176-float-cta" not in c:
         m = BODY_END_RE.search(c)
         if m:
             insert_at = m.start()
