@@ -1,4 +1,5 @@
 smash-pass
+sparring-simulator
 sprawl
 stack-pass
 stand-in-base
