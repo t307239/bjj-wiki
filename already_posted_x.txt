@@ -1,4 +1,5 @@
 knee-bar
+knee-slice
 knee-slice-pass
 kneebar
 lapel-choke
