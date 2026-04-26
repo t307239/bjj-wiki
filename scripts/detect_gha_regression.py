@@ -86,6 +86,12 @@ PATTERNS = [
      None,
      'title に "| BJJ Wiki | BJJ Wiki" 等の二重 suffix 可能性',
      "z149"),
+    # z175: prevent legacy newsletter `id="float-cta"` from being re-added by
+    # any generator (collides visually with z175-float app-signup CTA).
+    ("LEGACY_FLOAT_CTA", "🔴", "scripts/*.py",
+     r'<div\s+id=[\"\']float-cta[\"\']',
+     'legacy id="float-cta" は z175-float と視覚衝突 → 削除済 (z175)',
+     "z175"),
 ]
 
 

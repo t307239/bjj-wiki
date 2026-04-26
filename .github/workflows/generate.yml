@@ -56,6 +56,12 @@ jobs:
       - name: Patch internal links (keyword-match links into link-poor pages)
         run: python scripts/patch_internal_links.py --lang all --min-links 2
 
+      # z175: Inject 3 app-signup CTAs (Top Hero / Bottom / Floating) into all
+      # articles. Idempotent — only inserts if `<!-- z175-{top|bottom|float}-cta -->`
+      # markers are absent. Source attribution via ?ref=wiki&page={top|bottom|float}.
+      - name: Patch funnel CTAs (Wiki → bjj-app.net signup)
+        run: python scripts/patch_funnel_cta.py --lang all
+
       # ── 動画注入: Supabaseのvideo_urlを各HTMLに埋め込む ──
       # total_patched=0 → 全ページ注入済み（完了）
       - name: Inject video iframes from Supabase video_url into HTML files
