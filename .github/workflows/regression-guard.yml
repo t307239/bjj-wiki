@@ -33,6 +33,10 @@ jobs:
         id: lint
         run: python3 scripts/detect_gha_regression.py --ci
 
+      - name: Check Wiki locale parity (z176b — 3 locale 不揃い検出)
+        id: parity
+        run: python3 scripts/check_locale_parity.py --ci
+
       - name: Notify Telegram on Critical
         if: failure()
         env:
