@@ -3,6 +3,7 @@ knee-slice
 knee-slice-pass
 kneebar
 lapel-choke
+lasso-guard
 leg-drag
 leg-drag-pass
 leg-locks
