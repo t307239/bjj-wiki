@@ -1,5 +1,6 @@
 sickle-sweep
 smash-pass
+snap-down
 sparring-simulator
 sprawl
 stack-pass
