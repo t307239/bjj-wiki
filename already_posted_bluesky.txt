@@ -1,5 +1,6 @@
 sitting-guard
 smash-pass
+snap-down
 spider-guard
 sprawl
 stack-pass
