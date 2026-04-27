@@ -5,7 +5,7 @@ BJJ Wiki - 多言語柔術技辞典 自動生成スクリプト
 - 静的HTMLとしてGitHub Pagesにデプロイ
 """
 
-import os, json, time, datetime, html, urllib.request, urllib.error, re
+import os, json, time, datetime, html, urllib.request, urllib.error, urllib.parse, re
 
 # ===== Telegram通知 =====
 def send_telegram(msg: str) -> None:
@@ -541,6 +541,16 @@ def article_to_html(tech, lang_code, article, all_techniques):
     _html_desc = html.escape(_raw_desc, quote=True)
     _keywords_safe = html.escape(keywords_str, quote=True)
 
+    # z223: technique-specific dynamic OG image (auto-post 視覚化)
+    # 旧: 全ページ共通 static SVG → SNS share preview generic
+    # 新: bjj-app.net /api/og で技 name + category + lang ごとに動的生成
+    # cross-origin (wiki.bjj-app.net → bjj-app.net) は SNS scraper 問題なし
+    _og_title_q = urllib.parse.quote(tech["name"][:60], safe="")
+    # category mapping: tech["category"] は generator 内 tag (technique/sweep/guard 等)
+    # → OG endpoint の TECHNIQUE_CONFIG カテゴリ (technique/athlete/history/rules/training) に集約
+    _og_cat = "technique"  # 技ページは全て technique カテゴリで統一 (将来 athlete 等は別 generator で)
+    _og_image_url = f"https://bjj-app.net/api/og?mode=technique&category={_og_cat}&title={_og_title_q}&lang={lang_code}"
+
     # JSON-LD: f-string 直挿入だと Gemini 出力の `"`/`\`/`</script>` で破壊される。
     # json.dumps + `.replace("</","<\\/")` で script breakout を封殺。
     # (z143 enrich_sections.py と同じ pattern)
@@ -806,14 +816,14 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <meta property="og:type" content="article">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="{SITE_URL}/{lang_code}/{tech['slug']}.html">
-<meta property="og:image" content="{SITE_URL}/og-image.svg">
+<meta property="og:image" content="{_og_image_url}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@bjj_wiki">
 <meta name="twitter:title" content="{_html_title}">
 <meta name="twitter:description" content="{html.escape(_raw_desc[:200], quote=True)}">
-<meta name="twitter:image" content="{SITE_URL}/og-image.svg">
+<meta name="twitter:image" content="{_og_image_url}">
 <link rel="canonical" href="{SITE_URL}/{lang_code}/{tech['slug']}.html">
 <link rel="alternate" hreflang="x-default" href="{SITE_URL}/en/{tech['slug']}.html">
 <link rel="alternate" hreflang="en" href="{SITE_URL}/en/{tech['slug']}.html">
