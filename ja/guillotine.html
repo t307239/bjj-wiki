@@ -50,5 +50,12 @@ var shown=false;
 function check(){if(shown) return; var sp=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; if(sp>=30){el.style.display='block';shown=true;window.removeEventListener('scroll',check);}}
 window.addEventListener('scroll',check,{passive:true});
 })();</script>
+
+<section style="background:var(--card,#18181b);border-top:1px solid var(--border,rgba(255,255,255,0.10));padding:32px 0;margin-top:32px">
+  <h2 style="color:var(--text,#e2e8f0);font-size:1.3rem;margin-bottom:20px">よくある質問・トラブル</h2>
+  <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: 柔術の練習中に首が痛くなるのはなぜですか？特にパスガードの時や、相手にコントロールされている時に首に圧がかかる感じがします。</div><p style="color:#c2c2d9;margin:0">テイクダウンで相手を倒すためには、足のフックを相手の足の裏に深くかけ、相手のバランスを崩すことが重要です。相手の足にフックをかけたまま、自分の腰を相手の腰に押し付け、相手の体重を自分の足元に引き込むように体を動かします。</p></div>
+  <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: 自分より体格の大きい相手に対して、柔術のガードを維持するにはどうすればいいですか？相手の力に負けてすぐにパスされてしまいます。</div><p style="color:#c2c2d9;margin:0">相手の足にフックをかけた後、自分の膝を相手の股関節に近づけるように引き込み、相手の体幹を自分の体で固定します。この状態で、相手の足を引きながら、自分の腰を相手の腰に押し込むことで、相手のバランスを崩しやすくなります。</p></div>
+  <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: 柔術のテイクダウンで、相手を倒すために足の使い方がうまくいきません。相手に踏ん張られてしまい、なかなかテイクダウンできません。</div><p style="color:#c2c2d9;margin:0">テイクダウンの際に相手の足にフックをかけたら、相手の重心を自分の足元に引き込むように、相手の足を少し持ち上げるイメージで、自分の腰を相手の腰に力強く押し込みます。これにより、相手のバランスが崩れ、テイクダウンが成功しやすくなります。</p></div>
+</section>
 </body>
 </html>

@@ -50,5 +50,12 @@ var shown=false;
 function check(){if(shown) return; var sp=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; if(sp>=30){el.style.display='block';shown=true;window.removeEventListener('scroll',check);}}
 window.addEventListener('scroll',check,{passive:true});
 })();</script>
+
+<section style="background:var(--card,#18181b);border-top:1px solid var(--border,rgba(255,255,255,0.10));padding:32px 0;margin-top:32px">
+  <h2 style="color:var(--text,#e2e8f0);font-size:1.3rem;margin-bottom:20px">よくある質問・トラブル</h2>
+  <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: 柔術の練習中に首が痛くなるのはなぜですか？特にマウントポジションで相手に抑えられている時に首が痛いです。</div><p style="color:#c2c2d9;margin:0"><a href="../ja/mount.html" style="color:var(--accent,#7c3aed);text-decoration:underline">マウント</a>ポジションで首が痛むのは、相手が首を過度に伸ばしたり、顎を引いて相手の頭を首に押し付けるような不適切なポジションを取っているためです。首の筋肉に過剰な負荷がかかるのを防ぐため、顎を軽く引き、頭を相手の胸に軽く押し付け、首のカーブを維持するように意識してください。</p></div>
+  <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: 自分より体格の大きい相手に対して、柔術のテイクダウンを成功させるにはどうすれば良いですか？</div><p style="color:#c2c2d9;margin:0">体格の大きい相手に対してテイクダウンを成功させるには、相手の重心を崩すことが重要です。相手のバランスを崩すために、低い姿勢で相手の足元にプレッシャーをかけ、腰を相手の腰よりも低く保ちながら、相手の足にフックをかけ、体全体を使って相手を倒すようにしましょう。</p></div>
+  <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: ガードポジションで相手のパスを防ぐ際に、足が相手に簡単に突破されてしまうのですが、どうすればもっと効果的に足を使えますか？</div><p style="color:#c2c2d9;margin:0">ガードで足が突破されるのは、足のポジションが相手の腰よりも高すぎたり、相手の足に十分なプレッシャーをかけられていないことが原因です。相手の腰よりも低い位置で足を構え、相手の足や腰に常にプレッシャーをかけ続け、相手の動きに合わせて足の位置を素早く調整することで、効果的にガードを維持できます。</p></div>
+</section>
 </body>
 </html>
