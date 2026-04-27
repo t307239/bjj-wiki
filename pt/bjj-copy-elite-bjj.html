@@ -183,7 +183,7 @@ window.addEventListener('scroll',function(){if(window.scrollY/document.body.scro
     <details><summary>É possível aprender a copiar técnicas de elite apenas assistindo a vídeos?</summary><p>Vídeos são ótimos para inspiração e para entender a ideia geral, mas a execução correta exige prática no tatame. Aulas com um instrutor qualificado e sparring com parceiros experientes são essenciais para refinar os detalhes e a aplicabilidade da técnica.</p></details>
 </section>
 
-<!-- z176-bottom-cta --><div class="z176-bottom-cta" style="margin:2rem 0;padding:24px 24px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);border:2px solid #2e7d32;border-radius:14px;text-align:center"><div style="font-weight:700;color:#a5d6a7;font-size:1.1rem;margin-bottom:6px">📱 Veja seu treino como um mapa de calor</div><div style="font-size:.9rem;color:#c8e6c9;margin-bottom:16px">Mapeie posições fracas. Acompanhe domínio de técnicas. Grátis.</div><a href="https://bjj-app.net/login?ref=wiki&page=bottom" style="display:inline-block;background:#10B981;color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'bottom',lang:'pt'})">Abrir BJJ App — Grátis →</a></div>
+<!-- z224-bottom-cta --><div class="z224-bottom-cta" style="margin:2rem 0;padding:24px 24px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);border:2px solid #2e7d32;border-radius:14px;text-align:center"><div style="font-weight:700;color:#a5d6a7;font-size:1.1rem;margin-bottom:6px">📱 Veja seu treino como um mapa de calor</div><div style="font-size:.9rem;color:#c8e6c9;margin-bottom:16px">Mapeie posições fracas. Acompanhe domínio de técnicas. Grátis.</div><a href="https://bjj-app.net/login?ref=wiki&page=bottom" style="display:inline-block;background:#10B981;color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'bottom',lang:'pt'})">Abrir BJJ App — Grátis →</a></div>
 <footer style="margin:40px 0 0;padding:20px 16px;border-top:1px solid #1a2a3a;text-align:center"><p style="color:#546e7a;font-size:.72rem;line-height:1.6;max-width:600px;margin:0 auto">O conteúdo do BJJ Wiki é apenas para fins educacionais e não constitui instrução profissional. O Jiu-Jitsu Brasileiro envolve riscos inerentes de lesão. Sempre treine sob a supervisão de um instrutor qualificado. O BJJ App Inc. não assume responsabilidade por lesões resultantes da aplicação das técnicas aqui descritas. Pratique técnicas adequadas ao seu nível de experiência. Iniciantes devem focar nos fundamentos e evitar finalizações avançadas (heel hooks, kneebars) sem orientação de um instrutor.</p></footer>
 <button id="back-to-top" class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <script>
@@ -221,8 +221,8 @@ window.addEventListener('scroll',function(){if(window.scrollY/document.body.scro
   }
 })();
 </script>
-<!-- z176-float-cta --><div id="z176-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
-<button onclick="document.getElementById('z176-float').style.display='none';try{localStorage.setItem('z176_float_dismissed',Date.now())}catch(e){}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
+<!-- z224-float-cta --><div id="z224-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+<button onclick="document.getElementById('z224-float').style.display='none';try{localStorage.setItem('z224_float_dismissed',Date.now())}catch(e){}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
 <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Registre sua rola</div>
 <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Mapa de calor, skill map, sequências. Grátis.</p>
 <a href="https://bjj-app.net/login?ref=wiki&page=float" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'float',lang:'pt'})">Abrir Grátis →</a>
@@ -230,10 +230,10 @@ window.addEventListener('scroll',function(){if(window.scrollY/document.body.scro
 <style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
 <script>(function(){
 try{
-  var d=localStorage.getItem('z176_float_dismissed');
+  var d=localStorage.getItem('z224_float_dismissed');
   if(d && (Date.now()-parseInt(d,10))<7*86400000) return;
 }catch(e){}
-var el=document.getElementById('z176-float');
+var el=document.getElementById('z224-float');
 if(!el) return;
 var shown=false;
 function check(){if(shown) return; var sp=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; if(sp>=30){el.style.display='block';shown=true;window.removeEventListener('scroll',check);}}

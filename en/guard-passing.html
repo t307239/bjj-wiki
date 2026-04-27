@@ -39,8 +39,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: How can I effectively prevent my opponent from passing my guard when they are much larger and stronger than me in BJJ?</div><p style="color:#c2c2d9;margin:0">Against a larger opponent, prioritize maintaining a strong, active guard by keeping your knees tucked towards your chest and your feet on their hips or biceps, creating a constant pressure. Utilize your legs to control their posture by "squeezing" your knees together and pushing their hips away, preventing them from establishing a solid base to pass.</p></div>
   <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: What is the correct way to shrimp (hip escape) in BJJ to create space without getting my hips stuck?</div><p style="color:#c2c2d9;margin:0">To effectively shrimp, initiate by flattening your back to the mat and driving your hips away from your opponent by extending one leg while simultaneously bringing the other knee towards your chest. This creates a triangular space with your body, allowing you to pivot your hips and generate forward momentum to reposition yourself, rather than simply sliding your hips.</p></div>
 </section>
-<!-- z176-float-cta --><div id="z176-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
-<button onclick="document.getElementById('z176-float').style.display='none';try{localStorage.setItem('z176_float_dismissed',Date.now())}catch(e){}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
+<!-- z224-float-cta --><div id="z224-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+<button onclick="document.getElementById('z224-float').style.display='none';try{localStorage.setItem('z224_float_dismissed',Date.now())}catch(e){}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
 <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Track your roll</div>
 <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Heatmap, skill map, streaks. Free.</p>
 <a href="https://bjj-app.net/login?ref=wiki&page=float" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'float',lang:'en'})">Open Free →</a>
@@ -48,10 +48,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
 <script>(function(){
 try{
-  var d=localStorage.getItem('z176_float_dismissed');
+  var d=localStorage.getItem('z224_float_dismissed');
   if(d && (Date.now()-parseInt(d,10))<7*86400000) return;
 }catch(e){}
-var el=document.getElementById('z176-float');
+var el=document.getElementById('z224-float');
 if(!el) return;
 var shown=false;
 function check(){if(shown) return; var sp=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; if(sp>=30){el.style.display='block';shown=true;window.removeEventListener('scroll',check);}}
