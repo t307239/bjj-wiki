@@ -2,6 +2,7 @@ ippon-seoi-nage
 kimura
 knee-bar
 knee-on-belly
+knee-shield
 knee-slice
 knee-slice-pass
 kneebar
