@@ -130,9 +130,19 @@ def patch_html(html: str, video_url: str, lang_code: str, force: bool = False) -
     if "yt-wrap" in html and not force:
         return None  # 既存 iframe あり、スキップ
 
-    # CSS を <style> タグに追加（未追加の場合のみ）
+    # z227: CSS を <style> タグに追加（未追加の場合のみ）
+    # 旧: html.replace("</style>", YT_CSS + ...) は最初の </style> を置換 →
+    #     z224 float-cta の <style>@keyframes</style> に bleeding する
+    #     real bug (check_locale_parity 3🔴 を誘発)
+    # 新: <head> 内に独立した <style> block として inject
+    #     <head> の </head> 直前に挿入で float-cta 等の他 <style> から分離
     if ".yt-wrap" not in html:
-        html = html.replace("</style>", YT_CSS + "\n  </style>", 1)
+        yt_style_block = f'<style>\n{YT_CSS}\n</style>\n'
+        if "</head>" in html:
+            html = html.replace("</head>", yt_style_block + "</head>", 1)
+        else:
+            # fallback: <body> の直前に挿入
+            html = html.replace("<body", yt_style_block + "<body", 1)
 
     iframe = make_iframe(video_url, lang_code)
 
