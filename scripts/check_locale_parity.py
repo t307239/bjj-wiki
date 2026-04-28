@@ -97,9 +97,21 @@ def check_marker_content_consistency() -> list[dict]:
     """
     import hashlib
     findings = []
-    # marker block 開始から最初の閉じタグまでを抽出
-    BLOCK_RE = re.compile(
-        r"<!-- (z\d{3,}-[\w-]+) -->(.*?)(?=<!-- z\d|<footer|</body>|$)",
+    # z226: float-cta は </script> で終わる、bottom-cta は </div> で終わる。
+    # 旧 BLOCK_RE は greedy で float-cta block の </style>...<script> 内に
+    # YouTube embed が CSS 追記された 17 ファイルで false positive を誘発していた。
+    # 解決: 各 marker pattern 別に終端を厳密定義。
+    #   - z###-float-cta: 最初の `})();</script>` まで (closure 終了)
+    #   - z###-bottom-cta: 最初の `</div>\n` まで
+    #   - その他: 旧 fallback (次 marker / footer / body)
+    FLOAT_BLOCK_RE = re.compile(
+        r"<!-- (z\d{3,}-float-cta) -->(.*?\}\)\(\);</script>)", re.DOTALL,
+    )
+    BOTTOM_BLOCK_RE = re.compile(
+        r"<!-- (z\d{3,}-bottom-cta) -->(.*?</div>)\s*\n", re.DOTALL,
+    )
+    OTHER_BLOCK_RE = re.compile(
+        r"<!-- (z\d{3,}-(?!float-cta|bottom-cta)[\w-]+) -->(.*?)(?=<!-- z\d|<footer|</body>|$)",
         re.DOTALL,
     )
     # 可視テキストのみ残すため HTML タグ・属性・空白を正規化
@@ -124,14 +136,16 @@ def check_marker_content_consistency() -> list[dict]:
                 c = fp.read_text(encoding="utf-8")
             except Exception:
                 continue
-            for m in BLOCK_RE.finditer(c):
-                marker = m.group(1)
-                content = normalize(m.group(2))
-                if not content:
-                    continue
-                h = hashlib.sha256(content.encode("utf-8")).hexdigest()[:10]
-                per_marker_lang_hash.setdefault(marker, {}).setdefault(lang, {}).setdefault(h, 0)
-                per_marker_lang_hash[marker][lang][h] += 1
+            # z226: 3 種類の BLOCK_RE を順に適用
+            for block_re in (FLOAT_BLOCK_RE, BOTTOM_BLOCK_RE, OTHER_BLOCK_RE):
+                for m in block_re.finditer(c):
+                    marker = m.group(1)
+                    content = normalize(m.group(2))
+                    if not content:
+                        continue
+                    h = hashlib.sha256(content.encode("utf-8")).hexdigest()[:10]
+                    per_marker_lang_hash.setdefault(marker, {}).setdefault(lang, {}).setdefault(h, 0)
+                    per_marker_lang_hash[marker][lang][h] += 1
 
     # 各 marker × locale で hash 種類を数える。複数あれば drift。
     for marker, lang_data in per_marker_lang_hash.items():
