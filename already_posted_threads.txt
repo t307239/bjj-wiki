@@ -1,5 +1,6 @@
 sickle-sweep
 sitting-guard
+smash-pass
 snap-down
 sparring-simulator
 spider-guard
