@@ -262,6 +262,23 @@ def main():
         print("Setup: https://developers.facebook.com/ → Threads API")
         sys.exit(0)  # Exit 0 so GHA doesn't fail
 
+    # ── z226: launch announcement one-shot ──
+    from _launch_announce import check_and_consume
+    launch_text = check_and_consume("threads")
+    if launch_text:
+        print(f"=== LAUNCH ANNOUNCEMENT (Threads) === ({len(launch_text)} chars)")
+        try:
+            result = create_threads_post(launch_text, user_id, access_token, dry_run=dry_run)
+            if not dry_run and result:
+                send_telegram(f"Threads launch announcement posted ✅")
+                print(f"  POSTED: {result}")
+            return
+        except Exception as e:
+            print(f"  FAIL: {e}")
+            if not dry_run:
+                send_telegram(f"Threads launch announcement FAILED: {e}")
+            sys.exit(1)
+
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     en_dir = os.path.join(base, "en")
     html_files = sorted(glob.glob(os.path.join(en_dir, "*.html")), key=os.path.getmtime, reverse=True)

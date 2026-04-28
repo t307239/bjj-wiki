@@ -372,6 +372,25 @@ def main():
             except ValueError:
                 pass
 
+    # ── z226: launch announcement one-shot (sentinel file 検知) ──
+    # repo 直下に launch_announcement_x.txt があれば 1 回だけ launch text を post、
+    # ファイル削除して exit。次の cron からは normal Wiki post 再開。
+    from _launch_announce import check_and_consume
+    launch_text = check_and_consume("x")
+    if launch_text:
+        print(f"=== LAUNCH ANNOUNCEMENT (X) === ({len(launch_text)} chars)")
+        try:
+            result = post_tweet(launch_text, dry_run=dry_run)
+            if not dry_run and result:
+                send_telegram(f"X launch announcement posted ✅")
+                print(f"  POSTED: {result}")
+            return
+        except RuntimeError as e:
+            print(f"  FAIL: {e}")
+            if not dry_run:
+                send_telegram(f"X launch announcement FAILED: {e}")
+            sys.exit(1)
+
     base        = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     en_dir      = os.path.join(base, "en")
     html_files  = sorted(glob.glob(os.path.join(en_dir, "*.html")), key=os.path.getmtime, reverse=True)

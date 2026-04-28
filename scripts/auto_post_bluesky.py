@@ -285,6 +285,32 @@ def main():
             send_telegram(f"Bluesky login failed: {e}")
             sys.exit(1)
 
+    # ── z226: launch announcement one-shot ──
+    from _launch_announce import check_and_consume
+    launch_text = check_and_consume("bluesky")
+    if launch_text:
+        print(f"=== LAUNCH ANNOUNCEMENT (Bluesky) === ({len(launch_text)} chars)")
+        try:
+            # link card 不要、text のみ post
+            result = bsky_create_post(
+                launch_text,
+                link_url="",
+                link_title="",
+                link_desc="",
+                access_jwt=access_jwt,
+                did=did,
+                dry_run=dry_run,
+            )
+            if not dry_run and result:
+                send_telegram(f"Bluesky launch announcement posted ✅")
+                print(f"  POSTED: {result}")
+            return
+        except Exception as e:
+            print(f"  FAIL: {e}")
+            if not dry_run:
+                send_telegram(f"Bluesky launch announcement FAILED: {e}")
+            sys.exit(1)
+
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     en_dir = os.path.join(base, "en")
     html_files = sorted(glob.glob(os.path.join(en_dir, "*.html")), key=os.path.getmtime, reverse=True)
