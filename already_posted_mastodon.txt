@@ -2,6 +2,7 @@ sickle-sweep
 smash-pass
 snap-down
 sparring-simulator
+spider-guard
 sprawl
 stack-pass
 stand-in-base
