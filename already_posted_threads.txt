@@ -1,4 +1,5 @@
 sickle-sweep
+side-control
 sitting-guard
 smash-pass
 snap-down
