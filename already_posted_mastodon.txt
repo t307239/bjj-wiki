@@ -1,6 +1,7 @@
 sickle-sweep
 side-control
 sitting-guard
+skill-tree
 smash-pass
 snap-down
 sparring-simulator
