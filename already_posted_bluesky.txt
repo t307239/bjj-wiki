@@ -1,3 +1,4 @@
+seat-belt-control
 shrimp-escape
 sickle-sweep
 side-control
