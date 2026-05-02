@@ -34,13 +34,11 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install praw google-generativeai requests
+          python3 -m pip install requests google-generativeai
 
       - name: Run Reddit pickup
         env:
-          REDDIT_CLIENT_ID:     ${{ secrets.REDDIT_CLIENT_ID }}
-          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-          REDDIT_USER_AGENT:    ${{ secrets.REDDIT_USER_AGENT }}
+          # z239b: Reddit auth 不要 (公開 JSON API + User-Agent header)
           GEMINI_API_KEY:       ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN:   ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:     ${{ secrets.TELEGRAM_CHAT_ID }}

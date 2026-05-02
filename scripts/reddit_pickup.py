@@ -10,43 +10,42 @@ reddit_pickup.py — z239: r/bjj community 質問 daily pickup
   自動化。Toshiki は Telegram で 5 分/日 select + 手 reply するだけ。
   1-2 週間 karma 蓄積 → 後の launch (mod DM / cold post) の地ならし。
 
-必要な環境変数 (GitHub Secrets):
-  REDDIT_CLIENT_ID       : reddit.com/prefs/apps で「script」 type 作成して取得
-  REDDIT_CLIENT_SECRET   : 同上
-  REDDIT_USER_AGENT      : 例: "bjj-wiki-pickup/0.1 by t307239"
-  GEMINI_API_KEY         : 既存 (FAQ 生成で使用中)
-  TELEGRAM_BOT_TOKEN     : 既存
-  TELEGRAM_CHAT_ID       : 既存
+【重要】Reddit API auth 不要:
+  公開 endpoint (https://www.reddit.com/r/bjj/new.json) を User-Agent header
+  付きで呼ぶだけ。OAuth / app 登録 / GitHub Secret 全て不要。
+  rate limit 10/min (auth なし) も daily 1 fetch には十分。
 
-setup (初回のみ、Toshiki):
-  1. https://www.reddit.com/prefs/apps/ → are you a developer? create an app
-  2. type: 「script」、name: 「bjj-wiki-pickup」、redirect uri: http://localhost
-  3. client ID (16 字) と secret (27 字) を取得
-  4. GitHub repo Settings → Secrets and variables → Actions に追加
-  5. python3 -m pip install --upgrade praw google-generativeai requests
+必要な環境変数:
+  GEMINI_API_KEY       : 既存 (FAQ 生成で使用中) — 答え下書き生成用
+  TELEGRAM_BOT_TOKEN   : 既存
+  TELEGRAM_CHAT_ID     : 既存
+
+依存 library:
+  requests, google-generativeai (それだけ)
 
 Usage:
-  python3 scripts/reddit_pickup.py [--dry-run] [--limit N]
+  python3 scripts/reddit_pickup.py [--dry-run] [--limit N] [--no-draft]
 """
 from __future__ import annotations
 import os
 import sys
 import re
 import glob
-import json
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SUBREDDIT = "bjj"
 LOOKBACK_HOURS = 24
+USER_AGENT = "bjj-wiki-pickup/0.2 (https://wiki.bjj-app.net)"
 
 # pickup フィルタ閾値
 MIN_COMMENTS = 0           # 0 でも pickup (最初に reply で目立てる)
 MAX_COMMENTS = 15          # 多すぎると埋もれる
 MIN_SCORE = 1              # negative skip
 MAX_SCORE = 100            # 人気すぎは competitive
-MIN_AGE_MIN = 30           # 投稿直後は待つ (mod による削除可能性)
+MIN_AGE_MIN = 30           # 投稿直後は待つ (mod 削除可能性)
 MAX_AGE_HOURS = LOOKBACK_HOURS
 
 DEFAULT_LIMIT = 10         # daily pickup 件数上限
@@ -64,20 +63,24 @@ QUESTION_KEYWORDS_EN = [
 
 def import_libs():
     try:
-        import praw
-        import google.generativeai as genai
         import requests
-        return praw, genai, requests
+        return requests
     except ImportError as e:
-        print(f"❌ library 不足: {e}")
-        print()
-        print("install:")
-        print("  python3 -m pip install --upgrade praw google-generativeai requests")
+        print(f"❌ requests library 不足: {e}")
+        print("install: python3 -m pip install --upgrade requests")
         sys.exit(1)
 
 
+def import_gemini():
+    """optional. --no-draft の時は呼ばない"""
+    try:
+        import google.generativeai as genai
+        return genai
+    except ImportError:
+        return None
+
+
 def is_question(title: str, body: str) -> bool:
-    """title が ? で終わる、または質問 keyword を含むか判定。"""
     if title.rstrip().endswith("?"):
         return True
     text = (title + " " + body).lower()
@@ -85,16 +88,11 @@ def is_question(title: str, body: str) -> bool:
 
 
 def load_wiki_slugs() -> list[tuple[str, set[str]]]:
-    """
-    bjj-wiki/en/*.html の slug 一覧 + 各 slug の keyword set を作る。
-    return: [(slug, {keyword, ...}), ...]
-    """
     slugs = []
     for html_path in sorted(glob.glob(str(REPO_ROOT / "en" / "*.html"))):
         slug = Path(html_path).stem
         if slug in ("index", "404", "about", "contact"):
             continue
-        # slug を keyword 化 (kebab-case → words)
         keywords = set(re.split(r"[-_/]", slug.lower()))
         keywords.discard("")
         slugs.append((slug, keywords))
@@ -102,7 +100,6 @@ def load_wiki_slugs() -> list[tuple[str, set[str]]]:
 
 
 def match_wiki_pages(post_text: str, wiki_slugs: list[tuple[str, set[str]]], top_n: int = 3) -> list[str]:
-    """post text と wiki slug の keyword 重複度で top N suggest。"""
     text_words = set(re.findall(r"[a-z]+", post_text.lower()))
     scored = []
     for slug, kws in wiki_slugs:
@@ -113,8 +110,18 @@ def match_wiki_pages(post_text: str, wiki_slugs: list[tuple[str, set[str]]], top
     return [slug for _, slug in scored[:top_n]]
 
 
+def fetch_reddit_new(requests, subreddit: str, limit: int = 100) -> list[dict]:
+    """Reddit 公開 JSON API、auth 不要。"""
+    url = f"https://www.reddit.com/r/{subreddit}/new.json"
+    params = {"limit": limit}
+    headers = {"User-Agent": USER_AGENT}
+    r = requests.get(url, params=params, headers=headers, timeout=20)
+    r.raise_for_status()
+    data = r.json()
+    return [child["data"] for child in data["data"]["children"]]
+
+
 def gemini_draft_answer(genai, post_title: str, post_body: str, wiki_pages: list[str]) -> str:
-    """Gemini Flash で答え下書きを生成。"""
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         return "(GEMINI_API_KEY not set, skipping draft)"
@@ -179,6 +186,7 @@ def format_telegram_message(picks: list[dict]) -> str:
 
 def main() -> int:
     dry_run = "--dry-run" in sys.argv
+    no_draft = "--no-draft" in sys.argv
     limit = DEFAULT_LIMIT
     for i, arg in enumerate(sys.argv):
         if arg == "--limit" and i + 1 < len(sys.argv):
@@ -186,27 +194,21 @@ def main() -> int:
                 limit = int(sys.argv[i + 1])
             except ValueError:
                 pass
-    no_draft = "--no-draft" in sys.argv
 
-    praw, genai, requests = import_libs()
-
-    client_id = os.environ.get("REDDIT_CLIENT_ID")
-    client_secret = os.environ.get("REDDIT_CLIENT_SECRET")
-    user_agent = os.environ.get("REDDIT_USER_AGENT", "bjj-wiki-pickup/0.1")
-
-    if not client_id or not client_secret:
-        print("❌ REDDIT_CLIENT_ID / REDDIT_CLIENT_SECRET が未設定")
-        print("   https://www.reddit.com/prefs/apps/ で「script」 type の app を作成")
-        sys.exit(1)
+    requests = import_libs()
+    genai = import_gemini() if not no_draft else None
+    if genai is None and not no_draft:
+        print("⚠️  google-generativeai 未 install、答え下書き skip")
 
     print(f"=== r/{SUBREDDIT} 質問 pickup ({datetime.now(timezone.utc)}) ===")
     print(f"フィルタ: comments {MIN_COMMENTS}-{MAX_COMMENTS}, score {MIN_SCORE}-{MAX_SCORE}, "
           f"age {MIN_AGE_MIN}m-{MAX_AGE_HOURS}h")
 
-    reddit = praw.Reddit(
-        client_id=client_id, client_secret=client_secret, user_agent=user_agent,
-    )
-    reddit.read_only = True
+    try:
+        posts = fetch_reddit_new(requests, SUBREDDIT, limit=100)
+    except Exception as e:
+        print(f"❌ Reddit fetch fail: {e}")
+        return 1
 
     wiki_slugs = load_wiki_slugs()
     print(f"📚 wiki slugs loaded: {len(wiki_slugs)}")
@@ -217,39 +219,41 @@ def main() -> int:
 
     picks = []
     seen = 0
-    for submission in reddit.subreddit(SUBREDDIT).new(limit=200):
+    for p in posts:
         seen += 1
-        post_time = datetime.fromtimestamp(submission.created_utc, timezone.utc)
+        post_time = datetime.fromtimestamp(p["created_utc"], timezone.utc)
         if post_time < cutoff_old or post_time > cutoff_new:
             continue
-        if not is_question(submission.title, submission.selftext or ""):
+        if not is_question(p.get("title", ""), p.get("selftext", "")):
             continue
-        if submission.num_comments < MIN_COMMENTS or submission.num_comments > MAX_COMMENTS:
+        nc = p.get("num_comments", 0)
+        if nc < MIN_COMMENTS or nc > MAX_COMMENTS:
             continue
-        if submission.score < MIN_SCORE or submission.score > MAX_SCORE:
+        score = p.get("score", 0)
+        if score < MIN_SCORE or score > MAX_SCORE:
             continue
-        if submission.stickied or submission.over_18:
+        if p.get("stickied") or p.get("over_18"):
             continue
 
-        wiki_matches = match_wiki_pages(
-            submission.title + " " + (submission.selftext or ""), wiki_slugs
-        )
+        title = p["title"]
+        body = p.get("selftext", "")
+        permalink = p.get("permalink", "")
+        wiki_matches = match_wiki_pages(title + " " + body, wiki_slugs)
         age_min = int((now - post_time).total_seconds() / 60)
 
         pick = {
-            "title": submission.title,
-            "url": f"https://reddit.com{submission.permalink}",
-            "score": submission.score,
-            "num_comments": submission.num_comments,
+            "title": title,
+            "url": f"https://reddit.com{permalink}",
+            "score": score,
+            "num_comments": nc,
             "age_min": age_min,
             "wiki_pages": wiki_matches,
-            "body_preview": (submission.selftext or "")[:500],
+            "body_preview": body[:500],
         }
 
-        if not no_draft and wiki_matches:
-            pick["draft"] = gemini_draft_answer(
-                genai, submission.title, submission.selftext or "", wiki_matches
-            )
+        if genai is not None and wiki_matches:
+            pick["draft"] = gemini_draft_answer(genai, title, body, wiki_matches)
+            time.sleep(0.5)  # rate limit safety
 
         picks.append(pick)
         if len(picks) >= limit:
