@@ -1,5 +1,11 @@
-en/arm-triangle-choke
-en/harai-goshi
-en/ippon-seoi-nage
-en/morote-seoi-nage
-en/snap-down
+en/index
+ja/bjj-gi-brands-guide
+ja/bjj-leg-weave-passing-guide
+ja/bjj-pressure-passing-mechanics
+ja/bjj-smash-passing-guide
+ja/index
+pt/index
+ja/bjj-conditioning-workout
+ja/bjj-cool-down-recovery
+ja/bjj-mental-game
+ja/bjj-warm-up-routine
