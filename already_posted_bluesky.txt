@@ -1,6 +1,7 @@
 reverse-de-la-riva
 russian-2-on-1
 russian-tie
+scissor-sweep
 seat-belt-control
 shrimp-escape
 sickle-sweep
