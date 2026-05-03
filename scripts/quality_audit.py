@@ -40,13 +40,15 @@ LANGUAGES = ["en", "ja", "pt"]
 
 # ジャンル別スコアウェイト
 SCORE_WEIGHTS = {
-    "word_count_gte_600": 20,   # 600語以上
-    "h2_count_gte_6":     20,   # H2 6個以上
+    # z244: word penalty 撤廃 (「不必要に長くする pressure」 削除)
+    # 短い page も加点、構造評価で SEO 質を測る
+    "word_count_gte_200": 15,   # 200 語以上 (低 threshold、ほぼ全 page 加点)
+    "h2_count_gte_6":     25,   # H2 6個以上 (構造評価強化)
     "has_list":           15,   # ul/ol あり
     "has_bold":           10,   # strong/b あり
     "has_video":          15,   # YouTube iframe (Technique/Drill のみ)
     "has_faq":            10,   # FAQ H2/H3 あり
-    "has_internal_links":  10,  # 内部リンク 3件以上
+    "has_internal_links": 10,   # 内部リンク 3件以上
 }
 
 # 動画ボーナスが適用されるジャンル
@@ -159,9 +161,9 @@ def score_article(metrics: dict) -> tuple[int, dict[str, int]]:
     content_type = metrics["content_type"]
     breakdown = {}
 
-    # 語数
-    breakdown["word_count_gte_600"] = (
-        SCORE_WEIGHTS["word_count_gte_600"] if metrics["word_count"] >= 600 else 0
+    # 語数 (z244: threshold 600→200 に緩和、短い page にも加点)
+    breakdown["word_count_gte_200"] = (
+        SCORE_WEIGHTS["word_count_gte_200"] if metrics["word_count"] >= 200 else 0
     )
 
     # H2 数
