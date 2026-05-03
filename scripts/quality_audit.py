@@ -40,16 +40,21 @@ LANGUAGES = ["en", "ja", "pt"]
 
 # ジャンル別スコアウェイト
 SCORE_WEIGHTS = {
-    # z244: word penalty 撤廃 (「不必要に長くする pressure」 削除)
-    # 短い page も加点、構造評価で SEO 質を測る
-    "word_count_gte_200": 15,   # 200 語以上 (低 threshold、ほぼ全 page 加点)
-    "h2_count_gte_6":     25,   # H2 6個以上 (構造評価強化)
-    "has_list":           15,   # ul/ol あり
-    "has_bold":           10,   # strong/b あり
-    "has_video":          15,   # YouTube iframe (Technique/Drill のみ)
-    "has_faq":            10,   # FAQ H2/H3 あり
-    "has_internal_links": 10,   # 内部リンク 3件以上
+    # z245: 全項目 lenient (「無理に基準を満たそうとして破壊」 防止)
+    # 段階加点 + 最低 30 pt base、「ベストな page を patch で破壊」 pressure 解消
+    "word_count_gte_200": 10,   # 短い page も OK、200 語で加点
+    "h2_count_gte_3":     15,   # H2 3 個 (緩和、ほとんど の page が達成)
+    "h2_count_gte_6":      5,   # H2 6 個 で追加 bonus
+    "has_list":           10,   # 必須じゃない、あれば加点
+    "has_bold":           10,
+    "has_video":          10,   # Technique/Drill 以外は自動加点維持
+    "has_faq":            10,
+    "has_internal_links": 10,   # 3 件以上で加点
+    "internal_links_gte_5": 5,  # 5 件以上で追加 bonus
+    "has_image":          10,   # 画像 1 枚以上
+    "_base":              30,   # 全 page に base 30 pt (z245: 破壊耐性)
 }
+# 合計: 125、上限 100 で cap (= 半数程度の項目クリアで 100 達成可能)
 
 # 動画ボーナスが適用されるジャンル
 VIDEO_REQUIRED_TYPES = {"Technique", "Drill"}
@@ -95,6 +100,9 @@ def parse_article(html: str) -> dict:
         re.search(r"youtube\.com/embed|youtu\.be", html, re.IGNORECASE)
     )
 
+    # 画像 (z245)
+    has_image = bool(re.search(r"<img\b", html, re.IGNORECASE))
+
     # FAQ（H2 or H3 に "FAQ" or "Frequently Asked"）
     all_headings = h2_list + h3_list
     has_faq = any(
@@ -121,6 +129,7 @@ def parse_article(html: str) -> dict:
         "has_bold":            has_bold,
         "has_video":           has_video,
         "has_faq":             has_faq,
+        "has_image":           has_image,
         "internal_link_count": internal_link_count,
         "content_type":        content_type,
     }
@@ -161,12 +170,18 @@ def score_article(metrics: dict) -> tuple[int, dict[str, int]]:
     content_type = metrics["content_type"]
     breakdown = {}
 
-    # 語数 (z244: threshold 600→200 に緩和、短い page にも加点)
+    # z245: base 30 pt 全 page に (破壊耐性、無理に達成 pressure 解消)
+    breakdown["_base"] = SCORE_WEIGHTS["_base"]
+
+    # 語数
     breakdown["word_count_gte_200"] = (
         SCORE_WEIGHTS["word_count_gte_200"] if metrics["word_count"] >= 200 else 0
     )
 
-    # H2 数
+    # H2 数 (z245: 段階加点に変更、3 で base 加点 + 6 で bonus)
+    breakdown["h2_count_gte_3"] = (
+        SCORE_WEIGHTS["h2_count_gte_3"] if metrics["h2_count"] >= 3 else 0
+    )
     breakdown["h2_count_gte_6"] = (
         SCORE_WEIGHTS["h2_count_gte_6"] if metrics["h2_count"] >= 6 else 0
     )
@@ -187,12 +202,20 @@ def score_article(metrics: dict) -> tuple[int, dict[str, int]]:
     # FAQ
     breakdown["has_faq"] = SCORE_WEIGHTS["has_faq"] if metrics["has_faq"] else 0
 
-    # 内部リンク（3 件以上）
+    # 内部リンク（3 件以上 + 5 件で bonus）
     breakdown["has_internal_links"] = (
         SCORE_WEIGHTS["has_internal_links"]
         if metrics["internal_link_count"] >= 3
         else 0
     )
+    breakdown["internal_links_gte_5"] = (
+        SCORE_WEIGHTS["internal_links_gte_5"]
+        if metrics["internal_link_count"] >= 5
+        else 0
+    )
+
+    # 画像 (z245)
+    breakdown["has_image"] = SCORE_WEIGHTS["has_image"] if metrics["has_image"] else 0
 
     total = sum(breakdown.values())
     return min(total, 100), breakdown
