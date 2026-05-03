@@ -155,7 +155,8 @@ def gemini_generate(genai, prompt: str) -> str | None:
         return None
     try:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-2.0-flash-exp")
+        # z248b: gemini-2.0-flash-exp deprecated 、2.5-flash-lite (free tier 15 RPM) に変更
+        model = genai.GenerativeModel("gemini-2.5-flash-lite")
         resp = model.generate_content(prompt)
         return resp.text.strip()
     except Exception as e:
