@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-fix_ja_english_mixing.py — z253: JA wiki 英語混入 fix (J-2)
+fix_ja_english_mixing.py — z254b: PT wiki 英語混入 fix (J-2 pt版)
 
 scan_ja_english_mixing.py (J-1) で検出した 696 CRITICAL ja page の
 <title> / <h1> / <meta description> を Gemini で日本語に翻訳。
 
 設計原則:
-  - input: ja_english_mixing_report.csv (J-1 出力)
+  - input: pt_english_mixing_report.csv (J-1 出力)
   - 各 CRITICAL page で title / h1 / meta を Gemini 翻訳
   - 既存 body content には触らない (z248 depth section も保持)
   - BJJ 専門用語のカタカナ化を統一 (例: "Armbar" → "アームバー")
@@ -37,8 +37,8 @@ import argparse
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-JA_DIR = REPO_ROOT / "ja"
-REPORT_CSV = REPO_ROOT / "ja_english_mixing_report.csv"
+PT_DIR = REPO_ROOT / "pt"
+REPORT_CSV = REPO_ROOT / "pt_english_mixing_report.csv"
 RATE_LIMIT_SLEEP = 1.0
 
 
@@ -73,17 +73,17 @@ def gemini_translate(genai, slug: str, title_en: str, h1_en: str, desc_en: str) 
         genai.configure(api_key=api_key)
         model = genai.GenerativeModel("gemini-2.5-flash-lite")
         prompt = f"""You will receive a BJJ wiki page's English title/h1/meta description.
-Translate them to natural Japanese. ALL BJJ technical terms must use established katakana form.
+Translate them to natural Brazilian Portuguese. Keep widely-known BJJ terms in their commonly-used Portuguese form.
 
-CRITICAL: ALL English BJJ terms must be converted to katakana, NOT left in English.
+CRITICAL: All BJJ terminology should use natural Portuguese (BR) equivalents where possible.
 
-Required katakana conversions:
-- Armbar → アームバー / Triangle Choke → トライアングルチョーク / Kimura → キムラ
-- Guard → ガード / Sweep → スイープ / Pass → パス
-- Mount → マウント / Side Control → サイドコントロール / Back Control → バック
-- Rear Naked Choke → リアネイキッドチョーク / Heel Hook → ヒールフック
-- Half Guard → ハーフガード / Closed Guard → クローズドガード / Open Guard → オープンガード
-- Sub / Submission → サブミッション / Take Down → テイクダウン
+Common BJJ Portuguese conventions:
+- Armbar → "Armbar" or "Chave de Braço" / Triangle Choke → "Triângulo"
+- Guard → "Guarda" / Sweep → "Raspagem" / Pass → "Passagem de Guarda"
+- Mount → "Montada" / Side Control → "Cem Quilos" or "Side Control"
+- Back Control → "Costas" / Rear Naked Choke → "Mata-Leão"
+- Half Guard → "Meia Guarda" / Closed Guard → "Guarda Fechada" / Open Guard → "Guarda Aberta"
+- Submission → "Finalização" / Take Down → "Queda"
 
 ONLY proper nouns (人名 like "Andre Galvao", "Marcelo Garcia") may remain in English.
 
@@ -102,7 +102,7 @@ Rules:
 - h1: under 50 chars, no "| BJJ Wiki" suffix
 - description: 100-150 chars, natural sentences
 - Don't use emoji
-- VERIFY: no English BJJ terms remain, only proper nouns
+- VERIFY: title/h1 contains Portuguese words (with accents like ã/ç/é when natural)
 """
         resp = model.generate_content(prompt)
         text = resp.text.strip()
@@ -181,7 +181,7 @@ def main() -> int:
 
     for i, row in enumerate(targets[:args.limit]):
         slug = row["slug"]
-        fp = JA_DIR / f"{slug}.html"
+        fp = PT_DIR / f"{slug}.html"
         if not fp.exists():
             print(f"  [{i+1}] {slug}: ❌ file not found, skip")
             fail += 1
@@ -190,7 +190,7 @@ def main() -> int:
         html = fp.read_text(encoding="utf-8")
         # Idempotent: title が既に日本語含むなら skip
         title_match = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
-        if title_match and re.search(r"[぀-ゟ゠-ヿ一-鿿]", title_match.group(1)):
+        if title_match and re.search(r"[ãâáàçéêíóôõúÃÂÁÀÇÉÊÍÓÔÕÚ]", title_match.group(1)):
             print(f"  [{i+1}] {slug}: ⏭  既 fix 済 (title に JA 含む)")
             skip += 1
             continue
