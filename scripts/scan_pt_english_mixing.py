@@ -39,6 +39,25 @@ COMMON_WORDS = {
     "submissão", "como", "mestre", "guia", "fundamental", "moderna",
 }
 
+# z254d: PT 固有マーカー単語 — これらが含まれていれば「PT として書かれてる」と判定
+# (アクセント無しでも自然な PT phrase を救済)
+PT_MARKER_WORDS = {
+    "sobre", "regras", "chave", "guarda", "guia", "atletas", "atleta",
+    "pegar", "raspagem", "passagem", "passar", "ataque", "defesa",
+    "completa", "completo", "domine", "ensina", "como", "melhor",
+    "melhores", "mestre", "guia", "fundamentos", "fundamental",
+    "iniciante", "iniciantes", "tornozelo", "joelho", "perna", "braço",
+    "costas", "montada", "estrangulamento", "finalizacao", "queda",
+    "kimono", "rashguard", "protetores", "instrucionais", "joelheiras",
+    "bolsa", "bucal", "ouvido", "cabeça", "campeao", "campeao", "campeã",
+    "treino", "técnica", "tecnica", "academia", "faixa", "graduacao",
+    "moderna", "moderno", "história", "historia", "estilo", "fluxo",
+    "essa", "essencial", "suplemento", "alongamento", "dieta", "nutricao",
+    "preto", "azul", "marrom", "roxa", "branca", "lesao", "lesão",
+    "evitar", "comum", "comuns", "principal", "principais", "domínio",
+    "dominio", "explicado", "explicada",
+}
+
 
 def extract_field(html: str, pattern: str) -> str:
     m = re.search(pattern, html, re.IGNORECASE | re.DOTALL)
@@ -56,6 +75,19 @@ def detect_english(text: str) -> list[str]:
 
 def has_pt_accent(text: str) -> bool:
     return bool(PT_ACCENT_RE.search(text))
+
+
+def has_pt_marker(text: str) -> bool:
+    """z254d: アクセント無しでも PT marker word があれば PT 認定"""
+    if not text:
+        return False
+    words = re.findall(r"[A-Za-zÀ-ÿ]+", text.lower())
+    return any(w in PT_MARKER_WORDS for w in words)
+
+
+def is_pt(text: str) -> bool:
+    """PT として書かれていると判定 (accent OR marker word)"""
+    return has_pt_accent(text) or has_pt_marker(text)
 
 
 def main() -> int:
@@ -83,10 +115,32 @@ def main() -> int:
         )
         desc = desc_m.group(1) if desc_m else ""
 
-        # CRITICAL: title または h1 に PT アクセントゼロ + 英語含む
-        title_no_pt = not has_pt_accent(title) and bool(detect_english(title))
-        h1_no_pt = not has_pt_accent(h1) and bool(detect_english(h1))
-        desc_no_pt = not has_pt_accent(desc) and bool(detect_english(desc))
+        # CRITICAL: title または h1 が PT 認定 (accent or marker) されない + 英語含む
+        # z254d: accent 無しでも marker word (sobre, regras, chave 等) があれば PT 扱い
+        # athlete-* slug の場合 title/h1 が固有名詞のみ → OK と判定して除外
+        is_athlete_page = fp.stem.startswith("athlete-")
+
+        def proper_noun_only(s: str) -> bool:
+            """すべての単語が大文字始まり (人名 pattern)、かつ PT 認定無し"""
+            if not s:
+                return False
+            # "| BJJ Wiki" 等の suffix 除外
+            core = re.sub(r"\s*\|\s*BJJ\s*Wiki\s*$", "", s).strip()
+            words = core.split()
+            if not words or len(words) > 4:
+                return False
+            return (
+                all((w[0].isupper() if w and w[0].isalpha() else True) for w in words)
+                and not is_pt(s)
+            )
+
+        title_no_pt = not is_pt(title) and bool(detect_english(title))
+        if is_athlete_page and proper_noun_only(title):
+            title_no_pt = False  # athlete page で固有名詞 title → OK
+        h1_no_pt = bool(h1) and not is_pt(h1) and bool(detect_english(h1))
+        if is_athlete_page and proper_noun_only(h1):
+            h1_no_pt = False  # athlete page で固有名詞 h1 → OK
+        desc_no_pt = not is_pt(desc) and bool(detect_english(desc))
 
         sev = ""
         if title_no_pt or h1_no_pt:
