@@ -135,6 +135,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--limit", type=int, default=696)
+    ap.add_argument("--interactive", action="store_true",
+                    help="1 page ごとに diff 表示 + Y/N/Q 確認")
+    ap.add_argument("--slug", help="特定 slug のみ test")
     args = ap.parse_args()
 
     if not REPORT_CSV.exists():
@@ -150,7 +153,15 @@ def main() -> int:
             if row["severity"] == "CRITICAL":
                 targets.append(row)
 
+    if args.slug:
+        targets = [r for r in targets if r["slug"] == args.slug]
+        if not targets:
+            print(f"⚠️  slug '{args.slug}' は CRITICAL に含まれない")
+            return 0
+
     print(f"📋 CRITICAL targets: {len(targets)} 件、limit={args.limit}")
+    if args.interactive:
+        print("🔍 INTERACTIVE: 各 page で y(適用) / n(skip) / q(終了) 入力")
     print()
 
     done = 0
@@ -173,7 +184,7 @@ def main() -> int:
             skip += 1
             continue
 
-        if not args.apply:
+        if not args.apply and not args.interactive:
             print(f"  [{i+1}] {slug}: 📝 (dry-run) would translate")
             done += 1
             continue
@@ -187,6 +198,26 @@ def main() -> int:
             fail += 1
             continue
 
+        # Interactive mode: diff 表示 + Y/N/Q
+        if args.interactive:
+            print()
+            print(f"━━━ [{i+1}/{len(targets[:args.limit])}] {slug} ━━━")
+            print(f"  title BEFORE : {row['title'][:80]}")
+            print(f"  title AFTER  : {result['title'][:80]}")
+            print(f"  h1    BEFORE : {row['h1'][:80]}")
+            print(f"  h1    AFTER  : {result['h1'][:80]}")
+            print(f"  desc  BEFORE : {row['desc'][:100]}")
+            print(f"  desc  AFTER  : {result['description'][:100]}")
+            print()
+            choice = input("  apply? [y]es / [n]o / [q]uit: ").strip().lower()
+            if choice == "q":
+                print(f"  🛑 quit")
+                break
+            if choice != "y":
+                print(f"  ⏭  skip")
+                skip += 1
+                continue
+
         new_html = patch_html(
             html,
             result["title"], result["h1"], result["description"]
@@ -198,7 +229,10 @@ def main() -> int:
 
         try:
             fp.write_text(new_html, encoding="utf-8")
-            print(f"  [{i+1}] {slug}: ✅ {result['h1'][:40]}")
+            if not args.interactive:
+                print(f"  [{i+1}] {slug}: ✅ {result['h1'][:40]}")
+            else:
+                print(f"  ✅ applied")
             done += 1
         except Exception as e:
             print(f"  [{i+1}] {slug}: ❌ write fail: {e}")
