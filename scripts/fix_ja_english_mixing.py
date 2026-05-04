@@ -198,12 +198,37 @@ def main() -> int:
         ALLOWED = {"BJJ", "Wiki", "Jiu", "Jitsu", "MMA", "ADCC", "IBJJF", "EBI"}
         title_eng = [w for w in re.findall(r"\b[A-Za-z]{5,}\b", title_text) if w.lower() not in {a.lower() for a in ALLOWED}]
         h1_eng = [w for w in re.findall(r"\b[A-Za-z]{5,}\b", h1_text) if w.lower() not in {a.lower() for a in ALLOWED}]
-        # h1 が 「人名のみ」 (Andre Galvao 等、3 単語以下、JA なし) なら h1 残し OK と判定
+        # h1 が 「人名のみ」 と判定する条件 (z254e 強化):
+        # - 3 単語以下 + JA なし + 全 word 大文字始まり (Andre Galvao 等)
+        # - かつ「BJJ 一般語」 (Guide/Defense/System/Pass/Sweep/Guard 等) を含まない
+        # - かつ slug が athlete- 始まり OR 全 word が title にもそのまま現れる (Andre Galvao を title で言及)
+        BJJ_COMMON_NOUNS = {
+            "guide", "guides", "system", "systems", "method", "methods",
+            "pass", "passing", "passes", "sweep", "sweeps", "sweeping",
+            "guard", "guards", "defense", "defenses", "defensive",
+            "offense", "offensive", "attack", "attacks", "submission",
+            "submissions", "control", "escape", "escapes", "drilling",
+            "selection", "hierarchy", "survival", "chains", "weave",
+            "pressure", "smash", "turtle", "mindset", "anxiety",
+            "confidence", "focus", "concentration", "adversity", "response",
+            "bottom", "top", "winning", "losing", "competition",
+            "mechanics", "methodology",
+        }
         h1_words = h1_text.strip().split()
+        h1_lc_words = {w.lower().strip(":") for w in h1_words}
+        h1_has_bjj_common = bool(h1_lc_words & BJJ_COMMON_NOUNS)
+        # athlete-* slug or title に h1 word が全て含まれてる場合のみ proper-noun 扱い
+        is_athlete_slug = slug.startswith("athlete-")
+        h1_words_in_title = (
+            bool(h1_words)
+            and all(w.lower().strip(":") in title_text.lower() for w in h1_words if w[0].isupper() if w)
+        )
         h1_is_proper_noun_only = (
             len(h1_words) <= 3
             and not re.search(r"[぀-ゟ゠-ヿ一-鿿]", h1_text)
             and all(w[0].isupper() if w else True for w in h1_words)
+            and not h1_has_bjj_common
+            and (is_athlete_slug or h1_words_in_title)
         )
         # title に 英語残ってたら re-fix。h1 も 単独人名以外で英語あれば re-fix
         if not title_eng and (h1_is_proper_noun_only or not h1_eng):

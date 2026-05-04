@@ -1,40 +1,20 @@
 slug,severity,title,title_english,h1,h1_english,desc,desc_english
-athlete-mikey-musumeci,CRITICAL,Mikey Musumeci｜BJJ世界王者・トライアングルチョークの達人 | BJJ Wiki,"Mikey,Musumeci",Mikey Musumeci,"Mikey,Musumeci",BJJトップ選手、Mikey Musumeci「Darth Rigatoni」はトライアングルチョーク、オモプラッタ、ラッソーガード、ラバーガードを得意とするアメリカ出身の選手。ADCC 57kg級王者。,"Mikey,Musumeci,Darth,Rigatoni"
 bjj-adaptation-bjj,INFO,【BJJ】相手への適応スキル,,【BJJ】相手への適応スキル,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
-bjj-adversity-response-guide,CRITICAL,【BJJ】逆境対応ガイド,,Adversity Response,"Adversity,Response",Learn to bounce back from losses and extract growth from competition setbacks.,"Learn,bounce,losses,extract,growth"
-bjj-bottom-game-guide,CRITICAL,【BJJ】底ゲームガイド,,Bottom Game Guide,"Bottom,Guide",Bottom Game Guideの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解説。,Bottom
 bjj-breakdown-technique-bjj,INFO,【BJJ】テクニック分解の方法,,【BJJ】テクニック分解の方法,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
-bjj-competition-anxiety-guide,CRITICAL,【BJJ】競技不安ガイド,,Anxiety Guide,"Anxiety,Guide",Master competition anxiety management through breathing and mental frameworks for peak performance.,"Master,competition,anxiety,management,through"
 bjj-competition-day-nutrition,INFO,【BJJ】大会当日の栄養戦略,,【BJJ】大会当日の栄養戦略,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
-bjj-confidence-building-guide,CRITICAL,【BJJ】自信構築ガイド,,Confidence Guide,"Confidence,Guide",Build unshakeable confidence through technical mastery and successful competition.,"Build,unshakeable,confidence,through,technical"
-bjj-defensive-bjj-guide,CRITICAL,【BJJ】ディフェンシブBJJガイド,,Defensive BJJ Guide,"Defensive,Guide",Defensive BJJ Guideの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解説。,Defensive
 bjj-dlr-back-take-guide,INFO,【BJJ】De La Riva Back Take,,De La Riva Back Take,,Transition from De La Riva guard to back control with dominant positioning and control systems.,"Transition,guard,control,dominant,positioning"
-bjj-drilling-methodology,CRITICAL,BJJドリリング方法論｜最大の効果を得るための効果的なドリル法,,BJJ Drilling Methodology,"Drilling,Methodology",BJJドリリング方法論の完全ガイド。反復ドリル、ポジショナルドリル、フロードリル、最大のスキル習得のための練習構造を理解する。,
 bjj-film-study-bjj,INFO,【BJJ】フィルムスタディの技法,,【BJJ】フィルムスタディの技法,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
 bjj-first-year-bjj,INFO,【BJJ】最初の1年のガイド,,【BJJ】最初の1年のガイド,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
-bjj-focus-concentration-guide,CRITICAL,【BJJ】フォーカス・集中ガイド,,Focus Guide,"Focus,Guide",Master focus techniques and concentration for consistent execution under pressure.,"Master,focus,techniques,concentration,consistent"
-bjj-guard-attack-systems,CRITICAL,【BJJ】ガードアタックシステム,,Guard Attack Systems,"Guard,Attack,Systems",Master systematic guard attacks that overwhelm and control opponents.,"Master,systematic,guard,attacks,overwhelm"
-bjj-guard-hierarchy-guide,CRITICAL,【BJJ】ガード階層ガイド,,Guard Hierarchy,"Guard,Hierarchy",Understand guard position hierarchy and selection for optimal position choice.,"Understand,guard,position,hierarchy,selection"
-bjj-guard-selection-guide,CRITICAL,【BJJ】ガード選択ガイド,,Guard Selection,"Guard,Selection",Learn strategic guard selection based on opponent and situation analysis.,"Learn,strategic,guard,selection,based"
-bjj-guard-survival-guide,CRITICAL,【BJJ】ガード生存ガイド,,Guard Survival Guide,"Guard,Survival,Guide",Guard Survival Guideの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解説。,"Guard,Survival"
-bjj-guard-to-submission-guide,CRITICAL,【BJJ】ガード投降ガイド,,Guard Submission Chains,"Guard,Submission,Chains",Chain guard positions into submission attacks seamlessly and efficiently.,"Chain,guard,positions,submission,attacks"
 bjj-ice-bath-bjj,INFO,【BJJ】冷水療法でのリカバリー,,【BJJ】冷水療法でのリカバリー,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
-bjj-leg-weave-passing-guide,CRITICAL,【BJJ】レッグウィーブパッシング,,Leg Weave Passing,"Weave,Passing",Master leg weave passes for controlling position and preventing reversals.,"Master,weave,passes,controlling,position"
 bjj-long-game-bjj,INFO,【BJJ】Long Game in BJJ | BJJ Wiki,,Long Game in BJJ,,Long-term BJJ development and career planning.,"development,career,planning"
-bjj-offensive-bjj-guide,CRITICAL,【BJJ】オフェンシブBJJガイド,,Offensive BJJ Guide,"Offensive,Guide",Offensive BJJ Guideの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解説。,Offensive
-bjj-pressure-passing-mechanics,CRITICAL,【BJJ】プレッシャーパッシング力学,,Pressure Passing,"Pressure,Passing",Master pressure-based passing techniques that overwhelm guard-based defenses.,"Master,pressure,based,passing,techniques"
 bjj-progressive-overload-bjj,INFO,【BJJ】漸進的過負荷の原則,,【BJJ】漸進的過負荷の原則,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
 bjj-shrimping-details,INFO,【BJJ】シュリンプムーブの詳細,,【BJJ】シュリンプムーブの詳細,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
-bjj-smash-passing-guide,CRITICAL,【BJJ】スマッシュパッシング,,Smash Passing,"Smash,Passing",Execute smash passes that flatten guards and create unstoppable pressure.,"Execute,smash,passes,flatten,guards"
 bjj-terminology,INFO,BJJ用語集 | 50以上の必須ポルトガル語・英語用語を解説,,BJJ用語集：完全ガイド,,"BJJ has a unique vocabulary mixing Portuguese, Japanese (from judo roots), and English slang.","unique,vocabulary,mixing,Portuguese,Japanese"
 bjj-three-year-bjj,INFO,【BJJ】3年間のBJJ成長パス,,【BJJ】3年間のBJJ成長パス,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
-bjj-top-pressure-guide,CRITICAL,【BJJ】トッププレッシャーガイド,,Top Pressure,Pressure,Apply devastating top pressure that controls and exhausts opponents systematically.,"Apply,devastating,pressure,controls,exhausts"
 bjj-training-with-advanced,INFO,【BJJ】上級者とのトレーニング,,【BJJ】上級者とのトレーニング,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
 bjj-training-with-beginners,INFO,【BJJ】初心者とのトレーニング,,【BJJ】初心者とのトレーニング,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
 bjj-transfer-of-training,INFO,【BJJ】トレーニング転移の概念,,【BJJ】トレーニング転移の概念,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
-bjj-turtle-survival-guide,CRITICAL,【BJJ】タートル生存ガイド,,Turtle Survival Guide,"Turtle,Survival,Guide",Turtle Survival Guideの詳細ガイド。テクニック、コツ、練習方法をBJJ Wikiで解説。,"Turtle,Survival"
 bjj-understanding-bjj,INFO,【BJJ】BJJのより深い理解,,【BJJ】BJJのより深い理解,,Master the techniques of Brazilian Jiu-Jitsu with detailed guides and expert strategies.,"Master,techniques,detailed,guides,expert"
-bjj-winning-mindset-guide,CRITICAL,【BJJ】勝利マインドセット,,Winning Mindset,"Winning,Mindset",Develop winning mindset and psychological edge to dominate opponents in competition.,"Develop,winning,mindset,psychological,dominate"
 d-arce-choke,WARNING,ダルセチョーク（D'Arce Choke）— BJJサブミッション完全ガイド | BJJ Wiki,Choke,ダルセチョーク：トップポジションからのアームイン首絞め,,ダルセチョークはトップポジションから決める強力なアームイン系絞め技。セットアップ・メカニクス・エントリー・ディフェンスを解説。,
 dog-fight,WARNING,ドッグファイトポジションの技術解説 | BJJ Wiki,,ドッグファイト（Dog Fight）— 完全技術解説,Fight,ドッグファイト（Dog Fight）の正しい動き方・スウィープ・バックテイク・カウンターを解説。ブラジリアン柔術のハーフガードからのスクランブル技術。,Fight
 knee-shield,WARNING,ニーシールドの技術解説 | BJJ Wiki,,ニーシールド（Knee Shield）— 完全技術解説,Shield,ニーシールド（Knee Shield）の正しい動き方・エントリー・スウィープ・よくあるミスを解説。ブラジリアン柔術のハーフガード技術。,Shield

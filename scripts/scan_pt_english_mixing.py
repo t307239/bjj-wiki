@@ -42,20 +42,34 @@ COMMON_WORDS = {
 # z254d: PT 固有マーカー単語 — これらが含まれていれば「PT として書かれてる」と判定
 # (アクセント無しでも自然な PT phrase を救済)
 PT_MARKER_WORDS = {
+    # 一般 PT 名詞 / 動詞
     "sobre", "regras", "chave", "guarda", "guia", "atletas", "atleta",
     "pegar", "raspagem", "passagem", "passar", "ataque", "defesa",
     "completa", "completo", "domine", "ensina", "como", "melhor",
-    "melhores", "mestre", "guia", "fundamentos", "fundamental",
+    "melhores", "mestre", "fundamentos", "fundamental",
     "iniciante", "iniciantes", "tornozelo", "joelho", "perna", "braço",
     "costas", "montada", "estrangulamento", "finalizacao", "queda",
     "kimono", "rashguard", "protetores", "instrucionais", "joelheiras",
-    "bolsa", "bucal", "ouvido", "cabeça", "campeao", "campeao", "campeã",
+    "bolsa", "bucal", "ouvido", "cabeça", "campeao", "campeã",
     "treino", "técnica", "tecnica", "academia", "faixa", "graduacao",
     "moderna", "moderno", "história", "historia", "estilo", "fluxo",
-    "essa", "essencial", "suplemento", "alongamento", "dieta", "nutricao",
+    "essencial", "suplemento", "alongamento", "dieta", "nutricao",
     "preto", "azul", "marrom", "roxa", "branca", "lesao", "lesão",
     "evitar", "comum", "comuns", "principal", "principais", "domínio",
     "dominio", "explicado", "explicada",
+    # よく title で使う PT preposition / connector (長め)
+    "sistema", "vantagem", "vantagens", "controle", "axila", "técnicas",
+    "tecnicas", "metodos", "métodos", "movimentos", "exercicios",
+    "exercícios", "pegada", "pegadas", "transicao", "transição",
+    "transicoes", "transições", "posicao", "posição", "posicoes",
+    "posições", "estrategia", "estratégia", "estrategias", "estratégias",
+    "treinamento", "competicao", "competição", "torneio", "torneios",
+    "regulamento", "categoria", "categorias", "graduação", "kimonos",
+    "para", "pelo", "pela", "pelos", "pelas",  # PT prepositions (4 chars but distinctive)
+    "neste", "nesta", "estes", "estas", "deste", "desta",
+    "feita", "feito", "feitas", "feitos",
+    "explicada", "explicado", "explicadas", "explicados",
+    "ensinada", "ensinado", "ensinadas", "ensinados",
 }
 
 
@@ -82,7 +96,12 @@ def has_pt_marker(text: str) -> bool:
     if not text:
         return False
     words = re.findall(r"[A-Za-zÀ-ÿ]+", text.lower())
-    return any(w in PT_MARKER_WORDS for w in words)
+    if any(w in PT_MARKER_WORDS for w in words):
+        return True
+    # PT 固有 phrase pattern: "X de Y", "no BJJ", "para BJJ", "Choke de X"
+    if re.search(r"\b(de|do|da|dos|das|no|na|nos|nas|em|por)\b\s+\b[A-Za-zÀ-ÿ]", text, re.IGNORECASE):
+        return True
+    return False
 
 
 def is_pt(text: str) -> bool:
