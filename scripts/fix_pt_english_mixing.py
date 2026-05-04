@@ -188,10 +188,22 @@ def main() -> int:
             continue
 
         html = fp.read_text(encoding="utf-8")
-        # Idempotent: title が既に日本語含むなら skip
+        # Idempotent (z254c 改善): title/h1 に PT accent + 英語残なし なら skip
         title_match = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
-        if title_match and re.search(r"[ãâáàçéêíóôõúÃÂÁÀÇÉÊÍÓÔÕÚ]", title_match.group(1)):
-            print(f"  [{i+1}] {slug}: ⏭  既 fix 済 (title に JA 含む)")
+        h1_match = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.IGNORECASE | re.DOTALL)
+        title_text = re.sub(r"<[^>]+>", "", title_match.group(1)) if title_match else ""
+        h1_text = re.sub(r"<[^>]+>", "", h1_match.group(1)) if h1_match else ""
+        ALLOWED = {"BJJ", "Wiki", "Jiu", "Jitsu", "MMA", "ADCC", "IBJJF", "EBI"}
+        PT_ACCENT_RE = re.compile(r"[ãâáàçéêíóôõúÃÂÁÀÇÉÊÍÓÔÕÚ]")
+        title_has_pt = bool(PT_ACCENT_RE.search(title_text))
+        title_eng_residual = [w for w in re.findall(r"\b[A-Za-z]{5,}\b", title_text)
+                              if w.lower() not in {a.lower() for a in ALLOWED}]
+        h1_has_pt = bool(PT_ACCENT_RE.search(h1_text))
+        h1_words = h1_text.strip().split()
+        h1_is_proper_only = (len(h1_words) <= 3 and not h1_has_pt
+                             and all(w[0].isupper() if w else True for w in h1_words))
+        if (title_has_pt and not title_eng_residual) and (h1_has_pt or h1_is_proper_only):
+            print(f"  [{i+1}] {slug}: ⏭  fix 済 (英語残なし)")
             skip += 1
             continue
 
