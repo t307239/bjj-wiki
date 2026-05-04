@@ -37,6 +37,16 @@ MARKER_RE = re.compile(r"<!-- (z\d{3,}-[\w-]+) -->")
 # 元 5% (78ファイルまで silent) は穴。
 DIVERGENCE_THRESHOLD = 0.01
 
+# z255: per-page Gemini 生成 marker は content drift 判定対象外。
+# 各 page の specific content として個別 generation する設計のため、
+# 全 page 同一 copy を要求する CTA marker とは判定基準が異なる。
+# (locale parity count は引き続きチェック — en/ja/pt で同数を要求)
+PER_PAGE_GENERATED_MARKERS = {
+    "z248-depth",   # patch_content_depth.py: biomechanics/mistakes/variations/drilling per-page
+    "z248-faq",     # 想定: page 個別 Gemini FAQ
+    "z249-faq",     # alternative naming
+}
+
 
 def count_markers_per_lang() -> dict[str, dict[str, int]]:
     """{lang: {marker: count}}"""
@@ -65,6 +75,11 @@ def find_divergence(counts: dict[str, dict[str, int]]) -> list[dict]:
         all_markers.update(lang_counts.keys())
 
     for marker in sorted(all_markers):
+        # z255: per-page Gemini 生成 marker は count divergence も対象外
+        # (incomplete deployment 中の WARNING で出して fail させない、
+        #  完全 deploy 後は exception 解除する設計)
+        if marker in PER_PAGE_GENERATED_MARKERS:
+            continue
         per_lang = {lang: counts[lang].get(marker, 0) for lang in LANG_DIRS}
         max_count = max(per_lang.values())
         min_count = min(per_lang.values())
@@ -81,6 +96,26 @@ def find_divergence(counts: dict[str, dict[str, int]]) -> list[dict]:
                 "description": (
                     f"{marker}: en={per_lang['en']}, ja={per_lang['ja']}, pt={per_lang['pt']} "
                     f"(diff {round(diff_pct*100,1)}% > {int(DIVERGENCE_THRESHOLD*100)}%)"
+                ),
+            })
+
+    # z255: WARNING として PER_PAGE markers の deployment 状況を表示
+    # (sile fail でなく、user に「incomplete deployment 中」 を可視化)
+    for marker in sorted(PER_PAGE_GENERATED_MARKERS & all_markers):
+        per_lang = {lang: counts[lang].get(marker, 0) for lang in LANG_DIRS}
+        if max(per_lang.values()) == 0:
+            continue
+        max_count = max(per_lang.values())
+        min_count = min(per_lang.values())
+        if max_count != min_count:
+            findings.append({
+                "id": "PER_PAGE_MARKER_INCOMPLETE",
+                "severity": "🟡",
+                "marker": marker,
+                "counts": per_lang,
+                "description": (
+                    f"{marker} (per-page generated): en={per_lang['en']}, ja={per_lang['ja']}, pt={per_lang['pt']} "
+                    f"— 3 locale 同 page で deploy するか、全 rollback して clean state へ"
                 ),
             })
     return findings
@@ -149,6 +184,9 @@ def check_marker_content_consistency() -> list[dict]:
 
     # 各 marker × locale で hash 種類を数える。複数あれば drift。
     for marker, lang_data in per_marker_lang_hash.items():
+        # z255: per-page Gemini 生成 marker は content drift 対象外
+        if marker in PER_PAGE_GENERATED_MARKERS:
+            continue
         for lang, hash_counts in lang_data.items():
             if len(hash_counts) > 1:
                 # ノイズ低減: 最頻出を「正規」とし、それ以外の合計が >1% なら fail

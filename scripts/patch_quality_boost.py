@@ -291,10 +291,23 @@ def add_bold_to_content(html: str) -> tuple[str, int]:
 #  挿入位置
 # ────────────────────────────────────────────
 def find_injection_point(html: str) -> int:
+    """z255 fix: float-cta marker を最優先 anchor に。
+
+    旧 logic は `<div style="position:fixed">` を anchor にしていたが、
+    新しい z243-float-cta も同じ pattern (`<div id="z243-float" style="position:fixed">`)
+    を持つため、誤って marker の直後 (本来の <div> の直前) に挿入してしまう
+    bug があった。結果 1,099 ページに誤挿入が累積し、check_locale_parity の
+    z243-float-cta drift が ja=499 / pt=600 となった (z255 で清掃 + 修正)。
+
+    Anchor priority (z255):
+      1. <!-- z\d+-bottom-cta --> marker — bottom-cta 直前 = 記事末
+      2. <!-- z\d+-float-cta --> marker — float-cta 直前 = body 直前
+      3. <footer> — bottom-cta 未注入 page の fallback
+      4. </body> — 最終 fallback
+    """
     for pattern in [
-        r'<div[^>]+id=["\']float-cta',
-        r'<div[^>]*style="[^"]*position:fixed',
-        r'<script>\s*setTimeout\(function',
+        r'<!--\s*z\d{3,}-bottom-cta\s*-->',  # 記事末 CTA marker (最優先 = 記事と CTA の間)
+        r'<!--\s*z\d{3,}-float-cta\s*-->',   # float CTA marker (次点)
         r'<footer',
         r'</body>',
     ]:
