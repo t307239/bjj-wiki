@@ -188,10 +188,26 @@ def main() -> int:
             continue
 
         html = fp.read_text(encoding="utf-8")
-        # Idempotent: title が既に日本語含むなら skip
+        # Idempotent (z254c 改善): title/h1 に「5 文字以上の英単語」 残ってたら re-fix 対象
+        # 旧 logic「JA 含むなら skip」 では半端 fix 状態が残ったため
         title_match = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
-        if title_match and re.search(r"[぀-ゟ゠-ヿ一-鿿]", title_match.group(1)):
-            print(f"  [{i+1}] {slug}: ⏭  既 fix 済 (title に JA 含む)")
+        h1_match = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.IGNORECASE | re.DOTALL)
+        title_text = re.sub(r"<[^>]+>", "", title_match.group(1)) if title_match else ""
+        h1_text = re.sub(r"<[^>]+>", "", h1_match.group(1)) if h1_match else ""
+        # 許容語: BJJ, Wiki, 人名 (ASCII 大文字始まり 1 単語) は skip 判定で除外
+        ALLOWED = {"BJJ", "Wiki", "Jiu", "Jitsu", "MMA", "ADCC", "IBJJF", "EBI"}
+        title_eng = [w for w in re.findall(r"\b[A-Za-z]{5,}\b", title_text) if w.lower() not in {a.lower() for a in ALLOWED}]
+        h1_eng = [w for w in re.findall(r"\b[A-Za-z]{5,}\b", h1_text) if w.lower() not in {a.lower() for a in ALLOWED}]
+        # h1 が 「人名のみ」 (Andre Galvao 等、3 単語以下、JA なし) なら h1 残し OK と判定
+        h1_words = h1_text.strip().split()
+        h1_is_proper_noun_only = (
+            len(h1_words) <= 3
+            and not re.search(r"[぀-ゟ゠-ヿ一-鿿]", h1_text)
+            and all(w[0].isupper() if w else True for w in h1_words)
+        )
+        # title に 英語残ってたら re-fix。h1 も 単独人名以外で英語あれば re-fix
+        if not title_eng and (h1_is_proper_noun_only or not h1_eng):
+            print(f"  [{i+1}] {slug}: ⏭  fix 済 (英語残なし)")
             skip += 1
             continue
 
