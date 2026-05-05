@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -30,6 +30,11 @@ scan-ja-english:
 scan-pt-english:
 	@echo "→ scan_pt_english_mixing.py..."
 	@CI_THRESHOLD=50 python3 scripts/scan_pt_english_mixing.py --ci
+
+# z255q: 内部リンク死活検査 (cross-locale / root-relative / template literal 対応)
+broken-links:
+	@echo "→ check_broken_links.py..."
+	@python3 scripts/check_broken_links.py --ci
 
 # Quick check (without --ci, shows full output)
 all: verify

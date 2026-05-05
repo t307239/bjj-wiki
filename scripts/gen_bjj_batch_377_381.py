@@ -433,7 +433,7 @@ def generate_html(slug: str, lang: str, data: dict) -> str:
     <meta property="og:site_name" content="BJJ Wiki">
     {chr(10).join(alternates)}
     <link rel="canonical" href="https://wiki.bjj-app.net/{lang}/{slug}.html">
-    <link rel="icon" type="image/png" href="../../favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="https://wiki.bjj-app.net/favicon.svg">
     <style>
         body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #f5f5f5; }}
         h2 {{ color: #2c5282; margin-top: 30px; }}

@@ -49,6 +49,13 @@ jobs:
           CI_THRESHOLD: "50"  # 現状 35 件 false positive、50 超で新規再発と判定
         run: python3 scripts/scan_pt_english_mixing.py --ci
 
+      # z255q: 内部リンクの死活検査 (cross-locale / root-relative / template literal を正しく解決)
+      # 旧 check_broken_links.py は filename-only の flat set だったため 41,837 件全部 false positive で silent pass していた。
+      # rewrite 後 broken=0、threshold 100 で軽い regression も catch。
+      - name: Check internal links for 404
+        id: broken_links
+        run: python3 scripts/check_broken_links.py --ci
+
       - name: Notify Telegram on Critical
         if: failure()
         env:
