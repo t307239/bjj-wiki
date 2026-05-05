@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 """
-check_misrouted_form_endpoints.py — z255bb: form action endpoint 検査 (25th lint)
+check_misrouted_form_endpoints.py — z255bb+cc: form/mailto/text の email exposure
+検査 (25th lint, z255cc で root pages + mailto + plain text に拡張)
 
-Wiki HTML 内の `<form action="...">` と `<form>` element の email/endpoint を
-scan し、misroute / 異 project の email / 公開 email exposure を検出する。
+Wiki HTML 全体 (lang dir + root pages) を scan し、misroute / 異 project の email
+/ 公開 email exposure を検出する。
 
 検出 pattern:
   A. Formspree v1 endpoint with raw email: action="https://formspree.io/f/<email>"
-     → email が public 公開、別 project email の場合は misroute
-  B. Other email-based endpoints: action="mailto:..." (送信失敗の可能性高い HTTP method=POST)
-  C. action 値内に既知の異 project email (e.g. ai.fukugyo.ken@gmail.com)
+     → email が URL-encoded で公開、別 project email の場合は misroute
+  C. FOREIGN_EMAILS 既知 list の email が以下のいずれかに出現:
+     - <form action=...> 内
+     - <a href="mailto:..."> 内
+     - HTML 表示テキスト内 (about.html / privacy.html など)
 
 許容: BJJ Wiki の正式 contact channel (Beehiiv subscribe form 等) は別途。
 
@@ -29,8 +32,9 @@ ALLOWED_ENDPOINTS = {
 }
 
 # 別 project email pattern (uranai-side / 副業診断 etc.)
+# BJJ Wiki の正式 email は 307239t777@gmail.com (CLAUDE.md 参照)
 FOREIGN_EMAILS = [
-    "ai.fukugyo.ken@gmail.com",
+    "ai.fukugyo.ken@gmail.com",  # uranai-side / 副業診断 project
     # 他 project の email を発見次第追記
 ]
 
@@ -38,41 +42,54 @@ FORM_RE = re.compile(r'<form\s+[^>]*action="([^"]+)"', re.IGNORECASE)
 FORMSPREE_EMAIL_RE = re.compile(
     r"https?://formspree\.io/f/[^/\s]*@", re.IGNORECASE
 )
+SCRIPT_RE = re.compile(r"<script[^>]*>.*?</script>", re.IGNORECASE | re.DOTALL)
+STYLE_RE = re.compile(r"<style[^>]*>.*?</style>", re.IGNORECASE | re.DOTALL)
+
+
+def iter_html_files():
+    for lang in LANGS:
+        for fp in (REPO_ROOT / lang).glob("*.html"):
+            yield fp, f"{lang}/{fp.name}"
+    for fp in REPO_ROOT.glob("*.html"):
+        yield fp, fp.name
 
 
 def main() -> int:
     issues_a: list[tuple[str, str]] = []  # Formspree raw-email
-    issues_c: list[tuple[str, str]] = []  # Foreign-email endpoint
+    issues_c: list[tuple[str, str]] = []  # Foreign-email anywhere
 
-    for lang in LANGS:
-        for fp in (REPO_ROOT / lang).glob("*.html"):
-            try:
-                html = fp.read_text(encoding="utf-8")
-            except Exception:
+    for fp, label in iter_html_files():
+        try:
+            html = fp.read_text(encoding="utf-8")
+        except Exception:
+            continue
+
+        # Class A: <form action="https://formspree.io/f/<email>">
+        for m in FORM_RE.finditer(html):
+            action = m.group(1)
+            if action in ALLOWED_ENDPOINTS:
                 continue
-            for m in FORM_RE.finditer(html):
-                action = m.group(1)
-                if action in ALLOWED_ENDPOINTS:
-                    continue
-                # Class A: Formspree v1 raw-email endpoint
-                if FORMSPREE_EMAIL_RE.search(action):
-                    issues_a.append((f"{lang}/{fp.name}", action))
-                # Class C: foreign-project email
-                for fe in FOREIGN_EMAILS:
-                    if fe in action:
-                        issues_c.append((f"{lang}/{fp.name}", fe))
-                        break
+            if FORMSPREE_EMAIL_RE.search(action):
+                issues_a.append((label, action))
+
+        # Class C: foreign email anywhere (form action / mailto / plain text)
+        # Strip script/style to avoid noise
+        cleaned = SCRIPT_RE.sub("", html)
+        cleaned = STYLE_RE.sub("", cleaned)
+        for fe in FOREIGN_EMAILS:
+            if fe.lower() in cleaned.lower():
+                issues_c.append((label, fe))
 
     print(f"❌ A. Formspree v1 raw-email endpoint (email exposure): {len(issues_a)}")
     for s, a in issues_a[:5]:
         print(f"   {s}: {a}")
-    print(f"❌ C. Foreign-project email in form action (misroute):  {len(issues_c)}")
+    print(f"❌ C. Foreign-project email in HTML (misroute):         {len(issues_c)}")
     for s, fe in issues_c[:5]:
         print(f"   {s}: {fe}")
 
     total = len(issues_a) + len(issues_c)
     if total == 0:
-        print("\n✅ No misrouted/exposed form endpoints.")
+        print("\n✅ No misrouted/exposed form endpoints or emails.")
 
     if "--ci" in sys.argv:
         return 1 if total > 0 else 0
