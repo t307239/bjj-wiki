@@ -847,7 +847,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
       "name": "What is {tech['name']} in BJJ?",
       "acceptedAnswer": {{
         "@type": "Answer",
-        "text": "{'It is a fundamental BJJ technique in the ' + tech.get('category','grappling') + ' category. See the full breakdown above.' if lang_code=='en' else '{tech["name"]}はBJJの技です。詳細は上記を参照。' if lang_code=='ja' else '{tech["name"]} é uma técnica de BJJ. Veja o detalhamento completo acima.'}"
+        "text": "{'It is a fundamental BJJ technique in the ' + tech.get('category','grappling') + ' category. See the full breakdown above.' if lang_code=='en' else tech['name'] + 'はBJJの技です。詳細は上記を参照。' if lang_code=='ja' else tech['name'] + ' é uma técnica de BJJ. Veja o detalhamento completo acima.'}"
       }}
     }},
     {{

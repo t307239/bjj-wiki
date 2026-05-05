@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -45,6 +45,11 @@ sitemap-drift:
 hreflang:
 	@echo "→ check_hreflang_validity.py..."
 	@python3 scripts/check_hreflang_validity.py --ci
+
+# z255t: JSON-LD structured data validity (parse error / missing @context / template residue)
+jsonld:
+	@echo "→ check_jsonld_validity.py..."
+	@python3 scripts/check_jsonld_validity.py --ci
 
 # Quick check (without --ci, shows full output)
 all: verify

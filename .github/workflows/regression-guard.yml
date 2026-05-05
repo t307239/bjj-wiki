@@ -67,6 +67,12 @@ jobs:
         id: hreflang
         run: python3 scripts/check_hreflang_validity.py --ci
 
+      # z255t: JSON-LD structured data validity (rich snippet 死活)
+      # parse error / missing @context / @type or @graph 欠落 / template residue を catch
+      - name: Check JSON-LD validity
+        id: jsonld
+        run: python3 scripts/check_jsonld_validity.py --ci
+
       - name: Notify Telegram on Critical
         if: failure()
         env:
