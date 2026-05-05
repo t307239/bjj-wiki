@@ -88,6 +88,11 @@ jobs:
         id: dup_meta
         run: python3 scripts/check_duplicate_meta_desc.py --ci
 
+      # z255x: title 内の brand suffix 重複 (— BJJ Wiki | BJJ Wiki 等の keyword stuffing 化)
+      - name: Check brand suffix pollution
+        id: brand_suffix
+        run: python3 scripts/check_brand_suffix_pollution.py --ci
+
       - name: Notify Telegram on Critical
         if: failure()
         env:

@@ -54,6 +54,11 @@ TITLE_FIXES = [
     ("pt", "bjj-top-half-guard-guide",
      "Guia da Passagem de Meia Guarda Superior | BJJ Wiki",
      "Passagem de Meia Guarda Superior: Guia"),
+    # ─── en (z255x で brand suffix collapse 後に露出) ─────────────
+    # bjj-no-gi-guard-guide vs bjj-no-gi-guard-game — 前者は legacy stub
+    ("en", "bjj-no-gi-guard-guide",
+     "No-Gi Guard Guide | BJJ Wiki",
+     "No-Gi Guard Guide"),
 ]
 
 
