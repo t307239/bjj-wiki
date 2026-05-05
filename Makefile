@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -75,6 +75,11 @@ brand-suffix:
 funnel-cta:
 	@echo "→ check_naked_bjj_app_cta.py..."
 	@python3 scripts/check_naked_bjj_app_cta.py --ci
+
+# z255z: ページ内アンカー fragment 死活検査 (#X が同ページ id="X" を持つこと)
+anchors:
+	@echo "→ check_broken_anchors.py..."
+	@python3 scripts/check_broken_anchors.py --ci
 
 # Quick check (without --ci, shows full output)
 all: verify
