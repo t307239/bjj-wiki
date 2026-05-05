@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -80,6 +80,11 @@ funnel-cta:
 anchors:
 	@echo "→ check_broken_anchors.py..."
 	@python3 scripts/check_broken_anchors.py --ci
+
+# z255aa: <meta description> 内の unescaped `"` 検査 (HTML attribute truncation 防止)
+meta-quotes:
+	@echo "→ check_meta_attribute_quotes.py..."
+	@python3 scripts/check_meta_attribute_quotes.py --ci
 
 # Quick check (without --ci, shows full output)
 all: verify
