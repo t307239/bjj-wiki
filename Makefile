@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -70,6 +70,11 @@ dup-meta:
 brand-suffix:
 	@echo "→ check_brand_suffix_pollution.py..."
 	@python3 scripts/check_brand_suffix_pollution.py --ci
+
+# z255y: bjj-app.net CTA に /login?ref=wiki funnel tracking (naked href 禁止)
+funnel-cta:
+	@echo "→ check_naked_bjj_app_cta.py..."
+	@python3 scripts/check_naked_bjj_app_cta.py --ci
 
 # Quick check (without --ci, shows full output)
 all: verify

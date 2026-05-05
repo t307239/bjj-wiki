@@ -93,6 +93,11 @@ jobs:
         id: brand_suffix
         run: python3 scripts/check_brand_suffix_pollution.py --ci
 
+      # z255y: bjj-app.net CTA は必ず /login?ref=wiki funnel tracking 経由
+      - name: Check funnel CTA tracking (no naked href)
+        id: funnel_cta
+        run: python3 scripts/check_naked_bjj_app_cta.py --ci
+
       - name: Notify Telegram on Critical
         if: failure()
         env:
