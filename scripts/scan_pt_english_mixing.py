@@ -201,6 +201,14 @@ def main() -> int:
         for i in critical:
             print(f"  - pt/{i['slug']}: title='{i['title'][:50]}' / h1='{i['h1'][:50]}'")
 
+    # z255p: --ci flag + CI_THRESHOLD env で許容数を超えたら fail
+    # PT は false positive が多い (PT phrase アクセント無し / BJJ 技名英語残し許容) ため
+    # threshold 50 (現状 35) を超えたら新たな再発と判定。
+    import sys as _sys
+    import os as _os
+    if "--ci" in _sys.argv:
+        threshold = int(_os.environ.get("CI_THRESHOLD", "50"))
+        return 1 if severity_counter["CRITICAL"] > threshold else 0
     return 0
 
 

@@ -37,6 +37,18 @@ jobs:
         id: parity
         run: python3 scripts/check_locale_parity.py --ci
 
+      # z255p: ja/pt static HTML title 英語混入の再発検出
+      # z255k で 100 件再発した bug class を catch (GHA migrate-local が DB 上書き)
+      - name: Scan JA static HTML for English title regression
+        id: scan_ja
+        run: python3 scripts/scan_ja_english_mixing.py --ci
+
+      - name: Scan PT static HTML for English title regression
+        id: scan_pt
+        env:
+          CI_THRESHOLD: "50"  # 現状 35 件 false positive、50 超で新規再発と判定
+        run: python3 scripts/scan_pt_english_mixing.py --ci
+
       - name: Notify Telegram on Critical
         if: failure()
         env:

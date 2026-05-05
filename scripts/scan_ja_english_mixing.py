@@ -144,6 +144,11 @@ def main() -> int:
         for i in critical:
             print(f"  - ja/{i['slug']}: title='{i['title'][:50]}' / h1='{i['h1'][:50]}'")
 
+    # z255p: --ci flag で CRITICAL > 0 なら exit 1 で CI block
+    # (z255k で 100 件再発したような pipeline 上書き bug を即時 catch)
+    import sys as _sys
+    if "--ci" in _sys.argv:
+        return 1 if severity_counter["CRITICAL"] > 0 else 0
     return 0
 
 
