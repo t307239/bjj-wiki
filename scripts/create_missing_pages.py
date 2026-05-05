@@ -160,8 +160,8 @@ footer{{padding:28px 0;border-top:1px solid var(--border);text-align:center;colo
 <div class="share-bar">
   <p>{share_label}</p>
   <div class="share-btns">
-    <a href="https://twitter.com/intent/tweet?text={share_text}" target="_blank" class="share-btn x">𝕏 Share</a>
-    <a href="https://reddit.com/submit?url={share_url}&title={title}" target="_blank" class="share-btn reddit">Reddit</a>
+    <a href="https://twitter.com/intent/tweet?text={share_text}" target="_blank" rel="noopener" class="share-btn x">𝕏 Share</a>
+    <a href="https://reddit.com/submit?url={share_url}&title={title}" target="_blank" rel="noopener" class="share-btn reddit">Reddit</a>
   </div>
 </div>
 

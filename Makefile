@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -55,6 +55,11 @@ jsonld:
 dup-titles:
 	@echo "→ check_duplicate_titles.py..."
 	@python3 scripts/check_duplicate_titles.py --ci
+
+# z255v: <a target=_blank> rel=noopener 不在 (tabnabbing + Lighthouse 減点回避)
+tab-security:
+	@echo "→ check_target_blank_security.py..."
+	@python3 scripts/check_target_blank_security.py --ci
 
 # Quick check (without --ci, shows full output)
 all: verify
