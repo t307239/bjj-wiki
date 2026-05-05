@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -35,6 +35,11 @@ scan-pt-english:
 broken-links:
 	@echo "→ check_broken_links.py..."
 	@python3 scripts/check_broken_links.py --ci
+
+# z255r: sitemap.xml と disk HTML の整合性 (sitemap → 404 / orphan HTML 検出)
+sitemap-drift:
+	@echo "→ check_sitemap_drift.py..."
+	@python3 scripts/check_sitemap_drift.py --ci
 
 # Quick check (without --ci, shows full output)
 all: verify

@@ -56,6 +56,12 @@ jobs:
         id: broken_links
         run: python3 scripts/check_broken_links.py --ci
 
+      # z255r: sitemap.xml ↔ disk HTML 整合性 (sitemap → 404 / orphan HTML 検出)
+      # noindex redirect と Google Search Console 認証 file は除外。
+      - name: Check sitemap drift
+        id: sitemap_drift
+        run: python3 scripts/check_sitemap_drift.py --ci
+
       - name: Notify Telegram on Critical
         if: failure()
         env:
