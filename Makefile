@@ -6,7 +6,7 @@
 .PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -60,6 +60,11 @@ breadcrumb:
 ui-label:
 	@echo "→ check_ui_label_locale_drift.py..."
 	@python3 scripts/check_ui_label_locale_drift.py --ci
+
+# z255ww: lang-switcher 標準 Pattern A (🇺🇸 EN / 🇯🇵 JA / 🇧🇷 PT) 必須
+lang-switcher:
+	@echo "→ check_lang_switcher_consistency.py..."
+	@python3 scripts/check_lang_switcher_consistency.py --ci
 
 # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
 dup-titles:

@@ -86,6 +86,13 @@ jobs:
         id: ui_label
         run: python3 scripts/check_ui_label_locale_drift.py --ci
 
+      # z255ww: lang-switcher 標準 Pattern A (🇺🇸 EN / 🇯🇵 JA / 🇧🇷 PT) 必須
+      # 旧: 207 page で switcher 不在 + 6 page Pattern B + 21 page Pattern C
+      # = JA user は別 locale 版が存在しても UI で気づけない silent UX bug
+      - name: Check lang-switcher format consistency
+        id: lang_switcher
+        run: python3 scripts/check_lang_switcher_consistency.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
