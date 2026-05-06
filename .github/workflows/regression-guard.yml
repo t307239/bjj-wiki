@@ -93,6 +93,13 @@ jobs:
         id: lang_switcher
         run: python3 scripts/check_lang_switcher_consistency.py --ci
 
+      # z255xx: JA/PT page で <div class="breadcrumb"> last crumb の EN 残留 catch
+      # 旧: 1,593 page で breadcrumb が EN のまま (h1 は翻訳済) — 視覚 locale 不整合
+      # (z255xx fix_breadcrumb_locale_drift.py で h1 と sync)
+      - name: Check breadcrumb locale drift
+        id: breadcrumb_locale
+        run: python3 scripts/check_breadcrumb_locale_drift.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
