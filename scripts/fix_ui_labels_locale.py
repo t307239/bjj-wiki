@@ -118,6 +118,27 @@ def patch_page(fp: Path, lang: str) -> int:
         html, n = re.subn(pattern, make_replacer(native), html)
         count += n
 
+    # 5. <span class="belt-tag" ...>🥋 Blue Belt</span> — separate pattern with emoji prefix
+    BELT_FULL_NAMES = {
+        "ja": {
+            "White Belt": "白帯", "Blue Belt": "青帯", "Purple Belt": "紫帯",
+            "Brown Belt": "茶帯", "Black Belt": "黒帯",
+        },
+        "pt": {
+            "White Belt": "Faixa Branca", "Blue Belt": "Faixa Azul",
+            "Purple Belt": "Faixa Roxa", "Brown Belt": "Faixa Marrom",
+            "Black Belt": "Faixa Preta",
+        },
+    }
+    belt_full = BELT_FULL_NAMES.get(lang, {})
+    for en_full, native in belt_full.items():
+        # Allow optional emoji prefix (e.g. "🥋 Blue Belt", "🟣 Purple Belt")
+        pattern = rf'(<span class="belt-tag"[^>]*>(?:[^\w<]*\s*)?){re.escape(en_full)}(</span>)'
+        def make_replacer(t: str):
+            return lambda m: m.group(1) + t + m.group(2)
+        html, n = re.subn(pattern, make_replacer(native), html)
+        count += n
+
     if html != orig:
         fp.write_text(html, encoding="utf-8")
     return count

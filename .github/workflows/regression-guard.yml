@@ -79,6 +79,13 @@ jobs:
         id: breadcrumb
         run: python3 scripts/check_breadcrumb_jsonld.py --ci
 
+      # z255uu: JA/PT page で UI label (category badge / belt / difficulty) の EN 残留 catch
+      # 旧: 1,184 JA + 1,242 PT page で <span class="badge">Joint Lock</span> 等が残留
+      # (z255uu fix_ui_labels_locale.py で fix。2,786 件 / 2,426 page localized)
+      - name: Check UI label locale drift
+        id: ui_label
+        run: python3 scripts/check_ui_label_locale_drift.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
