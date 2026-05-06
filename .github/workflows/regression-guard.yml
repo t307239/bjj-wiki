@@ -100,6 +100,12 @@ jobs:
         id: breadcrumb_locale
         run: python3 scripts/check_breadcrumb_locale_drift.py --ci
 
+      # z255zz: <h1> に '| BJJ Wiki' brand suffix 混入 catch (SEO keyword stuffing)
+      # 旧: 115 PT page で h1='Guia de... | BJJ Wiki Brasil' (z255zz で fix)
+      - name: Check h1 brand pollution
+        id: h1_brand
+        run: python3 scripts/check_h1_brand_pollution.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles

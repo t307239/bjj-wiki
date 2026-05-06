@@ -6,7 +6,7 @@
 .PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -70,6 +70,11 @@ lang-switcher:
 breadcrumb-locale:
 	@echo "→ check_breadcrumb_locale_drift.py..."
 	@python3 scripts/check_breadcrumb_locale_drift.py --ci
+
+# z255zz: <h1> に '| BJJ Wiki' brand suffix 混入 catch (SEO keyword stuffing)
+h1-brand:
+	@echo "→ check_h1_brand_pollution.py..."
+	@python3 scripts/check_h1_brand_pollution.py --ci
 
 # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
 dup-titles:
