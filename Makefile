@@ -6,7 +6,7 @@
 .PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -50,6 +50,11 @@ hreflang:
 jsonld:
 	@echo "→ check_jsonld_validity.py..."
 	@python3 scripts/check_jsonld_validity.py --ci
+
+# z255tt: BreadcrumbList JSON-LD presence (SERP breadcrumb navigation 必須)
+breadcrumb:
+	@echo "→ check_breadcrumb_jsonld.py..."
+	@python3 scripts/check_breadcrumb_jsonld.py --ci
 
 # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
 dup-titles:

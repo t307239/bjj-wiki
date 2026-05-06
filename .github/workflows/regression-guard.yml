@@ -73,6 +73,12 @@ jobs:
         id: jsonld
         run: python3 scripts/check_jsonld_validity.py --ci
 
+      # z255tt: BreadcrumbList JSON-LD presence (SERP breadcrumb navigation 必須)
+      # 旧: 3,853 page で missing → CTR 機会喪失 (z255tt patch_breadcrumb_jsonld.py で fix)
+      - name: Check BreadcrumbList JSON-LD presence
+        id: breadcrumb
+        run: python3 scripts/check_breadcrumb_jsonld.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
