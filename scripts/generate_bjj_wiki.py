@@ -300,12 +300,28 @@ def call_gemini(prompt):
 
 # ===== 記事生成プロンプト =====
 def build_article_prompt(technique, lang_code, all_slugs=None):
+    # z255ii: lang_code 別 prompt + title/h1 の examples で英語化 regression を防ぐ
+    # (旧: title 指示が "{tech_name} と BJJ を含む" だけで Gemini が JA でも英語 title
+    #  を出すケースがあり 92 page で z254e fix が --force regen で revert していた)
     lang_instructions = {
         "en": "Write everything in English.",
-        "ja": "すべて日本語で書いてください。",
-        "pt": "Escreva tudo em Português brasileiro.",
+        "ja": "すべて日本語で書いてください。**特に title / h1 / meta_description は必ず日本語で書く** (英語の \"BJJ\" / \"Guide\" / \"White Belt\" 等の単語を直接使わず、カタカナまたは漢字に翻訳)。",
+        "pt": "Escreva tudo em Português brasileiro. **Em particular title / h1 / meta_description devem ser em português** (não usar palavras inglesas como \"BJJ Guide\" / \"White Belt\" diretamente — traduzir para português).",
     }
     instruction = lang_instructions[lang_code]
+
+    # title/h1/meta の lang-specific 例示で Gemini を anchoring
+    title_examples = {
+        "en": '例: "Armbar BJJ: White Belt Guide | BJJ Wiki" / "Heel Hook for BJJ — Setup & Defense | BJJ Wiki"',
+        "ja": '例: 「アームバー：BJJ白帯ガイド | BJJ Wiki」「ヒールフックの仕組みと防御 | BJJ Wiki」（必ず技名はカタカナ表記）',
+        "pt": '例: "Armbar no BJJ: Guia Faixa Branca | BJJ Wiki" / "Heel Hook no BJJ — Setup e Defesa | BJJ Wiki"',
+    }
+    h1_examples = {
+        "en": '例: "Armbar: A White Belt\'s Biomechanical Guide"',
+        "ja": '例: 「アームバー：白帯のためのバイオメカニクス完全ガイド」（カタカナ + 日本語）',
+        "pt": '例: "Armbar: Guia Biomecânico para Faixa Branca"',
+    }
+
     tech_name = technique["name"]
     tech_slug = technique["slug"]
     slug_hint = ""
@@ -330,9 +346,9 @@ ABSOLUTE RULES:
 
 Return ONLY valid JSON with this exact structure (no markdown wrapper, no extra text):
 {{{{
-  "title": "SEO title including \"{tech_name}\" and \"BJJ\" (60 chars max)",
-  "meta_description": "150-160 char meta for search engines, include \"{tech_name} BJJ\"",
-  "h1": "Main H1 heading (include \"{tech_name}\")",
+  "title": "SEO title (60 chars max). {title_examples[lang_code]}",
+  "meta_description": "150-160 char meta in the target language ({lang_code}). Must NOT be English-only when lang is ja or pt.",
+  "h1": "Main H1 heading in target language ({lang_code}). {h1_examples[lang_code]}",
   "belt_level": "Recommended belt level: White/Blue/Purple/Brown/Black",
   "technique_overview_md": "3 paragraphs. Paragraph 1: what position this starts from and what it achieves. Paragraph 2: why white belts fail at this (frame of mind). Paragraph 3: the ONE key mechanical insight that makes it work. Each paragraph max 3 lines.",
   "biomechanics_and_grips_md": "Numbered step-by-step execution. Each step: EXACT grip name, EXACT hip/pelvis angle, EXACT weight transfer direction. Minimum 7 steps. Use 1. 2. 3. format.",
@@ -1327,6 +1343,24 @@ def main():
             except Exception as e:
                 print(f"[WARNING] JSONパース失敗: {e}")
                 continue
+
+            # z255ii: lang-mismatch guard — JA/PT で title/h1 が英語のみなら skip
+            # (Gemini が稀に lang_code を ignore して英語 title を出すケースを catch、
+            #  既存翻訳済 file を上書きしないことで z254e fix の再発を防ぐ)
+            if lang_code in ("ja", "pt"):
+                _t = article.get("title", "")
+                _h = article.get("h1", "")
+                _has_native = False
+                if lang_code == "ja":
+                    # Hiragana / Katakana / CJK ideographs のいずれかを含むか
+                    _has_native = bool(re.search(r"[぀-ゟ゠-ヿ一-鿿]", _t + _h))
+                elif lang_code == "pt":
+                    # PT 固有 accent or marker 語
+                    _has_native = bool(re.search(r"[ãâáàçéêíóôõúÃÂÁÀÇÉÊÍÓÔÕÚ]", _t + _h)) \
+                        or any(w in (_t + _h).lower() for w in ["sobre", "guarda", "guia", "para", "como", "no bjj", "do bjj"])
+                if not _has_native:
+                    print(f"[SKIP] {cache_key}: title/h1 が英語のみで lang={lang_code} 規約違反 → 既存 file を保護")
+                    continue
 
             # HTML生成・保存（内部リンク付与）
             html = article_to_html(tech, lang_code, article, TECHNIQUES)
