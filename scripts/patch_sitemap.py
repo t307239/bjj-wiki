@@ -14,6 +14,18 @@ SITE_URL = "https://wiki.bjj-app.net"
 SITE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 TODAY    = datetime.date.today().isoformat()
 
+
+def is_noindex(html_path: str) -> bool:
+    """z255hh: page が <meta robots noindex> なら sitemap から除外
+    (Google の sitemap quality 評価向上 + wasted crawl 防止)"""
+    try:
+        with open(html_path, "r", encoding="utf-8") as f:
+            head = f.read(1500)
+        return "noindex" in head
+    except Exception:
+        return False
+
+
 def build_sitemap():
     urls = []
 
@@ -107,6 +119,10 @@ def build_sitemap():
                 continue
             if base.startswith("athlete-"):
                 continue  # 選手ページは既に処理済み
+            # z255hh: noindex page は sitemap 除外 (Google が conflict として
+            # 扱い wasted crawl + sitemap quality 低下を防ぐ)
+            if is_noindex(html_path):
+                continue
             urls.append(f"  <url><loc>{SITE_URL}/{lang}/{base}.html</loc>"
                         f"<lastmod>{TODAY}</lastmod>"
                         f"<changefreq>monthly</changefreq>"

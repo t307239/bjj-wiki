@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-check_sitemap_drift.py — z255r: sitemap.xml と HTML ファイル群の整合性検査
+check_sitemap_drift.py — z255r+hh: sitemap.xml と HTML ファイル群の整合性検査
 
 検出する drift class:
   A. sitemap に載っているが disk 上に存在しない URL
      (削除された page を sitemap が指したまま → Google が 404 を index)
   B. disk 上に存在する HTML が sitemap に無い orphan
      (noindex redirect と Google Search Console 認証 file は除外)
+  C. (z255hh) sitemap に載っているが page 自体が <meta robots noindex>
+     → Google が conflict 扱い、wasted crawl + sitemap quality 低下
 
 z255q broken-link 検査と相補的:
   - broken-link は HTML 内の <a href> 死活
@@ -43,9 +45,19 @@ def main() -> int:
 
     # Class A: sitemap が指す page が disk に無い
     missing = []
+    # Class C (z255hh): sitemap が指す page が noindex (conflict)
+    noindex_in_sitemap = []
     for u in sitemap_urls:
-        if not (REPO_ROOT / u).exists():
+        fp = REPO_ROOT / u
+        if not fp.exists():
             missing.append(u)
+            continue
+        try:
+            head = fp.read_text(encoding="utf-8")[:1500]
+        except Exception:
+            continue
+        if "noindex" in head:
+            noindex_in_sitemap.append(u)
 
     # Class B: disk にある HTML が sitemap に無い (noindex / 認証 file 除外)
     orphans = []
@@ -78,8 +90,11 @@ def main() -> int:
     print(f"❌ Orphan HTMLs (not in sitemap):     {len(orphans)}")
     for o in orphans[:20]:
         print(f"  - {o}")
+    print(f"❌ Sitemap → noindex page (conflict): {len(noindex_in_sitemap)}")
+    for n in noindex_in_sitemap[:20]:
+        print(f"  - {n}")
 
-    drift = len(missing) + len(orphans)
+    drift = len(missing) + len(orphans) + len(noindex_in_sitemap)
     if drift == 0:
         print("\n✅ No sitemap drift.")
     else:
