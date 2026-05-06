@@ -31,11 +31,11 @@ def build_sitemap():
 
     # ===== ルートページ =====
     # z255r: athletes.html (root) を追加 — 旧 sitemap.xml から漏れ orphan だった
+    # z255qq: 404.html は noindex 化 + locale-aware rewrite したため sitemap 除外
     root_pages = [
         ("index.html",    "weekly",  "1.0"),
         ("privacy.html",  "yearly",  "0.3"),
         ("about.html",    "monthly", "0.5"),
-        ("404.html",      "yearly",  "0.1"),
         ("athletes.html", "weekly",  "0.7"),
     ]
     for page, freq, prio in root_pages:

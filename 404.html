@@ -10,13 +10,18 @@
 <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page Not Found | BJJ Wiki</title>
+<meta name="robots" content="noindex">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <style>
 :root{--bg:#080b12;--surface:#0f1420;--border:#1f2840;--text:#e8eaf6;--muted:#6b7699;--accent:#7c6af7}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;line-height:1.6;padding:0 16px;min-height:100vh;display:flex;flex-direction:column}
-nav{max-width:860px;width:100%;margin:0 auto;padding:20px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:1.3rem;font-weight:800}.logo span{color:var(--accent)}
+nav{max-width:860px;width:100%;margin:0 auto;padding:20px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-size:1.3rem;font-weight:800;text-decoration:none;color:var(--text)}.logo span{color:var(--accent)}
+.lang-switcher{display:flex;gap:6px;font-size:0.8rem}
+.lang-switcher a{color:var(--muted);text-decoration:none;padding:4px 10px;border:1px solid var(--border);border-radius:6px;transition:all 0.15s}
+.lang-switcher a:hover{border-color:var(--accent);color:var(--text)}
+.lang-switcher a.active{border-color:var(--accent);color:var(--accent);background:rgba(124,106,247,0.08)}
 .container{max-width:860px;margin:0 auto;padding:80px 0;text-align:center;flex:1}
 h1{font-size:6rem;font-weight:900;color:var(--accent);line-height:1;margin-bottom:8px}
 h2{font-size:1.4rem;font-weight:700;margin-bottom:16px}
@@ -38,32 +43,107 @@ footer a{color:inherit}
 <meta name="twitter:image" content="https://wiki.bjj-app.net/og-image.svg">
 </head>
 <body>
+<!-- z255qq: locale-aware 404 page (旧: hardcoded EN + 壊れた /bjj-wiki/ prefix
+     + 「日本語」 link が EN page に飛ぶ deceptive button + PT fallback 不在) -->
 <nav>
-  <a href="/bjj-wiki/en/index.html" class="logo">BJJ<span>Wiki</span></a>
+  <a href="/en/index.html" class="logo" id="brand-link">BJJ<span>Wiki</span></a>
+  <div class="lang-switcher">
+    <a href="/en/index.html" id="lang-en">🇺🇸 EN</a>
+    <a href="/ja/index.html" id="lang-ja">🇯🇵 JA</a>
+    <a href="/pt/index.html" id="lang-pt">🇧🇷 PT</a>
+  </div>
 </nav>
 <div class="container">
   <h1>404</h1>
-  <h2>Technique Not Found</h2>
-  <p>Looks like this technique escaped your guard.<br>Let's get you back to the mat.</p>
-  <a href="/bjj-wiki/en/index.html" class="btn">All Techniques</a>
-  <a href="/bjj-wiki/en/index.html" class="btn btn-outline">🇯🇵 日本語</a>
+  <h2 id="title">Technique Not Found</h2>
+  <p id="subtitle">Looks like this technique escaped your guard.<br>Let's get you back to the mat.</p>
+  <a href="/en/index.html" class="btn" id="btn-all">All Techniques</a>
+  <a href="/" class="btn btn-outline" id="btn-home">Home</a>
 
   <div class="popular">
-    <h3>Popular Techniques</h3>
-    <div class="popular-grid">
-      <a href="/bjj-wiki/en/armbar.html">Armbar</a>
-      <a href="/bjj-wiki/en/triangle-choke.html">Triangle Choke</a>
-      <a href="/bjj-wiki/en/rear-naked-choke.html">Rear Naked Choke</a>
-      <a href="/bjj-wiki/en/guillotine-choke.html">Guillotine</a>
-      <a href="/bjj-wiki/en/kimura.html">Kimura</a>
-      <a href="/bjj-wiki/en/closed-guard.html">Closed Guard</a>
-      <a href="/bjj-wiki/en/half-guard.html">Half Guard</a>
-      <a href="/bjj-wiki/en/berimbolo.html">Berimbolo</a>
-      <a href="/bjj-wiki/en/heel-hook.html">Heel Hook</a>
-      <a href="/bjj-wiki/en/omoplata.html">Omoplata</a>
+    <h3 id="popular-title">Popular Techniques</h3>
+    <div class="popular-grid" id="popular-grid">
+      <!-- Populated by JS based on locale -->
     </div>
   </div>
 </div>
-<footer>© 2026 BJJ Wiki · <a href="/bjj-wiki/privacy.html">Privacy Policy</a></footer>
+<footer>
+  © 2026 BJJ Wiki ·
+  <a href="/privacy.html" id="privacy-link">Privacy Policy</a> ·
+  <a href="https://bjj-app.net/contact" id="contact-link" target="_blank" rel="noopener">Contact</a>
+</footer>
+
+<script>
+// z255qq: locale auto-detection from URL path + localized strings
+(function() {
+  var path = window.location.pathname;
+  var locale = 'en';
+  if (path.indexOf('/ja/') === 0 || path === '/ja') locale = 'ja';
+  else if (path.indexOf('/pt/') === 0 || path === '/pt') locale = 'pt';
+  // Fallback to browser language for root-level 404
+  if (locale === 'en' && navigator.language) {
+    if (navigator.language.indexOf('ja') === 0) locale = 'ja';
+    else if (navigator.language.indexOf('pt') === 0) locale = 'pt';
+  }
+
+  var i18n = {
+    en: {
+      title: 'Technique Not Found',
+      subtitle: "Looks like this technique escaped your guard.<br>Let's get you back to the mat.",
+      btnAll: 'All Techniques', btnHome: 'Home',
+      popularTitle: 'Popular Techniques',
+      privacy: 'Privacy Policy', contact: 'Contact',
+    },
+    ja: {
+      title: '技が見つかりません',
+      subtitle: 'この技はガードから逃げてしまったようです。<br>マットに戻りましょう。',
+      btnAll: '全テクニック', btnHome: 'ホーム',
+      popularTitle: '人気のテクニック',
+      privacy: 'プライバシーポリシー', contact: 'お問い合わせ',
+    },
+    pt: {
+      title: 'Técnica Não Encontrada',
+      subtitle: 'Parece que essa técnica escapou da sua guarda.<br>Vamos te trazer de volta para o tatame.',
+      btnAll: 'Todas as Técnicas', btnHome: 'Início',
+      popularTitle: 'Técnicas Populares',
+      privacy: 'Política de Privacidade', contact: 'Contato',
+    },
+  };
+
+  var t = i18n[locale];
+  document.documentElement.lang = locale;
+  document.getElementById('title').textContent = t.title;
+  document.getElementById('subtitle').innerHTML = t.subtitle;
+  document.getElementById('btn-all').textContent = t.btnAll;
+  document.getElementById('btn-all').href = '/' + locale + '/index.html';
+  document.getElementById('btn-home').textContent = t.btnHome;
+  document.getElementById('btn-home').href = '/' + locale + '/index.html';
+  document.getElementById('brand-link').href = '/' + locale + '/index.html';
+  document.getElementById('popular-title').textContent = t.popularTitle;
+  document.getElementById('privacy-link').textContent = t.privacy;
+  document.getElementById('contact-link').textContent = t.contact;
+  document.getElementById('lang-' + locale).classList.add('active');
+
+  var techniques = [
+    { slug: 'armbar', en: 'Armbar', ja: 'アームバー', pt: 'Armbar' },
+    { slug: 'triangle-choke', en: 'Triangle Choke', ja: '三角絞め', pt: 'Triângulo' },
+    { slug: 'rear-naked-choke', en: 'Rear Naked Choke', ja: '裸絞め', pt: 'Mata Leão' },
+    { slug: 'guillotine-choke', en: 'Guillotine', ja: 'ギロチン', pt: 'Guilhotina' },
+    { slug: 'kimura', en: 'Kimura', ja: 'キムラ', pt: 'Kimura' },
+    { slug: 'closed-guard', en: 'Closed Guard', ja: 'クローズドガード', pt: 'Guarda Fechada' },
+    { slug: 'half-guard', en: 'Half Guard', ja: 'ハーフガード', pt: 'Meia Guarda' },
+    { slug: 'berimbolo', en: 'Berimbolo', ja: 'ベリンボロ', pt: 'Berimbolo' },
+    { slug: 'heel-hook', en: 'Heel Hook', ja: 'ヒールフック', pt: 'Heel Hook' },
+    { slug: 'omoplata', en: 'Omoplata', ja: 'オモプラタ', pt: 'Omoplata' },
+  ];
+  var grid = document.getElementById('popular-grid');
+  techniques.forEach(function(tk) {
+    var a = document.createElement('a');
+    a.href = '/' + locale + '/' + tk.slug + '.html';
+    a.textContent = tk[locale];
+    grid.appendChild(a);
+  });
+})();
+</script>
 </body>
 </html>
