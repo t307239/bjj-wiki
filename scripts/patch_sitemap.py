@@ -30,11 +30,13 @@ def build_sitemap():
     urls = []
 
     # ===== ルートページ =====
+    # z255r: athletes.html (root) を追加 — 旧 sitemap.xml から漏れ orphan だった
     root_pages = [
-        ("index.html",   "weekly", "1.0"),
-        ("privacy.html", "yearly", "0.3"),
-        ("about.html",   "monthly","0.5"),
-        ("404.html",     "yearly", "0.1"),
+        ("index.html",    "weekly",  "1.0"),
+        ("privacy.html",  "yearly",  "0.3"),
+        ("about.html",    "monthly", "0.5"),
+        ("404.html",      "yearly",  "0.1"),
+        ("athletes.html", "weekly",  "0.7"),
     ]
     for page, freq, prio in root_pages:
         path = os.path.join(SITE_DIR, page)
