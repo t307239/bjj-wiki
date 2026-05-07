@@ -201,6 +201,11 @@ jobs:
         id: dup_words
         run: python3 scripts/check_duplicate_word_in_title.py --ci
 
+      # z255kk: <title> 内 inline HTML element (<strong>/<span>等) 混入 (SEO scraper truncation)
+      - name: Check title for embedded HTML tags
+        id: title_html_tags
+        run: python3 scripts/check_title_html_tags.py --ci
+
       - name: Notify Telegram on Critical
         if: failure()
         env:

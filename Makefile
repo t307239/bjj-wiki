@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -171,6 +171,11 @@ dup-words:
 ja-body-translation:
 	@echo "→ check_ja_body_english_dominant.py..."
 	@python3 scripts/check_ja_body_english_dominant.py --strict
+
+# z255kk: <title> 内 inline HTML element (<strong>/<span>等) 混入 catch (SEO scraper truncation)
+title-html-tags:
+	@echo "→ check_title_html_tags.py..."
+	@python3 scripts/check_title_html_tags.py --ci
 
 # Quick check (without --ci, shows full output)
 all: verify
