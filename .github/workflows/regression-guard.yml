@@ -130,6 +130,12 @@ jobs:
         id: jsonld_url
         run: python3 scripts/check_jsonld_url_drift.py --ci
 
+      # z255jjj: body <a> で same-locale internal link が absolute URL (perf+lang switch UX)
+      # 旧: 33 page / 99 link で <a href="https://wiki.bjj-app.net/<lang>/X.html"> → relative に変換
+      - name: Check internal link relative URL
+        id: internal_rel
+        run: python3 scripts/check_internal_link_relative.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
