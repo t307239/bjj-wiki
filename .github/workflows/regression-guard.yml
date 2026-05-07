@@ -106,6 +106,12 @@ jobs:
         id: h1_brand
         run: python3 scripts/check_h1_brand_pollution.py --ci
 
+      # z255aaa:【BJJ】【BJJ】重複 prefix catch (translation double-stamp)
+      # 旧: 188 JA page で h1/breadcrumb/body に重複 (z255aaa で fix)
+      - name: Check duplicate BJJ prefix
+        id: dup_bjj_prefix
+        run: python3 scripts/check_duplicate_bjj_prefix.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
