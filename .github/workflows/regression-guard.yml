@@ -124,6 +124,12 @@ jobs:
         id: dup_faq
         run: python3 scripts/check_duplicate_faq_heading.py --ci
 
+      # z255hhh: JSON-LD Article.url ≠ canonical catch (SEO rich snippet 帰属先曖昧化)
+      # 旧: 883 page で url drift (root URL or no .html suffix) → z255hhh で fix
+      - name: Check JSON-LD url drift
+        id: jsonld_url
+        run: python3 scripts/check_jsonld_url_drift.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
