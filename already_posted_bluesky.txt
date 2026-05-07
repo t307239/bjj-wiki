@@ -1,4 +1,5 @@
 overhead-sweep
+paper-cutter-choke
 pressure-pass
 purple-belt-bjj-guide
 quarter-guard
