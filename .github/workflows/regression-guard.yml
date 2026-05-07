@@ -143,6 +143,12 @@ jobs:
         id: tw_img_sync
         run: python3 scripts/check_twitter_image_sync.py --ci
 
+      # z255nnn: <meta name="keywords"> 残留 catch (Google 2009 から ignore、bloat 削減)
+      # 旧: 2,813 page で残留 → z255nnn で削除
+      - name: Check no obsolete meta keywords
+        id: no_meta_keywords
+        run: python3 scripts/check_no_meta_keywords.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
