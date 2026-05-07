@@ -149,6 +149,13 @@ jobs:
         id: no_meta_keywords
         run: python3 scripts/check_no_meta_keywords.py --ci
 
+      # z255sss: /login CTA に ?ref=wiki&page=X tracking 必須 (Wiki funnel attribution)
+      # 旧: 4,094 page で /login CTA に ref param 不在 → wiki 経由 signup が direct 計上
+      # → z255rrr Wiki funnel ROI が機能せず。z255sss で全 wiki page に tracking 追加
+      - name: Check login CTA tracking
+        id: login_cta_tracking
+        run: python3 scripts/check_login_cta_tracking.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
