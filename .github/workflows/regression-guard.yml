@@ -136,6 +136,13 @@ jobs:
         id: internal_rel
         run: python3 scripts/check_internal_link_relative.py --ci
 
+      # z255lll: twitter:image ≠ og:image catch (SNS preview Twitter 不整合)
+      # 旧: 4,244 page で twitter:image=old static og-image.png、og:image=dynamic technique card
+      # → Twitter preview だけ generic、Facebook/LinkedIn は technique-specific = 不整合 fix
+      - name: Check twitter:image sync with og:image
+        id: tw_img_sync
+        run: python3 scripts/check_twitter_image_sync.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
