@@ -6,7 +6,7 @@
 .PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -80,6 +80,11 @@ h1-brand:
 dup-bjj-prefix:
 	@echo "→ check_duplicate_bjj_prefix.py..."
 	@python3 scripts/check_duplicate_bjj_prefix.py --ci
+
+# z255ddd: External link で rel="noopener" のみ (noreferrer 不在) catch (privacy/referrer leak)
+ext-noreferrer:
+	@echo "→ check_external_link_noreferrer.py..."
+	@python3 scripts/check_external_link_noreferrer.py --ci
 
 # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
 dup-titles:
