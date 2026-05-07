@@ -6,7 +6,7 @@
 .PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -85,6 +85,11 @@ dup-bjj-prefix:
 ext-noreferrer:
 	@echo "→ check_external_link_noreferrer.py..."
 	@python3 scripts/check_external_link_noreferrer.py --ci
+
+# z255ggg: 同 page で <h2>FAQ heading</h2> 重複 catch (UX/a11y)
+dup-faq:
+	@echo "→ check_duplicate_faq_heading.py..."
+	@python3 scripts/check_duplicate_faq_heading.py --ci
 
 # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
 dup-titles:

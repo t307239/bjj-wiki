@@ -118,6 +118,12 @@ jobs:
         id: ext_noreferrer
         run: python3 scripts/check_external_link_noreferrer.py --ci
 
+      # z255ggg: 同 page で <h2>FAQ heading</h2> 重複 catch (UX/a11y)
+      # 旧: 3,980 page で <h2>Frequently Asked Questions</h2> が 2 回 (z255ggg で fix)
+      - name: Check duplicate FAQ heading
+        id: dup_faq
+        run: python3 scripts/check_duplicate_faq_heading.py --ci
+
       # z255u: 同一 locale 内の <title> 衝突 (Google duplicate content 判定回避)
       - name: Check duplicate titles within locale
         id: dup_titles
