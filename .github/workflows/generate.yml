@@ -37,10 +37,16 @@ jobs:
       - name: Regression guard (detect_gha_regression.py)
         run: python3 scripts/detect_gha_regression.py --ci
 
-      # 📖 z255vv (REF-2 cutover Phase 3) — Feature flag for template-driven pipeline.
-      # USE_TEMPLATE_PIPELINE が "true" なら新 pipeline (cutover_runner.py) が走る。
-      # それ以外 (unset / "false" / 空) なら従来通り generate_bjj_wiki.py。
-      # Toshiki さんは GitHub repo Settings → Variables で flip 可能、rollback も即時。
+      # 📖 z255bbb (REF-2 cutover Phase 3 — default flipped to NEW pipeline).
+      # 旧 z255vv では USE_TEMPLATE_PIPELINE="true" 必須だったが、Phase 1+2 で
+      # 全 163 Technique page を新 template に bulk apply 済 → cron も新 pipeline に
+      # 切り替えるのが整合的。
+      #
+      # USE_TEMPLATE_PIPELINE が "false" なら従来通り generate_bjj_wiki.py (rollback path)。
+      # それ以外 (unset / "true" / 空) なら新 pipeline (cutover_runner.py)。
+      #
+      # Rollback: GitHub repo Settings → Variables → USE_TEMPLATE_PIPELINE=false に setting で
+      # 即時旧 pipeline に戻る。
       - name: Generate articles
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -50,13 +56,13 @@ jobs:
           FORCE=${{ github.event.inputs.force || 'true' }}
           FORCE_FLAG=""
           if [ "$FORCE" = "true" ]; then FORCE_FLAG="--force"; fi
-          if [ "${{ vars.USE_TEMPLATE_PIPELINE }}" = "true" ]; then
-            echo "🌟 Using new template-driven pipeline (cutover_runner.py)"
+          if [ "${{ vars.USE_TEMPLATE_PIPELINE }}" = "false" ]; then
+            echo "📜 Using legacy pipeline (generate_bjj_wiki.py) — rollback mode"
+            python scripts/generate_bjj_wiki.py --limit "$LIMIT" --lang "$LANG" $FORCE_FLAG
+          else
+            echo "🌟 Using new template-driven pipeline (cutover_runner.py) [DEFAULT after z255bbb]"
             pip install --quiet jinja2 pyyaml beautifulsoup4
             python scripts/template_engine/cutover_runner.py --limit "$LIMIT" --lang "$LANG" $FORCE_FLAG
-          else
-            echo "📜 Using legacy pipeline (generate_bjj_wiki.py)"
-            python scripts/generate_bjj_wiki.py --limit "$LIMIT" --lang "$LANG" $FORCE_FLAG
           fi
 
       - name: Patch FAQ (inject 3 Q&As into FAQ-less pages)
