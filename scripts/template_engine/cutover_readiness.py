@@ -126,6 +126,8 @@ def main() -> int:
         print(f"    Zero TEMPLATE_GAP:  {r['zero_gap_count']} / {r['successful_extracts']} ({r['zero_gap_pct']:.1f}%)")
         print(f"    Threshold:          {r['threshold']}%")
         print(f"    Total gap hunks:    {r['total_template_gap_hunks']}")
+        if lang == "pt" and r['total_template_gap_hunks'] > 0:
+            print(f"    📝 NOTE: {PT_DRIFT_NOTE}")
         if r["failing_pages"]:
             print(f"    Failing pages (top 5):")
             for slug, gap in r["failing_pages"][:5]:
