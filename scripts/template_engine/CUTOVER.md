@@ -3,6 +3,26 @@
 > **Status (z255ss)**: 全 3 locale で cutover_readiness.py が ✅ GO を返す状態。
 > 実 cutover は本 doc の Day-by-day procedure に従って Toshiki さんが執行。
 
+## 📖 この doc は何か (前置き)
+
+「**Cutover** = 古い generator を止めて、新しい template-driven generator に切り替える作業」のことです。料理の例えで言うと:
+
+- **今**: 7 人の料理人 (1 main generator + 6 patch script) が daily cron でリレーして 4,500 page を作っている
+- **Cutover 後**: 1 人の料理人 (template-driven pipeline) が同じ 4,500 page を 1 人で作る
+- **見た目**: ほぼ完全同一 (PT page だけ head 構造が綺麗に統一される drift cleanup あり)
+- **SEO**: URL も hosting も変わらないので影響 0
+
+cutover は **1 日だけの作業**ではなく **1 週間プロセス** (Day 0-Day 5)。
+日々の作業は数十分〜数時間、間に shadow mode (parallel run) の **passive monitor 期間 2-3 日**を挟むため。
+
+**この doc を読む順番**:
+1. 「What "cutover" means」 で全体像を掴む
+2. 「Pre-cutover checklist」 で準備状況を確認
+3. 「Day-by-day Cutover Procedure」 を毎日見ながら作業
+4. 問題が起きたら 「Rollback Plan」 を 10 分で実行
+
+**前提知識**: この doc を理解するには `scripts/template_engine/README.md` を先に読んで、template / renderer / extractor の役割を理解しておくと良い。技術用語は最小限にしてあるが、`generate.yml` (GitHub Actions の cron 定義) の編集は必要なので、Toshiki さんが自分で git ブランチを切って execute する前提です。
+
 ## What "cutover" means
 
 **Before**: `generate.yml` daily cron が `generate_bjj_wiki.py` (1,969 行 monolith) を呼んで Gemini API で content 生成 → HTML を string concat で構築 → 6 patch script chain (faq / internal_links / funnel_cta / video_from_supabase / sitemap / content_depth) で markers + sections injection。
