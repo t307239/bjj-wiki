@@ -1,4 +1,5 @@
 overhead-sweep
+paper-cutter-choke
 pendulum-sweep
 peruvian-necktie
 posture
