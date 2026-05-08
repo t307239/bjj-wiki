@@ -43,7 +43,11 @@ SEO 影響: 0 (URL も hosting も不変)。
 - [x] **REF-2 W2-ext extractor + 77 EN page batch verify** (100% zero TEMPLATE_GAP) — 完了 (z255qq)
 - [x] **REF-2 W3 7 archetype 全対応** (universal template + 6 sample data) — 完了 (z255rr)
 - [x] **REF-2 W4 3 locale cutover readiness** (EN 100% / JA 100% / PT drift cleanup mode) — 完了 (z255ss)
-- [ ] **Cutover sequence below 実行**
+- [x] **Cutover Phase 1 (z255uu)**: passive shadow workflow (`.github/workflows/generate-shadow.yml`) 完成、毎朝 10:30 JST に Telegram で結果通知
+- [x] **Cutover Phase 2 (z255vv)**: `cutover_runner.py` shim 完成 — 旧 generator の Gemini call logic を流用しつつ新 template で render、smoke test 全 pass
+- [x] **Cutover Phase 3 (z255vv)**: `generate.yml` に `USE_TEMPLATE_PIPELINE` feature flag 追加、default off で安全
+- [ ] **本番切替 (Day 5 = Toshiki さんの判断)**: GitHub repo Settings → Variables で `USE_TEMPLATE_PIPELINE=true` に flip
+- [ ] **24h 後 monitor**: Search Console、Vercel Analytics、Telegram
 
 ## Day-by-day Cutover Procedure
 
@@ -99,33 +103,34 @@ diff -rq en/ shadow/en/ | grep -v 'identical' | head -50
 
 合格基準: Lighthouse SEO score 同等 (±2pt)、JSON-LD 全 valid、視覚的 regression 0。
 
-### Day 5: Production cutover
+### Day 5: Production cutover (z255vv で simplify、Toshiki さん 5 分作業)
 
-```bash
-cd ~/Claude/bjj-wiki
+**1 行 flip で本番切替**できる feature flag を仕込み済 (z255vv)。
 
-# 1. Update generate.yml
-#    main pipeline = new template-driven (cutover_runner.py)
-#    OR
-#    generate.yml で if env.USE_NEW_PIPELINE で分岐
+#### 切替手順 (5 分)
 
-# 2. Test on staging branch
-git checkout -b cutover-go
-# Modify .github/workflows/generate.yml
-git commit -m "cutover: switch generate.yml to template-driven pipeline (REF-2 W4)"
+1. GitHub repo (`bjj-app/bjj-wiki`) を開く
+2. `Settings` → `Secrets and variables` → `Actions` → `Variables` tab
+3. `New repository variable` をクリック
+4. Name: `USE_TEMPLATE_PIPELINE`, Value: `true`
+5. Save
 
-# 3. Manual trigger generate.yml on cutover-go branch
-# 4. Verify output
-# 5. Merge to main
-git checkout main
-git merge cutover-go
-git push  # or use auto-push daemon
+→ 翌日 1 AM UTC (10 AM JST) cron 実行時に `cutover_runner.py` が走る。
+   既存 `generate_bjj_wiki.py` は呼ばれない。
 
-# 6. Monitor 24h:
-#    - Telegram alerts
-#    - Search Console (next-day)
-#    - Vercel Analytics (immediate)
-```
+#### 即時 manual trigger (任意、初回 verify 用)
+
+GitHub Actions tab から `Generate BJJ Wiki` workflow を選択 → `Run workflow` で
+即時実行可能。ログで「🌟 Using new template-driven pipeline」が表示されれば成功。
+
+#### Rollback (10 分以内)
+
+問題発覚時は即座に `USE_TEMPLATE_PIPELINE` の Value を `false` に変更
+(or variable を delete)。次の cron 実行で旧 pipeline に戻る。
+
+manual trigger も即可能 — `Run workflow` で variable 変更後の状態で再生成できる。
+
+**Note**: feature flag は `${{ vars.USE_TEMPLATE_PIPELINE }}` で参照、unset 時は空文字 = false 扱い (default safe)。
 
 ### Day 6+: Monitor + W5 cleanup
 
