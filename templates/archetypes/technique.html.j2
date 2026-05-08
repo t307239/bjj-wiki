@@ -121,7 +121,7 @@
   </div>
 
 {% for section in page.sections %}
-  <h2{% if section.style is defined and section.style == 'warning' %} style="color:#fca5a5;border-left-color:#dc2626"{% endif %}>{{ section.heading }}</h2>
+  <h2{% if section.style is defined and section.style == 'warning' %} style="color:#fca5a5;border-left-color:#dc2626"{% endif %}>{{ section.heading | replace('&', '&amp;') }}</h2>
   <div class="card"{% if section.style is defined and section.style == 'warning' %} style="background:#1a0505;border-color:#dc262640"{% endif %}>{% if section.type == 'ol' %}<ol style="padding-left:20px;margin:8px 0">
 {% for item in section['items'] %}<li style="color:#c2c2d9;margin-bottom:6px">{% if item.bold is defined %}<strong>{{ item.bold }}</strong> {% endif %}{{ item.text | safe }}</li>
 {% endfor %}</ol>{% elif section.type == 'ul' %}<ul style="padding-left:20px;margin:8px 0">
