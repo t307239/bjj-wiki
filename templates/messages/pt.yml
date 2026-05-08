@@ -129,6 +129,28 @@ footer:
   privacy_text: "Política de Privacidade"
   privacy_href: "../privacy.html"
 
+# Category badge labels (translated to PT)
+category_label:
+  "Choke": "Estrangulamento"
+  "Defense": "Defesa"
+  "Escape": "Escape"
+  "Guard": "Guarda"
+  "Joint Lock": "Chave de Articulação"
+  "Leg Lock": "Chave de Perna"
+  "Passing": "Passagem"
+  "Position": "Posição"
+  "Sweep": "Raspagem"
+  "Takedown": "Queda"
+  "Transition": "Transição"
+
+# Belt level labels (PT: Branca/Azul/Roxa/Marrom/Preta)
+belt_label:
+  "White": "Branca"
+  "Blue": "Azul"
+  "Purple": "Roxa"
+  "Brown": "Marrom"
+  "Black": "Preta"
+
 site:
   base_url: "https://wiki.bjj-app.net"
   app_url: "https://bjj-app.net"

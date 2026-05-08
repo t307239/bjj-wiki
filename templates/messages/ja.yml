@@ -129,6 +129,29 @@ footer:
   privacy_text: "プライバシーポリシー"
   privacy_href: "../privacy.html"
 
+# Category badge labels (translated to JA)
+# JA convention: 関節技、サブミッション 等のカタカナ/漢字 BJJ 用語使用
+category_label:
+  "Choke": "チョーク"
+  "Defense": "ディフェンス"
+  "Escape": "エスケープ"
+  "Guard": "ガード"
+  "Joint Lock": "関節技"
+  "Leg Lock": "レッグロック"
+  "Passing": "パスガード"
+  "Position": "ポジション"
+  "Sweep": "スイープ"
+  "Takedown": "テイクダウン"
+  "Transition": "トランジション"
+
+# Belt level labels (JA: 白帯/青帯/紫帯/茶帯/黒帯)
+belt_label:
+  "White": "白帯"
+  "Blue": "青帯"
+  "Purple": "紫帯"
+  "Brown": "茶帯"
+  "Black": "黒帯"
+
 site:
   base_url: "https://wiki.bjj-app.net"
   app_url: "https://bjj-app.net"

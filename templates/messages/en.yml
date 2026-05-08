@@ -137,6 +137,29 @@ footer:
   privacy_text: "Privacy Policy"
   privacy_href: "../privacy.html"
 
+# Category badge labels (used in <span class="badge">)
+# Mapping: TECHNIQUES dict category (English canonical) → display label
+category_label:
+  "Choke": "Choke"
+  "Defense": "Defense"
+  "Escape": "Escape"
+  "Guard": "Guard"
+  "Joint Lock": "Joint Lock"
+  "Leg Lock": "Leg Lock"
+  "Passing": "Passing"
+  "Position": "Position"
+  "Sweep": "Sweep"
+  "Takedown": "Takedown"
+  "Transition": "Transition"
+
+# Belt level labels (used in <span class="belt belt-{lower}">)
+belt_label:
+  "White": "White"
+  "Blue": "Blue"
+  "Purple": "Purple"
+  "Brown": "Brown"
+  "Black": "Black"
+
 # Sitewide constants
 site:
   base_url: "https://wiki.bjj-app.net"

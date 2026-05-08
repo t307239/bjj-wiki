@@ -104,8 +104,8 @@
     <nav class="lang-nav"><a href="../en/{{ page.slug }}.html"{% if lang == 'en' %} class="active"{% endif %}>{{ t.nav.flag.en }}</a><a href="../ja/{{ page.slug }}.html"{% if lang == 'ja' %} class="active"{% endif %}>{{ t.nav.flag.ja }}</a><a href="../pt/{{ page.slug }}.html"{% if lang == 'pt' %} class="active"{% endif %}>{{ t.nav.flag.pt }}</a></nav>
   </header>
 
-  <span class="badge">{{ page.category }}</span><br>
-  <span class="belt belt-{{ page.belt_level | lower }}">{{ page.belt_level }}</span>
+  <span class="badge">{{ t.category_label[page.category] if (t.category_label is defined and page.category in t.category_label) else page.category }}</span><br>
+  <span class="belt belt-{{ page.belt_level | lower }}">{{ t.belt_label[page.belt_level] if (t.belt_label is defined and page.belt_level in t.belt_label) else page.belt_level }}</span>
   <h1>{{ page.h1 }}</h1>
   {%- if page.difficulty is defined %}
   <div class="difficulty-bar"><span class="diff-belt" style="background:{{ t.belt_guide_box[page.difficulty.belt | lower].color }};color:#fff">{{ page.difficulty.belt | upper }}</span><span class="diff-stars">{{ page.difficulty.stars }}</span><span class="diff-label">{{ page.difficulty.label }}</span></div>
