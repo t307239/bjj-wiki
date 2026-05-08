@@ -241,7 +241,12 @@ def extract_video_embed_id(soup: BeautifulSoup) -> str | None:
 
 
 def extract_difficulty(soup: BeautifulSoup) -> dict | None:
-    """Extract difficulty bar (belt color, stars, label)."""
+    """Extract difficulty bar (belt color, stars, label).
+
+    z255ccc: Normalize belt to canonical English. Existing pages may have
+    translated belt text (e.g. "Branca", "白帯") which would break template
+    lookups in belt_guide_box keyed on English.
+    """
     bar = soup.find("div", class_="difficulty-bar")
     if not bar:
         return None
@@ -250,8 +255,18 @@ def extract_difficulty(soup: BeautifulSoup) -> dict | None:
     diff_label = bar.find("span", class_="diff-label")
     if not (diff_belt and diff_stars and diff_label):
         return None
+    # Normalize belt text to canonical English (lowercase)
+    raw = diff_belt.get_text(strip=True).lower()
+    locale_to_english = {
+        "white": "white", "blue": "blue", "purple": "purple", "brown": "brown", "black": "black",
+        # PT
+        "branca": "white", "azul": "blue", "roxa": "purple", "marrom": "brown", "preta": "black",
+        # JA
+        "白帯": "white", "青帯": "blue", "紫帯": "purple", "茶帯": "brown", "黒帯": "black",
+    }
+    canonical = locale_to_english.get(raw, raw)
     return {
-        "belt": diff_belt.get_text(strip=True).lower(),
+        "belt": canonical,
         "stars": diff_stars.get_text(strip=True),
         "label": diff_label.get_text(strip=True),
     }
@@ -309,8 +324,17 @@ def extract_page(html: str, slug: str) -> dict:
     badge_tag = soup.find("span", class_="badge")
     category = badge_tag.get_text(strip=True) if badge_tag else ""
 
+    # z255ccc: extract belt level from CLASS suffix (canonical English),
+    # not text content (which may be translated like "Branca" / "白帯")
     belt_tag = soup.find("span", class_=re.compile(r"^belt\s+belt-"))
-    belt_level = belt_tag.get_text(strip=True) if belt_tag else "White"
+    belt_level = "White"
+    if belt_tag:
+        for cls in belt_tag.get("class", []):
+            m = re.match(r"belt-([a-z]+)$", cls)
+            if m:
+                # Capitalize: "white" → "White", "brown" → "Brown"
+                belt_level = m.group(1).capitalize()
+                break
 
     # og_image_title: from og:image URL parameter "title=X"
     og_image_tag = soup.find("meta", attrs={"property": "og:image"})

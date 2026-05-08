@@ -38,15 +38,18 @@ from diff_check import parse_unified_diff, apply_cross_hunk_reorder_pass  # noqa
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 # Heuristic to identify Technique archetype pages
-# (since we don't have an authoritative archetype map yet)
+# z255ccc: 11 actual categories from generate_bjj_wiki.py TECHNIQUES dict +
+# all 3 locale equivalents (English drift OR translated label both match)
 TECHNIQUE_CATEGORIES = {
-    "Joint Lock", "Submission", "Sweep", "Pass", "Escape", "Guard",
-    "Takedown", "Choke", "Mount", "Position", "Transition",
-    # JA equivalents
-    "関節技", "サブミッション", "スイープ", "パス", "エスケープ",
-    "テイクダウン", "チョーク", "ポジション",
-    # PT equivalents
-    "Chave", "Finalização", "Raspagem", "Passagem", "Posição",
+    # English (TECHNIQUES dict canonical categories)
+    "Choke", "Defense", "Escape", "Guard", "Joint Lock", "Leg Lock",
+    "Passing", "Position", "Sweep", "Takedown", "Transition",
+    # JA (templates/messages/ja.yml category_label)
+    "チョーク", "ディフェンス", "エスケープ", "ガード", "関節技", "レッグロック",
+    "パスガード", "ポジション", "スイープ", "テイクダウン", "トランジション",
+    # PT (templates/messages/pt.yml category_label)
+    "Estrangulamento", "Defesa", "Escape", "Guarda", "Chave de Articulação",
+    "Chave de Perna", "Passagem", "Posição", "Raspagem", "Queda", "Transição",
 }
 
 
