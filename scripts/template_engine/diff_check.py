@@ -78,6 +78,28 @@ def is_jsonld_block(lines: list[str]) -> bool:
     return bool(re.search(r'"@context"|"@type"|"@id"|mainEntity|HowTo|FAQPage', text))
 
 
+HEAD_TAG_RE = re.compile(r"^[+-]\s*<(meta|link|script)\b", re.IGNORECASE)
+
+
+def is_head_reorder(removed: list[str], added: list[str]) -> bool:
+    """True if added lines are head-section elements that also appear in removed
+    (i.e. just reordered, not new content). Conservative: requires every added
+    head-tag line to appear (stripped) somewhere in the removed lines."""
+    if not added:
+        return False
+    added_head = [l for l in added if HEAD_TAG_RE.match(l)]
+    removed_head = [l for l in removed if HEAD_TAG_RE.match(l)]
+    if not added_head:
+        return False
+    # If added head tags are all in removed (just reordered) → acceptable drift cleanup
+    removed_text = "\n".join(l.lstrip("-").strip() for l in removed_head)
+    for a in added_head:
+        body = a.lstrip("+").strip()
+        if body and body not in removed_text:
+            return False
+    return True
+
+
 def categorize_block(removed: list[str], added: list[str]) -> str:
     """Categorize a contiguous removed/added block in unified diff."""
     # Pure blank line addition/removal = whitespace
@@ -87,6 +109,10 @@ def categorize_block(removed: list[str], added: list[str]) -> str:
     # JSON-LD format diff (multiline pretty-printed vs minified)
     if is_jsonld_block(removed) or is_jsonld_block(added):
         return "JSONLD_FORMAT"
+
+    # Head reorder drift (acceptable, cutover will fix it consistently)
+    if is_head_reorder(removed, added):
+        return "REORDER_DRIFT"
 
     if removed and not added:
         block_text = "".join(removed).lower()
@@ -107,6 +133,42 @@ def categorize_block(removed: list[str], added: list[str]) -> str:
             return "ENTITY_ESCAPE"
 
     return "UNKNOWN"
+
+
+def apply_cross_hunk_reorder_pass(hunks: list[tuple[str, list[str], list[str]]]) -> list[tuple[str, list[str], list[str]]]:
+    """Recategorize TEMPLATE_GAP/DATA_GAP/UNKNOWN hunks as REORDER_DRIFT if they
+    contain only head-tag lines that appear elsewhere in the diff (just reordered)."""
+    all_removed_head_text = "\n".join(
+        l.lstrip("-").strip()
+        for cat, removed, added in hunks
+        for l in removed
+        if HEAD_TAG_RE.match(l)
+    )
+    all_added_head_text = "\n".join(
+        l.lstrip("+").strip()
+        for cat, removed, added in hunks
+        for l in added
+        if HEAD_TAG_RE.match(l)
+    )
+
+    def is_cross_reorder(removed: list[str], added: list[str]) -> bool:
+        added_head = [l for l in added if HEAD_TAG_RE.match(l)]
+        removed_head = [l for l in removed if HEAD_TAG_RE.match(l)]
+        added_non_head = [l for l in added if not HEAD_TAG_RE.match(l) and l.strip()]
+        removed_non_head = [l for l in removed if not HEAD_TAG_RE.match(l) and l.strip()]
+        if added_head and not added_non_head:
+            return all(l.lstrip("+").strip() in all_removed_head_text for l in added_head)
+        if removed_head and not removed_non_head:
+            return all(l.lstrip("-").strip() in all_added_head_text for l in removed_head)
+        return False
+
+    final = []
+    for cat, removed, added in hunks:
+        if cat in ("TEMPLATE_GAP", "DATA_GAP", "UNKNOWN") and is_cross_reorder(removed, added):
+            final.append(("REORDER_DRIFT", removed, added))
+        else:
+            final.append((cat, removed, added))
+    return final
 
 
 def parse_unified_diff(diff_lines: list[str]) -> list[tuple[str, list[str], list[str]]]:
@@ -164,6 +226,7 @@ def main() -> int:
         return 0
 
     hunks = parse_unified_diff(diff)
+    hunks = apply_cross_hunk_reorder_pass(hunks)
 
     # Aggregate
     by_cat: dict[str, list] = {}
@@ -180,6 +243,7 @@ def main() -> int:
         "WHITESPACE_ONLY": "🟢 acceptable",
         "ENTITY_ESCAPE": "🟢 acceptable",
         "JSONLD_FORMAT": "🟢 acceptable",
+        "REORDER_DRIFT": "🟢 head reorder cleanup (cutover unifies)",
         "DATA_GAP": "🟡 JSON data incomplete (not a template bug)",
         "PATCH_ARTIFACT": "🟢 existing page drift (template cleaner)",
         "TEMPLATE_GAP": "🔴 real template bug — fix required",

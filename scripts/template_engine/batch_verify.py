@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from extract import extract_page  # noqa: E402
 from render import render_page  # noqa: E402
-from diff_check import parse_unified_diff  # noqa: E402
+from diff_check import parse_unified_diff, apply_cross_hunk_reorder_pass  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -105,6 +105,7 @@ def verify_page(page_path: Path, lang: str) -> dict:
         )
 
         hunks = parse_unified_diff(diff)
+        hunks = apply_cross_hunk_reorder_pass(hunks)
         cats = Counter(cat for cat, _, _ in hunks)
 
         return {

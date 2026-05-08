@@ -68,11 +68,24 @@ def extract_sections(soup: BeautifulSoup) -> list[dict]:
     """Extract content sections (h2 + card with ol/ul). Excludes Related Video, FAQ, etc."""
     sections = []
     excluded_headings = {
+        # EN
         "Related Video",
         "Common BJJ Problems & FAQ",
         "Related Techniques",
         "Athletes",
         "Frequently Asked Questions",
+        "Elite Athletes Who Use This",
+        # JA
+        "関連動画",
+        "BJJのよくある悩み・FAQ",
+        "関連テクニック",
+        "この技を使うトップ選手",
+        "🏆 この技を使うトップ選手",
+        # PT
+        "Vídeo Relacionado",
+        "Problemas Comuns no BJJ & FAQ",
+        "Técnicas Relacionadas",
+        "Atletas de Elite Que Usam Esta Técnica",
     }
     for h2 in soup.find_all("h2"):
         heading_text = h2.get_text(strip=True)
