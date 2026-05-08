@@ -1,6 +1,46 @@
-# Template Engine (REF-2 W1, z255oo)
+# Template Engine (REF-2, z255oo+)
 
 Template-driven Wiki page renderer for the bjj-wiki refactor.
+
+## 📖 これは何 (前置き、非技術者向け)
+
+Wiki の page (4,500 枚) を作る方法を **「7 人の料理人がリレーする」**から **「1 人の料理人がレシピ通りに作る」**に変える refactor の中身です。
+
+「料理人」「レシピ」を技術用語に翻訳すると:
+- **料理人** = generator script (Python で書かれた page 作成プログラム)
+- **レシピ** = template (Jinja2 という Python の標準的な template engine の文法で書かれた HTML 雛形)
+- **page の中身** = JSON data (Gemini AI で生成した content を構造化したデータ)
+- **言語別の文言** = locale YAML (EN / JA / PT の UI 文字列を一箇所に集約したファイル)
+
+**処理の流れ**:
+
+```
+[Gemini AI でコンテンツ生成]
+       ↓
+[JSON data]   ←─── extract.py が既存 page から抽出することも可能
+       ↓
+[render.py が template + locale + JSON を合成]
+       ↓
+[完成した HTML page]
+```
+
+**この folder に何があるか**:
+
+| ファイル | 役割 |
+|---|---|
+| `render.py` | レシピ通りに page を作る本体 |
+| `extract.py` | 既存 page から JSON data を抽出 (cutover 検証用) |
+| `diff_check.py` | 既存 page と新 page を比較、違いを 7 種類に分類 |
+| `batch_verify.py` | 多数 page を一括で verify (extract → render → diff) |
+| `cutover_readiness.py` | 3 言語で「切り替えて OK か?」判定 |
+| `CUTOVER.md` | 切り替え作業の Day-by-day 手順書 |
+| `README.md` (本ファイル) | この folder の総合案内 |
+
+**なぜこんなことを?**
+
+Wiki page を作る script が 7 個もあって、互いに HTML コメント (例: `<!-- z243-bottom-cta -->`) で「自分の作業が済んだか」を伝え合っている。Script 同士の暗黙の前提が衝突して bug が頻発するため、料理人を 1 人 (= 1 個の template) に集約することで bug の発生する空間自体を減らす狙い。**SEO への影響は 0** (URL や hosting は不変、HTML 構造だけ整理される)。
+
+詳細な理由・経緯は `docs/devlog/2026-05.md` の z255mm から z255ss を参照。
 
 ## Status
 
