@@ -1,0 +1,60 @@
+{
+  "slug": "athlete-roger-gracie",
+  "h1": "Roger Gracie: The Greatest BJJ Competitor of All Time",
+  "h1_simple": "Roger Gracie",
+  "seo_title": "Roger Gracie: 10x World Champion BJJ Profile | BJJ Wiki",
+  "og_title": "Roger Gracie: 10x World Champion BJJ Profile",
+  "og_image_title": "Roger Gracie",
+  "description": "Roger Gracie biography: 10x IBJJF World Champion, ADCC Absolute champion, signature techniques, and key matches.",
+  "category": "Athlete",
+  "belt_level": "Black",
+  "intro_paragraphs": [
+    "Roger Gracie is widely considered the greatest BJJ competitor in history.",
+    "His mastery of fundamentals — particularly the cross-collar choke from mount — is the gold standard.",
+    "He won 10 IBJJF World Championships including a record-tying 6 absolute titles."
+  ],
+  "sections": [
+    {
+      "heading": "Who Is Roger Gracie?",
+      "type": "text",
+      "items": [
+        "Born in Rio de Janeiro, Brazil. Trained at Gracie Barra under his father Mauricio Gomes and uncle Carlos Gracie Jr.",
+        "Stands 6'4\" (193cm), competes at heavyweight."
+      ]
+    },
+    {
+      "heading": "Competition Record (Highlights)",
+      "type": "table",
+      "headers": ["Year", "Tournament", "Result"],
+      "items": [
+        ["2009", "IBJJF World Championship", "Open Class Champion"],
+        ["2010", "ADCC", "Absolute Champion"],
+        ["2014", "Metamoré 4", "Defeated Buchecha"],
+        ["2017", "Comeback at IBJJF Worlds Masters", "Champion"]
+      ]
+    },
+    {
+      "heading": "Signature Techniques",
+      "type": "ul",
+      "items": [
+        {"bold": "Cross Collar Choke from Mount:", "text": "Considered the textbook execution. Pressure-based, methodical."},
+        {"bold": "Knee Cut Pass:", "text": "Tight, slow-pressure passing built on weight distribution."},
+        {"bold": "Mount Maintenance:", "text": "Master at climbing to high mount and isolating an arm."}
+      ]
+    },
+    {
+      "heading": "Training Background & Lineage",
+      "type": "text",
+      "items": [
+        "Direct lineage: Carlos Gracie → Helio Gracie → Mauricio Gomes → Roger Gracie.",
+        "Currently runs Roger Gracie Academy in London with affiliates worldwide."
+      ]
+    }
+  ],
+  "faq": [
+    {"question": "How many world titles did Roger Gracie win?", "answer": "10 IBJJF World Championships, including 6 absolute (open weight) titles."},
+    {"question": "What is Roger Gracie's most famous technique?", "answer": "The cross-collar choke from mount. He's been called \"the king of the mount choke.\""}
+  ],
+  "jsonld_article": "{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Roger Gracie\",\"description\":\"Roger Gracie biography.\",\"url\":\"https://wiki.bjj-app.net/en/athlete-roger-gracie.html\",\"inLanguage\":\"en\",\"datePublished\":\"2026-03-25T00:00:00+09:00\",\"dateModified\":\"2026-05-08T00:00:00+09:00\",\"author\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://wiki.bjj-app.net/en/athlete-roger-gracie.html\"}}",
+  "jsonld_breadcrumb": "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"BJJ Wiki\",\"item\":\"https://wiki.bjj-app.net/en/index.html\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Roger Gracie\",\"item\":\"https://wiki.bjj-app.net/en/athlete-roger-gracie.html\"}]}"
+}

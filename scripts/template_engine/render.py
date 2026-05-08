@@ -82,7 +82,11 @@ def render_page(
         keep_trailing_newline=True,
     )
 
-    template = env.get_template(f"{archetype}.html.j2")
+    # All 7 archetypes currently share technique.html.j2 (universal template).
+    # Per-archetype customization happens via section.type in page data.
+    # Future W5 cleanup may split into archetype-specific templates if needed.
+    template_name = "technique.html.j2"
+    template = env.get_template(template_name)
     locale = load_locale(lang)
 
     return template.render(
@@ -98,8 +102,16 @@ def main() -> int:
     parser.add_argument(
         "--archetype",
         required=True,
-        choices=["technique"],  # W1: technique only; W3 will expand
-        help="Page archetype (technique / concept / rule / etc.)",
+        choices=[
+            "technique",
+            "concept_strategy",
+            "rule",
+            "athlete_bio",
+            "equipment_gear",
+            "conditioning_nutrition",
+            "drill",
+        ],
+        help="Page archetype (7 types per WIKI_TEMPLATES.md). All currently use technique.html.j2 as universal template — section.type drives layout (ol/ul/ul-multi/table/text/cards).",
     )
     parser.add_argument(
         "--lang",
