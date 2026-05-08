@@ -1,0 +1,72 @@
+{
+  "slug": "armbar",
+  "h1": "Armbar: A White Belt's Biomechanical Guide",
+  "h1_simple": "Armbar",
+  "seo_title": "Armbar BJJ: White Belt Biomechanics | BJJ Wiki | BJJ Wiki",
+  "og_title": "Armbar BJJ: White Belt Biomechanics | BJJ Wiki",
+  "og_image_title": "Armbar",
+  "description": "Master the BJJ armbar with this precise, biomechanically accurate guide for white belts. Learn grips, execution, injury prevention, and common mistakes.",
+  "keywords": "armbar, bjj armbar, armbar technique, bjj white belt, armbar tutorial, bjj joint lock, elbow lock",
+  "category": "Joint Lock",
+  "belt_level": "White",
+  "difficulty": {
+    "belt": "blue",
+    "stars": "★★★☆☆",
+    "label": "Intermediate"
+  },
+  "guide_belt": "blue",
+  "intro_paragraphs": [
+    "The armbar is a submission that targets the elbow joint, forcing hyperextension. It's typically initiated from dominant positions like <a href=\"../en/closed-guard.html\" style=\"color:var(--accent,#7c3aed);text-decoration:underline\">Closed Guard</a> or mount.",
+    "White belts often struggle by relying on raw strength or poor body positioning, leading to ineffective attempts and potential injury.",
+    "The key to a successful armbar lies in isolating the opponent's arm and using your hips to create leverage, not brute force."
+  ],
+  "sections": [
+    {
+      "heading": "Grips & Mechanics",
+      "type": "ol",
+      "items": [
+        {"bold": "Starting from Closed Guard:", "text": "Secure a Collar Grip with your right hand on the opponent's left lapel and a Sleeve Grip with your left hand on their left sleeve, just above the elbow."},
+        {"bold": "Initiate the Sweep:", "text": "Kick your right leg up and over the opponent's left shoulder, bringing your left leg across their torso to establish a strong cross-body position."},
+        {"bold": "Control the Posture:", "text": "Use your right hand on the lapel to pull their upper body down and towards your chest, breaking their posture and preventing them from stacking."}
+      ]
+    },
+    {
+      "heading": "⚠️ White Belt Warnings",
+      "type": "ul",
+      "style": "warning",
+      "items": [
+        {"bold": "Incorrect Hip Angle:", "text": "Swinging hips too far forward instead of perpendicular creates a poor lever."},
+        {"bold": "Squeezing Knees Too Early:", "text": "Tucking knees before establishing the correct hip angle and arm isolation."}
+      ]
+    }
+  ],
+  "athletes": [
+    {"name": "John Danaher", "flag": "🇺🇸", "slug": "athlete-john-danaher"},
+    {"name": "Marcelo Garcia", "flag": "🇧🇷", "slug": "athlete-marcelo-garcia"},
+    {"name": "Gordon Ryan", "flag": "🇺🇸", "slug": "athlete-gordon-ryan"}
+  ],
+  "yoga_poses": [
+    {"name": "Cow Face Pose", "slug": "cow-face-pose"},
+    {"name": "Eagle Pose", "slug": "eagle-pose"},
+    {"name": "Thread the Needle", "slug": "thread-the-needle"}
+  ],
+  "faq": [
+    {"question": "Why does my wrist hurt when I try to do an armbar from closed guard?", "answer": "This is likely due to gripping the opponent's wrist too loosely or improperly. When you secure the Wrist Grip, ensure your thumb wraps around their wrist."},
+    {"question": "How can I armbar a much bigger opponent from closed guard?", "answer": "Against a larger opponent, the key is not strength but precise leverage. Focus on breaking their posture aggressively."}
+  ],
+  "related_techs": [
+    {"name": "Kimura", "slug": "kimura"},
+    {"name": "Americana", "slug": "americana"},
+    {"name": "Omoplata", "slug": "omoplata"}
+  ],
+  "related_concepts": [
+    {"name": "Closed Guard", "slug": "closed-guard"},
+    {"name": "Mount", "slug": "mount"}
+  ],
+  "video_embed_id": "GshEzcqlUbY",
+  "jsonld_article": "{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Armbar BJJ: White Belt Biomechanics | BJJ Wiki\",\"description\":\"Master the BJJ armbar.\",\"url\":\"https://wiki.bjj-app.net/en/armbar.html\",\"inLanguage\":\"en\",\"datePublished\":\"2026-03-13T00:00:00+09:00\",\"dateModified\":\"2026-05-08T01:49:47+09:00\",\"author\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://wiki.bjj-app.net/en/armbar.html\"}}",
+  "jsonld_breadcrumb": "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"BJJ Wiki\",\"item\":\"https://wiki.bjj-app.net/en/index.html\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Armbar\",\"item\":\"https://wiki.bjj-app.net/en/armbar.html\"}]}",
+  "jsonld_faq": "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"What is Armbar in BJJ?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"It is a fundamental BJJ technique.\"}}]}",
+  "howto_steps": true,
+  "jsonld_howto": "{\"@context\":\"https://schema.org\",\"@type\":\"HowTo\",\"name\":\"How to do Armbar in BJJ\",\"description\":\"Step-by-step guide.\",\"step\":[{\"@type\":\"HowToStep\",\"name\":\"Set up the position\",\"text\":\"Position yourself.\"}]}"
+}

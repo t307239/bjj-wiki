@@ -1,0 +1,139 @@
+# BJJ Wiki — locale strings (pt)
+# REF-2 W1 (z255oo): Single source of truth for all UI/CTA text in PT pages.
+
+nav:
+  home: "🥋 BJJ Wiki"
+  flag:
+    en: "🇺🇸 EN"
+    ja: "🇯🇵 JA"
+    pt: "🇧🇷 PT"
+
+belt_guide_box:
+  white:
+    badge_text: "Técnica de Faixa Branca"
+    cta_text: "📖 Ver Guia Completo → Guia da Faixa Branca"
+    cta_href: "white-belt-bjj-guide.html"
+    color: "#9ca3af"
+  blue:
+    badge_text: "Técnica de Faixa Azul"
+    cta_text: "📖 Ver Guia Completo → Guia da Faixa Azul"
+    cta_href: "blue-belt-bjj-guide.html"
+    color: "#2563eb"
+  purple:
+    badge_text: "Técnica de Faixa Roxa"
+    cta_text: "📖 Ver Guia Completo → Guia da Faixa Roxa"
+    cta_href: "purple-belt-bjj-guide.html"
+    color: "#9333ea"
+  brown:
+    badge_text: "Técnica de Faixa Marrom"
+    cta_text: "📖 Ver Guia Completo → Guia da Faixa Marrom"
+    cta_href: "brown-belt-bjj-guide.html"
+    color: "#92400e"
+  black:
+    badge_text: "Técnica de Faixa Preta"
+    cta_text: "📖 Ver Guia Completo → Guia da Faixa Preta"
+    cta_href: "black-belt-bjj-guide.html"
+    color: "#1f2937"
+
+toc:
+  title: "Sumário"
+
+related_video:
+  heading: "Vídeo Relacionado"
+  intro: "Veja explicações passo a passo de instrutores faixa-preta:"
+  search_btn: "▶ Buscar {tech} no YouTube"
+  ugc_prefix: "🥋 Não encontrou o detalhe que precisa? Salve a URL do vídeo do seu instrutor no"
+  ugc_cta_text: "BJJ App (grátis) →"
+  ugc_cta_href: "https://bjj-app.net/login"
+
+athletes:
+  heading: "🏆 Atletas de Elite Que Usam Esta Técnica"
+
+competition_box:
+  heading: "📋 Regras de Competição"
+  links:
+    - text: "Regras IBJJF →"
+      href: "ibjjf-rules.html"
+    - text: "Regras ADCC →"
+      href: "adcc-rules.html"
+    - text: "Guia de Competição →"
+      href: "bjj-competition-guide.html"
+
+safety_box:
+  heading: "⚕️ Segurança & Performance"
+  links:
+    - text: "🛡️ Prevenção de Lesões"
+      href: "bjj-injury-prevention.html"
+    - text: "🔥 Aquecimento"
+      href: "bjj-warm-up-routine.html"
+    - text: "⚖️ Corte de Peso"
+      href: "bjj-weight-cutting.html"
+    - text: "🧠 Mental"
+      href: "bjj-mental-game.html"
+    - text: "📋 Preparação"
+      href: "bjj-competition-prep-checklist.html"
+
+yoga_box:
+  heading: "🧘 Posturas de Yoga para Melhorar Esta Técnica"
+  intro: "Estas posturas constroem a flexibilidade e mobilidade necessárias:"
+
+gear_box:
+  heading: "⚙️ Equipamentos Recomendados"
+  default_links:
+    - text: "🥋 Melhor Kimono BJJ"
+      href: "best-bjj-gi-guide.html"
+    - text: "🦷 Melhor Protetor Bucal"
+      href: "best-bjj-mouthguard.html"
+
+faq:
+  heading: "Problemas Comuns no BJJ & FAQ"
+
+related_techs:
+  heading: "🥋 Técnicas Relacionadas"
+
+newsletter:
+  heading: "📬 Junte-se a 2.000+ Praticantes de BJJ"
+  body: "Receba o Guia Grátis de Faixa Branca + análises de técnicas, dicas de treino e conteúdo exclusivo toda semana. Sem spam. Cancele quando quiser."
+  cta_text: "Acesso Grátis →"
+  cta_href: "https://bjj-wiki.beehiiv.com/subscribe"
+
+dig_deeper:
+  heading: "🔗 Aprofunde-se"
+  subtitle: "Técnicas que se conectam com {tech}"
+
+cta_dynamic:
+  heading: "🥋 Conseguiu seu primeiro {tech}? Registre cada finalização."
+  body: "Acompanhe finalizações, sessões e sequências — grátis para sempre."
+  cta_text: "Testar Grátis →"
+
+cta_bottom:
+  heading: "📱 Veja seu treino em mapa de calor"
+  body: "Mapeie posições fracas. Acompanhe domínio técnico. Grátis para sempre."
+  cta_text: "Abrir BJJ App — Grátis →"
+
+cta_float:
+  heading: "📱 Registre seu rolo"
+  body: "Mapa de calor, mapa de skills, sequências. Grátis."
+  cta_text: "Abrir Grátis →"
+
+share_bar:
+  heading: "Compartilhe esta técnica"
+  x_btn: "𝕏 Postar no X"
+  reddit_btn: "⬆ Reddit"
+  copy_btn: "📋 Copiar Link"
+  copy_btn_done: "✓ Copiado!"
+  youtube_btn: "▶ Ver no YouTube"
+
+footer:
+  tagline: "BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ"
+  privacy_text: "Política de Privacidade"
+  privacy_href: "../privacy.html"
+
+site:
+  base_url: "https://wiki.bjj-app.net"
+  app_url: "https://bjj-app.net"
+  brand_suffix: "BJJ Wiki Brasil"
+  organization_name: "BJJ Wiki"
+  twitter_handle: "@bjj_wiki"
+  ga_id: "G-7LM8L3TRZM"
+  adsense_client: "ca-pub-5529701443220352"

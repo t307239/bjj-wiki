@@ -1,0 +1,139 @@
+# BJJ Wiki — locale strings (ja)
+# REF-2 W1 (z255oo): Single source of truth for all UI/CTA text in JA pages.
+
+nav:
+  home: "🥋 BJJ Wiki"
+  flag:
+    en: "🇺🇸 EN"
+    ja: "🇯🇵 JA"
+    pt: "🇧🇷 PT"
+
+belt_guide_box:
+  white:
+    badge_text: "白帯テクニック"
+    cta_text: "📖 完全ガイドを見る → 白帯ガイド"
+    cta_href: "white-belt-bjj-guide.html"
+    color: "#9ca3af"
+  blue:
+    badge_text: "青帯テクニック"
+    cta_text: "📖 完全ガイドを見る → 青帯ガイド"
+    cta_href: "blue-belt-bjj-guide.html"
+    color: "#2563eb"
+  purple:
+    badge_text: "紫帯テクニック"
+    cta_text: "📖 完全ガイドを見る → 紫帯ガイド"
+    cta_href: "purple-belt-bjj-guide.html"
+    color: "#9333ea"
+  brown:
+    badge_text: "茶帯テクニック"
+    cta_text: "📖 完全ガイドを見る → 茶帯ガイド"
+    cta_href: "brown-belt-bjj-guide.html"
+    color: "#92400e"
+  black:
+    badge_text: "黒帯テクニック"
+    cta_text: "📖 完全ガイドを見る → 黒帯ガイド"
+    cta_href: "black-belt-bjj-guide.html"
+    color: "#1f2937"
+
+toc:
+  title: "目次"
+
+related_video:
+  heading: "関連動画"
+  intro: "黒帯インストラクターによるステップバイステップの解説:"
+  search_btn: "▶ {tech}をYouTubeで検索"
+  ugc_prefix: "🥋 ぴったりの動画が見つからない? インストラクターの動画URLを"
+  ugc_cta_text: "BJJ App (無料) →"
+  ugc_cta_href: "https://bjj-app.net/login"
+
+athletes:
+  heading: "🏆 この技を使うトップ選手"
+
+competition_box:
+  heading: "📋 試合ルール"
+  links:
+    - text: "IBJJFルール →"
+      href: "ibjjf-rules.html"
+    - text: "ADCCルール →"
+      href: "adcc-rules.html"
+    - text: "試合ガイド →"
+      href: "bjj-competition-guide.html"
+
+safety_box:
+  heading: "⚕️ 練習安全 & パフォーマンス"
+  links:
+    - text: "🛡️ 怪我予防"
+      href: "bjj-injury-prevention.html"
+    - text: "🔥 ウォームアップ"
+      href: "bjj-warm-up-routine.html"
+    - text: "⚖️ 減量"
+      href: "bjj-weight-cutting.html"
+    - text: "🧠 メンタル"
+      href: "bjj-mental-game.html"
+    - text: "📋 試合準備"
+      href: "bjj-competition-prep-checklist.html"
+
+yoga_box:
+  heading: "🧘 この技を上達させるヨガポーズ"
+  intro: "必要な柔軟性と可動域を作るポーズ:"
+
+gear_box:
+  heading: "⚙️ おすすめギア"
+  default_links:
+    - text: "🥋 BJJ道着ガイド"
+      href: "best-bjj-gi-guide.html"
+    - text: "🦷 マウスピース"
+      href: "best-bjj-mouthguard.html"
+
+faq:
+  heading: "BJJのよくある悩み・FAQ"
+
+related_techs:
+  heading: "🥋 関連テクニック"
+
+newsletter:
+  heading: "📬 2,000人以上の柔術家に参加"
+  body: "無料BJJ白帯ガイド+毎週の技術解説・練習のコツ・独占コンテンツ。スパムなし。いつでも配信停止可能。"
+  cta_text: "無料で受け取る →"
+  cta_href: "https://bjj-wiki.beehiiv.com/subscribe"
+
+dig_deeper:
+  heading: "🔗 深掘り"
+  subtitle: "{tech}と関連するテクニック"
+
+cta_dynamic:
+  heading: "🥋 初めての{tech}を決めた? すべての一本を記録しよう。"
+  body: "サブミッション、セッション、ストリークを記録 — 永久無料。"
+  cta_text: "無料で試す →"
+
+cta_bottom:
+  heading: "📱 練習をヒートマップで可視化"
+  body: "弱点ポジションを見える化。技術習熟度をトラック。永久無料。"
+  cta_text: "BJJ Appを開く — 無料 →"
+
+cta_float:
+  heading: "📱 練習を記録"
+  body: "ヒートマップ、スキルマップ、ストリーク。無料。"
+  cta_text: "無料で開く →"
+
+share_bar:
+  heading: "このテクニックをシェア"
+  x_btn: "𝕏 Xに投稿"
+  reddit_btn: "⬆ Reddit"
+  copy_btn: "📋 リンクをコピー"
+  copy_btn_done: "✓ コピー完了!"
+  youtube_btn: "▶ YouTubeで見る"
+
+footer:
+  tagline: "BJJ Wiki — 無料の柔術技術百科事典"
+  privacy_text: "プライバシーポリシー"
+  privacy_href: "../privacy.html"
+
+site:
+  base_url: "https://wiki.bjj-app.net"
+  app_url: "https://bjj-app.net"
+  brand_suffix: "BJJ Wiki"
+  organization_name: "BJJ Wiki"
+  twitter_handle: "@bjj_wiki"
+  ga_id: "G-7LM8L3TRZM"
+  adsense_client: "ca-pub-5529701443220352"

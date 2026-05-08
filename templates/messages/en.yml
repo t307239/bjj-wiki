@@ -1,0 +1,148 @@
+# BJJ Wiki — locale strings (en)
+# REF-2 W1 (z255oo): Single source of truth for all UI/CTA text in EN pages.
+# Generated content (article body) comes from Gemini per-page; this file
+# only holds chrome (nav, CTAs, headings of recurring widgets).
+#
+# Edit rule: if you add a new key, add the corresponding key to ja.yml and
+# pt.yml in the same shape. check_locale_parity.py will fail otherwise.
+
+nav:
+  home: "🥋 BJJ Wiki"
+  flag:
+    en: "🇺🇸 EN"
+    ja: "🇯🇵 JA"
+    pt: "🇧🇷 PT"
+
+# Belt-level guide box (technique pages link to belt guide based on level)
+belt_guide_box:
+  white:
+    badge_text: "White Belt Technique"
+    cta_text: "📖 See Full Guide → White Belt Guide"
+    cta_href: "white-belt-bjj-guide.html"
+    color: "#9ca3af"
+  blue:
+    badge_text: "Blue Belt Technique"
+    cta_text: "📖 See Full Guide → Blue Belt Guide"
+    cta_href: "blue-belt-bjj-guide.html"
+    color: "#2563eb"
+  purple:
+    badge_text: "Purple Belt Technique"
+    cta_text: "📖 See Full Guide → Purple Belt Guide"
+    cta_href: "purple-belt-bjj-guide.html"
+    color: "#9333ea"
+  brown:
+    badge_text: "Brown Belt Technique"
+    cta_text: "📖 See Full Guide → Brown Belt Guide"
+    cta_href: "brown-belt-bjj-guide.html"
+    color: "#92400e"
+  black:
+    badge_text: "Black Belt Technique"
+    cta_text: "📖 See Full Guide → Black Belt Guide"
+    cta_href: "black-belt-bjj-guide.html"
+    color: "#1f2937"
+
+toc:
+  title: "Contents"
+
+related_video:
+  heading: "Related Video"
+  intro: "Watch step-by-step breakdowns from black belt instructors:"
+  search_btn: "▶ Search {tech} on YouTube"
+  ugc_prefix: "🥋 Can't find the exact detail you need? Save your instructor's video URL in"
+  ugc_cta_text: "BJJ App (free) →"
+  ugc_cta_href: "https://bjj-app.net/login"
+
+athletes:
+  heading: "🏆 Elite Athletes Who Use This"
+
+competition_box:
+  heading: "📋 Competition Rules"
+  links:
+    - text: "IBJJF Rules →"
+      href: "ibjjf-rules.html"
+    - text: "ADCC Rules →"
+      href: "adcc-rules.html"
+    - text: "Competition Guide →"
+      href: "bjj-competition-guide.html"
+
+safety_box:
+  heading: "⚕️ Training Safety & Performance"
+  links:
+    - text: "🛡️ Injury Prevention"
+      href: "bjj-injury-prevention.html"
+    - text: "🔥 Warm-Up"
+      href: "bjj-warm-up-routine.html"
+    - text: "⚖️ Weight Cutting"
+      href: "bjj-weight-cutting.html"
+    - text: "🧠 Mental Game"
+      href: "bjj-mental-game.html"
+    - text: "📋 Comp Prep"
+      href: "bjj-competition-prep-checklist.html"
+
+yoga_box:
+  heading: "🧘 Yoga Poses to Improve This Technique"
+  intro: "These poses build the flexibility & mobility you need:"
+
+gear_box:
+  heading: "⚙️ Recommended Gear"
+  default_links:
+    - text: "🥋 Best BJJ Gi"
+      href: "best-bjj-gi-guide.html"
+    - text: "🦷 Best Mouthguard"
+      href: "best-bjj-mouthguard.html"
+
+faq:
+  heading: "Common BJJ Problems & FAQ"
+
+related_techs:
+  heading: "🥋 Related Techniques"
+
+newsletter:
+  heading: "📬 Join 2,000+ BJJ Practitioners"
+  body: "Get the free BJJ White Belt Guide plus technique breakdowns, training tips & exclusive content every week. No spam. Unsubscribe anytime."
+  cta_text: "Get Free Access →"
+  cta_href: "https://bjj-wiki.beehiiv.com/subscribe"
+
+dig_deeper:
+  heading: "🔗 Dig Deeper"
+  subtitle: "Techniques that connect with {tech}"
+
+cta_dynamic:
+  heading: "🥋 Landed your first {tech}? Log every tap."
+  body: "Track submissions, sessions & streaks — free forever."
+  cta_text: "Try Free →"
+
+# z243-bottom-cta marker block content (per WIKI_TEMPLATES.md Marker Contract)
+cta_bottom:
+  heading: "📱 See your training as a heatmap"
+  body: "Map weak positions. Track technique mastery. Free forever."
+  cta_text: "Open BJJ App — Free →"
+
+# z243-float-cta marker block content
+cta_float:
+  heading: "📱 Track your roll"
+  body: "Heatmap, skill map, streaks. Free."
+  cta_text: "Open Free →"
+
+share_bar:
+  heading: "Share this technique"
+  x_btn: "𝕏 Post on X"
+  reddit_btn: "⬆ Reddit"
+  copy_btn: "📋 Copy Link"
+  copy_btn_done: "✓ Copied!"
+  youtube_btn: "▶ Watch on YouTube"
+
+footer:
+  tagline: "BJJ Wiki — The free BJJ technique encyclopedia"
+  privacy_text: "Privacy Policy"
+  privacy_href: "../privacy.html"
+
+# Sitewide constants
+site:
+  base_url: "https://wiki.bjj-app.net"
+  app_url: "https://bjj-app.net"
+  brand_suffix: "BJJ Wiki"
+  organization_name: "BJJ Wiki"
+  twitter_handle: "@bjj_wiki"
+  ga_id: "G-7LM8L3TRZM"
+  adsense_client: "ca-pub-5529701443220352"
