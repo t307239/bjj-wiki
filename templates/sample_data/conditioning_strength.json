@@ -1,0 +1,63 @@
+{
+  "slug": "bjj-strength-training",
+  "h1": "Strength Training for BJJ: A Practical Guide",
+  "h1_simple": "Strength Training for BJJ",
+  "seo_title": "BJJ Strength Training: Programming for Grapplers | BJJ Wiki",
+  "og_title": "BJJ Strength Training: Programming for Grapplers",
+  "og_image_title": "BJJ Strength Training",
+  "description": "Strength training programming for BJJ practitioners. Compound lifts, sport-specific exercises, weekly programming, and recovery.",
+  "category": "Conditioning",
+  "belt_level": "White",
+  "intro_paragraphs": [
+    "Strength training amplifies your BJJ — but bad programming can drain mat performance.",
+    "The goal is functional strength that supports grappling: posterior chain, grip, and neck."
+  ],
+  "sections": [
+    {
+      "heading": "Why Strength Matters for BJJ",
+      "type": "text",
+      "items": [
+        "Stronger athletes maintain frames longer, finish submissions cleaner, and resist position breaks.",
+        "Strength is a force multiplier on top of technical skill — but never a substitute."
+      ]
+    },
+    {
+      "heading": "Core Principles",
+      "type": "ul",
+      "items": [
+        {"bold": "Compound lifts first:", "text": "Squat, deadlift, pull-up, push press cover 80% of the value."},
+        {"bold": "Train 2x/week max:", "text": "More than 2 sessions cuts into BJJ recovery."},
+        {"bold": "Lower reps, higher weight:", "text": "5x5 or 3x5 for strength. Avoid endurance ranges."}
+      ]
+    },
+    {
+      "heading": "Sample Weekly Program",
+      "type": "table",
+      "headers": ["Day", "Focus", "Lifts"],
+      "items": [
+        ["Monday", "Lower (Strength)", "Squat 5x5, Deadlift 3x5, Lunges"],
+        ["Tuesday", "BJJ", "Class + drilling"],
+        ["Wednesday", "Recovery / Mobility", "Stretching, light cardio"],
+        ["Thursday", "Upper (Strength)", "Bench 5x5, Pull-ups 5x5, Rows"],
+        ["Friday", "BJJ", "Class + sparring"],
+        ["Saturday", "BJJ Open Mat", "Free roll"],
+        ["Sunday", "Rest", "Full recovery"]
+      ]
+    },
+    {
+      "heading": "Common Mistakes",
+      "type": "ul",
+      "style": "warning",
+      "items": [
+        {"bold": "Lifting day before competition:", "text": "Cuts performance by 10-20%. Take 48-72h before."},
+        {"bold": "Too much volume:", "text": "More is not better. Recovery is when growth happens."}
+      ]
+    }
+  ],
+  "faq": [
+    {"question": "Should I lift before or after BJJ?", "answer": "After if same day, or on different days. Lifting before BJJ depletes glycogen and reduces technical performance."},
+    {"question": "Do I need to bulk to get stronger?", "answer": "Not for relative strength. Many BJJ athletes maintain weight while increasing strength via skill development."}
+  ],
+  "jsonld_article": "{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"BJJ Strength Training\",\"description\":\"Strength programming for BJJ.\",\"url\":\"https://wiki.bjj-app.net/en/bjj-strength-training.html\",\"inLanguage\":\"en\",\"datePublished\":\"2026-04-01T00:00:00+09:00\",\"dateModified\":\"2026-05-08T00:00:00+09:00\",\"author\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://wiki.bjj-app.net/en/bjj-strength-training.html\"}}",
+  "jsonld_breadcrumb": "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"BJJ Wiki\",\"item\":\"https://wiki.bjj-app.net/en/index.html\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BJJ Strength Training\",\"item\":\"https://wiki.bjj-app.net/en/bjj-strength-training.html\"}]}"
+}

@@ -1,0 +1,74 @@
+{
+  "slug": "shrimping-drill",
+  "h1": "Shrimping Drill: The Foundation of BJJ Movement",
+  "h1_simple": "Shrimping",
+  "seo_title": "Shrimping Drill: Solo Mat Movement for BJJ | BJJ Wiki",
+  "og_title": "Shrimping Drill: Solo Mat Movement for BJJ",
+  "og_image_title": "Shrimping",
+  "description": "Master the shrimping drill — the most fundamental BJJ movement. Solo and partner variations, common mistakes, and progressions.",
+  "category": "Drill",
+  "belt_level": "White",
+  "intro_paragraphs": [
+    "Shrimping (hip escape) is the most fundamental BJJ movement.",
+    "Master shrimping in your first month and every other technique becomes easier."
+  ],
+  "sections": [
+    {
+      "heading": "What This Drill Trains",
+      "type": "ul",
+      "items": [
+        {"bold": "Hip mobility:", "text": "Builds the lateral hip movement central to guard retention."},
+        {"bold": "Bottom escape mechanics:", "text": "Direct application: escaping mount and side control."},
+        {"bold": "Frame coordination:", "text": "Coordinates upper-body frames with lower-body movement."}
+      ]
+    },
+    {
+      "heading": "How to Perform (Step-by-Step)",
+      "type": "ol",
+      "items": [
+        {"bold": "Start position:", "text": "Lie on your back, knees bent, feet flat."},
+        {"bold": "Frame:", "text": "Place both hands on imaginary opponent's hips at chest level."},
+        {"bold": "Hip lift:", "text": "Drive feet into the mat, lift hips."},
+        {"bold": "Slide:", "text": "Slide hips toward your right shoulder, away from imaginary opponent."},
+        {"bold": "Reset:", "text": "Land on your right side, reset frames, repeat opposite direction."}
+      ]
+    },
+    {
+      "heading": "Solo vs Partner Variations",
+      "type": "ul",
+      "items": [
+        {"bold": "Solo:", "text": "Practice along the length of mat. 10 reps each direction. Daily."},
+        {"bold": "Partner:", "text": "Partner applies pressure on chest while you shrimp. Practice from mount and side control."}
+      ]
+    },
+    {
+      "heading": "Drill Progressions",
+      "type": "ul",
+      "items": [
+        {"bold": "Beginner:", "text": "Basic shrimp along the mat, no resistance. Focus on form."},
+        {"bold": "Intermediate:", "text": "Shrimp from side control with partner applying weight."},
+        {"bold": "Advanced:", "text": "Shrimp during full sparring, recovering guard against active attacker."}
+      ]
+    },
+    {
+      "heading": "Common Mistakes",
+      "type": "ul",
+      "style": "warning",
+      "items": [
+        {"bold": "No frames:", "text": "Pushing with strength alone. Always frame first."},
+        {"bold": "No hip lift:", "text": "Sliding without lifting creates friction and slow movement."}
+      ]
+    }
+  ],
+  "faq": [
+    {"question": "How many reps of shrimping should I do?", "answer": "20-30 reps per side daily. Quality over quantity — perfect form beats high volume."},
+    {"question": "Why am I not getting better at guard recovery despite shrimping?", "answer": "You may be drilling without intent. Visualize the opponent and react to imaginary pressure."}
+  ],
+  "video_embed_id": "i_X8tHvZxpw",
+  "related_techs": [
+    {"name": "Hip Escape", "slug": "hip-escape"},
+    {"name": "Bridge and Roll", "slug": "bridge-and-roll"}
+  ],
+  "jsonld_article": "{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Shrimping Drill\",\"description\":\"Master shrimping.\",\"url\":\"https://wiki.bjj-app.net/en/shrimping-drill.html\",\"inLanguage\":\"en\",\"datePublished\":\"2026-04-05T00:00:00+09:00\",\"dateModified\":\"2026-05-08T00:00:00+09:00\",\"author\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://wiki.bjj-app.net/en/shrimping-drill.html\"}}",
+  "jsonld_breadcrumb": "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"BJJ Wiki\",\"item\":\"https://wiki.bjj-app.net/en/index.html\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Shrimping Drill\",\"item\":\"https://wiki.bjj-app.net/en/shrimping-drill.html\"}]}"
+}

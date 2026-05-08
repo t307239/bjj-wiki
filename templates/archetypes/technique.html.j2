@@ -73,12 +73,12 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ t.site.adsense_client }}" crossorigin="anonymous"></script>
 <script type="application/ld+json">{{ page.jsonld_article | safe }}</script>
 <script type="application/ld+json">{{ page.jsonld_breadcrumb | safe }}</script>
-{%- if page.faq %}
+{%- if page.jsonld_faq is defined %}
 <script type="application/ld+json">
 {{ page.jsonld_faq | safe }}
 </script>
 {%- endif %}
-{%- if page.howto_steps %}
+{%- if page.jsonld_howto is defined %}
 <script type="application/ld+json">
 {{ page.jsonld_howto | safe }}
 </script>
@@ -107,10 +107,10 @@
   <span class="badge">{{ page.category }}</span><br>
   <span class="belt belt-{{ page.belt_level | lower }}">{{ page.belt_level }}</span>
   <h1>{{ page.h1 }}</h1>
-  {%- if page.difficulty %}
+  {%- if page.difficulty is defined %}
   <div class="difficulty-bar"><span class="diff-belt" style="background:{{ t.belt_guide_box[page.difficulty.belt | lower].color }};color:#fff">{{ page.difficulty.belt | upper }}</span><span class="diff-stars">{{ page.difficulty.stars }}</span><span class="diff-label">{{ page.difficulty.label }}</span></div>
   {%- endif %}
-  {%- if page.guide_belt %}
+  {%- if page.guide_belt is defined %}
   {%- set bg = t.belt_guide_box[page.guide_belt | lower] %}
   <div class="belt-guide-box" style="border:2px solid {{ bg.color }};border-radius:10px;padding:16px;margin:24px 0;background:#0f1420"><span style="background:{{ bg.color }};color:#fff;padding:4px 12px;border-radius:20px;font-size:.85em;font-weight:700">{{ bg.badge_text }}</span><br><a href="../{{ lang }}/{{ bg.cta_href }}" style="color:#e2b714;font-weight:600;text-decoration:none;margin-top:8px;display:inline-block">{{ bg.cta_text }}</a></div>
   {%- endif %}
@@ -151,7 +151,7 @@
     </div>
   </div>
 
-{%- if page.athletes %}
+{%- if page.athletes is defined and page.athletes %}
   <div class="athletes-section"><h2>{{ t.athletes.heading }}</h2><div class="athlete-chips">{% for ath in page.athletes %}<a class="athlete-chip" href="../{{ lang }}/{{ ath.slug }}.html"><span style="font-size:1.2rem">{{ ath.flag }}</span><span><strong style="display:block;font-size:.9rem">{{ ath.name }}</strong></span></a>{% endfor %}</div></div>
 {%- endif %}
 
@@ -175,12 +175,12 @@
   </div>
   <!-- CTA: app registration only (CLAUDE.md: affiliate links prohibited) -->
 
-{%- if page.yoga_poses %}
+{%- if page.yoga_poses is defined and page.yoga_poses %}
   <div class="yoga-box"><h3>{{ t.yoga_box.heading }}</h3><p>{{ t.yoga_box.intro }}</p><div class="yoga-chips">{% for yp in page.yoga_poses %}<a class="yoga-chip" href="https://t307239.github.io/yoga-wiki/{{ lang }}/{{ yp.slug }}.html" target="_blank" rel="noopener">🧘 {{ yp.name }}</a>{% endfor %}</div></div>
 {%- endif %}
   <div class="gear-box"><h3>{{ t.gear_box.heading }}</h3><div class="gear-links">{% for link in (page.gear_links if page.gear_links is defined else t.gear_box.default_links) %}<a class="gear-link" href="{{ link.href }}">{{ link.text }}</a>{% endfor %}</div></div>
 
-{%- if page.faq %}
+{%- if page.faq is defined and page.faq %}
   <!-- FAQ Section (long-tail SEO) -->
   <div style="margin:32px 0">
     <h2>{{ t.faq.heading }}</h2>
@@ -190,7 +190,7 @@
   </div>
 {%- endif %}
 
-{%- if page.related_techs %}
+{%- if page.related_techs is defined and page.related_techs %}
   <!-- Related Techniques Card Grid -->
   <div style="background:#0f1420;border:1px solid #1f2840;border-radius:12px;padding:24px;margin:32px 0">
     <h3 style="font-size:1rem;font-weight:700;color:#7c6af7;margin-bottom:16px">{{ t.related_techs.heading }}</h3>
@@ -204,7 +204,7 @@
 
   <div class="beehiiv-wrap"><h3>{{ t.newsletter.heading }}</h3><p>{{ t.newsletter.body }}</p><a class="beehiiv-btn" href="{{ t.newsletter.cta_href }}" target="_blank" rel="noopener">{{ t.newsletter.cta_text }}</a></div>
 
-{%- if page.related_concepts %}
+{%- if page.related_concepts is defined and page.related_concepts %}
   <!-- Semantic Dig Deeper -->
   <div style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px 24px;margin:28px 0"><h3 style="font-size:.9rem;font-weight:700;color:var(--accent,#7c3aed);margin-bottom:6px">{{ t.dig_deeper.heading }}</h3><p style="font-size:.8rem;color:var(--muted,#64748b);margin-bottom:14px">{{ t.dig_deeper.subtitle.replace('{tech}', page.h1_simple) }}</p><div style="display:flex;flex-wrap:wrap;gap:8px">{% for rc in page.related_concepts %}<a href="../{{ lang }}/{{ rc.slug }}.html" style="display:inline-block;background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:8px;padding:8px 14px;color:var(--accent,#7c3aed);text-decoration:none;font-size:.85rem;font-weight:600">{{ rc.name }} →</a>{% endfor %}</div></div>
 {%- endif %}

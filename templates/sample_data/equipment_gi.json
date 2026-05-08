@@ -1,0 +1,61 @@
+{
+  "slug": "best-bjj-gi-guide",
+  "h1": "Best BJJ Gi Guide: Choosing Your First Kimono",
+  "h1_simple": "Best BJJ Gi",
+  "seo_title": "Best BJJ Gi Guide: Beginner Buyer's Reference | BJJ Wiki",
+  "og_title": "Best BJJ Gi Guide: Beginner Buyer's Reference",
+  "og_image_title": "Best BJJ Gi",
+  "description": "Comprehensive guide to choosing your first BJJ gi. Sizing, weave types, durability, and recommendations across price ranges.",
+  "category": "Equipment",
+  "belt_level": "White",
+  "intro_paragraphs": [
+    "Choosing your first BJJ gi is a rite of passage. The wrong choice can mean a year of discomfort and expensive replacements.",
+    "This guide covers what to look for at each price point, sizing, and care."
+  ],
+  "sections": [
+    {
+      "heading": "What to Look For",
+      "type": "ul",
+      "items": [
+        {"bold": "Weave:", "text": "Pearl weave is the standard — durable but breathable."},
+        {"bold": "GSM:", "text": "550-650 GSM for daily training; lighter for hot climates."},
+        {"bold": "IBJJF compliance:", "text": "If you compete IBJJF, ensure the gi meets size and color rules."}
+      ]
+    },
+    {
+      "heading": "Top Picks by Budget",
+      "type": "cards",
+      "items": [
+        {"title": "Beginner ($60-100)", "subtitle": "First gi, learning durability needs", "body": "Hayabusa Goorudo, Sanabul Essentials. Reliable construction without breaking the bank."},
+        {"title": "Intermediate ($120-180)", "subtitle": "Daily training, year-round use", "body": "Tatami Estilo, Hyperfly ProComp. Better fabric, longer lifespan."},
+        {"title": "Premium ($200+)", "subtitle": "Competition + frequent training", "body": "Shoyoroll, Origin USA. Premium construction, long lifespan, often handmade in USA/Brazil."}
+      ]
+    },
+    {
+      "heading": "Sizing Guide",
+      "type": "table",
+      "headers": ["Size", "Height", "Weight"],
+      "items": [
+        ["A1", "5'5\" - 5'8\"", "130-160 lbs"],
+        ["A2", "5'7\" - 5'10\"", "155-185 lbs"],
+        ["A3", "5'10\" - 6'2\"", "175-210 lbs"],
+        ["A4", "6'1\" - 6'5\"", "200-235 lbs"]
+      ]
+    },
+    {
+      "heading": "Care & Maintenance",
+      "type": "ul",
+      "items": [
+        {"bold": "Wash cold:", "text": "Hot water shrinks BJJ gis significantly. Always cold wash."},
+        {"bold": "Air dry:", "text": "Dryer heat is the #1 killer of gis. Hang dry every time."},
+        {"bold": "Vinegar rinse:", "text": "1 cup white vinegar in the wash kills bacteria without bleaching colors."}
+      ]
+    }
+  ],
+  "faq": [
+    {"question": "How many gis do I need?", "answer": "Minimum 2 — one to wash, one to wear. 3-4 if you train 4+ times per week."},
+    {"question": "Are expensive gis really worth it?", "answer": "Diminishing returns above ~$180. The biggest jump in quality is from $60 to $120."}
+  ],
+  "jsonld_article": "{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Best BJJ Gi Guide\",\"description\":\"Choose your first BJJ gi.\",\"url\":\"https://wiki.bjj-app.net/en/best-bjj-gi-guide.html\",\"inLanguage\":\"en\",\"datePublished\":\"2026-03-30T00:00:00+09:00\",\"dateModified\":\"2026-05-08T00:00:00+09:00\",\"author\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"BJJ Wiki\"},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://wiki.bjj-app.net/en/best-bjj-gi-guide.html\"}}",
+  "jsonld_breadcrumb": "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"BJJ Wiki\",\"item\":\"https://wiki.bjj-app.net/en/index.html\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Best BJJ Gi Guide\",\"item\":\"https://wiki.bjj-app.net/en/best-bjj-gi-guide.html\"}]}"
+}
