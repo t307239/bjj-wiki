@@ -113,7 +113,8 @@ cta_bottom:
   cta_text: "BJJ App を開く — 無料 →"
 
 cta_float:
-  heading: "📱 練習を記録"
+  # z255eee: heading を majority と一致 ("ロールを記録")
+  heading: "📱 ロールを記録"
   body: "ヒートマップ、スキルマップ、ストリーク。無料。"
   cta_text: "無料で開く →"
 
