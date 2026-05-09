@@ -109,13 +109,15 @@ cta_dynamic:
 cta_bottom:
   # z255eee: heading を majority (1507 page) と一致 ("como um" 含む)
   heading: "📱 Veja seu treino como um mapa de calor"
-  body: "Mapeie posições fracas. Acompanhe domínio técnico. Grátis para sempre."
+  # z255eee: body を majority と一致 (domínio de técnicas / Grátis. only)
+  body: "Mapeie posições fracas. Acompanhe domínio de técnicas. Grátis."
   cta_text: "Abrir BJJ App — Grátis →"
 
 cta_float:
   # z255eee: heading を majority と一致 ("sua rola")
   heading: "📱 Registre sua rola"
-  body: "Mapa de calor, mapa de skills, sequências. Grátis."
+  # z255eee: body を majority と一致 ("skill map" 表記)
+  body: "Mapa de calor, skill map, sequências. Grátis."
   cta_text: "Abrir Grátis →"
 
 share_bar:
@@ -152,6 +154,20 @@ belt_label:
   "Purple": "Roxa"
   "Brown": "Marrom"
   "Black": "Preta"
+
+# z255eee: difficulty bar diff-belt label (PT short)
+diff_belt_label:
+  "white": "BRANCA"
+  "blue": "AZUL"
+  "purple": "ROXA"
+  "brown": "MARROM"
+  "black": "PRETA"
+
+# z255eee: difficulty level label
+diff_level_label:
+  "Beginner": "Iniciante"
+  "Intermediate": "Intermediário"
+  "Advanced": "Avançado"
 
 site:
   base_url: "https://wiki.bjj-app.net"

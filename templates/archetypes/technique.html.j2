@@ -108,7 +108,7 @@
   <span class="belt belt-{{ page.belt_level | lower }}">{{ t.belt_label[page.belt_level] if (t.belt_label is defined and page.belt_level in t.belt_label) else page.belt_level }}</span>
   <h1>{{ page.h1 }}</h1>
   {%- if page.difficulty is defined %}
-  <div class="difficulty-bar"><span class="diff-belt" style="background:{{ t.belt_guide_box[page.difficulty.belt | lower].color }};color:#fff">{{ page.difficulty.belt | upper }}</span><span class="diff-stars">{{ page.difficulty.stars }}</span><span class="diff-label">{{ page.difficulty.label }}</span></div>
+  <div class="difficulty-bar"><span class="diff-belt" style="background:{{ t.belt_guide_box[page.difficulty.belt | lower].color }};color:#fff">{{ t.diff_belt_label[page.difficulty.belt | lower] if (t.diff_belt_label is defined and (page.difficulty.belt | lower) in t.diff_belt_label) else page.difficulty.belt | upper }}</span><span class="diff-stars">{{ page.difficulty.stars }}</span><span class="diff-label">{{ t.diff_level_label[page.difficulty.label] if (t.diff_level_label is defined and page.difficulty.label in t.diff_level_label) else page.difficulty.label }}</span></div>
   {%- endif %}
   {%- if page.guide_belt is defined %}
   {%- set bg = t.belt_guide_box[page.guide_belt | lower] %}

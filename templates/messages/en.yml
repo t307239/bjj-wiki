@@ -160,6 +160,18 @@ belt_label:
   "Brown": "Brown"
   "Black": "Black"
 
+diff_belt_label:
+  "white": "WHITE"
+  "blue": "BLUE"
+  "purple": "PURPLE"
+  "brown": "BROWN"
+  "black": "BLACK"
+
+diff_level_label:
+  "Beginner": "Beginner"
+  "Intermediate": "Intermediate"
+  "Advanced": "Advanced"
+
 # Sitewide constants
 site:
   base_url: "https://wiki.bjj-app.net"

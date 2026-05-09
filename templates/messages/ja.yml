@@ -115,7 +115,8 @@ cta_bottom:
 cta_float:
   # z255eee: heading を majority と一致 ("ロールを記録")
   heading: "📱 ロールを記録"
-  body: "ヒートマップ、スキルマップ、ストリーク。無料。"
+  # z255eee: body を majority (1463 page) と一致
+  body: "ヒートマップ・スキルマップ・連続記録。無料。"
   cta_text: "無料で開く →"
 
 share_bar:
@@ -153,6 +154,21 @@ belt_label:
   "Purple": "紫帯"
   "Brown": "茶帯"
   "Black": "黒帯"
+
+# z255eee: difficulty bar inside <span class="diff-belt"> short label (uppercase EN-style)
+# Lint catches "BLUE" / "WHITE" 等の英語残留、JA は短色名で
+diff_belt_label:
+  "white": "白"
+  "blue": "青"
+  "purple": "紫"
+  "brown": "茶"
+  "black": "黒"
+
+# z255eee: difficulty level label inside <span class="diff-label">
+diff_level_label:
+  "Beginner": "初級"
+  "Intermediate": "中級"
+  "Advanced": "上級"
 
 site:
   base_url: "https://wiki.bjj-app.net"

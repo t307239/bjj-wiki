@@ -259,10 +259,11 @@ def extract_difficulty(soup: BeautifulSoup) -> dict | None:
     raw = diff_belt.get_text(strip=True).lower()
     locale_to_english = {
         "white": "white", "blue": "blue", "purple": "purple", "brown": "brown", "black": "black",
-        # PT
+        # PT (long form + diff-belt UPPERCASE form)
         "branca": "white", "azul": "blue", "roxa": "purple", "marrom": "brown", "preta": "black",
-        # JA
+        # JA (long form 白帯 + diff-belt short form 白 — both possible from re-rendered pages)
         "白帯": "white", "青帯": "blue", "紫帯": "purple", "茶帯": "brown", "黒帯": "black",
+        "白": "white", "青": "blue", "紫": "purple", "茶": "brown", "黒": "black",
     }
     canonical = locale_to_english.get(raw, raw)
     return {
@@ -381,6 +382,25 @@ def extract_page(html: str, slug: str) -> dict:
     breadcrumb_jsonld = extract_jsonld(soup, "BreadcrumbList")
     faq_jsonld = extract_jsonld(soup, "FAQPage")
     howto_jsonld = extract_jsonld(soup, "HowTo")
+
+    # z255eee: fix wrong @id (root URL) in existing JSON-LD
+    # Some existing pages have mainEntityOfPage.@id = "https://wiki.bjj-app.net/"
+    # (root) instead of the actual canonical URL. Repair while extracting.
+    canonical_url_pattern = soup.find("link", attrs={"rel": "canonical"})
+    canonical_url = canonical_url_pattern.get("href", "") if canonical_url_pattern else ""
+    if canonical_url and article_jsonld:
+        # Replace wrong @id with canonical URL
+        article_jsonld = re.sub(
+            r'"@id":"https://wiki\.bjj-app\.net/?"',
+            f'"@id":"{canonical_url}"',
+            article_jsonld,
+        )
+        # Also fix url field
+        article_jsonld = re.sub(
+            r'"url":"https://wiki\.bjj-app\.net/?"',
+            f'"url":"{canonical_url}"',
+            article_jsonld,
+        )
 
     if article_jsonld:
         page["jsonld_article"] = article_jsonld
