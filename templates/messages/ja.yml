@@ -109,7 +109,8 @@ cta_dynamic:
 cta_bottom:
   heading: "📱 練習をヒートマップで可視化"
   body: "弱点ポジションを見える化。技術習熟度をトラック。永久無料。"
-  cta_text: "BJJ Appを開く — 無料 →"
+  # z255eee: 1 文字 space を majority (1463 page) と一致 (z243 marker drift 解消)
+  cta_text: "BJJ App を開く — 無料 →"
 
 cta_float:
   heading: "📱 練習を記録"
