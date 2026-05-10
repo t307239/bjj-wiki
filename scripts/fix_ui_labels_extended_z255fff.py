@@ -89,34 +89,30 @@ def patch_page(fp: Path, lang: str) -> int:
         html, n = re.subn(pattern, make_repl(native), html)
         count += n
 
-    # Pattern 2: badge with optional emoji + full belt name (athlete pages, with or without emoji)
+    # Pattern 2: badge with optional emoji + full belt name
+    # Note: badge tag may have inline style attribute, so use `[^>]*>` for opening tag
     belt_full = BELT_FULL.get(lang, {})
     for en_full, native in belt_full.items():
-        # Matches: `<span class="badge">Blue Belt</span>` (no emoji)
-        #          `<span class="badge">🥋 Blue Belt</span>` (with emoji)
-        #          `<span class="badge">🥋 Black <strong>Belt</strong></span>` (strong tag)
         prefix = re.escape(en_full.replace(" Belt", ""))
-        pattern = rf'(<span class="badge">)((?:[^\w<]*\s*)?){prefix}\s*(?:<strong>)?Belt(?:</strong>)?(\s*</span>)'
+        pattern = rf'(<span class="badge[^"]*"[^>]*>)((?:[^\w<]*\s*)?){prefix}\s*(?:<strong>)?Belt(?:</strong>)?(\s*</span>)'
         def make_repl(native_text):
             return lambda m: f'{m.group(1)}{m.group(2)}{native_text}{m.group(3)}'
         html, n = re.subn(pattern, make_repl(native), html)
         count += n
 
-    # Pattern 3: badge category with emoji prefix
+    # Pattern 3: badge category (with or without emoji prefix, with or without extra class)
     cat_dict = CATEGORY.get(lang, {})
     for en_cat, native in cat_dict.items():
-        # `<span class="badge">🥋 Defense</span>` (with emoji)
-        pattern = rf'(<span class="badge">)((?:[^\w<]+\s*)){re.escape(en_cat)}(\s*</span>)'
+        pattern = rf'(<span class="badge[^"]*"[^>]*>)((?:[^\w<]*\s*)?){re.escape(en_cat)}(\s*</span>)'
         def make_repl(native_text):
             return lambda m: f'{m.group(1)}{m.group(2)}{native_text}{m.group(3)}'
         html, n = re.subn(pattern, make_repl(native), html)
         count += n
 
-    # Pattern 4: difficulty in <span class="badge"> (uncovered by original)
+    # Pattern 4: difficulty in <span class="badge"> (with optional style attribute)
     diff_dict = DIFFICULTY.get(lang, {})
     for en_diff, native in diff_dict.items():
-        # `<span class="badge">Intermediate</span>` (no emoji)
-        pattern = rf'(<span class="badge">){re.escape(en_diff)}(</span>)'
+        pattern = rf'(<span class="badge[^"]*"[^>]*>){re.escape(en_diff)}(</span>)'
         def make_repl(native_text):
             return lambda m: f'{m.group(1)}{native_text}{m.group(2)}'
         html, n = re.subn(pattern, make_repl(native), html)
