@@ -83,10 +83,36 @@ def extract_page_context(html: str) -> tuple[str, list[str], str]:
 def build_prompt(slug: str, lang: str, title: str, h2_list: list[str], body: str) -> str:
     lang_instructions = {
         "en": "Write in clear, technical English. Use BJJ-specific terminology naturally.",
-        "ja": "日本語で書く。BJJ 専門用語は柔術コミュニティでの定着形 (アームバー / ガード / スイープ等) を使う。",
-        "pt": "Escreva em português brasileiro. Use termos técnicos de BJJ naturalmente.",
+        "ja": "日本語で書く。BJJ 専門用語は柔術コミュニティでの定着形 (アームバー / ガード / スイープ等) を使う。h2/h3 heading および本文を必ず日本語で書くこと。",
+        "pt": "Escreva em português brasileiro. Use termos técnicos de BJJ naturalmente. Os títulos h2/h3 e o texto devem estar em português.",
     }
     instr = lang_instructions.get(lang, lang_instructions["en"])
+
+    # z255fff: lang-aware h2/h3 headings (avoid EN heading drift in JA/PT pages)
+    headings = {
+        "en": {
+            "in_depth": f"In-Depth: {title}",
+            "biomechanics": "Biomechanics & Physics",
+            "mistakes": "Common Mistakes (Specific to This Technique)",
+            "variations": "Variations & Counters",
+            "drilling": "Drilling Recommendations",
+        },
+        "ja": {
+            "in_depth": f"深掘り解説: {title}",
+            "biomechanics": "バイオメカニクスと物理",
+            "mistakes": "よくある失敗 (この技特有)",
+            "variations": "バリエーションとカウンター",
+            "drilling": "ドリル推奨",
+        },
+        "pt": {
+            "in_depth": f"Aprofundamento: {title}",
+            "biomechanics": "Biomecânica e Física",
+            "mistakes": "Erros Comuns (Específicos desta Técnica)",
+            "variations": "Variações e Contra-ataques",
+            "drilling": "Recomendações de Treino",
+        },
+    }
+    h = headings.get(lang, headings["en"])
 
     return f"""You are a BJJ technical writer specialized in adding depth to wiki articles.
 You will receive an EXISTING wiki page about a BJJ topic. Your job is to add
@@ -103,22 +129,22 @@ You will receive an EXISTING wiki page about a BJJ topic. Your job is to add
 ## What to write (output structure, follow exactly)
 
 <section class="z248-depth-content" style="margin:32px 0;padding:20px;background:#0d1b2a;border:1px solid #1e2a3a;border-radius:8px">
-  <h2 style="color:#e2e8f0;font-size:1.2rem;font-weight:800;margin-bottom:16px">In-Depth: {title}</h2>
+  <h2 style="color:#e2e8f0;font-size:1.2rem;font-weight:800;margin-bottom:16px">{h['in_depth']}</h2>
 
-  <h3 style="color:#10b981;font-size:1rem;font-weight:700;margin-top:16px">Biomechanics & Physics</h3>
+  <h3 style="color:#10b981;font-size:1rem;font-weight:700;margin-top:16px">{h['biomechanics']}</h3>
   <p style="color:#9ca3af;line-height:1.7">[150-200 words explaining the biomechanics — leverage points, force vectors, body positioning. Use specific anatomical terms]</p>
 
-  <h3 style="color:#10b981;font-size:1rem;font-weight:700;margin-top:16px">Common Mistakes (Specific to This Technique)</h3>
+  <h3 style="color:#10b981;font-size:1rem;font-weight:700;margin-top:16px">{h['mistakes']}</h3>
   <ul style="color:#9ca3af;line-height:1.7">
     <li>[Specific mistake 1 with concrete example]</li>
     <li>[Specific mistake 2 with concrete example]</li>
     <li>[Specific mistake 3 with concrete example]</li>
   </ul>
 
-  <h3 style="color:#10b981;font-size:1rem;font-weight:700;margin-top:16px">Variations & Counters</h3>
+  <h3 style="color:#10b981;font-size:1rem;font-weight:700;margin-top:16px">{h['variations']}</h3>
   <p style="color:#9ca3af;line-height:1.7">[150-200 words on how this technique connects to other techniques — variations, counter-attacks, transitions]</p>
 
-  <h3 style="color:#10b981;font-size:1rem;font-weight:700;margin-top:16px">Drilling Recommendations</h3>
+  <h3 style="color:#10b981;font-size:1rem;font-weight:700;margin-top:16px">{h['drilling']}</h3>
   <p style="color:#9ca3af;line-height:1.7">[100-150 words on specific drills, rep counts, training partners' resistance levels]</p>
 </section>
 
