@@ -3,6 +3,7 @@ overhead-sweep
 overhook
 paper-cutter-choke
 pendulum-sweep
+peruvian-necktie
 posture
 pressure-pass
 privacy
