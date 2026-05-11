@@ -25,6 +25,7 @@
   "en/smash-pass": true,
   "en/x-pass": true,
   "en/double-leg-takedown": true,
+  "en/single-leg-takedown": true,
   "en/osoto-gari": true,
   "en/ankle-pick": true,
   "en/harai-goshi": true,
@@ -33,7 +34,6 @@
   "en/snap-down": true,
   "en/rear-naked-choke": true,
   "en/triangle-choke": true,
-  "en/guillotine-choke": true,
   "en/bow-and-arrow-choke": true,
   "en/ezekiel-choke": true,
   "en/darce-choke": true,
@@ -70,6 +70,7 @@
   "en/body-triangle": true,
   "en/scissor-sweep": true,
   "en/flower-sweep": true,
+  "en/hip-bump-sweep": true,
   "en/pendulum-sweep": true,
   "en/tripod-sweep": true,
   "en/elevator-sweep": true,
@@ -197,6 +198,5 @@
   "ja/russian-tie": true,
   "ja/underhook": true,
   "ja/overhook": true,
-  "pt/closed-guard": true,
-  "pt/open-guard": true
+  "pt/closed-guard": true
 }
