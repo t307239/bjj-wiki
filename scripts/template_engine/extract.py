@@ -65,7 +65,16 @@ def extract_intro_paragraphs(soup: BeautifulSoup) -> list[str]:
 
 
 def extract_sections(soup: BeautifulSoup) -> list[dict]:
-    """Extract content sections (h2 + card with ol/ul). Excludes Related Video, FAQ, etc."""
+    """Extract content sections by walking h2 + sibling content.
+
+    z255ggg (Wave O): content-preserving extraction.
+    For each h2, captures all sibling elements until next h2 as raw inner_html.
+    Falls back to structured (ol/ul) extraction for Technique-style cards
+    to preserve template-driven rendering for those cases.
+
+    Excludes well-known non-content sections (Related Video, FAQ, Athletes etc.)
+    which are extracted separately.
+    """
     sections = []
     excluded_headings = {
         # EN
@@ -87,36 +96,80 @@ def extract_sections(soup: BeautifulSoup) -> list[dict]:
         "Técnicas Relacionadas",
         "Atletas de Elite Que Usam Esta Técnica",
     }
-    for h2 in soup.find_all("h2"):
+    # Excluded class markers (sections with their own extract function)
+    excluded_class_markers = {"athletes-section", "faq-list", "yoga-box", "competition-box", "safety-box", "gear-box", "related-techs", "share-bar", "newsletter-box"}
+
+    def is_excluded_heading(text: str) -> bool:
+        if text in excluded_headings:
+            return True
+        if "Athletes" in text or "Atletas" in text or "選手" in text:
+            return True
+        if "FAQ" in text or "Q&A" in text or "よくある悩み" in text or "Comuns" in text:
+            return True
+        if text.lower() in {"related techniques", "技関連テクニック", "🥋 関連テクニック"}:
+            return True
+        return False
+
+    h2_list = soup.find_all("h2")
+    for i, h2 in enumerate(h2_list):
         heading_text = h2.get_text(strip=True)
-        # Skip non-content sections
-        if heading_text in excluded_headings:
+        if is_excluded_heading(heading_text):
             continue
-        if "Athletes" in heading_text or "Atletas" in heading_text:
-            continue
-        if "FAQ" in heading_text or "Q&A" in heading_text:
-            continue
-        # Find the next .card sibling
-        card = h2.find_next_sibling("div", class_="card")
-        if not card:
-            continue
-        # Determine list type
-        ol = card.find("ol")
-        ul = card.find("ul")
+
+        # Collect all elements between this h2 and next h2 (or end)
+        # Skip elements that belong to other extracted features (athlete chips etc.)
+        next_h2 = h2_list[i + 1] if i + 1 < len(h2_list) else None
+        section_elements = []
+        for sib in h2.find_next_siblings():
+            if sib is next_h2:
+                break
+            if isinstance(sib, Tag):
+                cls = sib.get("class") or []
+                if any(c in cls for c in excluded_class_markers):
+                    continue
+            section_elements.append(sib)
+
+        # Try structured extraction first (for Technique-style card with ol/ul)
+        # Fall back to preserved raw HTML for any other structure
         section: dict = {"heading": heading_text}
-        # Style heuristic: warning if h2 has color:#fca5a5
         h2_style = h2.get("style", "")
         if "fca5a5" in h2_style or "dc2626" in h2_style:
             section["style"] = "warning"
-        if ol:
-            section["type"] = "ol"
-            section["items"] = extract_list_items(ol)
-        elif ul:
-            section["type"] = "ul"
-            section["items"] = extract_list_items(ul)
+
+        # Look for a .card sibling
+        card = None
+        for el in section_elements:
+            if isinstance(el, Tag) and el.name == "div" and "card" in (el.get("class") or []):
+                card = el
+                break
+
+        if card and (card.find("ol", recursive=False) or card.find("ul", recursive=False)):
+            # Technique-style structured (preserve original behavior)
+            ol = card.find("ol", recursive=False)
+            ul = card.find("ul", recursive=False)
+            if ol:
+                section["type"] = "ol"
+                section["items"] = extract_list_items(ol)
+            elif ul:
+                section["type"] = "ul"
+                section["items"] = extract_list_items(ul)
+            else:
+                section["type"] = "ul"
+                section["items"] = []
+        elif section_elements:
+            # Content-preserving: capture entire section as raw inner_html
+            section["type"] = "preserved"
+            inner_parts = []
+            for el in section_elements:
+                inner_parts.append(str(el))
+            section["inner_html"] = "".join(inner_parts).strip()
+            # Skip empty sections
+            if not section["inner_html"]:
+                continue
         else:
-            section["type"] = "ul"
-            section["items"] = []
+            # No content
+            continue
+
         sections.append(section)
     return sections
 
