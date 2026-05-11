@@ -2,103 +2,100 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="/wiki-v2.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
 <title>BJJ青帯のゲーム：パーソナルスタイルの構築とゲームの拡張</title>
-<meta name="description" content="青帯がBJJのパーソナルゲームを開発する方法 — ガード・パス・サブミッションの好みを構築し、最も一般的な青帯のプラトー。">
-<link rel="canonical" href="https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html">
-<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/bjj-blue-belt-game.html">
-<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html">
-<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/bjj-blue-belt-game.html">
-<link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/bjj-blue-belt-game.html">
-<meta property="og:title" content="BJJ青帯のゲーム：パーソナルスタイルの構築とゲームの拡張">
+<meta name="description" content="青帯がBJJのパーソナルゲームを開発する方法 — ガード・パス・サブミッションの好みを構築し、最も一般的な青帯のプラトー。"><meta property="og:title" content="BJJ青帯のゲーム：パーソナルスタイルの構築とゲームの拡張">
 <meta property="og:description" content="青帯がBJJのパーソナルゲームを開発する方法 — ガード・パス・サブミッションの好みを構築し、最も一般的な青帯のプラトー。">
 <meta property="og:type" content="article">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html">
 <meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Bjj%20Blue%20Belt%20Game&lang=ja">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bjj_wiki">
 <meta name="twitter:title" content="BJJ青帯のゲーム：パーソナルスタイルの構築とゲームの拡張">
 <meta name="twitter:description" content="青帯がBJJのパーソナルゲームを開発する方法 — ガード・パス・サブミッションの好みを構築し、最も一般的な青帯のプラトー。">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Bjj%20Blue%20Belt%20Game&lang=ja">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WC3DKRB');</script>
-<!-- End Google Tag Manager -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"BJJ青帯ゲームとは具体的にどのような練習方法ですか？","acceptedAnswer":{"@type":"Answer","text":"BJJ青帯ゲームとは、青帯レベルの帯の選手が、特定のポジションや状況に特化したスパーリングを行う練習方法です。例えば、ガードパスやクローズドガードからの脱出など、青帯で習得すべき技術に焦点を当てます。"}},{"@type":"Question","name":"青帯ゲームはどんな目的で取り入れられますか？","acceptedAnswer":{"@type":"Answer","text":"青帯ゲームは、青帯選手が基礎技術をより深く理解し、実戦でスムーズに使えるようにすることを目的としています。また、特定の状況での判断力や対応力を養うのにも役立ちます。"}},{"@type":"Question","name":"青帯ゲームでよくある失敗例と対策を教えてください。","acceptedAnswer":{"@type":"Answer","text":"よくある失敗例としては、一つの技術に固執しすぎてしまうことです。対策としては、コーチの指示に従い、複数の技術を試したり、相手の反応を見て柔軟に対応することが重要です。"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BJJ Wiki","item":"https://wiki.bjj-app.net/"},{"@type":"ListItem","position":2,"name":"全BJJ技一覧","item":"https://wiki.bjj-app.net/ja/index.html"},{"@type":"ListItem","position":3,"name":"BJJ青帯ゲームの開発","item":"https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html"}]}</script></head>
+<link rel="canonical" href="https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html">
+<link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/bjj-blue-belt-game.html">
+<link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/bjj-blue-belt-game.html">
+<link rel="alternate" hreflang="ja" href="https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html">
+<link rel="alternate" hreflang="pt" href="https://wiki.bjj-app.net/pt/bjj-blue-belt-game.html">
+<link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="https://wiki.bjj-app.net/og-image.svg">
+<link rel="stylesheet" href="/wiki-v2.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BJJ Wiki","item":"https://wiki.bjj-app.net/"},{"@type":"ListItem","position":2,"name":"全BJJ技一覧","item":"https://wiki.bjj-app.net/ja/index.html"},{"@type":"ListItem","position":3,"name":"BJJ青帯ゲームの開発","item":"https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html"}]}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"BJJ青帯ゲームとは具体的にどのような練習方法ですか？","acceptedAnswer":{"@type":"Answer","text":"BJJ青帯ゲームとは、青帯レベルの帯の選手が、特定のポジションや状況に特化したスパーリングを行う練習方法です。例えば、ガードパスやクローズドガードからの脱出など、青帯で習得すべき技術に焦点を当てます。"}},{"@type":"Question","name":"青帯ゲームはどんな目的で取り入れられますか？","acceptedAnswer":{"@type":"Answer","text":"青帯ゲームは、青帯選手が基礎技術をより深く理解し、実戦でスムーズに使えるようにすることを目的としています。また、特定の状況での判断力や対応力を養うのにも役立ちます。"}},{"@type":"Question","name":"青帯ゲームでよくある失敗例と対策を教えてください。","acceptedAnswer":{"@type":"Answer","text":"よくある失敗例としては、一つの技術に固執しすぎてしまうことです。対策としては、コーチの指示に従い、複数の技術を試したり、相手の反応を見て柔軟に対応することが重要です。"}}]}
+</script>
+<style>
+  /* YouTube embed */
+  .yt-wrap{background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:24px;margin-bottom:8px}
+  .yt-label{font-size:0.82rem;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+  .yt-frame-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
+    border-radius:10px}
+  .yt-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+</style>
+</head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WC3DKRB"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 <div id="read-progress"></div>
-
 <div class="container">
-<header>
-  <a href="../ja/index.html" class="logo">🥋 BJJ Wiki<span class="badge-beta">β</span></a>
-  <nav class="lang-nav">
-    <a href="../en/bjj-blue-belt-game.html">🇺🇸 EN</a>
-    <a href="../ja/bjj-blue-belt-game.html" class="active">🇯🇵 JA</a>
-    <a href="../pt/bjj-blue-belt-game.html">🇧🇷 PT</a>
-  </nav>
-</header>
+  <header>
+    <a href="../ja/index.html" class="logo">🥋 BJJ Wiki</a>
+    <nav class="lang-nav"><a href="../en/bjj-blue-belt-game.html">🇺🇸 EN</a><a href="../ja/bjj-blue-belt-game.html" class="active">🇯🇵 JA</a><a href="../pt/bjj-blue-belt-game.html">🇧🇷 PT</a></nav>
+  </header>
 
-  <div class="breadcrumb"><a href="index.html">BJJ Wiki</a> › BJJ青帯ゲームの開発</div>
+  <span class="badge"></span><br>
+  <span class="belt belt-blue">青帯</span>
   <h1>BJJ青帯ゲームの開発</h1>
+  <p></p>
 
-<div class="difficulty-bar">
-  <span class="belt belt-blue">🥋 青</span>
-  <span class="stars">★★☆☆☆</span>
-  <span class="diff-label">初級</span>
-</div>
-
-  <div class="meta">BJJ Wiki · Updated 2026-03-16</div>
-  <p>青帯はパーソナルスタイルが出現するところです。白帯を生き残り、基礎の研鑽を終え、今は独自のゲームを構築し始める十分な知識を持っています。これはエキサイティングです — そして新しい課題が伴います。</p>
   <div id="toc" class="toc">
     <div class="toc-title">目次</div>
     <ul class="toc-list" id="toc-list"></ul>
   </div>
-<h2>青帯での変化</h2>
+
+
+  <h2>青帯での変化</h2>
 <p>白帯ではサバイバルが目標です。青帯では、ゲームを十分に理解し始め、反応的ではなく積極的になれます。パターン — セットアップ・よくあるトラップ・予測できるトランジション — を認識し始めます。また、自分の体型と動きのスタイルに自然に感じるポジションを見つけます。</p>
-<h2>ガードの構築</h2>
-<p>一つのガードを深く開発することを選んでください：クローズドガード（コントロールとサブミッション）・ハーフガード（スイープとバックテイク）・オープンガード（バタフライ・スパイダー・ラッソー）。早すぎる広がりはどこでも表面的な能力につながりますが、どこでも深みがありません。青帯で支配的になる実践者は通常、特定のガードシステムに執着する人たちです。</p>
-<div class="tip-box"><strong>💡 青帯の優先事項:</strong> 深さが広さを打ち破ります。5つの高確率セットアップ・3つのスイープオプション・2つのサブミッションエントリーを持つ1つのガードポジションは、それぞれ1つのオプションを持つ10のガードポジションを上回ります。</div>
-<h2>パスゲームの構築</h2>
+
+
+  <h2>ガードの構築</h2>
+<p>一つのガードを深く開発することを選んでください：クローズドガード（コントロールとサブミッション）・ハーフガード（スイープとバックテイク）・オープンガード（バタフライ・スパイダー・ラッソー）。早すぎる広がりはどこでも表面的な能力につながりますが、どこでも深みがありません。青帯で支配的になる実践者は通常、特定のガードシステムに執着する人たちです。</p><div class="tip-box"><strong>💡 青帯の優先事項:</strong> 深さが広さを打ち破ります。5つの高確率セットアップ・3つのスイープオプション・2つのサブミッションエントリーを持つ1つのガードポジションは、それぞれ1つのオプションを持つ10のガードポジションを上回ります。</div>
+
+
+  <h2>パスゲームの構築</h2>
 <p>同様に、1つのパスタイルを選んでください：プレッシャーパス（ニースライス・トレアンド）またはレッグドラッグ/オーバーアンダー。各スタイルは異なる感触を持ち、異なるアスレチックプロフィールに合います。</p>
-<h2>青帯のプラトー</h2>
-<p>ほぼすべての青帯がプラトーに達します — 数ヶ月間進歩が止まったように感じる時期。これは通常青帯になって6〜12ヶ月で起こります。解決策：新しいものを追加する前に1つの特定の弱点を特定し4〜6週間ドリルしてください。</p>
-  
-  <script>
+
+
+  <h2>青帯のプラトー</h2>
+<p>ほぼすべての青帯がプラトーに達します — 数ヶ月間進歩が止まったように感じる時期。これは通常青帯になって6〜12ヶ月で起こります。解決策：新しいものを追加する前に1つの特定の弱点を特定し4〜6週間ドリルしてください。</p><script>
 (function(){
   var shown=false;
   function show(){if(!shown&&!localStorage.getItem('cta_closed')){document.getElementById('floatCta').style.display='block';shown=true;}}
   setTimeout(show,30000);
   window.addEventListener('scroll',function(){if(window.scrollY/document.body.scrollHeight>.5)show();});
 })();
-</script>
-
-<div class="related-section">
-  <h3>🥋 関連テクニック</h3>
-  <div class="related-grid">
+</script><div class="related-section">
+<h3>🥋 関連テクニック</h3>
+<div class="related-grid">
 <a href="bjj-belt-system.html">BJJ帯制度：全ランクの完全ガイド</a>
 <a href="bjj-belt-promotion-tips.html">BJJ帯昇格のヒント</a>
 <a href="bjj-belt-promotion-guide.html">BJJ帯昇格システム説明</a>
 <a href="bjj-purple-belt-refinement.html">BJJ紫帯の洗練</a>
 <a href="bjj-purple-belt-guide.html">BJJ紫帯ガイド｜黒帯への中間の道</a>
-  </div>
 </div>
-
-<script>
+</div><script>
 (function(){
   if(window.innerWidth<1200)return;
   var hs=document.querySelectorAll('.container h2');
@@ -140,10 +137,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     hs.forEach(function(h){io.observe(h);});
   }
 })();
-</script>
+</script><div class="cta-banner"><a href="https://bjj-app.net/login?ref=wiki&amp;page=bjj-blue-belt-game">🥋 BJJ練習を無料で記録しよう — BJJ Appを試す →</a></div><div class="yt-wrap">
+<h3 class="yt-label">関連動画</h3>
+<div class="yt-frame-wrap">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" loading="lazy" src="https://www.youtube.com/embed/Jekd1ruohpw?rel=0&amp;modestbranding=1" title="BJJ technique tutorial">
+</iframe>
+</div>
+</div>
 
-<div class="cta-banner"><a href="https://bjj-app.net/login?ref=wiki&page=bjj-blue-belt-game">🥋 BJJ練習を無料で記録しよう — BJJ Appを試す →</a></div>
 
+  <h2>関連動画</h2>
+  <div class="card" style="background:#0a0a1a;border-color:#3a3a6a">
+    <p style="color:#9ca3af;font-size:.9rem;margin-bottom:12px">黒帯インストラクターによるステップバイステップの解説:</p>
+    <a class="yt-search-btn" href="https://www.youtube.com/results?search_query=BJJ%E9%9D%92%E5%B8%AF%E3%82%B2%E3%83%BC%E3%83%A0%E3%81%AE%E9%96%8B%E7%99%BA+BJJ+tutorial" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      ▶ BJJ青帯ゲームの開発をYouTubeで検索
+    </a>
+    <div style="margin-top:14px;padding:12px 16px;background:#0d2010;border:1px solid #22c55e40;border-radius:8px">
+      <p style="color:#86efac;font-size:.85rem;margin:0">
+        🥋 ぴったりの動画が見つからない? インストラクターの動画URLを
+        <a href="https://bjj-app.net/login?ref=wiki&page=bjj-blue-belt-game-ugc" target="_blank" rel="noopener noreferrer" style="color:#4ade80;font-weight:700;text-decoration:none">BJJ App (無料) →</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Competition Rules cross-link -->
+  <div style="background:#0d1a2e;border-left:4px solid #3a86ff;border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0">
+    <p style="font-size:.9rem;font-weight:700;color:#93c5fd;margin-bottom:.6rem">📋 試合ルール</p>
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+      <a href="ibjjf-rules.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">IBJJFルール →</a>
+      <a href="adcc-rules.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">ADCCルール →</a>
+      <a href="bjj-competition-guide.html" style="background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:.5rem .9rem;color:#93c5fd;text-decoration:none;font-size:.82rem">試合ガイド →</a>
+    </div>
+  </div>
+  <!-- Training Safety cross-link -->
+  <div style="background:#1a0d2e;border-left:4px solid #ff6b6b;border-radius:8px;padding:14px 18px;margin:20px 0">
+    <strong style="color:#ff6b6b;font-size:.9rem">⚕️ 練習安全 & パフォーマンス</strong>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px">
+      <a href="bjj-injury-prevention.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">🛡️ 怪我予防</a>
+      <a href="bjj-warm-up-routine.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">🔥 ウォームアップ</a>
+      <a href="bjj-weight-cutting.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">⚖️ 減量</a>
+      <a href="bjj-mental-game.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">🧠 メンタル</a>
+      <a href="bjj-competition-prep-checklist.html" style="background:#2a1a3a;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-size:.85rem">📋 試合準備</a>
+    </div>
+  </div>
+  <!-- CTA: app registration only (CLAUDE.md: affiliate links prohibited) -->
+  <div class="gear-box"><h3>⚙️ おすすめギア</h3><div class="gear-links"><a class="gear-link" href="best-bjj-gi-guide.html">🥋 BJJ道着ガイド</a><a class="gear-link" href="best-bjj-mouthguard.html">🦷 マウスピース</a></div></div>
+  <!-- FAQ Section (long-tail SEO) -->
+  <div style="margin:32px 0">
+    <h2>BJJのよくある悩み・FAQ</h2>
+    <div class="faq"><div class="faq-q">Q: BJJ青帯ゲームの開発で、相手の大きい選手に対してどうやって効果的に防御すればいいですか？</div><p>相手の体重と力を利用するために、体の重心を低く保ち、相手の腰に密着するようにしましょう。相手が前に出てきたら、片足を相手の股関節に深く差し込み、腰を固定することで、相手の推進力を無効化し、コントロールを維持します。</p></div>
+    <div class="faq"><div class="faq-q">Q: BJJ青帯ゲームの開発で、ガードパスをされた時に、首が痛くなるのはなぜですか？</div><p>ガードパス中に相手の体重が首や肩に過度に集中している場合、首の筋肉が過伸展や圧迫を受けて痛みが生じます。これは、相手の体重を効果的に分散させられていない、あるいは首を過度に緊張させて防御しようとしているサインです。</p></div>
+    <div class="faq"><div class="faq-q">Q: BJJ青帯ゲームの開発で、マウントポジションからエスケープする際に、相手に腕を掴まれたらどうすればいいですか？</div><p>相手に腕を掴まれた場合、掴まれた腕を相手の体の方へ引き込み、自分の脇を締めるようにして肩甲骨を固定します。同時に、掴まれていない方の腕で相手の腰を押し、体を横に回転させることで、掴まれた腕へのプレッシャーを軽減し、エスケープのスペースを作ります。</p></div>
+  </div>
+  <!-- Related Techniques Card Grid -->
+  <div style="background:#0f1420;border:1px solid #1f2840;border-radius:12px;padding:24px;margin:32px 0">
+    <h3 style="font-size:1rem;font-weight:700;color:#7c6af7;margin-bottom:16px">🥋 関連テクニック</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <a href="../ja/bjj-belt-system.html">BJJ帯制度：全ランクの完全ガイド</a>
+      <a href="../ja/bjj-belt-promotion-tips.html">BJJ帯昇格のヒント</a>
+      <a href="../ja/bjj-belt-promotion-guide.html">BJJ帯昇格システム説明</a>
+      <a href="../ja/bjj-purple-belt-refinement.html">BJJ紫帯の洗練</a>
+      <a href="../ja/bjj-purple-belt-guide.html">BJJ紫帯ガイド｜黒帯への中間の道</a>
+    </div>
+  </div>
+
+  <div class="beehiiv-wrap"><h3>📬 2,000人以上の柔術家に参加</h3><p>無料BJJ白帯ガイド+毎週の技術解説・練習のコツ・独占コンテンツ。スパムなし。いつでも配信停止可能。</p><a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">無料で受け取る →</a></div>
+
+  <!-- Dynamic Contextual CTA Banner -->
+  <div style="background:var(--card,#18181b);border:1px solid rgba(233,69,96,0.3);border-radius:12px;padding:20px 24px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div>
+      <p style="margin:0 0 4px;font-size:.95rem;font-weight:700;color:#e2e2ee">🥋 初めてのBJJ青帯ゲームの開発を決めた? すべての一本を記録しよう。</p>
+      <p style="margin:0;font-size:.82rem;color:#7a7a9a">サブミッション、セッション、ストリークを記録 — 永久無料。</p>
+    </div>
+    <a href="https://bjj-app.net/login?ref=wiki&page=bjj-blue-belt-game-dynamic" target="_blank" rel="noopener noreferrer" onclick="gtag&&gtag('event','app_cta_click',{page:location.pathname,lang:'ja',tech:'bjj-blue-belt-game'})" style="flex-shrink:0;background:var(--accent2,#e94560);color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700;white-space:nowrap">無料で試す →</a>
+  </div>
+
+  <!-- Share Bar -->
   <div class="yt-wrap">
     <h3 class="yt-label">関連動画</h3>
     <div class="yt-frame-wrap">
@@ -158,65 +228,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
   <div class="share-bar">
-<span style="color:var(--muted);font-size:.85rem">共有:</span>
-<a href="https://twitter.com/intent/tweet?url=https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html&text=BJJ青帯のゲーム：パーソナルスタイルの構築とゲームの拡張" target="_blank" rel="noopener noreferrer">𝕏 ポスト</a>
-<a href="https://www.reddit.com/submit?url=https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html&title=BJJ青帯のゲーム：パーソナルスタイルの構築とゲームの拡張" target="_blank" rel="noopener noreferrer">Reddit</a>
+    <p>このテクニックをシェア</p>
+    <div class="share-btns">
+      <a class="share-btn x" href="https://twitter.com/intent/tweet?url=https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html&text=BJJ%E9%9D%92%E5%B8%AF%E3%82%B2%E3%83%BC%E3%83%A0%E3%81%AE%E9%96%8B%E7%99%BA+%23BJJ+%23bjjwiki" target="_blank" rel="noopener noreferrer">𝕏 Xに投稿</a>
+      <a class="share-btn reddit" href="https://www.reddit.com/submit?url=https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html&title=BJJ%E9%9D%92%E5%B8%AF%E3%82%B2%E3%83%BC%E3%83%A0%E3%81%AE%E9%96%8B%E7%99%BA" target="_blank" rel="noopener noreferrer">⬆ Reddit</a>
+      <button class="share-btn copy" onclick="navigator.clipboard.writeText('https://wiki.bjj-app.net/ja/bjj-blue-belt-game.html').then(()=>{this.textContent='✓ コピー完了!';setTimeout(()=>this.textContent='📋 リンクをコピー',2000)})">📋 リンクをコピー</button>
+      <a class="yt-search-btn" href="https://www.youtube.com/results?search_query=BJJ%E9%9D%92%E5%B8%AF%E3%82%B2%E3%83%BC%E3%83%A0%E3%81%AE%E9%96%8B%E7%99%BA+BJJ+tutorial" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> ▶ YouTubeで見る</a>
+    </div>
+  </div>
+  <!-- z243-bottom-cta --><div class="z243-bottom-cta" style="margin:2rem 0;padding:24px 24px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);border:2px solid #2e7d32;border-radius:14px;text-align:center"><div style="font-weight:700;color:#a5d6a7;font-size:1.1rem;margin-bottom:6px">📱 練習をヒートマップで可視化</div><div style="font-size:.9rem;color:#c8e6c9;margin-bottom:16px">弱点ポジションを見える化。技術習熟度をトラック。永久無料。</div><a href="https://bjj-app.net/login?ref=wiki&page=bottom" style="display:inline-block;background:#10B981;color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'bottom',lang:'ja'})">BJJ App を開く — 無料 →</a></div>
+<footer>
+    <p>BJJ Wiki — 無料の柔術技術百科事典</p>
+    <p style="margin-top:8px"><a href="../privacy.html" style="color:var(--muted)">プライバシーポリシー</a></p>
+  </footer>
 </div>
-<div class="beehiiv-wrap"><h3>📬 2,000人以上の柔術家に参加</h3>
-<p>無料BJJ白帯ガイド＋毎週の技術解説・練習のコツ・独占コンテンツ。スパムなし。いつでも配信停止可能。</p>
-<a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">無料アクセスを取得 →</a></div>
-<section class="faq-section">
-  <h2>もっと質問</h2>
-    <details><summary>BJJ青帯ゲームとは具体的にどのような練習方法ですか？</summary><p>BJJ青帯ゲームとは、青帯レベルの帯の選手が、特定のポジションや状況に特化したスパーリングを行う練習方法です。例えば、ガードパスやクローズドガードからの脱出など、青帯で習得すべき技術に焦点を当てます。</p></details>
-    <details><summary>青帯ゲームはどんな目的で取り入れられますか？</summary><p>青帯ゲームは、青帯選手が基礎技術をより深く理解し、実戦でスムーズに使えるようにすることを目的としています。また、特定の状況での判断力や対応力を養うのにも役立ちます。</p></details>
-    <details><summary>青帯ゲームでよくある失敗例と対策を教えてください。</summary><p>よくある失敗例としては、一つの技術に固執しすぎてしまうことです。対策としては、コーチの指示に従い、複数の技術を試したり、相手の反応を見て柔軟に対応することが重要です。</p></details>
-</section>
-<section style="background:var(--card,#18181b);border-top:1px solid var(--border,rgba(255,255,255,0.10));padding:32px 0;margin-top:32px">
-  <h2 style="color:var(--text,#e2e8f0);font-size:1.3rem;margin-bottom:20px">よくある質問・トラブル</h2>
-  <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: BJJ青帯ゲームの開発で、相手の大きい選手に対してどうやって効果的に防御すればいいですか？</div><p style="color:#c2c2d9;margin:0">相手の体重と力を利用するために、体の重心を低く保ち、相手の腰に密着するようにしましょう。相手が前に出てきたら、片足を相手の股関節に深く差し込み、腰を固定することで、相手の推進力を無効化し、コントロールを維持します。</p></div>
-  <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: BJJ青帯ゲームの開発で、ガードパスをされた時に、首が痛くなるのはなぜですか？</div><p style="color:#c2c2d9;margin:0">ガードパス中に相手の体重が首や肩に過度に集中している場合、首の筋肉が過伸展や圧迫を受けて痛みが生じます。これは、相手の体重を効果的に分散させられていない、あるいは首を過度に緊張させて防御しようとしているサインです。</p></div>
-  <div class="faq" style="background:var(--card,#18181b);border:1px solid var(--border,rgba(255,255,255,0.10));border-radius:12px;padding:20px;margin-bottom:16px"><div class="faq-q" style="font-weight:700;color:var(--accent,#7c3aed);margin-bottom:8px">Q: BJJ青帯ゲームの開発で、マウントポジションからエスケープする際に、相手に腕を掴まれたらどうすればいいですか？</div><p style="color:#c2c2d9;margin:0">相手に腕を掴まれた場合、掴まれた腕を相手の体の方へ引き込み、自分の脇を締めるようにして肩甲骨を固定します。同時に、掴まれていない方の腕で相手の腰を押し、体を横に回転させることで、掴まれた腕へのプレッシャーを軽減し、エスケープのスペースを作ります。</p></div>
-</section>
-
-</div>
-<!-- z243-bottom-cta --><div class="z243-bottom-cta" style="margin:2rem 0;padding:24px 24px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);border:2px solid #2e7d32;border-radius:14px;text-align:center"><div style="font-weight:700;color:#a5d6a7;font-size:1.1rem;margin-bottom:6px">📱 練習をヒートマップで可視化</div><div style="font-size:.9rem;color:#c8e6c9;margin-bottom:16px">弱点ポジションを見える化。技術習熟度をトラック。永久無料。</div><a href="https://bjj-app.net/login?ref=wiki&page=bottom" style="display:inline-block;background:#10B981;color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'bottom',lang:'ja'})">BJJ App を開く — 無料 →</a></div>
-<footer class="wc-footer"><p class="wc-footer-text">BJJ Wikiの内容は教育目的のみを意図しており、専門的な指導を構成するものではありません。ブラジリアン柔術には固有の怪我のリスクがあります。必ず有資格の指導者の監督の下でトレーニングしてください。BJJ App Inc.は、ここに記載された技術の適用により生じた怪我について一切の責任を負いません。 自身の経験レベルに適したテクニックを練習してください。初心者はファンダメンタルに集中し、指導者なしでの上級サブミッション（ヒールフック、膝十字等）の練習は避けてください。</p></footer>
-<button id="back-to-top" class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<script>
-(function(){
-  // Reading progress bar
-  var prog=document.getElementById('read-progress');
-  // Back to top
-  var btn=document.getElementById('back-to-top');
-  if(prog||btn){
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
     window.addEventListener('scroll',function(){
       var scrolled=window.scrollY;
       var total=document.body.scrollHeight-window.innerHeight;
-      if(total>0&&prog){prog.style.width=(scrolled/total*100)+'%';}
-      if(btn){btn.style.display=scrolled>300?'flex':'none';}
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
     },{passive:true});
-  }
-  // Auto TOC from h2 elements
-  var headings=document.querySelectorAll('h2');
-  if(headings.length>=3){
-    var tocEl=document.getElementById('toc');
-    var listEl=document.getElementById('toc-list');
-    if(tocEl&&listEl){
-      headings.forEach(function(h,i){
-        var id='section-'+i;
-        h.id=id;
-        var li=document.createElement('li');
-        var a=document.createElement('a');
-        a.href='#'+id;
-        a.textContent=h.textContent;
-        li.appendChild(a);
-        listEl.appendChild(li);
-      });
-      tocEl.style.display='block';
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
     }
-  }
-})();
-</script>
+  })();
+  </script>
 <!-- z243-float-cta --><div id="z243-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
 <button onclick="document.getElementById('z243-float').style.display='none';try{localStorage.setItem('z243_float_dismissed',Date.now())}catch(e){}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
 <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 ロールを記録</div>
