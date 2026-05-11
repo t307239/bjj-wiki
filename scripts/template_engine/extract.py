@@ -384,6 +384,111 @@ def extract_video_embed_id(soup: BeautifulSoup) -> str | None:
     return m.group(1) if m else None
 
 
+def is_technique_archetype(soup: BeautifulSoup) -> bool:
+    """Detect if page is a Technique archetype (badge + difficulty bar + structured sections).
+
+    Returns True if page has the canonical Technique structure:
+      - <span class="badge">{tech category}</span>
+      - <span class="belt belt-X">
+      - difficulty-bar
+      - h2 + .card sections with ol/ul
+
+    Returns False for other archetypes (Equipment, Drill, Athlete, Concept, etc.)
+    which need body-preservation extraction.
+    """
+    # Quick markers
+    badge = soup.find("span", class_="badge")
+    if not badge:
+        return False
+    badge_text = badge.get_text(strip=True)
+    TECH_CATS = {"Choke","Defense","Escape","Guard","Joint Lock","Leg Lock","Passing","Position","Sweep","Takedown","Transition",
+                 "チョーク","ディフェンス","エスケープ","ガード","関節技","レッグロック","パスガード","ポジション","スイープ","テイクダウン","トランジション","絞め技","足関節技","ガードパス",
+                 "Estrangulamento","Defesa","Escape","Guarda","Chave de Articulação","Chave de Perna","Passagem","Passagem de Guarda","Posição","Raspagem","Queda","Transição","Fuga"}
+    if badge_text in TECH_CATS:
+        return True
+    return False
+
+
+def extract_main_body(html: str) -> str:
+    """Extract main body content as raw HTML between h1 and template chrome.
+
+    z255iii (Wave BB): String-based extraction (avoids BeautifulSoup sibling
+    traversal limitations on deep / nested DOM structures common in athlete
+    / equipment pages). Captures everything between (after h1 closing tag)
+    and (before z243-bottom-cta marker or </body>) as raw HTML.
+
+    Then strips template-injected blocks (share-bar, athletes-section,
+    related-techs, dig-deeper, dynamic-cta, z248-depth-content) which are
+    rendered separately by template.
+
+    For non-Technique archetypes (Equipment, Drill, Concept, Rule, Misc):
+    template renders this raw with `{{ page.main_body | safe }}` instead
+    of iterating sections — preserves 100% of body content.
+    """
+    # Find h1 closing tag — start point
+    h1_close = re.search(r'</h1>', html)
+    if not h1_close:
+        return ""
+    start = h1_close.end()
+
+    # Find end point: first z243-bottom-cta marker OR <footer>
+    end = len(html)
+    z243_match = re.search(r'<!--\s*z243-bottom-cta\s*-->', html)
+    if z243_match:
+        end = z243_match.start()
+    else:
+        footer_match = re.search(r'<footer\b', html)
+        if footer_match:
+            end = footer_match.start()
+
+    if start >= end:
+        return ""
+
+    body = html[start:end]
+
+    # Strip template-injected blocks (rendered separately by template)
+    excluded_classes = ["share-bar", "newsletter-box", "athletes-section",
+                        "yoga-box", "competition-box", "safety-box", "gear-box",
+                        "related-techs", "dig-deeper", "dynamic-cta",
+                        "z248-depth-content"]
+    for cls in excluded_classes:
+        # Strip <div class="X">...</div> (handles single class or in multi-class)
+        body = re.sub(
+            rf'<div\b[^>]*class="[^"]*\b{re.escape(cls)}\b[^"]*"[^>]*>.*?</div>(?=\s*<|$)',
+            '',
+            body,
+            flags=re.DOTALL,
+        )
+
+    # Strip excluded h2 sections (FAQ / Related Video / Related Techniques)
+    # These are rendered by template at standard locations
+    excluded_h2_patterns = [
+        r"関連動画", r"Related Video", r"Vídeo Relacionado",
+        r"Common BJJ Problems", r"よくある悩み", r"Comuns no BJJ",
+        r"🥋 関連テクニック", r"Related Techniques", r"Técnicas Relacionadas",
+        r"Frequently Asked", r"よくある質問", r"Perguntas Frequentes",
+        r"More Questions", r"もっと質問", r"Mais Perguntas",
+        r"BJJのよくある悩み", r"Problemas Comuns",
+    ]
+    h2_pattern = "|".join(excluded_h2_patterns)
+    # Strip <h2>EXCLUDED</h2> + content up to next h2 (or end of body)
+    body = re.sub(
+        rf'<h2[^>]*>[^<]*(?:{h2_pattern})[^<]*</h2>(.*?)(?=<h2\b|$)',
+        '',
+        body,
+        flags=re.DOTALL,
+    )
+
+    # Strip <div id="toc">...</div> (template renders its own TOC)
+    body = re.sub(r'<div\b[^>]*\bid="toc"[^>]*>.*?</div>\s*', '', body, flags=re.DOTALL)
+    # Strip <ul class="lang-switch">...</ul>
+    body = re.sub(r'<ul\b[^>]*class="[^"]*\blang-switch\b[^"]*"[^>]*>.*?</ul>', '', body, flags=re.DOTALL)
+    # Strip share buttons / newsletter forms
+    body = re.sub(r'<div\b[^>]*\bclass="share-buttons"[^>]*>.*?</div>', '', body, flags=re.DOTALL)
+
+    return body.strip()
+
+
 def extract_difficulty(soup: BeautifulSoup) -> dict | None:
     """Extract difficulty bar (belt color, stars, label).
 
@@ -510,7 +615,17 @@ def extract_page(html: str, slug: str) -> dict:
         page["guide_belt"] = guide_belt
 
     page["intro_paragraphs"] = extract_intro_paragraphs(soup)
-    page["sections"] = extract_sections(soup)
+
+    # z255iii (Wave DD): auto-detect archetype to choose extract mode.
+    # Technique: section-by-section extract (preserves Technique-style structure)
+    # Other: main_body preservation (captures all content as raw HTML)
+    if is_technique_archetype(soup):
+        page["sections"] = extract_sections(soup)
+    else:
+        # Body-preservation mode for non-Technique archetypes
+        page["main_body"] = extract_main_body(soup)
+        page["sections"] = []  # template skips section iteration when main_body present
+
     page["athletes"] = extract_athletes(soup)
     page["yoga_poses"] = extract_yoga_poses(soup)
     page["faq"] = extract_faq(soup)

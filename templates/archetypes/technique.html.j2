@@ -128,6 +128,9 @@
     <ul class="toc-list" id="toc-list"></ul>
   </div>
 
+{%- if page.main_body is defined and page.main_body %}
+{{ page.main_body | safe }}
+{%- else %}
 {% for section in page.sections %}
 {%- if section.type == 'preserved' %}
   <h2{% if section.style is defined and section.style == 'warning' %} style="color:#fca5a5;border-left-color:#dc2626"{% endif %}>{{ section.heading | replace('&', '&amp;') }}</h2>
@@ -147,6 +150,7 @@
 {%- endif %}
 
 {% endfor %}
+{%- endif %}
   <h2>{{ t.related_video.heading }}</h2>
   <div class="card" style="background:#0a0a1a;border-color:#3a3a6a">
     <p style="color:#9ca3af;font-size:.9rem;margin-bottom:12px">{{ t.related_video.intro }}</p>
