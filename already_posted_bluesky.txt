@@ -1,6 +1,7 @@
 open-guard
 osoto-gari
 outside-heel-hook
+over-under-pass
 overhead-sweep
 overhook
 paper-cutter-choke
