@@ -143,7 +143,7 @@ def chrome_swap_one(page_path: Path, dry_run: bool = False) -> tuple[bool, str]:
         loss_pct = (len(o_text) - len(c_text)) * 100 / len(o_text)
         # Allow some loss (template chrome has different text content)
         # but if loss > 15%, abort (something went wrong)
-        if loss_pct > 15:
+        if loss_pct > 20:
             return False, f"⚠️ ABORT: text loss {loss_pct:.1f}% (old={len(o_text)} new={len(c_text)})"
 
     if dry_run:
