@@ -92,9 +92,9 @@ def chrome_swap_one(page_path: Path, dry_run: bool = False) -> tuple[bool, str]:
     except Exception as e:
         return False, f"read fail: {e}"
 
-    # Idempotent skip
-    if is_already_swapped(old):
-        return True, "already swapped (skip)"
+    # Idempotent skip (TEMPORARILY DISABLED for Wave QQ to re-deploy new template features)
+    # if is_already_swapped(old):
+    #     return True, "already swapped (skip)"
 
     # Step 1: render new template for this page
     ok, new_path = render_new_template(page_path)

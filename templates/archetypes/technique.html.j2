@@ -123,6 +123,20 @@
   <p>{% for para in page.intro_paragraphs %}<p style="color:#c2c2d9;margin-bottom:10px">{{ para | safe }}</p>
 {% endfor %}</p>
 
+  {#- Wave QQ: Page meta (reading time auto-computed by JS) -#}
+  <div class="page-meta">
+    <span class="page-meta-item" id="reading-time" style="display:none">📖 <span class="reading-time-value">—</span></span>
+  </div>
+
+  {#- Wave QQ: Inline CTA after intro (high-conversion placement) -#}
+  <div class="inline-cta">
+    <div class="inline-cta-text">
+      <p class="inline-cta-title">{{ t.cta_dynamic.heading | replace('{tech}', page.h1_simple if page.h1_simple is defined else page.h1) }}</p>
+      <p class="inline-cta-body">{{ t.cta_dynamic.body }}</p>
+    </div>
+    <a class="inline-cta-btn" href="{{ t.site.app_url }}/login?ref=wiki&page={{ page.slug }}-inline" target="_blank" rel="noopener noreferrer" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'inline',lang:'{{ lang }}'})">{{ t.cta_dynamic.cta_text }}</a>
+  </div>
+
   <div id="toc" class="toc">
     <div class="toc-title">{{ t.toc.title }}</div>
     <ul class="toc-list" id="toc-list"></ul>
@@ -273,6 +287,19 @@
   (function(){
     var prog=document.getElementById('read-progress');
     var btn=document.getElementById('back-to-top');
+
+    /* Wave QQ: reading time estimate (250 words/min) */
+    var rtEl=document.getElementById('reading-time');
+    if(rtEl){
+      var bodyText=document.body.innerText||'';
+      var words=bodyText.trim().split(/\s+/).length;
+      var minutes=Math.max(1,Math.round(words/250));
+      var lang='{{ lang }}';
+      var label=lang==='ja'?(minutes+' 分で読める'):(lang==='pt'?(minutes+' min de leitura'):(minutes+' min read'));
+      rtEl.querySelector('.reading-time-value').textContent=label;
+      rtEl.style.display='inline-flex';
+    }
+
     window.addEventListener('scroll',function(){
       var scrolled=window.scrollY;
       var total=document.body.scrollHeight-window.innerHeight;

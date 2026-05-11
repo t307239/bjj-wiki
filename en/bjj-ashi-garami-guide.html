@@ -227,6 +227,19 @@ window.addEventListener('scroll',function(){if(window.scrollY>window.innerHeight
   (function(){
     var prog=document.getElementById('read-progress');
     var btn=document.getElementById('back-to-top');
+
+    /* Wave QQ: reading time estimate (250 words/min) */
+    var rtEl=document.getElementById('reading-time');
+    if(rtEl){
+      var bodyText=document.body.innerText||'';
+      var words=bodyText.trim().split(/\s+/).length;
+      var minutes=Math.max(1,Math.round(words/250));
+      var lang='en';
+      var label=lang==='ja'?(minutes+' 分で読める'):(lang==='pt'?(minutes+' min de leitura'):(minutes+' min read'));
+      rtEl.querySelector('.reading-time-value').textContent=label;
+      rtEl.style.display='inline-flex';
+    }
+
     window.addEventListener('scroll',function(){
       var scrolled=window.scrollY;
       var total=document.body.scrollHeight-window.innerHeight;

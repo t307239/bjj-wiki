@@ -333,3 +333,71 @@ ul.hl-list li,ul.tips-list li{margin-bottom:10px;font-size:.93rem}
   .hero-index h1{font-size:1.8rem}
   .theme-index .cta-banner{flex-direction:column;text-align:center}
 }
+
+/* ================================================
+   z255jjj-Wave-QQ: UI/content brushup
+   ================================================ */
+
+/* A) Reading progress bar (top of viewport, fills as user scrolls) */
+#read-progress{
+  position:fixed;top:0;left:0;height:3px;
+  background:linear-gradient(90deg,#10B981 0%,#059669 100%);
+  width:0;z-index:9999;transition:width .15s linear;
+  box-shadow:0 0 8px rgba(16,185,129,.4);
+}
+
+/* B) Sticky TOC on desktop (>=900px) */
+@media (min-width:900px){
+  .toc.has-items{
+    position:sticky;top:20px;
+    max-height:calc(100vh - 40px);
+    overflow-y:auto;
+    align-self:start;
+  }
+}
+
+/* C) Inline CTA (after intro paragraphs) */
+.inline-cta{
+  margin:24px 0;padding:20px 24px;
+  background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);
+  border:1px solid #2e7d32;border-radius:12px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;
+}
+.inline-cta-text{flex:1;min-width:200px}
+.inline-cta-title{font-weight:700;color:#a5d6a7;font-size:1rem;margin:0 0 4px}
+.inline-cta-body{font-size:.85rem;color:#c8e6c9;margin:0}
+.inline-cta-btn{
+  display:inline-block;background:#10B981;color:#fff;
+  padding:10px 20px;border-radius:8px;text-decoration:none;
+  font-weight:700;font-size:.9rem;white-space:nowrap;
+}
+.inline-cta-btn:hover{background:#059669}
+
+/* D) Reading time + meta info */
+.page-meta{
+  display:flex;gap:16px;margin:8px 0 20px;
+  font-size:.82rem;color:var(--muted);align-items:center;
+}
+.page-meta-item{display:flex;align-items:center;gap:4px}
+
+/* E) H2 visual polish (gradient underline) */
+.container h2{
+  position:relative;padding-bottom:10px;
+}
+.container h2::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:60px;height:2px;
+  background:linear-gradient(90deg,var(--accent) 0%,transparent 100%);
+}
+
+/* F) Card hover micro-interaction */
+.card{transition:border-color .2s,transform .2s}
+.card:hover{border-color:rgba(124,106,247,0.4)}
+
+/* G) Mobile: better tap targets for TOC links */
+@media (max-width:600px){
+  .toc-list a{
+    display:block;padding:8px 0;font-size:.95rem;
+  }
+}
