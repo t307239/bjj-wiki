@@ -123,8 +123,42 @@ def extract_sections(soup: BeautifulSoup) -> list[dict]:
             return True
         return False
 
-    # Only consider top-level h2 (direct children of body or container divs),
-    # not h2 nested inside .faq / .athletes-section / etc.
+    # Wave T (z255hhh): boundary detection — stop walking siblings at
+    # template-generated boundaries to prevent cascade corruption.
+    # These markers signal template-injected content that must NOT be
+    # captured into preserved sections.
+    def is_template_boundary(el) -> bool:
+        """Detect if element is a template boundary that ends content sections."""
+        if not isinstance(el, Tag):
+            # Comment node — check for z243 markers
+            from bs4 import Comment
+            if isinstance(el, Comment):
+                comment_text = str(el).strip()
+                if comment_text.startswith("z243-") or comment_text.startswith("z248-"):
+                    return True
+            return False
+        # Footer
+        if el.name == "footer":
+            return True
+        # Known template structural blocks
+        cls = el.get("class") or []
+        if any(c in cls for c in {"footer", "share-bar", "newsletter-box", "athletes-section",
+                                   "yoga-box", "competition-box", "safety-box", "gear-box",
+                                   "related-techs", "dig-deeper", "dynamic-cta"}):
+            return True
+        # h2 with template-generated heading text
+        if el.name == "h2":
+            h2_text = el.get_text(strip=True)
+            if is_excluded_heading(h2_text):
+                return True
+        # IDs that mark template structures
+        el_id = el.get("id", "")
+        if el_id in {"z243-bottom", "z243-float", "share-bar", "newsletter"}:
+            return True
+        return False
+
+    # Build h2 list. Reject only h2 inside specific template containers
+    # (NOT all <section> tags — many pages legitimately wrap content in <section>).
     h2_list = []
     for h2 in soup.find_all("h2"):
         # Reject if any ancestor has excluded class
@@ -133,7 +167,12 @@ def extract_sections(soup: BeautifulSoup) -> list[dict]:
             if not isinstance(ancestor, Tag):
                 continue
             cls = ancestor.get("class") or []
-            if any(c in cls for c in excluded_class_markers | {"faq", "faq-item", "card"}):
+            if any(c in cls for c in excluded_class_markers | {"faq", "faq-item"}):
+                skip = True
+                break
+            # Reject h2 nested inside <details> / <aside> / <footer> only
+            # (NOT <section> — many archetypes legitimately use <section> wrappers)
+            if ancestor.name in {"details", "aside", "footer"}:
                 skip = True
                 break
             if ancestor.name == "body":
@@ -141,17 +180,29 @@ def extract_sections(soup: BeautifulSoup) -> list[dict]:
         if not skip:
             h2_list.append(h2)
 
+    # Wave U (z255hhh): dedup — track seen headings to prevent
+    # duplicate sections from cascade-corrupted source pages.
+    seen_headings = set()
+
     for i, h2 in enumerate(h2_list):
         heading_text = h2.get_text(strip=True)
         if is_excluded_heading(heading_text):
             continue
+        # Dedup: skip if same heading already emitted
+        heading_key = heading_text.strip().lower()
+        if heading_key in seen_headings:
+            continue
+        seen_headings.add(heading_key)
 
-        # Collect all sibling elements until next top-level h2 (or end).
-        # Skip elements that belong to other extracted features.
+        # Collect sibling elements until: (a) next top-level h2, OR
+        # (b) template boundary detected (z243 marker, footer, template h2 etc.)
         next_h2 = h2_list[i + 1] if i + 1 < len(h2_list) else None
         section_elements = []
         for sib in h2.find_next_siblings():
             if sib is next_h2:
+                break
+            # Wave T: stop at template boundary
+            if is_template_boundary(sib):
                 break
             if isinstance(sib, Tag):
                 cls = sib.get("class") or []
@@ -191,9 +242,16 @@ def extract_sections(soup: BeautifulSoup) -> list[dict]:
                 section["items"] = []
         elif section_elements:
             # Content-preserving: capture entire section as raw inner_html
+            # Skip nested .faq inside inner_html (defensive cleanup)
             section["type"] = "preserved"
             inner_parts = []
             for el in section_elements:
+                if isinstance(el, Tag):
+                    # Strip nested .faq containers from preserved content
+                    for nested_faq in el.find_all("div", class_="faq"):
+                        nested_faq.decompose()
+                    for nested_faq in el.find_all("div", class_="faq-item"):
+                        nested_faq.decompose()
                 inner_parts.append(str(el))
             section["inner_html"] = "".join(inner_parts).strip()
             # Skip empty sections

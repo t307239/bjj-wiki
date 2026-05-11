@@ -96,7 +96,12 @@ def find_target_pages(lang: str | None = None, all_archetypes: bool = False) -> 
 
 
 def rerender_one(page_path: Path, dry_run: bool = False) -> tuple[bool, str]:
-    """Extract → render → write back. Returns (success, message)."""
+    """Extract → render → write back. Returns (success, message).
+
+    Wave V (z255hhh): Adds content-preservation safety check.
+    If rendered output has > 30% text content loss vs original, ABORT and
+    skip this page (signal of cascade corruption or extract bug).
+    """
     try:
         html = page_path.read_text(encoding="utf-8")
         slug = page_path.stem
@@ -113,8 +118,35 @@ def rerender_one(page_path: Path, dry_run: bool = False) -> tuple[bool, str]:
             include_z243_cta=True,
         )
 
+        # Wave V: content preservation safety check
+        import re as _re
+        def _text_only(s):
+            body = _re.search(r'<body[^>]*>(.*)</body>', s, _re.DOTALL)
+            if not body:
+                return ''
+            t = body.group(1)
+            t = _re.sub(r'<script[^>]*>.*?</script>', '', t, flags=_re.DOTALL)
+            t = _re.sub(r'<style[^>]*>.*?</style>', '', t, flags=_re.DOTALL)
+            return _re.sub(r'\s+', ' ', _re.sub(r'<[^>]+>', ' ', t)).strip()
+
+        old_text = _text_only(html)
+        new_text = _text_only(new_html)
+        if old_text:
+            loss_pct = (len(old_text) - len(new_text)) * 100 / len(old_text)
+            # Acceptable loss: < 30% (some loss expected from FAQ/Athletes/Related extracted separately)
+            if loss_pct > 30:
+                return False, f"⚠️ ABORT: text content loss {loss_pct:.1f}% (old={len(old_text)} new={len(new_text)})"
+
+        # Check for duplicate h2 in rendered output (cascade corruption signal)
+        rendered_h2 = _re.findall(r'<h2[^>]*>([^<]+)</h2>', new_html)
+        from collections import Counter
+        h2_counts = Counter(h.strip() for h in rendered_h2)
+        dups = [h for h, c in h2_counts.items() if c > 1]
+        if dups:
+            return False, f"⚠️ ABORT: duplicate h2 in output: {dups[:3]}"
+
         if dry_run:
-            return True, f"[DRY] would write {len(new_html)} bytes"
+            return True, f"[DRY] would write {len(new_html)} bytes (text loss {loss_pct:.1f}%)"
         page_path.write_text(new_html, encoding="utf-8")
         return True, f"{len(new_html)} bytes written"
     except Exception as e:
