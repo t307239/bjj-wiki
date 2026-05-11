@@ -63,8 +63,15 @@ from batch_verify import is_technique_page
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 
-def find_target_pages(lang: str | None = None) -> list[Path]:
-    """Find all Technique archetype pages to re-render."""
+def find_target_pages(lang: str | None = None, all_archetypes: bool = False) -> list[Path]:
+    """Find all pages to re-render.
+
+    If all_archetypes=True (z255ggg), include all wiki pages (Athlete, Equipment,
+    Drill, Concept_Strategy, Rule, Conditioning_Nutrition, Misc, etc.) — for
+    full template migration.
+
+    Otherwise, only Technique archetype pages (legacy default).
+    """
     langs = [lang] if lang else ["en", "ja", "pt"]
     pages = []
     for lc in langs:
@@ -72,14 +79,18 @@ def find_target_pages(lang: str | None = None) -> list[Path]:
         if not lang_dir.is_dir():
             continue
         for fp in sorted(lang_dir.glob("*.html")):
-            # Skip non-technique pages (index, glossary, root pages)
+            # Skip non-content pages (index, glossary, root pages)
             if fp.stem in {"index", "techniques-az", "athletes", "athletes-az", "compare", "newsletter", "404"}:
                 continue
             try:
                 html = fp.read_text(encoding="utf-8", errors="ignore")
             except Exception:
                 continue
-            if is_technique_page(html):
+            if all_archetypes:
+                # Accept any page with <h1>
+                if "<h1" in html:
+                    pages.append(fp)
+            elif is_technique_page(html):
                 pages.append(fp)
     return pages
 
@@ -116,14 +127,16 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=None, help="Limit pages (default: all)")
     parser.add_argument("--dry-run", action="store_true", help="Don't write, just count")
     parser.add_argument("--apply", action="store_true", help="Required to actually write (safety)")
+    parser.add_argument("--all-archetypes", action="store_true", help="z255ggg: include Athlete/Equipment/Drill/Concept/Rule/Conditioning/Misc (full migration)")
     args = parser.parse_args()
 
     if not args.apply and not args.dry_run:
         print("❌ Either --apply or --dry-run required (safety)", file=sys.stderr)
         return 1
 
-    print(f"🔍 Scanning Technique pages (lang={args.lang or 'all'})...", file=sys.stderr)
-    pages = find_target_pages(args.lang)
+    scope = "ALL archetypes" if args.all_archetypes else "Technique only"
+    print(f"🔍 Scanning {scope} pages (lang={args.lang or 'all'})...", file=sys.stderr)
+    pages = find_target_pages(args.lang, all_archetypes=args.all_archetypes)
     print(f"   found {len(pages)} pages", file=sys.stderr)
 
     if args.limit:

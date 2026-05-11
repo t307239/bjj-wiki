@@ -70,8 +70,12 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ t.site.ga_id }}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ t.site.ga_id }}');</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ t.site.adsense_client }}" crossorigin="anonymous"></script>
+{%- if page.jsonld_article is defined %}
 <script type="application/ld+json">{{ page.jsonld_article | safe }}</script>
+{%- endif %}
+{%- if page.jsonld_breadcrumb is defined %}
 <script type="application/ld+json">{{ page.jsonld_breadcrumb | safe }}</script>
+{%- endif %}
 {%- if page.jsonld_faq is defined %}
 <script type="application/ld+json">
 {{ page.jsonld_faq | safe }}
