@@ -162,8 +162,7 @@ def find_target_pages(lang: str | None = None) -> list[Path]:
         if not lang_dir.is_dir():
             continue
         for fp in sorted(lang_dir.glob("*.html")):
-            if fp.stem in {"index", "techniques-az", "athletes", "athletes-az",
-                           "compare", "newsletter", "404"}:
+            if fp.stem in {"newsletter", "404", "sparring-simulator"}:
                 continue
             try:
                 html = fp.read_text(encoding="utf-8", errors="ignore")

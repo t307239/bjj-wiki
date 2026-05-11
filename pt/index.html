@@ -3,21 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
 <title>Todas as Técnicas de BJJ | BJJ Wiki</title>
-<meta name="description" content="Enciclopédia completa de técnicas de Jiu-Jitsu Brasileiro. Aprenda guardas, passagens, finalizações e muito mais.">
-<meta property="og:site_name" content="BJJ Wiki">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://wiki.bjj-app.net/pt/index.html">
-<meta property="og:title" content="Todas as Técnicas de BJJ">
+<meta name="description" content="Enciclopédia completa de técnicas de Jiu-Jitsu Brasileiro. Aprenda guardas, passagens, finalizações e muito mais."><meta property="og:title" content="Todas as Técnicas de BJJ">
 <meta property="og:description" content="Enciclopédia completa de técnicas de Jiu-Jitsu Brasileiro. Aprenda guardas, passagens, finalizações e muito mais.">
-<meta property="og:image" content="https://wiki.bjj-app.net/og-image.svg">
+<meta property="og:type" content="article">
+    <meta property="og:site_name" content="BJJ Wiki Brasil">
+<meta property="og:url" content="https://wiki.bjj-app.net/pt/index.html">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Todas as Técnicas de BJJ&lang=pt">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@bjj_wiki">
 <meta name="twitter:title" content="Todas as Técnicas de BJJ">
 <meta name="twitter:description" content="Enciclopédia completa de técnicas de Jiu-Jitsu Brasileiro. Aprenda guardas, passagens, finalizações e muito mais.">
-<meta name="twitter:image" content="https://wiki.bjj-app.net/og-image.svg">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Todas as Técnicas de BJJ&lang=pt">
 <link rel="canonical" href="https://wiki.bjj-app.net/pt/index.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/index.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/index.html">
@@ -28,15 +31,72 @@
 <link rel="stylesheet" href="/wiki-v2.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529701443220352" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BJJ Wiki","item":"https://wiki.bjj-app.net/"},{"@type":"ListItem","position":2,"name":"Todas as Técnicas de BJJ","item":"https://wiki.bjj-app.net/pt/index.html"}]}</script>
 </head>
 <body>
+<div id="read-progress"></div>
 <div class="container">
-  <header><a href="../index.html" class="logo">BJJ<span>Wiki</span></a></header>
+  <header>
+    <a href="../pt/index.html" class="logo">🥋 BJJ Wiki</a>
+    <nav class="lang-nav"><a href="../en/index.html">🇺🇸 EN</a><a href="../ja/index.html">🇯🇵 JA</a><a href="../pt/index.html" class="active">🇧🇷 PT</a></nav>
+  </header>
   <h1>Todas as Técnicas de BJJ</h1>
   <p class="subtitle">Enciclopédia completa de técnicas de Jiu-Jitsu Brasileiro. Aprenda guardas, passagens, finalizações e muito mais.</p>
   <div class="cat-card"><h2>Guarda</h2><div class="tech-links"><a href="closed-guard.html">Guarda Fechada</a><a href="open-guard.html">Guarda Aberta: Fundamentos Biomecânicos para Faixas Brancas</a></div></div>
-  <footer><p>BJJ Wiki</p></footer>
+  <footer>
+    <p>BJJ Wiki — A enciclopédia gratuita de técnicas de BJJ</p>
+    <p style="margin-top:8px"><a href="../privacy.html" style="color:var(--muted)">Política de Privacidade</a></p>
+  </footer>
 </div>
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+  (function(){
+    var prog=document.getElementById('read-progress');
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+      var scrolled=window.scrollY;
+      var total=document.body.scrollHeight-window.innerHeight;
+      if(total>0){prog.style.width=(scrolled/total*100)+'%';}
+      if(scrolled>300){btn.style.display='flex';}else{btn.style.display='none';}
+    },{passive:true});
+    var headings=document.querySelectorAll('h2');
+    if(headings.length>=3){
+      var tocEl=document.getElementById('toc');
+      var listEl=document.getElementById('toc-list');
+      if(tocEl&&listEl){
+        headings.forEach(function(h,i){
+          var id='section-'+i;
+          h.id=id;
+          var li=document.createElement('li');
+          var a=document.createElement('a');
+          a.href='#'+id;
+          a.textContent=h.textContent;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+        tocEl.style.display='block';
+      }
+    }
+  })();
+  </script>
+<!-- z243-float-cta --><div id="z243-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
+<button onclick="document.getElementById('z243-float').style.display='none';try{localStorage.setItem('z243_float_dismissed',Date.now())}catch(e){}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="Close">✕</button>
+<div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 Registre sua rola</div>
+<p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Mapa de calor, skill map, sequências. Grátis.</p>
+<a href="https://bjj-app.net/login?ref=wiki&page=float" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'float',lang:'pt'})">Abrir Grátis →</a>
+</div>
+<style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
+<script>(function(){
+try{
+  var d=localStorage.getItem('z243_float_dismissed');
+  if(d && (Date.now()-parseInt(d,10))<7*86400000) return;
+}catch(e){}
+var el=document.getElementById('z243-float');
+if(!el) return;
+var shown=false;
+function check(){if(shown) return; var sp=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; if(sp>=30){el.style.display='block';shown=true;window.removeEventListener('scroll',check);}}
+window.addEventListener('scroll',check,{passive:true});
+})();</script>
 </body>
 </html>
