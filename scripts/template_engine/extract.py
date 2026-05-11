@@ -123,14 +123,31 @@ def extract_sections(soup: BeautifulSoup) -> list[dict]:
             return True
         return False
 
-    h2_list = soup.find_all("h2")
+    # Only consider top-level h2 (direct children of body or container divs),
+    # not h2 nested inside .faq / .athletes-section / etc.
+    h2_list = []
+    for h2 in soup.find_all("h2"):
+        # Reject if any ancestor has excluded class
+        skip = False
+        for ancestor in h2.parents:
+            if not isinstance(ancestor, Tag):
+                continue
+            cls = ancestor.get("class") or []
+            if any(c in cls for c in excluded_class_markers | {"faq", "faq-item", "card"}):
+                skip = True
+                break
+            if ancestor.name == "body":
+                break
+        if not skip:
+            h2_list.append(h2)
+
     for i, h2 in enumerate(h2_list):
         heading_text = h2.get_text(strip=True)
         if is_excluded_heading(heading_text):
             continue
 
-        # Collect all elements between this h2 and next h2 (or end)
-        # Skip elements that belong to other extracted features (athlete chips etc.)
+        # Collect all sibling elements until next top-level h2 (or end).
+        # Skip elements that belong to other extracted features.
         next_h2 = h2_list[i + 1] if i + 1 < len(h2_list) else None
         section_elements = []
         for sib in h2.find_next_siblings():
@@ -139,6 +156,9 @@ def extract_sections(soup: BeautifulSoup) -> list[dict]:
             if isinstance(sib, Tag):
                 cls = sib.get("class") or []
                 if any(c in cls for c in excluded_class_markers):
+                    continue
+                # Skip .faq containers (FAQ is rendered separately by template)
+                if "faq" in cls or "faq-list" in cls:
                     continue
             section_elements.append(sib)
 
