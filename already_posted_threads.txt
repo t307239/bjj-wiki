@@ -1,4 +1,5 @@
 open-guard
+osoto-gari
 outside-heel-hook
 overhead-sweep
 overhook
