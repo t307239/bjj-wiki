@@ -104,9 +104,22 @@ def extract_sections(soup: BeautifulSoup) -> list[dict]:
             return True
         if "Athletes" in text or "Atletas" in text or "選手" in text:
             return True
-        if "FAQ" in text or "Q&A" in text or "よくある悩み" in text or "Comuns" in text:
+        # FAQ variants (EN/JA/PT)
+        if "FAQ" in text or "Q&A" in text:
             return True
-        if text.lower() in {"related techniques", "技関連テクニック", "🥋 関連テクニック"}:
+        if "よくある悩み" in text or "よくある質問" in text or "もっと質問" in text:
+            return True
+        if "Perguntas Frequentes" in text or "Comuns" in text or "Mais Perguntas" in text:
+            return True
+        if "Frequently Asked" in text or "More Questions" in text:
+            return True
+        # Related Video / Related Techniques variants
+        if "Related Video" in text or "関連動画" in text or "Vídeo Relacionado" in text:
+            return True
+        if "Related Techniques" in text or "関連テクニック" in text or "Técnicas Relacionadas" in text:
+            return True
+        # Newsletter / share / footer fragments
+        if "Newsletter" in text or "Share" in text or "シェア" in text or "Compartilh" in text:
             return True
         return False
 
