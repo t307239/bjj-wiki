@@ -465,6 +465,13 @@ def extract_page(html: str, slug: str) -> dict:
         page["jsonld_howto"] = howto_jsonld
         page["howto_steps"] = True
 
+    # z255ggg: detect noindex meta to preserve consolidation redirect SEO
+    robots_meta = soup.find("meta", attrs={"name": "robots"})
+    if robots_meta:
+        content = robots_meta.get("content", "").lower()
+        if "noindex" in content:
+            page["noindex"] = True
+
     return page
 
 

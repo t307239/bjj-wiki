@@ -38,6 +38,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{%- if page.noindex is defined and page.noindex %}
+<meta name="robots" content="noindex,follow">
+{%- endif %}
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
