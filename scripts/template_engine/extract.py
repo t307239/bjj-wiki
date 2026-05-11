@@ -466,17 +466,34 @@ def extract_main_body(html: str) -> str:
         "More Questions", "もっと質問", "Mais Perguntas",
         "BJJのよくある悩み", "Problemas Comuns",
     ]
+    def has_non_excluded_h2(el):
+        """Check if element contains any h2 with non-excluded heading."""
+        if not isinstance(el, Tag):
+            return False
+        for nested_h2 in el.find_all("h2"):
+            t = nested_h2.get_text(strip=True)
+            if not any(p in t for p in excluded_h2_patterns):
+                return True
+        return False
+
     for h2 in list(fragment.find_all("h2")):
+        if h2.parent is None:
+            continue
         text = h2.get_text(strip=True)
         if not any(p in text for p in excluded_h2_patterns):
             continue
-        # Remove h2 + following siblings up to next non-excluded h2
+        # Remove h2 + following siblings up to: (a) next non-excluded h2 sibling, or
+        # (b) sibling that CONTAINS a non-excluded h2 nested inside (e.g., <section>)
         to_remove = []
         next_sib = h2.next_sibling
         while next_sib is not None:
-            if isinstance(next_sib, Tag) and next_sib.name == "h2":
-                next_text = next_sib.get_text(strip=True)
-                if not any(p in next_text for p in excluded_h2_patterns):
+            if isinstance(next_sib, Tag):
+                if next_sib.name == "h2":
+                    next_text = next_sib.get_text(strip=True)
+                    if not any(p in next_text for p in excluded_h2_patterns):
+                        break
+                # NEW: if sibling contains non-excluded h2 nested, stop
+                if has_non_excluded_h2(next_sib):
                     break
             to_remove.append(next_sib)
             next_sib = next_sib.next_sibling
@@ -633,12 +650,12 @@ def extract_page(html: str, slug: str) -> dict:
     # z255iii (Wave DD): auto-detect archetype to choose extract mode.
     # Technique: section-by-section extract (preserves Technique-style structure)
     # Other: main_body preservation (captures all content as raw HTML)
-    if is_technique_archetype(soup):
-        page["sections"] = extract_sections(soup)
-    else:
-        # Body-preservation mode for non-Technique archetypes
-        page["main_body"] = extract_main_body(html)
-        page["sections"] = []  # template skips section iteration when main_body present
+    # z255iii: auto-detect disabled — body-preservation mode still loses 17-40%
+    # content for some archetypes (FAQ-heavy rule pages, athlete with nested badge
+    # structures). Reverting to sections-only mode for safety. Body-preservation
+    # code remains in `extract_main_body()` for future iteration when archetype-
+    # specific extract logic is developed (WIKI-11 50-80h project).
+    page["sections"] = extract_sections(soup)
 
     page["athletes"] = extract_athletes(soup)
     page["yoga_poses"] = extract_yoga_poses(soup)
