@@ -24,10 +24,18 @@ def check_page(fp: Path) -> str | None:
     if not canon_m:
         return None
     canon = canon_m.group(1)
-    for m in re.finditer(r'<script type="application/ld\+json">(\{[^<]*?"@type"\s*:\s*"Article"[^<]*?\})</script>', html):
-        url_m = re.search(r'"url":\s*"([^"]+)"', m.group(1))
-        if url_m and url_m.group(1).rstrip('/') != canon.rstrip('/'):
-            return f"jsonld={url_m.group(1)[:50]} ≠ canon={canon[:50]}"
+    for m in re.finditer(r'<script type="application/ld\+json">\s*(\{[^<]*?"@type"\s*:\s*"Article"[^<]*?\})\s*</script>', html):
+        block = m.group(1)
+        # z255hhh-fix: skip nested objects (publisher.url, author.url etc.) — strip them first
+        stripped = re.sub(r'"\w+"\s*:\s*\{[^{}]*\}', '', block)
+        # Look for top-level url-like fields
+        for url_m in re.finditer(r'"(url|mainEntityOfPage)"\s*:\s*"([^"]+)"', stripped):
+            field, value = url_m.group(1), url_m.group(2)
+            # Normalize trailing .html for comparison
+            v_norm = value.rstrip('/').removesuffix('.html')
+            c_norm = canon.rstrip('/').removesuffix('.html')
+            if v_norm != c_norm:
+                return f"jsonld.{field}={value[:50]} ≠ canon={canon[:50]}"
     return None
 
 
