@@ -74,12 +74,27 @@ def render_new_template(page_path: Path) -> tuple[bool, str | None]:
     return True, html_out
 
 
+
+def is_already_swapped(html: str) -> bool:
+    """Quick heuristic: check if page already has new-template chrome.
+    Look for specific markers that only appear in new template output:
+    - <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    - <meta property="og:image:width" content="1200">
+    """
+    return ('preconnect" href="https://pagead2' in html
+            and 'og:image:width" content="1200"' in html)
+
+
 def chrome_swap_one(page_path: Path, dry_run: bool = False) -> tuple[bool, str]:
     """Apply chrome swap to a single page. Returns (success, message)."""
     try:
         old = page_path.read_text(encoding="utf-8")
     except Exception as e:
         return False, f"read fail: {e}"
+
+    # Idempotent skip
+    if is_already_swapped(old):
+        return True, "already swapped (skip)"
 
     # Step 1: render new template for this page
     ok, new_path = render_new_template(page_path)
