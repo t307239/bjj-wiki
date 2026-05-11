@@ -410,83 +410,97 @@ def is_technique_archetype(soup: BeautifulSoup) -> bool:
 
 
 def extract_main_body(html: str) -> str:
-    """Extract main body content as raw HTML between h1 and template chrome.
+    """Extract main body content — substring + BeautifulSoup hybrid.
 
-    z255iii (Wave BB): String-based extraction (avoids BeautifulSoup sibling
-    traversal limitations on deep / nested DOM structures common in athlete
-    / equipment pages). Captures everything between (after h1 closing tag)
-    and (before z243-bottom-cta marker or </body>) as raw HTML.
-
-    Then strips template-injected blocks (share-bar, athletes-section,
-    related-techs, dig-deeper, dynamic-cta, z248-depth-content) which are
-    rendered separately by template.
-
-    For non-Technique archetypes (Equipment, Drill, Concept, Rule, Misc):
-    template renders this raw with `{{ page.main_body | safe }}` instead
-    of iterating sections — preserves 100% of body content.
+    z255iii (Wave BB v4): Capture raw substring from h1 close tag to z243-bottom-cta
+    marker (or </body>). Parse with BeautifulSoup to remove template chrome elements
+    cleanly. Output well-formed HTML.
     """
-    # Find h1 closing tag — start point
+    # Step 1: substring from </h1> to z243-bottom-cta (or </body>)
     h1_close = re.search(r'</h1>', html)
     if not h1_close:
         return ""
     start = h1_close.end()
 
-    # Find end point: first z243-bottom-cta marker OR <footer>
     end = len(html)
     z243_match = re.search(r'<!--\s*z243-bottom-cta\s*-->', html)
     if z243_match:
         end = z243_match.start()
     else:
-        footer_match = re.search(r'<footer\b', html)
-        if footer_match:
-            end = footer_match.start()
+        body_close = re.search(r'</body>', html)
+        if body_close:
+            end = body_close.start()
 
     if start >= end:
         return ""
 
-    body = html[start:end]
+    raw = html[start:end]
 
-    # Strip template-injected blocks (rendered separately by template)
-    excluded_classes = ["share-bar", "newsletter-box", "athletes-section",
+    # Step 2: parse fragment + clean template chrome
+    fragment = BeautifulSoup(raw, "html.parser")
+
+    # Remove template-injected blocks
+    excluded_classes = {"share-bar", "newsletter-box", "athletes-section",
                         "yoga-box", "competition-box", "safety-box", "gear-box",
                         "related-techs", "dig-deeper", "dynamic-cta",
-                        "z248-depth-content"]
-    for cls in excluded_classes:
-        # Strip <div class="X">...</div> (handles single class or in multi-class)
-        body = re.sub(
-            rf'<div\b[^>]*class="[^"]*\b{re.escape(cls)}\b[^"]*"[^>]*>.*?</div>(?=\s*<|$)',
-            '',
-            body,
-            flags=re.DOTALL,
-        )
+                        "z248-depth-content", "lang-switch", "share-buttons",
+                        "social-share"}
+    for el in list(fragment.find_all(True)):
+        if not isinstance(el, Tag):
+            continue
+        if el.parent is None:
+            continue  # already detached
+        try:
+            cls = el.get("class") or []
+        except (AttributeError, TypeError):
+            continue
+        if any(c in cls for c in excluded_classes):
+            el.decompose()
 
-    # Strip excluded h2 sections (FAQ / Related Video / Related Techniques)
-    # These are rendered by template at standard locations
+    # Remove h2 sections with excluded headings (h2 + following siblings up to next h2)
     excluded_h2_patterns = [
-        r"関連動画", r"Related Video", r"Vídeo Relacionado",
-        r"Common BJJ Problems", r"よくある悩み", r"Comuns no BJJ",
-        r"🥋 関連テクニック", r"Related Techniques", r"Técnicas Relacionadas",
-        r"Frequently Asked", r"よくある質問", r"Perguntas Frequentes",
-        r"More Questions", r"もっと質問", r"Mais Perguntas",
-        r"BJJのよくある悩み", r"Problemas Comuns",
+        "関連動画", "Related Video", "Vídeo Relacionado",
+        "Common BJJ Problems", "よくある悩み", "Comuns no BJJ",
+        "🥋 関連テクニック", "Related Techniques", "Técnicas Relacionadas",
+        "Frequently Asked", "よくある質問", "Perguntas Frequentes",
+        "More Questions", "もっと質問", "Mais Perguntas",
+        "BJJのよくある悩み", "Problemas Comuns",
     ]
-    h2_pattern = "|".join(excluded_h2_patterns)
-    # Strip <h2>EXCLUDED</h2> + content up to next h2 (or end of body)
-    body = re.sub(
-        rf'<h2[^>]*>[^<]*(?:{h2_pattern})[^<]*</h2>(.*?)(?=<h2\b|$)',
-        '',
-        body,
-        flags=re.DOTALL,
-    )
+    for h2 in list(fragment.find_all("h2")):
+        text = h2.get_text(strip=True)
+        if not any(p in text for p in excluded_h2_patterns):
+            continue
+        # Remove h2 + following siblings up to next non-excluded h2
+        to_remove = []
+        next_sib = h2.next_sibling
+        while next_sib is not None:
+            if isinstance(next_sib, Tag) and next_sib.name == "h2":
+                next_text = next_sib.get_text(strip=True)
+                if not any(p in next_text for p in excluded_h2_patterns):
+                    break
+            to_remove.append(next_sib)
+            next_sib = next_sib.next_sibling
+        for el in to_remove:
+            el.extract()
+        h2.decompose()
 
-    # Strip <div id="toc">...</div> (template renders its own TOC)
-    body = re.sub(r'<div\b[^>]*\bid="toc"[^>]*>.*?</div>\s*', '', body, flags=re.DOTALL)
-    # Strip <ul class="lang-switch">...</ul>
-    body = re.sub(r'<ul\b[^>]*class="[^"]*\blang-switch\b[^"]*"[^>]*>.*?</ul>', '', body, flags=re.DOTALL)
-    # Strip share buttons / newsletter forms
-    body = re.sub(r'<div\b[^>]*\bclass="share-buttons"[^>]*>.*?</div>', '', body, flags=re.DOTALL)
+    # Remove TOC div
+    for el in list(fragment.find_all(id="toc")):
+        el.decompose()
 
-    return body.strip()
+    # Remove footer / header / nav (template provides these)
+    for tag_name in ("footer", "header", "nav"):
+        for el in list(fragment.find_all(tag_name)):
+            el.decompose()
+
+    # Remove z243-* divs
+    for el in list(fragment.find_all(id=re.compile(r"^z243"))):
+        el.decompose()
+    for el in list(fragment.find_all(class_=re.compile(r"^z243"))):
+        el.decompose()
+
+    # Serialize back to HTML
+    return str(fragment).strip()
 
 
 def extract_difficulty(soup: BeautifulSoup) -> dict | None:
@@ -623,7 +637,7 @@ def extract_page(html: str, slug: str) -> dict:
         page["sections"] = extract_sections(soup)
     else:
         # Body-preservation mode for non-Technique archetypes
-        page["main_body"] = extract_main_body(soup)
+        page["main_body"] = extract_main_body(html)
         page["sections"] = []  # template skips section iteration when main_body present
 
     page["athletes"] = extract_athletes(soup)
