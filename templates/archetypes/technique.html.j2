@@ -55,6 +55,9 @@
 <meta property="og:title" content="{{ page.og_title }}">
 <meta property="og:description" content="{{ page.description }}">
 <meta property="og:type" content="article">
+<meta property="og:locale" content="{% if lang == 'ja' %}ja_JP{% elif lang == 'pt' %}pt_BR{% else %}en_US{% endif %}">
+{%- for alt_lang in ['en', 'ja', 'pt'] %}{% if alt_lang != lang %}
+<meta property="og:locale:alternate" content="{% if alt_lang == 'ja' %}ja_JP{% elif alt_lang == 'pt' %}pt_BR{% else %}en_US{% endif %}">{% endif %}{% endfor %}
     <meta property="og:site_name" content="{{ t.site.brand_suffix }}">
 <meta property="og:url" content="{{ t.site.base_url }}/{{ lang }}/{{ page.slug }}.html">
 <meta property="og:image" content="{{ t.site.app_url }}/api/og?mode=technique&category=technique&title={{ page.og_image_title }}&lang={{ lang }}">
