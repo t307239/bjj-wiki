@@ -6,7 +6,7 @@
 .PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness dup-related-tech no-nested-p og-locale-completeness mobile-a11y-meta main-tag-present videoobject-when-yt apple-touch-icon-png skip-link pwa-iframe-twitter no-fake-subscriber-claim og-video-when-yt no-generic-h1 thin-content-indexable index-locale-parity
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness dup-related-tech no-nested-p og-locale-completeness mobile-a11y-meta main-tag-present videoobject-when-yt apple-touch-icon-png skip-link pwa-iframe-twitter no-fake-subscriber-claim og-video-when-yt no-generic-h1 thin-content-indexable index-locale-parity no-duplicate-html-id
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -257,6 +257,11 @@ thin-content-indexable:
 index-locale-parity:
 	@echo "→ check_index_locale_parity.py..."
 	@python3 scripts/check_index_locale_parity.py --ci
+
+# z255jjjj-WW Round16: duplicate HTML id detection
+no-duplicate-html-id:
+	@echo "→ check_no_duplicate_html_id.py..."
+	@python3 scripts/check_no_duplicate_html_id.py --ci
 
 all: verify
 	@echo "All checks complete."
