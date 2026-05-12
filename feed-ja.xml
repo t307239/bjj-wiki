@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BJJ App Wiki — BJJ ウィークリー</title>
+    <link>https://wiki.bjj-app.net/ja/news.html</link>
+    <description>今週の注目 BJJ テクニック、JBJJF / IBJJF / ADCC など実在の大会、Wiki 更新。</description>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 12 May 2026 09:00:00 +0900</lastBuildDate>
+    <atom:link href="https://wiki.bjj-app.net/feed-ja.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ヒールフック — モダンノーギを定義するサブミッション</title>
+      <link>https://wiki.bjj-app.net/ja/heel-hook.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/ja/heel-hook.html</guid>
+      <description>ヒールフック — モダンノーギを定義するサブミッション</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>ベリンボロ — スポーツ柔術で最もコピーされたバックテイク</title>
+      <link>https://wiki.bjj-app.net/ja/berimbolo.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/ja/berimbolo.html</guid>
+      <description>ベリンボロ — スポーツ柔術で最もコピーされたバックテイク</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>イマナリロール — メタを開いた回転式レッグロック入り</title>
+      <link>https://wiki.bjj-app.net/ja/imanari-roll.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/ja/imanari-roll.html</guid>
+      <description>イマナリロール — メタを開いた回転式レッグロック入り</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>ロケール別大会カレンダー — JA は JBJJF/ASJJF/DUMAU、PT は CBJJ/CBJJE/Copa Podio を表示</title>
+      <link>https://wiki.bjj-app.net/ja/news.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/ja/news.html</guid>
+      <description>ロケール別大会カレンダー — JA は JBJJF/ASJJF/DUMAU、PT は CBJJ/CBJJE/Copa Podio を表示</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>内部リンク強化 — 4,434 ページに「関連テクニック」セクションを追加</title>
+      <link>https://wiki.bjj-app.net/ja/news.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/ja/news.html</guid>
+      <description>内部リンク強化 — 4,434 ページに「関連テクニック」セクションを追加</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>ページ速度改善 — bjj-app.net への preconnect と FAQ への content-visibility 適用</title>
+      <link>https://wiki.bjj-app.net/ja/news.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/ja/news.html</guid>
+      <description>ページ速度改善 — bjj-app.net への preconnect と FAQ への content-visibility 適用</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>テンプレ移行完了 — 4,653/4,656 ページが新クロームへ移行</title>
+      <link>https://wiki.bjj-app.net/ja/news.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/ja/news.html</guid>
+      <description>テンプレ移行完了 — 4,653/4,656 ページが新クロームへ移行</description>
+      <pubDate>Mon, 11 May 2026 09:00:00 +0900</pubDate>
+    </item>
+  </channel>
+</rss>

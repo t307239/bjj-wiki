@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BJJ App Wiki — BJJ Semanal</title>
+    <link>https://wiki.bjj-app.net/pt/news.html</link>
+    <description>Técnicas em destaque, calendários de torneios (CBJJ, IBJJF, ADCC) e atualizações do wiki.</description>
+    <language>pt-BR</language>
+    <lastBuildDate>Tue, 12 May 2026 09:00:00 +0900</lastBuildDate>
+    <atom:link href="https://wiki.bjj-app.net/feed-pt.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Heel Hook — A submissão que define o no-gi moderno</title>
+      <link>https://wiki.bjj-app.net/pt/heel-hook.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/pt/heel-hook.html</guid>
+      <description>Heel Hook — A submissão que define o no-gi moderno</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>Berimbolo — O sistema de pegada das costas mais copiado</title>
+      <link>https://wiki.bjj-app.net/pt/berimbolo.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/pt/berimbolo.html</guid>
+      <description>Berimbolo — O sistema de pegada das costas mais copiado</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>Imanari Roll — A entrada giratória de chave de perna</title>
+      <link>https://wiki.bjj-app.net/pt/imanari-roll.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/pt/imanari-roll.html</guid>
+      <description>Imanari Roll — A entrada giratória de chave de perna</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>Calendário de torneios por localidade — JA vê JBJJF/ASJJF/DUMAU, PT vê CBJJ/CBJJ</title>
+      <link>https://wiki.bjj-app.net/pt/news.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/pt/news.html</guid>
+      <description>Calendário de torneios por localidade — JA vê JBJJF/ASJJF/DUMAU, PT vê CBJJ/CBJJE/Copa Pódio</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>Linkagem interna reforçada — 4.434 páginas agora têm Técnicas Relacionadas</title>
+      <link>https://wiki.bjj-app.net/pt/news.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/pt/news.html</guid>
+      <description>Linkagem interna reforçada — 4.434 páginas agora têm Técnicas Relacionadas</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>Velocidade de página — preconnect para bjj-app.net e content-visibility nas FAQs</title>
+      <link>https://wiki.bjj-app.net/pt/news.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/pt/news.html</guid>
+      <description>Velocidade de página — preconnect para bjj-app.net e content-visibility nas FAQs</description>
+      <pubDate>Tue, 12 May 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>Migração de template concluída — 4.653/4.656 páginas no novo chrome</title>
+      <link>https://wiki.bjj-app.net/pt/news.html</link>
+      <guid isPermaLink="true">https://wiki.bjj-app.net/pt/news.html</guid>
+      <description>Migração de template concluída — 4.653/4.656 páginas no novo chrome</description>
+      <pubDate>Mon, 11 May 2026 09:00:00 +0900</pubDate>
+    </item>
+  </channel>
+</rss>
