@@ -35,7 +35,9 @@ YOUTUBE_EMBED_RE = re.compile(
     r'<iframe[^>]*?src="https://www\.youtube(?:-nocookie)?\.com/embed/([A-Za-z0-9_-]+)[^"]*"',
     re.IGNORECASE | re.DOTALL,
 )
-H1_RE = re.compile(r'<h1[^>]*>([^<]+)</h1>')
+# Tolerate inline tags inside h1 (e.g., <h1>BJJ <span>Position Map</span></h1>)
+H1_RE = re.compile(r'<h1[^>]*>(.*?)</h1>', re.DOTALL)
+TAG_RE = re.compile(r'<[^>]+>')
 DESC_RE = re.compile(r'<meta name="description" content="([^"]+)"')
 DATE_MOD_RE = re.compile(r'"dateModified"\s*:\s*"([^"]+)"')
 HEAD_END_RE = re.compile(r"</head>", re.IGNORECASE)
@@ -73,7 +75,9 @@ def inject_one(fp: Path, lang: str) -> str:
     if not (h1 and desc and head_end):
         return "skip-missing-fields"
 
-    name = html_mod.unescape(h1.group(1).strip()) + f" — {VIDEO_TYPE_LABEL[lang]}"
+    # Strip nested HTML tags from h1 (e.g., <span>) for clean schema
+    h1_text = TAG_RE.sub("", h1.group(1)).strip()
+    name = html_mod.unescape(h1_text) + f" — {VIDEO_TYPE_LABEL[lang]}"
     description = html_mod.unescape(desc.group(1).strip())
     upload_date = date_mod.group(1) if date_mod else "2026-05-12T00:00:00+09:00"
 
