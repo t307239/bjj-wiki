@@ -222,6 +222,32 @@ def update_news_html(lang: str, data: dict, week_of: str, today: dt.date) -> str
         f'<meta name="description" content="{new_desc}"',
         new_html, count=1,
     )
+    # Sync og:title / twitter:title / og:description / og:image:alt with the new copy
+    new_html = re.sub(
+        r'<meta property="og:title" content="[^"]*"',
+        f'<meta property="og:title" content="{new_title}"',
+        new_html, count=1,
+    )
+    new_html = re.sub(
+        r'<meta property="og:description" content="[^"]*"',
+        f'<meta property="og:description" content="{new_desc}"',
+        new_html, count=1,
+    )
+    new_html = re.sub(
+        r'<meta name="twitter:title" content="[^"]*"',
+        f'<meta name="twitter:title" content="{new_title}"',
+        new_html, count=1,
+    )
+    new_html = re.sub(
+        r'<meta name="twitter:description" content="[^"]*"',
+        f'<meta name="twitter:description" content="{new_desc}"',
+        new_html, count=1,
+    )
+    new_html = re.sub(
+        r'<meta property="og:image:alt" content="[^"]*"',
+        f'<meta property="og:image:alt" content="{new_title}"',
+        new_html, count=1,
+    )
     fp.write_text(new_html, encoding="utf-8")
     return f"ok ({len(new_main):,} bytes main)"
 
