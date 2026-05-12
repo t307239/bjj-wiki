@@ -401,3 +401,28 @@ ul.hl-list li,ul.tips-list li{margin-bottom:10px;font-size:.93rem}
     display:block;padding:8px 0;font-size:.95rem;
   }
 }
+
+/* ================================================
+   z255jjjj-Wave-WW: Page speed optimization (D)
+   ================================================ */
+
+/* content-visibility: auto skips render cost for offscreen
+   sections until they scroll into view. Big LCP/CLS win on
+   long technique pages with many FAQ + bottom CTA blocks.
+   `contain-intrinsic-size` reserves space to prevent jump.    */
+.faq,
+section.faq-list,
+section[style*="background:var(--card"],
+.bottom-cta,
+#z243-float{
+  content-visibility:auto;
+  contain-intrinsic-size:1px 480px;
+}
+.bottom-cta,
+#z243-float{
+  contain-intrinsic-size:1px 200px;
+}
+
+/* will-change hints the compositor for the read-progress bar
+   so width animation runs on GPU layer (no main-thread paint). */
+#read-progress{will-change:width}
