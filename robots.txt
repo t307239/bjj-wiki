@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://wiki.bjj-app.net/sitemap.xml
+
+# RSS/Atom feed autodiscovery for crawlers + power users
+# (English default + per-locale)
