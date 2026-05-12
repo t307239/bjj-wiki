@@ -36,36 +36,55 @@ TRAINING_HEADING = {
 
 
 def find_richer_related(html: str, heading: str) -> bool:
-    """Check if the wc-section-box-title variant exists."""
+    """Check if a richer variant exists (any h2 with class= or style= attribute)."""
+    # Match: <h2 with class= OR style= attribute, containing the heading
     pat = re.compile(
-        r'<h2[^>]*class="[^"]*wc-section-box-title[^"]*"[^>]*>\s*'
-        + re.escape(heading) + r'\s*</h2>',
+        r'<h2\s+[^>]*(?:class=|style=)[^>]*>\s*' + re.escape(heading) + r'\s*</h2>',
         re.IGNORECASE,
     )
     return bool(pat.search(html))
 
 
 def find_legacy_block(html: str, heading: str, training: str) -> tuple[int, int] | None:
-    """Find the bare-h2 legacy block. Returns (start, end) of region to remove."""
+    """Find the bare-h2 legacy block. Returns (start, end) of region to remove.
+
+    Supports 3 legacy formats observed:
+    - `<h2>X</h2><ul>...</ul>`
+    - `<h2>X</h2><p>...</p>`
+    - `<h2>X</h2><div ...>...</div>`
+    Falls back to just removing the h2 if none match.
+    """
     bare_pat = re.compile(r'<h2>\s*' + re.escape(heading) + r'\s*</h2>')
     m = bare_pat.search(html)
     if not m:
         return None
     start = m.start()
-    # Try to extend through the following <ul>...</ul>
-    ul_pat = re.compile(r'\s*<ul>.*?</ul>\s*', re.DOTALL)
-    after = ul_pat.match(html, m.end())
-    if not after:
-        return (start, m.end())
-    end = after.end()
-    # Optionally extend through the paired "Training Recommendations" h2+ul
-    training_pat = re.compile(
-        r'\s*<h2>\s*' + re.escape(training) + r'\s*</h2>\s*<ul>.*?</ul>\s*',
-        re.DOTALL,
-    )
-    extra = training_pat.match(html, end)
-    if extra:
-        end = extra.end()
+    end = m.end()
+    # Try to extend through the next sibling content
+    for sibling_pat in (
+        re.compile(r'\s*<ul>.*?</ul>\s*', re.DOTALL),
+        re.compile(r'\s*<p[^>]*>.*?</p>\s*', re.DOTALL),
+        re.compile(r'\s*<div[^>]*>.*?</div>\s*', re.DOTALL),
+    ):
+        after = sibling_pat.match(html, end)
+        if after:
+            end = after.end()
+            break
+    # Optionally extend through the paired "Training Recommendations" h2+ul/p
+    for follow_pat in (
+        re.compile(
+            r'\s*<h2>\s*' + re.escape(training) + r'\s*</h2>\s*<ul>.*?</ul>\s*',
+            re.DOTALL,
+        ),
+        re.compile(
+            r'\s*<h2>\s*' + re.escape(training) + r'\s*</h2>\s*<p[^>]*>.*?</p>\s*',
+            re.DOTALL,
+        ),
+    ):
+        extra = follow_pat.match(html, end)
+        if extra:
+            end = extra.end()
+            break
     return (start, end)
 
 
