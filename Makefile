@@ -6,7 +6,7 @@
 .PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness dup-related-tech no-nested-p og-locale-completeness mobile-a11y-meta main-tag-present videoobject-when-yt apple-touch-icon-png skip-link pwa-iframe-twitter
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness dup-related-tech no-nested-p og-locale-completeness mobile-a11y-meta main-tag-present videoobject-when-yt apple-touch-icon-png skip-link pwa-iframe-twitter no-fake-subscriber-claim
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -232,6 +232,11 @@ skip-link:
 pwa-iframe-twitter:
 	@echo "→ check_pwa_iframe_twitter.py..."
 	@python3 scripts/check_pwa_iframe_twitter.py --ci
+
+# z255jjjj-WW Round9: 嘘より沈黙 — fake subscriber/user count claim block
+no-fake-subscriber-claim:
+	@echo "→ check_no_fake_subscriber_claim.py..."
+	@python3 scripts/check_no_fake_subscriber_claim.py --ci
 
 all: verify
 	@echo "All checks complete."

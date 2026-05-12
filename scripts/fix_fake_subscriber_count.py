@@ -34,20 +34,44 @@ NOINDEX_RE = re.compile(r'name=["\']robots["\'][^>]*content=["\'][^"\']*noindex'
 # Per-locale heading + paragraph replacements
 REPLACEMENTS = {
     "en": [
+        # More tolerant regex: any heading with 2,000+ + Practitioners/Subscribers
         (
-            re.compile(r'<h3>📬\s*Join\s*2,?000\+\s*BJJ\s*Practitioners\s*</h3>', re.IGNORECASE),
+            re.compile(r'<h3>[^<]*?2,?000\+\s*BJJ[^<]*</h3>', re.IGNORECASE),
             '<h3>📬 Free BJJ Newsletter</h3>',
+        ),
+        (
+            re.compile(r'<h3>[^<]*?Join\s*2,?000\+[^<]*</h3>', re.IGNORECASE),
+            '<h3>📬 Free BJJ Newsletter</h3>',
+        ),
+        # h3 with style + parenthesized practitioner count
+        (
+            re.compile(r'<h3([^>]*)>[^<]*?BJJ\s*Newsletter\s*\(\s*\d,?000\+\s*Practitioners?\s*\)\s*</h3>', re.IGNORECASE),
+            r'<h3\1>📬 BJJ Free Newsletter</h3>',
         ),
     ],
     "ja": [
         (
-            re.compile(r'<h3>📬\s*2,?000\s*人以上の柔術家に参加\s*</h3>'),
+            re.compile(r'<h3>[^<]*?2,?000\s*人以上[^<]*</h3>'),
             '<h3>📬 BJJ 無料ニュースレター</h3>',
+        ),
+        # Variant: <h3 style="...">BJJニュースレター（2,000人以上登録）</h3>
+        (
+            re.compile(r'<h3([^>]*)>[^<]*?BJJ\s*ニュースレター（\s*2,?000\s*人以上[^<]*</h3>'),
+            r'<h3\1>📬 BJJ 無料ニュースレター</h3>',
+        ),
+        # <p> with N,000人以上のグラップラー / 柔術家 (subscriber count claim)
+        (
+            re.compile(r'<p([^>]*)>\s*\d,?000\s*人以上の(?:グラップラー|柔術家|ユーザー)[^<]*</p>'),
+            r'<p\1>無料配信中。スパムなし。</p>',
         ),
     ],
     "pt": [
         (
-            re.compile(r'<h3>📬\s*Junte-se a 2,?000\+\s*Praticantes de BJJ\s*</h3>', re.IGNORECASE),
+            re.compile(r'<h3>[^<]*?2,?000\+\s*Praticantes[^<]*</h3>', re.IGNORECASE),
+            '<h3>📬 Newsletter BJJ Grátis</h3>',
+        ),
+        (
+            re.compile(r'<h3>[^<]*?Junte-se\s*a\s*2,?000\+[^<]*</h3>', re.IGNORECASE),
             '<h3>📬 Newsletter BJJ Grátis</h3>',
         ),
     ],
@@ -59,8 +83,8 @@ def patch_one(fp: Path, lang: str) -> str:
         html = fp.read_text(encoding="utf-8")
     except Exception:
         return "skip-read"
-    if NOINDEX_RE.search(html[:600]):
-        return "skip-noindex"
+    # Note: also patch noindex/legacy redirect pages — the false claim is
+    # cosmetic content that should be honest regardless of indexability.
     changes = 0
     for pat, repl in REPLACEMENTS.get(lang, []):
         new_html, n = pat.subn(repl, html)
