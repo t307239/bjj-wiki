@@ -20,7 +20,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 LANGS = ["en", "ja", "pt"]
 SCRIPT_RE = re.compile(r"<script[^>]*>.*?</script>", re.IGNORECASE | re.DOTALL)
-NAKED_RE = re.compile(r'href=["\']https://bjj-app\.net["\']', re.IGNORECASE)
+# Only match <a> tags — <link rel="preconnect" href="https://bjj-app.net"> is a perf hint, not a CTA.
+# Multiline anchor support: attributes can span lines.
+NAKED_RE = re.compile(r'<a\s[^>]*href=["\']https://bjj-app\.net["\']', re.IGNORECASE | re.DOTALL)
 
 
 def main() -> int:

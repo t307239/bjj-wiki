@@ -16,8 +16,14 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 LANGS = ["en", "ja", "pt"]
 
 NEW_LINK = '<link rel="preconnect" href="https://bjj-app.net">\n'
+# Primary anchor: cdnjs preconnect (new template)
 ANCHOR_RE = re.compile(
     r'(<link rel="preconnect" href="https://cdnjs\.cloudflare\.com"[^>]*>)\s*\n',
+    re.IGNORECASE,
+)
+# Fallback anchor: wiki-v2.css link (universal across all pages)
+FALLBACK_ANCHOR_RE = re.compile(
+    r'(<link rel="stylesheet" href="/wiki-v2\.css"[^>]*>)\s*\n?',
     re.IGNORECASE,
 )
 ALREADY_RE = re.compile(r'<link rel="preconnect" href="https://bjj-app\.net"', re.IGNORECASE)
@@ -36,11 +42,24 @@ def patch_one(fp: Path) -> str:
         # Redirect / noindex page — preconnect waste
         return "skip-noindex"
     m = ANCHOR_RE.search(html)
-    if not m:
+    if m:
+        # Insert AFTER the cdnjs preconnect line
+        new_html = html[:m.end()] + NEW_LINK + html[m.end():]
+        fp.write_text(new_html, encoding="utf-8")
+        return "patched"
+    # Fallback: insert BEFORE the wiki-v2.css link
+    m2 = FALLBACK_ANCHOR_RE.search(html)
+    if not m2:
         return "skip-no-anchor"
-    new_html = html[:m.end()] + NEW_LINK + html[m.end():]
+    insert_at = m2.start()
+    # Ensure newline boundary
+    if insert_at > 0 and html[insert_at - 1] != "\n":
+        text = "\n" + NEW_LINK
+    else:
+        text = NEW_LINK
+    new_html = html[:insert_at] + text + html[insert_at:]
     fp.write_text(new_html, encoding="utf-8")
-    return "patched"
+    return "patched-fallback"
 
 
 def main() -> int:
