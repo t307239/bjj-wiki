@@ -77,8 +77,25 @@ def inject_one(fp: Path, lang: str) -> str:
         if slug in seen:
             continue
         seen.add(slug)
-        label = TAG_RE.sub("", m.group(2)).strip()
+        # Extract clean label: strip nested HTML, collapse whitespace, take first phrase
+        raw_label = TAG_RE.sub(" ", m.group(2))
+        # Collapse all whitespace runs to single space
+        clean = re.sub(r"\s+", " ", raw_label).strip()
+        # If the label has multiple parts (e.g., "Ankle Lock Technique Beginner"),
+        # take just the first 4-5 words (the actual title)
+        words = clean.split()
+        # Heuristic: title is usually first 1-4 words; strip metadata trailing words
+        # like "Technique Beginner" by cutting at the first occurrence of a meta word
+        META_WORDS = {"Technique", "Beginner", "Intermediate", "Advanced", "Guide", "System", "Belt"}
+        cut = len(words)
+        for i, w in enumerate(words):
+            if i > 0 and w in META_WORDS:
+                cut = i
+                break
+        label = " ".join(words[:cut]) if cut > 0 else clean
         if len(label) < 2:
+            continue
+        if "←" in label or "Back" in label:  # skip "← Back" type links
             continue
         items.append({
             "@type": "ListItem",
