@@ -66,6 +66,16 @@
 <meta property="og:image:alt" content="{{ page.og_title }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="article:author" content="BJJ App Inc.">
+{%- if page.date_published is defined %}
+<meta property="article:published_time" content="{{ page.date_published }}">
+{%- endif %}
+{%- if page.video_embed_id is defined %}
+<meta property="og:video" content="https://www.youtube.com/embed/{{ page.video_embed_id }}">
+<meta property="og:video:type" content="text/html">
+<meta property="og:video:width" content="560">
+<meta property="og:video:height" content="315">
+{%- endif %}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="{{ t.site.twitter_handle }}">
 <meta name="twitter:creator" content="{{ t.site.twitter_handle }}">
