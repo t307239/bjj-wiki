@@ -31,39 +31,45 @@ LANGS = ["en", "ja", "pt"]
 I18N = {
     "en": {
         "page_title": "BJJ Weekly — Featured Techniques & Tournament Calendar | BJJ App Wiki",
-        "page_desc": "Weekly digest of featured BJJ techniques, upcoming tournaments (IBJJF, ADCC), and recent updates to the BJJ App Wiki.",
+        "page_desc": "Weekly digest of featured BJJ techniques, real tournament calendars (IBJJF, ADCC, regional federations), and recent BJJ App Wiki updates.",
         "h1": "📰 BJJ Weekly",
-        "subtitle": "Week of {week_of} — Featured techniques, real tournament dates, recent wiki updates.",
+        "subtitle": "Week of {week_of} — Featured techniques, federation calendars, recent wiki updates.",
         "featured_h2": "🥋 Featured Techniques This Week",
-        "events_h2": "🏆 Upcoming Tournaments",
+        "events_h2": "🏆 Tournament Calendars",
+        "events_intro": "Annual events from major federations. Check the official site for confirmed dates each year.",
         "milestones_h2": "🆕 Recent Wiki Updates",
         "read_more": "Read the guide →",
         "event_at": "at",
-        "no_events": "No tournaments scheduled in the next 90 days.",
+        "official_site": "official site",
+        "no_events": "No federation events configured for this region yet.",
     },
     "ja": {
         "page_title": "BJJ ウィークリー — 注目テクニックと大会カレンダー | BJJ App Wiki",
-        "page_desc": "今週の注目 BJJ テクニック、IBJJF / ADCC 等の大会予定、BJJ App Wiki の最新更新を毎週まとめてお届け。",
+        "page_desc": "今週の注目 BJJ テクニック、JBJJF / ASJJF / DUMAU など日本の大会、IBJJF / ADCC 等の世界大会、BJJ App Wiki の最新更新を毎週まとめてお届け。",
         "h1": "📰 BJJ ウィークリー",
-        "subtitle": "週の始まり: {week_of} — 注目テクニック、実在する大会日程、Wiki 更新。",
+        "subtitle": "週の始まり: {week_of} — 注目テクニック、日本＋世界の大会カレンダー、Wiki 更新。",
         "featured_h2": "🥋 今週の注目テクニック",
-        "events_h2": "🏆 今後の大会予定",
+        "events_h2": "🏆 大会カレンダー",
+        "events_intro": "主要連盟の年間恒例大会。確定日程は各連盟の公式サイトでご確認ください。",
         "milestones_h2": "🆕 最近の Wiki 更新",
         "read_more": "ガイドを読む →",
         "event_at": "場所:",
-        "no_events": "今後 90 日以内に予定されている大会はありません。",
+        "official_site": "公式サイト",
+        "no_events": "この地域の連盟イベントはまだ登録されていません。",
     },
     "pt": {
         "page_title": "BJJ Semanal — Técnicas em destaque e calendário de torneios | BJJ App Wiki",
-        "page_desc": "Resumo semanal de técnicas de BJJ em destaque, próximos torneios (IBJJF, ADCC) e atualizações recentes do BJJ App Wiki.",
+        "page_desc": "Resumo semanal de técnicas em destaque, calendários reais de torneios (CBJJ, CBJJE, Copa Pódio, IBJJF, ADCC) e atualizações recentes do BJJ App Wiki.",
         "h1": "📰 BJJ Semanal",
-        "subtitle": "Semana de {week_of} — técnicas em destaque, datas reais de torneios, atualizações do wiki.",
+        "subtitle": "Semana de {week_of} — técnicas em destaque, calendários de federações brasileiras e mundiais, atualizações do wiki.",
         "featured_h2": "🥋 Técnicas em destaque desta semana",
-        "events_h2": "🏆 Próximos torneios",
+        "events_h2": "🏆 Calendários de Torneios",
+        "events_intro": "Eventos anuais das principais federações. Confira o site oficial para datas confirmadas a cada ano.",
         "milestones_h2": "🆕 Atualizações recentes do wiki",
         "read_more": "Leia o guia →",
         "event_at": "em",
-        "no_events": "Nenhum torneio agendado para os próximos 90 dias.",
+        "official_site": "site oficial",
+        "no_events": "Nenhum evento de federação configurado para esta região ainda.",
     },
 }
 
@@ -95,17 +101,14 @@ def select_featured(pool: list, week_idx: int, n: int = 3) -> list:
     return out
 
 
-def filter_upcoming_events(events: list, today: dt.date, days: int = 90) -> list:
-    cutoff = today + dt.timedelta(days=days)
+def filter_events_by_locale(events: list, lang: str) -> list:
+    """Return events whose `locales` list contains lang (default = all locales)."""
     out = []
     for e in events:
-        try:
-            d = dt.date.fromisoformat(str(e["date"]))
-        except Exception:
-            continue
-        if today <= d <= cutoff:
-            out.append((d, e))
-    return [e for _, e in sorted(out, key=lambda t: t[0])]
+        locales = e.get("locales", ["en", "ja", "pt"])
+        if lang in locales:
+            out.append(e)
+    return out
 
 
 def render_featured_card(item: dict, lang: str, t: dict, base_url: str) -> str:
@@ -118,16 +121,29 @@ def render_featured_card(item: dict, lang: str, t: dict, base_url: str) -> str:
 </article>"""
 
 
-def render_event_card(event: dict, t: dict) -> str:
-    name = event.get("name", "TBA")
-    loc = event.get("location", "TBA")
-    url = event.get("url", "")
-    date = event.get("date", "")
+def render_event_card(event: dict, lang: str, t: dict) -> str:
+    """Render a tournament card with locale-specific name / timing / location.
+
+    Falls back through lang → en → first available value, so partial entries
+    still show something useful instead of "TBA".
+    """
+    def get_loc(field: str) -> str:
+        return event.get(f"{field}_{lang}") or event.get(f"{field}_en") or "TBA"
+
+    name = get_loc("name")
+    timing = get_loc("timing")
+    loc = get_loc("location")
+    url = event.get("federation_url", "")
     href_attr = f'href="{url}" target="_blank" rel="noopener noreferrer"' if url else ""
     name_html = f'<a {href_attr} style="color:#e2e2ee;text-decoration:none">{name}</a>' if url else name
+    site_label = t["official_site"]
+    site_link = (
+        f' · <a {href_attr} style="color:#7c3aed;text-decoration:none">{site_label}</a>'
+        if url else ""
+    )
     return f"""
 <article style="background:#111119;border:1px solid #1e1e2e;border-radius:12px;padding:20px;margin-bottom:16px">
-  <div style="font-size:.78rem;color:#7a7a9a;margin-bottom:8px">📅 {date}</div>
+  <div style="font-size:.78rem;color:#7a7a9a;margin-bottom:8px">📅 {timing}{site_link}</div>
   <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:6px">{name_html}</h3>
   <p style="font-size:.9rem;color:#b0b0c8;margin:0">{t['event_at']} {loc}</p>
 </article>"""
@@ -154,12 +170,12 @@ def render_main_block(lang: str, data: dict, week_of: str, today: dt.date) -> st
 
     week_idx = today.isocalendar()[1]
     featured = select_featured(data.get("featured_techniques") or [], week_idx, n=3)
-    events = filter_upcoming_events(data.get("upcoming_events") or [], today, days=180)
+    events = filter_events_by_locale(data.get("events") or [], lang)
     milestones = (data.get("milestones") or [])[:5]
 
     featured_html = "".join(render_featured_card(f, lang, t, base_url) for f in featured)
     if events:
-        events_html = "".join(render_event_card(e, t) for e in events)
+        events_html = "".join(render_event_card(e, lang, t) for e in events)
     else:
         events_html = f'<p style="color:#7a7a9a">{t["no_events"]}</p>'
     milestones_html = "".join(render_milestone(m, lang) for m in milestones)
@@ -173,6 +189,7 @@ def render_main_block(lang: str, data: dict, week_of: str, today: dt.date) -> st
   {featured_html}
 
   <h2 style="font-size:1.2rem;color:#e94560;margin:32px 0 16px">{t['events_h2']}</h2>
+  <p style="color:#b0b0c8;font-size:.9rem;margin:0 0 16px">{t['events_intro']}</p>
   {events_html}
 
   <h2 style="font-size:1.2rem;color:#e94560;margin:32px 0 16px">{t['milestones_h2']}</h2>

@@ -1,4 +1,4 @@
-# news_feed.yml — Wave WW (G): /news page weekly auto-update source
+# news_feed.yml — Wave WW (G + locale split): /news weekly auto-update source
 #
 # This file is the SOURCE OF TRUTH for the /news page across 3 locales.
 # Update manually when real BJJ events / wiki milestones occur, then
@@ -8,12 +8,15 @@
 # bumps the "week_of" date + rotates the featured_techniques pool. This
 # gives Google a freshness signal even if no manual updates happen.
 #
-# Honesty note: do NOT fabricate events. Only list real BJJ tournaments
-# and wiki additions. If unsure, omit. The "featured" pool is curated
-# evergreen content that's safe to rotate.
+# 🚨 嘘より沈黙の原則 (CLAUDE.md ZERO TOLERANCE rule -3):
+# - 不確実な情報なら omit (「分からないので書かない」を選ぶ)
+# - 「短く正確」 > 「長く曖昧」
+# - 試合の specific date は federation 公式 site に link する形で User に確認させる
+# - 「Typically June」のような approximate timing は OK、捏造日付は NG
+# - Locale-specific events: EN は global、JA は日本連盟、PT は ブラジル連盟も含める
 
 # Permanent featured pool — pages cycled through over weeks.
-# Generator picks `(week_of_year % len(pool))..+3` items each run.
+# Generator picks `(week_of_year * 3 % len(pool))..+3` items each run.
 featured_techniques:
   - slug: heel-hook
     en: "Heel Hook — The defining submission of modern no-gi"
@@ -64,29 +67,146 @@ featured_techniques:
     ja: "アームバー — 全ての白帯が最初に覚えるべきサブミッション"
     pt: "Armbar — A primeira finalização que todo faixa branca deve dominar"
 
-# Real BJJ events — only list events that are publicly announced.
-# Update when real schedules are confirmed; remove past dates after they pass.
-upcoming_events:
-  - date: 2026-06-04
-    name: "IBJJF World Championship"
-    location: "Long Beach, CA"
-    url: "https://ibjjf.com/events/world-championship"
-  - date: 2026-08-15
-    name: "ADCC East Coast Trials"
-    location: "TBA"
-    url: "https://adcombat.com"
-  - date: 2026-10-17
-    name: "ADCC World Championship"
-    location: "Las Vegas, NV"
-    url: "https://adcombat.com"
-  - date: 2026-12-12
-    name: "IBJJF No-Gi World Championship"
-    location: "Long Beach, CA"
-    url: "https://ibjjf.com"
+# Locale-specific tournament calendars.
+# Each entry shows in /news only for the listed locales.
+# `timing` uses approximate language (no fabricated specific dates).
+# `federation_url` lets users verify confirmed dates on the official site.
+events:
+  # ─── Global (all locales) ───────────────────────
+  - id: ibjjf-worlds
+    name_en: "IBJJF World Championship (Worlds)"
+    name_ja: "IBJJF 世界選手権 (Worlds)"
+    name_pt: "Mundial IBJJF"
+    timing_en: "Annually, typically early June"
+    timing_ja: "毎年、6月上旬"
+    timing_pt: "Anualmente, geralmente no início de junho"
+    location_en: "Long Beach, California, USA"
+    location_ja: "ロングビーチ、カリフォルニア、米国"
+    location_pt: "Long Beach, Califórnia, EUA"
+    federation_url: "https://ibjjf.com/events/world-championship"
+    locales: [en, ja, pt]
+
+  - id: ibjjf-pan
+    name_en: "IBJJF Pan Championship"
+    name_ja: "IBJJF Pan 選手権"
+    name_pt: "Pan-Americano IBJJF"
+    timing_en: "Annually, typically March"
+    timing_ja: "毎年、3月頃"
+    timing_pt: "Anualmente, geralmente em março"
+    location_en: "Orlando, Florida, USA"
+    location_ja: "オーランド、フロリダ、米国"
+    location_pt: "Orlando, Flórida, EUA"
+    federation_url: "https://ibjjf.com/events/pan-jiu-jitsu-ibjjf-championship"
+    locales: [en, ja, pt]
+
+  - id: ibjjf-nogi-worlds
+    name_en: "IBJJF No-Gi World Championship"
+    name_ja: "IBJJF ノーギ世界選手権"
+    name_pt: "Mundial No-Gi IBJJF"
+    timing_en: "Annually, typically December"
+    timing_ja: "毎年、12月頃"
+    timing_pt: "Anualmente, geralmente em dezembro"
+    location_en: "Las Vegas, Nevada, USA"
+    location_ja: "ラスベガス、ネバダ、米国"
+    location_pt: "Las Vegas, Nevada, EUA"
+    federation_url: "https://ibjjf.com/events/no-gi-world-championship"
+    locales: [en, ja, pt]
+
+  - id: ibjjf-european
+    name_en: "IBJJF European Championship"
+    name_ja: "IBJJF ヨーロッパ選手権"
+    name_pt: "Europeu IBJJF"
+    timing_en: "Annually, typically late January"
+    timing_ja: "毎年、1月下旬"
+    timing_pt: "Anualmente, geralmente final de janeiro"
+    location_en: "Lisbon, Portugal"
+    location_ja: "リスボン、ポルトガル"
+    location_pt: "Lisboa, Portugal"
+    federation_url: "https://ibjjf.com/events/european-jiu-jitsu-ibjjf-championship"
+    locales: [en, ja, pt]
+
+  - id: adcc-worlds
+    name_en: "ADCC World Championship"
+    name_ja: "ADCC 世界選手権"
+    name_pt: "Mundial ADCC"
+    timing_en: "Biennial (2024, 2026, ...) — check ADCC for next event"
+    timing_ja: "隔年開催 (2024 / 2026 ...) — 公式 site で確認"
+    timing_pt: "Bienal (2024, 2026, ...) — confira o site da ADCC"
+    location_en: "Las Vegas, Nevada (recent edition)"
+    location_ja: "ラスベガス、ネバダ (直近)"
+    location_pt: "Las Vegas, Nevada (edição recente)"
+    federation_url: "https://adcombat.com"
+    locales: [en, ja, pt]
+
+  # ─── Japan-specific (JA only) ───────────────────────
+  - id: jbjjf-all-japan
+    name_ja: "JBJJF 全日本ブラジリアン柔術選手権"
+    name_en: "JBJJF All Japan Brazilian Jiu-Jitsu Championship"
+    timing_ja: "毎年開催 — 公式サイトで確認"
+    timing_en: "Annual — check JBJJF site for confirmed date"
+    location_ja: "東京 (例年)"
+    location_en: "Tokyo (typical)"
+    federation_url: "https://www.jbjjf.com"
+    locales: [ja]
+
+  - id: asjjf
+    name_ja: "ASJJF (アジア柔術連盟) 大会"
+    name_en: "ASJJF (Asian JJF) Tournaments"
+    timing_ja: "年複数回開催 — 公式サイトで確認"
+    timing_en: "Multiple events per year — check ASJJF site"
+    location_ja: "東京・大阪・福岡など"
+    location_en: "Tokyo, Osaka, Fukuoka and more"
+    federation_url: "https://asjjf.com"
+    locales: [ja]
+
+  - id: dumau-japan
+    name_ja: "DUMAU Japan オープン"
+    name_en: "DUMAU Japan Open"
+    timing_ja: "年複数回開催 — 公式サイトで確認"
+    timing_en: "Multiple events per year — check DUMAU site"
+    location_ja: "東京"
+    location_en: "Tokyo"
+    federation_url: "https://www.dumau.com"
+    locales: [ja]
+
+  # ─── Brazil-specific (PT only) ───────────────────────
+  - id: cbjj-brasileiro
+    name_pt: "Brasileiro CBJJ"
+    name_en: "CBJJ Brazilian Championship"
+    timing_pt: "Anualmente — confira CBJJ"
+    timing_en: "Annual — check CBJJ"
+    location_pt: "Brasil (varia por edição)"
+    location_en: "Brazil (location varies)"
+    federation_url: "https://cbjj.com.br"
+    locales: [pt]
+
+  - id: cbjje-mundial
+    name_pt: "Mundial CBJJE"
+    name_en: "CBJJE World Championship"
+    timing_pt: "Anualmente — confira CBJJE"
+    timing_en: "Annual — check CBJJE"
+    location_pt: "Brasil"
+    location_en: "Brazil"
+    federation_url: "https://cbjje.com.br"
+    locales: [pt]
+
+  - id: copa-podio
+    name_pt: "Copa Pódio"
+    name_en: "Copa Podio"
+    timing_pt: "Multiplos eventos por ano — confira o site"
+    timing_en: "Multiple events per year — check site"
+    location_pt: "Brasil"
+    location_en: "Brazil"
+    federation_url: "https://copapodio.com"
+    locales: [pt]
 
 # Wiki milestone log — only add when a true milestone (50-page batch,
 # new archetype, major content addition). Keeps content honest.
 milestones:
+  - date: 2026-05-12
+    en: "Locale-aware tournament calendar — JA users see JBJJF/ASJJF/DUMAU, PT users see CBJJ/CBJJE/Copa Podio"
+    ja: "ロケール別大会カレンダー — JA は JBJJF/ASJJF/DUMAU、PT は CBJJ/CBJJE/Copa Podio を表示"
+    pt: "Calendário de torneios por localidade — JA vê JBJJF/ASJJF/DUMAU, PT vê CBJJ/CBJJE/Copa Pódio"
   - date: 2026-05-12
     en: "Internal linking strengthening — 4,434 pages now have Related Techniques sections"
     ja: "内部リンク強化 — 4,434 ページに「関連テクニック」セクションを追加"
