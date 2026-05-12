@@ -1,0 +1,8 @@
+# Wave WW Round 4: security.txt per RFC 9116
+# Provides a standard contact for security researchers (trust signal).
+# Listed in security.txt aggregators + Google trust evaluation.
+
+Contact: mailto:307239t777@gmail.com
+Expires: 2027-05-12T00:00:00.000Z
+Preferred-Languages: en, ja, pt
+Canonical: https://wiki.bjj-app.net/.well-known/security.txt

@@ -1,0 +1,17 @@
+# Wave WW Round 4: humans.txt — credit + transparency signal
+# https://humanstxt.org/
+
+/* TEAM */
+  Founder & Maintainer: Toshiki Terasawa
+  Contact: 307239t777@gmail.com
+  Site: https://wiki.bjj-app.net
+  Companion app: https://bjj-app.net
+
+/* THANKS */
+  Open BJJ community
+
+/* SITE */
+  Last update: 2026-05-12
+  Languages: English, 日本語, Português (Brasil)
+  Standards: HTML5, CSS3, JSON-LD (Schema.org), RSS 2.0
+  Hosting: GitHub Pages
