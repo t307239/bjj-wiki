@@ -68,6 +68,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="{{ t.site.twitter_handle }}">
+<meta name="twitter:creator" content="{{ t.site.twitter_handle }}">
 <meta name="twitter:title" content="{{ page.og_title }}">
 <meta name="twitter:description" content="{{ page.description }}">
 <meta name="twitter:image" content="{{ t.site.app_url }}/api/og?mode=technique&category=technique&title={{ page.og_image_title }}&lang={{ lang }}">
@@ -78,6 +79,7 @@
 <link rel="alternate" hreflang="pt" href="{{ t.site.base_url }}/pt/{{ page.slug }}.html">
 <link rel="icon" href="{{ t.site.base_url }}/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ t.site.base_url }}/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
 <link rel="stylesheet" href="/wiki-v2.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ t.site.ga_id }}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ t.site.ga_id }}');</script>
@@ -267,6 +269,8 @@
       <iframe
         src="https://www.youtube.com/embed/{{ page.video_embed_id }}?rel=0&modestbranding=1"
         title="BJJ technique tutorial"
+        width="560"
+        height="315"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
