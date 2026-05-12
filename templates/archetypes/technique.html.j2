@@ -272,6 +272,8 @@
       </iframe>
     </div>
   </div>
+  {#- z255jjjj-WW Round 5: VideoObject schema for rich video snippet in SERP -#}
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"{{ page.h1_simple }} — {{ t.related_video.heading }}","description":"{{ page.description }}","thumbnailUrl":"https://i.ytimg.com/vi/{{ page.video_embed_id }}/hqdefault.jpg","uploadDate":"{{ page.date_modified | default('2026-05-12T00:00:00+09:00') }}","embedUrl":"https://www.youtube.com/embed/{{ page.video_embed_id }}","inLanguage":"{{ lang }}"}</script>
 {%- endif %}
   <div class="share-bar">
     <p>{{ t.share_bar.heading }}</p>
