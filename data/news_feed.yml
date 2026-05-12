@@ -1,0 +1,101 @@
+# news_feed.yml — Wave WW (G): /news page weekly auto-update source
+#
+# This file is the SOURCE OF TRUTH for the /news page across 3 locales.
+# Update manually when real BJJ events / wiki milestones occur, then
+# `python3 scripts/generate_news_page.py` regenerates en/ja/pt news.html.
+#
+# Cron: .github/workflows/news_weekly.yml runs every Monday 09:00 JST and
+# bumps the "week_of" date + rotates the featured_techniques pool. This
+# gives Google a freshness signal even if no manual updates happen.
+#
+# Honesty note: do NOT fabricate events. Only list real BJJ tournaments
+# and wiki additions. If unsure, omit. The "featured" pool is curated
+# evergreen content that's safe to rotate.
+
+# Permanent featured pool — pages cycled through over weeks.
+# Generator picks `(week_of_year % len(pool))..+3` items each run.
+featured_techniques:
+  - slug: heel-hook
+    en: "Heel Hook — The defining submission of modern no-gi"
+    ja: "ヒールフック — モダンノーギを定義するサブミッション"
+    pt: "Heel Hook — A submissão que define o no-gi moderno"
+  - slug: berimbolo
+    en: "Berimbolo — Sport-BJJ's most copied back-take system"
+    ja: "ベリンボロ — スポーツ柔術で最もコピーされたバックテイク"
+    pt: "Berimbolo — O sistema de pegada das costas mais copiado"
+  - slug: imanari-roll
+    en: "Imanari Roll — The spinning leg-lock entry that opened a meta"
+    ja: "イマナリロール — メタを開いた回転式レッグロック入り"
+    pt: "Imanari Roll — A entrada giratória de chave de perna"
+  - slug: triangle-choke
+    en: "Triangle Choke — Why Royce Gracie's UFC weapon still wins"
+    ja: "三角絞め — ホイス・グレイシーの UFC 武器が今も勝つ理由"
+    pt: "Triângulo — Por que a arma de Royce Gracie no UFC ainda vence"
+  - slug: kimura
+    en: "Kimura — The grip that defeated Helio and never went out of style"
+    ja: "キムラ — エリオを破ったグリップ、廃れない理由"
+    pt: "Kimura — A pegada que venceu Helio e nunca saiu de moda"
+  - slug: x-guard
+    en: "X-Guard — Marcelo Garcia's invention that reshaped sweeps"
+    ja: "Xガード — マルセロ・ガルシアの発明とスイープ革命"
+    pt: "X-Guard — A invenção de Marcelo Garcia que mudou as raspagens"
+  - slug: 50-50-guard
+    en: "50/50 Guard — Mendes brothers' geometry of leg entanglement"
+    ja: "50/50ガード — メンデス兄弟による下半身絡みの幾何学"
+    pt: "50/50 Guard — A geometria dos irmãos Mendes nos enroscos de pernas"
+  - slug: rear-naked-choke
+    en: "Rear Naked Choke — The most-finished submission in MMA history"
+    ja: "リアネイキッドチョーク — MMA 史上最も決まったサブミッション"
+    pt: "Mata-Leão — A finalização mais decisiva da história do MMA"
+  - slug: butterfly-guard
+    en: "Butterfly Guard — Marcelo Garcia's no-gi sweep encyclopedia"
+    ja: "バタフライガード — マルセロ・ガルシアのノーギ・スイープ百科"
+    pt: "Butterfly Guard — A enciclopédia de raspagens no-gi de Marcelo"
+  - slug: de-la-riva-guard
+    en: "De La Riva Guard — The hook that opened sport-BJJ's open guard era"
+    ja: "デラヒーバガード — スポーツ柔術オープンガード時代を開いたフック"
+    pt: "Guarda De La Riva — O gancho que abriu a era da guarda aberta esportiva"
+  - slug: deep-half-guard
+    en: "Deep Half Guard — Jeff Glover's underhook-driven sweep system"
+    ja: "ディープハーフガード — ジェフ・グローバーのアンダーフック・スイープ"
+    pt: "Deep Half Guard — O sistema de raspagens de Jeff Glover"
+  - slug: armbar
+    en: "Armbar — The first submission every white belt should master"
+    ja: "アームバー — 全ての白帯が最初に覚えるべきサブミッション"
+    pt: "Armbar — A primeira finalização que todo faixa branca deve dominar"
+
+# Real BJJ events — only list events that are publicly announced.
+# Update when real schedules are confirmed; remove past dates after they pass.
+upcoming_events:
+  - date: 2026-06-04
+    name: "IBJJF World Championship"
+    location: "Long Beach, CA"
+    url: "https://ibjjf.com/events/world-championship"
+  - date: 2026-08-15
+    name: "ADCC East Coast Trials"
+    location: "TBA"
+    url: "https://adcombat.com"
+  - date: 2026-10-17
+    name: "ADCC World Championship"
+    location: "Las Vegas, NV"
+    url: "https://adcombat.com"
+  - date: 2026-12-12
+    name: "IBJJF No-Gi World Championship"
+    location: "Long Beach, CA"
+    url: "https://ibjjf.com"
+
+# Wiki milestone log — only add when a true milestone (50-page batch,
+# new archetype, major content addition). Keeps content honest.
+milestones:
+  - date: 2026-05-12
+    en: "Internal linking strengthening — 4,434 pages now have Related Techniques sections"
+    ja: "内部リンク強化 — 4,434 ページに「関連テクニック」セクションを追加"
+    pt: "Linkagem interna reforçada — 4.434 páginas agora têm Técnicas Relacionadas"
+  - date: 2026-05-12
+    en: "Page speed boost — preconnect to bjj-app.net, content-visibility CSS for FAQs"
+    ja: "ページ速度改善 — bjj-app.net への preconnect と FAQ への content-visibility 適用"
+    pt: "Velocidade de página — preconnect para bjj-app.net e content-visibility nas FAQs"
+  - date: 2026-05-11
+    en: "Template migration complete — 4,653/4,656 pages on the new chrome"
+    ja: "テンプレ移行完了 — 4,653/4,656 ページが新クロームへ移行"
+    pt: "Migração de template concluída — 4.653/4.656 páginas no novo chrome"
