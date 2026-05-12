@@ -112,6 +112,7 @@
 {%- endif %}
 </head>
 <body>
+<a class="skip-link" href="#main">{% if lang == 'ja' %}コンテンツへスキップ{% elif lang == 'pt' %}Pular para o conteúdo{% else %}Skip to content{% endif %}</a>
 <div id="read-progress"></div>
 <div class="container">
   <header>
@@ -119,6 +120,7 @@
     <nav class="lang-nav"><a href="../en/{{ page.slug }}.html"{% if lang == 'en' %} class="active" aria-current="page"{% endif %}>{{ t.nav.flag.en }}</a><a href="../ja/{{ page.slug }}.html"{% if lang == 'ja' %} class="active" aria-current="page"{% endif %}>{{ t.nav.flag.ja }}</a><a href="../pt/{{ page.slug }}.html"{% if lang == 'pt' %} class="active" aria-current="page"{% endif %}>{{ t.nav.flag.pt }}</a></nav>
   </header>
 
+  <main id="main">
   <span class="badge">{{ t.category_label[page.category] if (t.category_label is defined and page.category in t.category_label) else page.category }}</span><br>
   <span class="belt belt-{{ page.belt_level | lower }}">{{ t.belt_label[page.belt_level] if (t.belt_label is defined and page.belt_level in t.belt_label) else page.belt_level }}</span>
   <h1>{{ page.h1 }}</h1>
@@ -288,6 +290,7 @@
 {%- if include_z243_cta %}
   <!-- z243-bottom-cta --><div class="z243-bottom-cta" style="margin:2rem 0;padding:24px 24px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);border:2px solid #2e7d32;border-radius:14px;text-align:center"><div style="font-weight:700;color:#a5d6a7;font-size:1.1rem;margin-bottom:6px">{{ t.cta_bottom.heading }}</div><div style="font-size:.9rem;color:#c8e6c9;margin-bottom:16px">{{ t.cta_bottom.body }}</div><a href="{{ t.site.app_url }}/login?ref=wiki&page=bottom" style="display:inline-block;background:#10B981;color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'bottom',lang:'{{ lang }}'})">{{ t.cta_bottom.cta_text }}</a></div>
 {%- endif %}
+  </main>
 <footer>
     <p>{{ t.footer.tagline }}</p>
     <p style="margin-top:8px"><a href="{{ t.footer.privacy_href }}" style="color:var(--muted)">{{ t.footer.privacy_text }}</a></p>
