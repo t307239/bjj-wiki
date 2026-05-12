@@ -1,6 +1,42 @@
 User-agent: *
 Allow: /
 
+# AI training / answer crawlers — explicitly allow so wiki content surfaces
+# in ChatGPT, Claude, Perplexity etc. Q&A. Per Toshiki's open-knowledge
+# stance + indie 路線 (broader visibility = more BJJ practitioners helped).
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://wiki.bjj-app.net/sitemap.xml
 
 # RSS/Atom feed autodiscovery for crawlers + power users
