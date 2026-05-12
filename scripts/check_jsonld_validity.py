@@ -47,8 +47,10 @@ def main() -> int:
                 payload = m.group(1).strip()
 
                 # Class D: literal template residue (raw text before JSON parse)
+                # Allowlist: SearchAction's {search_term_string} is valid Schema.org syntax
+                ALLOWED_TEMPLATE_VARS = {"{search_term_string}"}
                 tm = TEMPLATE_RE.search(payload)
-                if tm:
+                if tm and tm.group(0) not in ALLOWED_TEMPLATE_VARS:
                     template_residue.append((src, tm.group(0)))
 
                 # Class A: parse
