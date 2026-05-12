@@ -38,9 +38,11 @@ NOINDEX_RE = re.compile(r'name=["\']robots["\'][^>]*content=["\'][^"\']*noindex'
 ALREADY_RE = re.compile(re.escape(MARKER))
 HEAD_END_RE = re.compile(r"</head>", re.IGNORECASE)
 MAIN_RE = re.compile(r"<main[^>]*>(.*?)</main>", re.DOTALL | re.IGNORECASE)
+# Tolerant LINK_RE: support nested HTML inside <a> (e.g. <a><div>Label</div></a>).
+# Captures slug + first text-or-tag-content up to closing </a>.
 LINK_RE = re.compile(
-    r'<a[^>]+href="(?:\.\./)?(?:[a-z]{2}/)?([a-z0-9\-]+)\.html"[^>]*>([^<]+)</a>',
-    re.IGNORECASE,
+    r'<a[^>]+href="(?:\.\./)?(?:[a-z]{2}/)?([a-z0-9\-]+)\.html"[^>]*>(.*?)</a>',
+    re.IGNORECASE | re.DOTALL,
 )
 H1_RE = re.compile(r"<h1[^>]*>(.*?)</h1>", re.DOTALL)
 TAG_RE = re.compile(r"<[^>]+>")
