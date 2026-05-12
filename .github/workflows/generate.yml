@@ -117,6 +117,9 @@ jobs:
       - name: Update sitemap lastmod
         run: python scripts/patch_sitemap.py
 
+      - name: Enrich sitemap with hreflang annotations (international SEO)
+        run: python scripts/enrich_sitemap_hreflang.py
+
       - name: Set up Node.js
         uses: actions/setup-node@v5
         with:

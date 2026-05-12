@@ -77,7 +77,7 @@
 <link rel="alternate" hreflang="ja" href="{{ t.site.base_url }}/ja/{{ page.slug }}.html">
 <link rel="alternate" hreflang="pt" href="{{ t.site.base_url }}/pt/{{ page.slug }}.html">
 <link rel="icon" href="{{ t.site.base_url }}/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="{{ t.site.base_url }}/og-image.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ t.site.base_url }}/apple-touch-icon.png">
 <link rel="stylesheet" href="/wiki-v2.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ t.site.ga_id }}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ t.site.ga_id }}');</script>
@@ -116,7 +116,7 @@
 <div class="container">
   <header>
     <a href="../{{ lang }}/index.html" class="logo">{{ t.nav.home }}</a>
-    <nav class="lang-nav"><a href="../en/{{ page.slug }}.html"{% if lang == 'en' %} class="active"{% endif %}>{{ t.nav.flag.en }}</a><a href="../ja/{{ page.slug }}.html"{% if lang == 'ja' %} class="active"{% endif %}>{{ t.nav.flag.ja }}</a><a href="../pt/{{ page.slug }}.html"{% if lang == 'pt' %} class="active"{% endif %}>{{ t.nav.flag.pt }}</a></nav>
+    <nav class="lang-nav"><a href="../en/{{ page.slug }}.html"{% if lang == 'en' %} class="active" aria-current="page"{% endif %}>{{ t.nav.flag.en }}</a><a href="../ja/{{ page.slug }}.html"{% if lang == 'ja' %} class="active" aria-current="page"{% endif %}>{{ t.nav.flag.ja }}</a><a href="../pt/{{ page.slug }}.html"{% if lang == 'pt' %} class="active" aria-current="page"{% endif %}>{{ t.nav.flag.pt }}</a></nav>
   </header>
 
   <span class="badge">{{ t.category_label[page.category] if (t.category_label is defined and page.category in t.category_label) else page.category }}</span><br>
@@ -280,7 +280,7 @@
     <div class="share-btns">
       <a class="share-btn x" href="https://twitter.com/intent/tweet?url={{ t.site.base_url }}/{{ lang }}/{{ page.slug }}.html&text={{ page.h1_simple | urlencode }}+%23BJJ+%23bjjwiki" target="_blank" rel="noopener noreferrer">{{ t.share_bar.x_btn }}</a>
       <a class="share-btn reddit" href="https://www.reddit.com/submit?url={{ t.site.base_url }}/{{ lang }}/{{ page.slug }}.html&title={{ page.h1_simple | urlencode }}" target="_blank" rel="noopener noreferrer">{{ t.share_bar.reddit_btn }}</a>
-      <button class="share-btn copy" onclick="navigator.clipboard.writeText('{{ t.site.base_url }}/{{ lang }}/{{ page.slug }}.html').then(()=>{this.textContent='{{ t.share_bar.copy_btn_done }}';setTimeout(()=>this.textContent='{{ t.share_bar.copy_btn }}',2000)})">{{ t.share_bar.copy_btn }}</button>
+      <button type="button" class="share-btn copy" onclick="navigator.clipboard.writeText('{{ t.site.base_url }}/{{ lang }}/{{ page.slug }}.html').then(()=>{this.textContent='{{ t.share_bar.copy_btn_done }}';setTimeout(()=>this.textContent='{{ t.share_bar.copy_btn }}',2000)})">{{ t.share_bar.copy_btn }}</button>
       <a class="yt-search-btn" href="https://www.youtube.com/results?search_query={{ page.h1_simple | urlencode }}+BJJ+tutorial" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> {{ t.share_bar.youtube_btn }}</a>
     </div>
   </div>
@@ -293,7 +293,7 @@
     <p style="margin-top:8px"><a href="{{ t.footer.privacy_href }}" style="color:var(--muted)">{{ t.footer.privacy_text }}</a></p>
   </footer>
 </div>
-  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <button type="button" id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
   <script>
   (function(){
     var prog=document.getElementById('read-progress');
