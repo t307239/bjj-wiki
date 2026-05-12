@@ -64,6 +64,20 @@ HEADINGS = {
     "pt": "Técnicas Relacionadas",
 }
 
+# Pre-existing "Related"-like h2 detection — skip these pages
+# (they already have a richer Related section from earlier scripts).
+PREEXISTING_PATTERNS = {
+    "en": re.compile(
+        r'<h2[^>]*>\s*(?:Related Techniques|Related Guides|Related Articles)\s*</h2>',
+        re.IGNORECASE,
+    ),
+    "ja": re.compile(r'<h2[^>]*>\s*(?:関連テクニック|関連ガイド|関連記事)\s*</h2>'),
+    "pt": re.compile(
+        r'<h2[^>]*>\s*(?:Técnicas Relacionadas|Guias Relacionados|Artigos Relacionados)\s*</h2>',
+        re.IGNORECASE,
+    ),
+}
+
 
 def find_indexable_pages() -> dict[str, dict[str, Path]]:
     """Return {lang: {slug: Path}} for all indexable pages per locale."""
@@ -206,6 +220,11 @@ def inject_one(fp: Path, lang: str, all_slugs: list[str], dry: bool) -> str:
         return "skip-noindex"
     if already_has_marker(html):
         return "already"
+    # Skip pages that already have a "Related Techniques"-like section from
+    # an earlier script (don't create duplicates).
+    pat = PREEXISTING_PATTERNS.get(lang)
+    if pat and pat.search(html):
+        return "skip-preexisting-section"
     related = find_related_for_slug(fp.stem, all_slugs, k=6)
     if len(related) < 3:
         return "skip-no-related"
