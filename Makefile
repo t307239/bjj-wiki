@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness og-image-encoding description-quality all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness og-image-encoding description-quality h2-id-clobber all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness dup-related-tech no-nested-p og-locale-completeness mobile-a11y-meta main-tag-present videoobject-when-yt apple-touch-icon-png skip-link pwa-iframe-twitter no-fake-subscriber-claim og-video-when-yt no-generic-h1 thin-content-indexable index-locale-parity no-duplicate-html-id html-quality-minor og-image-encoding description-quality
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness dup-related-tech no-nested-p og-locale-completeness mobile-a11y-meta main-tag-present videoobject-when-yt apple-touch-icon-png skip-link pwa-iframe-twitter no-fake-subscriber-claim og-video-when-yt no-generic-h1 thin-content-indexable index-locale-parity no-duplicate-html-id html-quality-minor og-image-encoding description-quality h2-id-clobber
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -273,6 +273,8 @@ og-image-encoding:
 	@echo "→ check_og_image_url_encoding.py..."
 	@python3 scripts/check_og_image_url_encoding.py --ci
 
+# (h2-id-clobber は description-quality と並列で実行)
+
 # z260w: meta description quality (locale drift / PT athlete concat / length / about-privacy meta)
 # 4 classes (A locale drift / B PT athlete concat / C length overflow / D about-privacy)
 # 統合 lint — fix_locale_drift_descriptions.py / fix_pt_athlete_desc_concat_drift.py /
@@ -280,6 +282,12 @@ og-image-encoding:
 description-quality:
 	@echo "→ check_description_quality.py..."
 	@python3 scripts/check_description_quality.py --ci
+
+# z260x: 2 つの TOC generator (wiki-sidebar + auto-toc) の h2 id 競合検出
+# auto-toc が `h.id = 'section-'+i` で wiki-sidebar の `hs+i` を破壊して 3,856 page で sidebar 死亡を再発防止
+h2-id-clobber:
+	@echo "→ check_h2_id_clobber.py..."
+	@python3 scripts/check_h2_id_clobber.py --ci
 
 all: verify
 	@echo "All checks complete."

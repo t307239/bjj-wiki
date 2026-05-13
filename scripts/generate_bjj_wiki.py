@@ -1056,8 +1056,8 @@ def article_to_html(tech, lang_code, article, all_techniques):
       var listEl=document.getElementById('toc-list');
       if(tocEl&&listEl){{
         headings.forEach(function(h,i){{
-          var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id='section-'+i;
+          var id=h.id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;
