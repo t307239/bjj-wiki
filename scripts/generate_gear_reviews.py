@@ -137,16 +137,15 @@ def build_gear_html(page, content):
             "acceptedAnswer":{"@type":"Answer","text":faq_a}}]
     }, ensure_ascii=False)
 
-    # AggregateRating schema（検索結果に★を表示）
-    avg_rating = round(sum(r.get("rating",4) for r in reviews)/max(len(reviews),1),1) if reviews else 4.6
-    review_count = len(reviews)*40+100
-    product_schema = json.dumps({
-        "@context":"https://schema.org","@type":"Product",
-        "name":title,"description":meta,
-        "aggregateRating":{"@type":"AggregateRating",
-            "ratingValue":str(avg_rating),"reviewCount":str(review_count),
-            "bestRating":"5","worstRating":"1"}
-    }, ensure_ascii=False)
+    # z260c: 旧 Product schema + 架空 AggregateRating は削除
+    # 理由: ratingValue/reviewCount を `len(reviews)*40+100` 等の formula で生成しており
+    # CLAUDE.md ルール -3 (嘘より沈黙) + Google 構造化データガイドライン (fake reviews 禁止)
+    # の両方に違反。代わりに schema を出力しない (omit) ことで silent な honest 状態に。
+    # 本物の review が集まり次第、real data ベースで schema 再導入可。
+    # NOTE: generate_bjj_wiki.py が後段でこれらの page を Article schema で上書きしている
+    # ため live page には影響なし (defense in depth)。
+    product_schema = ""
+    product_schema_block = f'<script type="application/ld+json">{product_schema}</script>' if product_schema else ''
 
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -178,7 +177,7 @@ def build_gear_html(page, content):
 }}
 </script>
 <script type="application/ld+json">{faq_schema}</script>
-<script type="application/ld+json">{product_schema}</script>
+{product_schema_block}
 <style>
 :root{{--bg:#080b12;--card:#141926;--border:#1f2840;--text:#e8eaf6;--muted:#6b7699;--accent:#7c6af7;--accent2:#a78bfa}}
 *{{box-sizing:border-box;margin:0;padding:0}}
