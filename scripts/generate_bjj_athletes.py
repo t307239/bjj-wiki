@@ -337,7 +337,7 @@ def build_athlete_html(athlete, content, lang):
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <meta charset="UTF-8">
-  <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://wiki.bjj-app.net/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" sizes="180x180" href="https://wiki.bjj-app.net/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title_tag} | BJJ Wiki</title>
 <meta name="description" content="{meta_desc}">
