@@ -34,6 +34,7 @@
   "en/snap-down": true,
   "en/rear-naked-choke": true,
   "en/triangle-choke": true,
+  "en/guillotine-choke": true,
   "en/bow-and-arrow-choke": true,
   "en/ezekiel-choke": true,
   "en/darce-choke": true,
@@ -136,7 +137,6 @@
   "ja/guillotine-choke": true,
   "ja/bow-and-arrow-choke": true,
   "ja/ezekiel-choke": true,
-  "ja/darce-choke": true,
   "ja/anaconda-choke": true,
   "ja/loop-choke": true,
   "ja/arm-triangle-choke": true,
@@ -181,7 +181,6 @@
   "ja/arm-drag": true,
   "ja/granby-roll": true,
   "ja/shrimp-escape": true,
-  "ja/bridge-and-roll": true,
   "ja/elbow-knee-escape": true,
   "ja/guard-retention": true,
   "ja/hip-escape": true,
@@ -198,5 +197,6 @@
   "ja/russian-tie": true,
   "ja/underhook": true,
   "ja/overhook": true,
-  "pt/closed-guard": true
+  "pt/closed-guard": true,
+  "pt/open-guard": true
 }
