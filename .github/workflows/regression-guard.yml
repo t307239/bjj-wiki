@@ -211,6 +211,11 @@ jobs:
         id: cta_text_locale
         run: python3 scripts/check_cta_text_locale_drift.py --ci
 
+      # z260w: meta description quality 4 classes (locale drift / PT athlete concat / length / about-privacy)
+      - name: Check meta description quality
+        id: description_quality
+        run: python3 scripts/check_description_quality.py --ci
+
       - name: Notify Telegram on Critical
         if: failure()
         env:
