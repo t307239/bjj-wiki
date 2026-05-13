@@ -849,7 +849,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
 <link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/{tech['slug']}.html">
 <link rel="alternate" hreflang="pt" href="{SITE_URL}/pt/{tech['slug']}.html">
 <link rel="icon" href="{SITE_URL}/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="{SITE_URL}/og-image.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="{SITE_URL}/apple-touch-icon.png">
 <link rel="stylesheet" href="/wiki-v2.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
@@ -1128,7 +1128,7 @@ def generate_category_index(lang_code, techniques_by_category):
 <link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/index.html">
 <link rel="alternate" hreflang="pt" href="{SITE_URL}/pt/index.html">
 <link rel="icon" href="{SITE_URL}/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="{SITE_URL}/og-image.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="{SITE_URL}/apple-touch-icon.png">
 <link rel="stylesheet" href="/wiki-v2.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
@@ -1186,7 +1186,7 @@ def generate_index():
 <link rel="alternate" hreflang="ja" href="{SITE_URL}/ja/index.html">
 <link rel="alternate" hreflang="pt" href="{SITE_URL}/pt/index.html">
 <link rel="icon" href="{SITE_URL}/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="{SITE_URL}/og-image.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="{SITE_URL}/apple-touch-icon.png">
 <link rel="stylesheet" href="/wiki-v2.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LM8L3TRZM"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-7LM8L3TRZM');</script>
