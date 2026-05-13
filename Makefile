@@ -3,10 +3,10 @@
 # 「完璧」と宣言する前に必ず `make verify` を実行する。
 # 5 つの lint が全パスすれば commit 可能、1 つでも fail なら作業未完了。
 
-.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness all clean
+.PHONY: verify locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness og-image-encoding all clean
 
 # Run all anti-regression checks
-verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness dup-related-tech no-nested-p og-locale-completeness mobile-a11y-meta main-tag-present videoobject-when-yt apple-touch-icon-png skip-link pwa-iframe-twitter no-fake-subscriber-claim og-video-when-yt no-generic-h1 thin-content-indexable index-locale-parity no-duplicate-html-id html-quality-minor
+verify: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness dup-related-tech no-nested-p og-locale-completeness mobile-a11y-meta main-tag-present videoobject-when-yt apple-touch-icon-png skip-link pwa-iframe-twitter no-fake-subscriber-claim og-video-when-yt no-generic-h1 thin-content-indexable index-locale-parity no-duplicate-html-id html-quality-minor og-image-encoding
 	@echo ""
 	@echo "✅ All anti-regression checks passed."
 	@echo "   Safe to commit."
@@ -267,6 +267,11 @@ no-duplicate-html-id:
 html-quality-minor:
 	@echo "→ check_html_quality_minor.py..."
 	@python3 scripts/check_html_quality_minor.py --ci
+
+# z260j: og:image / twitter:image URL に literal space (URL encoding 漏れ) 検出
+og-image-encoding:
+	@echo "→ check_og_image_url_encoding.py..."
+	@python3 scripts/check_og_image_url_encoding.py --ci
 
 all: verify
 	@echo "All checks complete."
