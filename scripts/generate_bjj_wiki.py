@@ -700,7 +700,10 @@ def article_to_html(tech, lang_code, article, all_techniques):
         gear_html = ""
 
     # --- Beehiiv CTA ---
-    bee_title = {"en":"📬 Join 2,000+ BJJ Practitioners","ja":"📬 2,000人以上の柔術家に参加","pt":"📬 Junte-se a 2,000+ Praticantes de BJJ"}[lang_code]
+    # z260o: CLAUDE.md rule -3 (嘘より沈黙) — fake "2,000+ Practitioners" 削除し honest copy に。
+    # generate_bjj_wiki.py の generator が再生成時に 2,000+ を再注入する 先祖返り を恒久 fix
+    # (z255jjjj-WW Round9 の `fix_fake_subscriber_count.py` を template source 側でも適用)
+    bee_title = {"en":"📬 Free BJJ Newsletter","ja":"📬 BJJ 無料ニュースレター","pt":"📬 Newsletter BJJ Grátis"}[lang_code]
     bee_desc  = {"en":"Get the free BJJ White Belt Guide plus technique breakdowns, training tips & exclusive content every week. No spam. Unsubscribe anytime.","ja":"無料BJJ白帯ガイド＋毎週の技術解説・練習のコツ・独占コンテンツ。スパムなし。いつでも配信停止可能。","pt":"Receba o Guia Gratuito do Brás Branco + análises de técnicas semanais, dicas de treino e conteúdo exclusivo. Sem spam. Desinscrever a qualquer momento."}[lang_code]
     bee_btn   = {"en":"Get Free Access →","ja":"無料アクセスを取得 →","pt":"Obter Acesso Gratuito →"}[lang_code]
     beehiiv_html = (

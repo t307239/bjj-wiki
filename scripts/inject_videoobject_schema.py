@@ -104,17 +104,58 @@ def add_iframe_dims(html: str) -> tuple[str, int]:
     return new_html, fixed
 
 
-def process_file(fp: Path, lang: str, upload_date: str, also_iframe: bool = True) -> tuple[bool, str, int]:
-    """Returns (vo_added, reason, iframes_fixed)"""
-    html = fp.read_text(encoding="utf-8")
-    if NOINDEX_RE.search(html[:600]):
-        return (False, "noindex", 0)
+OG_VIDEO_PRESENT_RE = re.compile(r'property=["\']og:video["\']', re.IGNORECASE)
+ARTICLE_PUB_PRESENT_RE = re.compile(r'property=["\']article:published_time["\']', re.IGNORECASE)
+DATE_PUBLISHED_RE = re.compile(r'"datePublished"\s*:\s*"([^"]+)"', re.IGNORECASE)
+OG_TYPE_ARTICLE_RE = re.compile(r'og:type["\'][^>]*content=["\']article["\']', re.IGNORECASE)
+
+
+def add_og_video(html: str) -> tuple[str, bool]:
+    """Add og:video meta for YT embedding pages. Idempotent."""
+    if OG_VIDEO_PRESENT_RE.search(html):
+        return html, False
     yt_match = YT_EMBED_RE.search(html)
     if not yt_match:
-        return (False, "no_yt_embed", 0)
+        return html, False
+    vid = yt_match.group(1)
+    block = (
+        f'<meta property="og:video" content="https://www.youtube.com/embed/{vid}">\n'
+        f'<meta property="og:video:type" content="text/html">\n'
+        f'<meta property="og:video:width" content="560">\n'
+        f'<meta property="og:video:height" content="315">\n'
+    )
+    new_html, n = HEAD_END_RE.subn(block + '</head>', html, count=1)
+    return (new_html if n else html), bool(n)
+
+
+def add_article_published_time(html: str) -> tuple[str, bool]:
+    """Mirror JSON-LD datePublished into <meta article:published_time>. Idempotent."""
+    if ARTICLE_PUB_PRESENT_RE.search(html):
+        return html, False
+    if not OG_TYPE_ARTICLE_RE.search(html):
+        return html, False
+    m = DATE_PUBLISHED_RE.search(html)
+    if not m:
+        return html, False
+    block = f'<meta property="article:published_time" content="{m.group(1)}">\n'
+    new_html, n = HEAD_END_RE.subn(block + '</head>', html, count=1)
+    return (new_html if n else html), bool(n)
+
+
+def process_file(fp: Path, lang: str, upload_date: str, also_iframe: bool = True) -> dict:
+    """Returns dict of what was changed"""
+    result = {"vo_added": False, "iframes_fixed": 0, "og_video_added": False, "article_pub_added": False, "reason": ""}
+    html = fp.read_text(encoding="utf-8")
+    if NOINDEX_RE.search(html[:600]):
+        result["reason"] = "noindex"
+        return result
+    yt_match = YT_EMBED_RE.search(html)
+    if not yt_match and not OG_TYPE_ARTICLE_RE.search(html):
+        result["reason"] = "no_yt_no_article"
+        return result
     new_html = html
-    vo_added = False
-    if not VIDEO_OBJECT_RE.search(html):
+    # 1) Add VideoObject schema
+    if yt_match and not VIDEO_OBJECT_RE.search(html):
         vid = yt_match.group(1)
         h1_match = H1_RE.search(html)
         h1 = extract_text(h1_match.group(1)) if h1_match else fp.stem.replace("-", " ").title()
@@ -124,17 +165,21 @@ def process_file(fp: Path, lang: str, upload_date: str, also_iframe: bool = True
         injected = inject(new_html, vobj)
         if injected is not None:
             new_html = injected
-            vo_added = True
-    iframes_fixed = 0
-    if also_iframe:
-        new_html, iframes_fixed = add_iframe_dims(new_html)
-    if vo_added or iframes_fixed > 0:
+            result["vo_added"] = True
+    # 2) Fix iframe dims
+    if also_iframe and yt_match:
+        new_html, ifix = add_iframe_dims(new_html)
+        result["iframes_fixed"] = ifix
+    # 3) Add og:video meta
+    if yt_match:
+        new_html, og_added = add_og_video(new_html)
+        result["og_video_added"] = og_added
+    # 4) Add article:published_time mirror
+    new_html, art_added = add_article_published_time(new_html)
+    result["article_pub_added"] = art_added
+    if any([result["vo_added"], result["iframes_fixed"] > 0, result["og_video_added"], result["article_pub_added"]]):
         fp.write_text(new_html, encoding="utf-8")
-    if vo_added:
-        return (True, "fixed", iframes_fixed)
-    if iframes_fixed > 0:
-        return (False, "iframe_only", iframes_fixed)
-    return (False, "already_has_video_object", 0)
+    return result
 
 
 def main() -> int:
@@ -143,42 +188,33 @@ def main() -> int:
     # JST upload date
     jst = timezone(timedelta(hours=9))
     upload_date = datetime.now(jst).strftime("%Y-%m-%dT00:00:00+09:00")
-    stats = {"vo_added": 0, "iframe_only_pages": 0, "iframes_fixed_total": 0, "no_yt": 0, "noindex": 0, "skipped": 0}
-    by_lang = {}
+    stats = {"vo_added": 0, "iframes_fixed": 0, "og_video_added": 0, "article_pub_added": 0, "skipped": 0}
     for lang in LANGS:
-        by_lang.setdefault(lang, 0)
         for fp in sorted((REPO_ROOT / lang).glob("*.html")):
             if not apply:
+                # Just count what would change
                 html = fp.read_text(encoding="utf-8")
                 if NOINDEX_RE.search(html[:600]): continue
-                if not YT_EMBED_RE.search(html): continue
-                if VIDEO_OBJECT_RE.search(html):
-                    # Still might need iframe dim fix
-                    _, fixed = add_iframe_dims(html) if not skip_iframe else (html, 0)
-                    if fixed > 0:
-                        stats["iframes_fixed_total"] += fixed
-                        stats["iframe_only_pages"] += 1
-                    continue
-                by_lang[lang] += 1
-                stats["vo_added"] += 1
+                yt_match = YT_EMBED_RE.search(html)
+                has_article = bool(OG_TYPE_ARTICLE_RE.search(html))
+                if not yt_match and not has_article: continue
+                if yt_match:
+                    if not VIDEO_OBJECT_RE.search(html): stats["vo_added"] += 1
+                    if not skip_iframe:
+                        _, fx = add_iframe_dims(html)
+                        stats["iframes_fixed"] += fx
+                    if not OG_VIDEO_PRESENT_RE.search(html): stats["og_video_added"] += 1
+                if has_article and DATE_PUBLISHED_RE.search(html) and not ARTICLE_PUB_PRESENT_RE.search(html):
+                    stats["article_pub_added"] += 1
                 continue
-            vo_added, reason, iframes_fixed = process_file(fp, lang, upload_date, also_iframe=not skip_iframe)
-            if vo_added:
-                stats["vo_added"] += 1
-                by_lang[lang] += 1
-            elif reason == "iframe_only":
-                stats["iframe_only_pages"] += 1
-            elif reason == "no_yt_embed":
-                stats["no_yt"] += 1
-            elif reason == "noindex":
-                stats["noindex"] += 1
-            else:
-                stats["skipped"] += 1
-            stats["iframes_fixed_total"] += iframes_fixed
+            res = process_file(fp, lang, upload_date, also_iframe=not skip_iframe)
+            if res["vo_added"]: stats["vo_added"] += 1
+            stats["iframes_fixed"] += res["iframes_fixed"]
+            if res["og_video_added"]: stats["og_video_added"] += 1
+            if res["article_pub_added"]: stats["article_pub_added"] += 1
     mode = "APPLY" if apply else "DRY-RUN"
     print(f"=== inject_videoobject_schema.py [{mode}] ===")
     print(f"stats: {stats}")
-    print(f"by lang (vo_added): {by_lang}")
     return 0
 
 

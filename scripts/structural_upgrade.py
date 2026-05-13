@@ -42,7 +42,7 @@ CTA_TEMPLATES = {
 <a href="https://twitter.com/intent/tweet?url={url}&text={title}" target="_blank" rel="noopener">𝕏 Post</a>
 <a href="https://www.reddit.com/submit?url={url}&title={title}" target="_blank" rel="noopener">Reddit</a>
 </div>''',
-        "beehiiv": '''<div class="beehiiv-wrap"><h3>📬 Join 2,000+ BJJ Practitioners</h3>
+        "beehiiv": '''<div class="beehiiv-wrap"><h3>📬 Free BJJ Newsletter</h3>
 <p>Get the free BJJ White Belt Guide plus technique breakdowns, training tips &amp; exclusive content every week. No spam. Unsubscribe anytime.</p>
 <a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">Get Free Access →</a></div>''',
     },
@@ -53,7 +53,7 @@ CTA_TEMPLATES = {
 <a href="https://twitter.com/intent/tweet?url={url}&text={title}" target="_blank" rel="noopener">𝕏 ポスト</a>
 <a href="https://www.reddit.com/submit?url={url}&title={title}" target="_blank" rel="noopener">Reddit</a>
 </div>''',
-        "beehiiv": '''<div class="beehiiv-wrap"><h3>📬 2,000人以上の柔術家に参加</h3>
+        "beehiiv": '''<div class="beehiiv-wrap"><h3>📬 BJJ 無料ニュースレター</h3>
 <p>無料BJJ白帯ガイド＋毎週の技術解説・練習のコツ・独占コンテンツ。スパムなし。いつでも配信停止可能。</p>
 <a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">無料アクセスを取得 →</a></div>''',
     },
@@ -64,7 +64,7 @@ CTA_TEMPLATES = {
 <a href="https://twitter.com/intent/tweet?url={url}&text={title}" target="_blank" rel="noopener">𝕏 Post</a>
 <a href="https://www.reddit.com/submit?url={url}&title={title}" target="_blank" rel="noopener">Reddit</a>
 </div>''',
-        "beehiiv": '''<div class="beehiiv-wrap"><h3>📬 Junte-se a 2,000+ Praticantes de BJJ</h3>
+        "beehiiv": '''<div class="beehiiv-wrap"><h3>📬 Newsletter BJJ Grátis</h3>
 <p>Receba o Guia Gratuito do Brás Branco + análises de técnicas semanais, dicas de treino e conteúdo exclusivo. Sem spam. Desinscrever a qualquer momento.</p>
 <a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">Obter Acesso Gratuito →</a></div>''',
     },
