@@ -63,7 +63,7 @@ def search_youtube(query, api_key):
 def make_iframe(vid_id, title):
     return f"""
   <div class="yt-wrap">
-    <h3 class="yt-label">関連動画 / Related Video</h3>
+    <h2 class="yt-label">関連動画 / Related Video</h2>
     <div class="yt-frame-wrap">
       <iframe
         src="https://www.youtube.com/embed/{vid_id}?rel=0&modestbranding=1"

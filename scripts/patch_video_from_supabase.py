@@ -110,7 +110,7 @@ def make_iframe(video_url: str, lang_code: str) -> str:
 
     return (
         f'\n  <div class="yt-wrap">'
-        f'\n    <h3 class="yt-label">{label}</h3>'
+        f'\n    <h2 class="yt-label">{label}</h2>'
         f'\n    <div class="yt-frame-wrap">'
         f'\n      <iframe'
         f'\n        src="{embed_url}"'
