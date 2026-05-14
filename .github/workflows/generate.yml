@@ -140,6 +140,34 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: python scripts/score_quality.py
 
+      # z261h: drift 防止 — make verify を commit/deploy 直前に走らせ、
+      # lint が 1 つでも fail なら GHA を fail させて drift page が live に
+      # 流出しないようにする。Telegram alert で即時通知。
+      # CLAUDE.md ルール 0「先祖返り防止プロトコル」の cron 経路 protection。
+      - name: Verify quality (drift detection — z261h)
+        id: verify
+        run: |
+          set -o pipefail
+          if ! make verify 2>&1 | tee /tmp/verify.log; then
+            echo "verify_failed=true" >> $GITHUB_OUTPUT
+            echo "::error::make verify failed — drift detected, blocking commit/deploy"
+            exit 1
+          fi
+          echo "verify_failed=false" >> $GITHUB_OUTPUT
+
+      - name: Notify Telegram on drift detection
+        if: failure() && steps.verify.outputs.verify_failed == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          TAIL=$(tail -40 /tmp/verify.log 2>/dev/null | head -2000 || echo "(verify.log not found)")
+          MSG="🚨 bjj-wiki drift detected $(date '+%Y-%m-%d %H:%M JST')%0A%0AGHA generate.yml の make verify step で drift を検出しました。commit/deploy を block 済み。%0A%0A--- tail of verify.log ---%0A${TAIL}"
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=${MSG}" \
+            --data-urlencode "disable_web_page_preview=true" || true
+
       - name: Commit and push
         run: |
           git config user.name  "github-actions[bot]"

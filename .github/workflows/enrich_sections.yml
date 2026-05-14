@@ -61,6 +61,33 @@ jobs:
             echo "all_done=false" >> $GITHUB_OUTPUT
           fi
 
+      # z261h: drift 防止 — enrich_sections.yml も wiki content を変更するため
+      # commit 前に make verify を走らせて drift page が live に流出しないようにする。
+      - name: Verify quality (drift detection — z261h)
+        id: verify
+        run: |
+          set -o pipefail
+          if ! make verify 2>&1 | tee /tmp/verify.log; then
+            echo "verify_failed=true" >> $GITHUB_OUTPUT
+            echo "::error::make verify failed — drift detected after enrich_sections, blocking commit"
+            exit 1
+          fi
+          echo "verify_failed=false" >> $GITHUB_OUTPUT
+
+      - name: Notify Telegram on drift detection
+        if: failure() && steps.verify.outputs.verify_failed == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          TAIL=$(tail -40 /tmp/verify.log 2>/dev/null | head -2000 || echo "(verify.log not found)")
+          LANG_NAME="${{ steps.lang.outputs.lang }}"
+          MSG="🚨 bjj-wiki drift detected (enrich_sections.yml [$LANG_NAME]) $(date '+%Y-%m-%d %H:%M JST')%0A%0Aenrich_sections.yml で FAQ/Difficulty 注入後に drift を検出しました。commit を block 済み。%0A%0A--- tail of verify.log ---%0A${TAIL}"
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=${MSG}" \
+            --data-urlencode "disable_web_page_preview=true" || true
+
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
