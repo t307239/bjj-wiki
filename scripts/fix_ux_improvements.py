@@ -54,7 +54,7 @@ INJECT_BEFORE_BODY_CLOSE = """  <button id="back-to-top" aria-label="Back to top
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

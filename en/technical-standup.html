@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/en/technical-standup.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Technical Stand-Up&lang=en">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Technical%20Stand-Up&lang=en">
 <meta property="og:image:alt" content="Technical Stand-Up BJJ: White Belt Guide">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="Technical Stand-Up BJJ: White Belt Guide">
 <meta name="twitter:description" content="Learn the biomechanically precise Technical Stand-Up in BJJ. Avoid injury with expert tips for white belts. Perfect your transition.">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Technical Stand-Up&lang=en">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Technical%20Stand-Up&lang=en">
 <link rel="canonical" href="https://wiki.bjj-app.net/en/technical-standup.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/technical-standup.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/technical-standup.html">
@@ -242,7 +242,7 @@ The key is creating a stable base and controlled weight shift, using your limbs 
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

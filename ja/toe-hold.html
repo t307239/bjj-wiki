@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/ja/toe-hold.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Toe Hold&lang=ja">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Toe%20Hold&lang=ja">
 <meta property="og:image:alt" content="足関節技：BJJ白帯のための完全ガイド">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="足関節技：BJJ白帯のための完全ガイド">
 <meta name="twitter:description" content="ブラジリアン柔術の足関節技「足関節技」の基本を白帯向けに解説。バイオメカニクス、危険性、練習方法、防御策まで、怪我を防ぎながら安全に習得するための詳細ガイド。">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Toe Hold&lang=ja">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Toe%20Hold&lang=ja">
 <link rel="canonical" href="https://wiki.bjj-app.net/ja/toe-hold.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/toe-hold.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/toe-hold.html">
@@ -242,7 +242,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

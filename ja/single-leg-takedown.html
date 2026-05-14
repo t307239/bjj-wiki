@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/ja/single-leg-takedown.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Single Leg Takedown&lang=ja">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Single%20Leg%20Takedown&lang=ja">
 <meta property="og:image:alt" content="片足タックル：BJJ白帯バイオメカニクスガイド">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="片足タックル：BJJ白帯バイオメカニクスガイド">
 <meta name="twitter:description" content="BJJ（ブラジリアン柔術）の片足タックルを白帯向けに解説。怪我を防ぎ、正確な体の使い方を習得するためのバイオメカニクス、ドリル、カウンターを詳述。">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Single Leg Takedown&lang=ja">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Single%20Leg%20Takedown&lang=ja">
 <link rel="canonical" href="https://wiki.bjj-app.net/ja/single-leg-takedown.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/single-leg-takedown.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/single-leg-takedown.html">
@@ -242,7 +242,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

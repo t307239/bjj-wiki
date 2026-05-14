@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/ja/straight-armbar.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Straight Armbar&lang=ja">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Straight%20Armbar&lang=ja">
 <meta property="og:image:alt" content="アームバー：白帯のための関節技ガイド | BJJ Wiki">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="アームバー：白帯のための関節技ガイド | BJJ Wiki">
 <meta name="twitter:description" content="ブラジリアン柔術の基本関節技、アームバーの白帯向け完全ガイド。バイオメカニクス、怪我の予防、練習方法を徹底解説。安全に技を習得しよう。">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Straight Armbar&lang=ja">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Straight%20Armbar&lang=ja">
 <link rel="canonical" href="https://wiki.bjj-app.net/ja/straight-armbar.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/straight-armbar.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/straight-armbar.html">
@@ -275,7 +275,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

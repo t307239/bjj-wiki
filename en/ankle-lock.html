@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/en/ankle-lock.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Ankle Lock&lang=en">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Ankle%20Lock&lang=en">
 <meta property="og:image:alt" content="Ankle Lock BJJ: White Belt Biomechanics">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="Ankle Lock BJJ: White Belt Biomechanics">
 <meta name="twitter:description" content="Master the Ankle Lock in BJJ with this biomechanically precise guide for white belts. Learn grips, execution, common mistakes, and safe drills.">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Ankle Lock&lang=en">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Ankle%20Lock&lang=en">
 <link rel="canonical" href="https://wiki.bjj-app.net/en/ankle-lock.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/ankle-lock.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/ankle-lock.html">
@@ -276,7 +276,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

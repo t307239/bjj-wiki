@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/ja/overhead-sweep.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Overhead Sweep&lang=ja">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Overhead%20Sweep&lang=ja">
 <meta property="og:image:alt" content="オーバーヘッドスイープ：白帯のための完璧ガイド">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="オーバーヘッドスイープ：白帯のための完璧ガイド">
 <meta name="twitter:description" content="ブラジリアン柔術のオーバーヘッドスイープを白帯向けに解説。バイオメカニクス、危険回避、練習法、カウンターを徹底解説。怪我を防ぎ、効果的に技を習得。">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Overhead Sweep&lang=ja">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Overhead%20Sweep&lang=ja">
 <link rel="canonical" href="https://wiki.bjj-app.net/ja/overhead-sweep.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/overhead-sweep.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/overhead-sweep.html">
@@ -246,7 +246,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

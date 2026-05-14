@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/ja/guillotine-choke.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Guillotine Choke&lang=ja">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Guillotine%20Choke&lang=ja">
 <meta property="og:image:alt" content="ギロチンチョーク：白帯のための完全ガイド">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="ギロチンチョーク：白帯のための完全ガイド">
 <meta name="twitter:description" content="ブラジリアン柔術のギロチンチョークを白帯向けに解説。バイオメカニクスに基づいた正確な動作、怪我のリスク、練習法、防御法を網羅。">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Guillotine Choke&lang=ja">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Guillotine%20Choke&lang=ja">
 <link rel="canonical" href="https://wiki.bjj-app.net/ja/guillotine-choke.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/guillotine-choke.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/guillotine-choke.html">
@@ -275,7 +275,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

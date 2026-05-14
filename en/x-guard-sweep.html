@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/en/x-guard-sweep.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=X-Guard Sweep&lang=en">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=X-Guard%20Sweep&lang=en">
 <meta property="og:image:alt" content="X-Guard Sweep: White Belt Biomechanical Guide">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="X-Guard Sweep: White Belt Biomechanical Guide">
 <meta name="twitter:description" content="Master the X-Guard Sweep with this precise BJJ biomechanical guide for white belts. Learn grips, weight transfer, and avoid injury.">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=X-Guard Sweep&lang=en">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=X-Guard%20Sweep&lang=en">
 <link rel="canonical" href="https://wiki.bjj-app.net/en/x-guard-sweep.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/x-guard-sweep.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/x-guard-sweep.html">
@@ -242,7 +242,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

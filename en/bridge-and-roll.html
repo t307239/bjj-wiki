@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/en/bridge-and-roll.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Bridge and Roll&lang=en">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Bridge%20and%20Roll&lang=en">
 <meta property="og:image:alt" content="BJJ Bridge and Roll: White Belt Escape Guide">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="BJJ Bridge and Roll: White Belt Escape Guide">
 <meta name="twitter:description" content="Master the BJJ Bridge and Roll escape with this biomechanically precise guide for white belts. Learn grips, movement, and injury prevention.">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Bridge and Roll&lang=en">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Bridge%20and%20Roll&lang=en">
 <link rel="canonical" href="https://wiki.bjj-app.net/en/bridge-and-roll.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/bridge-and-roll.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/bridge-and-roll.html">
@@ -273,7 +273,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

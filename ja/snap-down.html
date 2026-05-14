@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/ja/snap-down.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Snap Down&lang=ja">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Snap%20Down&lang=ja">
 <meta property="og:image:alt" content="スナップダウン：BJJ白帯のテイクダウンガイド">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="スナップダウン：BJJ白帯のテイクダウンガイド">
 <meta name="twitter:description" content="柔術のテイクダウン技「スナップダウン」を白帯向けに徹底解説。バイオメカニクス、怪我の予防、ドリル方法まで、安全かつ効果的に習得するための詳細ガイド。">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Snap Down&lang=ja">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Snap%20Down&lang=ja">
 <link rel="canonical" href="https://wiki.bjj-app.net/ja/snap-down.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/snap-down.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/snap-down.html">
@@ -275,7 +275,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

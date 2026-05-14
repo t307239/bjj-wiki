@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/ja/knee-slice-pass.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Knee Slice Pass&lang=ja">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Knee%20Slice%20Pass&lang=ja">
 <meta property="og:image:alt" content="ニー・スライス・パス：白帯のための完全ガイド">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="ニー・スライス・パス：白帯のための完全ガイド">
 <meta name="twitter:description" content="ブラジリアン柔術のニー・スライス・パスを白帯向けに解説。怪我を防ぎ、効果的にパスするために必要なバイオメカニクス、ドリル、カウンターを徹底解説。">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Knee Slice Pass&lang=ja">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Knee%20Slice%20Pass&lang=ja">
 <link rel="canonical" href="https://wiki.bjj-app.net/ja/knee-slice-pass.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/knee-slice-pass.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/knee-slice-pass.html">
@@ -274,7 +274,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;

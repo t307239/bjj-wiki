@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
     <meta property="og:site_name" content="BJJ Wiki">
 <meta property="og:url" content="https://wiki.bjj-app.net/en/morote-seoi-nage.html">
-<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Morote Seoi Nage&lang=en">
+<meta property="og:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Morote%20Seoi%20Nage&lang=en">
 <meta property="og:image:alt" content="Morote Seoi Nage BJJ: White Belt Biomechanics">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
 <meta name="twitter:creator" content="@bjj_wiki">
 <meta name="twitter:title" content="Morote Seoi Nage BJJ: White Belt Biomechanics">
 <meta name="twitter:description" content="Master Morote Seoi Nage with this precise, biomechanically accurate guide for BJJ white belts. Learn grips, weight transfer, and injury prevention.">
-<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Morote Seoi Nage&lang=en">
+<meta name="twitter:image" content="https://bjj-app.net/api/og?mode=technique&category=technique&title=Morote%20Seoi%20Nage&lang=en">
 <link rel="canonical" href="https://wiki.bjj-app.net/en/morote-seoi-nage.html">
 <link rel="alternate" hreflang="x-default" href="https://wiki.bjj-app.net/en/morote-seoi-nage.html">
 <link rel="alternate" hreflang="en" href="https://wiki.bjj-app.net/en/morote-seoi-nage.html">
@@ -278,7 +278,7 @@
       if(tocEl&&listEl){
         headings.forEach(function(h,i){
           var id='section-'+i;
-          h.id=id;
+          if(!h.id)h.id=id;
           var li=document.createElement('li');
           var a=document.createElement('a');
           a.href='#'+id;
