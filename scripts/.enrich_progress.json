@@ -2874,7 +2874,8 @@
       "triangle-vs-guillotine",
       "twister",
       "von-flue-choke",
-      "white-belt-bjj-guide"
+      "white-belt-bjj-guide",
+      "_TEST_zindex_lint"
     ],
     "pt": [
       "50-50-guard",
