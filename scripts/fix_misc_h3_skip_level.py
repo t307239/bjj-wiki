@@ -106,6 +106,38 @@ PATTERNS: list[tuple[str, re.Pattern, str]] = [
         re.compile(r'<h3([^>]*)>(\s*📬[^<]*Newsletter[^<]*)</h3>'),
         r'<h2\1>\2</h2>',
     ),
+    # P8. Table of Contents long form
+    (
+        "toc-longform-en",
+        re.compile(r'<h3([^>]*)>\s*Table of Contents\s*</h3>', re.IGNORECASE),
+        r'<h2\1>Table of Contents</h2>',
+    ),
+    # P9. Quick Tips callout
+    (
+        "quick-tips-en",
+        re.compile(r'<h3([^>]*)>\s*💡\s*Quick Tips\s*</h3>'),
+        r'<h2\1>💡 Quick Tips</h2>',
+    ),
+    (
+        "quick-tips-ja",
+        re.compile(r'<h3([^>]*)>(\s*💡[^<]*)</h3>'),
+        r'<h2\1>\2</h2>',
+    ),
+    # P10. <div class="step"><h4> → <h3> (sibling to concept-card <h2>)
+    (
+        "step-h4-demote",
+        re.compile(r'(<div class="step">)<h4([^>]*)>([^<]+)</h4>'),
+        r'\1<h3\2>\3</h3>',
+    ),
+    # P11. <h3 style="margin:0;font-size:1rem...">  inline title in instructionals
+    (
+        "instructional-card-h3",
+        re.compile(
+            r'<h3(\s+style="[^"]*font-size:1rem[^"]*")>([^<]+)</h3>',
+            re.IGNORECASE,
+        ),
+        r'<h2\1>\2</h2>',
+    ),
 ]
 
 
