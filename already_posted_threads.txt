@@ -3,6 +3,7 @@ monoplata
 mount
 mount-vs-back-control
 news
+north-south
 north-south-choke
 omoplata
 open-guard
