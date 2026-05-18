@@ -1,5 +1,6 @@
 leg-drag-pass
 lockdown
+loop-choke
 modified-mount
 monoplata
 morote-seoi-nage
