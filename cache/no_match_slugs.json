@@ -188,5 +188,10 @@
     "first_seen": "2026-04-07",
     "attempts": 1,
     "last_attempt": "2026-04-07"
+  },
+  "_TEST_zindex_lint": {
+    "first_seen": "2026-05-18",
+    "attempts": 1,
+    "last_attempt": "2026-05-18"
   }
 }
