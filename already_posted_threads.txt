@@ -1,4 +1,5 @@
 kneebar
+lasso-guard
 lockdown
 loop-choke
 modified-mount
