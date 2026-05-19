@@ -1,3 +1,4 @@
+lasso-guard
 leg-locks
 lockdown
 loop-choke
