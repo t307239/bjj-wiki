@@ -2,6 +2,7 @@ knee-shield
 kneebar
 lasso-guard
 leg-drag-pass
+leg-locks
 lockdown
 loop-choke
 modified-mount
