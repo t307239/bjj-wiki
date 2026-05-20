@@ -1,4 +1,5 @@
 knee-slice
+kneebar
 lasso-guard
 leg-drag-pass
 leg-locks
