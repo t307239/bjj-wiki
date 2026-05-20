@@ -1,3 +1,4 @@
+knee-shield
 kneebar
 lasso-guard
 leg-drag-pass
