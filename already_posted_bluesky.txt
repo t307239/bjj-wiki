@@ -2,6 +2,7 @@ knee-slice
 kneebar
 lapel-choke
 lasso-guard
+leg-drag
 leg-drag-pass
 leg-locks
 lockdown
