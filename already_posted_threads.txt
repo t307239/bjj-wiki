@@ -1,4 +1,5 @@
 ibjjf-rules
+knee-bar
 knee-shield
 knee-slice
 knee-slice-pass
