@@ -2,6 +2,7 @@ ippon-seoi-nage
 kimura
 knee-shield
 knee-slice
+knee-slice-pass
 kneebar
 lapel-choke
 lasso-guard
