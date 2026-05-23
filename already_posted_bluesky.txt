@@ -1,4 +1,5 @@
 ippon-seoi-nage
+kimura
 knee-shield
 knee-slice
 kneebar
