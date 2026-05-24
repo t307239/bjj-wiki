@@ -1,4 +1,5 @@
 ibjjf-rules
+kimura
 knee-bar
 knee-shield
 knee-slice
