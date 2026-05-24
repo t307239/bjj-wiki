@@ -1,4 +1,5 @@
 ibjjf-rules
+ippon-seoi-nage
 kimura
 knee-bar
 knee-shield
