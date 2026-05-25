@@ -1,6 +1,7 @@
 ibjjf-rules
 imanari-roll
 ippon-seoi-nage
+kimura
 knee-on-belly
 knee-shield
 knee-slice
