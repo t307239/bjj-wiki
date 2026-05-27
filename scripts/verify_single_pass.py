@@ -84,11 +84,20 @@ EN_DIFFICULTIES = {"Beginner","Intermediate","Advanced"}
 EN_BELT_FULL = {"White Belt","Blue Belt","Purple Belt","Brown Belt","Black Belt"}
 
 # ─── check_cta_text_locale_drift ─────────────────────────────────────────────
-EN_CTA_PATTERNS = [
-    re.compile(r"\bStart Free\b"), re.compile(r"\bGet Started\b"),
-    re.compile(r"\bSign Up\b"),    re.compile(r"\bJoin Free\b"),
-    re.compile(r"\bTry Free\b"),   re.compile(r"\bJoin Now\b"),
-]
+# Why: match original check_cta_text_locale_drift.py exactly — only the
+# literal arrow character →, not the HTML entity &rarr;.
+# JA also checks nav >App</a> pattern.
+EN_CTA_PATTERNS: dict[str, list[re.Pattern]] = {
+    "ja": [
+        re.compile(r'<a\s+href="[^"]*\/login[^"]*"[^>]*>App</a>'),
+        re.compile(r">Start Tracking Free →<"),
+        re.compile(r">\s*Start Free →\s*<"),
+    ],
+    "pt": [
+        re.compile(r">\s*Start Free →\s*<"),
+        re.compile(r">Start Tracking Free →<"),
+    ],
+}
 
 # ─── check_analytics_id_drift ────────────────────────────────────────────────
 EXPECTED_GA4 = "G-7LM8L3TRZM"
@@ -412,9 +421,12 @@ def check_file(html: str, fp: Path, lang: str, acc: dict) -> None:
             acc["heading_hierarchy"].append((src, "; ".join(issues)))
 
     # ── check_jsonld_validity ─────────────────────────────────────────────────
+    # Why: {search_term_string} is valid Schema.org SearchAction syntax — allow it.
+    _JSONLD_TEMPLATE_ALLOWED = {"{search_term_string}"}
     for m in JSONLD_BLOCK_RE.finditer(html):
         raw = m.group(1).strip()
-        if JSONLD_TEMPLATE_RE.search(raw):
+        tm = JSONLD_TEMPLATE_RE.search(raw)
+        if tm and tm.group(0) not in _JSONLD_TEMPLATE_ALLOWED:
             acc["jsonld_validity"].append((src, "template-residue"))
             break
         try:
@@ -551,11 +563,16 @@ def check_file(html: str, fp: Path, lang: str, acc: dict) -> None:
             acc["brand_suffix_pollution"].append(src)
 
     # ── check_broken_anchors ─────────────────────────────────────────────────
-    anchor_ids = set(HTML_ID_RE.findall(html))
+    # Why: strip <script> first — jQuery selectors like $('a[href="#'+e.target.id+'"]')
+    # contain literal href="#..." and would be false positives.
+    # "top" and "main" are conventional placeholder fragments per original script.
+    _ANCHOR_PLACEHOLDER = {"top", "main"}
+    html_no_script = SCRIPT_RE.sub("", html)
+    anchor_ids = set(HTML_ID_RE.findall(html_no_script))
     broken_frags = [
         f"#{frag}"
-        for frag in re.findall(r'href="#([^"]+)"', html)
-        if frag not in anchor_ids
+        for frag in re.findall(r'href="#([^"]+)"', html_no_script)
+        if frag not in anchor_ids and frag not in _ANCHOR_PLACEHOLDER
     ]
     if broken_frags:
         acc["broken_anchors"].append((src, broken_frags[:3]))
@@ -578,16 +595,28 @@ def check_file(html: str, fp: Path, lang: str, acc: dict) -> None:
             acc["misrouted_form_endpoints"].append((src, f"foreign email: {email}"))
 
     # ── check_duplicate_word_in_title ────────────────────────────────────────
+    # Why: match original script logic exactly — only CONSECUTIVE same-case
+    # word repeats (e.g. "Guide Guide"), not any-position repeats.
+    # ALLOWED set excludes legitimate repeats like "BJJ ... | BJJ Wiki".
+    _DUP_WORD_ALLOWED = {"bjj", "jiu", "wiki"}
+    _DUP_WORD_RE = re.compile(r"\b(\w+)\s+\1\b")  # case-sensitive consecutive
     if m_title:
-        title_text = re.sub(r"<[^>]+>", "", m_title.group(1)).strip()
-        words = title_text.split()
-        seen_words: set[str] = set()
-        for w in words:
-            wl = w.lower().strip(".,!?;:'\"")
-            if wl and len(wl) > 2 and wl in seen_words:
-                acc["duplicate_word_in_title"].append((src, f"dup='{w}'"))
-                break
-            seen_words.add(wl)
+        for tag_pat in (
+            r"<title[^>]*>([^<]+)</title>",
+            r"<h1[^>]*>([^<]+)</h1>",
+            r'<meta\s+property="og:title"\s+content="([^"]+)"',
+        ):
+            tm = re.search(tag_pat, html)
+            if not tm:
+                continue
+            for dm in _DUP_WORD_RE.finditer(tm.group(1)):
+                word = dm.group(1)
+                if word.lower() not in _DUP_WORD_ALLOWED:
+                    acc["duplicate_word_in_title"].append((src, f"dup='{word}'"))
+                    break
+            else:
+                continue
+            break  # found one issue, no need to check other tags
 
     # ── check_og_image_url_encoding ──────────────────────────────────────────
     for m in META_IMG_RE.finditer(html):
@@ -711,11 +740,18 @@ def check_file(html: str, fp: Path, lang: str, acc: dict) -> None:
             acc["zindex_hardcode"].append((src, value, line.strip()[:100]))
 
     # ── check_internal_link_relative ─────────────────────────────────────────
+    # Why: must scan only <a> tag attrs — not <link rel="canonical/alternate">
+    # which legitimately use absolute URLs.  Match original script logic.
     if not is_redirect_stub:
-        pat = re.compile(
+        _int_link_pat = re.compile(
             r'href="(' + re.escape(SITE) + r'/' + lang + r'/[^"]+\.html)"'
         )
-        cnt = sum(1 for m in pat.finditer(html) if "?" not in m.group(1))
+        cnt = 0
+        for a_m in A_TAG_RE.finditer(html):
+            a_tag = a_m.group(0)
+            href_m = _int_link_pat.search(a_tag)
+            if href_m and "?" not in href_m.group(1):
+                cnt += 1
         if cnt:
             acc["internal_link_relative"].append((src, cnt))
 
@@ -782,13 +818,14 @@ def check_file(html: str, fp: Path, lang: str, acc: dict) -> None:
             acc["ja_body_english_dominant"].append(src)
 
     # ── check_cta_text_locale_drift ──────────────────────────────────────────
+    # Why: mirror original check_cta_text_locale_drift.py exactly — patterns
+    # search the full page html (not individual tag contents), using literal →
+    # character only (not &rarr; entity).
     if lang in ("ja", "pt"):
-        for cta_m in re.finditer(r"<(?:button|a)\b[^>]*>([^<]{3,40})</", html, re.IGNORECASE):
-            text = cta_m.group(1).strip()
-            for pat in EN_CTA_PATTERNS:
-                if pat.search(text):
-                    acc["cta_text_locale_drift"].append((src, f"EN CTA: '{text[:40]}'"))
-                    break
+        for pat in EN_CTA_PATTERNS.get(lang, []):
+            if pat.search(html):
+                acc["cta_text_locale_drift"].append((src, f"EN CTA: '{pat.pattern[:40]}'"))
+                break
 
 
 # ─── Root-file scan (check_zindex_hardcode also covers root HTML) ─────────────
