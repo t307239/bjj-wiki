@@ -240,7 +240,7 @@ footer{{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);text
 <div class="beehiiv-cta">
   <h3>🐝 毎週BJJニュースをメールで受け取る</h3>
   <p>週1回、厳選BJJニュース + 技解説をお届け。無料。</p>
-  <a href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
+  <a href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer"
     style="display:inline-block;padding:10px 28px;background:#7c3aed;color:#fff;border-radius:8px;font-weight:700;font-size:0.9rem">
     Subscribe Free →
   </a>

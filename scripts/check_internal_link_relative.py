@@ -21,6 +21,9 @@ def check_page(fp: Path) -> int:
         return 0
     if "noindex" in html[:1500]:
         return 0
+    # z262: redirect stub は meta refresh + fallback link に absolute URL が必要
+    if "<!-- z262-redirect -->" in html[:1000]:
+        return 0
     lang = fp.parts[-2]
     count = 0
     for m in re.finditer(r'<a\b[^>]*>', html):

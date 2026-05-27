@@ -41,7 +41,7 @@ def make_ts_html(slug, data):
     items_html = "\n".join(
         f'      <li class="ts-item">'
         f'<a class="ts-time" href="https://www.youtube.com/watch?v={vid_id}&t={t["seconds"]}s" '
-        f'target="_blank" rel="noopener">{t["time"]}</a>'
+        f'target="_blank" rel="noopener noreferrer">{t["time"]}</a>'
         f'<span class="ts-label">{t["label"]}</span></li>'
         for t in ts_list[:12]  # 最大12件
     )

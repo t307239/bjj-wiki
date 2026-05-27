@@ -256,21 +256,21 @@ footer .footer-bottom{{text-align:center;margin-top:32px;color:#4b5563;font-size
 {content_html}
 <div class="beehiiv-box">
   <p>📧 Get weekly BJJ tips in your inbox</p>
-  <form action="{BEEHIIV_URL}" method="POST" target="_blank" rel="noopener">
+  <form action="{BEEHIIV_URL}" method="POST" target="_blank" rel="noopener noreferrer">
     <input type="email" name="email" placeholder="your@email.com" required>
     <button type="submit">Subscribe Free</button>
   </form>
 </div>
 <div class="share-bar">
-  <a href="https://twitter.com/intent/tweet?url={share_url}&text={share_title}" target="_blank" rel="noopener">🐦 Share on X</a>
-  <a href="https://reddit.com/submit?url={share_url}&title={share_title}" target="_blank" rel="noopener">👾 Reddit</a>
+  <a href="https://twitter.com/intent/tweet?url={share_url}&text={share_title}" target="_blank" rel="noopener noreferrer">🐦 Share on X</a>
+  <a href="https://reddit.com/submit?url={share_url}&title={share_title}" target="_blank" rel="noopener noreferrer">👾 Reddit</a>
 </div>
 <div class="aff-box">
   <p>📚 Level up your BJJ</p>
-  <a href="{FANATICS_URL}" target="_blank" rel="noopener">Browse BJJ Instructionals →</a>
+  <a href="{FANATICS_URL}" target="_blank" rel="noopener noreferrer">Browse BJJ Instructionals →</a>
 </div>
 </div>
-<a href="{BEEHIIV_URL}" class="float-cta" id="floatCta" target="_blank" rel="noopener">📧 Free BJJ Tips</a>
+<a href="{BEEHIIV_URL}" class="float-cta" id="floatCta" target="_blank" rel="noopener noreferrer">📧 Free BJJ Tips</a>
 <script>
 setTimeout(function(){{document.getElementById('floatCta').style.display='flex';}},30000);
 window.addEventListener('scroll',function(){{

@@ -377,7 +377,7 @@ def make_comparison_page(comp, lang):
   <div style="background:linear-gradient(135deg,#0a1a0a,#0d2010);border:1px solid #2e7d32;border-radius:12px;padding:20px 24px;margin:24px 0;text-align:center;">
     <div style="font-size:1.05rem;font-weight:700;color:#a5d6a7;margin-bottom:8px">📬 BJJ Wiki Newsletter</div>
     <p style="margin:0 0 16px;color:#c8e6c9;font-size:.9rem">Weekly technique breakdowns. Free.</p>
-    <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
+    <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer"
        style="background:#2e7d32;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.9rem">
       Subscribe Free →
     </a>

@@ -196,7 +196,7 @@ def make_az_page(lang, techs):
   <div style="margin-top:40px;padding:20px;background:#0d1520;border:1px solid #1a2a3a;border-radius:12px">
     <h2 style="color:#90caf9;margin-bottom:12px">📬 {"ニュースレター" if lang=="ja" else "Newsletter" if lang=="en" else "Newsletter"}</h2>
     <p style="color:#90a4ae;font-size:.9rem;margin-bottom:12px">{"週1回、新技解説をメールでお届け。無料。" if lang=="ja" else "New technique breakdowns delivered weekly. Free." if lang=="en" else "Novidades semanais sobre técnicas de BJJ. Grátis."}</p>
-    <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener" style="background:#2e7d32;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700">
+    <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" style="background:#2e7d32;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700">
       {"無料購読する" if lang=="ja" else "Subscribe Free" if lang=="en" else "Assinar Grátis"} →
     </a>
   </div>

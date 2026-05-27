@@ -989,7 +989,7 @@ def build_page(slug, lang, data, hreflang):
 
     <!-- BJJ App CTA -->
     <div class="app-cta-banner" style="background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid #e94560;border-radius:12px;padding:20px;margin:32px 0;text-align:center;">
-      <a href="{app_url}" target="_blank" rel="noopener" style="color:#e94560;font-weight:bold;font-size:1.1em;" onclick="gtag('event','app_cta_click',{{'page':'{slug}','lang':'{lang}'}})">
+      <a href="{app_url}" target="_blank" rel="noopener noreferrer" style="color:#e94560;font-weight:bold;font-size:1.1em;" onclick="gtag('event','app_cta_click',{{'page':'{slug}','lang':'{lang}'}})">
         {app_cta}
       </a>
       <p style="color:#aaa;font-size:0.85em;margin:8px 0 0;">{app_desc}</p>
@@ -1017,7 +1017,7 @@ def build_page(slug, lang, data, hreflang):
     <!-- Share -->
     <div class="share-bar" style="display:flex;gap:12px;margin:24px 0;flex-wrap:wrap;">
       <a href="https://twitter.com/intent/tweet?text={data['h1']}&url={page_url}&hashtags=BJJ,JiuJitsu"
-         target="_blank" rel="noopener" class="share-btn" style="background:#1da1f2;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;font-size:0.85em;">
+         target="_blank" rel="noopener noreferrer" class="share-btn" style="background:#1da1f2;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;font-size:0.85em;">
         𝕏 {share_label}
       </a>
     </div>

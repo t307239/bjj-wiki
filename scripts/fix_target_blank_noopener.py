@@ -7,11 +7,11 @@ fix_target_blank_noopener.py — z255v: target=_blank に rel=noopener を付加
 SEO/security 監査で落とされる。
 
 修正方針:
-  - rel 属性が無い → rel="noopener" を追加
+  - rel 属性が無い → rel="noopener noreferrer" を追加
   - rel 属性に noopener / noreferrer どちらも無い → 既存 rel 値に noopener を append
   - <script>...</script> 内は除外 (動的生成は別途確認)
 
-Idempotent: 何度実行しても rel="noopener" は重複付加されない。
+Idempotent: 何度実行しても rel="noopener noreferrer" は重複付加されない。
 """
 from __future__ import annotations
 import re
@@ -52,7 +52,7 @@ def patch_html(html: str) -> tuple[str, int]:
             new_rel = (rel_val + " noopener").strip()
             new_attrs = REL_RE.sub(f'rel="{new_rel}"', attrs, count=1)
         else:
-            new_attrs = attrs.rstrip() + ' rel="noopener"'
+            new_attrs = attrs.rstrip() + ' rel="noopener noreferrer"'
         fixed += 1
         return f"<a {new_attrs}>"
 

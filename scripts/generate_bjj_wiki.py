@@ -653,7 +653,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
     yoga_sub    = {"en":"These poses build the flexibility & mobility you need:","ja":"必要な柔軟性・可動域を高めます：","pt":"Melhore sua flexibilidade e mobilidade:"}[lang_code]
     if yoga_poses:
         yoga_chips = "".join([
-            f'<a class="yoga-chip" href="https://t307239.github.io/yoga-wiki/en/{sl}.html" target="_blank" rel="noopener">🧘 {nm}</a>'
+            f'<a class="yoga-chip" href="https://t307239.github.io/yoga-wiki/en/{sl}.html" target="_blank" rel="noopener noreferrer">🧘 {nm}</a>'
             for sl, nm in yoga_poses
         ])
         yoga_html = f'<div class="yoga-box"><h3>{yoga_label}</h3><p>{yoga_sub}</p><div class="yoga-chips">{yoga_chips}</div></div>'
@@ -709,7 +709,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
     beehiiv_html = (
         f'<div class="beehiiv-wrap"><h3>{bee_title}</h3>'
         f'<p>{bee_desc}</p>'
-        f'<a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener">{bee_btn}</a>'
+        f'<a class="beehiiv-btn" href="https://bjj-wiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">{bee_btn}</a>'
         f'</div>'
     )
 
@@ -941,7 +941,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
   <h2>{_related_video_label}</h2>
   <div class="card" style="background:#0a0a1a;border-color:#3a3a6a">
     <p style="color:#9ca3af;font-size:.9rem;margin-bottom:12px">{_video_sub_label}</p>
-    <a class="yt-search-btn" href="https://www.youtube.com/results?search_query={tech['name'].replace(' ','+')}+BJJ+tutorial" target="_blank" rel="noopener">
+    <a class="yt-search-btn" href="https://www.youtube.com/results?search_query={tech['name'].replace(' ','+')}+BJJ+tutorial" target="_blank" rel="noopener noreferrer">
       <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
       {_search_label}{tech['name']}{_search_suffix}
     </a>
@@ -1012,7 +1012,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
       <p style="margin:0 0 4px;font-size:.95rem;font-weight:700;color:#e2e2ee">🥋 {_cta_headline}</p>
       <p style="margin:0;font-size:.82rem;color:#7a7a9a">{_cta_sub}</p>
     </div>
-    <a href="https://bjj-app.net/login" target="_blank" rel="noopener" onclick="gtag&&gtag('event','app_cta_click',{{page:location.pathname,lang:'{lang_code}',tech:'{tech['slug']}'}})" style="flex-shrink:0;background:var(--accent2,#e94560);color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700;white-space:nowrap">{'Try Free →' if lang_code=='en' else '無料で試す →' if lang_code=='ja' else 'Experimente Grátis →'}</a>
+    <a href="https://bjj-app.net/login" target="_blank" rel="noopener noreferrer" onclick="gtag&&gtag('event','app_cta_click',{{page:location.pathname,lang:'{lang_code}',tech:'{tech['slug']}'}})" style="flex-shrink:0;background:var(--accent2,#e94560);color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:700;white-space:nowrap">{'Try Free →' if lang_code=='en' else '無料で試す →' if lang_code=='ja' else 'Experimente Grátis →'}</a>
   </div>
 
   <!-- Share Bar -->
@@ -1022,7 +1022,7 @@ def article_to_html(tech, lang_code, article, all_techniques):
       <a class="share-btn x" href="https://twitter.com/intent/tweet?url={SITE_URL}/{lang_code}/{tech['slug']}.html&text={urllib.parse.quote_plus(tech['name'])}+%23BJJ+%23bjjwiki" target="_blank" rel="noopener noreferrer">𝕏 {'Post on X' if lang_code=='en' else 'Xに投稿' if lang_code=='ja' else 'Postar no X'}</a>
       <a class="share-btn reddit" href="https://www.reddit.com/submit?url={SITE_URL}/{lang_code}/{tech['slug']}.html&title={urllib.parse.quote_plus(tech['name'])}" target="_blank" rel="noopener noreferrer">⬆ Reddit</a>
       <button class="share-btn copy" onclick="navigator.clipboard.writeText('{SITE_URL}/{lang_code}/{tech['slug']}.html').then(()=>{{this.textContent='✓ {'Copied!' if lang_code=='en' else 'コピー済！' if lang_code=='ja' else 'Copiado!'}';setTimeout(()=>this.textContent='📋 {'Copy Link' if lang_code=='en' else 'リンクコピー' if lang_code=='ja' else 'Copiar'}',2000)}})">📋 {'Copy Link' if lang_code=='en' else 'リンクコピー' if lang_code=='ja' else 'Copiar'}</button>
-      <a class="yt-search-btn" href="https://www.youtube.com/results?search_query={tech['name'].replace(' ','+')}+BJJ+tutorial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> {_yt_btn_label}</a>
+      <a class="yt-search-btn" href="https://www.youtube.com/results?search_query={tech['name'].replace(' ','+')}+BJJ+tutorial" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> {_yt_btn_label}</a>
     </div>
   </div>
 

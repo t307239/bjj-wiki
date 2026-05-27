@@ -39,6 +39,9 @@ def main() -> int:
                 continue
             if NOINDEX_RE.search(head):
                 continue
+            # z262: redirect stub は SEO meta 不要 (redirect 先の canonical page が持つ)
+            if "<!-- z262-redirect -->" in head[:1000]:
+                continue
             total += 1
             src = f"{lang}/{fp.name}"
             if not ROBOTS_LARGE_RE.search(head):

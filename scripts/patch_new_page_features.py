@@ -222,7 +222,7 @@ def make_yoga_box(slug, lang):
     cat = get_cat_key(slug)
     poses = YOGA_BY_CAT.get(cat, YOGA_BY_CAT['default'])
     chips = ''.join(
-        f'<a class="yoga-chip" href="https://t307239.github.io/yoga-wiki/{lang}/{p_slug}.html" target="_blank" rel="noopener">🧘 {p_name}</a>'
+        f'<a class="yoga-chip" href="https://t307239.github.io/yoga-wiki/{lang}/{p_slug}.html" target="_blank" rel="noopener noreferrer">🧘 {p_name}</a>'
         for p_name, p_slug in poses
     )
     if lang == 'ja':

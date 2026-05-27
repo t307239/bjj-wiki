@@ -160,7 +160,7 @@ def build_yoga_html(slug, category, lang):
     label = {"en":"🧘 Yoga Poses to Improve This Technique","ja":"🧘 この技に効くヨガポーズ","pt":"🧘 Yoga para Esta Técnica"}[lang]
     sub   = {"en":"Build the flexibility & mobility you need:","ja":"必要な柔軟性・可動域を高めます：","pt":"Melhore sua flexibilidade:"}[lang]
     chips = "".join([
-        f'<a class="yoga-chip" href="{YOGA_URL}/en/{sl}.html" target="_blank" rel="noopener">🧘 {nm}</a>'
+        f'<a class="yoga-chip" href="{YOGA_URL}/en/{sl}.html" target="_blank" rel="noopener noreferrer">🧘 {nm}</a>'
         for sl, nm in poses
     ])
     return (

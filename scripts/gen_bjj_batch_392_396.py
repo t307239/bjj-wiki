@@ -1042,13 +1042,13 @@ def build_page(slug, lang, data, hreflang):
 {body}
 
   <div class="share-bar">
-    <a class="share-btn share-x" href="https://twitter.com/intent/tweet?text={h1}&url={SITE_URL}/{lang}/{slug}.html&hashtags=BJJ,BrazilianJiuJitsu" target="_blank" rel="noopener">{share_label}</a>
+    <a class="share-btn share-x" href="https://twitter.com/intent/tweet?text={h1}&url={SITE_URL}/{lang}/{slug}.html&hashtags=BJJ,BrazilianJiuJitsu" target="_blank" rel="noopener noreferrer">{share_label}</a>
   </div>
 
   <div class="app-cta">
     <h3>🥋 Track Your BJJ Progress</h3>
     <p>Log sessions, track techniques, and measure your growth with BJJ App — free for all practitioners.</p>
-    <a href="https://bjj-app-one.vercel.app" target="_blank" rel="noopener">Try BJJ App Free →</a>
+    <a href="https://bjj-app-one.vercel.app" target="_blank" rel="noopener noreferrer">Try BJJ App Free →</a>
   </div>
 </main>
 <footer>

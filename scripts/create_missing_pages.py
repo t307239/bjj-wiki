@@ -154,14 +154,14 @@ footer{{padding:28px 0;border-top:1px solid var(--border);text-align:center;colo
 <div class="aff-box">
   <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:10px">{aff_title}</h3>
   <p>{aff_sub}</p>
-  <a href="https://bjjfanatics.com/?aff=bjjwiki" target="_blank" rel="noopener" class="aff-btn">{aff_btn}</a>
+  <a href="https://bjjfanatics.com/?aff=bjjwiki" target="_blank" rel="noopener noreferrer" class="aff-btn">{aff_btn}</a>
 </div>
 
 <div class="share-bar">
   <p>{share_label}</p>
   <div class="share-btns">
-    <a href="https://twitter.com/intent/tweet?text={share_text}" target="_blank" rel="noopener" class="share-btn x">𝕏 Share</a>
-    <a href="https://reddit.com/submit?url={share_url}&title={title}" target="_blank" rel="noopener" class="share-btn reddit">Reddit</a>
+    <a href="https://twitter.com/intent/tweet?text={share_text}" target="_blank" rel="noopener noreferrer" class="share-btn x">𝕏 Share</a>
+    <a href="https://reddit.com/submit?url={share_url}&title={title}" target="_blank" rel="noopener noreferrer" class="share-btn reddit">Reddit</a>
   </div>
 </div>
 

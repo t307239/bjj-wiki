@@ -259,15 +259,15 @@ footer .footer-bottom{{text-align:center;margin-top:32px;color:#4b5563;font-size
   </form>
 </div>
 <div class="share-bar">
-  <a href="https://twitter.com/intent/tweet?url={canonical}&text={quote(title)}" target="_blank" rel="noopener">🐦 Share on X</a>
-  <a href="https://reddit.com/submit?url={canonical}&title={quote(title)}" target="_blank" rel="noopener">👾 Reddit</a>
+  <a href="https://twitter.com/intent/tweet?url={canonical}&text={quote(title)}" target="_blank" rel="noopener noreferrer">🐦 Share on X</a>
+  <a href="https://reddit.com/submit?url={canonical}&title={quote(title)}" target="_blank" rel="noopener noreferrer">👾 Reddit</a>
 </div>
 <div class="aff-box">
   <p>📚 Level up your BJJ</p>
-  <a href="https://bjjfanatics.com/?ref=BJJWIKI" target="_blank" rel="noopener">Browse BJJ Instructionals →</a>
+  <a href="https://bjjfanatics.com/?ref=BJJWIKI" target="_blank" rel="noopener noreferrer">Browse BJJ Instructionals →</a>
 </div>
 </div>
-<a href="https://bjjwiki.beehiiv.com/subscribe" class="float-cta" id="floatCta" target="_blank" rel="noopener">📧 Free BJJ Tips</a>
+<a href="https://bjjwiki.beehiiv.com/subscribe" class="float-cta" id="floatCta" target="_blank" rel="noopener noreferrer">📧 Free BJJ Tips</a>
 <script>
 setTimeout(function(){{document.getElementById('floatCta').style.display='flex';}},30000);
 window.addEventListener('scroll',function(){{if(window.scrollY/document.body.scrollHeight>0.5){{document.getElementById('floatCta').style.display='flex';}}}});

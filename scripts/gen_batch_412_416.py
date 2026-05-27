@@ -457,7 +457,7 @@ def make_html(slug, lang, data, base_url=BASE_URL):
   <iframe src="{beehiiv_url}" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" style="border-radius:8px;max-width:600px;margin:0 auto;display:block"></iframe>
 </div>
 <div class="share-bar">
-  <a href="https://twitter.com/intent/tweet?text={share_text}&url={page_url}&hashtags=BJJ,BrazilianJiuJitsu" target="_blank" rel="noopener">&#x1D54F; Share</a>
+  <a href="https://twitter.com/intent/tweet?text={share_text}&url={page_url}&hashtags=BJJ,BrazilianJiuJitsu" target="_blank" rel="noopener noreferrer">&#x1D54F; Share</a>
 </div>
 </article>
 <footer><p>&copy; 2026 BJJ Wiki | <a href="../en/index.html">Back to Index</a></p></footer>

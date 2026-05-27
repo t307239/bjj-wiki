@@ -16,7 +16,7 @@ FLOATING_CTA_EN = '''
   <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button>
   <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📬 Weekly BJJ Tips</div>
   <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Technique breakdowns & competition insights. Free.</p>
-  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
+  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer"
      style="display:block;background:#2e7d32;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
      onclick="gtag('event','float_cta_click',{lang:'en'})">
     Subscribe Free →
@@ -52,7 +52,7 @@ FLOATING_CTA_JA = '''
   <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button>
   <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📬 週刊BJJニュースレター</div>
   <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">新技解説・コンペ情報を毎週お届け。無料。</p>
-  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
+  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer"
      style="display:block;background:#2e7d32;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
      onclick="gtag('event','float_cta_click',{lang:'ja'})">
     無料購読する →
@@ -68,7 +68,7 @@ FLOATING_CTA_PT = '''
   <button onclick="document.getElementById('float-cta').style.display='none';localStorage.setItem('cta_dismissed','1')" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1">✕</button>
   <div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📬 Newsletter Semanal de BJJ</div>
   <p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">Dicas de treino e análises de competição. Grátis.</p>
-  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener"
+  <a href="https://bjjwiki.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer"
      style="display:block;background:#2e7d32;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center"
      onclick="gtag('event','float_cta_click',{lang:'pt'})">
     Assinar Grátis →

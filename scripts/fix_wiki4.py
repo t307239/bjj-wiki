@@ -21,21 +21,21 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CTA_EN = '''<div class="app-cta" style="background:linear-gradient(135deg,#0f172a,#1e1b4b);border:1px solid rgba(139,92,246,0.3);border-radius:12px;padding:20px;margin:28px 0;text-align:center">
   <p style="color:#a78bfa;font-size:.85rem;margin-bottom:12px">Track every technique, every roll — for free</p>
-  <a href="https://bjj-app.net/login" target="_blank" rel="noopener" style="display:inline-block;padding:10px 24px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem">
+  <a href="https://bjj-app.net/login" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 24px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem">
     Start Tracking Free →
   </a>
 </div>'''
 
 CTA_JA = '''<div class="app-cta" style="background:linear-gradient(135deg,#0f172a,#1e1b4b);border:1px solid rgba(139,92,246,0.3);border-radius:12px;padding:20px;margin:28px 0;text-align:center">
   <p style="color:#a78bfa;font-size:.85rem;margin-bottom:12px">テクニックと練習を無料で記録しよう</p>
-  <a href="https://bjj-app.net/login" target="_blank" rel="noopener" style="display:inline-block;padding:10px 24px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem">
+  <a href="https://bjj-app.net/login" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 24px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem">
     無料で始める →
   </a>
 </div>'''
 
 CTA_PT = '''<div class="app-cta" style="background:linear-gradient(135deg,#0f172a,#1e1b4b);border:1px solid rgba(139,92,246,0.3);border-radius:12px;padding:20px;margin:28px 0;text-align:center">
   <p style="color:#a78bfa;font-size:.85rem;margin-bottom:12px">Registre cada técnica e treino — gratuitamente</p>
-  <a href="https://bjj-app.net/login" target="_blank" rel="noopener" style="display:inline-block;padding:10px 24px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem">
+  <a href="https://bjj-app.net/login" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:10px 24px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem">
     Começar Gratuitamente →
   </a>
 </div>'''

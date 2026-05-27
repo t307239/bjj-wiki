@@ -505,14 +505,14 @@ footer{{padding:28px 0;border-top:1px solid var(--border);
 
   <div class="cta-banner">
     <p>🥋 <strong>Learn more techniques and progress your BJJ game</strong></p>
-    <a href="https://bjj-app-one.vercel.app" class="cta-btn" target="_blank" rel="noopener">Open BJJ App</a>
+    <a href="https://bjj-app-one.vercel.app" class="cta-btn" target="_blank" rel="noopener noreferrer">Open BJJ App</a>
   </div>
 
   <div class="share-bar">
     <p>Share this technique:</p>
     <div class="share-btns">
-      <a href="https://twitter.com/intent/tweet?text={lang_info['title']}&url={SITE_URL}/{lang_code}/{article_key}.html" class="share-btn x" target="_blank" rel="noopener">X</a>
-      <a href="https://reddit.com/r/bjj" class="share-btn reddit" target="_blank" rel="noopener">Reddit</a>
+      <a href="https://twitter.com/intent/tweet?text={lang_info['title']}&url={SITE_URL}/{lang_code}/{article_key}.html" class="share-btn x" target="_blank" rel="noopener noreferrer">X</a>
+      <a href="https://reddit.com/r/bjj" class="share-btn reddit" target="_blank" rel="noopener noreferrer">Reddit</a>
     </div>
   </div>
 

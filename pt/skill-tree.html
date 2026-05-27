@@ -358,7 +358,7 @@ function renderBelt(belt) {
         <div class="tech-info">
           <div class="tech-name">${t.name}</div>
           <div class="tech-cat">${t.cat}</div>
-          ${locked ? '' : `<a class="tech-link" href="${WIKI}${t.slug}.html" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver técnica →</a>`}
+          ${locked ? '' : `<a class="tech-link" href="${WIKI}${t.slug}.html" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Ver técnica →</a>`}
         </div>
         ${locked ? '<span class="lock-icon">🔒</span>' : ''}
       </div>`;

@@ -421,7 +421,7 @@ function renderBelt(belt) {
         <div class="tech-info">
           <div class="tech-name">${t.name}</div>
           <div class="tech-cat">${t.cat}</div>
-          ${locked ? '' : `<a class="tech-link" href="${WIKI}${t.slug}.html" target="_blank" rel="noopener" onclick="event.stopPropagation()">View technique →</a>`}
+          ${locked ? '' : `<a class="tech-link" href="${WIKI}${t.slug}.html" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">View technique →</a>`}
         </div>
         ${locked ? '<span class="lock-icon">🔒</span>' : ''}
       </div>`;
@@ -636,8 +636,8 @@ renderAll();
   </div>
   <div class="share-bar">
 <span style="color:var(--muted);font-size:.85rem">Share:</span>
-<a href="https://twitter.com/intent/tweet?url=https://wiki.bjj-app.net/en/skill-tree.html&text=BJJ Skill Tree — Track Your Progress from White to Black Belt | BJJ Wiki" target="_blank" rel="noopener">𝕏 Post</a>
-<a href="https://www.reddit.com/submit?url=https://wiki.bjj-app.net/en/skill-tree.html&title=BJJ Skill Tree — Track Your Progress from White to Black <strong>Belt</strong> | BJJ Wiki" target="_blank" rel="noopener">Reddit</a>
+<a href="https://twitter.com/intent/tweet?url=https://wiki.bjj-app.net/en/skill-tree.html&text=BJJ Skill Tree — Track Your Progress from White to Black Belt | BJJ Wiki" target="_blank" rel="noopener noreferrer">𝕏 Post</a>
+<a href="https://www.reddit.com/submit?url=https://wiki.bjj-app.net/en/skill-tree.html&title=BJJ Skill Tree — Track Your Progress from White to Black <strong>Belt</strong> | BJJ Wiki" target="_blank" rel="noopener noreferrer">Reddit</a>
 </div>
 <div class="beehiiv-wrap"><h2>📬 Free BJJ Newsletter</h2>
 <p>Get the free BJJ White Belt Guide plus technique breakdowns, training tips &amp; exclusive content every week. No spam. Unsubscribe anytime.</p>

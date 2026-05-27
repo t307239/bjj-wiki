@@ -519,7 +519,7 @@ def make_page(tech, lang):
 <div class="aff-box">
   <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:10px">{ui['aff_title']}</h3>
   <p>{ui['aff_sub']}</p>
-  <a href="https://bjjfanatics.com/?aff=bjjwiki" target="_blank" rel="noopener" class="aff-btn">{ui['aff_btn']}</a>
+  <a href="https://bjjfanatics.com/?aff=bjjwiki" target="_blank" rel="noopener noreferrer" class="aff-btn">{ui['aff_btn']}</a>
 </div>
 <div class="share-bar">
   <p>{ui['share_label']}</p>
