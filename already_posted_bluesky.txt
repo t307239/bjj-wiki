@@ -64,6 +64,7 @@ sprawl
 stack-pass
 stand-in-base
 straight-armbar
+takedowns
 technical-standup
 techniques-az
 toe-hold
