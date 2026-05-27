@@ -19,6 +19,8 @@ LANGS = ["en", "ja", "pt"]
 NOINDEX_RE = re.compile(r'name=["\']robots["\'][^>]*content=["\'][^"\']*noindex')
 LOCALE_RE = re.compile(r'<meta property=["\']og:locale["\'](?!:alternate)', re.IGNORECASE)
 ALTERNATE_RE = re.compile(r'<meta property=["\']og:locale:alternate["\']', re.IGNORECASE)
+# z262: redirect stubs are content-less; they have no og meta and should be skipped
+REDIRECT_MARKER = "<!-- z262-redirect -->"
 
 
 def main() -> int:
@@ -31,6 +33,8 @@ def main() -> int:
             except Exception:
                 continue
             if NOINDEX_RE.search(head):
+                continue
+            if REDIRECT_MARKER in head:
                 continue
             src = f"{lang}/{fp.name}"
             if not LOCALE_RE.search(head):

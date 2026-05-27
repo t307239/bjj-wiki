@@ -5,10 +5,10 @@
 
 .PHONY: verify verify-slow locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness og-image-encoding description-quality h2-id-clobber zindex-hardcode heading-hierarchy all clean
 
-# z262: 全 lint を並列実行 (verify_fast.py) — 逐次 60-90s → 並列 ~10s
-# Why: 53 スクリプトを verify_fast.py でサブプロセス並列化。ロジック変更ゼロで先祖返りリスクなし。
+# z262: single-pass file walk (verify_single_pass.py) — 各 HTML を1回だけ読み込み全 per-page check をインライン実行
+# Why: ~4,500 × 55 subprocess reads → ~4,500 reads で I/O ~99% 削減。cross-page check 9本は ThreadPoolExecutor で並列 subprocess。
 verify:
-	@python3 scripts/verify_fast.py --ci
+	@python3 scripts/verify_single_pass.py --ci
 
 # 旧来の逐次実行 (デバッグ用。特定 lint のみ確認したい場合はこちらを使う)
 verify-slow: locale-parity gha-regression scan-ja-english scan-pt-english broken-links sitemap-drift hreflang jsonld breadcrumb ui-label lang-switcher breadcrumb-locale h1-brand dup-bjj-prefix ext-noreferrer dup-faq jsonld-url internal-rel tw-img-sync no-meta-keywords analytics-id login-cta-tracking dup-titles tab-security dup-meta brand-suffix funnel-cta anchors meta-quotes form-endpoints dup-words ja-body-translation title-html-tags cta-text-locale seo-meta-completeness dup-related-tech no-nested-p og-locale-completeness mobile-a11y-meta main-tag-present videoobject-when-yt apple-touch-icon-png skip-link pwa-iframe-twitter no-fake-subscriber-claim og-video-when-yt no-generic-h1 thin-content-indexable index-locale-parity no-duplicate-html-id html-quality-minor og-image-encoding description-quality h2-id-clobber zindex-hardcode heading-hierarchy
