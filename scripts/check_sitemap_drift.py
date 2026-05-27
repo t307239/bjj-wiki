@@ -59,7 +59,9 @@ def main() -> int:
         if "noindex" in head:
             noindex_in_sitemap.append(u)
 
-    # Class B: disk にある HTML が sitemap に無い (noindex / 認証 file 除外)
+    # Class B: disk にある HTML が sitemap に無い (noindex / 認証 file / redirect stub 除外)
+    # z262: <!-- z262-redirect --> marker を持つ redirect stub は sitemap 対象外
+    REDIRECT_MARKER = "<!-- z262-redirect -->"
     orphans = []
     for lang in LANGS:
         for fp in (REPO_ROOT / lang).glob("*.html"):
@@ -72,6 +74,8 @@ def main() -> int:
                 continue
             if "noindex" in head:
                 continue
+            if REDIRECT_MARKER in head:
+                continue  # z262: redirect stub — sitemap に載せると重複 canonical
             orphans.append(rel)
     for fp in REPO_ROOT.glob("*.html"):
         if fp.name in sitemap_urls or fp.name in ALLOWED_ORPHANS:
@@ -82,6 +86,8 @@ def main() -> int:
             continue
         if "noindex" in head:
             continue
+        if REDIRECT_MARKER in head:
+            continue  # z262: redirect stub
         orphans.append(fp.name)
 
     print(f"❌ Missing from disk (sitemap → 404): {len(missing)}")

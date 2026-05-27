@@ -47,6 +47,13 @@ PER_PAGE_GENERATED_MARKERS = {
     "z249-faq",     # alternative naming
 }
 
+# z262: locale parity チェックを完全免除する marker。
+# 意図的に EN のみに存在する redirect stub page 等、
+# 3 locale 均等を要求すると false positive になる marker を登録する。
+LOCALE_EXEMPT_MARKERS = {
+    "z262-redirect",  # fix_index_404_redirects.py: EN 向け redirect stub のみ (ja/pt は不要)
+}
+
 
 def count_markers_per_lang() -> dict[str, dict[str, int]]:
     """{lang: {marker: count}}"""
@@ -75,6 +82,9 @@ def find_divergence(counts: dict[str, dict[str, int]]) -> list[dict]:
         all_markers.update(lang_counts.keys())
 
     for marker in sorted(all_markers):
+        # z262: 完全免除 marker (EN-only redirect stub 等) — parity 判定対象外
+        if marker in LOCALE_EXEMPT_MARKERS:
+            continue
         # z255: per-page Gemini 生成 marker は count divergence も対象外
         # (incomplete deployment 中の WARNING で出して fail させない、
         #  完全 deploy 後は exception 解除する設計)
@@ -184,6 +194,9 @@ def check_marker_content_consistency() -> list[dict]:
 
     # 各 marker × locale で hash 種類を数える。複数あれば drift。
     for marker, lang_data in per_marker_lang_hash.items():
+        # z262: 完全免除 marker は content drift 対象外
+        if marker in LOCALE_EXEMPT_MARKERS:
+            continue
         # z255: per-page Gemini 生成 marker は content drift 対象外
         if marker in PER_PAGE_GENERATED_MARKERS:
             continue
