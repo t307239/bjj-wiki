@@ -1,9 +1,14 @@
 name: Generate BJJ Wiki
 
 on:
-  schedule:
-    - cron: '0 1 * * *'  # 毎朝10:00 JST（5記事ずつ追加）
-  workflow_dispatch:      # 手動実行も可能
+  # z262idx: 日次自動生成を停止（インデックス止血）。
+  # Why: GSC で 616 page (未登録の76%) が「クロール済み/検出-インデックス未登録」=
+  #      薄い量産ページがクロールバジェットとサイト評価を圧迫していた (docs/WIKI_INDEXING_DIAGNOSIS.md)。
+  #      ページ増加を止め、良質ページへクロールを集中させる。
+  #      生成は workflow_dispatch の手動実行のみに限定（品質を確認してから回す運用）。
+  # schedule:
+  #   - cron: '0 1 * * *'  # 毎朝10:00 JST（5記事ずつ追加）— 停止中
+  workflow_dispatch:      # 手動実行のみ（品質ゲート運用）
     inputs:
       limit:
         description: '生成する記事数 (default: 5)'
