@@ -103,11 +103,23 @@ def apply_noindex(html: str) -> str | None:
     return None  # head が無い異常ファイルは触らない
 
 
+def _word_count(html: str) -> int:
+    body_text = re.sub(r"<[^>]+>", " ", html)
+    return len(body_text.split())
+
+
+def _title(html: str) -> str:
+    m = re.search(r"<title>([^<]*)</title>", html, re.IGNORECASE)
+    return (m.group(1) if m else "").strip()
+
+
 def main() -> int:
     apply = "--apply" in sys.argv
+    csv_out = "--csv" in sys.argv
     by_locale: dict[str, int] = {loc: 0 for loc in LOCALES}
     by_reason: dict[str, int] = {}
     samples: list[str] = []
+    csv_rows: list[str] = ["locale,slug,reason,word_count,title"]
     changed = 0
 
     for loc in LOCALES:
@@ -126,11 +138,20 @@ def main() -> int:
             by_reason[reason.split(":")[0]] = by_reason.get(reason.split(":")[0], 0) + 1
             if len(samples) < 25:
                 samples.append(f"  [{reason}] {loc}/{slug}")
+            if csv_out:
+                title = _title(html).replace('"', "'")
+                csv_rows.append(f'{loc},{slug},{reason},{_word_count(html)},"{title}"')
             if apply:
                 new_html = apply_noindex(html)
                 if new_html is not None:
                     html_path.write_text(new_html, encoding="utf-8")
                     changed += 1
+
+    if csv_out:
+        out_path = ROOT / "reports" / "noindex_candidates.csv"
+        out_path.parent.mkdir(exist_ok=True)
+        out_path.write_text("\n".join(csv_rows) + "\n", encoding="utf-8")
+        print(f"CSV 出力: {out_path}  （{len(csv_rows) - 1} 行）")
 
     total = sum(by_locale.values())
     mode = "APPLIED" if apply else "DRY-RUN（変更なし）"
