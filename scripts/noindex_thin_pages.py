@@ -18,7 +18,10 @@ Why:
 判定（いずれかに該当で thin と判定）:
   1. slug 語尾が "-bjj"（"bjj-...-bjj" の二重サフィックス = 生成 filler）
   2. slug が SOFT_KEYWORDS のいずれかを含む（mindset/栄養/メンタル等の非技術トピック）
-  3. garbage_slugs.txt に列挙済み（既存の手動キュレーション）
+
+注意: garbage_slugs.txt は「古い品質監査で flag されたが改善済の正当ページ」リスト
+     （arm-triangle-choke 等の技術ページ 1,099 件を含む）であり、noindex 対象ではない。
+     判定には使わない。
 
 使い方:
   dry-run（既定・変更しない）: python3 scripts/noindex_thin_pages.py
@@ -57,29 +60,12 @@ ROBOTS_RE = re.compile(
 MARKER = "<!-- z262idx-noindex -->"
 
 
-def load_garbage_slugs() -> set[str]:
-    """garbage_slugs.txt（"<locale>/<slug>" 形式）を locale 無視の slug 集合に。"""
-    path = ROOT / "garbage_slugs.txt"
-    slugs: set[str] = set()
-    if not path.exists():
-        return slugs
-    for line in path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#"):
-            continue
-        slug = line.split("/", 1)[1] if "/" in line else line
-        slugs.add(slug)
-    return slugs
-
-
-def is_thin(slug: str, garbage: set[str]) -> str | None:
+def is_thin(slug: str) -> str | None:
     """thin と判定した理由を返す（該当しなければ None）。"""
     if slug in ALLOWLIST_EXACT:
         return None
     if slug.endswith("-bjj"):
         return "doubled-bjj-suffix"
-    if slug in garbage:
-        return "garbage-slug-list"
     tokens = set(slug.split("-"))
     for kw in SOFT_KEYWORDS:
         # 複合語（growth-mindset 等）は部分一致、単語は token 一致で誤検出抑制
@@ -119,7 +105,6 @@ def apply_noindex(html: str) -> str | None:
 
 def main() -> int:
     apply = "--apply" in sys.argv
-    garbage = load_garbage_slugs()
     by_locale: dict[str, int] = {loc: 0 for loc in LOCALES}
     by_reason: dict[str, int] = {}
     samples: list[str] = []
@@ -131,7 +116,7 @@ def main() -> int:
             continue
         for html_path in sorted(loc_dir.glob("*.html")):
             slug = html_path.stem
-            reason = is_thin(slug, garbage)
+            reason = is_thin(slug)
             if not reason:
                 continue
             html = html_path.read_text(encoding="utf-8")
