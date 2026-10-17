@@ -151,10 +151,6 @@
 </ul>
 <p>使い分け・失敗例・ドリルは本サイトの編集上の整理です。上記団体が本記事を監修・推奨したという意味ではありません。黒帯や医療者による監修済みとは表示していません。</p>
 </section>
-<script>
-setTimeout(function(){var c=document.getElementById('floatCta');if(c)c.style.display='block';},30000);
-window.addEventListener('scroll',function(){if(window.scrollY>window.innerHeight*0.5){var c=document.getElementById('floatCta');if(c)c.style.display='block';}});
-</script>
 
 
 
@@ -223,7 +219,6 @@ window.addEventListener('scroll',function(){if(window.scrollY>window.innerHeight
 </div>
 
 <section class="faq-section"><h2>よくある質問</h2><details><summary>最初に覚えるグリップは？</summary><p>道場で習う襟と袖のグリップから、持つ目的と安全に離す方法を確認しましょう。すべての場面で同じ握りを使う必要はありません。</p></details><details><summary>握力が弱いとグリップは使えませんか？</summary><p>握力だけで判断しません。握り続けていないか、距離と姿勢が保てているか、次の動作につながっているかを指導者と確認します。</p></details><details><summary>袖口の中に指を入れてもよいですか？</summary><p>このページで確認したIBJJFルール日本語版の6.2.2 Hでは、相手の袖口・裾口の内側に指を入れて持つ行為を反則としています。最新の大会規定も確認してください。</p></details></section>
-<!-- z243-bottom-cta --><div class="z243-bottom-cta" style="margin:2rem 0;padding:24px 24px;background:linear-gradient(135deg,#0d2010 0%,#0a1a0d 100%);border:2px solid #2e7d32;border-radius:14px;text-align:center"><div style="font-weight:700;color:#a5d6a7;font-size:1.1rem;margin-bottom:6px">📱 練習をヒートマップで可視化</div><div style="font-size:.9rem;color:#c8e6c9;margin-bottom:16px">今日の気づきと、次回確認したいことを練習記録へ。</div><a href="https://bjj-app.net/login?ref=wiki&page=bottom" style="display:inline-block;background:#10B981;color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'bottom',lang:'ja'})">BJJ App を開く — 無料 →</a></div>
 </main>
 <footer>
     <p>BJJ Wiki — 無料の柔術技術百科事典</p>
@@ -261,23 +256,5 @@ window.addEventListener('scroll',function(){if(window.scrollY>window.innerHeight
     }
   })();
   </script>
-<!-- z243-float-cta --><div id="z243-float" style="position:fixed;bottom:20px;right:20px;max-width:280px;background:#0d2010;border:1px solid #2e7d32;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,200,83,.15);z-index:999;display:none;animation:slideUp .3s ease">
-<button type="button" onclick="document.getElementById('z243-float').style.display='none';try{localStorage.setItem('z243_float_dismissed',Date.now())}catch(e){}" style="position:absolute;top:8px;right:12px;background:none;border:none;color:#546e7a;font-size:1rem;cursor:pointer;line-height:1" aria-label="閉じる">✕</button>
-<div style="font-weight:700;color:#a5d6a7;margin-bottom:6px;font-size:.9rem">📱 ロールを記録</div>
-<p style="font-size:.8rem;color:#c8e6c9;margin:0 0 12px">無料の練習記録から開始。追加機能は料金ページで確認できます。</p>
-<a href="https://bjj-app.net/login?ref=wiki&page=float" style="display:block;background:#10B981;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.85rem;text-align:center" onclick="window.gtag&&gtag('event','wiki_cta_click',{position:'float',lang:'ja'})">無料で開く →</a>
-</div>
-<style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
-<script>(function(){
-try{
-  var d=localStorage.getItem('z243_float_dismissed');
-  if(d && (Date.now()-parseInt(d,10))<7*86400000) return;
-}catch(e){}
-var el=document.getElementById('z243-float');
-if(!el) return;
-var shown=false;
-function check(){if(shown) return; var sp=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; if(sp>=30){el.style.display='block';shown=true;window.removeEventListener('scroll',check);}}
-window.addEventListener('scroll',check,{passive:true});
-})();</script>
 </body>
 </html>
