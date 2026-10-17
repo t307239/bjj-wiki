@@ -317,9 +317,9 @@ def build_article_prompt(technique, lang_code, all_slugs=None):
         "pt": '例: "Armbar no BJJ: Guia Faixa Branca | BJJ Wiki" / "Heel Hook no BJJ — Setup e Defesa | BJJ Wiki"',
     }
     h1_examples = {
-        "en": '例: "Armbar: A White Belt\'s Biomechanical Guide"',
-        "ja": '例: 「アームバー：白帯のためのバイオメカニクス完全ガイド」（カタカナ + 日本語）',
-        "pt": '例: "Armbar: Guia Biomecânico para Faixa Branca"',
+        "en": 'Example: "Armbar: Setup, Common Mistakes and Safety"',
+        "ja": '例: 「アームバー：入り方・よくある失敗・安全上の注意」',
+        "pt": 'Exemplo: "Armbar: Preparação, Erros Comuns e Segurança"',
     }
 
     tech_name = technique["name"]
@@ -329,41 +329,46 @@ def build_article_prompt(technique, lang_code, all_slugs=None):
         other = [s for s in all_slugs if s != tech_slug][:80]
         slug_hint = f"\n\nAVAILABLE RELATED SLUGS (pick 3 for semantic_links): {', '.join(other)}"
 
-    return f"""You are a world-class Brazilian Jiu-Jitsu black belt instructor with 20+ years of teaching experience.
+    # Serialize the example: embedded title quotes and f-string braces must not
+    # turn the model's requested JSON format into an invalid example.
+    article_schema = {
+        "title": f"SEO title in {lang_code}, 60 chars max. {title_examples[lang_code]}",
+        "meta_description": f"Accurate summary in {lang_code}; do not promise mastery or invent credentials.",
+        "h1": f"Heading in {lang_code}. {h1_examples[lang_code]}",
+        "belt_level": "One of White/Blue/Purple/Brown/Black as a learning context only; this is not competition eligibility.",
+        "technique_overview_md": "Starting position, purpose, prerequisites, and limits of this written overview. Short paragraphs.",
+        "biomechanics_and_grips_md": "Numbered observations and steps for instructor-supervised learning: grip, posture, direction, and what to check. Explain variations; do not invent exact angles or force values.",
+        "white_belt_warning_md": "Specific mistakes and safe stopping points. No diagnosis of pain, named tissue damage, or guaranteed corrective treatment. Separate teaching observations from verified facts.",
+        "drill_progressions_md": "A conservative instructor-supervised practice example. Agree on a stop signal; stop at pain or a tap. Do not prescribe invented reps, resistance percentages, or automatic progression to live submissions.",
+        "counters_and_when_to_use_md": "When the position is available, when to abandon it, and partner responses to discuss with an instructor. Explain context rather than promising a universal counter.",
+        "faq_q1": f"A specific beginner question about the setup or a common mistake in {tech_name}",
+        "faq_a1": "A direct, context-specific answer; state uncertainty and what to ask an instructor when needed.",
+        "faq_q2": "A different question about prerequisites, gi/no-gi differences, or partner reactions",
+        "faq_a2": "A specific answer without unsupported competition-rule or safety claims.",
+        "faq_q3": "A third distinct question about a misconception or when to stop/reset",
+        "faq_a3": "A useful answer without diagnosis, guaranteed results, or fabricated sources.",
+        "semantic_links": ["slug-1", "slug-2", "slug-3"],
+        "keywords": [tech_slug, f"bjj {tech_name.lower()}", f"{tech_name.lower()} technique"],
+    }
+    schema_json = json.dumps(article_schema, ensure_ascii=False, indent=2)
+
+    return f"""You are preparing an educational BJJ Wiki draft as an editor.
 {instruction}
 
-Your reader is a WHITE BELT — a beginner with no body movement habits yet and high injury risk.
-Write a precise, biomechanically accurate technique guide for: **{tech_name}** (Category: {technique["category"]}){slug_hint}
+Your reader is a beginner seeking a useful overview, not permission to attempt every technique.
+Write about **{tech_name}** (Category: {technique["category"]}){slug_hint}
 
 ABSOLUTE RULES:
-1. NEVER use vague language: ban "pull hard", "move quickly", "engage properly". Describe exact grips (collar, sleeve, pants, wrist), exact weight distribution (hip angle, knee direction, base width), exact frame positions.
-2. Every paragraph must be 3 lines or fewer. Long prose blocks are forbidden.
-3. All list fields must use markdown bullet points (- item) or numbered steps (1. step).
-4. White belt warning section is MANDATORY — minimum 3 specific injury risks with EXACT biomechanical failure mode.
-5. Drill progressions: minimum 6 numbered steps from 0% to live rolling. Include rep counts.
-6. Each section (biomechanics, warnings, drills, counters) must have minimum 5 substantive points.
-7. FAQ: write 3 DIFFERENT long-tail questions that real white belts Google (e.g. "why does my wrist hurt when I do {tech_name}", "how do I {tech_name} against a bigger opponent"). Include specific biomechanical answers.
+1. Do not claim personal rank, teaching experience, expert review, medical review, or endorsement. No verified source packet has been supplied. Do not invent citations, source URLs, quotations, video identities, upload dates, statistics, or success rates.
+2. Explain concrete grips, posture, movement direction, and observations where you can do so reliably. Do not invent exact joint angles, force values, anatomy, or one-size-fits-all instructions. State when details depend on position, body type, or instructor guidance.
+3. Never diagnose pain or attribute symptoms to a particular joint/ligament injury. If pain is discussed, advise stopping the activity rather than offering a corrective movement as treatment. Do not promise injury prevention or mastery.
+4. Give conservative instructor-supervised practice examples, not medical or training prescriptions. Do not invent repetition counts, resistance percentages, or a progression from solo practice to full-resistance submissions. Advanced techniques need prerequisites and clear limits for a beginner audience.
+5. Do not assert current competition eligibility, belt/age permissions, or universal legality without a verified dated rule source. Direct the reader to the organizer's current rules when relevant; do not fill uncertainty with a guess.
+6. Use short paragraphs and markdown bullets or numbered steps. Include an applicable example, common mistakes with observable checks, and a useful next question for an instructor. Do not pad sections to meet arbitrary point or word counts.
+7. Write three distinct, topic-specific FAQs. Give direct answers within the evidence available; do not fabricate search demand or use pain questions to imply medical expertise. The article remains an editorial draft requiring review.
 
 Return ONLY valid JSON with this exact structure (no markdown wrapper, no extra text):
-{{{{
-  "title": "SEO title (60 chars max). {title_examples[lang_code]}",
-  "meta_description": "150-160 char meta in the target language ({lang_code}). Must NOT be English-only when lang is ja or pt.",
-  "h1": "Main H1 heading in target language ({lang_code}). {h1_examples[lang_code]}",
-  "belt_level": "Recommended belt level: White/Blue/Purple/Brown/Black",
-  "technique_overview_md": "3 paragraphs. Paragraph 1: what position this starts from and what it achieves. Paragraph 2: why white belts fail at this (frame of mind). Paragraph 3: the ONE key mechanical insight that makes it work. Each paragraph max 3 lines.",
-  "biomechanics_and_grips_md": "Numbered step-by-step execution. Each step: EXACT grip name, EXACT hip/pelvis angle, EXACT weight transfer direction. Minimum 7 steps. Use 1. 2. 3. format.",
-  "white_belt_warning_md": "Bullet list of 3-5 common white belt errors. Each bullet: (a) wrong movement described precisely, (b) which joint/ligament is damaged and HOW, (c) exact correct alternative movement. Use - format.",
-  "drill_progressions_md": "Numbered progression from isolated solo drilling to live rolling. Minimum 6 steps. Each step has rep count and resistance percentage (0%, 25%, 50%, 75%, 90%, 100%). Use 1. 2. 3. format.",
-  "counters_and_when_to_use_md": "Two clearly labeled sections: WHEN TO ATTEMPT (3 specific positional triggers) and PRIMARY COUNTERS (3 defenses with exact body mechanics). Use - format.",
-  "faq_q1": "Long-tail white belt question about a specific failure/pain/confusion with {tech_name}",
-  "faq_a1": "Biomechanically precise answer (3-4 sentences) with exact fix",
-  "faq_q2": "Second different long-tail question (e.g. against bigger opponent, no-gi variation, competition scenario)",
-  "faq_a2": "Biomechanically precise answer (3-4 sentences) with exact fix",
-  "faq_q3": "Third long-tail question about a common misconception or timing issue with {tech_name}",
-  "faq_a3": "Biomechanically precise answer (3-4 sentences) with exact fix",
-  "semantic_links": ["slug-1", "slug-2", "slug-3"],
-  "keywords": ["{tech_slug}", "bjj {tech_name.lower()}", "{tech_name.lower()} technique", "bjj white belt", "{tech_name.lower()} tutorial"]
-}}}}"""
+{schema_json}"""
 
 # ===== 難易度・選手・Yoga・ギア マッピング =====
 DIFFICULTY_MAP = {
