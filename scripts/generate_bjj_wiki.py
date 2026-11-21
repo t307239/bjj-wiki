@@ -205,7 +205,7 @@ TECHNIQUES = [
     {"slug": "americana",           "name": "Americana",           "category": "Joint Lock"},
     {"slug": "omoplata",            "name": "Omoplata",            "category": "Joint Lock"},
     {"slug": "wrist-lock",          "name": "Wrist Lock",          "category": "Joint Lock"},
-    {"slug": "straight-armbar",     "name": "Straight Armbar",     "category": "Joint Lock"},
+    # straight-armbar は 2026-11-22 に armbar へ統合（転送ページ）。再生成で上書きしないよう一覧から外す
     {"slug": "monoplata",           "name": "Monoplata",           "category": "Joint Lock"},
     # レッグロック
     {"slug": "heel-hook",           "name": "Heel Hook",           "category": "Leg Lock"},
