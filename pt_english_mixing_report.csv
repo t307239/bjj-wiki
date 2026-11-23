@@ -1,5 +1,14 @@
 slug,severity,title,title_english,h1,h1_english,desc,desc_english
 athlete-buchecha,INFO,Marcus Buchecha Almeida | BJJ Wiki,"Marcus,Buchecha,Almeida",Marcus Buchecha Almeida,"Marcus,Buchecha,Almeida",Marcus ,Marcus
+bjj-armbar-details-bjj,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/armbar.html,"Redirecting,https",,,,
+bjj-armbar-finishing-details,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/armbar.html,"Redirecting,https",,,,
+bjj-armbar-from-guard-details,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/armbar.html,"Redirecting,https",,,,
+bjj-armbar-from-mount-details,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/bjj-armbar-from-mount-guide.html,"Redirecting,https,mount,guide",,,,
+bjj-armbar-guide,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/armbar.html,"Redirecting,https",,,,
+bjj-armbar-omoplata-chain,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/armbar.html,"Redirecting,https",,,,
+bjj-armbar-setup-guide,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/armbar.html,"Redirecting,https",,,,
+bjj-armbar-to-triangle-flow,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/armbar.html,"Redirecting,https",,,,
+bjj-armbar-variations,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/armbar.html,"Redirecting,https",,,,
 bjj-ashi-garami-defense,CRITICAL,Defesa de Ashi Garami | BJJ Wiki,Garami,Defendendo o Ashi Garami,"Defendendo,Garami",Domine as defesas de ashi garami com escapes e contra-ataques de chave de perna. Saiba como se livrar dessa posição.,"defesas,garami,escapes,contra,ataques"
 bjj-baseball-choke-details,CRITICAL,Baseball Choke: Detalhes | BJJ Wiki,"Baseball,Choke,Detalhes",Detalhes do Baseball Choke,"Detalhes,Baseball,Choke",Aprenda todos os detalhes da técnica de Baseball Choke no Jiu Jitsu Brasileiro. Descubra como aplicá-la e se defender de,"Aprenda,todos,detalhes,Baseball,Choke"
 bjj-between-matches-bjj,CRITICAL,Gerenciando Energia Entre Lutas | BJJ Wiki,"Gerenciando,Energia,Entre,Lutas",Gerenciando Energia Entre Lutas,"Gerenciando,Energia,Entre,Lutas","Estratégias essenciais para otimizar sua energia e recuperação entre as lutas de Jiu Jitsu, garantindo foco e desempenho","essenciais,otimizar,energia,entre,lutas"
@@ -20,6 +29,8 @@ bjj-kuzushi-bjj,CRITICAL,Kuzushi BJJ | BJJ Wiki,Kuzushi,Guia Kuzushi BJJ,Kuzushi
 bjj-leg-drag-passing,CRITICAL,Leg Drag Pass | BJJ App Wiki Brasil,Brasil,🌊 Leg Drag: Sistema Moderno de Passagem,"Sistema,Moderno","Domine o leg drag no BJJ. Aprenda a montagem, controle e finalização de um dos sistemas de passagem de guarda mais popul","Aprenda,montagem,controle,sistemas,populares"
 bjj-leg-weave-pass,INFO,"Passagem ""Leg Weave"" | BJJ Wiki",Weave,"Técnica de ""Leg Weave Pass""",Weave,Aprenda a ,Aprenda
 bjj-match-review-guide,INFO,Guia de Revisão e Análise de Luta,,Guia de Revisão e Análise de Luta,,Aprenda a revisar e analisar lutas sistematicamente.,"Aprenda,revisar,analisar,lutas,sistematicamente"
+bjj-mounted-armbar-detail,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/bjj-armbar-from-mount-guide.html,"Redirecting,https,mount,guide",,,,
+bjj-mounted-armbar-guide,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/bjj-armbar-from-mount-guide.html,"Redirecting,https,mount,guide",,,,
 bjj-offense-first-bjj,CRITICAL,BJJ Ofensivo | BJJ Wiki,Ofensivo,BJJ com Prioridade Ofensiva,"Prioridade,Ofensiva","Uma abordagem estratégica no BJJ que foca em criar e manter sequências de ataque, buscando finalizações.","abordagem,criar,manter,buscando"
 bjj-outside-ashi-garami,CRITICAL,Ashi Garami Externa | BJJ Wiki,"Garami,Externa",Ashi Garami Externa,"Garami,Externa",Posição de leg lock Ashi Garami externa. Aprenda esta técnica fundamental de BJJ para controlar e finalizar seus oponent,"Garami,externa,Aprenda,controlar,finalizar"
 bjj-over-under-pass-details,INFO,Over-Under Pass: Breakdown Completo,"Under,Breakdown,Completo",Over-Under Pass: Breakdown Completo,"Under,Breakdown,Completo",Aprenda over-under pass.,"Aprenda,under"
@@ -43,3 +54,4 @@ peruvian-necktie,CRITICAL,Peruvian Necktie: Finalização de Headlock Frontal no
 privacy,CRITICAL,Privacidade | BJJ Wiki,Privacidade,,,,
 quarter-guard,CRITICAL,"Quarter Guard no BJJ: Defesas, Raspagens e Ataques | BJJ Wiki","Quarter,Guard,Defesas,Raspagens,Ataques",Quarter Guard,"Quarter,Guard","Guia completo da Quarter Guard no BJJ: o que é, como defender, raspar e atacar. Essencial para sua evolução no jiu-jitsu","completo,Quarter,Guard,defender,raspar"
 skill-tree,INFO,Árvore de Habilidades BJJ — Acompanhe Seu Progresso | BJJ Wiki,"Habilidades,Acompanhe,Progresso",Árvore de Habilidades BJJ,Habilidades,Interactive BJJ skill progression tree. Track which techniques you,"Interactive,skill,progression,Track,which"
+straight-armbar,CRITICAL,Redirecting to https://wiki.bjj-app.net/pt/armbar.html,"Redirecting,https",,,,
